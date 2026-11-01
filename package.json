@@ -1,0 +1,15 @@
+{
+  "name": "jiangyue-ui-design",
+  "private": true,
+  "description": "江月UI设计：「给AI描述UI的6个词」视频素材库 + 开源 UI 提示词图鉴",
+  "type": "module",
+  "scripts": {
+    "check": "node .claude/skills/jiangyue-ui-video/scripts/check.mjs",
+    "render": "node .claude/skills/jiangyue-ui-video/scripts/render.mjs",
+    "build:site": "node \"图鉴网站（开源）/scripts/build.mjs\"",
+    "setup": "npm install && npx playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}
