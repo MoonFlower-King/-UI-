@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticky · 吸顶固定</title>
+<style>
+
+/* ========== 外壳：所有期数共用，不要修改 ========== */
+:root { --clock: 4s infinite cubic-bezier(0.4, 0, 0.2, 1); --baked: 4s infinite linear;
+  /* 标题关键词色（金橘，暖色抓第一眼）。各镜头的颜色由下方调色板按语义分配 */
+  --accent: #FA8C16; --accent-strong: #D46B08; --accent-light: #FFC069; --accent-soft: #FFE7BA; --accent-faint: #FFF7E6;
+  --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+.title em { font-style: normal; color: var(--accent); padding: 0 4px; margin: 0 2px; }
+/* 调色板：苹果系统色。同一套明度/饱和度设计，彼此天然和谐，也是用户每天在手机上看到的 UI 颜色。
+   给元素加 .hue-xxx，就把它和子元素的 --accent 系列切换成该色相；按“语义”选色，规则见 SKILL.md「配色」 */
+.hue-blue   { --accent: #007AFF; --accent-strong: #0062CC; --accent-light: #8CC2FF; --accent-soft: #DCEBFF; --accent-faint: #F0F6FF; }
+.hue-green  { --accent: #34C759; --accent-strong: #248A3D; --accent-light: #9BE3AD; --accent-soft: #DDF5E3; --accent-faint: #F0FAF2; }
+.hue-orange { --accent: #FF9500; --accent-strong: #C93400; --accent-light: #FFCA80; --accent-soft: #FFEBCC; --accent-faint: #FFF7EB; }
+.hue-red    { --accent: #FF3B30; --accent-strong: #D70015; --accent-light: #FF9D97; --accent-soft: #FFE1DF; --accent-faint: #FFF2F1; }
+.hue-pink   { --accent: #FF2D55; --accent-strong: #D30F45; --accent-light: #FF96AA; --accent-soft: #FFDFE6; --accent-faint: #FFF1F4; }
+.hue-purple { --accent: #AF52DE; --accent-strong: #8944AB; --accent-light: #D7A9EF; --accent-soft: #F1E2F9; --accent-faint: #F9F2FC; }
+.hue-indigo { --accent: #5856D6; --accent-strong: #3634A3; --accent-light: #ABAAEB; --accent-soft: #E4E4F9; --accent-faint: #F3F3FC; }
+.hue-teal   { --accent: #30B0C7; --accent-strong: #0E7C8F; --accent-light: #98D8E3; --accent-soft: #DCF2F6; --accent-faint: #F0F9FB; }
+.hue-yellow { --accent: #FFCC00; --accent-strong: #A68500; --accent-light: #FFE680; --accent-soft: #FFF5CC; --accent-faint: #FFFBEB; }
+[class*="hue-"] { --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #F4F4F5; }
+body { min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif; }
+#stage { position: relative; flex-shrink: 0; width: 1600px; height: 1000px; background: #FFFFFF; padding: 56px 80px;
+  display: flex; flex-direction: column; transform-origin: center; }
+.title { text-align: center; font-size: 38px; font-weight: 700; color: #18181B; margin-bottom: 44px; letter-spacing: -0.5px; line-height: 1.2; }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 36px 32px; }
+.cell { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.sandbox { height: 250px; background: #FAFAFA; border: 1.5px solid #E4E4E7; border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.browser-bar { height: 26px; flex-shrink: 0; border-bottom: 1px solid #F4F4F5; display: flex; align-items: center; padding: 0 12px; gap: 6px; background: #FFFFFF; }
+.browser-bar i { width: 6px; height: 6px; background: #D4D4D8; border-radius: 50%; }
+.viewport { flex: 1; position: relative; overflow: hidden; padding: 16px; }
+.label-group { text-align: center; margin-top: 14px; }
+.term-en { font-size: 16px; color: #52525B; font-weight: 500; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.term-zh { font-size: 22px; color: #18181B; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.watermark { position: absolute; right: 32px; bottom: 22px; font-size: 14px; color: #A1A1AA; }
+
+.bar { height: 10px; border-radius: 5px; background: #E4E4E7; }
+.bar.soft { background: #F4F4F5; }
+
+.scrollbar { position: absolute; top: 8px; right: 5px; bottom: 8px; width: 4px; border-radius: 2px; background: #F4F4F5; z-index: 20; }
+.scrollbar::after { content: ""; position: absolute; left: 0; top: 0; width: 4px; height: 36%; border-radius: 2px; background: #A1A1AA; animation: thumb var(--clock); }
+@keyframes thumb { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(178%); } 100% { transform: translateY(0); } }
+
+.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 30; pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18)); }
+/* 竖屏版式：URL 带 #portrait 时启用，画布 1080×1920（9:16）。宫格宽度锁定 456px，与横屏一致，镜头内坐标无需改动 */
+.portrait #stage { width: 1080px; height: 1920px; padding: 180px 0 0; }
+.portrait .title { font-size: 56px; letter-spacing: -1px; margin-bottom: 72px; line-height: 1.25; }
+.portrait .title span { display: block; }
+.portrait .title .comma { display: none; }
+.portrait .title .sub { font-size: 40px; color: #3F3F46; margin-top: 10px; }
+.portrait .grid { flex: none; grid-template-columns: repeat(2, 456px); grid-template-rows: repeat(3, auto); justify-content: center; gap: 56px 40px; }
+.portrait .term-en { font-size: 20px; }
+.portrait .term-zh { font-size: 30px; }
+.portrait .watermark { position: static; width: 952px; margin: 40px auto 0; text-align: right; font-size: 20px; }
+/* ========== 外壳结束 ========== */
+
+/* 通用：滚动页面层（右侧给滚动条留位） */
+.page { position: absolute; left: 16px; right: 24px; top: 16px; }
+.dark-card { background: #3F3F46; border-radius: 10px; padding: 14px 12px; }
+.dark-card::before, .dark-card::after { content: ""; display: block; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.28); }
+.dark-card::before { width: 58%; margin-bottom: 8px; }
+.dark-card::after { width: 84%; }
+
+/* 1. Scroll-triggered：滚到位置时三张卡片依次上浮淡入 */
+.st-page { animation: st-scroll var(--clock); }
+.st-hero { height: 80px; border-radius: 10px; background: #E4E4E7; margin-bottom: 14px; }
+.st-page .bar { margin-bottom: 12px; }
+.st-row { display: flex; gap: 12px; margin-top: 20px; }
+.st-row .dark-card { flex: 1; height: 96px; opacity: 0; background: var(--accent-soft); }
+.st-row .dark-card::before { width: 26px; height: 26px; border-radius: 8px; margin-bottom: 14px; background: var(--accent); }
+.st-row .dark-card::after { background: color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+.st-row .c1 { animation: st-c1 var(--clock); }
+.st-row .c2 { animation: st-c2 var(--clock); }
+.st-row .c3 { animation: st-c3 var(--clock); }
+@keyframes st-scroll { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-130px); } 100% { transform: translateY(0); } }
+@keyframes st-c1 { 0%, 26% { opacity: 0; transform: translateY(28px); } 38%, 68% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: translateY(28px); } }
+@keyframes st-c2 { 0%, 32% { opacity: 0; transform: translateY(28px); } 44%, 68% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: translateY(28px); } }
+@keyframes st-c3 { 0%, 38% { opacity: 0; transform: translateY(28px); } 50%, 68% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: translateY(28px); } }
+
+/* 2. Scroll-linked：顶部进度条与滚动 1:1 同步 */
+.sl-track { position: absolute; left: 0; right: 0; top: 0; height: 6px; background: #F4F4F5; z-index: 10; }
+.sl-fill { height: 100%; background: var(--accent); border-radius: 0 3px 3px 0; transform-origin: left center; transform: scaleX(0); animation: sl-fill var(--clock); }
+.sl-page { top: 24px; animation: sl-scroll var(--clock); }
+.sl-page .img { height: 74px; border-radius: 10px; background: #E4E4E7; margin-bottom: 14px; }
+.sl-page .bar { margin-bottom: 11px; }
+@keyframes sl-fill { 0%, 15% { transform: scaleX(0); } 50%, 65% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes sl-scroll { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-190px); } 100% { transform: translateY(0); } }
+
+/* 3. Parallax：背景山峰慢、前景卡片快 */
+.px-bg { position: absolute; left: 0; right: 0; top: 0; height: 300px; animation: px-bg var(--clock); }
+.px-bg svg { width: 100%; height: 100%; display: block; }
+.px-fg { position: absolute; inset: 0; animation: px-fg var(--clock); }
+.px-fg .dark-card { position: absolute; height: 84px; box-shadow: 0 10px 24px rgba(24,24,27,0.18); }
+.px-fg .a { left: 26px; top: 28px; width: 168px; }
+.px-fg .b { right: 36px; top: 160px; width: 188px; }
+.px-fg .c { left: 44px; top: 300px; width: 176px; }
+@keyframes px-bg { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-28px); } 100% { transform: translateY(0); } }
+@keyframes px-fg { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-150px); } 100% { transform: translateY(0); } }
+
+/* 4. Sticky：通讯录分组标题吸顶，B 把 A 顶走（分段关系用主时钟预采样 keyframes） */
+.viewport.sk { padding: 0; }
+.sk-page { position: absolute; left: 0; right: 0; top: 0; animation: sk-page var(--baked); }
+.sk-search { height: 40px; padding: 8px 24px 0 16px; }
+.sk-search div { height: 22px; border-radius: 11px; background: #F4F4F5; border: 1px solid #E4E4E7; }
+.sk-gap { height: 26px; }
+.sk-row { height: 34px; display: flex; align-items: center; gap: 10px; padding: 0 24px 0 16px; border-bottom: 1px solid #F4F4F5; }
+.sk-row i { width: 22px; height: 22px; border-radius: 50%; background: #D4D4D8; flex-shrink: 0; }
+.sk-row b { height: 9px; border-radius: 5px; background: #E4E4E7; }
+.sk-head { position: absolute; left: 0; right: 0; top: 0; height: 26px; padding-left: 16px; background: var(--accent-soft);
+  font: 700 13px/26px -apple-system, BlinkMacSystemFont, "Inter", sans-serif; color: var(--accent-strong); box-shadow: inset 0 -1px 0 var(--accent-light); }
+.sk-a { z-index: 5; animation: sk-a var(--baked); }
+.sk-b { z-index: 6; animation: sk-b var(--baked); }
+/* 由 bake-keyframes.mjs 生成：SMAX=230, A0=40, B0=202, H=26 */
+@keyframes sk-page {
+  0% { transform: translateY(0px); }
+  15% { transform: translateY(0px); }
+  16% { transform: translateY(-0.41px); }
+  17% { transform: translateY(-1.76px); }
+  18% { transform: translateY(-4.23px); }
+  19% { transform: translateY(-8.04px); }
+  20% { transform: translateY(-13.51px); }
+  21% { transform: translateY(-20.97px); }
+  22% { transform: translateY(-30.81px); }
+  23% { transform: translateY(-43.3px); }
+  24% { transform: translateY(-58.42px); }
+  25% { transform: translateY(-75.54px); }
+  26% { transform: translateY(-93.45px); }
+  27% { transform: translateY(-110.85px); }
+  28% { transform: translateY(-126.86px); }
+  29% { transform: translateY(-141.13px); }
+  30% { transform: translateY(-153.65px); }
+  31% { transform: translateY(-164.57px); }
+  32% { transform: translateY(-174.09px); }
+  33% { transform: translateY(-182.38px); }
+  34% { transform: translateY(-189.62px); }
+  35% { transform: translateY(-195.95px); }
+  36% { transform: translateY(-201.47px); }
+  37% { transform: translateY(-206.3px); }
+  38% { transform: translateY(-210.5px); }
+  39% { transform: translateY(-214.16px); }
+  40% { transform: translateY(-217.32px); }
+  41% { transform: translateY(-220.04px); }
+  42% { transform: translateY(-222.36px); }
+  43% { transform: translateY(-224.31px); }
+  44% { transform: translateY(-225.93px); }
+  45% { transform: translateY(-227.25px); }
+  46% { transform: translateY(-228.28px); }
+  47% { transform: translateY(-229.06px); }
+  48% { transform: translateY(-229.59px); }
+  49% { transform: translateY(-229.9px); }
+  50% { transform: translateY(-230px); }
+  65% { transform: translateY(-230px); }
+  66% { transform: translateY(-229.59px); }
+  67% { transform: translateY(-228.24px); }
+  68% { transform: translateY(-225.77px); }
+  69% { transform: translateY(-221.96px); }
+  70% { transform: translateY(-216.49px); }
+  71% { transform: translateY(-209.03px); }
+  72% { transform: translateY(-199.19px); }
+  73% { transform: translateY(-186.7px); }
+  74% { transform: translateY(-171.58px); }
+  75% { transform: translateY(-154.46px); }
+  76% { transform: translateY(-136.55px); }
+  77% { transform: translateY(-119.15px); }
+  78% { transform: translateY(-103.14px); }
+  79% { transform: translateY(-88.87px); }
+  80% { transform: translateY(-76.35px); }
+  81% { transform: translateY(-65.43px); }
+  82% { transform: translateY(-55.91px); }
+  83% { transform: translateY(-47.62px); }
+  84% { transform: translateY(-40.38px); }
+  85% { transform: translateY(-34.05px); }
+  86% { transform: translateY(-28.53px); }
+  87% { transform: translateY(-23.7px); }
+  88% { transform: translateY(-19.5px); }
+  89% { transform: translateY(-15.84px); }
+  90% { transform: translateY(-12.68px); }
+  91% { transform: translateY(-9.96px); }
+  92% { transform: translateY(-7.64px); }
+  93% { transform: translateY(-5.69px); }
+  94% { transform: translateY(-4.07px); }
+  95% { transform: translateY(-2.75px); }
+  96% { transform: translateY(-1.72px); }
+  97% { transform: translateY(-0.94px); }
+  98% { transform: translateY(-0.41px); }
+  99% { transform: translateY(-0.1px); }
+  100% { transform: translateY(0px); }
+}
+@keyframes sk-a {
+  0% { transform: translateY(40px); }
+  15% { transform: translateY(40px); }
+  16% { transform: translateY(39.59px); }
+  17% { transform: translateY(38.24px); }
+  18% { transform: translateY(35.77px); }
+  19% { transform: translateY(31.96px); }
+  20% { transform: translateY(26.49px); }
+  21% { transform: translateY(19.03px); }
+  22% { transform: translateY(9.19px); }
+  23% { transform: translateY(0px); }
+  24% { transform: translateY(0px); }
+  25% { transform: translateY(0px); }
+  26% { transform: translateY(0px); }
+  27% { transform: translateY(0px); }
+  28% { transform: translateY(0px); }
+  29% { transform: translateY(0px); }
+  30% { transform: translateY(0px); }
+  31% { transform: translateY(0px); }
+  32% { transform: translateY(0px); }
+  33% { transform: translateY(-6.38px); }
+  34% { transform: translateY(-13.62px); }
+  35% { transform: translateY(-19.95px); }
+  36% { transform: translateY(-25.47px); }
+  37% { transform: translateY(-30.3px); }
+  38% { transform: translateY(-34.5px); }
+  39% { transform: translateY(-38.16px); }
+  40% { transform: translateY(-41.32px); }
+  41% { transform: translateY(-44.04px); }
+  42% { transform: translateY(-46.36px); }
+  43% { transform: translateY(-48.31px); }
+  44% { transform: translateY(-49.93px); }
+  45% { transform: translateY(-51.25px); }
+  46% { transform: translateY(-52.28px); }
+  47% { transform: translateY(-53.06px); }
+  48% { transform: translateY(-53.59px); }
+  49% { transform: translateY(-53.9px); }
+  50% { transform: translateY(-54px); }
+  65% { transform: translateY(-54px); }
+  66% { transform: translateY(-53.59px); }
+  67% { transform: translateY(-52.24px); }
+  68% { transform: translateY(-49.77px); }
+  69% { transform: translateY(-45.96px); }
+  70% { transform: translateY(-40.49px); }
+  71% { transform: translateY(-33.03px); }
+  72% { transform: translateY(-23.19px); }
+  73% { transform: translateY(-10.7px); }
+  74% { transform: translateY(0px); }
+  75% { transform: translateY(0px); }
+  76% { transform: translateY(0px); }
+  77% { transform: translateY(0px); }
+  78% { transform: translateY(0px); }
+  79% { transform: translateY(0px); }
+  80% { transform: translateY(0px); }
+  81% { transform: translateY(0px); }
+  82% { transform: translateY(0px); }
+  83% { transform: translateY(0px); }
+  84% { transform: translateY(0px); }
+  85% { transform: translateY(5.95px); }
+  86% { transform: translateY(11.47px); }
+  87% { transform: translateY(16.3px); }
+  88% { transform: translateY(20.5px); }
+  89% { transform: translateY(24.16px); }
+  90% { transform: translateY(27.32px); }
+  91% { transform: translateY(30.04px); }
+  92% { transform: translateY(32.36px); }
+  93% { transform: translateY(34.31px); }
+  94% { transform: translateY(35.93px); }
+  95% { transform: translateY(37.25px); }
+  96% { transform: translateY(38.28px); }
+  97% { transform: translateY(39.06px); }
+  98% { transform: translateY(39.59px); }
+  99% { transform: translateY(39.9px); }
+  100% { transform: translateY(40px); }
+}
+@keyframes sk-b {
+  0% { transform: translateY(202px); }
+  15% { transform: translateY(202px); }
+  16% { transform: translateY(201.59px); }
+  17% { transform: translateY(200.24px); }
+  18% { transform: translateY(197.77px); }
+  19% { transform: translateY(193.96px); }
+  20% { transform: translateY(188.49px); }
+  21% { transform: translateY(181.03px); }
+  22% { transform: translateY(171.19px); }
+  23% { transform: translateY(158.7px); }
+  24% { transform: translateY(143.58px); }
+  25% { transform: translateY(126.46px); }
+  26% { transform: translateY(108.55px); }
+  27% { transform: translateY(91.15px); }
+  28% { transform: translateY(75.14px); }
+  29% { transform: translateY(60.87px); }
+  30% { transform: translateY(48.35px); }
+  31% { transform: translateY(37.43px); }
+  32% { transform: translateY(27.91px); }
+  33% { transform: translateY(19.62px); }
+  34% { transform: translateY(12.38px); }
+  35% { transform: translateY(6.05px); }
+  36% { transform: translateY(0.53px); }
+  37% { transform: translateY(0px); }
+  38% { transform: translateY(0px); }
+  39% { transform: translateY(0px); }
+  40% { transform: translateY(0px); }
+  41% { transform: translateY(0px); }
+  42% { transform: translateY(0px); }
+  43% { transform: translateY(0px); }
+  44% { transform: translateY(0px); }
+  45% { transform: translateY(0px); }
+  46% { transform: translateY(0px); }
+  47% { transform: translateY(0px); }
+  48% { transform: translateY(0px); }
+  49% { transform: translateY(0px); }
+  50% { transform: translateY(0px); }
+  65% { transform: translateY(0px); }
+  66% { transform: translateY(0px); }
+  67% { transform: translateY(0px); }
+  68% { transform: translateY(0px); }
+  69% { transform: translateY(0px); }
+  70% { transform: translateY(0px); }
+  71% { transform: translateY(0px); }
+  72% { transform: translateY(2.81px); }
+  73% { transform: translateY(15.3px); }
+  74% { transform: translateY(30.42px); }
+  75% { transform: translateY(47.54px); }
+  76% { transform: translateY(65.45px); }
+  77% { transform: translateY(82.85px); }
+  78% { transform: translateY(98.86px); }
+  79% { transform: translateY(113.13px); }
+  80% { transform: translateY(125.65px); }
+  81% { transform: translateY(136.57px); }
+  82% { transform: translateY(146.09px); }
+  83% { transform: translateY(154.38px); }
+  84% { transform: translateY(161.62px); }
+  85% { transform: translateY(167.95px); }
+  86% { transform: translateY(173.47px); }
+  87% { transform: translateY(178.3px); }
+  88% { transform: translateY(182.5px); }
+  89% { transform: translateY(186.16px); }
+  90% { transform: translateY(189.32px); }
+  91% { transform: translateY(192.04px); }
+  92% { transform: translateY(194.36px); }
+  93% { transform: translateY(196.31px); }
+  94% { transform: translateY(197.93px); }
+  95% { transform: translateY(199.25px); }
+  96% { transform: translateY(200.28px); }
+  97% { transform: translateY(201.06px); }
+  98% { transform: translateY(201.59px); }
+  99% { transform: translateY(201.9px); }
+  100% { transform: translateY(202px); }
+}
+
+/* 5. Scroll Snap：滚过头后自动回吸，卡片 2 居中锁定 */
+/* 两侧向内的小三角，标出视口中线 */
+.sn-line { position: absolute; left: 16px; top: 104px; width: 0; height: 0; border-top: 7px solid transparent; border-bottom: 7px solid transparent; border-left: 10px solid #A1A1AA; z-index: 4; }
+.sn-line.r { left: auto; right: 22px; border-left: 0; border-right: 10px solid #A1A1AA; }
+.sn-page { position: absolute; left: 0; right: 0; top: 0; animation: sn-scroll var(--clock); }
+.sn-card { position: absolute; left: 40px; right: 46px; height: 150px; border-radius: 14px; background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--accent-strong);
+  font: 700 44px/1 -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.sn-card.k1 { top: 35.5px; } .sn-card.k2 { top: 201.5px; } .sn-card.k3 { top: 367.5px; }
+.sn-card.k2 { animation: sn-k2 var(--clock); }
+@keyframes sn-k2 { 0%, 46% { background: var(--accent-soft); color: var(--accent-strong); } 52%, 63% { background: var(--accent); color: #FFFFFF; } 72%, 100% { background: var(--accent-soft); color: var(--accent-strong); } }
+.sn-card.k2::after { content: ""; position: absolute; inset: -5px; border: 2px solid var(--accent); border-radius: 18px; opacity: 0; animation: sn-lock var(--clock); }
+@keyframes sn-scroll { 0%, 15% { transform: translateY(0); } 40% { transform: translateY(-200px); } 50%, 65% { transform: translateY(-166px); } 100% { transform: translateY(0); } }
+@keyframes sn-lock { 0%, 47% { opacity: 0; } 52%, 63% { opacity: 1; } 72%, 100% { opacity: 0; } }
+
+/* 6. Horizontal Scroll：纵向滚动驱动下方卡片列表横向滑过 */
+.hz-page { animation: hz-scroll var(--clock); }
+.hz-page .bar { margin-bottom: 12px; }
+.hz-track { display: flex; gap: 12px; margin-top: 26px; width: max-content; animation: hz-slide var(--clock); }
+.hz-track .dark-card { width: 112px; height: 96px; flex-shrink: 0; padding: 0; overflow: hidden; background: #FFFFFF; border: 1px solid #E4E4E7; }
+.hz-track .dark-card::before { width: 100%; height: 54px; border-radius: 0; margin: 0 0 12px; background: var(--accent-light); }
+.hz-track .dark-card::after { width: 64%; margin-left: 10px; background: #E4E4E7; }
+@keyframes hz-scroll { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-36px); } 100% { transform: translateY(0); } }
+@keyframes hz-slide { 0%, 15% { transform: translateX(0); } 50%, 65% { transform: translateX(-340px); } 100% { transform: translateX(0); } }
+
+/* 演示页：只显示一个宫格，按 iframe 宽度等比缩放 */
+html, body { background: transparent; }
+body { display: block; min-height: 0; margin: 0; overflow: hidden; }
+#demo { width: 456px; transform-origin: 0 0; }
+#demo .cell { display: block; }
+#demo .label-group { display: none; }
+#demo .sandbox { box-shadow: none; border: 0; border-radius: 0; }
+</style>
+</head>
+<body>
+<div id="demo"><div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport sk">
+          <div class="sk-page">
+            <div class="sk-search"><div></div></div>
+            <div class="sk-gap"></div>
+            <div class="sk-row"><i></i><b style="width:110px"></b></div>
+            <div class="sk-row"><i></i><b style="width:150px"></b></div>
+            <div class="sk-row"><i></i><b style="width:92px"></b></div>
+            <div class="sk-row"><i></i><b style="width:132px"></b></div>
+            <div class="sk-gap"></div>
+            <div class="sk-row"><i></i><b style="width:124px"></b></div>
+            <div class="sk-row"><i></i><b style="width:88px"></b></div>
+            <div class="sk-row"><i></i><b style="width:146px"></b></div>
+            <div class="sk-row"><i></i><b style="width:104px"></b></div>
+            <div class="sk-row"><i></i><b style="width:138px"></b></div>
+            <div class="sk-row"><i></i><b style="width:96px"></b></div>
+          </div>
+          <div class="sk-head sk-a hue-orange">A</div>
+          <div class="sk-head sk-b hue-teal">B</div>
+          <div class="scrollbar"></div>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Sticky</div><div class="term-zh">吸顶固定</div></div>
+    </div></div>
+<script>
+  // 演示宫格按 456px 设计，这里按窗口宽度等比缩放
+  (function fit() {
+    document.getElementById('demo').style.transform = 'scale(' + innerWidth / 456 + ')';
+    addEventListener('resize', fit, { once: true });
+  })();
+</script>
+</body>
+</html>

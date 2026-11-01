@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hold to Confirm · 长按确认</title>
+<style>
+
+/* ========== 外壳：所有期数共用，不要修改 ========== */
+:root { --clock: 4s infinite cubic-bezier(0.4, 0, 0.2, 1); --baked: 4s infinite linear;
+  /* 标题关键词色（金橘，暖色抓第一眼）。各镜头的颜色由下方调色板按语义分配 */
+  --accent: #FA8C16; --accent-strong: #D46B08; --accent-light: #FFC069; --accent-soft: #FFE7BA; --accent-faint: #FFF7E6;
+  --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+.title em { font-style: normal; color: var(--accent); padding: 0 4px; margin: 0 2px; }
+/* 调色板：苹果系统色。同一套明度/饱和度设计，彼此天然和谐，也是用户每天在手机上看到的 UI 颜色。
+   给元素加 .hue-xxx，就把它和子元素的 --accent 系列切换成该色相；按“语义”选色，规则见 SKILL.md「配色」 */
+.hue-blue   { --accent: #007AFF; --accent-strong: #0062CC; --accent-light: #8CC2FF; --accent-soft: #DCEBFF; --accent-faint: #F0F6FF; }
+.hue-green  { --accent: #34C759; --accent-strong: #248A3D; --accent-light: #9BE3AD; --accent-soft: #DDF5E3; --accent-faint: #F0FAF2; }
+.hue-orange { --accent: #FF9500; --accent-strong: #C93400; --accent-light: #FFCA80; --accent-soft: #FFEBCC; --accent-faint: #FFF7EB; }
+.hue-red    { --accent: #FF3B30; --accent-strong: #D70015; --accent-light: #FF9D97; --accent-soft: #FFE1DF; --accent-faint: #FFF2F1; }
+.hue-pink   { --accent: #FF2D55; --accent-strong: #D30F45; --accent-light: #FF96AA; --accent-soft: #FFDFE6; --accent-faint: #FFF1F4; }
+.hue-purple { --accent: #AF52DE; --accent-strong: #8944AB; --accent-light: #D7A9EF; --accent-soft: #F1E2F9; --accent-faint: #F9F2FC; }
+.hue-indigo { --accent: #5856D6; --accent-strong: #3634A3; --accent-light: #ABAAEB; --accent-soft: #E4E4F9; --accent-faint: #F3F3FC; }
+.hue-teal   { --accent: #30B0C7; --accent-strong: #0E7C8F; --accent-light: #98D8E3; --accent-soft: #DCF2F6; --accent-faint: #F0F9FB; }
+.hue-yellow { --accent: #FFCC00; --accent-strong: #A68500; --accent-light: #FFE680; --accent-soft: #FFF5CC; --accent-faint: #FFFBEB; }
+[class*="hue-"] { --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #F4F4F5; }
+body { min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif; }
+#stage { position: relative; flex-shrink: 0; width: 1600px; height: 1000px; background: #FFFFFF; padding: 56px 80px;
+  display: flex; flex-direction: column; transform-origin: center; }
+.title { text-align: center; font-size: 38px; font-weight: 700; color: #18181B; margin-bottom: 44px; letter-spacing: -0.5px; line-height: 1.2; }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 36px 32px; }
+.cell { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.sandbox { height: 250px; background: #FAFAFA; border: 1.5px solid #E4E4E7; border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.browser-bar { height: 26px; flex-shrink: 0; border-bottom: 1px solid #F4F4F5; display: flex; align-items: center; padding: 0 12px; gap: 6px; background: #FFFFFF; }
+.browser-bar i { width: 6px; height: 6px; background: #D4D4D8; border-radius: 50%; }
+.viewport { flex: 1; position: relative; overflow: hidden; padding: 16px; }
+.label-group { text-align: center; margin-top: 14px; }
+.term-en { font-size: 16px; color: #52525B; font-weight: 500; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.term-zh { font-size: 22px; color: #18181B; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.watermark { position: absolute; right: 32px; bottom: 22px; font-size: 14px; color: #A1A1AA; }
+
+/* 骨架条 */
+.bar { height: 10px; border-radius: 5px; background: #E4E4E7; }
+.bar.soft { background: #F4F4F5; }
+
+/* scroll 类：右侧模拟滚动条 */
+.scrollbar { position: absolute; top: 8px; right: 5px; bottom: 8px; width: 4px; border-radius: 2px; background: #F4F4F5; z-index: 20; }
+.scrollbar::after { content: ""; position: absolute; left: 0; top: 0; width: 4px; height: 36%; border-radius: 2px; background: #A1A1AA; animation: thumb var(--clock); }
+@keyframes thumb { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(178%); } 100% { transform: translateY(0); } }
+
+/* hover / click 类：SVG 鼠标指针（用 translate 移动，指尖在元素左上角） */
+.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 30; pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18)); }
+/* 竖屏版式：URL 带 #portrait 时启用，画布 1080×1920（9:16）。宫格宽度锁定 456px，与横屏一致，镜头内坐标无需改动 */
+.portrait #stage { width: 1080px; height: 1920px; padding: 180px 0 0; }
+.portrait .title { font-size: 56px; letter-spacing: -1px; margin-bottom: 72px; line-height: 1.25; }
+.portrait .title span { display: block; }
+.portrait .title .comma { display: none; }
+.portrait .title .sub { font-size: 40px; color: #3F3F46; margin-top: 10px; }
+.portrait .grid { flex: none; grid-template-columns: repeat(2, 456px); grid-template-rows: repeat(3, auto); justify-content: center; gap: 56px 40px; }
+.portrait .term-en { font-size: 20px; }
+.portrait .term-zh { font-size: 30px; }
+.portrait .watermark { position: static; width: 952px; margin: 40px auto 0; text-align: right; font-size: 20px; }
+/* ========== 外壳结束 ========== */
+
+/* 点击类通用：指针以指尖为原点缩放表示“按下”；点击点泛起一圈指示环 */
+.cursor { transform-origin: 4.6px 2.3px; }
+.click-ring { position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%; border: 2px solid #A1A1AA;
+  opacity: 0; z-index: 25; animation: click-ring var(--clock); }
+@keyframes click-ring { 0%, 22% { opacity: 0; transform: scale(0.3); } 24% { opacity: 0.9; transform: scale(0.6); } 34%, 100% { opacity: 0; transform: scale(1.8); } }
+.ctx .bar { margin-bottom: 10px; }
+
+/* 1. Ripple Effect：点击点荡开一圈水波纹，被按钮裁切 */
+.rp-btn { position: absolute; left: 50%; top: 50%; width: 220px; height: 60px; margin: -30px 0 0 -110px; border-radius: 14px;
+  background: var(--accent); overflow: hidden; display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--accent-shadow); animation: rp-press var(--clock); }
+.rp-btn b { position: relative; z-index: 1; width: 72px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.85); }
+.rp-wave { position: absolute; left: -76px; top: -196px; width: 440px; height: 440px; border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(255,255,255,0.2) 0 78%, rgba(255,255,255,0.5) 94%, rgba(255,255,255,0) 100%);
+  transform: scale(0); animation: rp-wave var(--clock); }
+.rp-cursor { animation: rp-cursor var(--clock); }
+@keyframes rp-cursor {
+  0%, 15% { transform: translate(384px, 196px) scale(1); } 21% { transform: translate(262px, 104px) scale(1); }
+  23% { transform: translate(262px, 104px) scale(0.85); } 26%, 65% { transform: translate(262px, 104px) scale(1); }
+  100% { transform: translate(384px, 196px) scale(1); } }
+@keyframes rp-press { 0%, 22% { transform: scale(1); } 24% { transform: scale(0.97); } 28%, 100% { transform: scale(1); } }
+@keyframes rp-wave { 0%, 23% { transform: scale(0); opacity: 1; } 46% { transform: scale(1); opacity: 1; } 60%, 100% { transform: scale(1); opacity: 0; } }
+
+/* 2. Toggle Switch：滑块先拉伸再滑到另一端，轨道变深 */
+.tg-card { position: absolute; left: 48px; right: 48px; top: 32px; background: #FFFFFF; border: 1.5px solid #E4E4E7; border-radius: 14px; }
+.tg-row { height: 52px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #F4F4F5; }
+.tg-row:last-child { border-bottom: 0; }
+.tg-row i { width: 24px; height: 24px; border-radius: 7px; background: #E4E4E7; flex-shrink: 0; }
+.tg-row .bar { flex: 1; max-width: 140px; }
+.tg-track { position: relative; margin-left: auto; width: 64px; height: 36px; border-radius: 18px; background: #E4E4E7; flex-shrink: 0; }
+.tg-knob { position: absolute; left: 4px; top: 4px; width: 28px; height: 28px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
+.tg-row.on .tg-track { animation: tg-track var(--clock); }
+.tg-row.on .tg-knob { animation: tg-knob var(--clock); }
+.tg-row.dim { opacity: 0.55; }
+.tg-cursor { animation: tg-cursor var(--clock); }
+@keyframes tg-cursor {
+  0%, 15% { transform: translate(400px, 200px) scale(1); } 21% { transform: translate(364px, 112px) scale(1); }
+  23% { transform: translate(364px, 112px) scale(0.85); } 26%, 65% { transform: translate(364px, 112px) scale(1); }
+  100% { transform: translate(400px, 200px) scale(1); } }
+@keyframes tg-track { 0%, 24% { background: #E4E4E7; } 38%, 65% { background: var(--accent); } 80%, 100% { background: #E4E4E7; } }
+@keyframes tg-knob {
+  0%, 24% { left: 4px; width: 28px; } 32% { left: 4px; width: 40px; } 44%, 65% { left: 32px; width: 28px; }
+  74% { left: 20px; width: 40px; } 86%, 100% { left: 4px; width: 28px; } }
+
+/* 3. Particle Burst：点赞后爱心弹跳填充，一圈粒子向外炸开 */
+.pb-wrap { position: absolute; left: 50%; top: 96px; width: 0; height: 0; }
+.pb-heart { position: absolute; left: -32px; top: -30px; width: 64px; height: 60px; animation: pb-heart var(--clock); }
+.pb-heart path { fill: color-mix(in srgb, var(--accent) 0%, transparent); stroke: #A1A1AA; stroke-width: 2.4; animation: pb-fill var(--clock); }
+.pb-ring { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--accent-light); opacity: 0; animation: pb-ring var(--clock); }
+.pb-dot { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0; animation: pb-dot var(--clock); }
+.pb-dot:nth-child(even) { width: 8px; height: 8px; left: -4px; top: -4px; }
+.pb-dot:nth-of-type(4n+1) { background: #FF2D55; }
+.pb-dot:nth-of-type(4n+2) { background: #FF9F0A; }
+.pb-dot:nth-of-type(4n+3) { background: #FFCC00; }
+.pb-dot:nth-of-type(4n+4) { background: #AF52DE; }
+.pb-meta { position: absolute; left: 50%; top: 150px; width: 150px; margin-left: -75px; }
+.pb-meta .bar { margin: 0 auto 9px; }
+.pb-cursor { animation: pb-cursor var(--clock); }
+@keyframes pb-cursor {
+  0%, 15% { transform: translate(372px, 196px) scale(1); } 21% { transform: translate(242px, 108px) scale(1); }
+  23% { transform: translate(242px, 108px) scale(0.85); } 26%, 65% { transform: translate(242px, 108px) scale(1); }
+  100% { transform: translate(372px, 196px) scale(1); } }
+@keyframes pb-heart { 0%, 23% { transform: scale(1); } 27% { transform: scale(0.8); } 36% { transform: scale(1.28); } 46%, 100% { transform: scale(1); } }
+@keyframes pb-fill { 0%, 26% { fill: color-mix(in srgb, var(--accent) 0%, transparent); stroke: #A1A1AA; } 32%, 68% { fill: var(--accent); stroke: var(--accent); } 82%, 100% { fill: color-mix(in srgb, var(--accent) 0%, transparent); stroke: #A1A1AA; } }
+@keyframes pb-ring { 0%, 27% { opacity: 0; transform: scale(0.4); } 30% { opacity: 1; transform: scale(0.6); } 44%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes pb-dot {
+  0%, 29% { opacity: 0; transform: rotate(var(--a)) translateY(-26px) scale(0.4); }
+  33% { opacity: 1; transform: rotate(var(--a)) translateY(-40px) scale(1); }
+  44% { opacity: 1; transform: rotate(var(--a)) translateY(-62px) scale(0.9); }
+  52%, 100% { opacity: 0; transform: rotate(var(--a)) translateY(-72px) scale(0.5); } }
+
+/* 4. Hold to Confirm：按住不放，进度填满后才确认 */
+.hc-btn { position: absolute; left: 50%; top: 50%; width: 240px; height: 58px; margin: -29px 0 0 -120px; border-radius: 14px;
+  background: #E4E4E7; overflow: hidden; }
+.hc-fill { position: absolute; inset: 0; background: var(--accent); transform: scaleX(0); transform-origin: left center; animation: hc-fill var(--clock); }
+.hc-label { position: absolute; left: 50%; top: 50%; width: 84px; height: 8px; margin: -4px 0 0 -42px; border-radius: 4px; background: #A1A1AA; animation: hc-label var(--clock); }
+.hc-check { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; opacity: 0; animation: hc-check var(--clock); }
+.hc-cursor { animation: hc-cursor var(--clock); }
+@keyframes hc-cursor {
+  0%, 15% { transform: translate(392px, 198px) scale(1); } 21% { transform: translate(286px, 112px) scale(1); }
+  24%, 49% { transform: translate(286px, 112px) scale(0.85); } 52%, 65% { transform: translate(286px, 112px) scale(1); }
+  100% { transform: translate(392px, 198px) scale(1); } }
+@keyframes hc-fill { 0%, 24% { transform: scaleX(0); } 48%, 66% { transform: scaleX(1); } 84%, 100% { transform: scaleX(0); } }
+@keyframes hc-label { 0%, 44% { opacity: 1; } 48%, 70% { opacity: 0; } 82%, 100% { opacity: 1; } }
+@keyframes hc-check { 0%, 47% { opacity: 0; transform: scale(0.5); } 52%, 66% { opacity: 1; transform: scale(1); } 74%, 100% { opacity: 0; transform: scale(0.5); } }
+
+/* 5. Loading Button：按钮收缩成圆圈原地转圈，完成后打勾 */
+.lb-btn { position: absolute; left: 50%; top: 50%; width: 200px; height: 56px; margin: -28px 0 0 -100px; border-radius: 28px;
+  background: var(--accent); box-shadow: 0 8px 20px rgba(24,24,27,0.16); animation: lb-btn var(--clock), lb-tone var(--clock); }
+@keyframes lb-tone { 0%, 44% { background: #007AFF; } 48%, 66% { background: #34C759; } 80%, 100% { background: #007AFF; } }
+.lb-label { position: absolute; left: 50%; top: 50%; width: 76px; height: 8px; margin: -4px 0 0 -38px; border-radius: 4px; background: rgba(255,255,255,0.85); animation: lb-label var(--clock); }
+.lb-spin { position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.22); border-top-color: #FFFFFF; opacity: 0; animation: lb-spin var(--clock); }
+.lb-check { position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; margin: -14px 0 0 -14px; opacity: 0; animation: lb-check var(--clock); }
+.lb-cursor { animation: lb-cursor var(--clock); }
+@keyframes lb-cursor {
+  0%, 15% { transform: translate(384px, 196px) scale(1); } 21% { transform: translate(276px, 116px) scale(1); }
+  23% { transform: translate(276px, 116px) scale(0.85); } 26% { transform: translate(276px, 116px) scale(1); }
+  40%, 65% { transform: translate(318px, 158px) scale(1); } 100% { transform: translate(384px, 196px) scale(1); } }
+@keyframes lb-btn { 0%, 24% { width: 200px; margin-left: -100px; } 33%, 66% { width: 56px; margin-left: -28px; } 86%, 100% { width: 200px; margin-left: -100px; } }
+@keyframes lb-label { 0%, 23% { opacity: 1; } 27%, 76% { opacity: 0; } 86%, 100% { opacity: 1; } }
+@keyframes lb-spin {
+  0%, 29% { opacity: 0; transform: rotate(0deg); }
+  32% { opacity: 1; transform: rotate(60deg); animation-timing-function: linear; }
+  45% { opacity: 1; transform: rotate(780deg); }
+  47%, 100% { opacity: 0; transform: rotate(840deg); } }
+@keyframes lb-check { 0%, 45% { opacity: 0; transform: scale(0.4); } 50%, 66% { opacity: 1; transform: scale(1); } 72%, 100% { opacity: 0; transform: scale(0.4); } }
+
+/* 6. Hamburger Toggle：三条杠先合拢，再旋转成叉 */
+.hb-nav { position: absolute; left: 0; right: 0; top: 0; height: 40px; background: #FFFFFF; border-bottom: 1px solid #F4F4F5;
+  display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+.hb-nav i { width: 20px; height: 20px; border-radius: 6px; background: #E4E4E7; }
+.hb-nav .bar { width: 70px; }
+.hb-btn { position: absolute; left: 50%; top: 58px; width: 76px; height: 76px; margin-left: -38px; border-radius: 18px;
+  background: #FFFFFF; border: 1.5px solid #E4E4E7; box-shadow: 0 6px 16px rgba(24,24,27,0.06); }
+.hb-line { position: absolute; left: 18px; top: 34px; width: 37px; height: 5px; border-radius: 3px; background: #3F3F46; }
+.hb-line.t { animation: hb-top var(--clock), hb-ink var(--clock); }
+.hb-line.m { animation: hb-mid var(--clock); }
+.hb-line.b { animation: hb-bot var(--clock), hb-ink var(--clock); }
+.hb-btn { animation: hb-frame var(--clock); }
+@keyframes hb-ink { 0%, 30% { background: #3F3F46; } 42%, 66% { background: var(--accent); } 80%, 100% { background: #3F3F46; } }
+@keyframes hb-frame { 0%, 30% { border-color: #E4E4E7; background: #FFFFFF; } 42%, 66% { border-color: var(--accent-light); background: var(--accent-faint); } 80%, 100% { border-color: #E4E4E7; background: #FFFFFF; } }
+.hb-meta { position: absolute; left: 50%; top: 152px; width: 170px; margin-left: -85px; }
+.hb-meta .bar { margin: 0 auto 9px; }
+.hb-cursor { animation: hb-cursor var(--clock); }
+@keyframes hb-cursor {
+  0%, 15% { transform: translate(380px, 198px) scale(1); } 21% { transform: translate(254px, 112px) scale(1); }
+  23% { transform: translate(254px, 112px) scale(0.85); } 26%, 65% { transform: translate(254px, 112px) scale(1); }
+  100% { transform: translate(380px, 198px) scale(1); } }
+@keyframes hb-top { 0%, 23% { transform: translateY(-12px) rotate(0); } 33% { transform: translateY(0) rotate(0); } 45%, 65% { transform: translateY(0) rotate(45deg); } 76% { transform: translateY(0) rotate(0); } 88%, 100% { transform: translateY(-12px) rotate(0); } }
+@keyframes hb-bot { 0%, 23% { transform: translateY(12px) rotate(0); } 33% { transform: translateY(0) rotate(0); } 45%, 65% { transform: translateY(0) rotate(-45deg); } 76% { transform: translateY(0) rotate(0); } 88%, 100% { transform: translateY(12px) rotate(0); } }
+@keyframes hb-mid { 0%, 23% { opacity: 1; transform: scaleX(1); } 31%, 78% { opacity: 0; transform: scaleX(0); } 88%, 100% { opacity: 1; transform: scaleX(1); } }
+
+/* 演示页：只显示一个宫格，按 iframe 宽度等比缩放 */
+html, body { background: transparent; }
+body { display: block; min-height: 0; margin: 0; overflow: hidden; }
+#demo { width: 456px; transform-origin: 0 0; }
+#demo .cell { display: block; }
+#demo .label-group { display: none; }
+#demo .sandbox { box-shadow: none; border: 0; border-radius: 0; }
+</style>
+</head>
+<body>
+<div id="demo"><div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-orange">
+          <div class="ctx"><div class="bar" style="width:40%"></div><div class="bar soft" style="width:62%"></div></div>
+          <div class="hc-btn">
+            <div class="hc-fill"></div>
+            <div class="hc-label"></div>
+            <svg class="hc-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="click-ring" style="left:286px;top:112px"></div>
+          <svg class="cursor hc-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Hold to Confirm</div><div class="term-zh">长按确认</div></div>
+    </div></div>
+<script>
+  // 演示宫格按 456px 设计，这里按窗口宽度等比缩放
+  (function fit() {
+    document.getElementById('demo').style.transform = 'scale(' + innerWidth / 456 + ')';
+    addEventListener('resize', fit, { once: true });
+  })();
+</script>
+</body>
+</html>

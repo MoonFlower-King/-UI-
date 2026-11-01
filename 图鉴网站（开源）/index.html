@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>给 AI 描述 UI 的词典 · UI Prompt Glossary</title>
+<meta name="description" content="界面与动效术语图鉴：每个词都有实时动画演示，附一段可以直接复制给 AI 的提示词。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23FA8C16'/%3E%3Crect x='7' y='9' width='18' height='4' rx='2' fill='white'/%3E%3Crect x='7' y='16' width='12' height='4' rx='2' fill='white' opacity='.7'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="logo"></span>江月AI设计</div>
+    <h1>给 AI 描述 UI，<em>说对一个词</em>就够了</h1>
+    <p class="lead">界面与动效的专业术语图鉴。每个词都配一段实时动画，看一眼就懂；再附一段提示词，复制给 Cursor、Trae、豆包等 AI 编程工具就能用。</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<nav class="toolbar" aria-label="筛选">
+  <div class="wrap toolbar-inner">
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="搜索术语：吸顶、Bento、hover、加载……" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="chips" id="chips" role="tablist"></div>
+  </div>
+</nav>
+
+<main class="wrap" id="list"></main>
+<p class="empty wrap" id="empty" hidden>没有找到相关的词，换个说法试试？</p>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>每期 6 个词，持续更新中。动画均为纯 HTML + CSS，没有任何外部依赖，可以直接复制到你的项目里参考。</p>
+    <p>内容来自短视频系列「给AI描述UI的6个词」· 江月AI设计 · <a href="https://github.com/" id="repo">GitHub</a></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data/terms.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

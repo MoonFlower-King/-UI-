@@ -1,0 +1,566 @@
+{
+  "episodes": [
+    {
+      "id": "EP01",
+      "series_no": 1,
+      "theme": "网页滚动动画",
+      "title": "给 AI 描述网页滚动动画，记住这 6 个词",
+      "type": "滚动",
+      "keywords": [
+        "AI提示词",
+        "网页滚动动画",
+        "前端动效",
+        "网页滚动效果怎么做",
+        "视差滚动效果",
+        "吸顶效果怎么实现",
+        "AI写网页提示词",
+        "Cursor提示词",
+        "网页动画专业术语",
+        "官网动效怎么描述",
+        "vibe coding"
+      ]
+    },
+    {
+      "id": "EP02",
+      "series_no": 2,
+      "theme": "鼠标悬停微交互",
+      "title": "给 AI 描述悬停微交互，记住这 6 个词",
+      "type": "悬停",
+      "keywords": [
+        "hover悬停效果",
+        "鼠标交互",
+        "AI提示词",
+        "鼠标悬停效果怎么做",
+        "磁吸按钮效果",
+        "3D倾斜卡片",
+        "卡片光效边框",
+        "网页微交互",
+        "按钮悬停动画",
+        "高级感网页设计",
+        "AI做网站提示词"
+      ]
+    },
+    {
+      "id": "EP11",
+      "series_no": 3,
+      "theme": "按钮点击反馈",
+      "title": "给 AI 描述按钮点击反馈，记住这 6 个词",
+      "type": "点击",
+      "keywords": [
+        "按钮点击效果",
+        "交互反馈",
+        "AI提示词",
+        "按钮动画怎么做",
+        "点赞动画效果",
+        "开关按钮样式",
+        "加载按钮动画",
+        "汉堡菜单动画",
+        "长按确认按钮",
+        "按钮交互设计",
+        "小程序按钮效果"
+      ]
+    },
+    {
+      "id": "EP03",
+      "series_no": 4,
+      "theme": "现代网页排版布局",
+      "title": "给 AI 描述网页排版布局，记住这 6 个词",
+      "type": "布局",
+      "keywords": [
+        "网页布局",
+        "排版设计",
+        "AI提示词",
+        "便当盒布局",
+        "瀑布流布局怎么做",
+        "网页排版技巧",
+        "官网布局参考",
+        "左右分屏设计",
+        "后台页面布局",
+        "网页设计构图",
+        "AI生成网页布局"
+      ]
+    },
+    {
+      "id": "EP04",
+      "series_no": 5,
+      "theme": "弹窗与浮层组件",
+      "title": "给 AI 描述弹窗与浮层，记住这 6 个词",
+      "type": "浮层",
+      "keywords": [
+        "弹窗设计",
+        "浮层组件",
+        "AI提示词",
+        "侧边抽屉菜单",
+        "底部弹出面板",
+        "弹窗怎么做",
+        "确认弹窗样式",
+        "消息提示条",
+        "命令面板设计",
+        "模态框遮罩",
+        "网页弹窗动画"
+      ]
+    },
+    {
+      "id": "EP05",
+      "series_no": 6,
+      "theme": "加载与状态反馈",
+      "title": "给 AI 描述页面加载动效，记住这 6 个词",
+      "type": "状态",
+      "keywords": [
+        "加载动画",
+        "骨架屏",
+        "AI提示词",
+        "骨架屏怎么做",
+        "加载动效设计",
+        "页面加载优化",
+        "下拉刷新动画",
+        "步骤条设计",
+        "图片懒加载效果",
+        "乐观更新是什么",
+        "App加载体验"
+      ]
+    },
+    {
+      "id": "EP06",
+      "series_no": 7,
+      "theme": "UI 视觉质感风格",
+      "title": "给 AI 描述高级视觉质感，记住这 6 个词",
+      "type": "风格",
+      "keywords": [
+        "UI设计风格",
+        "毛玻璃效果",
+        "AI提示词",
+        "毛玻璃效果怎么做",
+        "新拟物风格",
+        "新粗野主义设计",
+        "极光渐变背景",
+        "暗黑模式设计",
+        "卡片阴影层级",
+        "高级感UI",
+        "网页设计风格大全"
+      ]
+    }
+  ],
+  "terms": [
+    {
+      "id": "EP01-1",
+      "episode": "EP01",
+      "en": "Scroll-triggered",
+      "zh": "滚动触发",
+      "say": "滚到那儿才出现",
+      "example": "比如官网卡片依次浮现",
+      "prompt": "给下方的三张特性卡片加 Scroll-triggered 入场动画：当卡片进入视口 20% 时，从下方 24px 处向上淡入，时长 0.6s、ease-out，三张卡片依次间隔 0.12s 出现，只触发一次。",
+      "demo": "demos/EP01-1.html"
+    },
+    {
+      "id": "EP01-2",
+      "episode": "EP01",
+      "en": "Scroll-linked",
+      "zh": "滚动联动",
+      "say": "滚多少动多少",
+      "example": "比如文章顶部阅读进度条",
+      "prompt": "在页面顶部加一条 4px 高的 Scroll-linked 阅读进度条，宽度与页面滚动百分比 1:1 实时同步（用 scaleX，transform-origin 左侧），不要加过渡延迟。",
+      "demo": "demos/EP01-2.html"
+    },
+    {
+      "id": "EP01-3",
+      "episode": "EP01",
+      "en": "Parallax",
+      "zh": "视差滚动",
+      "say": "前景快背景慢，画面有纵深感",
+      "example": "",
+      "prompt": "给 Hero 区做 Parallax 视差：背景山峰图层的滚动速度为前景的 0.2 倍，前景卡片正常速度，形成前快后慢的纵深感，移动端关闭视差。",
+      "demo": "demos/EP01-3.html"
+    },
+    {
+      "id": "EP01-4",
+      "episode": "EP01",
+      "en": "Sticky",
+      "zh": "吸顶固定",
+      "say": "滚到顶就钉住",
+      "example": "比如通讯录的字母标题",
+      "prompt": "把联系人列表做成通讯录式 Sticky 分组标题：每组字母标题 position: sticky; top: 0，滚动时当前组标题钉在顶部，下一组标题滚上来时把上一个顶走并接替吸顶。",
+      "demo": "demos/EP01-4.html"
+    },
+    {
+      "id": "EP01-5",
+      "episode": "EP01",
+      "en": "Scroll Snap",
+      "zh": "滚动吸附",
+      "say": "松手自动对齐，一次停一整屏",
+      "example": "",
+      "prompt": "把这组全屏卡片做成纵向 Scroll Snap：容器 scroll-snap-type: y mandatory，每张卡片 scroll-snap-align: center，用户松手后自动吸附到最近一张并居中锁定。",
+      "demo": "demos/EP01-5.html"
+    },
+    {
+      "id": "EP01-6",
+      "episode": "EP01",
+      "en": "Horizontal Scroll",
+      "zh": "横向滚动",
+      "say": "往下滚内容却横着走",
+      "example": "",
+      "prompt": "做一个 Horizontal Scroll 区块：该区块滚动到顶部时固定住，用户继续纵向滚动时，下方卡片列表从右向左水平滑过，全部滑完后再释放、继续正常纵向滚动。",
+      "demo": "demos/EP01-6.html"
+    },
+    {
+      "id": "EP02-1",
+      "episode": "EP02",
+      "en": "Magnetic Button",
+      "zh": "磁吸按钮",
+      "say": "鼠标靠近按钮被吸过来",
+      "example": "比如设计师作品集网站",
+      "prompt": "把主 CTA 按钮做成 Magnetic Button：鼠标进入按钮周围 80px 范围时，按钮整体向鼠标方向偏移，偏移量为鼠标与按钮中心距离的 0.3 倍（最大 12px），离开后用弹簧缓动回原位。",
+      "demo": "demos/EP02-1.html"
+    },
+    {
+      "id": "EP02-2",
+      "episode": "EP02",
+      "en": "Spotlight Border",
+      "zh": "聚光灯边框",
+      "say": "光跟着鼠标走",
+      "example": "比如 Linear 官网卡片",
+      "prompt": "给这组深色卡片加 Spotlight Border：鼠标在卡片上移动时，用 radial-gradient 跟随鼠标坐标，在 1px 边框和卡片背景上分别泛起局部高光（边框亮、背景淡），鼠标离开后高光淡出。",
+      "demo": "demos/EP02-2.html"
+    },
+    {
+      "id": "EP02-3",
+      "episode": "EP02",
+      "en": "3D Tilt",
+      "zh": "3D 视差倾斜",
+      "say": "鼠标移到哪个角，卡片往哪边歪",
+      "example": "",
+      "prompt": "给产品卡片加 3D Tilt：父容器 perspective: 800px，根据鼠标在卡片内的位置计算 rotateX/rotateY（最大 15°），同时让一层白色高光渐变向鼠标方向偏移，离开时 0.4s 复位。",
+      "demo": "demos/EP02-3.html"
+    },
+    {
+      "id": "EP02-4",
+      "episode": "EP02",
+      "en": "Morphing",
+      "zh": "形状融合变形",
+      "say": "小按钮变形展开成菜单",
+      "example": "比如灵动岛",
+      "prompt": "做一个 Morphing 按钮：默认是 52px 的圆角方块加号按钮，悬停时宽度平滑扩展为 260px 的胶囊容器，圆角变为全圆，加号旋转 45° 变叉号，3 个操作项依次淡入（间隔 60ms）。",
+      "demo": "demos/EP02-4.html"
+    },
+    {
+      "id": "EP02-5",
+      "episode": "EP02",
+      "en": "Underline Slide",
+      "zh": "下划线滑入",
+      "say": "悬停时下划线从左滑到右",
+      "example": "",
+      "prompt": "给顶部导航加 Underline Slide：悬停某一项时，文字下方 3px 粗的下划线从左向右 scaleX(0→1) 展开铺满该项宽度，0.3s ease-out，移开时收回。",
+      "demo": "demos/EP02-5.html"
+    },
+    {
+      "id": "EP02-6",
+      "episode": "EP02",
+      "en": "Image Zoom",
+      "zh": "容器内缩放",
+      "say": "外框不动，里面的图慢慢放大",
+      "example": "",
+      "prompt": "给图片卡片加 Image Zoom：外层卡片圆角和边框保持不动（overflow: hidden），悬停时内部图片 scale(1.15)，0.5s ease-out，离开时平滑还原。",
+      "demo": "demos/EP02-6.html"
+    },
+    {
+      "id": "EP11-1",
+      "episode": "EP11",
+      "en": "Ripple Effect",
+      "zh": "水波纹点击",
+      "say": "点哪儿就从哪儿荡开波纹",
+      "example": "比如安卓 App 按钮",
+      "prompt": "给所有主按钮加 Material 风格的 Ripple Effect：以鼠标点击坐标为圆心，生成一个半透明白色圆形，0.5s 内从 0 放大到覆盖整个按钮后淡出，按钮 overflow: hidden 裁切波纹。",
+      "demo": "demos/EP11-1.html"
+    },
+    {
+      "id": "EP11-2",
+      "episode": "EP11",
+      "en": "Toggle Switch",
+      "zh": "开关切换",
+      "say": "点一下滑块换边",
+      "example": "比如手机设置里的开关",
+      "prompt": "把这个复选框改成 iOS 风格的 Toggle Switch：轨道 52×32 胶囊形，关闭为浅灰、开启为绿色；点击时圆形滑块先横向拉长再滑到另一端，0.25s ease-out。",
+      "demo": "demos/EP11-2.html"
+    },
+    {
+      "id": "EP11-3",
+      "episode": "EP11",
+      "en": "Particle Burst",
+      "zh": "粒子爆发",
+      "say": "点赞时炸开一圈小粒子",
+      "example": "",
+      "prompt": "给点赞按钮加 Particle Burst：点击后爱心先缩小到 0.8 再弹到 1.25 并填充红色，同时以爱心为中心向 8 个方向炸开彩色小圆点粒子并淡出，外加一圈扩散消失的细圆环。",
+      "demo": "demos/EP11-3.html"
+    },
+    {
+      "id": "EP11-4",
+      "episode": "EP11",
+      "en": "Hold to Confirm",
+      "zh": "长按确认",
+      "say": "按住进度走满才生效",
+      "example": "比如删除前的长按确认",
+      "prompt": "把“删除账号”按钮做成 Hold to Confirm：用户必须按住 1.5s，按住期间进度从左到右填满按钮，中途松手进度回退清零；填满后显示对勾并执行操作。",
+      "demo": "demos/EP11-4.html"
+    },
+    {
+      "id": "EP11-5",
+      "episode": "EP11",
+      "en": "Loading Button",
+      "zh": "按钮内加载",
+      "say": "按钮自己变圈转圈，不用弹窗",
+      "example": "",
+      "prompt": "给提交按钮加 Loading Button 状态：点击后按钮宽度平滑收缩成圆形，文字淡出、出现白色旋转圆环；请求成功后按钮变绿、圆环变为对勾，1s 后恢复原按钮。",
+      "demo": "demos/EP11-5.html"
+    },
+    {
+      "id": "EP11-6",
+      "episode": "EP11",
+      "en": "Hamburger Toggle",
+      "zh": "汉堡菜单变叉",
+      "say": "三条杠一点就变成叉",
+      "example": "",
+      "prompt": "把移动端菜单按钮做成 Hamburger Toggle：点击后上下两条线先向中间合拢，再分别旋转 ±45° 组成叉号，中间那条线横向收缩消失，再次点击按相反顺序还原，总时长 0.4s。",
+      "demo": "demos/EP11-6.html"
+    },
+    {
+      "id": "EP03-1",
+      "episode": "EP03",
+      "en": "Bento Grid",
+      "zh": "便当盒网格",
+      "say": "大小方块拼成整齐格子",
+      "example": "比如苹果官网",
+      "prompt": "把功能介绍区做成 Bento Grid：4 列 2 行网格，第一张大卡跨 2 列 2 行，其余卡片 1×1 或 2×1，间距 8px、圆角 16px，每张卡用不同的浅色背景加一个实色图标。",
+      "demo": "demos/EP03-1.html"
+    },
+    {
+      "id": "EP03-2",
+      "episode": "EP03",
+      "en": "Masonry",
+      "zh": "瀑布流布局",
+      "say": "高低不一的卡片往上挤满",
+      "example": "比如小红书首页",
+      "prompt": "把图片列表做成 Masonry 瀑布流：3 列等宽，卡片高度随图片比例变化，每列自动向上紧凑排列不留空隙，移动端改为 2 列。",
+      "demo": "demos/EP03-2.html"
+    },
+    {
+      "id": "EP03-3",
+      "episode": "EP03",
+      "en": "Split Screen",
+      "zh": "左右分屏布局",
+      "say": "左边大图右边文字，一屏两半",
+      "example": "",
+      "prompt": "登录页用 Split Screen：左右各占 50%，左侧是全高的品牌插画或渐变大图，右侧垂直居中放标题、两个输入框和主按钮；窄屏时上下堆叠。",
+      "demo": "demos/EP03-3.html"
+    },
+    {
+      "id": "EP03-4",
+      "episode": "EP03",
+      "en": "Holy Grail",
+      "zh": "圣杯布局",
+      "say": "上头下脚中间三栏",
+      "example": "比如后台管理系统",
+      "prompt": "后台页面用 Holy Grail 布局：顶部固定 Header、底部 Footer，中间三栏——左侧导航 220px、右侧信息栏 280px、中间主内容自适应，用 CSS Grid 实现。",
+      "demo": "demos/EP03-4.html"
+    },
+    {
+      "id": "EP03-5",
+      "episode": "EP03",
+      "en": "Asymmetrical Grid",
+      "zh": "非对称破界布局",
+      "say": "故意不对齐，大块小块错着放",
+      "example": "",
+      "prompt": "Hero 区用 Asymmetrical Grid：左侧一个占 60% 宽的大色块，两张白色悬浮卡片错位压在色块右上角和下边缘，略微旋转 2–3°，带柔和阴影，制造视觉张力。",
+      "demo": "demos/EP03-5.html"
+    },
+    {
+      "id": "EP03-6",
+      "episode": "EP03",
+      "en": "Z-Pattern",
+      "zh": "Z型视觉流",
+      "say": "视线按 Z 字走，从左上看到右下",
+      "example": "",
+      "prompt": "首屏按 Z-Pattern 排布：左上 Logo、右上主按钮、左下大图、右下 CTA 按钮，让视线沿 Z 字走，最后落在高对比色的 CTA 上。",
+      "demo": "demos/EP03-6.html"
+    },
+    {
+      "id": "EP04-1",
+      "episode": "EP04",
+      "en": "Drawer",
+      "zh": "侧边抽屉",
+      "say": "侧边滑出一整条面板",
+      "example": "比如 App 的侧边菜单",
+      "prompt": "点击右上角菜单按钮时打开 Drawer：背景加 40% 黑色遮罩，右侧滑出一个占满全高、宽 320px 的白色面板，0.3s ease-out；点遮罩或按 Esc 关闭。",
+      "demo": "demos/EP04-1.html"
+    },
+    {
+      "id": "EP04-2",
+      "episode": "EP04",
+      "en": "Bottom Sheet",
+      "zh": "底部上拉面板",
+      "say": "从底部拉上来半屏",
+      "example": "比如微信的分享面板",
+      "prompt": "移动端分享按钮打开 Bottom Sheet：从屏幕底部滑出半屏高的圆角面板（顶部圆角 20px），顶部有一个 40×5 的灰色把手，可下拉关闭，背景轻微变暗。",
+      "demo": "demos/EP04-2.html"
+    },
+    {
+      "id": "EP04-3",
+      "episode": "EP04",
+      "en": "Popover",
+      "zh": "气泡卡片",
+      "say": "点一下旁边冒出小菜单",
+      "example": "",
+      "prompt": "卡片右上角的“更多”按钮点击后显示 Popover：紧贴按钮下方弹出带小三角箭头的菜单，包含编辑、复制、删除（删除为红色），从 0.9 倍缩放淡入，点击外部关闭。",
+      "demo": "demos/EP04-3.html"
+    },
+    {
+      "id": "EP04-4",
+      "episode": "EP04",
+      "en": "Command Palette",
+      "zh": "命令面板",
+      "say": "一键唤出搜索指令框",
+      "example": "比如 Mac 聚焦搜索",
+      "prompt": "加一个 Command Palette：按 Cmd/Ctrl+K 或点顶部搜索框时，在页面正上方居中弹出带搜索框和指令列表的浮层，支持键盘上下选择，当前项高亮，背景轻微变暗。",
+      "demo": "demos/EP04-4.html"
+    },
+    {
+      "id": "EP04-5",
+      "episode": "EP04",
+      "en": "Toast",
+      "zh": "轻提示通知",
+      "say": "冒出来一下自己就消失",
+      "example": "",
+      "prompt": "保存成功后显示 Toast：右上角滑入一个深色胶囊通知，左侧绿色对勾图标，停留 2.5 秒后自动滑出，多个 Toast 依次向下堆叠。",
+      "demo": "demos/EP04-5.html"
+    },
+    {
+      "id": "EP04-6",
+      "episode": "EP04",
+      "en": "Backdrop Modal",
+      "zh": "遮罩模态框",
+      "say": "背景变暗，中间弹出确认框",
+      "example": "",
+      "prompt": "删除操作前弹出 Backdrop Modal：背景模糊 4px 并变暗，正中央的对话框从 0.9 倍放大淡入，包含警告图标、说明文字、“取消”和红色“确认删除”两个按钮。",
+      "demo": "demos/EP04-6.html"
+    },
+    {
+      "id": "EP05-1",
+      "episode": "EP05",
+      "en": "Skeleton Screen",
+      "zh": "骨架屏占位",
+      "say": "先用灰块占位再换内容",
+      "example": "比如淘宝刚打开时",
+      "prompt": "文章卡片加载时显示 Skeleton Screen：用浅灰圆角块画出头像、标题、图片和两行正文的轮廓，数据返回后 150ms 内淡入替换为真实内容，布局不跳动。",
+      "demo": "demos/EP05-1.html"
+    },
+    {
+      "id": "EP05-2",
+      "episode": "EP05",
+      "en": "Shimmer Effect",
+      "zh": "流光扫光加载",
+      "say": "灰色占位上一道光扫过",
+      "example": "比如 App 列表加载时",
+      "prompt": "给骨架屏加 Shimmer Effect：一道斜向 105° 的白色半透明渐变光带从左到右匀速扫过所有灰色占位块，每 1.5s 循环一次。",
+      "demo": "demos/EP05-2.html"
+    },
+    {
+      "id": "EP05-3",
+      "episode": "EP05",
+      "en": "Progressive Blur",
+      "zh": "渐进式模糊加载",
+      "say": "图片先糊后清楚，慢慢变锐利",
+      "example": "",
+      "prompt": "图片用 Progressive Blur 加载：先显示 20px 宽的缩略图并 blur(20px) 放大铺满，原图加载完成后 0.4s 内从模糊过渡到清晰。",
+      "demo": "demos/EP05-3.html"
+    },
+    {
+      "id": "EP05-4",
+      "episode": "EP05",
+      "en": "Optimistic UI",
+      "zh": "乐观更新",
+      "say": "一点就显示成功",
+      "example": "比如朋友圈点赞",
+      "prompt": "点赞和新增评论使用 Optimistic UI：点击后立即在界面上显示成功状态和新条目，不显示转圈；请求失败时回滚并用 Toast 提示。",
+      "demo": "demos/EP05-4.html"
+    },
+    {
+      "id": "EP05-5",
+      "episode": "EP05",
+      "en": "Stepper Progress",
+      "zh": "步进器进度",
+      "say": "1-2-3 步骤一格格点亮",
+      "example": "",
+      "prompt": "注册流程顶部放一个 Stepper Progress：3 个圆形节点（1、2、3）用水平线连接，完成的节点和连线变为主色，当前步骤高亮，下方内容随步骤横向滑动切换。",
+      "demo": "demos/EP05-5.html"
+    },
+    {
+      "id": "EP05-6",
+      "episode": "EP05",
+      "en": "Pull to Refresh",
+      "zh": "下拉刷新",
+      "say": "往下拉一下松手就刷新",
+      "example": "",
+      "prompt": "移动端列表支持 Pull to Refresh：下拉超过 60px 时顶部出现旋转的加载圆环，松手后刷新数据，完成后列表回弹，新内容短暂高亮。",
+      "demo": "demos/EP05-6.html"
+    },
+    {
+      "id": "EP06-1",
+      "episode": "EP06",
+      "en": "Glassmorphism",
+      "zh": "毛玻璃拟态",
+      "say": "半透明磨砂玻璃",
+      "example": "比如苹果的控制中心",
+      "prompt": "卡片用 Glassmorphism：背景 rgba(255,255,255,0.25)，backdrop-filter: blur(16px) saturate(140%)，1px 半透明白色描边，放在彩色渐变光球背景之上。",
+      "demo": "demos/EP06-1.html"
+    },
+    {
+      "id": "EP06-2",
+      "episode": "EP06",
+      "en": "Neumorphism",
+      "zh": "新拟物软浮雕",
+      "say": "同色背景上的软浮雕",
+      "example": "比如智能家居面板",
+      "prompt": "控制面板用 Neumorphism：卡片与背景同为 #E6E9EF，左上 -8px 白色高光、右下 8px 灰色阴影形成凸起；按钮按下时改为内阴影，呈凹陷感。",
+      "demo": "demos/EP06-2.html"
+    },
+    {
+      "id": "EP06-3",
+      "episode": "EP06",
+      "en": "Neo-Brutalism",
+      "zh": "新粗野主义",
+      "say": "粗黑边加硬阴影，又土又酷",
+      "example": "",
+      "prompt": "整体用 Neo-Brutalism 风格：3px 纯黑描边、6px 6px 0 纯黑无模糊偏移阴影，高饱和的黄、粉、薄荷绿色块；按钮点击时向右下位移 4px、阴影归零。",
+      "demo": "demos/EP06-3.html"
+    },
+    {
+      "id": "EP06-4",
+      "episode": "EP06",
+      "en": "Aurora Background",
+      "zh": "极光流体背景",
+      "say": "彩色光团慢慢流动",
+      "example": "比如很多 AI 官网",
+      "prompt": "首屏背景做 Aurora Background：3 个大尺寸、高模糊（blur 60px）的蓝、紫、粉色光团缓慢漂移交融，循环 12s，上方放一张极简白色半透明卡片。",
+      "demo": "demos/EP06-4.html"
+    },
+    {
+      "id": "EP06-5",
+      "episode": "EP06",
+      "en": "Bento Dark Mode",
+      "zh": "暗黑微光风",
+      "say": "黑底卡片带一圈微光",
+      "example": "",
+      "prompt": "功能区用 Bento Dark Mode：#0B0B0F 底色，卡片 #16161C、1px #24242C 描边，顶部 1px 微弱高光，卡片内左上角有对应主题色的柔和径向内发光。",
+      "demo": "demos/EP06-5.html"
+    },
+    {
+      "id": "EP06-6",
+      "episode": "EP06",
+      "en": "Layered Elevation",
+      "zh": "多层海拔阴影",
+      "say": "层级越高，阴影越大越虚",
+      "example": "",
+      "prompt": "建立 3 级 Layered Elevation：卡片 level 1 阴影 0 1px 3px、level 2 阴影 0 8px 18px、level 3 阴影 0 22px 40px，层级越高 Y 偏移和模糊越大，悬停时升一级。",
+      "demo": "demos/EP06-6.html"
+    }
+  ]
+}
