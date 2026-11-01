@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anticipation · 预备动作</title>
+<style>
+
+/* ========== 外壳：所有期数共用，不要修改 ========== */
+:root { --clock: 4s infinite cubic-bezier(0.4, 0, 0.2, 1); --baked: 4s infinite linear;
+  /* 标题关键词色（金橘，暖色抓第一眼）。各镜头的颜色由下方调色板按语义分配 */
+  --accent: #FA8C16; --accent-strong: #D46B08; --accent-light: #FFC069; --accent-soft: #FFE7BA; --accent-faint: #FFF7E6;
+  --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+.title em { font-style: normal; color: var(--accent); padding: 0 4px; margin: 0 2px; }
+/* 调色板：苹果系统色。同一套明度/饱和度设计，彼此天然和谐，也是用户每天在手机上看到的 UI 颜色。
+   给元素加 .hue-xxx，就把它和子元素的 --accent 系列切换成该色相；按“语义”选色，规则见 SKILL.md「配色」 */
+.hue-blue   { --accent: #007AFF; --accent-strong: #0062CC; --accent-light: #8CC2FF; --accent-soft: #DCEBFF; --accent-faint: #F0F6FF; }
+.hue-green  { --accent: #34C759; --accent-strong: #248A3D; --accent-light: #9BE3AD; --accent-soft: #DDF5E3; --accent-faint: #F0FAF2; }
+.hue-orange { --accent: #FF9500; --accent-strong: #C93400; --accent-light: #FFCA80; --accent-soft: #FFEBCC; --accent-faint: #FFF7EB; }
+.hue-red    { --accent: #FF3B30; --accent-strong: #D70015; --accent-light: #FF9D97; --accent-soft: #FFE1DF; --accent-faint: #FFF2F1; }
+.hue-pink   { --accent: #FF2D55; --accent-strong: #D30F45; --accent-light: #FF96AA; --accent-soft: #FFDFE6; --accent-faint: #FFF1F4; }
+.hue-purple { --accent: #AF52DE; --accent-strong: #8944AB; --accent-light: #D7A9EF; --accent-soft: #F1E2F9; --accent-faint: #F9F2FC; }
+.hue-indigo { --accent: #5856D6; --accent-strong: #3634A3; --accent-light: #ABAAEB; --accent-soft: #E4E4F9; --accent-faint: #F3F3FC; }
+.hue-teal   { --accent: #30B0C7; --accent-strong: #0E7C8F; --accent-light: #98D8E3; --accent-soft: #DCF2F6; --accent-faint: #F0F9FB; }
+.hue-yellow { --accent: #FFCC00; --accent-strong: #A68500; --accent-light: #FFE680; --accent-soft: #FFF5CC; --accent-faint: #FFFBEB; }
+[class*="hue-"] { --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #F4F4F5; }
+body { min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif; }
+#stage { position: relative; flex-shrink: 0; width: 1600px; height: 1000px; background: #FFFFFF; padding: 56px 80px;
+  display: flex; flex-direction: column; transform-origin: center; }
+.title { text-align: center; font-size: 38px; font-weight: 700; color: #18181B; margin-bottom: 44px; letter-spacing: -0.5px; line-height: 1.2; }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 36px 32px; }
+.cell { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.sandbox { height: 250px; background: #FAFAFA; border: 1.5px solid #E4E4E7; border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.browser-bar { height: 26px; flex-shrink: 0; border-bottom: 1px solid #F4F4F5; display: flex; align-items: center; padding: 0 12px; gap: 6px; background: #FFFFFF; }
+.browser-bar i { width: 6px; height: 6px; background: #D4D4D8; border-radius: 50%; }
+.viewport { flex: 1; position: relative; overflow: hidden; padding: 16px; }
+.label-group { text-align: center; margin-top: 14px; }
+.term-en { font-size: 16px; color: #52525B; font-weight: 500; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.term-zh { font-size: 22px; color: #18181B; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.watermark { position: absolute; right: 32px; bottom: 22px; font-size: 14px; color: #A1A1AA; }
+
+/* 骨架条 */
+.bar { height: 10px; border-radius: 5px; background: #E4E4E7; }
+.bar.soft { background: #F4F4F5; }
+
+/* scroll 类：右侧模拟滚动条 */
+.scrollbar { position: absolute; top: 8px; right: 5px; bottom: 8px; width: 4px; border-radius: 2px; background: #F4F4F5; z-index: 20; }
+.scrollbar::after { content: ""; position: absolute; left: 0; top: 0; width: 4px; height: 36%; border-radius: 2px; background: #A1A1AA; animation: thumb var(--clock); }
+@keyframes thumb { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(178%); } 100% { transform: translateY(0); } }
+
+/* hover / click 类：SVG 鼠标指针（用 translate 移动，指尖在元素左上角） */
+.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 30; pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18)); }
+/* 竖屏版式：URL 带 #portrait 时启用，画布 1080×1920（9:16）。宫格宽度锁定 456px，与横屏一致，镜头内坐标无需改动 */
+.portrait #stage { width: 1080px; height: 1920px; padding: 180px 0 0; }
+.portrait .title { font-size: 56px; letter-spacing: -1px; margin-bottom: 72px; line-height: 1.25; }
+.portrait .title span { display: block; }
+.portrait .title .comma { display: none; }
+.portrait .title .sub { font-size: 40px; color: #3F3F46; margin-top: 10px; }
+.portrait .grid { flex: none; grid-template-columns: repeat(2, 456px); grid-template-rows: repeat(3, auto); justify-content: center; gap: 56px 40px; }
+.portrait .term-en { font-size: 20px; }
+.portrait .term-zh { font-size: 30px; }
+.portrait .watermark { position: static; width: 952px; margin: 40px auto 0; text-align: right; font-size: 20px; }
+/* ========== 外壳结束 ========== */
+
+/* 点击类通用（预备动作、路径动画用到）：指针以指尖为原点缩放表示“按下”；点击点泛起一圈指示环 */
+.cursor { transform-origin: 4.6px 2.3px; }
+.click-ring { position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%; border: 2px solid #A1A1AA;
+  opacity: 0; z-index: 25; animation: click-ring var(--clock); }
+@keyframes click-ring { 0%, 22% { opacity: 0; transform: scale(0.3); } 24% { opacity: 0.9; transform: scale(0.6); } 34%, 100% { opacity: 0; transform: scale(1.8); } }
+.ctx .bar { margin-bottom: 10px; }
+
+/* 1. Ease-in-out：同样距离同样时长，灰色匀速作对照，主角慢起步、中段加速、慢落地；
+      轨道上的淡点是等时间间隔采样的位置——两头密、中间疏，就是缓入缓出 */
+.eo-rail { position: absolute; left: 63px; width: 320px; height: 6px; margin-top: -3px; border-radius: 3px; background: #E4E4E7; }
+.eo-rail.lin { top: 76px; }
+.eo-rail.ease { top: 150px; }
+.eo-fill { position: absolute; inset: 0; border-radius: 3px; background: var(--accent-soft); transform: scaleX(0); transform-origin: left center; animation: eo-fill var(--clock); }
+.eo-tick { position: absolute; z-index: 1; top: -1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: #D4D4D8; }
+.eo-rail.ease .eo-tick { background: var(--accent); opacity: 0.55; }
+.eo-knob { position: absolute; left: 50px; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; z-index: 2; }
+.eo-knob.lin { top: 76px; background: #FFFFFF; border: 2px solid #A1A1AA; animation: eo-lin var(--clock); }
+.eo-knob.ease { top: 150px; background: var(--accent); box-shadow: var(--accent-shadow); animation: eo-ease var(--clock); }
+@keyframes eo-lin {
+  0%, 15% { transform: translateX(0); animation-timing-function: linear; } 50%, 65% { transform: translateX(320px); animation-timing-function: linear; }
+  100% { transform: translateX(0); } }
+@keyframes eo-ease {
+  0%, 15% { transform: translateX(0); animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); }
+  50%, 65% { transform: translateX(320px); animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); }
+  100% { transform: translateX(0); } }
+@keyframes eo-fill {
+  0%, 15% { transform: scaleX(0); animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); }
+  50%, 65% { transform: scaleX(1); animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); }
+  100% { transform: scaleX(0); } }
+
+/* 2. Spring：弹窗卡片像挂在弹簧上，冲过头、回弹两下才停稳 */
+.sp-card { position: absolute; left: 50%; top: 50%; width: 200px; height: 112px; margin: -48px 0 0 -100px; border-radius: 16px;
+  background: #FFFFFF; border: 1.5px solid var(--accent-light); box-shadow: 0 14px 30px color-mix(in srgb, var(--accent-strong) 22%, transparent);
+  padding: 18px 18px 0; opacity: 0; transform: scale(0.3); animation: sp-card var(--clock); }
+.sp-card i { display: block; width: 34px; height: 34px; border-radius: 10px; background: var(--accent); margin-bottom: 14px; }
+.sp-card .bar { margin-bottom: 9px; }
+.sp-card .bar:first-of-type { background: var(--accent-soft); }
+/* 虚线框 = 冲过头时的最大尺寸，停稳后还留着，封面上也看得出“弹过” */
+.sp-ghost { position: absolute; left: 50%; top: 50%; width: 200px; height: 112px; margin: -48px 0 0 -100px; border-radius: 16px;
+  border: 1.5px dashed var(--accent-light); opacity: 0; transform: scale(1.14); animation: sp-ghost var(--clock); }
+@keyframes sp-ghost { 0%, 25% { opacity: 0; } 28%, 66% { opacity: 1; } 76%, 100% { opacity: 0; } }
+@keyframes sp-card {
+  0%, 18% { opacity: 0; transform: scale(0.3); animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1); }
+  21% { opacity: 1; }
+  27% { opacity: 1; transform: scale(1.14); animation-timing-function: ease-in-out; }
+  33% { transform: scale(0.92); animation-timing-function: ease-in-out; }
+  39% { transform: scale(1.04); animation-timing-function: ease-in-out; }
+  45% { transform: scale(0.985); animation-timing-function: ease-in-out; }
+  50%, 66% { opacity: 1; transform: scale(1); }
+  76%, 100% { opacity: 0; transform: scale(0.6); } }
+
+/* 3. Stagger：列表四行不是一起出现，而是一行接一行，像多米诺骨牌 */
+.sg-list { position: absolute; left: 40px; right: 40px; top: 20px; }
+.sg-row { height: 40px; display: flex; align-items: center; gap: 12px; padding: 0 14px; margin-bottom: 7px; border-radius: 12px;
+  background: #FFFFFF; border: 1.5px solid #E4E4E7; opacity: 0; }
+.sg-row i { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.sg-row .bar { flex: 1; max-width: 150px; }
+.sg-row .bar.soft { max-width: 64px; margin-left: auto; }
+.sg-row.r1 { animation: sg-r1 var(--clock); }
+.sg-row.r2 { animation: sg-r2 var(--clock); }
+.sg-row.r3 { animation: sg-r3 var(--clock); }
+.sg-row.r4 { animation: sg-r4 var(--clock); }
+@keyframes sg-r1 { 0%, 18% { opacity: 0; transform: translateX(46px); } 28%, 68% { opacity: 1; transform: none; } 78%, 100% { opacity: 0; transform: translateX(-24px); } }
+@keyframes sg-r2 { 0%, 23% { opacity: 0; transform: translateX(46px); } 33%, 68% { opacity: 1; transform: none; } 78%, 100% { opacity: 0; transform: translateX(-24px); } }
+@keyframes sg-r3 { 0%, 28% { opacity: 0; transform: translateX(46px); } 38%, 68% { opacity: 1; transform: none; } 78%, 100% { opacity: 0; transform: translateX(-24px); } }
+@keyframes sg-r4 { 0%, 33% { opacity: 0; transform: translateX(46px); } 43%, 68% { opacity: 1; transform: none; } 78%, 100% { opacity: 0; transform: translateX(-24px); } }
+
+/* 4. Anticipation：点发送，纸飞机先往后一缩“蓄力”，再猛地飞出去，消息气泡随后出现 */
+.an-chat { position: absolute; left: 24px; right: 24px; top: 16px; }
+.an-in { width: 150px; height: 34px; border-radius: 14px 14px 14px 4px; background: #E4E4E7; margin-bottom: 10px; }
+.an-out { width: 170px; height: 34px; margin-left: auto; border-radius: 14px 14px 4px 14px; background: var(--accent); box-shadow: var(--accent-shadow);
+  opacity: 0; transform-origin: right bottom; animation: an-out var(--clock); }
+.an-bar { position: absolute; left: 24px; right: 24px; bottom: 18px; height: 50px; border-radius: 25px; background: #FFFFFF; border: 1.5px solid #E4E4E7;
+  display: flex; align-items: center; padding: 0 6px 0 18px; }
+.an-bar .bar { width: 120px; animation: an-text var(--clock); }
+.an-send { position: relative; margin-left: auto; width: 38px; height: 38px; border-radius: 50%; background: var(--accent); }
+.an-plane { position: absolute; left: 9px; top: 9px; width: 20px; height: 20px; animation: an-plane var(--clock); }
+.an-cursor { animation: an-cursor var(--clock); }
+@keyframes an-cursor {
+  0%, 15% { transform: translate(300px, 120px) scale(1); } 21% { transform: translate(386px, 186px) scale(1); }
+  23% { transform: translate(386px, 186px) scale(0.85); } 26%, 65% { transform: translate(386px, 186px) scale(1); }
+  100% { transform: translate(300px, 120px) scale(1); } }
+@keyframes an-plane {
+  0%, 23% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1); }
+  31% { opacity: 1; transform: translate(-6px, 4px) rotate(-18deg) scale(0.82); animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.4); }
+  38% { opacity: 0; transform: translate(70px, -70px) rotate(8deg) scale(1.05); }
+  39%, 50% { opacity: 0; transform: translate(0, 10px) scale(0.6); }
+  56%, 100% { opacity: 1; transform: translate(0, 0) scale(1); } }
+@keyframes an-text { 0%, 34% { opacity: 1; } 37%, 82% { opacity: 0; } 92%, 100% { opacity: 1; } }
+@keyframes an-out { 0%, 36% { opacity: 0; transform: translateY(14px) scale(0.85); } 44%, 68% { opacity: 1; transform: none; } 78%, 100% { opacity: 0; transform: translateY(0) scale(0.95); } }
+
+/* 5. Squash & Stretch：小球下落时拉长，砸到地面被压扁，弹起再落下——有重量感 */
+.ss-floor { position: absolute; left: 96px; right: 96px; top: 186px; height: 3px; border-radius: 2px; background: #E4E4E7; }
+.ss-shadow { position: absolute; left: 50%; top: 182px; width: 56px; height: 10px; margin-left: -28px; border-radius: 50%;
+  background: rgba(24,24,27,0.12); animation: ss-shadow var(--clock); }
+.ss-ball { position: absolute; left: 50%; top: 142px; width: 44px; height: 44px; margin-left: -22px; border-radius: 50%;
+  background: var(--accent); box-shadow: inset -6px -8px 0 color-mix(in srgb, var(--accent-strong) 35%, transparent);
+  transform-origin: 50% 100%; animation: ss-ball var(--clock); }
+@keyframes ss-ball {
+  0%, 15% { transform: translateY(-120px) scale(1, 1); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  32% { transform: translateY(0) scale(0.86, 1.18); animation-timing-function: ease-out; }
+  35% { transform: translateY(0) scale(1.32, 0.68); animation-timing-function: ease-out; }
+  38% { transform: translateY(-6px) scale(0.9, 1.12); animation-timing-function: cubic-bezier(0, 0.55, 0.45, 1); }
+  46% { transform: translateY(-64px) scale(1, 1); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  56% { transform: translateY(0) scale(0.9, 1.12); animation-timing-function: ease-out; }
+  59%, 62% { transform: translateY(0) scale(1.22, 0.78); animation-timing-function: ease-in-out; }
+  67% { transform: translateY(0) scale(1, 1); }
+  100% { transform: translateY(-120px) scale(1, 1); } }
+@keyframes ss-shadow {
+  0%, 15% { transform: scale(0.45); opacity: 0.5; animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  32%, 35% { transform: scale(1.15); opacity: 1; animation-timing-function: cubic-bezier(0, 0.55, 0.45, 1); }
+  46% { transform: scale(0.7); opacity: 0.7; animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  56%, 62% { transform: scale(1.1); opacity: 1; }
+  67% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.45); opacity: 0.5; } }
+
+/* 6. Motion Path：点“加购”，商品小圆点沿抛物线飞进购物车，车身一弹、角标出现 */
+.mp-card { position: absolute; left: 32px; top: 24px; width: 168px; height: 176px; border-radius: 14px; background: #FFFFFF; border: 1.5px solid #E4E4E7; padding: 10px; }
+.mp-img { height: 84px; border-radius: 9px; background: var(--accent-soft); margin-bottom: 12px; }
+.mp-card .bar { margin-bottom: 9px; }
+.mp-add { position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); }
+.mp-add::before, .mp-add::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2.5px; margin: -1.25px 0 0 -6px; border-radius: 2px; background: #FFFFFF; }
+.mp-add::after { transform: rotate(90deg); }
+.mp-path { position: absolute; left: 0; top: 0; width: 453px; height: 224px; overflow: visible; }
+.mp-path path { fill: none; stroke: #D4D4D8; stroke-width: 2; stroke-dasharray: 5 6; }
+.mp-dot { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); box-shadow: var(--accent-shadow);
+  offset-path: path("M 185 175 Q 300 -40 386 60"); offset-rotate: 0deg; opacity: 0; animation: mp-dot var(--clock); }
+.mp-cart { position: absolute; left: 362px; top: 40px; width: 48px; height: 48px; border-radius: 14px; background: #FFFFFF; border: 1.5px solid #E4E4E7;
+  display: flex; align-items: center; justify-content: center; animation: mp-cart var(--clock); }
+.mp-cart svg { width: 26px; height: 26px; }
+.mp-badge { position: absolute; right: -7px; top: -7px; width: 18px; height: 18px; border-radius: 50%; background: #FF3B30; border: 2px solid #FFFFFF;
+  transform: scale(0); animation: mp-badge var(--clock); }
+.mp-cursor { animation: mp-cursor var(--clock); }
+@keyframes mp-cursor {
+  0%, 15% { transform: translate(250px, 200px) scale(1); } 21% { transform: translate(186px, 176px) scale(1); }
+  23% { transform: translate(186px, 176px) scale(0.85); } 26%, 65% { transform: translate(186px, 176px) scale(1); }
+  100% { transform: translate(250px, 200px) scale(1); } }
+@keyframes mp-dot {
+  0%, 23% { offset-distance: 0%; opacity: 0; transform: scale(0.6); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  25% { opacity: 1; transform: scale(1); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  41% { offset-distance: 100%; opacity: 1; transform: scale(0.8); }
+  43%, 100% { offset-distance: 100%; opacity: 0; transform: scale(0.4); } }
+@keyframes mp-cart { 0%, 41% { transform: scale(1); border-color: #E4E4E7; } 45% { transform: scale(1.18); border-color: var(--accent-light); } 50%, 66% { transform: scale(1); border-color: var(--accent-light); } 80%, 100% { transform: scale(1); border-color: #E4E4E7; } }
+@keyframes mp-badge { 0%, 43% { transform: scale(0); } 48% { transform: scale(1.25); } 52%, 68% { transform: scale(1); } 76%, 100% { transform: scale(0); } }
+
+/* 演示页：只显示一个宫格，按 iframe 宽度等比缩放 */
+html, body { background: transparent; }
+body { display: block; min-height: 0; margin: 0; overflow: hidden; }
+#demo { width: 456px; transform-origin: 0 0; }
+#demo .cell { display: block; }
+#demo .label-group { display: none; }
+#demo .sandbox { box-shadow: none; border: 0; border-radius: 0; }
+</style>
+</head>
+<body>
+<div id="demo"><div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-teal">
+          <div class="an-chat"><div class="an-in"></div><div class="an-out"></div></div>
+          <div class="an-bar"><div class="bar"></div>
+            <div class="an-send"><svg class="an-plane" viewBox="0 0 24 24"><path d="M3 11.2 20.5 3.5 15.8 20.5l-3.6-6.6z" fill="#FFFFFF"/><path d="M12.2 13.9 20.5 3.5" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="click-ring" style="left:386px;top:186px"></div>
+          <svg class="cursor an-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Anticipation</div><div class="term-zh">预备动作</div></div>
+    </div></div>
+<script>
+  // 演示宫格按 456px 设计，这里按窗口宽度等比缩放
+  (function fit() {
+    document.getElementById('demo').style.transform = 'scale(' + innerWidth / 456 + ')';
+    addEventListener('resize', fit, { once: true });
+  })();
+</script>
+</body>
+</html>
