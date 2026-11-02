@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Input Mask", "zh": "输入格式化",
+  "lead": "边输入边自动加空格或横线，把一长串数字分段显示，比如手机号 138 0000 0000、银行卡每 4 位一组。更好读，也更不容易输错。",
+  "vague": ["一长串数字看花眼", "号码自动分段"],
+  "terms": ["Input Mask", "Auto-format", "Formatting 格式化"],
+  "prompt": "手机号和银行卡输入框加 Input Mask：手机号按 3-4-4 分组、银行卡每 4 位一组，用空格分隔；只允许输入数字，粘贴带横线的也自动清理；光标位置跟着格式化正确移动，不跳到末尾；提交时去掉空格；用等宽数字和 0.05em 字间距。"
+}
+-->
+<div class="form">
+  <label>手机号<input id="tel" inputmode="numeric" placeholder="138 0000 0000" autocomplete="tel"></label>
+  <label>银行卡号<input id="card" inputmode="numeric" placeholder="0000 0000 0000 0000"><span class="brand"></span></label>
+  <p class="raw">提交的值：<code>—</code></p>
+</div>
+
+<style>
+.form { display: grid; gap: 14px; width: 280px; }
+label { position: relative; display: grid; gap: 6px; font-size: 12px; font-weight: 500; color: #52525B; }
+input { height: 42px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 16px; letter-spacing: .05em; font-variant-numeric: tabular-nums; color: #18181B; outline: 0; transition: .15s; }
+input:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.brand { position: absolute; right: 10px; bottom: 11px; font-size: 11px; color: #A1A1AA; }
+.raw { margin: 0; font-size: 12px; color: #A1A1AA; } code { color: #3F3F46; font-family: ui-monospace, Menlo, monospace; }
+</style>
+
+<script>
+// groups：每段几位，比如手机号 [3, 4, 4]
+function mask(input, groups) {
+  const max = groups.reduce((a, b) => a + b, 0);
+  input.addEventListener("input", () => {
+    const caretDigits = input.value.slice(0, input.selectionStart).replace(/\D/g, "").length; // 光标前有几个数字
+    const d = input.value.replace(/\D/g, "").slice(0, max);
+    let out = "", i = 0;
+    for (const g of groups) { if (i >= d.length) break; out += (out ? " " : "") + d.slice(i, i + g); i += g; }
+    input.value = out;
+    let pos = 0, seen = 0; // 把光标放回同一个数字后面
+    while (pos < out.length && seen < caretDigits) { if (/\d/.test(out[pos])) seen++; pos++; }
+    input.setSelectionRange(pos, pos);
+    document.querySelector("code").textContent = d || "—";
+  });
+}
+mask(document.querySelector("#tel"), [3, 4, 4]);
+mask(document.querySelector("#card"), [4, 4, 4, 4, 3]);
+</script>

@@ -1,0 +1,50 @@
+<!--
+{
+  "en": "Area Chart", "zh": "面积图",
+  "lead": "折线下面填上颜色的图，强调“总量有多大、怎么变化”。比折线图更有分量感，适合流量、收入这种累计数据。",
+  "vague": ["折线图太单薄", "趋势图想更好看"],
+  "terms": ["Area Chart", "Gradient Fill 渐变填充", "Crosshair 十字准线"],
+  "prompt": "访问量用 Area Chart：平滑曲线（2px 江月橘 #FA8C16），线下填充从 30% 透明度渐变到 0；横向网格线 1px 虚线 #F0F0F2；出场时从左到右“画”出来（clip-path 1s ease-out）；鼠标移动时显示竖向准线、高亮当前点，并在上方显示日期和数值的小气泡。"
+}
+-->
+<div class="chart">
+  <header><b>本周访问量</b><span class="tip">悬停查看每天数据</span></header>
+  <svg viewBox="0 0 300 140" preserveAspectRatio="none">
+    <defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FA8C16" stop-opacity=".3"/><stop offset="1" stop-color="#FA8C16" stop-opacity="0"/></linearGradient></defs>
+    <g class="grid"></g><g class="draw"><path class="area"/><path class="line"/></g>
+    <line class="cross" y1="0" y2="130"/><circle class="dot" r="4"/>
+  </svg>
+  <div class="days"></div>
+</div>
+
+<style>
+.chart { width: 320px; padding: 14px 16px 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+header b { font-size: 14px; color: #18181B; } .tip { font-size: 12px; color: #A1A1AA; font-variant-numeric: tabular-nums; }
+svg { width: 100%; height: 140px; display: block; overflow: visible; }
+.grid line { stroke: #F0F0F2; stroke-dasharray: 3 3; }
+.draw { animation: wipe 1s ease-out both; } @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.area { fill: url(#fill); } .line { fill: none; stroke: #FA8C16; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.cross { stroke: #D4D4D8; vector-effect: non-scaling-stroke; opacity: 0; } .dot { fill: #fff; stroke: #FA8C16; stroke-width: 2; opacity: 0; vector-effect: non-scaling-stroke; }
+svg:hover .cross, svg:hover .dot { opacity: 1; }
+.days { display: flex; justify-content: space-between; font-size: 11px; color: #A1A1AA; margin-top: 4px; }
+</style>
+
+<script>
+const V = [320, 410, 380, 520, 480, 690, 610], D = ["一", "二", "三", "四", "五", "六", "日"], W = 300, H = 130, MAX = 800;
+const pts = V.map((v, i) => [(W * i) / (V.length - 1), H - (H * v) / MAX]);
+// 用相邻点的中点做三次贝塞尔，曲线平滑又不会冲出数据范围太多
+let d = `M${pts[0]}`;
+for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2; d += ` C${mx} ${y0} ${mx} ${y1} ${x1} ${y1}`; }
+document.querySelector(".line").setAttribute("d", d);
+document.querySelector(".area").setAttribute("d", `${d} L${W} ${H} L0 ${H}Z`);
+document.querySelector(".grid").innerHTML = [0, 1, 2, 3].map((k) => `<line x1="0" x2="${W}" y1="${(H * k) / 3}" y2="${(H * k) / 3}"/>`).join("");
+document.querySelector(".days").innerHTML = D.map((x) => `<span>周${x}</span>`).join("");
+const svg = document.querySelector("svg"), cross = document.querySelector(".cross"), dot = document.querySelector(".dot"), tip = document.querySelector(".tip");
+svg.addEventListener("mousemove", (e) => {
+  const b = svg.getBoundingClientRect(), i = Math.round(((e.clientX - b.left) / b.width) * (V.length - 1));
+  const [x, y] = pts[Math.max(0, Math.min(V.length - 1, i))];
+  cross.setAttribute("x1", x); cross.setAttribute("x2", x); dot.setAttribute("cx", x); dot.setAttribute("cy", y);
+  tip.textContent = `周${D[i]} · ${V[i]} 次`;
+});
+</script>

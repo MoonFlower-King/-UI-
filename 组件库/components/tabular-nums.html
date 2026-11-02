@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Tabular Numbers", "zh": "等宽数字",
+  "lead": "让每个数字 0–9 占同样宽度。表格里的数字就能上下对齐，计时器、价格跳动时也不会左右抖。一行 CSS 的事，却让数据界面专业很多。",
+  "vague": ["数字一跳一跳的", "表格数字对不齐"],
+  "terms": ["Tabular Numbers", "font-variant-numeric", "Monospaced Digits"],
+  "prompt": "所有会变化的数字（计时器、价格、表格金额列）加 font-variant-numeric: tabular-nums；金额列右对齐、保留两位小数；正文里的普通数字保持默认的比例数字（proportional）更好看。"
+}
+-->
+<div class="cmp">
+  <div><small>默认（比例数字）</small><b class="clock p">00:00.00</b><ul class="p"><li>¥ 1,111.11</li><li>¥ 8,808.00</li><li>¥ 41.70</li></ul></div>
+  <div><small>tabular-nums</small><b class="clock t">00:00.00</b><ul class="t"><li>¥ 1,111.11</li><li>¥ 8,808.00</li><li>¥ 41.70</li></ul></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cmp > div { width: 160px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 8px; }
+small { font-size: 11px; color: #71717A; }
+.clock { font: 600 26px -apple-system, "Inter", "Helvetica Neue", sans-serif; color: #18181B; }
+ul { margin: 0; padding: 0; list-style: none; font: 14px -apple-system, "Inter", "Helvetica Neue", sans-serif; text-align: right; color: #3F3F46; }
+li { padding: 3px 0; border-top: 1px solid #F4F4F5; }
+.p { font-variant-numeric: proportional-nums; } .t { font-variant-numeric: tabular-nums; }
+.cmp > div:last-child { border-color: #FA8C16; }
+</style>
+
+<script>
+const t0 = performance.now(), clocks = document.querySelectorAll(".clock");
+(function tick() {
+  const ms = (performance.now() - t0) % 600000, m = Math.floor(ms / 60000), s = ((ms % 60000) / 1000).toFixed(2);
+  clocks.forEach((c) => (c.textContent = `${String(m).padStart(2, "0")}:${s.padStart(5, "0")}`));
+  setTimeout(tick, 50);
+})();
+</script>

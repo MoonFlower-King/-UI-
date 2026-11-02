@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Arrow Nudge", "zh": "箭头前移",
+  "lead": "“了解更多 →”这种链接，悬停时箭头往前挪几像素，像在说“往这边走”。成本几乎为零，却让链接显得有方向感、可点。",
+  "vague": ["链接看起来不能点", "按钮太死板"],
+  "terms": ["Arrow Nudge", "Directional Cue 方向暗示", "Micro-interaction"],
+  "prompt": "所有“查看更多 →”链接和次级按钮加 Arrow Nudge：箭头是独立元素，悬停时向右平移 4px（200ms ease-out），文字颜色同时加深；返回按钮的 ← 则向左挪；箭头用 transform，不改变布局宽度。"
+}
+-->
+<div class="list">
+  <a href="#">查看全部作品<span>→</span></a>
+  <a href="#" class="btn">开始使用<span>→</span></a>
+  <a href="#" class="back"><span>←</span>返回上一页</a>
+</div>
+
+<style>
+.list { display: grid; gap: 18px; justify-items: start; }
+a { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; color: #52525B; text-decoration: none; transition: color .2s; }
+a span { display: inline-block; transition: transform .2s ease-out; }
+a:hover { color: #18181B; } a:hover span { transform: translateX(4px); }
+.back:hover span { transform: translateX(-4px); }
+.btn { padding: 10px 18px; border-radius: 10px; background: #FA8C16; color: #fff; } .btn:hover { color: #fff; background: #F07C00; }
+</style>

@@ -1,0 +1,54 @@
+<!--
+{
+  "en": "Gauge", "zh": "仪表盘指针",
+  "lead": "像汽车速度表一样的半圆刻度，用来显示一个数值落在“好 / 一般 / 差”哪个区间，比如健康分、负载、信用分。一眼就知道是安全还是危险。",
+  "vague": ["分数怎么显示更直观", "像速度表那样"],
+  "terms": ["Gauge", "Speedometer Chart", "Threshold 阈值区间"],
+  "prompt": "用 Gauge 显示健康分：240° 的圆弧，弧底分三段颜色（0–40 红 #EF4444、40–70 黄 #F59E0B、70–100 绿 #22C55E，段间留 2° 缝隙），当前值用一段江月橘粗弧覆盖，出场从 0 转到目标值（1.2s ease-out，数字同步滚动）；中间 36px 粗体数字 + 一行状态文字。"
+}
+-->
+<div class="g">
+  <svg viewBox="0 0 200 170">
+    <g class="zones"></g>
+    <path class="track"/><path class="val"/>
+  </svg>
+  <div class="num"><b>0</b><span>健康分 · 良好</span></div>
+  <button>换一个值</button>
+</div>
+
+<style>
+.g { position: relative; width: 240px; text-align: center; }
+svg { width: 100%; display: block; }
+.zones path { fill: none; stroke-width: 4; stroke-linecap: round; }
+.track { fill: none; stroke: #F4F4F5; stroke-width: 14; stroke-linecap: round; }
+.val { fill: none; stroke: #FA8C16; stroke-width: 14; stroke-linecap: round; }
+.num { position: absolute; left: 0; right: 0; top: 70px; display: grid; }
+.num b { font-size: 40px; font-variant-numeric: tabular-nums; letter-spacing: -.02em; color: #18181B; }
+.num span { font-size: 12px; color: #71717A; }
+button { margin-top: -6px; border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 6px 12px; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+const C = [100, 100], R = 78, A0 = -210, SPAN = 240;
+const pt = (deg, r = R) => { const a = (deg * Math.PI) / 180; return [C[0] + r * Math.cos(a), C[1] + r * Math.sin(a)]; };
+const arc = (from, to, r = R) => { const [x1, y1] = pt(from, r), [x2, y2] = pt(to, r); return `M${x1} ${y1} A${r} ${r} 0 ${to - from > 180 ? 1 : 0} 1 ${x2} ${y2}`; };
+const at = (v) => A0 + (SPAN * v) / 100;
+document.querySelector(".track").setAttribute("d", arc(A0, A0 + SPAN));
+document.querySelector(".zones").innerHTML = [[0, 40, "#EF4444"], [40, 70, "#F59E0B"], [70, 100, "#22C55E"]]
+  .map(([a, b, c]) => `<path d="${arc(at(a) + 1, at(b) - 1, R + 14)}" stroke="${c}"/>`).join("");
+const val = document.querySelector(".val"), b = document.querySelector(".num b"), s = document.querySelector(".num span");
+let cur = 0;
+function go(to) {
+  const from = cur, t0 = performance.now();
+  const step = (now) => {
+    const p = Math.min(1, (now - t0) / 1200), e = 1 - (1 - p) ** 3; cur = from + (to - from) * e;
+    val.setAttribute("d", arc(A0, at(Math.max(cur, 0.5))));
+    b.textContent = Math.round(cur);
+    s.textContent = "健康分 · " + (cur < 40 ? "需要关注" : cur < 70 ? "一般" : "良好");
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+document.querySelector("button").addEventListener("click", () => go(Math.round(15 + Math.random() * 80)));
+go(82);
+</script>

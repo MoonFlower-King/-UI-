@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Input Group", "zh": "输入框组合",
+  "lead": "在输入框前后贴上固定的前缀、后缀或按钮，比如“https://”、“元”、“发送验证码”，它们和输入框共用一个外框，看起来是一个整体。",
+  "vague": ["单位放哪", "输入框旁边加个按钮"],
+  "terms": ["Input Group", "Prefix / Suffix 前后缀", "Addon"],
+  "prompt": "表单里用 Input Group：外框 40px 高、1px #E4E4E7、圆角 10px，前缀（如 https://）和后缀（如 元）放在浅灰底 #FAFAFA 的格子里、用 1px 竖线隔开；整组获得焦点时外框变江月橘 #FA8C16 并加 3px 半透明光圈；后缀也可以是按钮（发送验证码，点击后倒计时 60s）。"
+}
+-->
+<div class="form">
+  <label>个人网站<span class="ig"><em>https://</em><input placeholder="jiangyue.design"></span></label>
+  <label>预算<span class="ig"><em>¥</em><input inputmode="decimal" placeholder="0.00"><em>元 / 月</em></span></label>
+  <label>手机号<span class="ig"><input inputmode="tel" placeholder="138 0000 0000"><button type="button">发送验证码</button></span></label>
+</div>
+
+<style>
+.form { display: grid; gap: 12px; width: 300px; }
+label { display: grid; gap: 6px; font-size: 12px; color: #52525B; font-weight: 500; }
+.ig { display: flex; height: 40px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; overflow: hidden; transition: border-color .15s, box-shadow .15s; }
+.ig:focus-within { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.ig em { display: grid; place-items: center; padding: 0 12px; background: #FAFAFA; color: #71717A; font-style: normal; font-size: 13px; white-space: nowrap; }
+.ig em:first-child { border-right: 1px solid #E4E4E7; } .ig em:last-child:not(:first-child) { border-left: 1px solid #E4E4E7; }
+input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 0 12px; font-size: 14px; color: #18181B; background: transparent; }
+button { border: 0; border-left: 1px solid #E4E4E7; background: #FAFAFA; padding: 0 12px; font-size: 13px; color: #FA8C16; font-weight: 600; cursor: pointer; white-space: nowrap; min-width: 92px; }
+button:disabled { color: #A1A1AA; cursor: default; }
+</style>
+
+<script>
+const btn = document.querySelector("button");
+btn.addEventListener("click", () => {
+  let n = 60; btn.disabled = true;
+  const tick = () => { btn.textContent = n + " 秒后重发"; if (n-- > 0) setTimeout(tick, 1000); else { btn.disabled = false; btn.textContent = "发送验证码"; } };
+  tick();
+});
+</script>

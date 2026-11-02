@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Split Button", "zh": "拆分按钮",
+  "lead": "一个按钮拆成两半：左边是最常用的动作，点一下直接执行；右边小箭头展开其他相关动作。常用的一步到位，不常用的也找得到。",
+  "vague": ["按钮太多了", "几个相似操作放一起"],
+  "terms": ["Split Button", "Primary Action 主操作", "Dropdown 下拉菜单"],
+  "prompt": "把「发布」做成 Split Button：左半边是主按钮（江月橘 #FA8C16 底白字，圆角 10px 只留左侧），右半边 36px 宽的箭头按钮，中间 1px 半透明白色分隔线；点箭头在下方弹出菜单（定时发布 / 存为草稿 / 预览），菜单 150ms 淡入并下移 4px，点外面收起。"
+}
+-->
+<div class="split">
+  <button class="main">发布</button><button class="more" aria-label="更多发布方式" aria-expanded="false"><svg viewBox="0 0 12 12"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+  <ul class="menu" hidden><li>定时发布</li><li>存为草稿</li><li>预览</li></ul>
+</div>
+<p class="said">　</p>
+
+<style>
+.split { position: relative; display: inline-flex; filter: drop-shadow(0 2px 6px rgba(250,140,22,.25)); }
+.split button { border: 0; background: #FA8C16; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; height: 40px; }
+.main { padding: 0 20px; border-radius: 10px 0 0 10px; }
+.more { width: 36px; border-radius: 0 10px 10px 0; border-left: 1px solid rgba(255,255,255,.35) !important; display: grid; place-items: center; }
+.split button:hover { background: #F07C00; }
+.more svg { width: 12px; fill: none; stroke: #fff; stroke-width: 1.6; transition: transform .2s; }
+.more[aria-expanded="true"] svg { transform: rotate(180deg); }
+.menu { position: absolute; top: 46px; right: 0; margin: 0; padding: 6px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.08); min-width: 120px; animation: pop .15s ease-out; }
+.menu li { padding: 8px 10px; border-radius: 6px; font-size: 13px; color: #3F3F46; cursor: pointer; white-space: nowrap; }
+.menu li:hover { background: #F4F4F5; }
+@keyframes pop { from { opacity: 0; transform: translateY(-4px); } }
+.said { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; font-size: 12px; color: #A1A1AA; }
+</style>
+
+<script>
+const more = document.querySelector(".more"), menu = document.querySelector(".menu"), said = document.querySelector(".said");
+const toggle = (open) => { menu.hidden = !open; more.setAttribute("aria-expanded", open); };
+more.addEventListener("click", (e) => { e.stopPropagation(); toggle(menu.hidden); });
+document.querySelector(".main").addEventListener("click", () => { said.textContent = "已发布"; });
+menu.addEventListener("click", (e) => { if (e.target.tagName === "LI") { said.textContent = "已选择：" + e.target.textContent; toggle(false); } });
+document.addEventListener("click", (e) => { if (!e.target.closest(".split")) toggle(false); });
+</script>

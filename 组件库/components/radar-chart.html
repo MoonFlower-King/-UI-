@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Radar Chart", "zh": "雷达图",
+  "lead": "一个多边形网，每个角代表一项能力，越往外分越高。适合对比“综合能力”——哪方面强、哪方面弱，形状一看就知道。",
+  "vague": ["能力六边形", "多个维度一起比"],
+  "terms": ["Radar Chart", "Spider Chart 蛛网图", "Multi-dimension 多维对比"],
+  "prompt": "用 Radar Chart 对比两款方案的 6 项指标：5 圈同心多边形网格（1px #E4E4E7），轴端写指标名 12px 灰字；方案 A 用江月橘 #FA8C16 描边 + 20% 透明填充，方案 B 用深蓝 #1E3A5F；出场时多边形从中心放大到位（600ms 弹性缓动）；底部图例可点击切换显示。"
+}
+-->
+<div class="radar">
+  <svg viewBox="0 0 240 220"><g class="grid"></g><g class="axes"></g><g class="series"></g></svg>
+  <div class="legend"><button data-s="0" class="on"><i style="background:#FA8C16"></i>方案 A</button><button data-s="1" class="on"><i style="background:#1E3A5F"></i>方案 B</button></div>
+</div>
+
+<style>
+.radar { width: 280px; text-align: center; }
+svg { width: 100%; display: block; overflow: visible; }
+.grid polygon { fill: none; stroke: #E4E4E7; }
+.axes line { stroke: #E4E4E7; } .axes text { font-size: 11px; fill: #71717A; text-anchor: middle; dominant-baseline: middle; }
+.series polygon { stroke-width: 2; stroke-linejoin: round; transform-origin: 120px 110px; animation: grow .6s cubic-bezier(.34, 1.56, .64, 1) both; transition: opacity .2s; }
+.series polygon.off { opacity: 0; }
+@keyframes grow { from { transform: scale(0); } }
+.legend { display: flex; justify-content: center; gap: 8px; }
+.legend button { display: flex; align-items: center; gap: 6px; border: 0; background: none; font-size: 12px; color: #3F3F46; cursor: pointer; padding: 4px 6px; border-radius: 6px; }
+.legend button:not(.on) { opacity: .4; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; }
+</style>
+
+<script>
+const AX = ["易用", "速度", "美观", "稳定", "价格", "扩展"], DATA = [[90, 70, 95, 65, 60, 80], [60, 92, 55, 90, 85, 70]], COL = ["#FA8C16", "#1E3A5F"];
+const cx = 120, cy = 110, R = 80;
+const p = (i, r) => { const a = (Math.PI * 2 * i) / AX.length - Math.PI / 2; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+const poly = (rs) => rs.map((r, i) => p(i, r).join(",")).join(" ");
+document.querySelector(".grid").innerHTML = [1, 2, 3, 4, 5].map((k) => `<polygon points="${poly(AX.map(() => (R * k) / 5))}"/>`).join("");
+document.querySelector(".axes").innerHTML = AX.map((n, i) => { const [x, y] = p(i, R), [tx, ty] = p(i, R + 16); return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/><text x="${tx}" y="${ty}">${n}</text>`; }).join("");
+document.querySelector(".series").innerHTML = DATA.map((d, s) => `<polygon points="${poly(d.map((v) => (R * v) / 100))}" fill="${COL[s]}33" stroke="${COL[s]}" style="animation-delay:${s * 0.12}s"/>`).join("");
+document.querySelectorAll(".legend button").forEach((b) => b.addEventListener("click", () => {
+  b.classList.toggle("on");
+  document.querySelectorAll(".series polygon")[b.dataset.s].classList.toggle("off", !b.classList.contains("on"));
+}));
+</script>

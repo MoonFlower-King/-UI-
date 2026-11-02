@@ -1,0 +1,50 @@
+<!--
+{
+  "en": "Multi-select", "zh": "多选下拉",
+  "lead": "能选好几项的下拉框：选中的项变成小标签排在框里，每个标签都能单独删掉；下拉列表里用对勾标出哪些已选。",
+  "vague": ["下拉只能选一个", "选好几个怎么显示"],
+  "terms": ["Multi-select", "Chips 标签", "Listbox"],
+  "prompt": "技能字段用 Multi-select：输入框 40px 起，已选项显示为浅橘底 #FFF4E6 的小标签（带 × 可删除），超出时自动换行；点击展开下拉列表，每项左侧方形勾选框，已选项打勾、文字加粗；列表最大高度 200px 可滚动，点外面收起，退格键删除最后一个标签。"
+}
+-->
+<div class="ms">
+  <div class="field" tabindex="0" role="combobox" aria-expanded="false"><span class="ph">选择擅长的方向</span></div>
+  <ul class="list" role="listbox" aria-multiselectable="true"></ul>
+</div>
+
+<style>
+.ms { position: relative; width: 300px; align-self: start; margin-top: 40px; }
+.field { min-height: 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 6px 34px 6px 8px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; cursor: pointer; outline: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5' fill='none' stroke='%23A1A1AA' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px; }
+.field:focus, .ms.open .field { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.ph { color: #A1A1AA; font-size: 14px; padding-left: 4px; }
+.tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 4px 3px 8px; border-radius: 6px; background: #FFF4E6; color: #B45309; font-size: 12px; animation: pop .15s ease-out; }
+.tag b { width: 16px; height: 16px; border-radius: 4px; display: grid; place-items: center; font-weight: 400; cursor: pointer; }
+.tag b:hover { background: rgba(180,83,9,.12); }
+@keyframes pop { from { transform: scale(.8); opacity: 0; } }
+.list { position: absolute; top: calc(100% + 6px); left: 0; right: 0; max-height: 200px; overflow: auto; margin: 0; padding: 4px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.08); z-index: 1; }
+.list li { display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 6px; font-size: 13px; color: #3F3F46; cursor: pointer; }
+.list li:hover { background: #F4F4F5; }
+.list li::before { content: ""; width: 14px; height: 14px; border: 1.5px solid #D4D4D8; border-radius: 4px; box-sizing: border-box; }
+.list li[aria-selected="true"] { font-weight: 600; color: #18181B; }
+.list li[aria-selected="true"]::before { background: #FA8C16 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='m3 6 2 2 4-4' fill='none' stroke='white' stroke-width='1.8'/%3E%3C/svg%3E") center/10px no-repeat; border-color: #FA8C16; }
+</style>
+
+<script>
+const opts = ["界面设计", "动效", "插画", "前端开发", "品牌", "文案"], picked = new Set(["界面设计"]);
+const ms = document.querySelector(".ms"), field = ms.querySelector(".field"), list = ms.querySelector(".list");
+function render() {
+  field.innerHTML = picked.size ? [...picked].map((o) => `<span class="tag">${o}<b data-del="${o}" aria-label="移除 ${o}">×</b></span>`).join("") : '<span class="ph">选择擅长的方向</span>';
+  list.innerHTML = opts.map((o) => `<li role="option" aria-selected="${picked.has(o)}">${o}</li>`).join("");
+}
+const open = (v) => { list.hidden = !v; ms.classList.toggle("open", v); field.setAttribute("aria-expanded", v); };
+field.addEventListener("click", (e) => {
+  const d = e.target.dataset.del;
+  if (d) { picked.delete(d); render(); e.stopPropagation(); return; }
+  open(list.hidden);
+});
+list.addEventListener("click", (e) => { const o = e.target.closest("li")?.textContent; if (!o) return; picked.has(o) ? picked.delete(o) : picked.add(o); render(); });
+field.addEventListener("keydown", (e) => { if (e.key === "Backspace" && picked.size) { picked.delete([...picked].pop()); render(); } if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(list.hidden); } });
+document.addEventListener("click", (e) => { if (!ms.contains(e.target)) open(false); });
+render(); open(true);
+</script>

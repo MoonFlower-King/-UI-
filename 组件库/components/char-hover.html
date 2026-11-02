@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Letter Hover", "zh": "逐字悬停",
+  "lead": "鼠标扫过一行大字时，被碰到的那个字会弹起来、变色，旁边的字跟着轻轻起伏。适合作品集首页、品牌名这种想让人“玩一下”的地方。",
+  "vague": ["标题想有点互动", "鼠标扫过字会动"],
+  "terms": ["Letter Hover", "Per-character Interaction", "Spring 弹性"],
+  "prompt": "品牌名做 Letter Hover：每个字是独立 span，悬停的字上移 10px、放大到 1.1、变江月橘 #FA8C16，左右相邻的字上移 4px，用弹性缓动 cubic-bezier(.34,1.56,.64,1) 300ms；离开后回落；整句保留 aria-label。"
+}
+-->
+<h2 class="lh" aria-label="江上明月共潮生">江上明月共潮生</h2>
+
+<style>
+.lh { margin: 0; font: 800 44px/1.2 "Songti SC", "Noto Serif SC", serif; color: #18181B; cursor: default; user-select: none; }
+.lh span { display: inline-block; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), color .2s; }
+.lh span:hover { transform: translateY(-10px) scale(1.1); color: #FA8C16; }
+.lh span:has(+ span:hover), .lh span:hover + span { transform: translateY(-4px); }
+</style>
+
+<script>
+const h = document.querySelector(".lh");
+h.innerHTML = [...h.textContent].map((c) => `<span aria-hidden="true">${c}</span>`).join("");
+</script>

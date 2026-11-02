@@ -1,0 +1,49 @@
+<!--
+{
+  "en": "Inline Edit", "zh": "原地编辑",
+  "lead": "文字平时就是普通文字，点一下直接变成输入框，改完回车就保存，不用跳到单独的编辑页。适合改标题、改名字这种小改动。",
+  "vague": ["改个名字还要进设置", "点一下就能改"],
+  "terms": ["Inline Edit", "Click-to-edit", "Edit in place"],
+  "prompt": "项目名做成 Inline Edit：平时是普通标题，悬停时出现浅灰底和一个小铅笔图标；点击变成同样字号的输入框并全选文字；回车或失焦保存（右侧闪一个绿色 ✓ 1 秒），Esc 取消恢复原文；空内容不允许保存，抖一下提示。"
+}
+-->
+<div class="card">
+  <small>项目</small>
+  <div class="ie" tabindex="0" role="button" aria-label="点击修改项目名"><span class="text">江月 UI 官网改版</span><svg viewBox="0 0 16 16"><path d="M11 2.5 13.5 5 6 12.5H3.5V10z"/></svg><i class="ok">✓</i></div>
+  <p>8 个任务 · 3 位成员</p>
+</div>
+
+<style>
+.card { width: 280px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+small { font-size: 12px; color: #A1A1AA; }
+.ie { display: flex; align-items: center; gap: 6px; margin: 4px -8px 6px; padding: 4px 8px; border-radius: 8px; cursor: text; outline: 0; transition: background .15s; }
+.ie:hover, .ie:focus-visible { background: #F4F4F5; }
+.text, input { font-family: inherit; font-size: 20px; line-height: 1.3; font-weight: 700; color: #18181B; }
+input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; }
+.ie.editing { background: #fff; box-shadow: 0 0 0 2px #FA8C16; }
+svg { width: 14px; flex: none; fill: none; stroke: #A1A1AA; stroke-width: 1.5; opacity: 0; transition: opacity .15s; }
+.ie:hover svg { opacity: 1; } .ie.editing svg { display: none; }
+.ok { font-style: normal; color: #22C55E; font-weight: 700; opacity: 0; transition: opacity .2s; }
+.ok.show { opacity: 1; }
+.ie.shake { animation: shake .3s; } @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+p { margin: 0; font-size: 12px; color: #71717A; }
+</style>
+
+<script>
+const ie = document.querySelector(".ie"), ok = ie.querySelector(".ok");
+function edit() {
+  if (ie.classList.contains("editing")) return;
+  const span = ie.querySelector(".text"), old = span.textContent, input = document.createElement("input");
+  input.value = old; span.replaceWith(input); ie.classList.add("editing"); input.focus(); input.select();
+  const done = (save) => {
+    const v = input.value.trim();
+    if (save && !v) { ie.classList.remove("shake"); ie.offsetWidth; ie.classList.add("shake"); input.focus(); return; }
+    span.textContent = save ? v : old; input.replaceWith(span); ie.classList.remove("editing");
+    if (save && v !== old) { ok.classList.add("show"); setTimeout(() => ok.classList.remove("show"), 1000); }
+  };
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") done(true); if (e.key === "Escape") done(false); });
+  input.addEventListener("blur", () => ie.classList.contains("editing") && done(true));
+}
+ie.addEventListener("click", edit);
+ie.addEventListener("keydown", (e) => { if (e.key === "Enter" && !ie.classList.contains("editing")) edit(); });
+</script>

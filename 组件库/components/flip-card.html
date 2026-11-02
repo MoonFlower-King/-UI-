@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Flip Card", "zh": "翻转卡片",
+  "lead": "卡片像扑克牌一样翻过来，正面是图和标题，背面是详细说明或操作。一张卡片的空间放两面内容，还带一点小惊喜。",
+  "vague": ["卡片翻过来", "正反两面"],
+  "terms": ["Flip Card", "3D Transform", "backface-visibility"],
+  "prompt": "会员卡片做 Flip Card：外层 perspective 1000px，内层 transform-style: preserve-3d，点击沿 Y 轴翻转 180°（600ms cubic-bezier(.4,.2,.2,1)）；正背两面都 backface-visibility: hidden，背面预先 rotateY(180deg)；翻转中途卡片略微放大到 1.04 增加立体感；可用键盘回车翻转。"
+}
+-->
+<div class="scene">
+  <button class="card" aria-label="翻转会员卡">
+    <div class="face front"><span class="moon"></span><b>江月会员</b><small>点我看权益</small></div>
+    <div class="face back"><b>会员权益</b><ul><li>全部组件代码</li><li>提示词篮子无限量</li><li>新词优先体验</li></ul><small>再点一下翻回去</small></div>
+  </button>
+</div>
+
+<style>
+.scene { perspective: 1000px; }
+.card { position: relative; width: 240px; height: 150px; padding: 0; border: 0; background: none; cursor: pointer; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.4, .2, .2, 1); }
+.card.flipped { transform: rotateY(180deg); }
+.card:active { scale: .98; }
+.face { position: absolute; inset: 0; border-radius: 16px; padding: 18px; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; text-align: left; box-shadow: 0 12px 28px rgba(18,23,34,.18); }
+.front { background: linear-gradient(140deg, #1E2A44, #0F1218); color: #fff; justify-content: flex-end; }
+.moon { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF4D6, #FFD58A 60%, #FA8C16); box-shadow: 0 0 24px rgba(255,213,138,.5); }
+.front b { font: 700 20px "Songti SC", serif; } .front small { color: #A1A1AA; font-size: 12px; margin-top: 4px; }
+.back { background: #fff; color: #18181B; transform: rotateY(180deg); border: 1px solid #F0F0F2; }
+.back b { font-size: 14px; } .back ul { margin: 8px 0 auto; padding-left: 18px; font-size: 12px; line-height: 1.8; color: #3F3F46; } .back small { font-size: 11px; color: #A1A1AA; }
+.back li::marker { color: #FA8C16; }
+</style>
+
+<script>
+document.querySelector(".card").addEventListener("click", (e) => e.currentTarget.classList.toggle("flipped"));
+</script>

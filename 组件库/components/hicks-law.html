@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Hick's Law", "zh": "希克定律",
+  "lead": "选项越多，人做决定越慢。一屏摆二十个按钮，用户反而不知道点哪个。解决办法是减少选项、分组、或者先给一个推荐。",
+  "vague": ["选项太多用户懵了", "页面按钮太多"],
+  "terms": ["Hick's Law", "Choice Overload 选择过载", "Recommended Option 推荐项"],
+  "prompt": "按 Hick's Law 精简选择：一屏同级选项不超过 5–7 个，多出来的收进“更多”或分组；给一个视觉突出的推荐项（江月橘描边 + “推荐”角标），其余弱化；套餐页只放 3 档，中间档默认高亮。"
+}
+-->
+<div class="cmp">
+  <div class="col"><small class="bad">✗ 12 个选项一起摆</small><div class="many"></div></div>
+  <div class="col"><small class="good">✓ 3 个 + 一个推荐</small>
+    <div class="few"><button>基础</button><button class="rec">专业<em>推荐</em></button><button>团队</button></div>
+    <a href="#">查看全部方案</a></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 380px; }
+.col { display: grid; gap: 10px; align-content: start; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+small { font-size: 11px; font-weight: 600; } .bad { color: #EF4444; } .good { color: #16A34A; }
+.many { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.many span { height: 26px; border: 1px solid #E4E4E7; border-radius: 6px; font-size: 10px; color: #71717A; display: grid; place-items: center; }
+.few { display: grid; gap: 6px; }
+.few button { position: relative; height: 34px; border: 1px solid #E4E4E7; border-radius: 8px; background: #fff; font-size: 13px; color: #71717A; cursor: pointer; }
+.few .rec { border: 1.5px solid #FA8C16; color: #18181B; font-weight: 600; background: #FFF8EF; }
+.rec em { position: absolute; top: -8px; right: 8px; padding: 0 6px; border-radius: 4px; background: #FA8C16; color: #fff; font: normal 600 10px/16px sans-serif; }
+a { font-size: 12px; color: #71717A; text-align: center; }
+</style>
+
+<script>
+document.querySelector(".many").innerHTML = ["月付", "季付", "年付", "基础", "进阶", "专业", "团队", "企业", "教育", "学生", "试用", "定制"].map((x) => `<span>${x}</span>`).join("");
+</script>

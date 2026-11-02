@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Slide to Confirm", "zh": "滑动确认",
+  "lead": "把滑块从左拖到最右边才算确认，比点一下按钮更“郑重”，能防止误触。常用于付款、关机、删除账号这类不能反悔的操作。",
+  "vague": ["怕用户误点", "确认操作要更慎重"],
+  "terms": ["Slide to Confirm", "Swipe Button", "Drag Threshold 拖动阈值"],
+  "prompt": "支付确认用 Slide to Confirm：56px 高的胶囊轨道，左侧 48px 圆形滑块（江月橘 #FA8C16 + 白色箭头），轨道中间提示文字带从左到右的流光；拖动时已划过的部分填充浅橘色、提示文字渐隐；拖过 90% 松手即确认（滑块变对勾、轨道变绿），否则弹性回弹（300ms）；支持鼠标和触屏，同时提供键盘可用的替代按钮。"
+}
+-->
+<div class="track">
+  <i class="fill"></i><span class="label">滑动以支付 ¥138</span>
+  <button class="knob" aria-label="滑动确认支付，或按回车确认"><svg viewBox="0 0 20 20"><path d="M7 4l6 6-6 6"/></svg></button>
+</div>
+
+<style>
+.track { position: relative; width: 280px; height: 56px; border-radius: 999px; background: #F4F4F5; overflow: hidden; user-select: none; touch-action: none; }
+.fill { position: absolute; left: 0; top: 0; bottom: 0; width: 56px; border-radius: 999px; background: #FFE4C4; }
+.label { position: absolute; inset: 0; display: grid; place-items: center; padding-left: 40px; font-size: 14px; font-weight: 600; color: transparent; background: linear-gradient(90deg, #A1A1AA 40%, #18181B 50%, #A1A1AA 60%) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; animation: shine 2.4s linear infinite; }
+@keyframes shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.knob { position: absolute; left: 4px; top: 4px; width: 48px; height: 48px; border: 0; border-radius: 50%; background: #FA8C16; display: grid; place-items: center; cursor: grab; box-shadow: 0 4px 12px rgba(250,140,22,.35); }
+.knob svg { width: 20px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.back .knob, .back .fill { transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), width .3s cubic-bezier(.34, 1.56, .64, 1); }
+.done { background: #DCFCE7; } .done .fill { background: #BBF7D0; } .done .knob { background: #22C55E; box-shadow: none; } .done .label { animation: none; color: #15803D; background: none; }
+</style>
+
+<script>
+const track = document.querySelector(".track"), knob = track.querySelector(".knob"), fill = track.querySelector(".fill"), label = track.querySelector(".label");
+const MAX = () => track.clientWidth - 56;
+let start = null, x = 0;
+const set = (v) => { x = v; knob.style.transform = `translateX(${v}px)`; fill.style.width = v + 56 + "px"; label.style.opacity = 1 - v / MAX(); };
+function confirm() {
+  track.classList.add("done"); set(MAX()); label.style.opacity = 1; label.textContent = "支付成功";
+  knob.innerHTML = '<svg viewBox="0 0 20 20"><path d="m5 10 3.5 3.5L15 7"/></svg>';
+  setTimeout(() => { track.classList.remove("done"); track.classList.add("back"); label.textContent = "滑动以支付 ¥138"; knob.innerHTML = '<svg viewBox="0 0 20 20"><path d="M7 4l6 6-6 6"/></svg>'; set(0); }, 2200);
+}
+knob.addEventListener("pointerdown", (e) => { if (track.classList.contains("done")) return; start = e.clientX - x; track.classList.remove("back"); knob.setPointerCapture(e.pointerId); });
+knob.addEventListener("pointermove", (e) => { if (start !== null) set(Math.max(0, Math.min(MAX(), e.clientX - start))); });
+knob.addEventListener("pointerup", () => { if (start === null) return; start = null; if (x > MAX() * 0.9) confirm(); else { track.classList.add("back"); set(0); } });
+knob.addEventListener("keydown", (e) => { if (e.key === "Enter") confirm(); });
+</script>

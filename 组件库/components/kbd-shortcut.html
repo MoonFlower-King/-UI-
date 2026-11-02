@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Keyboard Shortcut Hint", "zh": "快捷键提示",
+  "lead": "在菜单、按钮或搜索框旁边用小方块标出快捷键，比如 ⌘K。熟练用户一眼就学会，新用户也不会被打扰。",
+  "vague": ["怎么让人知道有快捷键", "高手用起来更快"],
+  "terms": ["Keyboard Shortcut", "kbd 标签", "Accelerator"],
+  "prompt": "菜单每一项右侧用 <kbd> 显示快捷键：等宽字体 11px、浅灰底 #F4F4F5、1px 边框、底边加深 2px 像真实键帽、圆角 4px、键与键间距 3px；Mac 显示 ⌘，Windows 显示 Ctrl；用户按下对应快捷键时，该菜单项高亮闪一下。"
+}
+-->
+<ul class="menu">
+  <li data-k="n"><span>新建文档</span><kbd class="mod">⌘</kbd><kbd>N</kbd></li>
+  <li data-k="k"><span>搜索</span><kbd class="mod">⌘</kbd><kbd>K</kbd></li>
+  <li data-k="s"><span>保存</span><kbd class="mod">⌘</kbd><kbd>S</kbd></li>
+  <li data-k="/"><span>快捷键一览</span><kbd>?</kbd></li>
+</ul>
+
+<style>
+.menu { width: 240px; margin: 0; padding: 6px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+li { display: flex; align-items: center; gap: 3px; padding: 8px 10px; border-radius: 7px; font-size: 13px; color: #3F3F46; cursor: pointer; transition: background .15s; }
+li span { margin-right: auto; }
+li:hover, li.flash { background: #FFF4E6; color: #18181B; }
+kbd { min-width: 20px; height: 20px; padding: 0 5px; box-sizing: border-box; display: inline-grid; place-items: center; font: 11px ui-monospace, Menlo, monospace; color: #52525B; background: #F4F4F5; border: 1px solid #E4E4E7; border-bottom-width: 2px; border-radius: 4px; }
+</style>
+
+<script>
+if (!/Mac|iPhone|iPad/.test(navigator.platform)) document.querySelectorAll(".mod").forEach((k) => (k.textContent = "Ctrl"));
+const flash = (li) => { li.classList.remove("flash"); li.offsetWidth; li.classList.add("flash"); setTimeout(() => li.classList.remove("flash"), 400); };
+document.addEventListener("keydown", (e) => {
+  const key = e.key === "?" ? "/" : e.key.toLowerCase();
+  const li = document.querySelector(`li[data-k="${key}"]`);
+  if (li && (e.metaKey || e.ctrlKey || key === "/")) { e.preventDefault(); flash(li); }
+});
+document.querySelectorAll("li").forEach((li) => li.addEventListener("click", () => flash(li)));
+</script>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Affordance", "zh": "可供性（一看就知道能干嘛）",
+  "lead": "一个东西的样子在“暗示”它怎么用：按钮看起来能按、输入框看起来能写、把手看起来能拖。界面里“看不出能点”的东西，用户就不会去点。",
+  "vague": ["用户不知道能点", "看不出来是按钮"],
+  "terms": ["Affordance", "Signifier 提示符", "Perceived Affordance"],
+  "prompt": "检查界面的 Affordance：可点击元素要有明显的按钮外形（底色或描边、圆角、悬停变化、鼠标变手形），链接要有颜色或下划线，可拖动元素加 ⋮⋮ 抓手图标和 grab 光标，输入框要有边框和占位文字；不可交互的纯文字不要用按钮的样式，避免“看着能点却点不动”。"
+}
+-->
+<div class="cmp">
+  <div class="col bad"><small>✗ 看不出能干嘛</small>
+    <p class="t">保存设置</p><p class="t">了解更多</p><p class="t">任务一</p><p class="t blank">　</p></div>
+  <div class="col good"><small>✓ 一看就懂</small>
+    <button>保存设置</button><a href="#">了解更多 →</a><p class="drag"><i>⋮⋮</i>任务一</p><input placeholder="输入昵称"></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 360px; }
+.col { display: grid; gap: 10px; align-content: start; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+small { font-size: 11px; font-weight: 600; } .bad small { color: #EF4444; } .good small { color: #16A34A; }
+.t { margin: 0; height: 34px; display: flex; align-items: center; font-size: 13px; color: #3F3F46; }
+button { height: 34px; border: 0; border-radius: 8px; background: #FA8C16; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .15s, transform .1s; }
+button:hover { background: #F07C00; } button:active { transform: scale(.97); }
+a { height: 34px; display: flex; align-items: center; font-size: 13px; color: #C2410C; text-decoration: underline; text-underline-offset: 3px; }
+.drag { margin: 0; height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 10px; border: 1px solid #E4E4E7; border-radius: 8px; font-size: 13px; cursor: grab; background: #FAFAFA; }
+.drag i { font-style: normal; color: #A1A1AA; letter-spacing: -2px; }
+input { height: 34px; padding: 0 10px; border: 1px solid #D4D4D8; border-radius: 8px; font-size: 13px; }
+</style>

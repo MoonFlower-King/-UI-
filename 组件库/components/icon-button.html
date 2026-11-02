@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Icon Button", "zh": "图标按钮",
+  "lead": "只有图标、没有文字的按钮，用在工具栏、卡片角落这种放不下字的地方。关键是点击区域要够大、悬停要有底色，还要给读屏软件一个名字。",
+  "vague": ["小图标点不准", "图标按钮看不出能点"],
+  "terms": ["Icon Button", "Hit Area 点击区域", "aria-label"],
+  "prompt": "工具栏用 Icon Button：图标 18px、按钮 36×36px 圆角 8px，平时透明，悬停浅灰底 #F4F4F5，按下缩到 0.92；选中态（如已收藏）图标变江月橘 #FA8C16 并填充；每个按钮写 aria-label，悬停 400ms 后出现文字 Tooltip。"
+}
+-->
+<div class="bar">
+  <button aria-label="点赞" data-tip="点赞"><svg viewBox="0 0 24 24"><path d="M7 11v9H4v-9zM7 11l4-7c1.5 0 2.5 1 2.2 2.6L12.6 10H19a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 17.8 20H7"/></svg></button>
+  <button aria-label="收藏" data-tip="收藏" class="fav"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.8-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.8z"/></svg></button>
+  <button aria-label="分享" data-tip="分享"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"/></svg></button>
+  <i></i>
+  <button aria-label="更多" data-tip="更多"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg></button>
+</div>
+
+<style>
+.bar { display: flex; align-items: center; gap: 4px; padding: 6px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.bar i { width: 1px; height: 20px; background: #E4E4E7; margin: 0 4px; }
+button { position: relative; width: 36px; height: 36px; border: 0; border-radius: 8px; background: transparent; display: grid; place-items: center; cursor: pointer; color: #3F3F46; transition: background .15s, transform .1s; }
+button:hover { background: #F4F4F5; }
+button:active { transform: scale(.92); }
+svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
+.fav.on { color: #FA8C16; } .fav.on svg { fill: currentColor; }
+button::after { content: attr(data-tip); position: absolute; top: 42px; left: 50%; transform: translate(-50%, -4px); padding: 4px 8px; border-radius: 6px; background: #18181B; color: #fff; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: .15s; }
+button:hover::after { opacity: 1; transform: translate(-50%, 0); transition-delay: .4s; }
+</style>
+
+<script>
+document.querySelector(".fav").addEventListener("click", (e) => e.currentTarget.classList.toggle("on"));
+</script>

@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Shake on Error", "zh": "错误抖动",
+  "lead": "密码输错时，输入框左右快速晃几下，像人摇头说“不对”。比只显示一行红字更容易被注意到，而且不需要读字就懂。",
+  "vague": ["输错了没反应", "报错不明显"],
+  "terms": ["Shake Animation", "Error Feedback 错误反馈", "Head-shake"],
+  "prompt": "登录密码错误时让表单做 Shake 动画：水平位移 0 → -8 → 8 → -6 → 6 → -3 → 0px，共 400ms ease-in-out；同时边框变红 #EF4444、下方淡入一行红色提示并带警告图标；动画只用 transform，开启 prefers-reduced-motion 时只变色不晃。"
+}
+-->
+<form class="login">
+  <label>密码<input type="password" value="123456" aria-describedby="err"></label>
+  <p id="err" class="err" aria-live="assertive"></p>
+  <button>登录</button>
+  <small>提示：正确密码是 jiangyue</small>
+</form>
+
+<style>
+.login { width: 260px; display: grid; gap: 8px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+label { display: grid; gap: 6px; font-size: 12px; color: #52525B; font-weight: 500; }
+input { height: 40px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 14px; outline: 0; transition: border-color .15s, box-shadow .15s; }
+input:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.bad input { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,.12); }
+.err { margin: 0; min-height: 18px; font-size: 12px; color: #EF4444; }
+.err:not(:empty)::before { content: "⚠ "; }
+.shake { animation: shake .4s ease-in-out; }
+@keyframes shake { 15% { transform: translateX(-8px); } 30% { transform: translateX(8px); } 45% { transform: translateX(-6px); } 60% { transform: translateX(6px); } 75% { transform: translateX(-3px); } }
+@media (prefers-reduced-motion: reduce) { .shake { animation: none; } }
+button { height: 38px; border: 0; border-radius: 10px; background: #18181B; color: #fff; font-size: 14px; cursor: pointer; }
+small { font-size: 11px; color: #A1A1AA; text-align: center; }
+.ok button { background: #22C55E; }
+</style>
+
+<script>
+const form = document.querySelector(".login"), input = form.querySelector("input"), err = form.querySelector(".err");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (input.value === "jiangyue") { form.className = "login ok"; err.textContent = ""; form.querySelector("button").textContent = "✓ 登录成功"; return; }
+  form.classList.remove("shake"); form.offsetWidth; // 重新触发动画
+  form.classList.add("shake", "bad"); err.textContent = "密码不对，再试一次";
+});
+input.addEventListener("input", () => { form.classList.remove("bad"); err.textContent = ""; });
+</script>

@@ -1,0 +1,48 @@
+<!--
+{
+  "en": "Leaderboard", "zh": "排行榜",
+  "lead": "按分数从高到低排的名单，前三名有奖牌色，每行带一根进度条表示和第一名差多少。排名变化时，行会平滑地挪到新位置。",
+  "vague": ["排名怎么做好看", "谁第一一眼看出来"],
+  "terms": ["Leaderboard", "Ranking 排名", "FLIP 动画"],
+  "prompt": "做一个 Leaderboard：每行 = 名次 + 头像 + 名字 + 横向进度条 + 分数（等宽数字）；前三名名次用金 #F5B800 / 银 #A1A1AA / 铜 #C2410C 圆形徽章；进度条宽度 = 分数 / 第一名分数；分数更新后用 FLIP 动画让行平滑移动到新排名（400ms ease-out），上升的行短暂闪一下浅绿底。"
+}
+-->
+<div class="lb">
+  <header><b>本周创作榜</b><button>模拟更新</button></header>
+  <ol></ol>
+</div>
+
+<style>
+.lb { width: 320px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+header b { font-size: 14px; }
+header button { border: 1px solid #E4E4E7; background: #fff; border-radius: 7px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+li { display: grid; grid-template-columns: 22px 26px 56px 1fr 40px; align-items: center; gap: 8px; padding: 6px; border-radius: 8px; font-size: 13px; background: #fff; }
+li.up { animation: up 1s; } @keyframes up { from { background: #DCFCE7; } }
+.rk { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #71717A; }
+li:nth-child(1) .rk { background: #F5B800; color: #fff; } li:nth-child(2) .rk { background: #A1A1AA; color: #fff; } li:nth-child(3) .rk { background: #C2410C; color: #fff; }
+.av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; }
+.bar { height: 6px; border-radius: 3px; background: #F4F4F5; overflow: hidden; } .bar i { display: block; height: 100%; background: #FA8C16; border-radius: 3px; transition: width .4s ease-out; }
+.sc { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+</style>
+
+<script>
+const people = [["江小月", "#FA8C16", 920], ["白露", "#1E3A5F", 860], ["听潮", "#0EA5E9", 790], ["秋水", "#8B5CF6", 640], ["渔火", "#22C55E", 510]];
+const ol = document.querySelector("ol");
+ol.innerHTML = people.map(([n, c]) => `<li data-n="${n}"><span class="rk"></span><span class="av" style="background:${c}">${n[0]}</span><span>${n}</span><span class="bar"><i></i></span><span class="sc"></span></li>`).join("");
+const rows = Object.fromEntries([...ol.children].map((li) => [li.dataset.n, li]));
+function render() {
+  const first = new Map([...ol.children].map((li) => [li, li.getBoundingClientRect().top])); // FLIP：先记下旧位置
+  const oldIdx = new Map([...ol.children].map((li, i) => [li, i]));
+  people.sort((a, b) => b[2] - a[2]);
+  people.forEach(([n, , s], i) => { const li = rows[n]; ol.append(li); li.querySelector(".rk").textContent = i + 1; li.querySelector(".sc").textContent = s; li.querySelector(".bar i").style.width = (s / people[0][2]) * 100 + "%"; });
+  [...ol.children].forEach((li, i) => {
+    const dy = first.get(li) - li.getBoundingClientRect().top;
+    if (dy) li.animate([{ transform: `translateY(${dy}px)` }, { transform: "none" }], { duration: 400, easing: "ease-out" });
+    if (i < oldIdx.get(li)) { li.classList.remove("up"); li.offsetWidth; li.classList.add("up"); }
+  });
+}
+document.querySelector("header button").addEventListener("click", () => { people.forEach((p) => (p[2] += Math.round(Math.random() * 300))); render(); });
+render();
+</script>

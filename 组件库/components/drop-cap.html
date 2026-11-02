@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Drop Cap", "zh": "首字下沉",
+  "lead": "文章第一段的第一个字放大好几倍，占两三行高，像杂志和古书的开篇。一下子就有了“正式开始读”的仪式感。",
+  "vague": ["文章开头太平淡", "想要杂志感"],
+  "terms": ["Drop Cap", "Initial Letter", "Editorial 杂志排版"],
+  "prompt": "长文第一段用 Drop Cap：首字 3 行高，衬线粗体、江月橘 #FA8C16，float: left 并右侧留 8px、顶部和首行大写对齐；支持 initial-letter 的浏览器用 initial-letter: 3，不支持的用 float 回退；只在文章第一段使用。"
+}
+-->
+<article>
+  <p>月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止。</p>
+</article>
+
+<style>
+article { width: 300px; padding: 20px; background: #fff; border: 1px solid #F0F0F2; border-radius: 12px; }
+p { margin: 0; font: 15px/1.9 "Songti SC", "Noto Serif SC", serif; color: #3F3F46; text-align: justify; }
+p::first-letter { float: left; margin: 6px 8px 0 0; font-size: 58px; line-height: .9; font-weight: 800; color: #FA8C16; }
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  p::first-letter { float: none; margin: 0 8px 0 0; font-size: inherit; line-height: inherit; -webkit-initial-letter: 3; initial-letter: 3; }
+}
+</style>
