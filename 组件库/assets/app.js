@@ -15,9 +15,40 @@ const store = {
 const feels = vague.map((v) => v.vague.split(/\s*\/\s*/)[0]);
 
 // 组件预览底座：浅色画布、内容居中（组件代码都按浅色背景写）
+// 预览 iframe 和外层页面是同源的：组件里的 focus() / scrollIntoView() 会顺带把外层页面也滚过去，
+// 很多卡片同时在播时页面就会被拽来拽去（看着像「自己跳回上面」）。这里让它们只在预览框里生效。
+function guard() {
+  // 点 href="#..." 的链接会跳到锚点，同样会滚动外层页面；预览里不需要真的跳
+  addEventListener('click', (e) => { const a = e.target.closest && e.target.closest('a[href^="#"]'); if (a) e.preventDefault(); }, true);
+  // 聚焦预览里的元素时，浏览器会连带把外层页面滚到这个 iframe；这里先记住外层位置，做完立刻还原（同一帧内，看不出来）
+  const keep = (fn) => {
+    let x, y; try { x = parent.scrollX; y = parent.scrollY; } catch { return fn(); }
+    const r = fn(); if (parent.scrollX !== x || parent.scrollY !== y) parent.scrollTo(x, y); return r;
+  };
+  const busy = () => { try { const a = parent.document.activeElement; return a && a !== parent.document.body && a.tagName !== 'IFRAME'; } catch { return false; } };
+  const focus = HTMLElement.prototype.focus, click = HTMLElement.prototype.click;
+  HTMLElement.prototype.focus = function (o) {
+    // 用户正在外层页面打字（比如搜索框）时，演示不能把焦点抢走
+    if (!document.hasFocus() && busy()) return;
+    keep(() => focus.call(this, Object.assign({}, o, { preventScroll: true })));
+  };
+  HTMLElement.prototype.click = function () { return keep(() => click.call(this)); }; // 点 label 也会顺带聚焦
+  Element.prototype.scrollIntoView = function (o) {
+    o = typeof o === 'object' && o ? o : { block: o === false ? 'end' : 'start' };
+    let p = this.parentElement;
+    while (p && p !== document.body && p !== document.documentElement && !(p.scrollHeight > p.clientHeight + 1 || p.scrollWidth > p.clientWidth + 1)) p = p.parentElement;
+    if (!p || p === document.body || p === document.documentElement) return;
+    const a = this.getBoundingClientRect(), b = p.getBoundingClientRect();
+    const at = (pos, s, d, len, box) => pos === 'center' ? s + d - (box - len) / 2 : pos === 'end' ? s + d - box + len
+      : pos === 'nearest' ? (d < 0 ? s + d : d + len > box ? s + d + len - box : s) : s + d;
+    p.scrollTo({ behavior: o.behavior === 'smooth' ? 'smooth' : 'auto',
+      left: at(o.inline || 'nearest', p.scrollLeft, a.left - b.left, a.width, p.clientWidth),
+      top: at(o.block || 'start', p.scrollTop, a.top - b.top, a.height, p.clientHeight) });
+  };
+}
 const BASE = '<!DOCTYPE html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
   '<style>html,body{height:100%}body{margin:0;min-height:100%;display:grid;place-items:center;background:#FAFAFA;color:#18181B;' +
-  'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}</style>\n';
+  `font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}</style><script>(${guard})()<\/script>\n`;
 
 /* ---------------- 小工具 ---------------- */
 let toastTimer;
@@ -99,9 +130,15 @@ syncTheme();
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
 const AUTO = window.JY_AUTOPLAY;
-const doc = (c) => !AUTO ? BASE + c.code : calm.matches
-  ? `${BASE}${c.code}\n<script>(${AUTO.fit})()<\/script>`
-  : `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.fit})();(${AUTO.post})()<\/script>`;
+const tidy = (c) => c.code.replace(/\sautofocus\b/g, ''); // autofocus 同样会把外层页面滚过去
+// 组件大小只需要量一次（measured），之后每轮重播不再重复测量，省下不少 CPU
+const measured = new Set();
+const doc = (c) => {
+  if (!AUTO) return BASE + tidy(c);
+  const fit = measured.has(c.id) ? '' : `(${AUTO.fit})();`;
+  return calm.matches ? `${BASE}${tidy(c)}\n<script>${fit}<\/script>`
+    : `${BASE}<script>(${AUTO.pre})()<\/script>\n${tidy(c)}\n<script>${fit}(${AUTO.post})()<\/script>`;
+};
 
 // 预览占满：组件按 560×350 的画布写，但很多只占中间一小块。量出实际大小后，把预览「视口」缩到刚好包住它，
 // 再整体放大到卡片宽度，组件就占满预览框。每个组件只量一次，记在 fitCache 里。
@@ -199,14 +236,15 @@ function pick() {
 const repick = () => { clearTimeout(pickTimer); pickTimer = setTimeout(pick, 100); };
 addEventListener('scroll', repick, { passive: true });
 const watch = new IntersectionObserver((entries) => {
-  entries.forEach((e) => { if (e.isIntersecting) inView.add(e.target); else { inView.delete(e.target); if (playing.has(e.target)) stop(e.target); } });
+  // 露出一半以上才播放：被屏幕边缘切掉大半的卡片先显示静态首帧，一露出来就开始动
+  entries.forEach((e) => { if (e.intersectionRatio >= .5) inView.add(e.target); else { inView.delete(e.target); if (playing.has(e.target)) stop(e.target); } });
   repick();
-}, { rootMargin: '80px 0px' });
+}, { threshold: [0, .5] });
 addEventListener('message', (e) => {
   const f = [...playing].find((x) => x.contentWindow === e.source);
   if (!f) return;
   if (e.data === 'jy-replay') load(f);
-  else if (e.data?.jyFit) setFit(f.dataset.id, ...e.data.jyFit);
+  else if (e.data?.jyFit) { measured.add(f.dataset.id); setFit(f.dataset.id, ...e.data.jyFit); }
 });
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--tw', e.contentRect.width)));
 function card(c) {
