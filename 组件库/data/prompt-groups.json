@@ -82,7 +82,10 @@
         "kite",
         "handscroll",
         "lattice-window",
-        "ru-celadon"
+        "ru-celadon",
+        "miao-silver",
+        "peking-opera",
+        "fan-painting"
       ]
     },
     {
@@ -125,7 +128,10 @@
         "iznik",
         "dutch-still-life",
         "tapa",
-        "tuscan"
+        "tuscan",
+        "venetian",
+        "sashiko",
+        "provence"
       ]
     },
     {
@@ -183,7 +189,10 @@
         "hard-edge",
         "metaphysical",
         "abstract-expressionism",
-        "neo-geo"
+        "neo-geo",
+        "pre-raphaelite",
+        "precisionism",
+        "color-field"
       ]
     },
     {
@@ -244,7 +253,11 @@
         "serif-revival",
         "frame-border",
         "warm-mesh",
-        "vertical-text"
+        "vertical-text",
+        "sidenote",
+        "folder-tab",
+        "dither",
+        "big-quote"
       ]
     },
     {
@@ -295,7 +308,10 @@
         "washi",
         "beeswax",
         "smoke",
-        "mother-of-pearl"
+        "mother-of-pearl",
+        "rust",
+        "moss",
+        "gold-leaf"
       ]
     },
     {
@@ -342,7 +358,10 @@
         "string-art",
         "tapestry",
         "scratchboard",
-        "beadwork"
+        "beadwork",
+        "macrame",
+        "bookbinding",
+        "kintsugi"
       ]
     },
     {
@@ -397,7 +416,11 @@
         "dial-phone",
         "mimeograph",
         "letter-board",
-        "cinema-marquee"
+        "cinema-marquee",
+        "pager",
+        "bowling",
+        "photo-booth",
+        "tin-toy"
       ]
     },
     {
@@ -453,7 +476,11 @@
         "floor-plan",
         "price-tag",
         "bookmark",
-        "calendar-tear"
+        "calendar-tear",
+        "boarding-pass",
+        "street-sign",
+        "exam-paper",
+        "sheet-music"
       ]
     },
     {
@@ -508,7 +535,10 @@
         "nonprofit",
         "tattoo-studio",
         "skate-shop",
-        "photo-studio"
+        "photo-studio",
+        "bicycle-shop",
+        "ski-resort",
+        "noodle-shop"
       ]
     },
     {

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Folder Tabs",
+  "zh": "文件夹标签",
+  "alias": [
+    "档案夹分页",
+    "索引标签"
+  ],
+  "lead": "像一叠档案夹：每个区块顶上伸出一个小标签，颜色各不相同，叠在一起前后错开，点一个就翻到那一页。有条理、好找、带点办公室复古，适合资料库、作品集、文档站和多板块的机构官网。",
+  "prompt": "文件夹标签风格：浅灰白背景，内容区块做成档案夹（顶部伸出圆角小标签、标签上写分类名），多个文件夹前后叠放错开，每个标签用不同的柔和颜色（牛皮纸、浅蓝灰、鼠尾草绿、浅芥末），无衬线标题，等宽小字编号，细线边框",
+  "promptEn": "folder tabs style: light gray-white background, content blocks shaped like file folders (a small rounded tab sticking up at the top with a category name), several folders stacked and offset front to back, each tab a different muted color (kraft, light blue-gray, sage green, pale mustard), sans-serif headings, small monospaced numbers, thin line borders",
+  "avoid": "标签要“伸出来”且错位排列，颜色柔和区分；文件夹之间要有前后层次。别把它做成浏览器的标签栏。",
+  "neg": [
+    "浏览器标签栏、高饱和色",
+    "browser tab bar, saturated colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2A2A28; --a2: #6A7A5A; --on: #F4F2EC; background: #ECEBE6; color: #2A2A28; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; } .kicker, .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art .m { position: absolute; left: 14px; top: 26px; width: 140px; height: 110px; background: #D9C7A2; border-radius: 0 6px 6px 6px; box-shadow: 18px -14px 0 -2px #B9C4C8, 36px -28px 0 -4px #B8C4A8; }
+.art .m::before { content: ""; position: absolute; left: 0; top: -12px; width: 50px; height: 14px; background: #D9C7A2; border-radius: 6px 6px 0 0; }
+.art .h { position: absolute; left: 26px; top: 46px; width: 90px; height: 50px; background: repeating-linear-gradient(transparent 0 9px, rgba(42,42,40,.25) 9px 10px); }
+.feats article { background: #F7F6F2; padding: 12px; border-radius: 0 6px 6px 6px; position: relative; margin-top: 12px; border: 1px solid rgba(42,42,40,.12); }
+.feats article::before { content: ""; position: absolute; left: -1px; top: -12px; width: 44px; height: 12px; background: #D9C7A2; border-radius: 6px 6px 0 0; }
+.feats article:nth-child(2)::before { background: #B9C4C8; } .feats article:nth-child(3)::before { background: #B8C4A8; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; }
+</style>

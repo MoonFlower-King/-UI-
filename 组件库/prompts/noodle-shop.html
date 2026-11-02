@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Noodle Shop",
+  "zh": "面馆",
+  "alias": [
+    "拉面馆",
+    "街坊面馆"
+  ],
+  "lead": "一家街坊面馆：一碗热腾腾的汤面、白瓷碗上一圈蓝色回纹、碗口冒着热气，墙上手写的价目牌，竹筷和红色暖帘。烟火气、实在、温暖，适合餐饮小店、外卖品牌、城市美食指南和地方特产。",
+  "prompt": "面馆风格：暖米色或浅木色背景，主视觉为一碗俯视或侧视的汤面（白瓷碗沿一圈蓝色回纹、浅褐清汤、黄色面条、几片青葱与一片叉烧，碗口飘出三缕热气），旁边一双竹筷，粗壮的毛笔或黑体标题，红色印章式价签，手写价目牌质感",
+  "promptEn": "noodle shop style: warm beige or light wood background, a hero of a bowl of noodle soup seen from above or the side (white porcelain bowl with a blue fret band around the rim, light brown broth, yellow noodles, chopped scallions and a slice of roast pork, three wisps of steam rising), a pair of bamboo chopsticks beside it, bold brush or heavy sans headings, red stamp-style price tags, handwritten menu board texture",
+  "avoid": "要有“热气 + 回纹碗 + 筷子”的烟火气；红色只做价签和暖帘。别做成精致西餐摆盘，也别用高饱和的食物滤镜。",
+  "neg": [
+    "西餐摆盘、高饱和食物滤镜",
+    "fine-dining plating, oversaturated food filters"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B3261E; --a2: #B3261E; --on: #FFF6E8; background: #F2E6D0; color: #2A2018; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 900; letter-spacing: 2px; } .logo i { background: #B3261E; border-radius: 2px; }
+.art .m { position: absolute; left: 10px; top: 62px; width: 140px; height: 70px; border-radius: 6px 6px 70px 70px / 6px 6px 70px 70px; background: linear-gradient(transparent 4px, #2A5A9A 4px 6px, transparent 6px 12px, #2A5A9A 12px 14px, transparent 14px) 0 0 / 100% 20px no-repeat, linear-gradient(#FBF8F2, #E8E2D6); box-shadow: 0 8px 14px rgba(42,32,24,.15); }
+.art .m::before { content: ""; position: absolute; left: 4px; right: 4px; top: -8px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 30% 50%, #6A9A4A 0 2px, transparent 2.5px), radial-gradient(circle at 40% 40%, #6A9A4A 0 2px, transparent 2.5px), radial-gradient(ellipse 14px 6px at 66% 50%, #C8704A, transparent), repeating-linear-gradient(80deg, #E8C46A 0 2px, #C89A54 2px 3px); }
+.art .h { position: absolute; left: 36px; top: 4px; width: 80px; height: 48px; opacity: .55; filter: blur(1.5px);
+  background: radial-gradient(ellipse 4px 20px at 20% 60%, #fff, transparent), radial-gradient(ellipse 4px 22px at 50% 50%, #fff, transparent), radial-gradient(ellipse 4px 20px at 80% 60%, #fff, transparent); }
+.art::after { content: ""; position: absolute; left: 120px; top: 30px; width: 4px; height: 76px; background: #C8A468; box-shadow: 8px 2px 0 #B8945A; transform: rotate(24deg); }
+.feats article { background: #FFF8EC; padding: 12px; border-top: 4px solid #B3261E; } .feats b { color: #B3261E; }
+.stats b { color: #B3261E; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 900; }
+</style>

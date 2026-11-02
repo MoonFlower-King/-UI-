@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Boarding Pass",
+  "zh": "登机牌",
+  "alias": [
+    "机票",
+    "航班登机牌"
+  ],
+  "lead": "把页面做成一张登机牌：出发地和目的地的三字代码大大地写着，中间一个小飞机，旁边是航班号、登机口、座位，右侧一条撕线和副券。旅行感、清晰、信息有条理，适合旅行、航空、活动门票和会议注册。",
+  "prompt": "登机牌风格：浅灰或浅蓝灰背景，主视觉为一张横向登机牌（白色卡面，左侧超大三字机场代码与小飞机图标，下方航班号、登机口、座位、时间分栏小字，右侧一条虚线撕口与副券，一枚条形码），等宽与无衬线组合，单一点缀色条",
+  "promptEn": "boarding pass style: light gray or light blue-gray background, a hero of a horizontal boarding pass (white card, huge three-letter airport codes with a small plane icon on the left, small columns below for flight, gate, seat and time, a dashed tear line and stub on the right, a barcode), monospaced and sans-serif mix, a single accent color bar",
+  "avoid": "三字代码要大，信息分栏要整齐；撕线和副券是辨识点。别做成航空公司官网的复杂订票界面，也别出现真实航司标识。",
+  "neg": [
+    "复杂订票界面、真实航司标识",
+    "complex booking UI, real airline logos"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E2A3A; --a2: #E07A2E; --on: #FFFFFF; background: #E6E9EC; color: #1E2A3A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; } .kicker, .stats span { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-transform: uppercase; }
+.art .m { position: absolute; left: 0; top: 24px; width: 170px; height: 96px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(30,42,58,.12);
+  background: linear-gradient(#E07A2E, #E07A2E) 0 0 / 100% 8px no-repeat, radial-gradient(circle, #E6E9EC 0 1.5px, transparent 2px) 124px 10px / 4px 6px repeat-y, #fff; }
+.art .m::before { content: "SHA → PEK"; position: absolute; left: 12px; top: 20px; font: 800 18px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: -.5px; color: #1E2A3A; }
+.art .m::after { content: "GATE 12   SEAT 3A\A FLIGHT JY520"; white-space: pre; position: absolute; left: 12px; top: 50px; font: 9px/1.7 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6A7480; }
+.art .h { position: absolute; left: 136px; top: 44px; width: 26px; height: 56px; background: repeating-linear-gradient(#1E2A3A 0 2px, transparent 2px 3px, #1E2A3A 3px 4px, transparent 4px 7px); }
+.feats article { background: #fff; border-radius: 8px; padding: 12px; border-left: 4px solid #E07A2E; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

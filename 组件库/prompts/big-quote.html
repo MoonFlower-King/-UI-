@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Big Quote",
+  "zh": "大引言",
+  "alias": [
+    "引言版式",
+    "金句首屏"
+  ],
+  "lead": "首屏只放一句话：一段超大号的引言居中占满屏幕，前面一个巨大的引号，下面一行小字署名。有态度、有温度、让人停下来读，适合个人品牌、文学、公益、咨询和品牌故事页。",
+  "prompt": "大引言风格：纯色暖底背景，首屏中央一句超大号衬线引言（字重偏细、行距舒适），前方一个超大的装饰引号（点缀色、半透明），下方小号无衬线署名和细横线，其余内容退到下方，排版居中、极简、留白充足",
+  "promptEn": "big quote style: solid warm background, a single oversized serif quotation in the center of the hero (light weight, comfortable leading), a huge decorative quotation mark in front (accent color, semi-transparent), a small sans-serif attribution and a short rule below, the rest of the content pushed down, centered minimal layout with lots of space",
+  "avoid": "首屏只要“一句话”，引号要大到成为图形；署名要小。别同时放按钮、配图和多段文字抢那一句。",
+  "neg": [
+    "首屏堆按钮配图、多段文字",
+    "hero crowded with buttons, images and paragraphs"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3A2A22; --a2: #C8643A; --on: #F6EBDD; background: #F3E6D4; color: #3A2A22; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 99px; } .hero { grid-template-columns: 1fr; text-align: center; padding-top: 50px; position: relative; }
+.hero h1 { font-weight: 300; font-size: 36px; position: relative; z-index: 1; } .acts { justify-content: center; } .kicker { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 3px; }
+.art { position: absolute; left: 0; right: 0; top: 0; min-height: 0; }
+.art .m { position: absolute; left: 50%; top: 6px; transform: translateX(-130px); font: 400 150px/1 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: rgba(200,100,58,.28); } .art .m::before { content: "“"; }
+.feats { text-align: center; } .feats h3 { font-weight: 300; }
+.stats b { font-weight: 300; }
+</style>

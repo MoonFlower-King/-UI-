@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Dithered 1-bit",
+  "zh": "抖动点阵",
+  "alias": [
+    "一比特抖动",
+    "黑白网点图"
+  ],
+  "lead": "用只有黑白两色的小点来表现明暗：图片被抖动成一颗颗像素点，像老式黑白屏幕或热敏打印机，配上等宽字体。低保真、有个性、技术味十足，适合独立游戏、技术博客、极客产品和实验性品牌。",
+  "prompt": "抖动点阵风格：纯白或淡纸色背景，主视觉为一张1比特抖动处理的图片（只有黑白两色的像素点，明暗靠点的疏密表现，如球体或人像），等宽字体标题与正文，黑色细框，几乎无色彩，最多一个点缀色",
+  "promptEn": "dithered 1-bit style: pure white or light paper background, a hero of a 1-bit dithered image (only black and white pixels, tone built from dot density, such as a sphere or portrait), monospaced headings and body, thin black frames, almost no color, at most one accent",
+  "avoid": "图像只能有黑白两色，灰度全靠点阵密度；字体用等宽。别用灰色或渐变去“补”过渡。",
+  "neg": [
+    "灰色过渡、平滑渐变",
+    "gray tones, smooth gradients"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #F4F3EE; background: #F4F3EE; color: #111; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.cta, .b1 { border-radius: 0; } .b1 { box-shadow: 3px 3px 0 #111; background: #F4F3EE; color: #111; border: 1.5px solid #111; } .hero h1 { font-weight: 700; letter-spacing: -1px; }
+.logo i { background: repeating-conic-gradient(#111 0 25%, transparent 0 50%) 0 0 / 4px 4px; }
+.art .m { position: absolute; left: 14px; top: 4px; width: 140px; height: 140px; border: 1.5px solid #111; overflow: hidden;
+  background: radial-gradient(#111 .9px, transparent 1.2px) 0 0 / 4px 4px; }
+.art .h { position: absolute; left: 36px; top: 26px; width: 96px; height: 96px; border-radius: 50%; background: radial-gradient(circle at 35% 32%, #F4F3EE 0 22%, transparent 23%), repeating-conic-gradient(#F4F3EE 0 25%, #111 0 50%) 0 0 / 3px 3px; }
+.feats article { border: 1.5px solid #111; padding: 10px; }
+.stats b { font-weight: 700; }
+</style>
