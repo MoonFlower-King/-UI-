@@ -1,6 +1,6 @@
 // 提示词调配台（prompts.html）。数据来自 data/prompts.js（npm run build:ui 生成）。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
-const { kinds, groups, items, stages } = window.JY_PROMPTS;
+const { kinds, groups, items, stages, kits = {} } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
 const groupById = Object.fromEntries(groups.map((g) => [g.id, g]));
 const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
@@ -130,7 +130,7 @@ const SHADOW_CSS = ':host{all:initial;display:block;position:relative;width:100%
 function paint(host) {
   if (host.shadowRoot) return;
   const it = byId[host.dataset.id], stage = groupById[it.group].stage;
-  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.code}`;
+  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${it.code}`;
   host.closest('.thumb').classList.add('ready');
 }
 const painter = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { painter.unobserve(e.target); paint(e.target); } }), { rootMargin: '600px 0px' });
@@ -163,14 +163,28 @@ function renderMain() {
       <h1 class="h1">提示词调配台</h1>
       <p class="lead">做视频、出图、做网站，最难的是跟 AI 说清楚「要什么样」。这里每个词都配一段会动的预览，看准了就勾上，右边自动拼成一段中英文提示词。每个词还写了<em>容易用错的地方</em>，别人的合集里几乎没有。</p>
     </header>
-    <nav class="filter mix-filter" aria-label="跳到分类">${kinds.map((k) => `<a href="#k-${k.id}">${esc(k.name)}<small>${items.filter((it) => groupById[it.group].kind === k.id).length}</small></a>`).join('')}</nav>
-    ${kinds.map((k) => `<section class="kind" id="k-${k.id}"><header class="kind-head"><h2 class="h2">${esc(k.name)}<small>${esc(k.en)}</small></h2><p>${esc(k.intro)}</p></header>
-      ${groups.filter((g) => g.kind === k.id).map((g) => `<div class="group"><div class="group-head"><h2>${esc(g.name)}</h2><span class="rule">${g.pick === 'one' ? '单选' : '可多选'}</span><p>${esc(g.intro)}</p></div>
-        <div class="grid">${items.filter((it) => it.group === g.id).map(card).join('')}</div></div>`).join('')}</section>`).join('')}
+    <nav class="filter mix-filter" aria-label="跳到分类">${kinds.map((k) => `<a href="#k-${k.id}">${esc(k.name)}<small>${items.filter((it) => groupById[it.group].kind === k.id).length}</small></a>`).join('')}
+      <input class="mix-search" type="search" placeholder="搜名字、别名或感觉，比如 复古" aria-label="搜索词条"></nav>
+    <p class="mix-none" hidden>没找到，换个词试试，比如中文名、英文名或「温暖」「科技」这类感觉。</p>
+    ${kinds.map((k) => { const gs = groups.filter((g) => g.kind === k.id); return `<section class="kind" id="k-${k.id}"><header class="kind-head"><h2 class="h2">${esc(k.name)}<small>${esc(k.en)}</small></h2><p>${esc(k.intro)}</p>
+      ${gs.length > 2 ? `<nav class="group-jump" aria-label="跳到分组">${gs.map((g) => `<a href="#g-${g.id}">${esc(g.name)}<small>${g.count}</small></a>`).join('')}</nav>` : ''}</header>
+      ${gs.map((g) => `<div class="group" id="g-${g.id}"><div class="group-head"><h2>${esc(g.name)}</h2><span class="rule">${g.pick === 'one' ? '单选' : '可多选'}</span><p>${esc(g.intro)}</p></div>
+        <div class="grid">${items.filter((it) => it.group === g.id).map(card).join('')}</div></div>`).join('')}</section>`; }).join('')}
     <footer class="site-foot"><span>江月 UI 设计 · MIT 开源</span><a href="index.html">江月 UI 词典</a><a href="../">UI 提示词图鉴</a><span>预览全部是原创代码；提示词为本站原创整理，可自由使用</span></footer>`;
   $$('.poster').forEach((p) => { painter.observe(p); runner.observe(p); });
   $$('.thumb').forEach((t) => fit.observe(t));
   syncCards();
+  $('.mix-search').addEventListener('input', (e) => search(e.target.value));
+}
+
+// 搜索：按分组名、中英文名、别名、简介、提示词匹配，空格分开的几个词要同时命中；没命中的卡片、分组、大类都藏起来
+const haystack = (it) => (it.hay ||= [groupById[it.group].name, it.zh, it.en, ...(it.alias || []), it.lead, it.prompt, it.promptEn].join(' ').toLowerCase());
+function search(q) {
+  const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  $$('[data-card]').forEach((c) => { c.hidden = !words.every((w) => haystack(byId[c.dataset.card]).includes(w)); });
+  $$('#main .group').forEach((g) => { g.hidden = !$('[data-card]:not([hidden])', g); });
+  $$('#main .kind').forEach((k) => { k.hidden = !$('.group:not([hidden])', k); });
+  $('.mix-none').hidden = !!$('#main .kind:not([hidden])');
 }
 
 document.addEventListener('click', (e) => {

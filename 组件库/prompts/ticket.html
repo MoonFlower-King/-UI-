@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Ticket Stub",
+  "zh": "票据单据",
+  "alias": [
+    "票券风",
+    "小票"
+  ],
+  "lead": "像电影票或车票：两侧打孔缺口、虚线撕口、条形码、等宽编号。有仪式感和实物感，适合活动售票、影院、交通、餐饮菜单。",
+  "prompt": "票据风格：深色桌面背景，关键内容放在票券形状的卡片上，带半圆打孔缺口、虚线撕口和条形码，米白票纸配一种印刷色（深红），编号与日期用等宽字体，粗无衬线标题，信息像票面一样分栏",
+  "promptEn": "ticket stub style: dark tabletop background, key content on ticket-shaped cards with semicircle notches, dashed tear lines and a barcode, off-white ticket paper with one print color (deep red), monospace serial numbers and dates, bold sans headings, information split into columns like a ticket face",
+  "avoid": "票据元素（打孔、条码）用在一两个关键卡片上，每张卡都做会很累赘。等宽字只用于编号和日期。",
+  "neg": [
+    "每张卡都是票、正文用等宽字",
+    "every card a ticket, monospace body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B3262E; --a2: #B3262E; --on: #fff; background: #2C2F3A; color: #2A2A2A; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav, .stats, .ft { color: #F3EEE3; }
+.hero { grid-template-columns: 1fr 118px; margin: 6px 22px 18px; padding: 22px 0 22px 22px; background: #F6F1E6; border-radius: 6px;
+  -webkit-mask: radial-gradient(circle 10px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 10px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 10px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 10px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; }
+.kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #B3262E; } .hero h1 { font-weight: 800; }
+.art { min-height: 0; border-left: 2px dashed #B3262E;
+  background: repeating-linear-gradient(90deg, #2A2A2A 0 2px, transparent 2px 4px, #2A2A2A 4px 5px, transparent 5px 8px, #2A2A2A 8px 11px, transparent 11px 13px) 16px calc(100% - 4px) / 84px 36px no-repeat; }
+.art::before { content: "No. 0012"; position: absolute; left: 16px; top: 4px; font: 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #B3262E; }
+.art::after { content: "ADMIT ONE"; position: absolute; left: 16px; top: 24px; font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+.feats article { padding: 12px; background: #F6F1E6; border-radius: 4px; border-top: 2px dashed #B3262E; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #B3262E; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Retro Desktop",
+  "zh": "复古桌面系统",
+  "alias": [
+    "老电脑界面",
+    "窗口风"
+  ],
+  "lead": "早期电脑桌面的窗口、深蓝标题栏、灰色凸起按钮。怀旧又有趣，适合独立开发者、小工具、复古游戏、个人作品集。",
+  "prompt": "复古桌面系统风格：青绿色桌面背景，内容装在带标题栏和关闭按钮的灰色窗口里，窗口和按钮有统一光源的立体边框（左上亮、右下暗），小号系统字体，强调色为标题栏的深蓝，插图为简单的像素风景",
+  "promptEn": "retro desktop OS style: teal desktop background, content inside gray windows with title bars and close buttons, windows and buttons with consistent bevels (light top-left, dark bottom-right), small system fonts, deep blue title bars as the accent, simple pixel-like landscape illustrations",
+  "avoid": "不要直接照搬某个真实操作系统的图标和界面，做「那个年代的感觉」就好。立体边框要统一光源（左上亮、右下暗）。",
+  "neg": [
+    "照搬真实系统图标、光源方向混乱",
+    "copying real OS icons, inconsistent bevel lighting"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C0C0C0; --a2: #000080; --on: #111; background: #2F8F8F; color: #111; font-family: Tahoma, Geneva, -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { margin: 10px; padding: 6px 10px; background: #C0C0C0; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; } .logo i { background: #000080; } .cta { padding: 4px 10px; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; }
+.hero { position: relative; grid-template-columns: 1fr 140px; margin: 0 10px 12px; padding: 32px 14px 14px; background: #C0C0C0; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; }
+.hero::before { content: "山月书房.txt"; position: absolute; left: 3px; right: 3px; top: 3px; height: 18px; padding-left: 6px; background: #000080; color: #fff; font-size: 11px; font-weight: 700; line-height: 18px; }
+.hero::after { content: "×"; position: absolute; right: 6px; top: 5px; width: 14px; height: 12px; background: #C0C0C0; font-size: 11px; line-height: 12px; text-align: center; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; }
+.hero h1 { font-size: 26px; } .kicker { color: #000080; } .b1 { box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; } .b2 { color: #000080; text-decoration: underline; }
+.art { background: #9CD3F0; box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0A0A0A; overflow: hidden; }
+.art .m { position: absolute; left: 22px; top: 18px; width: 30px; height: 30px; background: #F5D547; box-shadow: 0 0 0 2px #111; }
+.art .h { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; background: #3C8A3C; box-shadow: 0 -2px 0 #111; }
+.feats { gap: 10px; padding: 0 10px 12px; } .feats article { padding: 10px; background: #C0C0C0; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; } .feats b { color: #000080; }
+.stats { margin: 0 10px; background: #C0C0C0; box-shadow: inset -1px -1px #0A0A0A, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #DFDFDF; } .ft { color: #fff; opacity: .9; }
+</style>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Risograph",
+  "zh": "孔版印刷",
+  "alias": [
+    "Riso",
+    "理想印刷"
+  ],
+  "lead": "两三种油墨叠印出来的效果：叠色处变深、套色略有错位、带颗粒，像小批量的独立出版物。有手作感和温度，适合独立书店、插画师、小众品牌、艺术活动。",
+  "prompt": "孔版印刷风格：米白纸张背景，只用两到三种孔版油墨色（荧光粉、钴蓝、亮黄），色块半透明叠印产生混合色，图形有轻微套色错位和颗粒噪点，粗无衬线标题，整体像小批量印刷的独立出版物",
+  "promptEn": "risograph print style: off-white paper background, only two or three riso inks (fluorescent pink, cobalt blue, bright yellow), translucent overprinted shapes creating mixed tones where they overlap, slight misregistration and grainy noise, bold sans headings, feels like a small-run independent publication",
+  "avoid": "关键是「叠印」和「错位」，色块要半透明地叠在一起。颜色超过三种就不像孔版了。颗粒只放在色块里，文字要清楚。",
+  "neg": [
+    "超过三种颜色、文字带颗粒",
+    "more than three inks, grainy text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #FF48B0; --a2: #0078BF; --on: #fff; background: #F5F0E6; color: #1C2A55; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 900; color: #0078BF; text-shadow: 2px 1px 0 rgba(255, 72, 176, .55); }
+.art .m { position: absolute; left: 6px; top: 4px; width: 110px; height: 110px; border-radius: 50%; background: #FF48B0; mix-blend-mode: multiply; }
+.art .h { position: absolute; right: 0; bottom: 0; width: 104px; height: 104px; background: #0078BF; mix-blend-mode: multiply; opacity: .85; }
+.art::before { content: ""; position: absolute; left: 54px; top: 54px; width: 66px; height: 66px; border-radius: 8px; background: #FFE800; mix-blend-mode: multiply; transform: rotate(12deg); }
+.art::after { content: ""; position: absolute; inset: 0; background: radial-gradient(rgba(245, 240, 230, .55) 1px, transparent 1.3px) 0 0 / 4px 4px; }
+.feats article { padding: 12px; background: rgba(0, 120, 191, .12); } .feats b, .stats b { color: #FF48B0; }
+</style>

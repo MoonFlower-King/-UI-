@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Typewriter",
+  "zh": "打字机",
+  "alias": [
+    "打字稿",
+    "Manuscript"
+  ],
+  "lead": "打字机等宽字、轻微不均的油墨、米黄纸和红色修订批注。文艺、真诚、有故事感，适合作家博客、独立杂志、出版社、复古品牌。",
+  "prompt": "打字机风格：米黄纸张背景，全部使用打字机等宽字体，文字为深墨色并带轻微油墨不均，红色批注下划线做强调，左对齐、行距宽松，分隔用一行短横虚线，几乎没有图形装饰",
+  "promptEn": "typewriter style: cream paper background, typewriter monospace type throughout, deep ink text with slight uneven inking, red editorial underlines for emphasis, left-aligned with generous line spacing, a dashed line as dividers, almost no graphic ornament",
+  "avoid": "等宽字读长文会累，正文段落要短、行距要大。油墨不均只做一点点，看起来模糊就不行了。",
+  "neg": [
+    "长段落、模糊字迹",
+    "long paragraphs, blurry text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2724; --a2: #B8322A; --on: #F3ECDD; background: #F3ECDD; color: #2B2724; font-family: "American Typewriter", "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav { border-bottom: 1px dashed #2B2724; } .logo i { display: none; } .cta { background: none; color: #B8322A; text-decoration: underline; }
+.hero { grid-template-columns: 1fr; padding: 30px 40px; } .art { display: none; }
+.kicker { color: #B8322A; } .kicker::before { content: "> "; }
+.hero h1 { font-size: 28px; font-weight: 700; text-shadow: .4px .3px 0 rgba(43, 39, 36, .45); } .sub { line-height: 1.9; }
+.b1 { background: none; color: #2B2724; border: 1px solid #2B2724; } .b2 { color: #B8322A; text-decoration: underline; }
+.feats article { padding-top: 8px; border-top: 1px dashed #2B2724; } .feats b { color: #B8322A; } .feats h3 { text-decoration: underline; text-decoration-color: #B8322A; text-underline-offset: 3px; }
+.stats b { font-weight: 400; } .stats div:nth-child(3) b { color: #B8322A; }
+</style>
