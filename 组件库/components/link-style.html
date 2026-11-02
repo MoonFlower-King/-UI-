@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Link Styling", "zh": "链接样式",
+  "lead": "正文里的链接要一眼看得出“能点”：颜色区别于正文、带下划线，下划线离文字稍远一点更好看；悬停时下划线加粗或变色，访问过的链接颜色稍淡。",
+  "vague": ["链接看不出来能点", "下划线很丑"],
+  "terms": ["Link Style", "text-underline-offset", "Visited 已访问"],
+  "prompt": "正文链接样式：颜色 #C2410C（与正文对比度足够），text-decoration-thickness: 1px、text-underline-offset: 3px、下划线颜色为链接色 40% 透明；悬停时下划线变实色并加粗到 2px（150ms）；:visited 稍暗；:focus-visible 有 2px 江月橘外框；导航里的链接可以不加下划线。"
+}
+-->
+<p>想了解更多？可以先看看<a href="#a">感觉翻译器</a>，或者直接去<a href="#b">词典</a>里翻一翻，也欢迎在 <a href="#c">GitHub</a> 上提建议。</p>
+
+<style>
+p { width: 300px; margin: 0; font-size: 16px; line-height: 1.9; color: #3F3F46; }
+a { color: #C2410C; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(194,65,12,.4); transition: text-decoration-color .15s, text-decoration-thickness .15s; }
+a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid #FA8C16; outline-offset: 2px; border-radius: 2px; }
+a:visited { color: #9A3412; }
+</style>

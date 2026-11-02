@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Vertical Stepper", "zh": "竖向步骤条",
+  "lead": "步骤从上到下排列，左边一条竖线串起每一步的圆点：完成的打勾、当前的高亮、未开始的灰色，当前步骤下面展开具体内容。适合流程较长或每步需要说明的场景。",
+  "vague": ["流程步骤怎么展示", "订单进度一步步"],
+  "terms": ["Vertical Stepper", "Progress Tracker", "Timeline"],
+  "prompt": "订单进度用 Vertical Stepper：左侧 2px 竖线连接各步骤圆点（完成为绿色实心对勾、当前为江月橘圆环带脉冲、未开始为灰色空心），已完成的连线变绿；每步右侧标题 + 时间，当前步骤展开一段说明和操作按钮；点“下一步”时连线从上往下填充（300ms）。"
+}
+-->
+<ol class="vs"></ol>
+
+<style>
+.vs { width: 260px; margin: 0; padding: 14px 16px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+li { position: relative; display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding-bottom: 14px; }
+li:last-child { padding-bottom: 0; }
+li::before { content: ""; position: absolute; left: 10px; top: 22px; bottom: 0; width: 2px; background: linear-gradient(#22C55E 0 0) no-repeat top / 100% var(--f, 0%), #E4E4E7; transition: --f .3s; }
+li:last-child::before { display: none; } li.done::before { --f: 100%; }
+.dot { width: 22px; height: 22px; border-radius: 50%; box-sizing: border-box; border: 2px solid #D4D4D8; background: #fff; display: grid; place-items: center; font-size: 11px; color: #fff; z-index: 1; }
+.done .dot { background: #22C55E; border-color: #22C55E; } .cur .dot { border-color: #FA8C16; box-shadow: 0 0 0 4px rgba(250,140,22,.18); }
+b { font-size: 13px; color: #18181B; } .todo b { color: #A1A1AA; } small { display: block; font-size: 11px; color: #A1A1AA; }
+.more { margin-top: 6px; font-size: 12px; color: #52525B; } .more button { margin-top: 6px; border: 0; border-radius: 7px; padding: 5px 12px; background: #FA8C16; color: #fff; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+const S = [["已下单", "11-01 20:15"], ["已付款", "11-01 20:16"], ["已发货", "顺丰 · 预计明天送达"], ["已签收", ""]];
+let cur = 2; const ol = document.querySelector(".vs");
+function render() {
+  ol.innerHTML = S.map(([t, s], i) => { const st = i < cur ? "done" : i === cur ? "cur" : "todo";
+    return `<li class="${st}"><span class="dot">${st === "done" ? "✓" : ""}</span><div><b>${t}</b><small>${s}</small>${st === "cur" ? `<div class="more">包裹正在路上，可以随时查看物流。<br><button>${i === S.length - 1 ? "重新开始" : "下一步"}</button></div>` : ""}</div></li>`; }).join("");
+  ol.querySelector("button")?.addEventListener("click", () => { cur = cur >= S.length - 1 ? 1 : cur + 1; render(); });
+}
+render();
+</script>

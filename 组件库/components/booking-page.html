@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Booking Page", "zh": "预约页",
+  "lead": "选日期、选时段、确认，一页完成预约。把日历、时间格子、已约满状态和底部确认栏组合起来，是理发店、诊所、会议室预约的典型页面。",
+  "vague": ["做一个预约界面", "选时间的页面怎么设计"],
+  "terms": ["Booking Flow 预约流程", "Time Slot 时段", "Availability 可用状态"],
+  "prompt": "移动端预约页：顶部横向滑动的 7 天日期条（周几 + 日期，今天带小点，选中为江月橘实心圆角块）；下方时段网格 3 列，可选为白底描边，已约满为浅灰带删除线不可点，选中为橘色描边浅橘底；底部固定确认栏显示“11月5日 周三 14:30 · 60 分钟”和“确认预约”按钮，未选时段时按钮禁用。"
+}
+-->
+<div class="bk">
+  <h5>选择时间 <small>江月茶室 · 60 分钟</small></h5>
+  <div class="days"></div>
+  <div class="slots"></div>
+  <footer><span>请选择时段</span><button disabled>确认预约</button></footer>
+</div>
+<style>
+.bk { width: 300px; height: 300px; padding: 14px; box-sizing: border-box; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 11px; color: #3F3F46; }
+h5 { margin: 0; font: 700 15px "Songti SC","Noto Serif SC",serif; color: #18181B; } h5 small { font: 11px system-ui; color: #A1A1AA; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.days button { display: grid; gap: 2px; padding: 6px 0; border: 0; border-radius: 10px; background: #F4F4F5; font-size: 10px; color: #71717A; cursor: pointer; position: relative; }
+.days button b { font-size: 13px; color: #18181B; }
+.days button.today::after { content: ""; position: absolute; bottom: 3px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: #FA8C16; }
+.days button.on { background: #FA8C16; color: #FFE7BA; } .days button.on b { color: #fff; } .days button.on::after { background: #fff; }
+.slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; align-content: start; }
+.slots button { height: 28px; border: 1px solid #E4E4E7; border-radius: 8px; background: #fff; font-size: 11px; cursor: pointer; font-variant-numeric: tabular-nums; animation: in .3s both; }
+@keyframes in { from { opacity: 0; transform: translateY(4px); } }
+.slots button:disabled { background: #FAFAFA; color: #D4D4D8; text-decoration: line-through; cursor: not-allowed; }
+.slots button.on { border-color: #FA8C16; background: #FFF4E6; color: #D46B08; font-weight: 700; }
+footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #F4F4F5; }
+footer button { padding: 7px 14px; border: 0; border-radius: 8px; background: #FA8C16; color: #fff; font-size: 12px; cursor: pointer; } footer button:disabled { background: #E4E4E7; color: #A1A1AA; }
+</style>
+<script>
+const W = "日一二三四五六", days = document.querySelector(".days"), slots = document.querySelector(".slots"), sum = document.querySelector("footer span"), ok = document.querySelector("footer button");
+const T = ["09:00", "10:00", "11:00", "13:30", "14:30", "15:30", "16:30", "18:00", "19:00"];
+days.innerHTML = Array.from({ length: 7 }, (_, i) => `<button class="${i ? "" : "today"}"><span>周${W[(i + 1) % 7]}</span><b>${3 + i}</b></button>`).join("");
+let d = 0, s = -1;
+function render() {
+  [...days.children].forEach((b, i) => b.classList.toggle("on", i === d));
+  slots.innerHTML = T.map((t, i) => `<button style="animation-delay:${i * 25}ms" ${(i * 7 + d * 3) % 4 === 0 ? "disabled" : ""} class="${i === s ? "on" : ""}">${t}</button>`).join("");
+  ok.disabled = s < 0; sum.innerHTML = s < 0 ? "请选择时段" : `<b>11月${3 + d}日 周${W[(d + 1) % 7]} ${T[s]}</b>`;
+}
+days.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; d = [...days.children].indexOf(b); s = -1; render(); });
+slots.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; s = [...slots.children].indexOf(b); render(); });
+ok.onclick = () => { sum.innerHTML = "<b style='color:#52C41A'>✓ 预约成功</b>"; ok.disabled = true; };
+render();
+let step = 0; setInterval(() => { if (step % 3 === 0) { d = (d + 1) % 7; s = -1; render(); } else if (step % 3 === 1) { const b = [...slots.children].findIndex(x => !x.disabled); s = b + 1 < T.length && !slots.children[b + 1].disabled ? b + 1 : b; render(); } else ok.click(); step++; }, 1400);
+</script>

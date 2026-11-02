@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Halftone Texture", "zh": "网点质感",
+  "lead": "用大小不一的小圆点表现明暗，像旧报纸和漫画的印刷网点。叠在图形、渐变或背景上，立刻有复古印刷和波普艺术的味道。",
+  "vague": ["想要漫画网点的感觉", "复古印刷质感"],
+  "terms": ["Halftone", "Dot Pattern 网点", "Pop Art 波普"],
+  "prompt": "海报背景加 Halftone 网点：用 radial-gradient 圆点图案（间距 8px），再叠一层从左上到右下的线性渐变 mask，让圆点从大到小、由密到疏，表现明暗过渡；主色江月橘点在奶油底 #FFF6E5 上；只用在装饰区域，不要盖在正文上。"
+}
+-->
+<div class="ht"><span class="dots"></span><h3>POW!<br><small>江月漫画周</small></h3></div>
+
+<style>
+.ht { position: relative; width: 320px; height: 200px; border-radius: 12px; overflow: hidden; background: #FFF6E5; display: grid; place-items: center; border: 2px solid #18181B; }
+.dots { position: absolute; inset: 0; background: radial-gradient(circle, #FA8C16 45%, transparent 47%) 0 0 / 9px 9px;
+  -webkit-mask: radial-gradient(circle at 75% 30%, #000 0%, rgba(0,0,0,.6) 30%, transparent 70%); mask: radial-gradient(circle at 75% 30%, #000 0%, rgba(0,0,0,.6) 30%, transparent 70%); }
+.dots::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, #18181B 30%, transparent 32%) 4px 4px / 9px 9px;
+  -webkit-mask: radial-gradient(circle at 15% 90%, #000, transparent 45%); mask: radial-gradient(circle at 15% 90%, #000, transparent 45%); }
+h3 { position: relative; margin: 0; text-align: center; font: 900 54px/0.9 "Arial Black", Impact, sans-serif; color: #fff; -webkit-text-stroke: 2px #18181B; text-shadow: 4px 4px 0 #18181B; transform: rotate(-6deg); }
+small { font: 700 14px "PingFang SC", sans-serif; -webkit-text-stroke: 0; color: #18181B; text-shadow: none; }
+</style>

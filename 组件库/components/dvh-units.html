@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Dynamic Viewport Units", "zh": "动态视口单位",
+  "lead": "手机浏览器的地址栏会伸缩，用 100vh 做的全屏页底部常被盖住一截。改用 100dvh（随地址栏变化）或 100svh（取最小高度），按钮就始终露在屏幕里。",
+  "vague": ["手机上底部按钮被挡住", "全屏页面高度不对"],
+  "terms": ["dvh / svh / lvh", "Dynamic Viewport 动态视口", "Mobile Address Bar"],
+  "prompt": "移动端全屏引导页高度用 min-height: 100dvh（老浏览器回退 100vh），底部固定的“开始使用”按钮放在 padding-bottom: env(safe-area-inset-bottom) 内；需要稳定不跳动的背景层用 100svh；不要再用 JS 读 innerHeight 设高度。"
+}
+-->
+<div class="dv bar-on"><div class="ph v"><i class="bar"></i><div class="pg" style="height:100%"><b>100vh</b><button>开始使用</button></div></div><div class="ph d"><i class="bar"></i><div class="pg"><b>100dvh</b><button>开始使用</button></div></div></div>
+<style>
+.dv { width: 320px; height: 270px; display: flex; gap: 20px; justify-content: center; align-items: center; background: #F4F4F5; border-radius: 14px; }
+.ph { position: relative; width: 110px; height: 210px; border: 4px solid #18181B; border-radius: 20px; overflow: hidden; background: #fff; }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; height: var(--b); background: #E4E4E7; z-index: 2; transition: height .5s; }
+.bar::after { content: "地址栏"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 9px; color: #71717A; }
+.pg { position: relative; display: grid; align-content: space-between; justify-items: center; padding: 14px 8px 10px; box-sizing: border-box; background: linear-gradient(#0B1020, #2A3A66); transition: height .5s; }
+.v .pg { height: 202px !important; } .d .pg { height: calc(202px - var(--b)); }
+.ph b { font: 600 12px ui-monospace, monospace; color: #F5D9A8; }
+.ph button { border: 0; border-radius: 99px; padding: 6px 12px; background: #FA8C16; color: #fff; font-size: 10px; }
+.v::before { content: "✕ 被挡住"; position: absolute; top: 40%; left: 0; right: 0; text-align: center; font-size: 10px; color: #FF7875; z-index: 3; opacity: 0; transition: opacity .3s; } .dv.bar-on .v::before { opacity: 1; }
+.dv { --b: 40px; }
+</style>
+<script>
+const d = document.querySelector(".dv"); let on = true;
+setInterval(() => { on = !on; d.style.setProperty("--b", on ? "40px" : "0px"); d.classList.toggle("bar-on", on); }, 2000);
+</script>

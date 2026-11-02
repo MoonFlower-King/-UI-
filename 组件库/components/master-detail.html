@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Master-Detail", "zh": "列表-详情布局",
+  "lead": "左边一列条目，点哪条右边就显示哪条的详情，不用跳页。邮箱、聊天、设置、文件管理都是这种结构；手机上改成先列表、点进去再看详情。",
+  "vague": ["点开一条又要返回很麻烦", "左边列表右边内容那种"],
+  "terms": ["Master-Detail", "List-Detail", "Two-pane 双栏"],
+  "prompt": "消息页用 Master-Detail：左栏 240px 列表（头像 + 名字 + 一行预览 + 时间），选中项浅橘底 + 左侧 3px 江月橘竖条；右栏显示详情并淡入切换；左右栏各自独立滚动；宽度小于 600px 时变为单栏，点条目推入详情页并有返回按钮。"
+}
+-->
+<div class="md">
+  <ul class="list"></ul>
+  <section class="detail"></section>
+</div>
+
+<style>
+.md { display: grid; grid-template-columns: 140px 1fr; width: 400px; height: 230px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+.list { margin: 0; padding: 6px; list-style: none; border-right: 1px solid #F0F0F2; overflow-y: auto; }
+.list li { position: relative; padding: 8px 10px; border-radius: 8px; cursor: pointer; display: grid; gap: 2px; }
+.list li:hover { background: #FAFAFA; }
+.list li.on { background: #FFF4E6; } .list li.on::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: #FA8C16; }
+.list b { font-size: 12px; } .list small { font-size: 10px; color: #A1A1AA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.detail { padding: 16px; overflow-y: auto; animation: fade .25s; } @keyframes fade { from { opacity: 0; transform: translateX(6px); } }
+.detail h4 { margin: 0 0 4px; font-size: 15px; } .detail small { color: #A1A1AA; font-size: 11px; } .detail p { font-size: 13px; line-height: 1.7; color: #3F3F46; }
+</style>
+
+<script>
+const M = [["白露", "设计稿已更新", "新的配色方案放在共享文件夹了，主色改成了江月橘，辅助色用夜蓝。"], ["听潮", "明天几点评审？", "我这边下午三点以后都可以，你看看大家的时间。"], ["秋水", "插画初稿", "先画了三个方向，水墨、剪纸和单线，你挑一个。"], ["渔火", "活动海报", "海报尺寸确定了，竖版 1080×1920。"]];
+const list = document.querySelector(".list"), detail = document.querySelector(".detail");
+list.innerHTML = M.map(([n, s], i) => `<li data-i="${i}"><b>${n}</b><small>${s}</small></li>`).join("");
+function show(i) {
+  [...list.children].forEach((li, k) => li.classList.toggle("on", k === i));
+  const [n, s, p] = M[i]; detail.innerHTML = `<h4>${s}</h4><small>来自 ${n} · 刚刚</small><p>${p}</p>`;
+  detail.style.animation = "none"; detail.offsetWidth; detail.style.animation = "";
+}
+list.addEventListener("click", (e) => { const li = e.target.closest("li"); if (li) show(+li.dataset.i); });
+show(0);
+</script>

@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Cursor Trail", "zh": "鼠标拖尾",
+  "lead": "鼠标移动时身后留下一串渐隐的小光点，像流星的尾巴。适合作品集首页、活动页这类想要“好玩”的地方，正经工具页面就别用了。",
+  "vague": ["页面想好玩一点", "鼠标划过有星光"],
+  "terms": ["Cursor Trail", "Particle Trail 粒子拖尾", "Pointer Effect"],
+  "prompt": "活动页暗色首屏加鼠标拖尾：用 canvas 记录最近 24 个鼠标坐标，每帧画一串由大到小、由江月橘到透明的圆点，并用 lerp 让尾巴平滑跟随；静止 1 秒后尾巴收拢消失；检测 prefers-reduced-motion 时关闭；触屏设备不启用。"
+}
+-->
+<div class="ct"><canvas></canvas><p>移动鼠标<br><small>Move your cursor</small></p></div>
+<style>
+.ct { position: relative; width: 320px; height: 240px; border-radius: 14px; overflow: hidden; background: radial-gradient(circle at 50% 120%, #1E2A4A, #0B1020 70%); }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+p { position: absolute; inset: 0; margin: 0; display: grid; place-content: center; text-align: center; font: 600 20px "Songti SC","Noto Serif SC",serif; color: #F5D9A8; pointer-events: none; }
+small { font: 11px system-ui; letter-spacing: .2em; color: #71717A; }
+</style>
+<script>
+const el = document.querySelector(".ct"), cv = el.querySelector("canvas"), x = cv.getContext("2d"), dpr = devicePixelRatio || 1;
+cv.width = 320 * dpr; cv.height = 240 * dpr; x.scale(dpr, dpr);
+const pts = Array.from({ length: 24 }, () => ({ x: 160, y: 120 })); let tx = 160, ty = 120, user = 0;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+el.addEventListener("pointermove", e => { const r = el.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; user = performance.now(); });
+(function loop(t) {
+  if (t - user > 1500) { tx = 160 + Math.cos(t / 600) * 100; ty = 120 + Math.sin(t / 300) * 50; }
+  pts[0].x += (tx - pts[0].x) * .35; pts[0].y += (ty - pts[0].y) * .35;
+  for (let i = 1; i < pts.length; i++) { pts[i].x += (pts[i - 1].x - pts[i].x) * .45; pts[i].y += (pts[i - 1].y - pts[i].y) * .45; }
+  x.clearRect(0, 0, 320, 240);
+  if (!reduce) pts.forEach((p, i) => { const k = 1 - i / pts.length; x.beginPath(); x.arc(p.x, p.y, 1 + k * 5, 0, 7); x.fillStyle = `rgba(250,${140 + i * 3},22,${k * .9})`; x.fill(); });
+  requestAnimationFrame(loop);
+})(0);
+</script>

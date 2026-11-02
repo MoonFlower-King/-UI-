@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Admin Table Page", "zh": "后台数据表",
+  "lead": "后台管理最常见的一页：顶部搜索和筛选，中间带复选框、状态标签、操作按钮的数据表，勾选后出现批量操作栏，底部分页。它是“表格、筛选、徽标、批量操作、分页”的组合拳。",
+  "vague": ["做一个后台列表页", "管理系统表格怎么排"],
+  "terms": ["Data Table 数据表格", "Bulk Actions 批量操作", "Admin Dashboard 后台"],
+  "prompt": "后台用户管理页：顶部左侧标题“用户”，右侧搜索框 + “状态”下拉筛选 + 江月橘“新建用户”按钮；表格列为复选框、头像+姓名、邮箱、状态标签（活跃绿 / 停用灰 / 待审核橘）、注册时间、更多操作；勾选任意行后表头替换成深色批量操作栏“已选 2 项 · 导出 · 停用 · 删除”；底部右对齐分页“1 2 3 … 12”。"
+}
+-->
+<div class="at">
+  <header><b>用户</b><input placeholder="搜索姓名或邮箱"><button class="new">＋ 新建</button></header>
+  <div class="bulk"><span></span><a>导出</a><a>停用</a><a class="d">删除</a></div>
+  <table><thead><tr><th><input type="checkbox" class="all"></th><th>姓名</th><th>状态</th><th>注册</th></tr></thead><tbody></tbody></table>
+  <footer><a>‹</a><a class="on">1</a><a>2</a><a>3</a><span>…</span><a>12</a><a>›</a></footer>
+</div>
+<style>
+.at { position: relative; width: 340px; padding: 12px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 11px; color: #3F3F46; }
+header { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; }
+header b { font: 700 15px "Songti SC","Noto Serif SC",serif; color: #18181B; margin-right: auto; }
+header input { width: 110px; height: 26px; padding: 0 8px; border: 1px solid #E4E4E7; border-radius: 6px; font-size: 11px; outline: none; }
+.new { height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: #FA8C16; color: #fff; font-size: 11px; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-weight: 500; color: #A1A1AA; padding: 6px 4px; border-bottom: 1px solid #E4E4E7; height: 20px; }
+td { padding: 6px 4px; border-bottom: 1px solid #F4F4F5; white-space: nowrap; }
+th:first-child, td:first-child { width: 18px; }
+tr.sel td { background: #FFFBF5; }
+input[type=checkbox] { accent-color: #FA8C16; margin: 0; }
+.nm { display: flex; align-items: center; gap: 6px; } .nm i { width: 18px; height: 18px; border-radius: 50%; } .nm small { display: block; color: #A1A1AA; font-size: 9px; }
+.tag { padding: 1px 6px; border-radius: 99px; font-size: 10px; } .t0 { background: #F6FFED; color: #389E0D; } .t1 { background: #F4F4F5; color: #71717A; } .t2 { background: #FFF4E6; color: #D46B08; }
+.bulk { position: absolute; left: 12px; right: 12px; top: 48px; height: 33px; display: flex; align-items: center; gap: 12px; padding: 0 10px; border-radius: 6px; background: #18181B; color: #E4E4E7; z-index: 2; transform: translateY(-6px); opacity: 0; pointer-events: none; transition: .25s; }
+.bulk span { margin-right: auto; } .bulk a { cursor: pointer; } .bulk a:hover { color: #FA8C16; } .bulk .d { color: #FF7875; }
+.at.has .bulk { transform: none; opacity: 1; pointer-events: auto; }
+footer { display: flex; justify-content: flex-end; gap: 4px; margin-top: 10px; color: #71717A; }
+footer a { min-width: 20px; height: 20px; display: grid; place-items: center; border-radius: 4px; cursor: pointer; } footer a.on { background: #18181B; color: #fff; }
+</style>
+<script>
+const U = [["林舟", "lin@jy.design", 0, "11-01"], ["小满", "man@jy.design", 2, "10-28"], ["阿岚", "lan@jy.design", 0, "10-20"], ["白露", "lu@jy.design", 1, "09-15"], ["秋水", "qiu@jy.design", 0, "09-02"]];
+const S = ["活跃", "停用", "待审核"], root = document.querySelector(".at"), tb = document.querySelector("tbody"), all = document.querySelector(".all");
+tb.innerHTML = U.map(([n, m, s, d], i) => `<tr><td><input type="checkbox"></td><td><div class="nm"><i style="background:hsl(${i * 70 + 20} 65% 75%)"></i><div>${n}<small>${m}</small></div></div></td><td><span class="tag t${s}">${S[s]}</span></td><td>${d}</td></tr>`).join("");
+const boxes = [...tb.querySelectorAll("input")];
+function sync() { const n = boxes.filter(b => b.checked).length; boxes.forEach(b => b.closest("tr").classList.toggle("sel", b.checked)); root.classList.toggle("has", n > 0); root.querySelector(".bulk span").textContent = `已选 ${n} 项`; all.checked = n === boxes.length; all.indeterminate = n > 0 && n < boxes.length; }
+tb.addEventListener("change", sync); all.addEventListener("change", () => { boxes.forEach(b => b.checked = all.checked); sync(); });
+const seq = [[1], [1, 2], [1, 2, 4], []]; let k = 0;
+setInterval(() => { boxes.forEach((b, i) => b.checked = seq[k].includes(i)); sync(); k = (k + 1) % seq.length; }, 1500);
+</script>

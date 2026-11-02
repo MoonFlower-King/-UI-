@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Rating Summary", "zh": "评分汇总",
+  "lead": "左边一个大号平均分加星星，右边 5 到 1 星各占多少的横条。用户一眼就知道“整体好不好、差评多不多”，比只放一个平均分可信得多。",
+  "vague": ["评分区看着单薄", "想让评价更可信"],
+  "terms": ["Rating Summary", "Rating Distribution", "Histogram 直方图"],
+  "prompt": "商品评价区顶部做评分汇总：左侧 40px 粗体平均分 4.6 + 五颗星（半星用渐变裁切）+ “1,284 条评价”；右侧 5 行横条，从 5★ 到 1★，条底浅灰、填充江月橘，右侧显示百分比；进入视口时横条从 0 依次伸长（错峰 80ms），点某一行可筛选该星级评价。"
+}
+-->
+<div class="rs">
+  <div class="avg"><b>4.6</b><span class="stars" style="--v:4.6"></span><small>1,284 条评价</small></div>
+  <ul class="bars"></ul>
+</div>
+<style>
+.rs { display: flex; gap: 20px; align-items: center; width: 300px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 12px; color: #71717A; }
+.avg { display: grid; justify-items: center; gap: 4px; }
+.avg b { font-size: 40px; line-height: 1; color: #18181B; font-family: "Songti SC","Noto Serif SC",serif; }
+.stars { font-size: 14px; letter-spacing: 1px; background: linear-gradient(90deg, #FA8C16 calc(var(--v) / 5 * 100%), #E4E4E7 0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stars::before { content: "★★★★★"; }
+.bars { flex: 1; list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.bars li { display: grid; grid-template-columns: 20px 1fr 30px; align-items: center; gap: 6px; cursor: pointer; border-radius: 4px; }
+.bars li:hover { color: #18181B; }
+.bars i { height: 6px; border-radius: 3px; background: #F4F4F5; overflow: hidden; }
+.bars i::after { content: ""; display: block; height: 100%; width: var(--w); background: #FA8C16; border-radius: 3px; animation: grow .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d); }
+.bars li.on { color: #FA8C16; font-weight: 600; }
+@keyframes grow { from { width: 0; } }
+.bars span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+<script>
+const data = [72, 18, 6, 2, 2], ul = document.querySelector(".bars");
+ul.innerHTML = data.map((p, i) => `<li><span>${5 - i}★</span><i style="--w:${p}%;--d:${i * 80}ms"></i><span>${p}%</span></li>`).join("");
+ul.addEventListener("click", e => { const li = e.target.closest("li"); if (!li) return; [...ul.children].forEach(x => x.classList.toggle("on", x === li && !li.classList.contains("on"))); });
+setInterval(() => { ul.innerHTML = ul.innerHTML; }, 4000);
+</script>

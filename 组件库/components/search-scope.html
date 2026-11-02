@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Scoped Search", "zh": "范围搜索",
+  "lead": "搜索框左边带一个小下拉，先选“在哪里搜”（全部 / 组件 / 文章），再输关键词。结果更准，用户也清楚自己在搜什么。",
+  "vague": ["搜索结果太杂", "想只搜某一类"],
+  "terms": ["Scoped Search", "Search Filter", "Segmented Search"],
+  "prompt": "顶部搜索做成 Scoped Search：输入框左侧内嵌范围选择（全部 / 组件 / 文章 / 视频，带 ▾），与输入框共用 40px 高的圆角外框，中间 1px 竖线分隔；占位文字随范围变化（“在组件中搜索…”）；右侧显示快捷键 / ；切换范围后保留关键词并刷新结果。"
+}
+-->
+<div class="ss">
+  <label class="box"><select aria-label="搜索范围"><option>全部</option><option>组件</option><option>文章</option><option>视频</option></select><span class="sep"></span><span class="ic">🔍</span><input placeholder="在全部中搜索…"><kbd>/</kbd></label>
+</div>
+
+<style>
+.ss { width: 330px; }
+.box { display: flex; align-items: center; height: 40px; border: 1px solid #E4E4E7; border-radius: 12px; background: #fff; padding-right: 8px; transition: border-color .15s, box-shadow .15s; }
+.box:focus-within { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+select { height: 100%; border: 0; background: transparent; padding: 0 22px 0 12px; font-size: 13px; color: #18181B; font-weight: 600; outline: 0; cursor: pointer; appearance: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5' fill='none' stroke='%2371717A' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 6px center / 10px; }
+.sep { width: 1px; height: 18px; background: #E4E4E7; } .ic { padding: 0 6px 0 10px; font-size: 13px; }
+input { flex: 1; min-width: 0; border: 0; outline: 0; font-size: 14px; }
+kbd { min-width: 20px; height: 20px; display: grid; place-items: center; font: 11px ui-monospace, Menlo, monospace; color: #71717A; border: 1px solid #E4E4E7; border-bottom-width: 2px; border-radius: 4px; }
+</style>
+
+<script>
+const sel = document.querySelector("select"), input = document.querySelector("input");
+sel.addEventListener("change", () => { input.placeholder = `在${sel.value}中搜索…`; input.focus(); });
+document.addEventListener("keydown", (e) => { if (e.key === "/" && document.activeElement !== input) { e.preventDefault(); input.focus(); } });
+</script>

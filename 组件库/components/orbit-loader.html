@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Orbit Loader", "zh": "环绕加载",
+  "lead": "几个小点沿着圆形轨道绕中心转，速度一快一慢，像月亮绕地球。比普通转圈更有品牌感，适合启动页和较长的等待。",
+  "vague": ["加载转圈太普通", "启动页想要有品牌感"],
+  "terms": ["Orbit Loader", "Spinner 加载指示器", "Easing Rotation"],
+  "prompt": "启动页加载动画：中央一颗 18px 暖金色“月亮”圆点带柔和光晕，外面两条 1px 虚线圆轨道（半径 36 / 56px），轨道上各有一颗小星点绕行，内轨 1.6 秒一圈、外轨 2.8 秒一圈，使用 cubic-bezier(.5,.1,.5,.9) 让它们忽快忽慢；下方“正在载入江月…”文字的省略号逐个出现。"
+}
+-->
+<div class="ol"><div class="sys"><i class="moon"></i><i class="ring r1"><b></b></i><i class="ring r2"><b></b></i></div><p>正在载入江月<span></span></p></div>
+<style>
+.ol { width: 300px; height: 260px; display: grid; place-content: center; justify-items: center; gap: 22px; border-radius: 14px; background: #0B1020; }
+.sys { position: relative; width: 120px; height: 120px; }
+.moon { position: absolute; left: 51px; top: 51px; width: 18px; height: 18px; border-radius: 50%; background: #FFD591; box-shadow: 0 0 20px 4px rgba(250,173,20,.5); }
+.ring { position: absolute; border: 1px dashed rgba(245,217,168,.25); border-radius: 50%; animation: o 1.6s cubic-bezier(.5,.1,.5,.9) infinite; }
+.r1 { inset: 24px; } .r2 { inset: 4px; animation-duration: 2.8s; animation-direction: reverse; }
+.ring b { position: absolute; top: -4px; left: 50%; margin-left: -4px; width: 8px; height: 8px; border-radius: 50%; background: #FA8C16; box-shadow: 0 0 8px #FA8C16; }
+.r2 b { width: 5px; height: 5px; top: -3px; margin-left: -2.5px; background: #F5D9A8; }
+@keyframes o { to { transform: rotate(360deg); } }
+p { margin: 0; font: 13px "Songti SC","Noto Serif SC",serif; letter-spacing: .15em; color: #A1A1AA; }
+span::after { content: ""; animation: d 1.5s steps(4) infinite; } @keyframes d { 0% { content: ""; } 25% { content: "·"; } 50% { content: "··"; } 75% { content: "···"; } }
+</style>

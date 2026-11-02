@@ -26,7 +26,10 @@
       "sticky-sidebar",
       "single-column",
       "magazine-layout",
-      "section-rhythm"
+      "section-rhythm",
+      "master-detail",
+      "overlap-layout",
+      "sticky-footer"
     ]
   },
   {
@@ -48,7 +51,10 @@
       "vertical-text",
       "pull-quote",
       "font-pairing",
-      "text-scrim"
+      "text-scrim",
+      "number-format",
+      "caps-tracking",
+      "link-style"
     ]
   },
   {
@@ -74,7 +80,10 @@
       "shiny-text",
       "text-path",
       "neon-flicker",
-      "squiggle-underline"
+      "squiggle-underline",
+      "flip-counter",
+      "text-fill-hover",
+      "glitch-text"
     ]
   },
   {
@@ -98,7 +107,9 @@
       "analogous-color",
       "warm-cool",
       "color-blind-safe",
-      "design-tokens"
+      "design-tokens",
+      "state-layer",
+      "high-contrast"
     ]
   },
   {
@@ -126,7 +137,10 @@
       "memphis",
       "terminal-style",
       "paper-cut",
-      "line-art"
+      "line-art",
+      "dreamy-gradient",
+      "newspaper",
+      "blueprint"
     ]
   },
   {
@@ -149,7 +163,9 @@
       "paper-texture",
       "pattern-background",
       "glossy",
-      "double-border"
+      "double-border",
+      "halftone",
+      "grain-gradient"
     ]
   },
   {
@@ -193,7 +209,11 @@
       "collapsible-sidebar",
       "status-pill",
       "list-item",
-      "callout"
+      "callout",
+      "peek-carousel",
+      "stepper-vertical",
+      "action-bar",
+      "load-more"
     ]
   },
   {
@@ -230,7 +250,11 @@
       "image-upload",
       "dual-range",
       "filter-chips",
-      "user-picker"
+      "user-picker",
+      "search-scope",
+      "credit-card-form",
+      "error-summary",
+      "checkbox-tree"
     ]
   },
   {
@@ -260,7 +284,12 @@
       "scatter-plot",
       "calendar-view",
       "gantt-chart",
-      "treemap"
+      "treemap",
+      "rating-summary",
+      "bullet-chart",
+      "waffle-chart",
+      "activity-feed",
+      "tag-cloud"
     ]
   },
   {
@@ -285,7 +314,9 @@
       "fullscreen-menu",
       "toast-stack",
       "onboarding-modal",
-      "emoji-picker"
+      "emoji-picker",
+      "quick-view",
+      "snackbar-action"
     ]
   },
   {
@@ -308,7 +339,11 @@
       "image-reveal",
       "icon-swap",
       "dock-magnify",
-      "image-grayscale"
+      "image-grayscale",
+      "glare-card",
+      "text-swap",
+      "gradient-follow",
+      "cursor-trail"
     ]
   },
   {
@@ -328,7 +363,9 @@
       "drag-to-dismiss",
       "swipe-tabs",
       "pan-canvas",
-      "knob-dial"
+      "knob-dial",
+      "swipe-actions",
+      "drag-select"
     ]
   },
   {
@@ -360,7 +397,10 @@
       "upload-progress",
       "promise-toast",
       "offline-banner",
-      "autosave-indicator"
+      "autosave-indicator",
+      "download-button",
+      "field-success",
+      "retry-state"
     ]
   },
   {
@@ -392,7 +432,10 @@
       "blob-morph",
       "curtain-reveal",
       "path-draw",
-      "grid-wave"
+      "grid-wave",
+      "flip-layout",
+      "breathing",
+      "orbit-loader"
     ]
   },
   {
@@ -411,7 +454,9 @@
       "aspect-ratio",
       "priority-plus",
       "responsive-table",
-      "column-drop"
+      "column-drop",
+      "art-direction",
+      "dvh-units"
     ]
   },
   {
@@ -435,7 +480,10 @@
       "social-proof",
       "jakobs-law",
       "cognitive-load",
-      "zeigarnik"
+      "zeigarnik",
+      "peak-end-rule",
+      "von-restorff",
+      "serial-position"
     ]
   },
   {
@@ -462,7 +510,11 @@
       "blog-article",
       "search-results",
       "mobile-home",
-      "invoice"
+      "invoice",
+      "email-inbox",
+      "booking-page",
+      "admin-table",
+      "weather-card"
     ]
   }
 ]

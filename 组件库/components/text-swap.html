@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Text Swap Hover", "zh": "文字上翻替换",
+  "lead": "悬停按钮或链接时，原文字向上滑出，同样的文字（或换一个说法）从下方滑入。动作很小，却让导航和按钮显得精致、有回应。",
+  "vague": ["导航悬停没反应", "想要按钮文字滚动一下"],
+  "terms": ["Text Swap", "Roll Text 滚动文字", "Hover Reveal"],
+  "prompt": "顶部导航链接悬停时做文字上翻：每个链接 overflow:hidden、高度一行，内部两份相同文字上下叠放（用 text-shadow 0 1.2em 复制一份），悬停时 translateY(-1.2em)，过渡 .35s cubic-bezier(.6,0,.2,1)；按钮上的第二份文字可换成“出发 →”，颜色变为江月橘。"
+}
+-->
+<div class="ts">
+  <nav><a>作品</a><a>关于</a><a>日志</a><a>联系</a></nav>
+  <button><span data-alt="出发 →">开始设计</span></button>
+</div>
+<style>
+.ts { width: 300px; padding: 28px 20px; display: grid; gap: 28px; justify-items: center; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+nav { display: flex; gap: 22px; }
+nav a { display: block; height: 1.3em; overflow: hidden; font-size: 15px; line-height: 1.3; color: #18181B; cursor: pointer; }
+nav a span { display: block; text-shadow: 0 1.3em 0 #FA8C16; transition: transform .35s cubic-bezier(.6,0,.2,1); }
+button { height: 42px; padding: 0 22px; border: 0; border-radius: 99px; background: #18181B; color: #fff; font-size: 14px; line-height: 42px; overflow: hidden; cursor: pointer; }
+button span { position: relative; display: block; transition: transform .35s cubic-bezier(.6,0,.2,1); }
+button span::after { content: attr(data-alt); position: absolute; left: 0; right: 0; top: 100%; color: #FA8C16; }
+nav a:hover span, nav a.demo span { transform: translateY(-1.3em); }
+button:hover span, button.demo span { transform: translateY(-42px); }
+</style>
+<script>
+document.querySelectorAll("nav a").forEach(a => a.innerHTML = `<span>${a.textContent}</span>`);
+const items = [...document.querySelectorAll("nav a"), document.querySelector("button")]; let i = 0;
+setInterval(() => { items.forEach(x => x.classList.remove("demo")); items[i++ % items.length].classList.add("demo"); }, 900);
+</script>

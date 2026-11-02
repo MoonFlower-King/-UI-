@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Grainy Gradient", "zh": "颗粒渐变",
+  "lead": "在柔和的渐变上撒一层细细的噪点颗粒，像胶片照片或丝网印刷。纯渐变容易显得廉价和“数码感”，加了颗粒就有了质感和温度。",
+  "vague": ["渐变看着廉价", "想要胶片的颗粒感"],
+  "terms": ["Grainy Gradient", "Noise 噪点", "Film Grain 胶片颗粒"],
+  "prompt": "Hero 背景用 Grainy Gradient：底层 2–3 色的柔和径向渐变（江月橘 → 暖粉 → 夜蓝），上面叠一层 SVG feTurbulence 生成的噪点（baseFrequency 0.8、透明度 25%、mix-blend-mode: overlay）；噪点用一张小的平铺 SVG data URI，不要用大图片。"
+}
+-->
+<div class="gg"><h3>颗粒让渐变有温度</h3><label><input type="checkbox" checked> 颗粒</label></div>
+
+<style>
+.gg { position: relative; width: 340px; height: 210px; border-radius: 16px; overflow: hidden; display: grid; place-items: center; isolation: isolate;
+  background: radial-gradient(circle at 20% 20%, #FA8C16, transparent 55%), radial-gradient(circle at 85% 30%, #F472B6, transparent 50%), radial-gradient(circle at 50% 100%, #1E3A5F, transparent 70%), #2A1F3D; }
+.gg::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .35; mix-blend-mode: overlay; transition: opacity .3s;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.gg:has(input:not(:checked))::after { opacity: 0; }
+.gg { z-index: 0; } .gg::after { z-index: 0; } h3, label { position: relative; z-index: 1; }
+h3 { margin: 0; font: 700 22px "Songti SC", serif; color: #fff; }
+label { position: absolute; right: 12px; bottom: 10px; font-size: 11px; color: rgba(255,255,255,.8); display: flex; gap: 4px; align-items: center; } input { accent-color: #FA8C16; }
+</style>

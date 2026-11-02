@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Breathing Animation", "zh": "呼吸动效",
+  "lead": "元素以 4 秒左右的节奏缓慢放大、变亮，再缩小、变暗，像人在呼吸。用在冥想 App、待机状态、语音助手的“我在听”上，比闪烁温柔得多。",
+  "vague": ["想要很安静的动效", "待机画面太死"],
+  "terms": ["Breathing Animation", "Ambient Motion 环境动效", "Idle State 待机状态"],
+  "prompt": "冥想页中央放一个呼吸圆：三层同心圆（江月橘不同透明度），以 8 秒为一个周期（吸气 4 秒 scale 0.7→1、呼气 4 秒 1→0.7），外层比内层延迟 0.3 秒形成涟漪；中间文字在“吸气”“呼气”之间淡入淡出切换；使用 ease-in-out，prefers-reduced-motion 时只做透明度变化。"
+}
+-->
+<div class="br"><div class="c"><i></i><i></i><i></i></div><b>吸气</b></div>
+<style>
+.br { position: relative; width: 300px; height: 260px; display: grid; place-items: center; border-radius: 14px; background: radial-gradient(circle at 50% 40%, #1E2A4A, #0B1020 75%); overflow: hidden; }
+.c { position: relative; width: 160px; height: 160px; }
+.c i { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(250,173,20,.55), rgba(250,140,22,.15) 70%); animation: b 8s ease-in-out infinite; }
+.c i:nth-child(2) { inset: 18px; animation-delay: .3s; background: radial-gradient(circle, rgba(255,214,145,.7), rgba(250,140,22,.25) 70%); }
+.c i:nth-child(3) { inset: 40px; animation-delay: .6s; background: radial-gradient(circle, #FFF4E0, #FAAD14); }
+@keyframes b { 0%, 100% { transform: scale(.7); opacity: .6; } 50% { transform: scale(1); opacity: 1; } }
+b { position: absolute; font: 600 16px "Songti SC","Noto Serif SC",serif; letter-spacing: .3em; color: #3A2410; transition: opacity .6s; }
+@media (prefers-reduced-motion: reduce) { @keyframes b { 0%, 100% { opacity: .5; } 50% { opacity: 1; } } }
+</style>
+<script>
+const t = document.querySelector("b"); let inhale = true;
+setInterval(() => { t.style.opacity = 0; setTimeout(() => { inhale = !inhale; t.textContent = inhale ? "吸气" : "呼气"; t.style.opacity = 1; }, 600); }, 4000);
+</script>

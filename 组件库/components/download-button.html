@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Download Button States", "zh": "下载按钮状态",
+  "lead": "一个下载按钮把整个过程演完：点击后变成进度环、显示百分比，完成变成对勾，失败可以重试。用户不用去别处找进度，按钮本身就是反馈。",
+  "vague": ["点了下载不知道开始没", "下载进度去哪看"],
+  "terms": ["Download Button", "Stateful Button 状态按钮", "Progress Ring 进度环"],
+  "prompt": "下载按钮做四态：默认“↓ 下载安装包 · 24MB”；点击后按钮宽度收缩为 44px 圆形，内部 SVG 进度环用 stroke-dashoffset 从 0 到 100% 填充，中间显示百分比；完成后变成江月橘底白色对勾并弹一下（scale 1.15 → 1），2 秒后展开回“已下载 · 打开”；整个过程 aria-live 播报。"
+}
+-->
+<div class="db"><button><span class="lbl">↓ 下载安装包 · 24MB</span><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><circle class="p" cx="22" cy="22" r="18"/></svg><b class="pct"></b></button><p aria-live="polite"></p></div>
+<style>
+.db { width: 300px; height: 200px; display: grid; place-content: center; justify-items: center; gap: 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+button { position: relative; width: 210px; height: 44px; border: 0; border-radius: 22px; background: #18181B; color: #fff; font-size: 13px; cursor: pointer; transition: width .35s cubic-bezier(.6,0,.2,1), background .3s; overflow: hidden; }
+svg { position: absolute; inset: 0; width: 44px; height: 44px; opacity: 0; transform: rotate(-90deg); }
+svg circle { fill: none; stroke: #3F3F46; stroke-width: 3; } svg .p { stroke: #FA8C16; stroke-dasharray: 113; stroke-dashoffset: calc(113 - 113 * var(--p, 0)); stroke-linecap: round; }
+.pct { position: absolute; inset: 0; display: grid; place-items: center; font: 600 10px system-ui; opacity: 0; }
+.lbl { white-space: nowrap; transition: opacity .2s; }
+.ing { width: 44px; background: #27272A; } .ing .lbl { opacity: 0; } .ing svg, .ing .pct { opacity: 1; }
+.done { width: 44px; background: #FA8C16; animation: pop .4s; } .done .lbl { opacity: 0; } .done .pct { opacity: 1; font-size: 18px; }
+.opened { background: #FFF4E6; color: #D46B08; }
+@keyframes pop { 50% { transform: scale(1.15); } }
+p { margin: 0; font-size: 11px; color: #A1A1AA; height: 14px; }
+</style>
+<script>
+const b = document.querySelector("button"), lbl = b.querySelector(".lbl"), pct = b.querySelector(".pct"), live = document.querySelector("p");
+let busy = false;
+function run() {
+  if (busy) return; busy = true; b.className = "ing"; live.textContent = "开始下载"; let v = 0;
+  const t = setInterval(() => {
+    v = Math.min(1, v + Math.random() * .08 + .02); b.style.setProperty("--p", v); pct.textContent = Math.round(v * 100) + "%";
+    if (v >= 1) { clearInterval(t); b.className = "done"; pct.textContent = "✓"; live.textContent = "下载完成";
+      setTimeout(() => { b.className = "opened"; lbl.textContent = "已下载 · 打开"; }, 1200);
+      setTimeout(() => { b.className = ""; b.style.setProperty("--p", 0); lbl.textContent = "↓ 下载安装包 · 24MB"; live.textContent = ""; busy = false; }, 3200); }
+  }, 90);
+}
+b.onclick = run; setTimeout(run, 600); setInterval(run, 6500);
+</script>

@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Cursor Gradient Follow", "zh": "光晕跟随",
+  "lead": "卡片背景里有一团柔光跟着鼠标走，像手电筒照在磨砂玻璃上。多张卡片排在一起时，边框也会被这团光点亮，常见于产品官网的功能区。",
+  "vague": ["卡片区太素", "想要鼠标移动有光跟着"],
+  "terms": ["Spotlight Hover", "Radial Gradient Follow 径向渐变跟随", "Mouse Glow"],
+  "prompt": "暗色功能卡片网格：每张卡用两个 CSS 变量 --mx --my 记录鼠标在卡内坐标，背景叠加 radial-gradient(240px circle at var(--mx) var(--my), rgba(250,140,22,.18), transparent 60%)；边框用同样位置的渐变做 1px 描边（mask 只留边框），鼠标在整个网格上移动时所有卡片同时计算，产生光照连续的感觉。"
+}
+-->
+<div class="gf"></div>
+<style>
+.gf { width: 320px; padding: 14px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #0B1020; border-radius: 14px; }
+.cd { --mx: -999px; --my: -999px; position: relative; height: 96px; padding: 12px; box-sizing: border-box; border-radius: 12px; background: radial-gradient(200px circle at var(--mx) var(--my), rgba(250,140,22,.18), transparent 60%), #141A2E; color: #E4E4E7; font-size: 12px; }
+.cd::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: radial-gradient(160px circle at var(--mx) var(--my), rgba(250,173,20,.9), rgba(255,255,255,.08) 70%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.cd b { display: block; margin-bottom: 4px; font: 600 14px "Songti SC","Noto Serif SC",serif; color: #F5D9A8; }
+.cd span { color: #A1A1AA; }
+</style>
+<script>
+const g = document.querySelector(".gf");
+g.innerHTML = [["极速", "毫秒级响应"], ["安全", "端到端加密"], ["协作", "多人实时编辑"], ["开源", "代码全部公开"]].map(([a, b]) => `<div class="cd"><b>${a}</b><span>${b}</span></div>`).join("");
+const cards = [...g.children]; let user = false;
+function at(x, y) { cards.forEach(c => { const r = c.getBoundingClientRect(); c.style.setProperty("--mx", x - r.left + "px"); c.style.setProperty("--my", y - r.top + "px"); }); }
+g.addEventListener("pointermove", e => { user = true; at(e.clientX, e.clientY); });
+g.addEventListener("pointerleave", () => user = false);
+(function loop(t) { if (!user) { const r = g.getBoundingClientRect(); at(r.left + r.width / 2 + Math.cos(t / 1100) * r.width * .4, r.top + r.height / 2 + Math.sin(t / 700) * r.height * .35); } requestAnimationFrame(loop); })(0);
+</script>

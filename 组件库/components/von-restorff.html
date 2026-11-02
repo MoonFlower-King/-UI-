@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Von Restorff Effect", "zh": "冯·雷斯托夫效应",
+  "lead": "一排相似的东西里，和别人不一样的那个最容易被记住，也叫“孤立效应”。价格表里把推荐套餐做得更高、更亮、加个角标，就是在用它。但只能突出一个，全都突出等于没突出。",
+  "vague": ["想让用户选这个套餐", "重点按钮不显眼"],
+  "terms": ["Von Restorff Effect", "Isolation Effect 孤立效应", "Visual Emphasis 视觉强调"],
+  "prompt": "价格表三列中只突出“专业版”：卡片高出 12px、江月橘 2px 描边、顶部“最受欢迎”角标、按钮用实心橘色，其余两列保持白底灰描边和描边按钮；整个页面只允许这一处强调，其他装饰一律去掉。"
+}
+-->
+<div class="vr"></div>
+<style>
+.vr { width: 320px; height: 230px; padding: 24px 12px 12px; box-sizing: border-box; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-items: end; background: #FAFAFA; border-radius: 14px; }
+.pc { position: relative; padding: 12px 8px; display: grid; gap: 6px; justify-items: center; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 11px; color: #71717A; transition: .5s cubic-bezier(.2,.8,.2,1); }
+.pc b { font: 600 13px "Songti SC","Noto Serif SC",serif; color: #18181B; }
+.pc strong { font-size: 18px; color: #18181B; }
+.pc button { width: 100%; padding: 5px 0; border: 1px solid #E4E4E7; background: #fff; border-radius: 6px; font-size: 11px; cursor: pointer; transition: .5s; }
+.pc.hi { padding-block: 20px; border: 2px solid #FA8C16; box-shadow: 0 12px 24px rgba(250,140,22,.18); }
+.pc.hi button { background: #FA8C16; border-color: #FA8C16; color: #fff; }
+.pc.hi::before { content: "最受欢迎"; position: absolute; top: -10px; padding: 2px 8px; border-radius: 99px; background: #FA8C16; color: #fff; font-size: 10px; }
+</style>
+<script>
+const el = document.querySelector(".vr");
+el.innerHTML = [["基础版", "¥0"], ["专业版", "¥38"], ["团队版", "¥98"]].map(([a, b]) => `<div class="pc"><b>${a}</b><strong>${b}</strong><span>/ 月</span><button>选择</button></div>`).join("");
+const mid = el.children[1];
+setTimeout(() => mid.classList.add("hi"), 300);
+setInterval(() => { mid.classList.remove("hi"); setTimeout(() => mid.classList.add("hi"), 700); }, 4000);
+</script>

@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Tag Cloud", "zh": "标签云",
+  "lead": "一堆标签按热度用不同字号和深浅排在一起，越热门越大越醒目。适合博客侧栏、话题广场，让人一眼看出“大家在聊什么”。",
+  "vague": ["热门话题怎么展示", "标签列表太死板"],
+  "terms": ["Tag Cloud", "Word Cloud 词云", "Weighted List 加权列表"],
+  "prompt": "博客侧栏做标签云：标签按热度分 5 级，字号 12–24px、颜色从浅灰到江月橘，最热的用宋体粗体；标签之间 6px 间距自然换行居中；悬停时标签上浮 2px 并显示文章数小角标；整体以错峰缩放淡入出现。"
+}
+-->
+<div class="tc"></div>
+<style>
+.tc { width: 300px; padding: 20px; display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; align-items: baseline; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.tc a { position: relative; text-decoration: none; line-height: 1.3; transition: transform .2s, color .2s; animation: pop .5s cubic-bezier(.3,1.4,.5,1) both; cursor: pointer; }
+.tc a:hover { transform: translateY(-2px); color: #D46B08 !important; }
+.tc a::after { content: attr(data-n); position: absolute; top: -8px; right: -10px; font: 600 9px system-ui; padding: 0 4px; border-radius: 6px; background: #18181B; color: #fff; opacity: 0; transition: opacity .2s; }
+.tc a:hover::after { opacity: 1; }
+@keyframes pop { from { opacity: 0; transform: scale(.6); } }
+</style>
+<script>
+const T = [["配色", 5], ["动效", 4], ["排版", 5], ["留白", 3], ["玻璃拟态", 2], ["栅格", 3], ["暗色模式", 4], ["微交互", 2], ["衬线字", 1], ["渐变", 3], ["无障碍", 2], ["图标", 1], ["卡片", 4], ["悬停", 2], ["加载", 1], ["响应式", 3]];
+const C = ["#A1A1AA", "#71717A", "#3F3F46", "#18181B", "#FA8C16"], el = document.querySelector(".tc");
+function draw() {
+  el.innerHTML = T.map(([t, w], i) => `<a data-n="${w * 7 + i}" style="font-size:${10 + w * 3}px;color:${C[w - 1]};font-weight:${w > 3 ? 700 : 400};${w === 5 ? 'font-family:"Songti SC","Noto Serif SC",serif;' : ""}animation-delay:${i * 40}ms">${t}</a>`).join("");
+}
+draw(); setInterval(() => { T.sort(() => Math.random() - .5); draw(); }, 4000);
+</script>

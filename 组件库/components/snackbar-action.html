@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Snackbar with Undo", "zh": "可撤销提示条",
+  "lead": "删除或归档后，底部弹出一条“已删除 · 撤销”的小黑条，几秒后自动消失。与其先弹窗问“确定吗”，不如直接执行、给一个后悔的机会，操作更顺手。",
+  "vague": ["每次删除都弹确认框好烦", "误删了找不回来"],
+  "terms": ["Snackbar", "Undo 撤销", "Optimistic Action 先执行后反悔"],
+  "prompt": "列表删除不弹确认框，改为底部居中弹出深色 Snackbar：左侧“已删除 1 封邮件”，右侧江月橘文字按钮“撤销”，底边有一条 5 秒倒计时细进度条；点撤销后条目原位滑回并高亮一下；倒计时结束 Snackbar 下滑消失、真正删除。"
+}
+-->
+<div class="sa">
+  <ul></ul>
+  <div class="bar" hidden><span></span><button>撤销</button><i></i></div>
+</div>
+<style>
+.sa { position: relative; width: 300px; height: 280px; padding: 12px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+ul { list-style: none; margin: 0; padding: 0; }
+li { display: flex; align-items: center; justify-content: space-between; padding: 0 10px; height: 38px; border-bottom: 1px solid #F4F4F5; font-size: 13px; color: #3F3F46; transition: .3s; overflow: hidden; }
+li.gone { height: 0; opacity: 0; transform: translateX(-30px); border: 0; }
+li.back { animation: hl 1.2s; } @keyframes hl { 0% { background: #FFF4E6; } }
+li button { border: 0; background: none; color: #A1A1AA; cursor: pointer; font-size: 14px; } li button:hover { color: #F5222D; }
+.bar { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 10px; background: #18181B; color: #F4F4F5; font-size: 12px; overflow: hidden; animation: up .3s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes up { from { transform: translateY(60px); } }
+.bar button { border: 0; background: none; color: #FA8C16; font-weight: 700; cursor: pointer; font-size: 12px; }
+.bar i { position: absolute; left: 0; bottom: 0; height: 2px; background: #FA8C16; animation: cd 5s linear forwards; }
+@keyframes cd { from { width: 100%; } to { width: 0; } }
+</style>
+<script>
+const ul = document.querySelector("ul"), bar = document.querySelector(".bar"), undo = bar.querySelector("button");
+ul.innerHTML = ["周报：本周进度", "邀请：设计评审会", "账单：十一月", "通知：版本更新", "来信：合作意向"].map(t => `<li><span>${t}</span><button aria-label="删除">✕</button></li>`).join("");
+let last, timer;
+function del(li) {
+  if (last) last.remove();
+  li.classList.add("gone"); last = li;
+  bar.hidden = true; void bar.offsetWidth; bar.querySelector("span").textContent = "已删除 1 封邮件"; bar.hidden = false;
+  const i = bar.querySelector("i"); i.style.animation = "none"; void i.offsetWidth; i.style.animation = "";
+  clearTimeout(timer); timer = setTimeout(() => { bar.hidden = true; }, 5000);
+}
+ul.addEventListener("click", e => { const b = e.target.closest("button"); b && del(b.parentNode); });
+undo.onclick = () => { if (!last) return; last.classList.remove("gone"); last.classList.add("back"); setTimeout(() => last && last.classList.remove("back"), 1200); last = null; bar.hidden = true; clearTimeout(timer); };
+setInterval(() => { const li = ul.querySelector("li:not(.gone)"); if (bar.hidden && li) del(li); else undo.click(); }, 2400);
+</script>

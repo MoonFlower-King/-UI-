@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Peak-End Rule", "zh": "峰终定律",
+  "lead": "人回忆一段体验时，主要记住“最爽（或最糟）的那一刻”和“结束的那一刻”，中间过程反而记不太清。所以要刻意设计一个高光时刻，再把结尾做得漂亮。",
+  "vague": ["流程很长用户评价差", "怎么让人记住我们"],
+  "terms": ["Peak-End Rule", "Kahneman 卡尼曼", "Moment of Delight 惊喜时刻"],
+  "prompt": "按峰终定律优化下单流程：在支付成功这一“峰值”放全屏庆祝动画（江月橘礼花 + 宋体大字“下单成功”+ 预计送达时间），结尾页给一张可分享的订单卡片和“送你 5 元券”；中间步骤保持简洁，不追求每一步都惊艳。"
+}
+-->
+<div class="pe"><svg viewBox="0 0 280 150"><path class="base" d="M10 110 L60 100 L100 108 L140 96 L170 112"/><path class="peak" d="M170 112 L200 30 L230 90 L270 50"/><circle class="dot p" cx="200" cy="30" r="5"/><circle class="dot e" cx="270" cy="50" r="5"/><text x="200" y="20">峰值</text><text x="262" y="40">终点</text><text class="mid" x="70" y="132">中间过程：记不太清</text></svg><p>体验曲线 · 记忆主要来自 <b>峰值</b> 与 <b>结尾</b></p></div>
+<style>
+.pe { width: 310px; padding: 14px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+svg { width: 100%; overflow: visible; }
+path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 400; animation: draw 4s ease-out infinite; }
+.base { stroke: #D4D4D8; } .peak { stroke: #FA8C16; animation-delay: .6s; }
+@keyframes draw { 0% { stroke-dashoffset: 400; } 50%, 100% { stroke-dashoffset: 0; } }
+.dot { fill: #FA8C16; transform-box: fill-box; transform-origin: center; animation: pulse 4s infinite; opacity: 0; }
+.e { animation-delay: .4s; }
+@keyframes pulse { 0%, 40% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1.6); } 60%, 100% { opacity: 1; transform: scale(1); } }
+text { font: 600 11px "Songti SC","Noto Serif SC",serif; fill: #D46B08; text-anchor: middle; }
+text.mid { fill: #A1A1AA; font: 10px system-ui; text-anchor: start; }
+p { margin: 8px 0 0; font-size: 12px; color: #71717A; text-align: center; } b { color: #FA8C16; }
+</style>

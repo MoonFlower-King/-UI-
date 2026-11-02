@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Flip Counter", "zh": "翻页数字",
+  "lead": "像老式翻页钟那样，数字变化时上半片翻下来盖住旧数字。用在倒计时、活动开始时间、实时人数上，有很强的仪式感和复古味。",
+  "vague": ["倒计时想更有感觉", "翻牌那样的数字"],
+  "terms": ["Flip Counter", "Flip Clock 翻页钟", "3D Rotate"],
+  "prompt": "活动倒计时用 Flip Counter：每位数字一张深色卡片（#18181B、圆角 8px、中间一道 1px 分割线），数字变化时上半片绕底边 rotateX(-90deg) 翻下（300ms ease-in），下半片接着从 90deg 翻回 0（300ms ease-out）；perspective 400px；数字用等宽字体。"
+}
+-->
+<div class="fc"><span class="lbl">距离开播还有</span><div class="digits"></div><small>分 · 秒</small></div>
+
+<style>
+.fc { display: grid; gap: 8px; justify-items: center; }
+.lbl { font-size: 12px; color: #71717A; } small { font-size: 11px; color: #A1A1AA; }
+.digits { display: flex; gap: 6px; align-items: center; }
+.sep { font-size: 30px; font-weight: 800; color: #18181B; }
+.d { position: relative; width: 44px; height: 62px; perspective: 400px; font: 800 40px/62px ui-monospace, Menlo, monospace; color: #fff; text-align: center; }
+.d > div { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; background: #18181B; }
+.d .top, .d .ftop { top: 0; border-radius: 8px 8px 0 0; } .d .bot, .d .fbot { bottom: 0; border-radius: 0 0 8px 8px; }
+.d .bot span, .d .fbot span { display: block; transform: translateY(-50%); }
+.d .top::after, .d .ftop::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: #000; }
+.ftop { transform-origin: bottom; animation: down .3s ease-in forwards; z-index: 2; } .fbot { transform-origin: top; transform: rotateX(90deg); animation: up .3s .3s ease-out forwards; z-index: 2; }
+@keyframes down { to { transform: rotateX(-90deg); } } @keyframes up { to { transform: rotateX(0); } }
+</style>
+
+<script>
+const box = document.querySelector(".digits"); let left = 5 * 60 + 12, prev = "";
+function digit(o, n) { return `<div class="top"><span>${n}</span></div><div class="bot"><span>${o}</span></div>` + (o !== n ? `<div class="ftop"><span>${o}</span></div><div class="fbot"><span>${n}</span></div>` : ""); }
+function tick() {
+  const s = String(Math.floor(left / 60)).padStart(2, "0") + String(left % 60).padStart(2, "0");
+  if (!prev) { box.innerHTML = [...s].map((c, i) => (i === 2 ? '<span class="sep">:</span>' : "") + `<div class="d">${digit(c, c)}</div>`).join(""); }
+  else box.querySelectorAll(".d").forEach((d, i) => { if (prev[i] !== s[i]) d.innerHTML = digit(prev[i], s[i]); });
+  prev = s; left = left > 0 ? left - 1 : 5 * 60 + 12;
+}
+tick(); setInterval(tick, 1000);
+</script>
