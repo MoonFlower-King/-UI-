@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Context Menu", "zh": "右键菜单",
+  "lead": "在某个东西上点右键（手机上是长按）弹出的操作菜单，出现在鼠标位置。菜单项带图标和快捷键，危险操作放最下面、用红色、和其他项用分隔线隔开。",
+  "vague": ["右键菜单", "更多操作放哪"],
+  "terms": ["Context Menu", "Keyboard Shortcut 快捷键", "Separator 分隔线", "Destructive Action"],
+  "prompt": "给文件卡片加 Context Menu：右键时在鼠标位置弹出 200px 宽菜单，白底圆角 12px、Layered Elevation 阴影，以鼠标点为原点从 0.95 缩放淡入（120ms）；每项 32px 高，左侧图标、右侧灰色快捷键（⌘C 等），悬停浅灰底；“删除”放最下方红色并用 1px 分隔线隔开；点击外部或按 Esc 关闭；菜单靠近屏幕边缘时自动向内翻转。"
+}
+-->
+<div class="area">
+  <div class="file on">📁<span>设计稿 2026</span><small>右键我</small></div>
+  <ul class="menu open" style="left:120px;top:70px">
+    <li><i>↗</i>打开<kbd>↵</kbd></li><li><i>✎</i>重命名<kbd>F2</kbd></li><li><i>⧉</i>复制<kbd>⌘C</kbd></li><li><i>☆</i>收藏</li>
+    <hr><li class="del"><i>🗑</i>删除<kbd>⌫</kbd></li>
+  </ul>
+</div>
+
+<style>
+.area { position: relative; width: 340px; height: 260px; }
+.file { position: absolute; left: 24px; top: 30px; width: 110px; height: 100px; border-radius: 14px; background: #fff; border: 1px solid #E4E4E7; display: grid; place-items: center; align-content: center; gap: 4px; font-size: 30px; cursor: context-menu; transition: border-color .2s; }
+.file:hover, .file.on { border-color: #FA8C16; } .file span { font-size: 12px; } .file small { font-size: 10px; color: #A1A1AA; }
+.menu { position: absolute; width: 180px; margin: 0; padding: 5px; list-style: none; background: #fff; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 12px 32px rgba(0,0,0,.14); opacity: 0; transform: scale(.95); transform-origin: top left; pointer-events: none; transition: opacity .12s, transform .12s; }
+.menu.open { opacity: 1; transform: none; pointer-events: auto; }
+li { display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 10px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+li:hover { background: #F4F4F5; } li i { width: 16px; font-style: normal; text-align: center; color: #71717A; }
+kbd { margin-left: auto; font: 11px ui-monospace, monospace; color: #A1A1AA; }
+hr { border: 0; height: 1px; background: #F0F0F2; margin: 4px 6px; }
+.del, .del i { color: #DC2626; } .del:hover { background: #FEF2F2; }
+</style>
+<script>
+const area = document.querySelector(".area"), file = document.querySelector(".file"), menu = document.querySelector(".menu");
+const open = (x, y) => { const r = area.getBoundingClientRect(); menu.style.left = Math.min(x - r.left, r.width - 182) + "px"; menu.style.top = Math.min(y - r.top, r.height - 190) + "px"; menu.classList.add("open"); file.classList.add("on"); };
+const close = () => { menu.classList.remove("open"); file.classList.remove("on"); };
+file.addEventListener("contextmenu", (e) => { e.preventDefault(); open(e.clientX, e.clientY); });
+file.addEventListener("click", (e) => { e.stopPropagation(); open(e.clientX, e.clientY); });
+menu.querySelectorAll("li").forEach((li) => li.addEventListener("click", (e) => { e.stopPropagation(); close(); }));
+document.addEventListener("click", close); document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+</script>

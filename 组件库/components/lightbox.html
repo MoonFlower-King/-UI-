@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Lightbox", "zh": "图片灯箱",
+  "lead": "点缩略图，图片从原来的位置放大到屏幕中央，背景变暗；左右切换上一张下一张，底部显示“2 / 5”。关闭时缩回原位，让人知道它从哪来。",
+  "vague": ["点图片放大", "看大图"],
+  "terms": ["Lightbox", "Zoom from Origin 从原位放大", "Gallery 图集", "Counter 计数"],
+  "prompt": "相册用 Lightbox：点击缩略图后图片从缩略图位置用 FLIP 动画放大到画面中央（300ms cubic-bezier(.2,.8,.2,1)），背景 85% 黑色淡入；左右两侧半透明圆形箭头切换图片，底部居中“2 / 5”计数；点背景或按 Esc 时缩回原缩略图位置；支持键盘 ← → 切换。"
+}
+-->
+<div class="gal">
+  <div class="thumbs"></div>
+  <div class="lb"><button class="prev" aria-label="上一张">‹</button><div class="big"></div><button class="next" aria-label="下一张">›</button><span class="count"></span></div>
+</div>
+
+<style>
+.gal { position: relative; width: 340px; height: 260px; display: grid; place-items: center; }
+.thumbs { display: grid; grid-template-columns: repeat(3, 90px); gap: 8px; }
+.thumbs button { height: 70px; border: 0; border-radius: 10px; cursor: zoom-in; transition: transform .2s; } .thumbs button:hover { transform: scale(1.04); }
+.lb { position: absolute; inset: 0; border-radius: 16px; background: rgba(9,9,11,.85); opacity: 0; pointer-events: none; transition: opacity .3s; }
+.lb.open { opacity: 1; pointer-events: auto; }
+.big { position: absolute; border-radius: 10px; transition: all .3s cubic-bezier(.2,.8,.2,1); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+.lb button { position: absolute; top: 50%; margin-top: -16px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(255,255,255,.15); color: #fff; font-size: 18px; cursor: pointer; z-index: 1; }
+.lb button:hover { background: rgba(255,255,255,.3); } .prev { left: 10px; } .next { right: 10px; }
+.count { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #D4D4D8; font-size: 12px; font-variant-numeric: tabular-nums; }
+</style>
+<script>
+const imgs = ["linear-gradient(160deg,#1E3A5F,#0B1426 60%,#FA8C16)", "linear-gradient(160deg,#FDE68A,#FA8C16)", "radial-gradient(circle at 70% 30%,#FFF 0 8%,#1E293B 9%)", "linear-gradient(120deg,#A7F3D0,#3B82F6)", "linear-gradient(200deg,#FBCFE8,#A855F7)", "conic-gradient(#FA8C16,#FDE68A,#1E3A5F,#FA8C16)"];
+const thumbs = document.querySelector(".thumbs"), lb = document.querySelector(".lb"), big = document.querySelector(".big"), count = document.querySelector(".count"), gal = document.querySelector(".gal"); let cur = 0;
+const rect = (el) => { const a = el.getBoundingClientRect(), g = gal.getBoundingClientRect(); return { left: a.left - g.left + "px", top: a.top - g.top + "px", width: a.width + "px", height: a.height + "px" }; };
+const show = (i) => { cur = (i + imgs.length) % imgs.length; big.style.background = imgs[cur]; count.textContent = `${cur + 1} / ${imgs.length}`; };
+imgs.forEach((bg, i) => { const b = document.createElement("button"); b.style.background = bg; b.ariaLabel = `图片 ${i + 1}`; thumbs.append(b);
+  b.addEventListener("click", () => { show(i); big.style.transition = "none"; Object.assign(big.style, rect(b)); lb.classList.add("open"); big.offsetWidth; big.style.transition = ""; Object.assign(big.style, { left: "50px", top: "30px", width: "240px", height: "190px" }); }); });
+const close = () => { Object.assign(big.style, rect(thumbs.children[cur])); lb.classList.remove("open"); };
+document.querySelector(".prev").addEventListener("click", (e) => { e.stopPropagation(); show(cur - 1); });
+document.querySelector(".next").addEventListener("click", (e) => { e.stopPropagation(); show(cur + 1); });
+lb.addEventListener("click", close);
+document.addEventListener("keydown", (e) => { if (!lb.classList.contains("open")) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+</script>

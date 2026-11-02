@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Rotating Words", "zh": "轮换词",
+  "lead": "标题里有一个词一直在换：“为 设计师 / 开发者 / 产品经理 而做”。旧词向上滑走、新词从下面滑进来，容器宽度跟着词长平滑变化。一句话就讲清了多种用户。",
+  "vague": ["标题里的词会变", "动态标语"],
+  "terms": ["Rotating Text", "Word Carousel 词轮播", "Slot Animation 老虎机滚动", "Width Transition"],
+  "prompt": "Hero 标题做 Rotating Words：固定文字“写给”+ 一个轮换词 + “的界面词典”；轮换词品牌色，每 2 秒切换一次，旧词向上 100% 滑出并淡出，新词从下方滑入（400ms cubic-bezier(.2,.8,.2,1)）；轮换词容器 overflow 隐藏，宽度随词长 300ms 平滑过渡，周围文字不跳动。"
+}
+-->
+<h1 class="rw">写给<span class="slot"><b>设计师</b></span>的<br>界面词典</h1>
+
+<style>
+.rw { margin: 0; font: 600 30px/1.4 "Songti SC", Georgia, serif; text-align: center; }
+.slot { display: inline-block; position: relative; vertical-align: bottom; height: 1.4em; overflow: hidden; color: #FA8C16; transition: width .3s cubic-bezier(.2,.8,.2,1); padding: 0 .15em; }
+.slot b { position: absolute; left: .15em; top: 0; white-space: nowrap; font-weight: 700; transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s; }
+.slot b.out { transform: translateY(-100%); opacity: 0; } .slot b.in { transform: translateY(100%); opacity: 0; }
+.slot::after { content: ""; position: absolute; left: .15em; right: .15em; bottom: .12em; height: .12em; background: #FED7AA; z-index: -1; border-radius: 2px; }
+</style>
+<script>
+const words = ["设计师", "开发者", "产品经理", "每个人"], slot = document.querySelector(".slot"); let i = 0;
+const measure = (w) => { const m = document.createElement("b"); m.textContent = w; m.style.visibility = "hidden"; slot.append(m); const v = m.offsetWidth; m.remove(); return v; };
+slot.style.width = measure(words[0]) + "px";
+setInterval(() => {
+  const old = slot.querySelector("b:not(.out)"); i = (i + 1) % words.length;
+  const nb = document.createElement("b"); nb.textContent = words[i]; nb.className = "in"; slot.append(nb);
+  slot.style.width = measure(words[i]) + "px"; nb.offsetWidth; nb.className = ""; old.className = "out"; setTimeout(() => old.remove(), 400);
+}, 2000);
+</script>

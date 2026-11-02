@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Editorial", "zh": "杂志编辑风",
+  "lead": "像印刷杂志的版面：超大的衬线标题、细线分栏、首字下沉、编号和小号大写的栏目名、大量留白。内容型网站、品牌故事页用它，立刻显得有文化、有品位。",
+  "vague": ["像杂志一样", "文艺高级感"],
+  "terms": ["Editorial Design", "Drop Cap 首字下沉", "Serif Display 衬线大标题", "Rule Line 细分割线", "Kicker 栏目眉题"],
+  "prompt": "做 Editorial 风格文章头：米白底 #FBF8F1，顶部 1px 黑色细线 + 小号大写字距加宽的栏目名“NO.07 · 视觉”；标题 40px 衬线字、行高 1.1、可以斜体强调一个词；作者与日期用 11px 灰色等宽字；正文两栏、栏间细竖线，首段 Drop Cap 首字下沉 3 行、品牌色。"
+}
+-->
+<article class="ed">
+  <header><span>NO.07 · 视觉</span><span>2026 / 11</span></header>
+  <h1>月光<em>照进</em><br>界面里</h1>
+  <p class="by">文 / 江小月　·　阅读 6 分钟</p>
+  <div class="cols"><p><b>好</b>的界面像一页好杂志：克制的颜色，充足的留白，标题敢于大，正文敢于小。</p><p>我们把这种气质拆成了几个词，说给 AI 听，它就能照着排。</p></div>
+</article>
+
+<style>
+.ed { width: 320px; padding: 18px 20px 20px; background: #FBF8F1; color: #1C1917; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06); }
+header { display: flex; justify-content: space-between; border-top: 2px solid #1C1917; padding-top: 6px; font: 10px ui-monospace, monospace; letter-spacing: .18em; }
+h1 { margin: 16px 0 10px; font: 600 38px/1.08 "Songti SC", "Noto Serif SC", Georgia, serif; letter-spacing: -.01em; }
+em { font-style: italic; color: #FA8C16; font-weight: 400; }
+.by { margin: 0 0 14px; font: 10px ui-monospace, monospace; color: #78716C; padding-bottom: 12px; border-bottom: 1px solid #D6D3D1; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.cols p { margin: 0; padding: 0 12px; font: 12px/1.7 "Songti SC", Georgia, serif; color: #44403C; } .cols p:first-child { padding-left: 0; border-right: 1px solid #D6D3D1; } .cols p:last-child { padding-right: 0; }
+.cols b { float: left; font: 600 42px/.9 "Songti SC", Georgia, serif; color: #FA8C16; margin: 4px 6px 0 0; }
+</style>

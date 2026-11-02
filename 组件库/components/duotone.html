@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Duotone", "zh": "双色调",
+  "lead": "把一张照片的所有颜色压成两种：暗部一种色、亮部一种色。杂乱的配图立刻变得统一、有品牌感，常用于海报、封面和团队照片墙。",
+  "vague": ["图片颜色太杂", "配图风格不统一"],
+  "terms": ["Duotone", "Gradient Map 渐变映射", "mix-blend-mode 混合模式", "Brand Imagery 品牌图像"],
+  "prompt": "所有配图统一加 Duotone 效果：先 grayscale(1) 加对比度 1.2，再叠两层混合——暗部深蓝 #1E3A5F（mix-blend-mode: lighten）、亮部江月橘 #FA8C16（mix-blend-mode: multiply）；悬停时 400ms 过渡显示原图颜色。"
+}
+-->
+<div class="dt">
+  <figure class="ph on"><div class="img"></div><figcaption>双色调</figcaption></figure>
+  <button>切换原图 / 双色调</button>
+</div>
+
+<style>
+.dt { display: grid; gap: 12px; justify-items: center; }
+.ph { position: relative; margin: 0; width: 260px; height: 180px; border-radius: 16px; overflow: hidden; isolation: isolate; }
+.img { position: absolute; inset: 0; background: radial-gradient(circle at 72% 28%, #FFFBE6 0 8%, transparent 9%), radial-gradient(ellipse at 30% 100%, #2F855A 0 30%, transparent 31%), radial-gradient(ellipse at 80% 105%, #22543D 0 34%, transparent 35%), linear-gradient(#7DD3FC, #F9A8D4 55%, #FDE68A); transition: filter .4s; }
+.ph::before, .ph::after { content: ""; position: absolute; inset: 0; z-index: 1; transition: opacity .4s; opacity: 0; }
+.ph::before { background: #1E3A5F; mix-blend-mode: lighten; } .ph::after { background: #FA8C16; mix-blend-mode: multiply; }
+.ph.on .img { filter: grayscale(1) contrast(1.2); } .ph.on::before, .ph.on::after { opacity: 1; }
+figcaption { position: absolute; left: 12px; bottom: 10px; z-index: 2; color: #fff; font-size: 12px; background: rgba(0,0,0,.3); padding: 2px 8px; border-radius: 999px; }
+button { border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+const ph = document.querySelector(".ph"), cap = document.querySelector("figcaption");
+document.querySelector("button").addEventListener("click", () => { const on = ph.classList.toggle("on"); cap.textContent = on ? "双色调" : "原图"; });
+</script>

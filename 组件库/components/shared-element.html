@@ -1,0 +1,46 @@
+<!--
+{
+  "en": "Shared Element Transition", "zh": "共享元素过渡",
+  "lead": "从列表点进详情时，被点的那张图片不是“消失再出现”，而是从列表里的位置平滑变大、飞到详情页顶部。眼睛一直跟着同一个东西，就知道自己去了哪。返回时再飞回去。",
+  "vague": ["点进详情页时的丝滑动画", "页面切换有连贯感"],
+  "terms": ["Shared Element Transition", "FLIP 动画", "View Transitions API", "Hero Animation"],
+  "prompt": "列表到详情用 Shared Element Transition：点击卡片时，卡片封面用 FLIP（记录起止位置，transform 反推再归零）从列表位置放大到详情页顶部满宽，400ms cubic-bezier(.2,.8,.2,1)；标题同样平移缩放到详情标题位置；其余详情内容在封面落定后 100ms 依次上浮淡入；返回时反向飞回原卡片位置。支持的浏览器可直接用 View Transitions API。"
+}
+-->
+<div class="app">
+  <div class="list">
+    <button class="item" data-i="0"><i style="background:linear-gradient(160deg,#1E3A5F,#0B1426 60%,#FA8C16)"></i><b>夜航</b></button>
+    <button class="item" data-i="1"><i style="background:linear-gradient(160deg,#FDE68A,#FA8C16)"></i><b>暖金</b></button>
+    <button class="item" data-i="2"><i style="background:linear-gradient(160deg,#E0F2FE,#64748B)"></i><b>江雾</b></button>
+  </div>
+  <div class="detail"><div class="hero"></div><h3></h3><p>一套以夜色江面为灵感的界面主题，暖金色只用在最重要的地方。</p><button class="back">← 返回</button></div>
+</div>
+
+<style>
+.app { position: relative; width: 260px; height: 290px; border-radius: 22px; background: #fff; border: 6px solid #18181B; overflow: hidden; }
+.list { padding: 14px; display: grid; gap: 10px; }
+.item { display: flex; align-items: center; gap: 12px; border: 0; background: #F4F4F5; border-radius: 14px; padding: 8px; cursor: pointer; text-align: left; transition: background .2s; }
+.item:hover { background: #EEEEF0; }
+.item i { width: 56px; height: 56px; border-radius: 10px; } .item b { font-size: 15px; }
+.detail { position: absolute; inset: 0; background: #fff; visibility: hidden; }
+.detail.open { visibility: visible; }
+.hero { height: 130px; } .detail h3 { margin: 14px 16px 6px; font-size: 20px; }
+.detail p, .back { opacity: 0; transform: translateY(10px); transition: all .3s ease-out; }
+.detail.ready p, .detail.ready .back { opacity: 1; transform: none; } .detail.ready .back { transition-delay: .08s; }
+.detail p { margin: 0 16px; font-size: 12px; color: #71717A; line-height: 1.6; }
+.back { margin: 14px 16px; border: 0; background: none; color: #FA8C16; font-size: 13px; cursor: pointer; padding: 0; }
+.fly { position: absolute; z-index: 5; transition: all .4s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+</style>
+<script>
+const app = document.querySelector(".app"), detail = document.querySelector(".detail"), hero = detail.querySelector(".hero"), title = detail.querySelector("h3"); let from;
+const box = (el) => { const a = el.getBoundingClientRect(), b = app.getBoundingClientRect(); return { left: a.left - b.left - 6 + "px", top: a.top - b.top - 6 + "px", width: a.width + "px", height: a.height + "px", borderRadius: getComputedStyle(el).borderRadius }; };
+const fly = (src, dst, bg, done) => { const f = document.createElement("div"); f.className = "fly"; f.style.background = bg; Object.assign(f.style, box(src)); app.append(f); f.offsetWidth; Object.assign(f.style, box(dst)); setTimeout(() => { f.remove(); done(); }, 400); };
+document.querySelectorAll(".item").forEach((it) => it.addEventListener("click", () => {
+  from = it.querySelector("i"); const bg = from.style.background; hero.style.background = bg; title.textContent = it.querySelector("b").textContent;
+  hero.style.visibility = "hidden"; detail.classList.add("open"); fly(from, hero, bg, () => { hero.style.visibility = ""; detail.classList.add("ready"); });
+}));
+detail.querySelector(".back").addEventListener("click", () => {
+  detail.classList.remove("ready"); hero.style.visibility = "hidden"; const bg = hero.style.background;
+  fly(hero, from, bg, () => {}); setTimeout(() => detail.classList.remove("open"), 120);
+});
+</script>

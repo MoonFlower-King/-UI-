@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Cyberpunk", "zh": "赛博朋克",
+  "lead": "黑底 + 霓虹青和洋红、切角的面板、扫描线、偶尔“故障”抖一下的文字。游戏、科技活动、潮牌页常用。少用一点就很酷，用多了会很累眼。",
+  "vague": ["科技感", "未来感 / 赛博风"],
+  "terms": ["Cyberpunk", "Neon 霓虹色", "Glitch 故障效果", "Chamfered Corner 切角", "Scanlines 扫描线"],
+  "prompt": "做 Cyberpunk 风格面板：背景 #0A0A12 叠 2px 间隔的半透明横向扫描线；面板四角用 clip-path 切掉 12px 斜角，边框霓虹青 #00F0FF 发光；标题等宽大写，每隔 3 秒做一次 200ms 的 Glitch（青/洋红 #FF2A6D 两层错位 2px 抖动）；按钮洋红实心、悬停时发光加强。"
+}
+-->
+<div class="cy">
+  <small>// SYSTEM ONLINE</small>
+  <h2 data-t="NIGHT RIVER">NIGHT RIVER</h2>
+  <p>同步率 <b>98.6%</b></p>
+  <div class="bar"><i></i></div>
+  <button>JACK IN ▸</button>
+</div>
+
+<style>
+.cy { position: relative; width: 280px; padding: 20px 22px; background: #0A0A12; color: #E0FBFF; font-family: ui-monospace, Menlo, monospace; clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px); box-shadow: inset 0 0 0 1px #00F0FF; display: grid; gap: 10px; }
+.cy::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, rgba(0,240,255,.05) 2px 3px); }
+small { color: #00F0FF; font-size: 10px; letter-spacing: .15em; }
+h2 { position: relative; margin: 0; font-size: 28px; letter-spacing: .06em; text-shadow: 0 0 8px rgba(0,240,255,.6); }
+h2::before, h2::after { content: attr(data-t); position: absolute; inset: 0; opacity: 0; }
+h2::before { color: #FF2A6D; animation: g1 3s infinite steps(1); } h2::after { color: #00F0FF; animation: g2 3s infinite steps(1); }
+@keyframes g1 { 0%, 90%, 100% { opacity: 0; transform: none; } 92% { opacity: .8; transform: translate(-3px, 1px); clip-path: inset(10% 0 55% 0); } 95% { opacity: .8; transform: translate(2px, -1px); clip-path: inset(60% 0 10% 0); } }
+@keyframes g2 { 0%, 90%, 100% { opacity: 0; transform: none; } 93% { opacity: .8; transform: translate(3px, 0); clip-path: inset(40% 0 30% 0); } 96% { opacity: .8; transform: translate(-2px, 1px); clip-path: inset(5% 0 75% 0); } }
+p { margin: 0; font-size: 12px; color: #8BA3B5; } b { color: #FCEE0A; }
+.bar { height: 6px; background: #1A1A2E; } .bar i { display: block; height: 100%; width: 98.6%; background: linear-gradient(90deg, #FF2A6D, #00F0FF); box-shadow: 0 0 10px #00F0FF; }
+button { justify-self: start; border: 0; background: #FF2A6D; color: #0A0A12; font: 700 12px ui-monospace, monospace; letter-spacing: .1em; padding: 8px 16px; cursor: pointer; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); transition: box-shadow .2s, filter .2s; }
+button:hover { filter: brightness(1.2) drop-shadow(0 0 8px #FF2A6D); }
+</style>

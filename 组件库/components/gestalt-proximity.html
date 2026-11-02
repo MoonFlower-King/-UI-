@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Proximity", "zh": "接近原则",
+  "lead": "格式塔心理学里最实用的一条：离得近的东西会被看成一组。标签要贴近它的输入框、远离上一个输入框；组内间距小、组间间距大。同样的内容，只改间距，一下子就清楚了。",
+  "vague": ["表单看着乱", "分不清哪个标签对应哪个框"],
+  "terms": ["Gestalt Principles 格式塔原则", "Proximity 接近原则", "Spacing Scale 间距阶梯", "Grouping 分组"],
+  "prompt": "按 Proximity 原则调整间距：标签和它的输入框间距 6px，同组字段之间 16px，不同分组之间 32px 并加小标题；按钮和最后一个字段间距 24px；全页面间距只用 4/8/16/24/32 这一组阶梯值。"
+}
+-->
+<div class="gp">
+  <div class="tabs"><button>间距均匀</button><button class="on">按接近原则</button></div>
+  <div class="form good">
+    <h5>收货人</h5>
+    <label>姓名</label><i></i>
+    <label>手机</label><i></i>
+    <h5>地址</h5>
+    <label>城市</label><i></i>
+  </div>
+</div>
+
+<style>
+.gp { display: grid; gap: 10px; justify-items: center; }
+.tabs { display: flex; background: #F4F4F5; padding: 3px; border-radius: 10px; } .tabs button { border: 0; background: none; padding: 5px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; color: #71717A; }
+.tabs .on { background: #fff; color: #18181B; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+.form { width: 220px; background: #fff; border-radius: 14px; padding: 14px 16px; box-shadow: 0 4px 16px rgba(0,0,0,.05); display: flex; flex-direction: column; }
+.form > * { margin: 0; transition: margin .4s cubic-bezier(.2,.8,.2,1); }
+h5 { font-size: 11px; color: #A1A1AA; font-weight: 500; letter-spacing: .05em; }
+label { font-size: 12px; color: #3F3F46; }
+i { height: 28px; border: 1px solid #E4E4E7; border-radius: 8px; }
+.form > * + * { margin-top: 11px; }
+.good > label { margin-top: 14px; } .good > i { margin-top: 4px; } .good > h5 { margin-top: 26px; } .good > h5:first-child { margin-top: 0; } .good > h5 + label { margin-top: 8px; }
+</style>
+<script>
+const form = document.querySelector(".form"), tabs = document.querySelectorAll(".tabs button");
+tabs.forEach((b, i) => b.addEventListener("click", () => { tabs.forEach((x) => x.classList.toggle("on", x === b)); form.classList.toggle("good", i === 1); }));
+</script>

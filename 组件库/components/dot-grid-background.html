@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Dot Grid Background", "zh": "点阵背景",
+  "lead": "背景铺一层很淡的小圆点或细网格，边缘渐隐。让大片空白不显得空，又不会抢内容。开发者工具、AI 产品、设计工具的官网特别爱用，鼠标附近的点还可以亮起来。",
+  "vague": ["背景太空了", "背景加点纹理"],
+  "terms": ["Dot Grid", "Grid Pattern 网格背景", "Radial Mask 径向渐隐", "Background Pattern"],
+  "prompt": "Hero 背景加 Dot Grid：radial-gradient 画 1px 圆点、间距 20px、颜色 #D4D4D8；用径向 mask 让四周渐隐只留中间；鼠标移动时，以鼠标为中心 120px 范围内的点变成品牌色（再叠一层品牌色点阵，用跟随鼠标的径向 mask 显示）。"
+}
+-->
+<div class="dg">
+  <div class="dots"></div><div class="dots hot"></div>
+  <h2>从一个词开始</h2><p>移动鼠标看看</p>
+</div>
+
+<style>
+.dg { position: relative; width: 340px; height: 230px; border-radius: 18px; background: #fff; border: 1px solid #F0F0F2; display: grid; place-content: center; text-align: center; overflow: hidden; --x: 50%; --y: 50%; }
+.dots { position: absolute; inset: 0; background: radial-gradient(circle, #D4D4D8 1px, transparent 1.5px) 0 0 / 20px 20px; -webkit-mask: radial-gradient(ellipse at center, #000 30%, transparent 75%); mask: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+.dots.hot { background-image: radial-gradient(circle, #FA8C16 1.5px, transparent 2px); -webkit-mask: radial-gradient(120px circle at var(--x) var(--y), #000, transparent); mask: radial-gradient(120px circle at var(--x) var(--y), #000, transparent); }
+h2 { position: relative; margin: 0; font: 600 26px "Songti SC", Georgia, serif; } p { position: relative; margin: 6px 0 0; font-size: 12px; color: #A1A1AA; }
+</style>
+<script>
+const dg = document.querySelector(".dg");
+dg.addEventListener("mousemove", (e) => { const r = dg.getBoundingClientRect(); dg.style.setProperty("--x", e.clientX - r.left + "px"); dg.style.setProperty("--y", e.clientY - r.top + "px"); });
+</script>

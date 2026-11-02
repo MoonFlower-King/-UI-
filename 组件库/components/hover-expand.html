@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Expanding Cards", "zh": "悬停展开卡片",
+  "lead": "一排竖条卡片挤在一起，鼠标移到哪张，哪张就横向展开、露出标题和说明，其它几张收窄。适合展示几个并列的主题或作品，很有画廊感。",
+  "vague": ["一排图片鼠标放上去变宽", "手风琴图片"],
+  "terms": ["Expanding Cards", "Flex Grow 弹性伸展", "Accordion Gallery 手风琴画廊", "Focus + Context"],
+  "prompt": "做 Expanding Cards：一排 4 张圆角 16px 竖条卡片（flex: 1），悬停或点击的那张 flex 变为 4，宽度过渡 500ms cubic-bezier(.2,.8,.2,1)；展开后底部出现白色标题和一行说明（延迟 150ms 淡入），未展开的卡只显示竖排小标题；默认第一张展开。"
+}
+-->
+<div class="ex">
+  <div class="p on" style="--bg:linear-gradient(160deg,#1E3A5F,#0B1426)"><b>夜</b><div><h4>夜色江面</h4><p>深蓝底 + 暖金点缀</p></div></div>
+  <div class="p" style="--bg:linear-gradient(160deg,#FDE68A,#FA8C16)"><b>月</b><div><h4>月光暖金</h4><p>温暖、克制的强调色</p></div></div>
+  <div class="p" style="--bg:linear-gradient(160deg,#E0F2FE,#64748B)"><b>雾</b><div><h4>江雾</h4><p>低饱和灰蓝，做背景</p></div></div>
+  <div class="p" style="--bg:linear-gradient(160deg,#FBCFE8,#9D174D)"><b>霞</b><div><h4>晚霞</h4><p>渐变点睛</p></div></div>
+</div>
+
+<style>
+.ex { display: flex; gap: 8px; width: 340px; height: 220px; }
+.p { position: relative; flex: 1; border-radius: 16px; background: var(--bg); overflow: hidden; cursor: pointer; transition: flex .5s cubic-bezier(.2,.8,.2,1); color: #fff; }
+.p.on { flex: 4; }
+.p b { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font: 600 15px "Songti SC", serif; transition: opacity .2s; }
+.p.on b { opacity: 0; }
+.p div { position: absolute; left: 14px; bottom: 14px; white-space: nowrap; opacity: 0; transform: translateY(8px); transition: all .3s; }
+.p.on div { opacity: 1; transform: none; transition-delay: .15s; }
+h4 { margin: 0; font: 600 17px "Songti SC", Georgia, serif; text-shadow: 0 1px 6px rgba(0,0,0,.3); } p { margin: 2px 0 0; font-size: 11px; opacity: .85; }
+</style>
+<script>
+const ps = document.querySelectorAll(".p");
+ps.forEach((p) => ["mouseenter", "click"].forEach((t) => p.addEventListener(t, () => ps.forEach((x) => x.classList.toggle("on", x === p)))));
+</script>

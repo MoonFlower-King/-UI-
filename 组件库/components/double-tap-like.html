@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Double Tap to Like", "zh": "双击点赞",
+  "lead": "在图片上快速点两下，正中间“砰”地冒出一颗大红心然后飘走，下方的心形按钮同时变红、点赞数 +1。短视频和图片社区的标志性手势。",
+  "vague": ["双击点赞", "像抖音那样点赞"],
+  "terms": ["Double Tap", "Like Animation 点赞动画", "Gesture 手势", "Delight 惊喜感"],
+  "prompt": "图片支持 Double Tap to Like：300ms 内连点两次，在点击位置弹出 80px 红心（从 0 放大到 1.2 再回到 1，随后上飘 30px 并淡出，共 800ms，带 ±15° 随机旋转）；下方心形按钮同步变红并弹跳，点赞数 +1；单击不触发；已点赞时双击只播放动画不重复计数。"
+}
+-->
+<div class="post">
+  <div class="pic"><span>双击图片</span></div>
+  <div class="bar"><button class="like" aria-label="点赞">♡</button><b>1,024</b><span>赞</span></div>
+</div>
+
+<style>
+.post { width: 250px; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+.pic { position: relative; height: 200px; background: radial-gradient(circle at 70% 30%, #FFF6D5 0 9%, transparent 10%), linear-gradient(170deg, #1E3A5F, #0B1426 65%, #3B2410); overflow: hidden; cursor: pointer; user-select: none; touch-action: manipulation; }
+.pic span { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 11px; color: rgba(255,255,255,.5); }
+.heart { position: absolute; width: 80px; height: 80px; margin: -40px; font-size: 72px; line-height: 80px; text-align: center; color: #EF4444; filter: drop-shadow(0 4px 12px rgba(239,68,68,.5)); pointer-events: none; animation: heart .8s ease-out forwards; }
+@keyframes heart { 0% { transform: rotate(var(--r)) scale(0); } 25% { transform: rotate(var(--r)) scale(1.2); } 40% { transform: rotate(var(--r)) scale(1); opacity: 1; } 100% { transform: rotate(var(--r)) translateY(-30px) scale(1); opacity: 0; } }
+.bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: 13px; } .bar span { color: #71717A; } .bar b { font-variant-numeric: tabular-nums; }
+.like { border: 0; background: none; font-size: 24px; line-height: 1; color: #18181B; cursor: pointer; padding: 0; }
+.like.on { color: #EF4444; animation: pop .4s cubic-bezier(.34,1.6,.64,1); } @keyframes pop { 50% { transform: scale(1.35); } }
+</style>
+<script>
+const pic = document.querySelector(".pic"), like = document.querySelector(".like"), num = document.querySelector(".bar b"); let n = 1024, last = 0, liked = false;
+const setLike = (v) => { liked = v; n += v ? 1 : -1; num.textContent = n.toLocaleString(); like.textContent = v ? "♥" : "♡"; like.classList.toggle("on", v); };
+const burst = (x, y) => { const h = document.createElement("i"); h.className = "heart"; h.textContent = "♥"; h.style.left = x + "px"; h.style.top = y + "px"; h.style.setProperty("--r", (Math.random() * 30 - 15) + "deg"); pic.append(h); setTimeout(() => h.remove(), 800); };
+pic.addEventListener("click", (e) => {
+  const now = Date.now(), r = pic.getBoundingClientRect();
+  if (now - last < 300) { burst(e.clientX - r.left, e.clientY - r.top); if (!liked) setLike(true); last = 0; } else last = now;
+});
+pic.addEventListener("dblclick", (e) => e.preventDefault());
+like.addEventListener("click", () => setLike(!liked));
+setTimeout(() => { const r = pic.getBoundingClientRect(); burst(r.width / 2, r.height / 2); if (!liked) setLike(true); }, 900);
+</script>

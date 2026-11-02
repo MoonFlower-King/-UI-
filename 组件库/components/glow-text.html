@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Glow Text", "zh": "发光文字",
+  "lead": "给文字叠几层同色的柔光阴影，像霓虹灯或月光一样从字里透出来。深色背景上效果最好，加一点缓慢的明暗呼吸会更像真的灯。",
+  "vague": ["霓虹灯字", "文字发光"],
+  "terms": ["Glow Text", "Neon 霓虹", "text-shadow 文字阴影", "Flicker 闪烁"],
+  "prompt": "深色背景 #0B1426 上做 Glow Text：文字颜色 #FFF6D5，叠 3 层 text-shadow（0 0 4px、0 0 12px、0 0 32px 暖金 #FDBA74，透明度递减）；整体 3s ease-in-out 呼吸（亮度 0.85↔1）；第二行做霓虹风格品牌色 #FA8C16，偶尔快速闪烁两下像接触不良的灯管。"
+}
+-->
+<div class="gt">
+  <h2 class="moon">江上明月</h2>
+  <h3 class="neon">OPEN · 营业中</h3>
+</div>
+
+<style>
+.gt { width: 320px; padding: 34px 0; border-radius: 18px; background: radial-gradient(circle at 50% 30%, #1E3A5F, #0B1426 70%); text-align: center; display: grid; gap: 14px; }
+.moon { margin: 0; font: 600 34px "Songti SC", Georgia, serif; letter-spacing: .15em; color: #FFF6D5; text-shadow: 0 0 4px rgba(253,186,116,.9), 0 0 12px rgba(253,186,116,.6), 0 0 32px rgba(253,186,116,.4); animation: breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { filter: brightness(.82); } }
+.neon { margin: 0; font: 600 15px ui-monospace, Menlo, monospace; letter-spacing: .2em; color: #FFD8A8; text-shadow: 0 0 3px #FA8C16, 0 0 10px #FA8C16, 0 0 24px rgba(250,140,22,.6); animation: flicker 4s linear infinite; }
+@keyframes flicker { 0%, 70%, 74%, 78%, 100% { opacity: 1; } 72%, 76% { opacity: .35; text-shadow: none; } }
+</style>

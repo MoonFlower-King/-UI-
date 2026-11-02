@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Container Query", "zh": "容器查询",
+  "lead": "传统响应式看的是“屏幕多宽”，容器查询看的是“这个组件所在的格子多宽”。同一张卡片放在宽栏里横着排，放进窄侧栏里自动竖着排，组件自己会适应。拖动滑块改变容器宽度试试。",
+  "vague": ["同一个组件放不同位置要不同样子", "卡片在侧栏里挤成一团"],
+  "terms": ["Container Query", "@container", "Intrinsic Layout 内在布局", "Component-level Responsive"],
+  "prompt": "卡片改用 Container Query：外层设 container-type: inline-size；容器宽 ≥ 360px 时图片在左（120px）、文字在右横排；< 360px 时图片在上、文字在下竖排；< 220px 时隐藏简介只留标题和价格；不使用 @media 屏幕断点。"
+}
+-->
+<div class="cq">
+  <div class="box"><div class="card"><div class="pic"></div><div class="txt"><b>月光马克杯</b><p>手工釉色，350ml，适合夜里写代码时用。</p><em>¥69</em></div></div></div>
+  <label>容器宽度 <input type="range" min="160" max="400" value="400"><span>400px</span></label>
+</div>
+
+<style>
+.cq { display: grid; gap: 12px; justify-items: center; width: 420px; }
+.box { container-type: inline-size; width: 400px; padding: 8px; border: 1.5px dashed #FDBA74; border-radius: 14px; box-sizing: border-box; transition: width .1s; }
+.card { display: grid; grid-template-columns: 1fr; gap: 10px; background: #fff; border-radius: 12px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.pic { height: 80px; border-radius: 8px; background: radial-gradient(circle at 50% 55%, #fff 0 22%, transparent 23%), #F5EFE6; }
+b { font-size: 14px; } p { margin: 4px 0; font-size: 12px; color: #71717A; line-height: 1.5; } em { font-style: normal; font-weight: 700; color: #FA8C16; }
+@container (min-width: 300px) { .card { grid-template-columns: 110px 1fr; align-items: center; } .pic { height: 90px; } }
+@container (max-width: 200px) { p { display: none; } }
+label { display: flex; gap: 8px; align-items: center; font-size: 12px; color: #71717A; } input { accent-color: #FA8C16; } span { width: 44px; font-variant-numeric: tabular-nums; }
+</style>
+<script>
+const box = document.querySelector(".box"), r = document.querySelector("input"), out = document.querySelector("label span");
+r.addEventListener("input", () => { box.style.width = r.value + "px"; out.textContent = r.value + "px"; });
+</script>

@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Card Lift", "zh": "卡片悬浮抬起",
+  "lead": "鼠标移到卡片上，卡片往上浮几像素、阴影变大变柔，像被轻轻拿起来。是最常用也最不出错的卡片悬停效果，告诉用户“这张可以点”。",
+  "vague": ["卡片鼠标放上去要有反应", "卡片太死板"],
+  "terms": ["Hover Lift", "Elevation 层级", "Shadow Transition 阴影过渡", "Affordance 可点暗示"],
+  "prompt": "卡片加 Hover Lift：悬停时 translateY(-6px)，阴影从 0 1px 2px rgba(0,0,0,.06) 过渡到 0 16px 32px rgba(0,0,0,.12)，250ms cubic-bezier(.2,.8,.2,1)；同时卡片内的箭头图标右移 4px、标题变品牌色；按下时回落到 -2px。只用 transform 和 box-shadow，不改宽高。"
+}
+-->
+<div class="cards">
+  <a class="c" href="#"><i style="background:#FFF4E6">◐</i><b>配色指南</b><span>9 个色彩术语</span><em>→</em></a>
+  <a class="c" href="#"><i style="background:#EFF6FF">✦</i><b>动效节奏</b><span>17 个动效术语</span><em>→</em></a>
+</div>
+
+<style>
+.cards { display: grid; grid-template-columns: repeat(2, 150px); gap: 14px; }
+.c { position: relative; display: grid; gap: 4px; padding: 16px; background: #fff; border-radius: 16px; text-decoration: none; color: #18181B; border: 1px solid #F0F0F2;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s cubic-bezier(.2,.8,.2,1); }
+.c:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(0,0,0,.12); }
+.c:active { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,.1); }
+.c i { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-style: normal; color: #FA8C16; margin-bottom: 8px; }
+.c b { font-size: 15px; transition: color .2s; } .c:hover b { color: #FA8C16; }
+.c span { font-size: 12px; color: #71717A; }
+.c em { position: absolute; right: 16px; top: 18px; font-style: normal; color: #A1A1AA; transition: transform .25s; } .c:hover em { transform: translateX(4px); color: #FA8C16; }
+</style>

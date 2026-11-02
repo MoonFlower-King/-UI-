@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Pinch to Zoom", "zh": "双指缩放",
+  "lead": "两根手指在图片上张开就放大、捏合就缩小，放大后单指可以拖着看细节，松手时自动回弹到合理范围。电脑上用滚轮或拖动右边的缩放条演示同样效果。",
+  "vague": ["图片能放大看", "手势缩放"],
+  "terms": ["Pinch to Zoom", "Pan 平移", "Rubber Band 回弹", "Zoom Level 缩放倍数"],
+  "prompt": "图片查看器支持 Pinch to Zoom：双指张合缩放 1×–4×，以两指中点为缩放中心；放大后单指拖动平移，拖出边界时有橡皮筋阻力，松手 300ms 回弹到边界内；缩放小于 1× 松手回弹到 1×；双击在 1× 与 2× 间切换；右下角显示当前倍数“2.0×”。"
+}
+-->
+<div class="pz">
+  <div class="view"><div class="img"><i class="moon"></i><i class="boat"></i></div><span class="z">1.0×</span></div>
+  <label>缩放 <input type="range" min="1" max="4" step=".1" value="1"></label>
+</div>
+
+<style>
+.pz { display: grid; gap: 10px; justify-items: center; }
+.view { position: relative; width: 280px; height: 190px; border-radius: 16px; overflow: hidden; background: #0B1426; touch-action: none; cursor: grab; }
+.img { position: absolute; inset: 0; background: linear-gradient(transparent 62%, #13243D 62%), linear-gradient(#0B1426, #1E3A5F); transform-origin: 0 0; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.img.drag { transition: none; }
+.moon { position: absolute; left: 180px; top: 30px; width: 34px; height: 34px; border-radius: 50%; background: #FFF6D5; box-shadow: 0 0 30px #FDE68A; }
+.boat { position: absolute; left: 80px; top: 108px; width: 36px; height: 8px; border-radius: 0 0 14px 14px; background: #FA8C16; } .boat::before { content: ""; position: absolute; left: 14px; bottom: 8px; border: 10px solid transparent; border-bottom: 16px solid #FDE68A; border-top: 0; }
+.z { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.5); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+label { font-size: 12px; color: #71717A; display: flex; gap: 8px; align-items: center; } input { accent-color: #FA8C16; width: 160px; }
+</style>
+<script>
+const view = document.querySelector(".view"), img = document.querySelector(".img"), z = document.querySelector(".z"), range = document.querySelector("input");
+let s = 1, x = 0, y = 0; const W = 280, H = 190;
+const clamp = () => { s = Math.min(4, Math.max(1, s)); x = Math.min(0, Math.max(W - W * s, x)); y = Math.min(0, Math.max(H - H * s, y)); };
+const paint = () => { img.style.transform = `translate(${x}px,${y}px) scale(${s})`; z.textContent = s.toFixed(1) + "×"; range.value = s; };
+const zoomAt = (ns, cx, cy) => { x = cx - (cx - x) * ns / s; y = cy - (cy - y) * ns / s; s = ns; clamp(); paint(); };
+range.addEventListener("input", () => zoomAt(+range.value, W * .64, H * .3));
+view.addEventListener("wheel", (e) => { e.preventDefault(); const r = view.getBoundingClientRect(); zoomAt(s * (e.deltaY < 0 ? 1.15 : .87), e.clientX - r.left, e.clientY - r.top); }, { passive: false });
+view.addEventListener("dblclick", (e) => { const r = view.getBoundingClientRect(); zoomAt(s > 1.5 ? 1 : 2, e.clientX - r.left, e.clientY - r.top); });
+const pts = new Map(); let last;
+view.addEventListener("pointerdown", (e) => { pts.set(e.pointerId, e); img.classList.add("drag"); last = null; });
+view.addEventListener("pointermove", (e) => {
+  if (!pts.has(e.pointerId)) return; const prev = pts.get(e.pointerId); pts.set(e.pointerId, e);
+  if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); if (last) { const r = view.getBoundingClientRect(); zoomAt(s * d / last, (a.clientX + b.clientX) / 2 - r.left, (a.clientY + b.clientY) / 2 - r.top); } last = d; }
+  else { x += e.clientX - prev.clientX; y += e.clientY - prev.clientY; img.style.transform = `translate(${x}px,${y}px) scale(${s})`; }
+});
+addEventListener("pointerup", (e) => { pts.delete(e.pointerId); if (!pts.size) { img.classList.remove("drag"); clamp(); paint(); } });
+</script>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Outline Text", "zh": "描边空心字",
+  "lead": "只留文字的轮廓、中间镂空，常和实心字叠在一起做大标题，显得有层次又不压人。悬停时空心字可以被颜色从左到右“灌满”。",
+  "vague": ["空心字", "镂空大标题"],
+  "terms": ["Outline Text", "Text Stroke 文字描边", "Hollow Type 空心字", "Fill on Hover 悬停填充"],
+  "prompt": "大标题用 Outline Text：72px 粗体，-webkit-text-stroke 1.5px 深色、填充透明，叠在一行实心同字号文字下方形成层次；悬停时用 background-clip: text 让品牌色从左到右填满空心字（600ms ease-out）；描边颜色在深色背景下改为 rgba(255,255,255,.6)。"
+}
+-->
+<div class="ot">
+  <p class="solid">MOON</p>
+  <p class="hollow" data-t="LIGHT">LIGHT</p>
+  <p class="hollow" data-t="RIVER">RIVER</p>
+</div>
+
+<style>
+.ot { display: grid; justify-items: center; line-height: .95; }
+.ot p { margin: 0; font: 900 64px/1 "Arial Black", Impact, -apple-system, sans-serif; letter-spacing: .02em; }
+.solid { color: #18181B; }
+.hollow { position: relative; color: transparent; -webkit-text-stroke: 1.5px #18181B; cursor: default; }
+.hollow::after { content: attr(data-t); position: absolute; inset: 0; color: #FA8C16; -webkit-text-stroke: 0; clip-path: inset(0 100% 0 0); transition: clip-path .6s ease-out; }
+.hollow:hover::after { clip-path: inset(0 0 0 0); }
+</style>
