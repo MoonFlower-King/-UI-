@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Floating Pill Navbar", "zh": "悬浮胶囊导航",
+  "lead": "导航栏不再贴满顶部，而是缩成一颗圆润的胶囊浮在页面上方，背景半透明磨砂，当前项有一块会滑动的高亮底。显得轻巧、现代，是近几年产品官网的流行做法。",
+  "vague": ["导航栏太笨重", "想要那种悬浮的导航"],
+  "terms": ["Pill Navbar", "Floating Nav", "Sliding Indicator 滑动指示"],
+  "prompt": "顶部用 Floating Pill Navbar：距顶 16px 居中悬浮，圆角 999px，背景 rgba(255,255,255,.7) + backdrop-filter: blur(12px)，1px 半透明描边和柔和阴影；当前项下方有一块深色胶囊底随点击/悬停滑动（300ms spring），文字反白；向下滚动时导航缩小 10%，向上滚动恢复。"
+}
+-->
+<div class="page">
+  <nav class="pill"><i class="ind"></i><a class="on">首页</a><a>组件</a><a>案例</a><a>关于</a></nav>
+  <div class="bg"><span></span></div>
+</div>
+
+<style>
+.page { position: relative; width: 380px; height: 220px; border-radius: 14px; overflow: hidden; background: linear-gradient(160deg, #FFE9CC, #FFD1DC 50%, #D6E4FF); }
+.bg span { position: absolute; left: 60%; top: 50%; width: 120px; height: 120px; border-radius: 50%; background: #FA8C16; filter: blur(30px); opacity: .5; }
+.pill { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; padding: 5px; border-radius: 999px; background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.8); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+.pill a { position: relative; z-index: 1; padding: 7px 14px; border-radius: 999px; font-size: 13px; color: #52525B; white-space: nowrap; cursor: pointer; transition: color .25s; }
+.pill a.on { color: #fff; }
+.ind { position: absolute; top: 5px; height: calc(100% - 10px); border-radius: 999px; background: #18181B; transition: left .3s cubic-bezier(.34, 1.4, .64, 1), width .3s cubic-bezier(.34, 1.4, .64, 1); }
+</style>
+
+<script>
+const links = [...document.querySelectorAll(".pill a")], ind = document.querySelector(".ind");
+const move = (a) => { ind.style.left = a.offsetLeft + "px"; ind.style.width = a.offsetWidth + "px"; };
+links.forEach((a) => a.addEventListener("click", () => { links.forEach((x) => x.classList.toggle("on", x === a)); move(a); }));
+move(links[0]);
+</script>

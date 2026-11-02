@@ -19,7 +19,11 @@
       "asymmetrical-grid",
       "f-pattern",
       "full-bleed",
-      "sticky-stack"
+      "sticky-stack",
+      "rule-of-thirds",
+      "golden-ratio",
+      "gutter",
+      "sticky-sidebar"
     ]
   },
   {
@@ -36,7 +40,10 @@
       "display-font",
       "truncation",
       "drop-cap",
-      "tabular-nums"
+      "tabular-nums",
+      "text-balance",
+      "vertical-text",
+      "pull-quote"
     ]
   },
   {
@@ -56,7 +63,10 @@
       "glow-text",
       "wavy-text",
       "text-mask",
-      "char-hover"
+      "char-hover",
+      "line-reveal",
+      "strike-through",
+      "shiny-text"
     ]
   },
   {
@@ -75,7 +85,10 @@
       "monochrome",
       "tonal-palette",
       "complementary-color",
-      "duotone"
+      "duotone",
+      "tint-shade",
+      "analogous-color",
+      "warm-cool"
     ]
   },
   {
@@ -97,7 +110,10 @@
       "bento-dark-mode",
       "cyberpunk",
       "pixel-art",
-      "editorial"
+      "editorial",
+      "bauhaus",
+      "ink-wash",
+      "memphis"
     ]
   },
   {
@@ -115,7 +131,10 @@
       "iconography",
       "gradient-border",
       "dot-grid-background",
-      "divider"
+      "divider",
+      "colored-shadow",
+      "paper-texture",
+      "pattern-background"
     ]
   },
   {
@@ -153,7 +172,10 @@
       "scroll-progress",
       "kbd-shortcut",
       "avatar-group",
-      "stories-bar"
+      "stories-bar",
+      "pill-nav",
+      "floating-toolbar",
+      "collapsible-sidebar"
     ]
   },
   {
@@ -182,7 +204,11 @@
       "inline-edit",
       "multi-select",
       "input-mask",
-      "signature-pad"
+      "signature-pad",
+      "password-toggle",
+      "time-picker",
+      "radio-cards",
+      "cascader"
     ]
   },
   {
@@ -206,7 +232,10 @@
       "area-chart",
       "description-list",
       "leaderboard",
-      "sortable-table"
+      "sortable-table",
+      "stacked-bar",
+      "funnel-chart",
+      "scatter-plot"
     ]
   },
   {
@@ -227,7 +256,9 @@
       "lightbox",
       "hover-card",
       "popconfirm",
-      "coachmark"
+      "coachmark",
+      "fullscreen-menu",
+      "toast-stack"
     ]
   },
   {
@@ -246,7 +277,9 @@
       "custom-cursor",
       "border-draw",
       "arrow-nudge",
-      "fill-sweep"
+      "fill-sweep",
+      "image-reveal",
+      "icon-swap"
     ]
   },
   {
@@ -262,7 +295,9 @@
       "long-press",
       "double-tap-like",
       "pinch-zoom",
-      "slide-to-confirm"
+      "slide-to-confirm",
+      "drag-to-dismiss",
+      "swipe-tabs"
     ]
   },
   {
@@ -289,7 +324,9 @@
       "success-check",
       "shake-error",
       "copy-feedback",
-      "pulse-dot"
+      "pulse-dot",
+      "typing-indicator",
+      "upload-progress"
     ]
   },
   {
@@ -316,7 +353,10 @@
       "motion-path",
       "shared-element",
       "icon-morph",
-      "flip-card"
+      "flip-card",
+      "ken-burns",
+      "blob-morph",
+      "curtain-reveal"
     ]
   },
   {
@@ -332,7 +372,8 @@
       "touch-target",
       "hamburger-menu",
       "container-query",
-      "aspect-ratio"
+      "aspect-ratio",
+      "priority-plus"
     ]
   },
   {
@@ -351,7 +392,9 @@
       "fitts-law",
       "gestalt-proximity",
       "affordance",
-      "hicks-law"
+      "hicks-law",
+      "error-prevention",
+      "social-proof"
     ]
   },
   {
@@ -373,7 +416,9 @@
       "notification-center",
       "kanban-board",
       "music-player",
-      "error-404"
+      "error-404",
+      "checkout-page",
+      "blog-article"
     ]
   }
 ]

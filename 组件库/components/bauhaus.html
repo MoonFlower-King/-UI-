@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Bauhaus Style", "zh": "包豪斯风格",
+  "lead": "上世纪 20 年代德国包豪斯学校的设计语言：圆、方、三角这些基本几何形，红黄蓝三原色加黑白，粗体无衬线字，强调“形式服从功能”。今天做海报、品牌页仍然很有力量。",
+  "vague": ["想要几何感的海报", "现代主义那种感觉"],
+  "terms": ["Bauhaus", "Geometric 几何", "Primary Colors 三原色"],
+  "prompt": "落地页改成 Bauhaus 风格：米白底 #F2EBDD，只用正红 #D83A2B、正黄 #F2B705、钴蓝 #1F4E9C 和黑色；用圆、半圆、方块、三角组成不对称构图，标题粗体无衬线、全大写或大字号，元素之间对齐到网格；不要渐变、阴影和圆角。"
+}
+-->
+<div class="poster">
+  <i class="c"></i><i class="sq"></i><i class="tri"></i><i class="half"></i><i class="bar"></i>
+  <h3>FORM<br>FOLLOWS<br>FUNCTION</h3>
+  <small>形式服从功能 · 1919</small>
+</div>
+
+<style>
+.poster { position: relative; width: 220px; height: 300px; background: #F2EBDD; overflow: hidden; font-family: "Helvetica Neue", Arial, sans-serif; }
+.poster i { position: absolute; display: block; }
+.c { width: 120px; height: 120px; border-radius: 50%; background: #D83A2B; right: -30px; top: 24px; animation: spin 8s linear infinite; }
+.sq { width: 70px; height: 70px; background: #1F4E9C; left: 20px; top: 40px; }
+.tri { width: 0; height: 0; border-left: 46px solid transparent; border-right: 46px solid transparent; border-bottom: 80px solid #F2B705; left: 64px; top: 112px; }
+.half { width: 80px; height: 40px; border-radius: 80px 80px 0 0; background: #111; right: 20px; top: 166px; }
+.bar { width: 8px; height: 140px; background: #111; left: 20px; top: 120px; }
+@keyframes spin { 50% { transform: translateY(8px); } }
+h3 { position: absolute; left: 36px; bottom: 30px; margin: 0; font-size: 24px; line-height: .95; font-weight: 900; letter-spacing: -.02em; color: #111; }
+small { position: absolute; left: 36px; bottom: 12px; font-size: 9px; letter-spacing: .1em; color: #111; }
+</style>

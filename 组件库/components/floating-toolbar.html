@@ -1,0 +1,48 @@
+<!--
+{
+  "en": "Floating Toolbar", "zh": "浮动工具条",
+  "lead": "选中一段文字后，旁边立刻浮出一条小工具栏：加粗、高亮、评论、复制。工具出现在你需要它的地方，用完就消失，不占页面空间。",
+  "vague": ["选中文字后弹出工具", "编辑器工具栏太占地方"],
+  "terms": ["Floating Toolbar", "Selection Toolbar", "Contextual Actions 情境操作"],
+  "prompt": "文章编辑器做 Floating Toolbar：用户选中文字后，在选区上方居中 8px 处弹出深色 #18181B 圆角 10px 工具条（加粗 / 斜体 / 高亮 / 评论），带小三角指向选区，150ms 缩放淡入；点工具立即作用于选区；取消选择或滚动时收起；手机上改为贴在屏幕底部。"
+}
+-->
+<div class="doc">
+  <p>江月 UI 收集了常用的界面术语。<span class="hint">试着用鼠标选中这句话里的几个字</span>，工具条就会出现在旁边。</p>
+  <div class="bar" hidden><button data-c="b"><b>B</b></button><button data-c="i"><i>I</i></button><button data-c="mark">✎</button><span></span><button data-c="note">💬</button></div>
+</div>
+
+<style>
+.doc { position: relative; width: 320px; padding: 24px 20px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+p { margin: 0; font-size: 15px; line-height: 2; color: #3F3F46; }
+.hint { color: #18181B; font-weight: 600; }
+mark { background: #FFE4C4; color: inherit; border-radius: 2px; }
+.bar { position: absolute; display: flex; align-items: center; gap: 2px; padding: 4px; background: #18181B; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,.2); transform: translateX(-50%); animation: pop .15s ease-out; }
+.bar::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px; margin-left: -4px; background: #18181B; transform: rotate(45deg); }
+@keyframes pop { from { opacity: 0; transform: translateX(-50%) scale(.9); } }
+.bar button { width: 30px; height: 28px; border: 0; border-radius: 6px; background: none; color: #fff; font-size: 14px; cursor: pointer; }
+.bar button:hover { background: #3F3F46; }
+.bar span { width: 1px; height: 16px; background: #3F3F46; margin: 0 2px; }
+</style>
+
+<script>
+const doc = document.querySelector(".doc"), bar = doc.querySelector(".bar");
+let range = null;
+function place() {
+  const s = getSelection();
+  if (!s.rangeCount || s.isCollapsed || !doc.contains(s.anchorNode)) { bar.hidden = true; return; }
+  range = s.getRangeAt(0);
+  const r = range.getBoundingClientRect(), d = doc.getBoundingClientRect();
+  bar.hidden = false; bar.style.left = r.left + r.width / 2 - d.left + "px"; bar.style.top = r.top - d.top - 44 + "px";
+}
+document.addEventListener("selectionchange", place);
+bar.addEventListener("mousedown", (e) => e.preventDefault()); // 点工具条时不要丢掉选区
+bar.addEventListener("click", (e) => {
+  const c = e.target.closest("button")?.dataset.c; if (!c || !range) return;
+  const tag = { b: "strong", i: "em", mark: "mark", note: "mark" }[c], el = document.createElement(tag);
+  try { range.surroundContents(el); } catch { return; } // 跨标签的选区这里简单跳过
+  getSelection().removeAllRanges(); bar.hidden = true;
+});
+// 演示：一开始自动选中提示句
+const h = doc.querySelector(".hint"), r0 = document.createRange(); r0.selectNodeContents(h); getSelection().removeAllRanges(); getSelection().addRange(r0);
+</script>

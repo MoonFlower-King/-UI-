@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Line Mask Reveal", "zh": "逐行遮罩浮现",
+  "lead": "标题一行一行从“看不见的缝”里升上来，下半截先被遮住，然后整行滑出。比单纯淡入更利落，是高端品牌官网最常见的开场。",
+  "vague": ["标题出场想高级点", "字从下面升上来"],
+  "terms": ["Line Reveal", "Mask Reveal 遮罩显现", "Staggered 错峰"],
+  "prompt": "首屏标题用 Line Mask Reveal：每行包一层 overflow: hidden 的容器，内部文字从 translateY(105%) 升到 0（700ms cubic-bezier(.2,.7,.2,1)），每行延迟 120ms；最后一行完成后副标题淡入；开启 prefers-reduced-motion 时直接显示。"
+}
+-->
+<div class="hero">
+  <h2><span><i>夜色落在江面</i></span><span><i>月光替你说出</i></span><span><i class="em">那个词</i></span></h2>
+  <p>江月 UI · 给 AI 描述界面的词典</p>
+  <button>重播</button>
+</div>
+
+<style>
+.hero { text-align: left; }
+h2 { margin: 0; font: 800 36px/1.2 "Songti SC", "Noto Serif SC", serif; color: #18181B; }
+h2 span { display: block; overflow: hidden; padding-bottom: .06em; }
+h2 i { display: inline-block; font-style: normal; transform: translateY(105%); animation: rise .7s cubic-bezier(.2, .7, .2, 1) forwards; }
+h2 span:nth-child(2) i { animation-delay: .12s; } h2 span:nth-child(3) i { animation-delay: .24s; }
+.em { color: #FA8C16; }
+@keyframes rise { to { transform: none; } }
+p { margin: 14px 0 0; font-size: 13px; color: #71717A; opacity: 0; animation: fade .5s .7s forwards; } @keyframes fade { to { opacity: 1; } }
+button { margin-top: 14px; border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { h2 i, p { animation: none; transform: none; opacity: 1; } }
+</style>
+
+<script>
+document.querySelector("button").addEventListener("click", () => {
+  document.querySelectorAll("h2 i, p").forEach((el) => { el.style.animation = "none"; el.offsetWidth; el.style.animation = ""; });
+});
+</script>

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Analogous Colors", "zh": "邻近色配色",
+  "lead": "在色轮上挑挨在一起的两三种颜色，比如橘、琥珀、珊瑚。它们天生和谐，配出来温柔统一，很难出错，适合想要舒服、不刺激的界面。",
+  "vague": ["配色要和谐不刺眼", "几个颜色怎么搭"],
+  "terms": ["Analogous Colors", "Color Wheel 色轮", "Harmony 和谐"],
+  "prompt": "插画和数据图用 Analogous 邻近色：以江月橘 #FA8C16（色相 30°）为中心，取色相 ±30° 的珊瑚红 #F4664A 与琥珀黄 #F5B800，饱和度和亮度相近；一个当主色占大面积，另外两个点缀；需要强调时再引入一个互补色。"
+}
+-->
+<div class="wrap">
+  <svg viewBox="-60 -60 120 120" class="wheel"></svg>
+  <div class="demo"><span style="background:#F4664A"></span><span style="background:#FA8C16"></span><span style="background:#F5B800"></span><p>相邻 ±30°，温暖统一</p></div>
+</div>
+
+<style>
+.wrap { display: flex; align-items: center; gap: 22px; }
+.wheel { width: 150px; overflow: visible; }
+.wheel .arc { transition: transform .3s; transform-origin: center; }
+.wheel .pick { stroke: #18181B; stroke-width: 2; }
+.demo { display: grid; grid-template-columns: repeat(3, 44px); gap: 6px; }
+.demo span { height: 70px; border-radius: 10px; }
+.demo span:nth-child(2) { height: 90px; margin-top: -10px; }
+.demo p { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12px; color: #71717A; }
+</style>
+
+<script>
+const svg = document.querySelector(".wheel"), N = 12;
+const seg = (i) => { const a0 = ((i * 30 - 15 - 90) * Math.PI) / 180, a1 = ((i * 30 + 15 - 90) * Math.PI) / 180, R = 55, r = 30;
+  const p = (a, rr) => `${(rr * Math.cos(a)).toFixed(2)} ${(rr * Math.sin(a)).toFixed(2)}`;
+  return `M${p(a0, R)} A${R} ${R} 0 0 1 ${p(a1, R)} L${p(a1, r)} A${r} ${r} 0 0 0 ${p(a0, r)}Z`; };
+svg.innerHTML = Array.from({ length: N }, (_, i) => `<path class="arc${[0, 1, 2].includes(i) ? " pick" : ""}" d="${seg(i)}" fill="hsl(${i * 30 + 0} 85% 58%)" opacity="${[0, 1, 2].includes(i) ? 1 : .25}"/>`).join("")
+  + '<text x="0" y="4" text-anchor="middle" font-size="9" fill="#71717A">邻近色</text>';
+</script>

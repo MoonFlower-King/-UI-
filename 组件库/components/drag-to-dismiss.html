@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Drag to Dismiss", "zh": "下拉关闭",
+  "lead": "全屏打开的图片或面板，手指按住往下一拉就能关掉，拉的过程中背景逐渐变透明、图片跟着缩小。比去找右上角的 × 自然得多，手机相册都这么做。",
+  "vague": ["关闭按钮不好点", "往下拉就关掉"],
+  "terms": ["Drag to Dismiss", "Swipe Down", "Interactive Transition 可交互转场"],
+  "prompt": "图片查看器支持 Drag to Dismiss：按住向下拖动时图片跟手位移并按距离缩小（最小 0.8）、背景黑色透明度从 1 降到 0.3；松手时拖动超过 120px 或速度大于 0.5px/ms 就关闭（向下滑出 200ms），否则弹回原位（300ms spring）；同时保留 × 按钮和 Esc。"
+}
+-->
+<div class="phone">
+  <div class="thumbs"><button class="th" aria-label="查看大图"></button><i></i><i></i></div>
+  <div class="viewer" hidden><div class="photo"></div><small>按住往下拉关闭</small></div>
+</div>
+
+<style>
+.phone { position: relative; width: 220px; height: 320px; border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid #E4E4E7; }
+.thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 10px; }
+.thumbs > * { aspect-ratio: 1; border-radius: 6px; background: #F4F4F5; border: 0; }
+.th, .photo { background: linear-gradient(160deg, #1E3A5F, #0F1218 60%, #FA8C16); }
+.th { cursor: zoom-in; }
+.viewer { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,var(--a, 1)); touch-action: none; animation: fade .2s; }
+@keyframes fade { from { background: rgba(0,0,0,0); } }
+.photo { width: 190px; height: 190px; border-radius: 4px; cursor: grab; transform: translateY(var(--y, 0)) scale(var(--s, 1)); }
+.viewer.back .photo { transition: transform .3s cubic-bezier(.34, 1.4, .64, 1); } .viewer.back { transition: background .3s; }
+.viewer.out .photo { transition: transform .2s ease-in; transform: translateY(340px) scale(.8); } .viewer.out { transition: background .2s; --a: 0; }
+.viewer small { position: absolute; bottom: 18px; font-size: 11px; color: rgba(255,255,255,.6); }
+</style>
+
+<script>
+const v = document.querySelector(".viewer"), photo = v.querySelector(".photo");
+let y0 = null, t0 = 0, dy = 0;
+document.querySelector(".th").addEventListener("click", () => { v.className = "viewer"; v.hidden = false; set(0); });
+const set = (d) => { dy = Math.max(0, d); v.style.setProperty("--y", dy + "px"); v.style.setProperty("--s", Math.max(.8, 1 - dy / 800)); v.style.setProperty("--a", Math.max(.3, 1 - dy / 300)); };
+photo.addEventListener("pointerdown", (e) => { y0 = e.clientY; t0 = performance.now(); v.classList.remove("back"); photo.setPointerCapture(e.pointerId); });
+photo.addEventListener("pointermove", (e) => { if (y0 !== null) set(e.clientY - y0); });
+photo.addEventListener("pointerup", () => {
+  if (y0 === null) return; y0 = null;
+  const speed = dy / (performance.now() - t0);
+  if (dy > 120 || speed > .5) { v.classList.add("out"); setTimeout(() => (v.hidden = true), 220); } else { v.classList.add("back"); set(0); }
+});
+document.addEventListener("keydown", (e) => e.key === "Escape" && (v.hidden = true));
+</script>

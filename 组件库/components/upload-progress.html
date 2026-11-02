@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Upload Progress", "zh": "上传进度",
+  "lead": "上传文件时，每个文件一行：文件名、大小、进度条和百分比，传完变成绿色对勾，失败了给出“重试”。让人清楚知道还要等多久、哪个出了问题。",
+  "vague": ["上传不知道进度", "传了半天没反应"],
+  "terms": ["Upload Progress", "Determinate Progress 确定进度", "Retry 重试"],
+  "prompt": "上传列表做 Upload Progress：每个文件一行（文件类型图标 + 文件名 + 已传/总大小 + 右侧百分比），下方 4px 圆角进度条（江月橘 #FA8C16）；完成后进度条变绿并淡出，百分比换成绿色 ✓；失败时进度条变红，右侧出现“重试”按钮；可以单个取消（×）。"
+}
+-->
+<ul class="up"></ul>
+
+<style>
+.up { width: 300px; margin: 0; padding: 8px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; display: grid; gap: 4px; }
+li { display: grid; grid-template-columns: 32px 1fr auto; gap: 4px 10px; align-items: center; padding: 8px; border-radius: 10px; }
+.ic { grid-row: span 2; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; font: 700 9px ui-monospace, Menlo, monospace; color: #fff; }
+.nm { font-size: 13px; color: #18181B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .nm small { display: block; font-size: 11px; color: #A1A1AA; }
+.st { font-size: 12px; font-variant-numeric: tabular-nums; color: #52525B; }
+.st button { border: 0; background: #FEF2F2; color: #EF4444; border-radius: 6px; padding: 3px 8px; font-size: 12px; cursor: pointer; }
+.bar { grid-column: 2 / 4; height: 4px; border-radius: 4px; background: #F4F4F5; overflow: hidden; transition: opacity .4s .6s; }
+.bar i { display: block; height: 100%; width: 0; background: #FA8C16; border-radius: 4px; transition: width .2s linear, background .3s; }
+li.ok .bar i { background: #22C55E; } li.ok .bar { opacity: 0; } li.ok .st { color: #22C55E; font-weight: 700; }
+li.err .bar i { background: #EF4444; }
+</style>
+
+<script>
+const files = [["封面.png", 2.4, "#8B5CF6", "PNG"], ["演示.mp4", 18.6, "#FA8C16", "MP4"], ["文案.pdf", 0.8, "#EF4444", "PDF", true]];
+const ul = document.querySelector(".up");
+function start(li, [, size, , , fail]) {
+  li.className = ""; let p = 0;
+  const bar = li.querySelector(".bar i"), st = li.querySelector(".st"), sm = li.querySelector("small");
+  const t = setInterval(() => {
+    p = Math.min(100, p + Math.random() * (40 / size + 4));
+    if (fail && p > 62) { clearInterval(t); li.className = "err"; st.innerHTML = "<button>重试</button>"; st.firstChild.onclick = () => start(li, [0, size]); return; }
+    bar.style.width = p + "%"; st.textContent = Math.round(p) + "%"; sm.textContent = `${(size * p / 100).toFixed(1)} / ${size} MB`;
+    if (p >= 100) { clearInterval(t); li.className = "ok"; st.textContent = "✓"; }
+  }, 160);
+}
+files.forEach((f) => {
+  const li = document.createElement("li");
+  li.innerHTML = `<span class="ic" style="background:${f[2]}">${f[3]}</span><span class="nm">${f[0]}<small></small></span><span class="st">0%</span><span class="bar"><i></i></span>`;
+  ul.append(li); start(li, f);
+});
+</script>

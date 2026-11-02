@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Blog Article Page", "zh": "文章页",
+  "lead": "一篇好读的长文页面：顶部阅读进度条、作者信息和阅读时长，正文窄栏、首字下沉、大图通栏、引文突出。把排版类的词组合起来，就是一页舒服的文章。",
+  "vague": ["文章页读起来累", "博客页面怎么排"],
+  "terms": ["Article Layout", "Measure 行长", "Reading Progress", "Pull Quote", "Drop Cap"],
+  "prompt": "做一个博客文章页：顶部 3px 江月橘阅读进度条；标题 28px 衬线、下方作者头像 + 名字 + “6 分钟阅读”；正文限宽 65ch、16px、行高 1.8，第一段首字下沉；中间一张通栏大图带图注；一段 Pull Quote（左侧橘色竖线、衬线斜体）；文末标签和“下一篇”卡片。"
+}
+-->
+<div class="page">
+  <i class="prog"></i>
+  <article>
+    <h1>为什么你的界面“不高级”</h1>
+    <div class="by"><span class="av">月</span><b>江小月</b><small>· 6 分钟阅读</small></div>
+    <p class="first">很多时候，问题不在颜色和字体，而在于没有主次。所有东西都一样大、一样亮，眼睛就不知道先看哪里。</p>
+    <figure><div class="img"></div><figcaption>留白让月亮成为唯一的主角</figcaption></figure>
+    <p>试着把最重要的一件事放大，其余的统统收小、变淡。</p>
+    <blockquote>高级感，往往来自克制。</blockquote>
+    <p>下次对 AI 说“不高级”之前，先想想：是不是层次没拉开？</p>
+    <div class="tags"><span>视觉层次</span><span>留白</span></div>
+    <a class="next"><small>下一篇</small><b>留白不是浪费 →</b></a>
+  </article>
+</div>
+
+<style>
+.page { position: relative; width: 340px; height: 290px; overflow-y: auto; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; scrollbar-width: none; }
+.prog { position: sticky; top: 0; display: block; height: 3px; background: #FA8C16; transform-origin: left; transform: scaleX(0); z-index: 1; }
+article { display: grid; grid-template-columns: 1fr min(260px, 100% - 32px) 1fr; padding: 14px 0 20px; }
+article > * { grid-column: 2; }
+h1 { margin: 0; font: 700 22px/1.35 "Songti SC", "Noto Serif SC", serif; color: #18181B; text-wrap: balance; }
+.by { display: flex; align-items: center; gap: 6px; margin: 8px 0 14px; font-size: 12px; } .av { width: 22px; height: 22px; border-radius: 50%; background: #121722; color: #FFD58A; display: grid; place-items: center; font-size: 11px; } small { color: #A1A1AA; }
+p { margin: 0 0 12px; font-size: 13px; line-height: 1.85; color: #3F3F46; }
+.first::first-letter { float: left; font: 800 40px/.9 "Songti SC", serif; color: #FA8C16; margin: 4px 6px 0 0; }
+figure { grid-column: 1 / -1; margin: 4px 0 14px; } .img { height: 110px; background: radial-gradient(circle at 72% 40%, #FFD58A 0 14px, transparent 16px), linear-gradient(180deg, #24365A, #0F1218); }
+figcaption { margin-top: 6px; text-align: center; font-size: 11px; color: #A1A1AA; }
+blockquote { margin: 4px 0 14px; padding-left: 12px; border-left: 3px solid #FA8C16; font: italic 600 17px/1.5 "Songti SC", serif; color: #18181B; }
+.tags { display: flex; gap: 6px; margin-bottom: 12px; } .tags span { padding: 2px 8px; border-radius: 999px; background: #F4F4F5; font-size: 11px; color: #52525B; }
+.next { display: grid; padding: 10px 12px; border: 1px solid #E4E4E7; border-radius: 10px; cursor: pointer; } .next b { font-size: 13px; color: #18181B; }
+.next:hover { border-color: #FA8C16; }
+</style>
+
+<script>
+const page = document.querySelector(".page"), prog = document.querySelector(".prog");
+page.addEventListener("scroll", () => (prog.style.transform = `scaleX(${page.scrollTop / (page.scrollHeight - page.clientHeight)})`), { passive: true });
+</script>

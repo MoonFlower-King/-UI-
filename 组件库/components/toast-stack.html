@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Stacked Toasts", "zh": "堆叠通知",
+  "lead": "连续来好几条通知时，不是一条条往上排满屏幕，而是像一叠卡片那样压在一起，只露出边缘；鼠标移上去才展开看全部。既不刷屏，又不会漏掉。",
+  "vague": ["通知太多刷屏了", "好几条提示挤在一起"],
+  "terms": ["Toast Stack", "Stacked Notifications", "Expand on Hover"],
+  "prompt": "通知改成 Stacked Toasts：右下角最多叠 3 张，后面的卡片依次缩小 5%、上移 10px、降低透明度，像一叠卡片；新通知从下方弹入把旧的往后推；悬停时整叠展开成间距 8px 的列表（300ms spring）；每条 4 秒后自动消失，悬停时暂停计时。"
+}
+-->
+<button class="add">发一条通知</button>
+<ol class="stack" aria-live="polite"></ol>
+
+<style>
+.add { border: 1px solid #E4E4E7; background: #fff; border-radius: 9px; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+.stack { position: fixed; right: 18px; bottom: 18px; width: 230px; height: 60px; margin: 0; padding: 0; list-style: none; }
+.stack li { position: absolute; right: 0; bottom: 0; width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 12px; background: #fff; border: 1px solid #F0F0F2; box-shadow: 0 8px 20px rgba(0,0,0,.08); font-size: 13px; color: #18181B; display: flex; gap: 8px; align-items: center;
+  transform: translateY(calc(var(--i) * -10px)) scale(calc(1 - var(--i) * .05)); opacity: calc(1 - var(--i) * .25); z-index: calc(10 - var(--i)); transition: transform .3s cubic-bezier(.34, 1.3, .64, 1), opacity .3s; animation: in .3s cubic-bezier(.34, 1.3, .64, 1); }
+.stack li i { width: 8px; height: 8px; border-radius: 50%; background: #FA8C16; flex: none; }
+.stack:hover li { transform: translateY(calc(var(--i) * -54px)); opacity: 1; }
+.stack li[style*="--i:3"], .stack li.out { opacity: 0; }
+@keyframes in { from { transform: translateY(60px); opacity: 0; } }
+</style>
+
+<script>
+const stack = document.querySelector(".stack"), msgs = ["作品已保存", "白露 赞了你的作品", "新增 3 位关注者", "导出完成", "评论有新回复"];
+let n = 0, paused = false;
+stack.addEventListener("mouseenter", () => (paused = true)); stack.addEventListener("mouseleave", () => (paused = false));
+const relayer = () => [...stack.children].reverse().forEach((li, i) => li.style.setProperty("--i", i));
+function push() {
+  const li = document.createElement("li"); li.innerHTML = `<i></i>${msgs[n++ % msgs.length]}`; stack.append(li); relayer();
+  let left = 4000; const t = setInterval(() => { if (!paused) left -= 100; if (left <= 0) { clearInterval(t); li.remove(); relayer(); } }, 100);
+  if (stack.children.length > 4) { stack.firstElementChild.remove(); relayer(); }
+}
+document.querySelector(".add").addEventListener("click", push);
+push(); setTimeout(push, 300); setTimeout(push, 600);
+</script>

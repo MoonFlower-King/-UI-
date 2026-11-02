@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Gutter", "zh": "栅格间距",
+  "lead": "网格里卡片与卡片之间的空隙。间距太小显得挤、太大显得散，而且全站要统一。一般桌面 24px、手机 12–16px。",
+  "vague": ["卡片挤在一起", "间距忽大忽小"],
+  "terms": ["Gutter", "gap", "Spacing Scale 间距体系"],
+  "prompt": "卡片网格统一 Gutter：用 CSS gap 而不是给每张卡片加 margin，桌面 24px、平板 16px、手机 12px；外边距（页面两侧留白）不小于 gutter；所有间距取自 4 的倍数（4/8/12/16/24/32）。"
+}
+-->
+<div class="demo">
+  <input type="range" min="0" max="32" step="4" value="16" aria-label="间距">
+  <div class="g"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p>gap: <b>16px</b></p>
+</div>
+
+<style>
+.demo { width: 320px; display: grid; gap: 10px; }
+input { accent-color: #FA8C16; }
+.g { --gap: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); padding: var(--gap); background: repeating-linear-gradient(45deg, #FFF4E6 0 4px, #FFE4C4 4px 8px); border-radius: 12px; transition: gap .25s, padding .25s; }
+.g i { aspect-ratio: 4 / 3; background: #fff; border: 1px solid #E4E4E7; border-radius: 8px; }
+p { margin: 0; font-size: 12px; color: #71717A; text-align: center; } b { color: #18181B; font-family: ui-monospace, Menlo, monospace; }
+</style>
+
+<script>
+const r = document.querySelector("input"), g = document.querySelector(".g"), b = document.querySelector("b");
+r.addEventListener("input", () => { g.style.setProperty("--gap", r.value + "px"); b.textContent = r.value + "px"; });
+</script>

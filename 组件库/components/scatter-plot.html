@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Scatter Plot", "zh": "散点图",
+  "lead": "每个点代表一条数据，横轴一个指标、纵轴另一个指标，看两者有没有关系。比如“价格越高、评分是不是越高”。点聚成一条斜线就说明有关联。",
+  "vague": ["看两个数据有没有关系", "一堆点的那种图"],
+  "terms": ["Scatter Plot", "Correlation 相关性", "Trend Line 趋势线"],
+  "prompt": "用 Scatter Plot 展示价格与评分：圆点 6px、江月橘 60% 透明（重叠处自然加深），坐标轴 1px #E4E4E7 带刻度；叠一条虚线趋势线（最小二乘拟合）；悬停圆点放大到 9px 并显示名称和两个数值；点按入场顺序依次弹出（每个延迟 20ms）。"
+}
+-->
+<div class="sp">
+  <header><b>价格 vs 评分</b><span class="tip">悬停圆点</span></header>
+  <svg viewBox="0 0 300 180"><g class="ax"></g><line class="trend"/><g class="dots"></g></svg>
+</div>
+
+<style>
+.sp { width: 320px; padding: 14px 16px 8px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+header { display: flex; justify-content: space-between; align-items: baseline; } header b { font-size: 14px; } .tip { font-size: 11px; color: #A1A1AA; }
+svg { width: 100%; display: block; overflow: visible; }
+.ax line { stroke: #E4E4E7; } .ax text { font-size: 9px; fill: #A1A1AA; }
+.trend { stroke: #18181B; stroke-width: 1; stroke-dasharray: 4 3; opacity: .4; }
+.dots circle { fill: #FA8C16; fill-opacity: .6; transition: r .15s; cursor: pointer; transform-box: fill-box; transform-origin: center; animation: pop .3s cubic-bezier(.34, 1.56, .64, 1) both; animation-delay: var(--d); }
+.dots circle:hover { r: 9; fill-opacity: 1; }
+@keyframes pop { from { transform: scale(0); } }
+</style>
+
+<script>
+// 伪随机但固定的数据：价格 20–200，评分大致随价格上升
+let s = 7; const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+const pts = Array.from({ length: 36 }, () => { const p = 20 + rnd() * 180; return [p, Math.min(5, 2.6 + p / 120 + (rnd() - .5) * 1.2)]; });
+const X = (p) => 30 + ((p - 0) / 220) * 260, Y = (r) => 160 - ((r - 2) / 3) * 150;
+document.querySelector(".ax").innerHTML = `<line x1="30" y1="160" x2="290" y2="160"/><line x1="30" y1="10" x2="30" y2="160"/>` +
+  [50, 100, 150, 200].map((v) => `<text x="${X(v)}" y="174" text-anchor="middle">¥${v}</text>`).join("") + [3, 4, 5].map((v) => `<text x="24" y="${Y(v) + 3}" text-anchor="end">${v}</text>`).join("");
+const n = pts.length, mx = pts.reduce((a, p) => a + p[0], 0) / n, my = pts.reduce((a, p) => a + p[1], 0) / n;
+const k = pts.reduce((a, [x, y]) => a + (x - mx) * (y - my), 0) / pts.reduce((a, [x]) => a + (x - mx) ** 2, 0), b = my - k * mx;
+Object.entries({ x1: X(20), y1: Y(k * 20 + b), x2: X(200), y2: Y(k * 200 + b) }).forEach(([a, v]) => document.querySelector(".trend").setAttribute(a, v));
+document.querySelector(".dots").innerHTML = pts.map(([p, r], i) => `<circle cx="${X(p)}" cy="${Y(r)}" r="6" style="--d:${i * 20}ms" data-t="¥${Math.round(p)} · ${r.toFixed(1)} 分"/>`).join("");
+document.querySelector(".dots").addEventListener("mouseover", (e) => { if (e.target.dataset.t) document.querySelector(".tip").textContent = e.target.dataset.t; });
+</script>

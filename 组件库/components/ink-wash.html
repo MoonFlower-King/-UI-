@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Ink Wash Style", "zh": "水墨风",
+  "lead": "借鉴中国水墨画：宣纸般的米白底、浓淡变化的墨色、大片留白、远山淡影，再点一枚朱红印章。适合文化、茶、文旅、节气类产品，东方气质很浓。",
+  "vague": ["想要中国风", "古风但不要土"],
+  "terms": ["Ink Wash 水墨", "Negative Space 留白", "Oriental Aesthetic 东方美学"],
+  "prompt": "页面改成 Ink Wash 水墨风：宣纸米白底 #F6F1E7 叠极淡的纸纹噪点；主色是墨色的 4 个浓淡（#1C1C1C/#4A4A4A/#8C8C8C/#C9C4BA），用 SVG 滤镜（feTurbulence + feDisplacementMap）让远山边缘有晕染感；标题竖排宋体，朱红 #B5332A 方形印章点缀，至少 40% 留白；不要描边卡片和亮色按钮。"
+}
+-->
+<div class="scroll">
+  <svg viewBox="0 0 300 200" class="mt">
+    <defs><filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="9"/><feGaussianBlur stdDeviation=".6"/></filter>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".3" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+    <g filter="url(#ink)">
+      <path d="M0 150 L40 110 L70 125 L110 70 L150 118 L190 92 L230 130 L300 100 V200 H0Z" fill="url(#fade)" style="color:#C9C4BA"/>
+      <path d="M-10 170 L50 128 L90 148 L140 104 L200 150 L250 126 L310 160 V200 H-10Z" fill="url(#fade)" style="color:#8C8C8C"/>
+      <path d="M150 200 L200 160 L240 176 L300 140 V200Z" fill="url(#fade)" style="color:#4A4A4A"/>
+    </g>
+    <circle cx="180" cy="44" r="16" fill="none" stroke="#8C8C8C" stroke-width=".8"/>
+    <path class="bird" d="M60 60 q6 -5 12 0 q6 -5 12 0" fill="none" stroke="#1C1C1C" stroke-width="1.2"/>
+  </svg>
+  <h3>山水有相逢</h3>
+  <span class="seal">江月</span>
+</div>
+
+<style>
+.scroll { position: relative; width: 320px; height: 220px; background: #F6F1E7; overflow: hidden; box-shadow: 0 6px 24px rgba(80,60,30,.12); }
+.scroll::before { content: ""; position: absolute; inset: 0; opacity: .35; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .35 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.mt { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bird { animation: fly 9s linear infinite; } @keyframes fly { from { transform: translate(-40px, 10px); } to { transform: translate(260px, -20px); } }
+h3 { position: absolute; right: 26px; top: 22px; margin: 0; writing-mode: vertical-rl; font: 700 20px "Songti SC", "Noto Serif SC", serif; letter-spacing: .3em; color: #1C1C1C; }
+.seal { position: absolute; right: 22px; top: 150px; writing-mode: vertical-rl; padding: 4px 2px; background: #B5332A; color: #F6F1E7; font: 11px "Songti SC", serif; border-radius: 2px; }
+</style>

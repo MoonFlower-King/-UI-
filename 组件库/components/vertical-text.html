@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Vertical Writing", "zh": "竖排文字",
+  "lead": "让中文从上到下、从右往左竖着排，像古籍、书法和传统海报。用在品牌标题、节气海报、诗词展示上，东方气质一下就出来了。",
+  "vague": ["想要古风排版", "字竖着排"],
+  "terms": ["writing-mode: vertical-rl", "Vertical Typesetting", "text-orientation"],
+  "prompt": "诗词卡片用竖排：writing-mode: vertical-rl，从右往左排列；标题衬线粗体，正文行距 2、字距 0.2em；数字和英文用 text-combine-upright: all 横向嵌入；配一枚江月橘印章（圆角方块、白字竖排）放在左下角。"
+}
+-->
+<div class="poem">
+  <h3>春江花月夜</h3>
+  <p>江天一色无纤尘<br>皎皎空中孤月轮<br>江畔何人初见月<br>江月何年初照人</p>
+  <span class="seal">江月</span>
+</div>
+
+<style>
+.poem { position: relative; writing-mode: vertical-rl; text-orientation: upright; height: 220px; padding: 22px 26px 22px 56px; background: #FBF7EF; border: 1px solid #EDE4D3; border-radius: 6px; box-shadow: 0 6px 18px rgba(120,90,40,.08); font-family: "Songti SC", "Noto Serif SC", "STSong", serif; }
+h3 { margin: 0 0 0 18px; font-size: 22px; letter-spacing: .3em; color: #18181B; }
+p { margin: 0; font-size: 15px; line-height: 2.1; letter-spacing: .25em; color: #3F3F46; }
+.seal { position: absolute; left: 16px; bottom: 16px; width: 22px; height: 40px; display: grid; place-items: center; border-radius: 4px; background: #C2410C; color: #FFF7ED; font-size: 12px; letter-spacing: .1em; }
+</style>

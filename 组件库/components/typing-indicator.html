@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Typing Indicator", "zh": "正在输入提示",
+  "lead": "聊天里对方正在打字时，出现一个小气泡，里面三个点依次上下跳。让人知道“对方在回了，别走”，AI 对话等待时也常用。",
+  "vague": ["对方在打字的那三个点", "AI 思考时显示什么"],
+  "terms": ["Typing Indicator", "Loading Dots", "Presence 在场感"],
+  "prompt": "聊天界面加 Typing Indicator：对方气泡样式（浅灰 #F4F4F5、圆角 16px、左下角 4px），里面三个 6px 圆点依次上跳 4px 并由浅变深（1.2s 循环，每个延迟 150ms）；出现时气泡从 0.8 缩放淡入，收到消息时直接替换为消息气泡；附 aria-live 文案“对方正在输入”。"
+}
+-->
+<div class="chat">
+  <p class="me">那个按钮的阴影怎么描述？</p>
+  <p class="typing" aria-live="polite" aria-label="对方正在输入"><i></i><i></i><i></i></p>
+</div>
+
+<style>
+.chat { width: 260px; display: grid; gap: 8px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; }
+p { margin: 0; max-width: 80%; padding: 9px 12px; font-size: 13px; line-height: 1.5; }
+.me { justify-self: end; background: #FA8C16; color: #fff; border-radius: 16px 16px 4px 16px; }
+.bot { justify-self: start; background: #F4F4F5; color: #18181B; border-radius: 16px 16px 16px 4px; animation: pop .2s ease-out; }
+.typing { justify-self: start; display: flex; gap: 4px; padding: 12px 14px; background: #F4F4F5; border-radius: 16px 16px 16px 4px; animation: pop .2s ease-out; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: #A1A1AA; animation: hop 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes hop { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; background: #52525B; } }
+@keyframes pop { from { transform: scale(.8); opacity: 0; } }
+</style>
+
+<script>
+const chat = document.querySelector(".chat");
+function cycle() {
+  const t = chat.querySelector(".typing");
+  setTimeout(() => {
+    const p = document.createElement("p"); p.className = "bot"; p.textContent = "试试“彩色投影”：用按钮自己的颜色做阴影。";
+    t.replaceWith(p);
+    setTimeout(() => { p.remove(); const n = document.createElement("p"); n.className = "typing"; n.innerHTML = "<i></i><i></i><i></i>"; chat.append(n); cycle(); }, 2500);
+  }, 2400);
+}
+cycle();
+</script>

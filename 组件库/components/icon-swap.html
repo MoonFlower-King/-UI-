@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Icon Swap", "zh": "图标滑动替换",
+  "lead": "悬停时按钮里的图标向一侧滑出，同时一个新图标从另一侧滑进来，比如“下载”箭头往下掉出、又从上面落回来。小动作，但让按钮显得很灵。",
+  "vague": ["按钮图标想动一下", "悬停有点小惊喜"],
+  "terms": ["Icon Swap", "Slide Out / In", "Micro-interaction"],
+  "prompt": "带图标的按钮加 Icon Swap：图标容器 overflow: hidden，内放两个相同图标上下排列；悬停时整体 translateY(-100%)，第一个图标向上滑出、第二个从下方滑入（300ms cubic-bezier(.7,0,.3,1)）；“下载”方向向下、“发送”方向向右上；文字保持不动。"
+}
+-->
+<div class="row">
+  <button class="b down"><span class="ic"><i>↓</i><i>↓</i></span>下载素材</button>
+  <button class="b send"><span class="ic"><i>➚</i><i>➚</i></span>发送</button>
+  <button class="b ghost"><span class="ic"><i>♡</i><i class="red">♥</i></span>收藏</button>
+</div>
+
+<style>
+.row { display: flex; gap: 12px; }
+.b { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 0; border-radius: 10px; background: #18181B; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+.ghost { background: #fff; color: #18181B; border: 1px solid #E4E4E7; }
+.ic { position: relative; width: 16px; height: 18px; overflow: hidden; }
+.ic i { position: absolute; left: 0; width: 16px; height: 18px; display: grid; place-items: center; font-style: normal; transition: transform .3s cubic-bezier(.7, 0, .3, 1); }
+.down .ic i:last-child { transform: translateY(-100%); } .down:hover .ic i:first-child { transform: translateY(100%); } .down:hover .ic i:last-child { transform: none; }
+.send .ic i:last-child { transform: translate(-100%, 100%); } .send:hover .ic i:first-child { transform: translate(100%, -100%); } .send:hover .ic i:last-child { transform: none; }
+.ghost .ic i:last-child { transform: translateY(100%); } .ghost:hover .ic i:first-child { transform: translateY(-100%); } .ghost:hover .ic i:last-child { transform: none; }
+.red { color: #EF4444; }
+</style>

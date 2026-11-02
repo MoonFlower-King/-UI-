@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Blob Morph", "zh": "液态变形",
+  "lead": "一团柔软的不规则色块，形状像水滴、像云一样缓慢地变来变去。常放在标题或头像背后做装饰，让页面多一份有机、温柔的生命感。",
+  "vague": ["背景想要软软的形状", "会变形的色块"],
+  "terms": ["Blob", "Morphing Shape", "Organic Shape 有机形状"],
+  "prompt": "Hero 区头像背后加 Blob Morph：一个 220px 的渐变色块（江月橘到粉 #F472B6），用 border-radius 的 8 个值（如 60% 40% 30% 70% / 60% 30% 70% 40%）在 4 组形状间缓慢过渡（8s ease-in-out 无限循环）并轻微旋转；加 20px 模糊的同色光晕；prefers-reduced-motion 时停止。"
+}
+-->
+<div class="hero">
+  <span class="blob"></span>
+  <span class="av">月</span>
+</div>
+
+<style>
+.hero { position: relative; width: 240px; height: 240px; display: grid; place-items: center; }
+.blob { position: absolute; width: 200px; height: 200px; background: linear-gradient(135deg, #FA8C16, #F472B6); filter: drop-shadow(0 10px 30px rgba(244,114,182,.4)); animation: morph 8s ease-in-out infinite; }
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0); }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 40% 70% 60%; transform: rotate(20deg); }
+  75% { border-radius: 40% 60% 60% 40% / 70% 30% 50% 40%; }
+}
+.av { position: relative; width: 110px; height: 110px; border-radius: 50%; background: #121722; color: #FFD58A; display: grid; place-items: center; font: 700 44px "Songti SC", serif; border: 4px solid #fff; }
+@media (prefers-reduced-motion: reduce) { .blob { animation: none; border-radius: 50%; } }
+</style>

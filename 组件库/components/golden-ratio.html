@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Golden Ratio", "zh": "黄金比例",
+  "lead": "约 1 : 1.618 的比例，自然界和经典建筑里很常见，看起来“刚刚好”。界面里常用来定正文和侧栏的宽度比、字号的递进倍数。",
+  "vague": ["比例怎么定才好看", "两栏宽度怎么分"],
+  "terms": ["Golden Ratio", "φ 1.618", "Proportion 比例"],
+  "prompt": "版面按 Golden Ratio 分配：主内容和侧栏宽度比 1.618 : 1（grid-template-columns: 1.618fr 1fr），卡片宽高比也用 1.618:1；字号阶梯以 1.618 为倍数（如 12 → 19 → 31px），适合标题对比强烈的展示页。"
+}
+-->
+<div class="wrap">
+  <div class="layout"><main><b>主内容</b><span>1.618</span></main><aside><b>侧栏</b><span>1</span></aside></div>
+  <svg viewBox="0 0 161.8 100" class="spiral"><g fill="none" stroke="#FA8C16" stroke-width=".6"><rect x="0" y="0" width="100" height="100"/><rect x="100" y="0" width="61.8" height="61.8"/><rect x="123.6" y="61.8" width="38.2" height="38.2"/><rect x="100" y="76.4" width="23.6" height="23.6"/></g>
+    <path d="M100 100 A100 100 0 0 1 0 0 M100 0 A61.8 61.8 0 0 1 161.8 61.8 M161.8 61.8 A38.2 38.2 0 0 1 123.6 100 M123.6 100 A23.6 23.6 0 0 1 100 76.4" fill="none" stroke="#18181B" stroke-width="1" pathLength="1" class="sp"/></svg>
+</div>
+
+<style>
+.wrap { display: grid; gap: 14px; width: 340px; }
+.layout { display: grid; grid-template-columns: 1.618fr 1fr; gap: 8px; height: 90px; }
+.layout > * { border-radius: 10px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; font-size: 12px; }
+main { background: #FFF4E6; color: #9A3412; } aside { background: #F4F4F5; color: #52525B; }
+.layout span { font: 700 18px ui-monospace, Menlo, monospace; }
+.spiral { width: 100%; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; }
+.sp { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s ease-in-out infinite alternate; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+</style>

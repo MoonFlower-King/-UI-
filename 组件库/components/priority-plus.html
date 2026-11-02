@@ -1,0 +1,46 @@
+<!--
+{
+  "en": "Priority+ Navigation", "zh": "优先级导航（放不下就收进更多）",
+  "lead": "导航栏宽度不够时，不是一下子全变成汉堡菜单，而是能放几个就放几个最重要的，剩下的自动收进“更多”。屏幕越宽露出越多。",
+  "vague": ["导航在小屏挤不下", "不想全部藏进汉堡菜单"],
+  "terms": ["Priority+ Navigation", "Overflow Menu", "ResizeObserver"],
+  "prompt": "顶部导航用 Priority+ 模式：按重要性排序，用 ResizeObserver 监听容器宽度，从后往前把放不下的项移入右侧“更多 ▾”下拉菜单，宽度变大时再移回；“更多”按钮上显示收起的数量；没有溢出时隐藏“更多”。"
+}
+-->
+<div class="demo">
+  <div class="box"><nav class="pp"><div class="vis"></div><div class="more" hidden><button>更多 <b></b></button><ul></ul></div></nav></div>
+  <small>拖动右下角改变宽度 ↘</small>
+</div>
+
+<style>
+.demo { display: grid; gap: 8px; justify-items: center; }
+.box { width: 360px; min-width: 140px; max-width: 480px; resize: horizontal; overflow: hidden; padding: 8px 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; animation: squeeze 6s ease-in-out infinite alternate; }
+.box:hover { animation-play-state: paused; }
+@keyframes squeeze { from { width: 420px; } to { width: 170px; } }
+.pp { display: flex; align-items: center; gap: 4px; }
+.vis { display: flex; gap: 4px; overflow: hidden; flex: 1; min-width: 0; }
+.pp a { flex: none; padding: 6px 10px; border-radius: 7px; font-size: 13px; color: #3F3F46; white-space: nowrap; cursor: pointer; }
+.pp a:hover { background: #F4F4F5; }
+.more { position: relative; flex: none; }
+.more button { border: 0; background: #F4F4F5; border-radius: 7px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
+.more b { display: inline-grid; place-items: center; min-width: 16px; height: 16px; border-radius: 8px; background: #FA8C16; color: #fff; font-size: 10px; }
+.more ul { position: absolute; right: 0; top: 34px; margin: 0; padding: 4px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,.08); display: none; z-index: 1; }
+.more:hover ul, .more:focus-within ul { display: block; }
+.more li { padding: 6px 12px; font-size: 13px; white-space: nowrap; border-radius: 6px; } .more li:hover { background: #F4F4F5; }
+small { font-size: 11px; color: #A1A1AA; }
+</style>
+
+<script>
+const items = ["首页", "组件", "案例", "文档", "价格", "博客", "关于"];
+const vis = document.querySelector(".vis"), more = document.querySelector(".more"), ul = more.querySelector("ul"), badge = more.querySelector("b");
+function layout() {
+  vis.innerHTML = items.map((t) => `<a>${t}</a>`).join("");
+  more.hidden = false;
+  const room = vis.clientWidth, links = [...vis.children]; let used = 0, cut = links.length;
+  links.forEach((a, i) => { used += a.offsetWidth + 4; if (used > room && cut === links.length) cut = i; });
+  const hidden = items.slice(cut);
+  links.slice(cut).forEach((a) => a.remove());
+  ul.innerHTML = hidden.map((t) => `<li>${t}</li>`).join(""); badge.textContent = hidden.length; more.hidden = !hidden.length;
+}
+let raf; new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(layout); }).observe(document.querySelector(".box"));
+</script>

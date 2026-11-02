@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Radio Cards", "zh": "卡片式单选",
+  "lead": "把单选按钮做成一张张可点的卡片，每张写清标题、说明、价格。比一排小圆圈更好选、更好点，适合选套餐、选配送方式这种需要比较的场景。",
+  "vague": ["单选框太小不好点", "选套餐怎么做好看"],
+  "terms": ["Radio Card", "Selectable Card 可选卡片", "Radio Group"],
+  "prompt": "配送方式用 Radio Cards：每个选项是一张整块可点的卡片（圆角 12px、1px #E4E4E7 边框），左边标题 + 一行灰色说明，右边价格；选中卡片边框变 2px 江月橘 #FA8C16、浅橘底 #FFF8EF、右上角出现对勾圆点（缩放弹入）；底层仍然是 <input type=radio>，支持方向键切换和焦点环。"
+}
+-->
+<fieldset>
+  <legend>配送方式</legend>
+  <label><input type="radio" name="ship" checked><span><b>标准配送</b><small>3–5 天送达</small></span><em>免费</em></label>
+  <label><input type="radio" name="ship"><span><b>次日达</b><small>今天 18:00 前下单</small></span><em>¥ 12</em></label>
+  <label><input type="radio" name="ship"><span><b>到店自提</b><small>江边路门店</small></span><em>免费</em></label>
+</fieldset>
+
+<style>
+fieldset { width: 300px; margin: 0; padding: 0; border: 0; display: grid; gap: 8px; }
+legend { font-size: 13px; font-weight: 600; color: #18181B; margin-bottom: 8px; }
+label { position: relative; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #E4E4E7; border-radius: 12px; background: #fff; cursor: pointer; transition: border-color .15s, background .15s, box-shadow .15s; }
+label:hover { border-color: #D4D4D8; }
+input { position: absolute; opacity: 0; pointer-events: none; }
+span { flex: 1; display: grid; } b { font-size: 14px; color: #18181B; } small { font-size: 12px; color: #71717A; }
+em { font-style: normal; font-size: 13px; font-weight: 600; color: #3F3F46; }
+label:has(input:checked) { border-color: #FA8C16; background: #FFF8EF; box-shadow: inset 0 0 0 1px #FA8C16; }
+label:has(input:focus-visible) { outline: 2px solid #FA8C16; outline-offset: 2px; }
+label::after { content: "✓"; position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; background: #FA8C16; color: #fff; font-size: 11px; display: grid; place-items: center; transform: scale(0); transition: transform .2s cubic-bezier(.34, 1.56, .64, 1); }
+label:has(input:checked)::after { transform: scale(1); }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Pattern Background", "zh": "图案底纹",
+  "lead": "用纯 CSS 画出条纹、格子、波点、斜线这些重复图案铺在背景上，让大面积色块不那么空，又不用下载图片。注意要淡，别抢内容。",
+  "vague": ["背景太空了", "想要点底纹"],
+  "terms": ["Pattern", "repeating-linear-gradient", "Background Texture 底纹"],
+  "prompt": "区块背景加 Pattern：用 CSS 渐变绘制（不用图片），比如 45° 斜纹 repeating-linear-gradient(45deg, 主色 8% 透明 0 2px, transparent 2px 10px)、或 radial-gradient 波点 16px 间距；图案颜色与底色对比度很低，只在大色块、空状态、页头使用，正文区保持干净。"
+}
+-->
+<div class="grid">
+  <button class="t on" data-p="stripe">斜纹</button><button class="t" data-p="dots">波点</button><button class="t" data-p="check">格子</button><button class="t" data-p="wave">波纹</button>
+  <div class="box" data-p="stripe"><b>新功能上线</b></div>
+</div>
+
+<style>
+.grid { display: grid; grid-template-columns: repeat(4, auto); gap: 6px; justify-content: center; }
+.t { border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 4px 12px; font-size: 12px; cursor: pointer; color: #52525B; }
+.t.on { background: #18181B; color: #fff; border-color: #18181B; }
+.box { grid-column: 1 / -1; width: 320px; height: 170px; margin-top: 8px; border-radius: 14px; display: grid; place-items: center; background-color: #FFF4E6; transition: background .3s; }
+.box b { padding: 8px 16px; border-radius: 10px; background: #fff; font-size: 15px; color: #18181B; box-shadow: 0 4px 12px rgba(0,0,0,.06); }
+[data-p="stripe"].box { background-image: repeating-linear-gradient(45deg, rgba(250,140,22,.18) 0 2px, transparent 2px 10px); }
+[data-p="dots"].box { background-image: radial-gradient(rgba(250,140,22,.35) 1.5px, transparent 1.6px); background-size: 16px 16px; }
+[data-p="check"].box { background-image: linear-gradient(rgba(250,140,22,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(250,140,22,.15) 1px, transparent 1px); background-size: 20px 20px; }
+[data-p="wave"].box { background-image: radial-gradient(circle at 50% 100%, transparent 9px, rgba(250,140,22,.25) 10px 11px, transparent 12px); background-size: 24px 12px; }
+</style>
+
+<script>
+const box = document.querySelector(".box"), ts = document.querySelectorAll(".t");
+ts.forEach((t) => t.addEventListener("click", () => { box.dataset.p = t.dataset.p; ts.forEach((x) => x.classList.toggle("on", x === t)); }));
+</script>

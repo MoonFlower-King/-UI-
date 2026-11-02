@@ -1,0 +1,50 @@
+<!--
+{
+  "en": "Cascader", "zh": "级联选择",
+  "lead": "有层级关系的选项，比如“省 → 市 → 区”，选完第一列，右边自动展开下一列，一路选到底。比三个独立下拉框省事，也不会选出不存在的组合。",
+  "vague": ["选地址太麻烦", "省市区怎么选"],
+  "terms": ["Cascader", "Cascading Select 级联", "Hierarchical Data 层级数据"],
+  "prompt": "收货地址用 Cascader：点击输入框展开多列面板，每列宽 110px，选中项浅橘底 #FFF4E6 + 江月橘文字，有下级的项右侧显示 ›；选中一项自动在右侧展开下一列（150ms 淡入），选到最后一级自动收起；输入框显示“浙江 / 杭州 / 西湖区”的完整路径。"
+}
+-->
+<div class="cas">
+  <button class="field"><span class="ph">请选择所在地区</span></button>
+  <div class="panel"></div>
+</div>
+
+<style>
+.cas { position: relative; width: 340px; align-self: start; margin-top: 40px; }
+.field { width: 100%; height: 40px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; text-align: left; font-size: 14px; color: #18181B; cursor: pointer; }
+.cas.open .field { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.ph { color: #A1A1AA; }
+.panel { position: absolute; top: 46px; left: 0; display: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.08); overflow: hidden; }
+.cas.open .panel { display: flex; }
+ul { width: 110px; margin: 0; padding: 4px; list-style: none; max-height: 180px; overflow: auto; animation: in .15s ease-out; }
+ul + ul { border-left: 1px solid #F4F4F5; } @keyframes in { from { opacity: 0; transform: translateX(-4px); } }
+li { display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 6px; font-size: 13px; color: #3F3F46; cursor: pointer; }
+li:hover { background: #F4F4F5; } li.on { background: #FFF4E6; color: #C2410C; font-weight: 600; }
+li.has::after { content: "›"; color: #A1A1AA; }
+</style>
+
+<script>
+const DATA = { 浙江: { 杭州: ["西湖区", "上城区", "滨江区"], 宁波: ["海曙区", "鄞州区"] }, 江苏: { 南京: ["玄武区", "鼓楼区"], 苏州: ["姑苏区", "吴中区"] }, 四川: { 成都: ["锦江区", "武侯区"] } };
+const cas = document.querySelector(".cas"), panel = cas.querySelector(".panel"), field = cas.querySelector(".field");
+let path = [];
+function render() {
+  let node = DATA, cols = [];
+  for (let d = 0; node; d++) {
+    const keys = Array.isArray(node) ? node : Object.keys(node);
+    cols.push(`<ul data-d="${d}">${keys.map((k) => `<li class="${path[d] === k ? "on" : ""} ${Array.isArray(node) ? "" : "has"}" data-k="${k}">${k}</li>`).join("")}</ul>`);
+    node = path[d] && !Array.isArray(node) ? node[path[d]] : null;
+  }
+  panel.innerHTML = cols.join("");
+}
+field.addEventListener("click", () => { cas.classList.toggle("open"); render(); });
+panel.addEventListener("click", (e) => {
+  const li = e.target.closest("li"); if (!li) return;
+  const d = +li.parentElement.dataset.d; path = [...path.slice(0, d), li.dataset.k];
+  if (path.length === 3) { field.textContent = path.join(" / "); cas.classList.remove("open"); } else render();
+});
+document.addEventListener("click", (e) => { if (!cas.contains(e.target)) cas.classList.remove("open"); });
+cas.classList.add("open"); path = ["浙江", "杭州"]; render(); // 演示：一开始展开
+</script>

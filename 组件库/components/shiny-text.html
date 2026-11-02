@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Shiny Text", "zh": "流光文字",
+  "lead": "文字上有一道亮光周期性地扫过，像金属或缎面反光。用在会员标识、“限时”标签、按钮文字上，低调地吸引目光。",
+  "vague": ["字有一道光扫过", "会员标识想有质感"],
+  "terms": ["Shiny Text", "Shimmer 微光", "background-clip: text"],
+  "prompt": "会员标签文字加 Shiny Text：文字用 background-clip: text，底色暖金 #B7791F，叠一道 30% 宽、45° 倾斜的浅色高光渐变，每 3 秒从左扫到右一次（1.2s ease-in-out，之后停顿）；深色背景用浅金 #FFD58A 做底色；prefers-reduced-motion 时不扫光。"
+}
+-->
+<div class="wrap">
+  <span class="badge"><b class="shine">江月 PRO 会员</b></span>
+  <div class="night"><h2 class="shine dark">限时 · 月光特惠</h2></div>
+</div>
+
+<style>
+.wrap { display: grid; gap: 18px; justify-items: center; }
+.badge { padding: 8px 18px; border-radius: 999px; background: #FFF8EB; border: 1px solid #F5DDB0; }
+.shine { --base: #B7791F; --hi: #FFF6DC; font-weight: 800; color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(110deg, var(--base) 35%, var(--hi) 50%, var(--base) 65%); background-size: 250% 100%; animation: sweep 3s ease-in-out infinite; }
+.badge .shine { font-size: 15px; letter-spacing: .04em; }
+.night { padding: 12px 22px; border-radius: 12px; background: #121722; }
+h2 { margin: 0; font: 800 26px "Songti SC", serif; }
+.dark { --base: #FFD58A; --hi: #FFFFFF; }
+@keyframes sweep { 0% { background-position: 100% 0; } 40%, 100% { background-position: -50% 0; } }
+@media (prefers-reduced-motion: reduce) { .shine { animation: none; background-position: 50% 0; } }
+</style>
