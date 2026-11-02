@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Feature Section", "zh": "功能介绍区",
+  "lead": "落地页里“我们能做什么”的那一块：一个小标签 + 大标题 + 一句说明，下面几格功能，每格一个图标、一个短标题、一行解释。滚动到这里时依次浮现。",
+  "vague": ["功能介绍怎么排", "卖点展示"],
+  "terms": ["Feature Grid 功能栅格", "Eyebrow 眉题", "Icon Tile 图标块", "Stagger"],
+  "prompt": "做 Feature Section：顶部品牌色小号大写眉题“为什么选江月”，下面 24px 衬线标题和一行灰色说明，居中；下方 2×2 功能格，每格 40px 圆角图标块（品牌色 10% 透明底）+ 14px 粗体标题 + 12px 灰色说明；进入视口时四格以 Stagger 方式依次上浮淡入（间隔 80ms）；悬停某格时图标块变实心品牌色。"
+}
+-->
+<section class="fs">
+  <small>为什么选江月</small>
+  <h2>说对一个词，AI 就懂你</h2>
+  <p class="d">上百个术语，每个都配效果、代码和提示词。</p>
+  <div class="grid">
+    <div class="f"><i>◐</i><b>实时预览</b><span>每个词都能点、能动</span></div>
+    <div class="f"><i>⌘</i><b>一键复制</b><span>代码零依赖，直接能跑</span></div>
+    <div class="f"><i>✦</i><b>感觉翻译</b><span>“太乱”也能找到词</span></div>
+    <div class="f"><i>☰</i><b>提示词篮子</b><span>挑几个词拼成一段话</span></div>
+  </div>
+</section>
+
+<style>
+.fs { width: 320px; text-align: center; }
+small { color: #FA8C16; font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+h2 { margin: 6px 0 4px; font: 600 22px "Songti SC", Georgia, serif; } .d { margin: 0 0 18px; font-size: 12px; color: #71717A; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
+.f { background: #fff; border: 1px solid #F0F0F2; border-radius: 14px; padding: 12px; display: grid; gap: 4px; animation: up .55s cubic-bezier(.22,1,.36,1) backwards; transition: border-color .2s; }
+.f:nth-child(2) { animation-delay: .08s; } .f:nth-child(3) { animation-delay: .16s; } .f:nth-child(4) { animation-delay: .24s; }
+@keyframes up { from { opacity: 0; transform: translateY(14px); } }
+.f i { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-style: normal; background: rgba(250,140,22,.1); color: #FA8C16; margin-bottom: 4px; transition: all .2s; }
+.f:hover { border-color: #FED7AA; } .f:hover i { background: #FA8C16; color: #fff; }
+.f b { font-size: 13px; } .f span { font-size: 11px; color: #71717A; }
+</style>

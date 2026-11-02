@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Pricing Table", "zh": "定价表",
+  "lead": "并排几张价格卡，中间推荐款放大、描边、挂“最受欢迎”角标；顶部月付/年付切换，价格数字跟着变。这是落地页最常见的成交区块。",
+  "vague": ["价格页没吸引力", "想突出某个套餐"],
+  "terms": ["Pricing Card", "Recommended Plan 推荐款", "Billing Toggle 计费切换", "Anchoring 价格锚点"],
+  "prompt": "做 Pricing Table：顶部月付/年付 Segmented Control（年付旁绿色“省 20%”小标签）；三张价格卡并排，中间推荐款上浮 8px、2px 品牌色描边、顶部“最受欢迎”胶囊角标；价格 32px 粗体等宽数字，切换计费时数字淡出淡入；每张卡列 3 条带 ✓ 的权益，底部满宽按钮，推荐款实心、其余描边。"
+}
+-->
+<div class="pricing">
+  <div class="bill"><button class="on">月付</button><button>年付 <em>省 20%</em></button></div>
+  <div class="plans">
+    <div class="plan"><h3>入门</h3><p class="price"><b data-m="0" data-y="0">¥0</b>/月</p><ul><li>3 个项目</li><li>基础组件</li></ul><button>开始使用</button></div>
+    <div class="plan hot"><i>最受欢迎</i><h3>专业</h3><p class="price"><b data-m="39" data-y="31">¥39</b>/月</p><ul><li>无限项目</li><li>全部组件</li><li>导出代码</li></ul><button>立即升级</button></div>
+    <div class="plan"><h3>团队</h3><p class="price"><b data-m="99" data-y="79">¥99</b>/月</p><ul><li>10 人协作</li><li>设计规范</li></ul><button>联系我们</button></div>
+  </div>
+</div>
+
+<style>
+.pricing { display: grid; justify-items: center; gap: 18px; }
+.bill { display: flex; padding: 3px; background: #EEEEF0; border-radius: 999px; }
+.bill button { border: 0; background: none; padding: 6px 14px; border-radius: 999px; font-size: 13px; color: #71717A; cursor: pointer; transition: all .2s; }
+.bill button.on { background: #fff; color: #18181B; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+.bill em { font-style: normal; font-size: 11px; color: #16A34A; }
+.plans { display: grid; grid-template-columns: repeat(3, 118px); gap: 10px; align-items: center; }
+.plan { position: relative; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 16px 12px; display: grid; gap: 8px; }
+.plan.hot { border: 2px solid #FA8C16; transform: translateY(-8px); box-shadow: 0 10px 24px rgba(250,140,22,.15); }
+.plan i { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FA8C16; color: #fff; font: 600 10px sans-serif; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+h3 { margin: 0; font-size: 13px; color: #71717A; font-weight: 500; }
+.price { margin: 0; font-size: 12px; color: #71717A; } .price b { font-size: 26px; color: #18181B; font-variant-numeric: tabular-nums; transition: opacity .15s; }
+ul { margin: 0; padding: 0; list-style: none; font-size: 12px; display: grid; gap: 4px; min-height: 56px; }
+li::before { content: "✓ "; color: #16A34A; }
+.plan button { height: 32px; border-radius: 8px; border: 1px solid #E4E4E7; background: #fff; font-size: 12px; cursor: pointer; }
+.plan.hot button { background: #FA8C16; border-color: #FA8C16; color: #fff; }
+</style>
+<script>
+const bs = document.querySelectorAll(".bill button");
+bs.forEach((b, i) => b.addEventListener("click", () => {
+  bs.forEach((x) => x.classList.toggle("on", x === b));
+  document.querySelectorAll(".price b").forEach((p) => { p.style.opacity = 0; setTimeout(() => { p.textContent = "¥" + p.dataset[i ? "y" : "m"]; p.style.opacity = 1; }, 150); });
+}));
+</script>

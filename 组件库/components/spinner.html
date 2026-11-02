@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Spinner", "zh": "加载转圈",
+  "lead": "最小号的“等一下”：不知道要多久、但很快就好时用。常见三种：缺口圆环转圈、三个点依次跳、一圈小短线渐隐（iOS 风格）。超过 2 秒的等待最好换成骨架屏或进度条。",
+  "vague": ["加载中的小圈圈", "转圈圈"],
+  "terms": ["Spinner", "Loading Indicator", "Activity Indicator", "Dots Loader"],
+  "prompt": "加载时显示 Spinner：20px 圆环、2px 线宽，底环品牌色 20% 透明，前景 1/4 弧品牌色，700ms 一圈匀速旋转；放在按钮里时替换文字但保持按钮宽度不变；等待超过 2 秒改为 Skeleton Screen。"
+}
+-->
+<div class="sp">
+  <div><i class="ring"></i><small>圆环</small></div>
+  <div><span class="dots"><i></i><i></i><i></i></span><small>跳点</small></div>
+  <div><span class="ios"></span><small>iOS 菊花</small></div>
+  <div><i class="pulse"></i><small>呼吸</small></div>
+</div>
+
+<style>
+.sp { display: grid; grid-template-columns: repeat(4, 70px); gap: 8px; }
+.sp > div { height: 86px; background: #fff; border: 1px solid #F0F0F2; border-radius: 12px; display: grid; place-items: center; align-content: center; gap: 10px; }
+small { font-size: 10px; color: #A1A1AA; }
+.ring { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid rgba(250,140,22,.2); border-top-color: #FA8C16; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+.dots { display: flex; gap: 4px; height: 22px; align-items: center; } .dots i { width: 6px; height: 6px; border-radius: 50%; background: #FA8C16; animation: jump .9s ease-in-out infinite; }
+.dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes jump { 0%, 70%, 100% { transform: none; opacity: .4; } 35% { transform: translateY(-6px); opacity: 1; } }
+.ios { width: 22px; height: 22px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0 10%, #71717A); -webkit-mask: repeating-conic-gradient(#000 0 8deg, transparent 8deg 30deg), radial-gradient(circle, transparent 5px, #000 5.5px); -webkit-mask-composite: source-in; mask-composite: intersect; animation: spin 1s steps(12) infinite; }
+.pulse { width: 18px; height: 18px; border-radius: 50%; background: #FA8C16; animation: pulse 1.2s ease-out infinite; }
+@keyframes pulse { from { box-shadow: 0 0 0 0 rgba(250,140,22,.5); } to { box-shadow: 0 0 0 14px rgba(250,140,22,0); } }
+</style>

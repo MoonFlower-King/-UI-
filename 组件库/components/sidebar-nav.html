@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Sidebar Navigation", "zh": "侧边导航",
+  "lead": "后台和工具类产品的主导航放在左边一竖条：图标 + 文字，当前页高亮，可以折叠成只剩图标。点左下角的按钮试试收起和展开。",
+  "vague": ["后台左边的菜单", "导航太多放不下"],
+  "terms": ["Sidebar", "Collapsible 可折叠", "Active Indicator 当前项指示", "Nav Group 导航分组"],
+  "prompt": "做 Sidebar Navigation：宽 200px，可折叠到 60px（宽度 250ms ease 过渡，文字同时淡出）；每项 36px 高、图标 + 文字，悬停浅灰底，当前项品牌色 10% 底 + 品牌色文字 + 左侧 3px 竖条；中间有灰色小标题分组；底部折叠按钮，箭头随状态旋转 180°。"
+}
+-->
+<aside class="sb">
+  <div class="logo"><b>月</b><span>江月 UI</span></div>
+  <a class="on"><i>▦</i><span>概览</span></a><a><i>◫</i><span>项目</span></a><a><i>✉</i><span>消息</span></a>
+  <small><span>设置</span></small>
+  <a><i>☺</i><span>账号</span></a><a><i>⚙</i><span>偏好</span></a>
+  <button class="fold" aria-label="折叠"><i>‹</i><span>收起</span></button>
+</aside>
+
+<style>
+.sb { width: 190px; height: 290px; box-sizing: border-box; padding: 12px 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; display: flex; flex-direction: column; gap: 2px; overflow: hidden; transition: width .25s ease; }
+.sb.mini { width: 60px; }
+.sb span { white-space: nowrap; transition: opacity .2s; } .sb.mini span { opacity: 0; }
+.logo { display: flex; align-items: center; gap: 10px; padding: 0 4px 12px; font-weight: 600; font-size: 14px; }
+.logo b { flex: none; width: 30px; height: 30px; border-radius: 9px; background: #18181B; color: #fff; display: grid; place-items: center; font: 600 14px serif; }
+a, .fold { position: relative; display: flex; align-items: center; gap: 12px; height: 36px; padding: 0 10px; border-radius: 9px; font-size: 13px; color: #52525B; cursor: pointer; border: 0; background: none; }
+a:hover, .fold:hover { background: #F4F4F5; }
+a.on { background: #FFF4E6; color: #FA8C16; font-weight: 600; }
+a.on::before { content: ""; position: absolute; left: -10px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: #FA8C16; }
+i { flex: none; width: 18px; text-align: center; font-style: normal; }
+small { margin: 10px 10px 4px; font-size: 10px; color: #A1A1AA; letter-spacing: .08em; }
+.fold { margin-top: auto; color: #A1A1AA; } .fold i { transition: transform .25s; } .mini .fold i { transform: rotate(180deg); }
+</style>
+<script>
+const sb = document.querySelector(".sb");
+document.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => document.querySelectorAll("a").forEach((x) => x.classList.toggle("on", x === a))));
+document.querySelector(".fold").addEventListener("click", () => sb.classList.toggle("mini"));
+</script>

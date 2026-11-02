@@ -115,7 +115,14 @@
       "infinite-scroll",
       "fab",
       "toggle-switch",
-      "stepper-progress"
+      "stepper-progress",
+      "button-hierarchy",
+      "sidebar-nav",
+      "bottom-nav",
+      "progress-bar",
+      "spinner",
+      "alert-banner",
+      "back-to-top"
     ]
   },
   {
@@ -130,7 +137,15 @@
       "star-rating",
       "tag-input",
       "file-dropzone",
-      "autocomplete"
+      "autocomplete",
+      "checkbox",
+      "radio-group",
+      "select",
+      "date-picker",
+      "color-picker",
+      "search-bar",
+      "number-input",
+      "textarea-autosize"
     ]
   },
   {
@@ -143,7 +158,12 @@
       "progress-ring",
       "sparkline",
       "timeline",
-      "tree-view"
+      "tree-view",
+      "stat-card",
+      "bar-chart",
+      "line-chart",
+      "donut-chart",
+      "heatmap-calendar"
     ]
   },
   {
@@ -258,6 +278,28 @@
       "undo",
       "accessibility",
       "consistency"
+    ]
+  },
+  {
+    "id": "cases",
+    "name": "页面案例",
+    "intro": "把前面的词组合起来，就是一个完整的界面。每个案例都标出用到了哪些术语，照着说给 AI，整页一次到位。",
+    "items": [
+      "login-page",
+      "dashboard",
+      "pricing-table",
+      "feature-section",
+      "testimonial",
+      "footer",
+      "product-card",
+      "shopping-cart",
+      "profile-card",
+      "settings-page",
+      "chat-ui",
+      "notification-center",
+      "kanban-board",
+      "music-player",
+      "error-404"
     ]
   }
 ]

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "404 Page", "zh": "404 页面",
+  "lead": "页面找不到时，别只甩一个“404 Not Found”。好的 404 有一点趣味插画、一句人话解释、一个回首页的主按钮，最好再给个搜索框。",
+  "vague": ["页面不存在怎么显示", "报错页太冷冰冰"],
+  "terms": ["404 Page", "Error State", "Recovery Action 补救操作", "Illustration 插画"],
+  "prompt": "做 404 页面：居中一张简笔插画（一轮弯月在江面上轻轻浮动，倒影上下呼吸 3s 循环）；大号“404”衬线字半透明，标题“这一页被江水冲走了”，一行灰色说明；下方一个搜索框 + “回到首页”主按钮；整体留白充足，不要红色警告感。"
+}
+-->
+<div class="nf">
+  <div class="scene"><i class="moon"></i><i class="ref"></i><i class="wave"></i></div>
+  <b class="code">404</b>
+  <h2>这一页被江水冲走了</h2>
+  <p>链接可能写错了，或者页面已经搬家。</p>
+  <div class="act"><input placeholder="搜搜看…"><button>回到首页</button></div>
+</div>
+
+<style>
+.nf { width: 300px; text-align: center; display: grid; justify-items: center; }
+.scene { position: relative; width: 160px; height: 90px; }
+.moon { position: absolute; left: 60px; top: 4px; width: 40px; height: 40px; border-radius: 50%; box-shadow: -10px 4px 0 0 #FA8C16; animation: float 3s ease-in-out infinite; }
+.ref { position: absolute; left: 58px; top: 62px; width: 28px; height: 6px; border-radius: 50%; background: #FDBA74; opacity: .5; animation: breathe 3s ease-in-out infinite; }
+.wave { position: absolute; left: 0; right: 0; top: 56px; height: 2px; background: repeating-linear-gradient(90deg, #CBD5E1 0 14px, transparent 14px 22px); }
+@keyframes float { 50% { transform: translateY(-5px); } }
+@keyframes breathe { 50% { transform: scaleX(1.4); opacity: .25; } }
+.code { font: 700 56px/1 Georgia, "Songti SC", serif; color: #18181B; opacity: .12; margin-top: -8px; }
+h2 { margin: -18px 0 4px; font: 600 19px "Songti SC", Georgia, serif; } p { margin: 0 0 16px; font-size: 13px; color: #71717A; }
+.act { display: flex; gap: 8px; width: 100%; }
+.act input { flex: 1; min-width: 0; height: 38px; border: 1px solid #E4E4E7; border-radius: 10px; padding: 0 12px; font-size: 13px; outline: none; }
+.act input:focus { border-color: #FA8C16; }
+.act button { height: 38px; padding: 0 16px; border: 0; border-radius: 10px; background: #18181B; color: #fff; font-size: 13px; cursor: pointer; }
+.act button:hover { background: #FA8C16; }
+</style>

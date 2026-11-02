@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Stat Card", "zh": "数据卡片",
+  "lead": "后台和报告里最常见的“一个数字说一件事”：小字标题、大号数字、和上期比涨了还是跌了，再配一根迷你趋势线。数字出场时从 0 滚上去。",
+  "vague": ["KPI 展示", "关键指标怎么放"],
+  "terms": ["Stat Card", "KPI", "Delta 涨跌幅", "Sparkline"],
+  "prompt": "做一排 Stat Card：白卡圆角 14px 细边框，左上 12px 灰色指标名 + 右上小图标；中间 28px 粗体等宽数字，出场时 Number Ticker 从 0 滚到目标值（1s ease-out）；下面一行涨跌徽章（上涨绿底绿字 ↑、下跌红底红字 ↓）+ 灰色“较上周”；卡片底部 30px 高的 Sparkline 趋势线，线下渐变填充。"
+}
+-->
+<div class="stats">
+  <div class="sc"><header>收入<i>¥</i></header><b data-to="48260" data-pre="¥">0</b><p><em class="up">↑ 12.5%</em>较上周</p><svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M0 24 L14 20 L28 22 L42 15 L56 17 L70 10 L84 12 L100 4"/></svg></div>
+  <div class="sc"><header>流失率<i>%</i></header><b data-to="3.2" data-suf="%">0</b><p><em class="down">↓ 0.4%</em>较上周</p><svg viewBox="0 0 100 30" preserveAspectRatio="none" class="neg"><path d="M0 8 L14 10 L28 9 L42 14 L56 13 L70 18 L84 17 L100 22"/></svg></div>
+</div>
+
+<style>
+.stats { display: grid; grid-template-columns: repeat(2, 150px); gap: 10px; }
+.sc { background: #fff; border: 1px solid #F0F0F2; border-radius: 14px; padding: 12px 12px 0; overflow: hidden; display: grid; gap: 4px; }
+header { display: flex; justify-content: space-between; font-size: 12px; color: #71717A; }
+header i { width: 22px; height: 22px; border-radius: 6px; background: #FFF4E6; color: #FA8C16; font: normal 11px/22px sans-serif; text-align: center; }
+.sc b { font-size: 24px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+p { margin: 0; font-size: 11px; color: #A1A1AA; display: flex; gap: 6px; align-items: center; }
+em { font-style: normal; font-weight: 600; padding: 1px 6px; border-radius: 999px; } .up { background: #DCFCE7; color: #15803D; } .down { background: #FEE2E2; color: #B91C1C; }
+svg { width: calc(100% + 24px); margin: 6px -12px 0; height: 34px; display: block; }
+path { fill: none; stroke: #22C55E; stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 1.2s .2s ease-out forwards; }
+.neg path { stroke: #EF4444; } @keyframes draw { to { stroke-dashoffset: 0; } }
+</style>
+<script>
+document.querySelectorAll(".sc b").forEach((b) => {
+  const to = +b.dataset.to, dec = String(to).includes(".") ? 1 : 0, t0 = performance.now();
+  const step = (now) => { const p = Math.min(1, (now - t0) / 1000), e = 1 - (1 - p) ** 3; b.textContent = (b.dataset.pre || "") + (to * e).toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (b.dataset.suf || ""); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+});
+</script>

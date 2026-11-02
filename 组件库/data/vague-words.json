@@ -303,5 +303,32 @@
    ]
   ],
   "prompt": "数据卡片的大数字用 Number Ticker 从 0 滚到目标值，旁边配 Sparkline 显示近 7 天趋势；完成率用 Progress Ring；明细列表用 Data Table，数字右对齐、表头可排序。"
+ },
+ {
+  "vague": "不知道一整页怎么搭 / 页面东拼西凑",
+  "why": "单个组件都会做，拼成一页却很散，是因为没先定“这页是干什么的”。先挑一个最接近的页面案例当骨架，再把里面的词换成你要的风格。",
+  "terms": [
+   [
+    "Dashboard",
+    "仪表盘",
+    "dashboard"
+   ],
+   [
+    "Login Page",
+    "登录页",
+    "login-page"
+   ],
+   [
+    "Pricing Table",
+    "定价表",
+    "pricing-table"
+   ],
+   [
+    "Feature Section",
+    "功能介绍区",
+    "feature-section"
+   ]
+  ],
+  "prompt": "参照 Dashboard 的结构搭这一页：左侧 Sidebar 导航，顶部一排 Stat Card，中间主图表，右侧最近列表；全部卡片白底圆角 12px、细边框，间距统一 12px，重点数据用品牌色 #FA8C16，其余保持灰阶。"
  }
 ]

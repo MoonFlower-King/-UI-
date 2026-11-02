@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Shopping Cart", "zh": "购物车",
+  "lead": "每行商品带数量加减器，改数量时小计和总价实时跟着变；底部固定一条结算栏，总价最大、按钮最显眼。删到空了就显示空状态。",
+  "vague": ["结算页", "购物车怎么设计"],
+  "terms": ["Quantity Stepper 数量加减", "Sticky Footer 底部结算栏", "Live Total 实时总价", "Empty State"],
+  "prompt": "做 Shopping Cart：商品行左侧 56px 圆角缩略图，中间名称和规格，右侧单价；数量用 − 1 + 加减器（数字等宽，减到 0 时整行向左滑出并收起高度）；底部结算栏白底上阴影，左侧“合计”+ 22px 粗体品牌色总价（变化时数字滚动），右侧“去结算”胶囊主按钮。"
+}
+-->
+<div class="cart">
+  <div class="items"></div>
+  <div class="total"><p>合计 <b>¥0</b></p><button>去结算</button></div>
+</div>
+
+<style>
+.cart { width: 300px; background: #fff; border-radius: 16px; border: 1px solid #E4E4E7; overflow: hidden; }
+.items { padding: 4px 14px; }
+.it { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid #F4F4F5; max-height: 80px; transition: all .35s ease; }
+.it.gone { transform: translateX(-100%); opacity: 0; max-height: 0; padding: 0; }
+.thumb { width: 48px; height: 48px; border-radius: 10px; }
+.it h5 { margin: 0; font-size: 13px; font-weight: 500; } .it small { color: #A1A1AA; font-size: 11px; } .it p { margin: 4px 0 0; font-size: 13px; color: #FA8C16; font-weight: 600; }
+.qty { display: flex; align-items: center; border: 1px solid #E4E4E7; border-radius: 8px; }
+.qty button { width: 26px; height: 26px; border: 0; background: none; cursor: pointer; font-size: 15px; color: #52525B; }
+.qty span { width: 20px; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+.empty { padding: 28px 0; text-align: center; color: #A1A1AA; font-size: 13px; }
+.total { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; box-shadow: 0 -4px 12px rgba(0,0,0,.04); }
+.total p { margin: 0; font-size: 12px; color: #71717A; } .total b { font-size: 21px; color: #FA8C16; font-variant-numeric: tabular-nums; }
+.total button { height: 38px; padding: 0 20px; border: 0; border-radius: 999px; background: #FA8C16; color: #fff; font-weight: 600; cursor: pointer; }
+</style>
+<script>
+const data = [["月光马克杯", "釉白 · 350ml", 69, 1, "#F5EFE6"], ["江面帆布包", "藏青", 128, 1, "#DBEAFE"], ["书签套装", "6 枚", 25, 2, "#FEF3C7"]];
+const box = document.querySelector(".items"), sum = document.querySelector(".total b");
+const total = () => sum.textContent = "¥" + data.reduce((s, d) => s + d[2] * d[3], 0);
+data.forEach((d) => {
+  const row = document.createElement("div"); row.className = "it";
+  row.innerHTML = `<div class="thumb" style="background:${d[4]}"></div><div><h5>${d[0]}</h5><small>${d[1]}</small><p>¥${d[2]}</p></div><div class="qty"><button>−</button><span>${d[3]}</span><button>+</button></div>`;
+  const [minus, plus] = row.querySelectorAll("button"), n = row.querySelector("span");
+  const set = (v) => { d[3] = v; n.textContent = v; total(); if (!v) { row.classList.add("gone"); setTimeout(() => { row.remove(); if (!box.children.length) box.innerHTML = '<p class="empty">购物车空空的，去逛逛吧</p>'; }, 350); } };
+  minus.addEventListener("click", () => set(d[3] - 1)); plus.addEventListener("click", () => set(d[3] + 1));
+  box.append(row);
+});
+total();
+</script>

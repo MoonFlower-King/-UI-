@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Progress Bar", "zh": "进度条",
+  "lead": "知道要多久的事用确定进度条（显示百分比），不知道要多久的用不确定进度条（一段光来回跑）。上传、下载、多步任务都用得上。",
+  "vague": ["上传要显示进度", "让用户知道还要等多久"],
+  "terms": ["Determinate 确定进度", "Indeterminate 不确定进度", "Progress Bar", "Percentage 百分比"],
+  "prompt": "上传文件时显示 Determinate Progress Bar：高 8px 圆角，底色 #F4F4F5，进度段品牌色并带斜纹流动动画，宽度变化 300ms ease-out，右侧等宽数字百分比，到 100% 时进度段变绿并显示 ✓ 完成；等待服务器响应时切换为 Indeterminate 样式（40% 宽的光段左右往返 1.2s）。"
+}
+-->
+<div class="pb">
+  <div class="file"><span>📄 设计稿.fig</span><b>0%</b></div>
+  <div class="track"><i></i></div>
+  <p>不确定进度</p>
+  <div class="track loop"><i></i></div>
+  <button>重新上传</button>
+</div>
+
+<style>
+.pb { width: 280px; display: grid; gap: 8px; }
+.file { display: flex; justify-content: space-between; font-size: 13px; } .file b { font-variant-numeric: tabular-nums; font-weight: 500; color: #71717A; }
+.track { height: 8px; border-radius: 4px; background: #F4F4F5; overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; border-radius: 4px; background: #FA8C16 repeating-linear-gradient(45deg, rgba(255,255,255,.22) 0 6px, transparent 6px 12px); background-size: 17px 17px; animation: stripes .6s linear infinite; transition: width .3s ease-out, background-color .3s; }
+.track i.done { background-color: #22C55E; }
+@keyframes stripes { to { background-position: 17px 0; } }
+.loop i { width: 40%; animation: loop 1.2s ease-in-out infinite alternate; background: #FA8C16; }
+@keyframes loop { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+p { margin: 8px 0 0; font-size: 11px; color: #A1A1AA; }
+button { justify-self: start; margin-top: 6px; border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 6px 12px; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+const bar = document.querySelector(".track i"), pct = document.querySelector(".file b"); let v = 0, t;
+function run() {
+  clearInterval(t); v = 0; bar.classList.remove("done");
+  t = setInterval(() => { v = Math.min(100, v + Math.random() * 14); bar.style.width = v + "%"; pct.textContent = v < 100 ? Math.round(v) + "%" : "✓ 完成"; if (v >= 100) { clearInterval(t); bar.classList.add("done"); } }, 260);
+}
+document.querySelector("button").addEventListener("click", run); run();
+</script>

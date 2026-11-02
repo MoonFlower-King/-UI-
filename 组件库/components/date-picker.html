@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Date Picker", "zh": "日期选择器",
+  "lead": "点开是一张小月历：今天有圆点标记，过去的日子变灰不可选，可以选一段日期范围（开始和结束是实心圆，中间连成一条浅色带）。",
+  "vague": ["选日期", "日历选择"],
+  "terms": ["Date Picker", "Date Range 日期范围", "Calendar Grid 月历", "Disabled Dates 不可选日期"],
+  "prompt": "做 Date Range Picker：白卡圆角 14px，顶部月份标题 + 左右切月箭头；7 列网格，星期行灰色小字；日期 34px 圆形，今天下方小圆点，过去日期灰色不可点；第一次点击为开始、第二次为结束，起止日期品牌色实心圆白字，中间日期浅橘色连续底带；底部显示“11月5日 – 11月10日 · 共 5 晚”。"
+}
+-->
+<div class="dp">
+  <header><b>2026 年 11 月</b><small>选择入住和退房</small></header>
+  <div class="wk"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+  <div class="days"></div>
+  <p class="sum">请选择入住日期</p>
+</div>
+
+<style>
+.dp { width: 260px; background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 10px 28px rgba(0,0,0,.08); }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; }
+header small { font-size: 11px; color: #A1A1AA; }
+.wk, .days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; } .wk { font-size: 11px; color: #A1A1AA; margin-bottom: 4px; }
+.days button { position: relative; height: 32px; padding: 0; min-width: 0; border: 0; background: none; font-size: 13px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.days button span { position: relative; z-index: 1; display: grid; place-items: center; width: 30px; height: 30px; margin: 1px auto; border-radius: 50%; }
+.days button:hover span { background: #F4F4F5; }
+.days button:disabled { color: #D4D4D8; cursor: default; } .days button:disabled span { background: none; }
+.today span::after { content: ""; position: absolute; bottom: 3px; width: 4px; height: 4px; border-radius: 50%; background: #FA8C16; }
+.mid { background: #FFF1E0 !important; }
+.start::before, .end::before { content: ""; position: absolute; top: 1px; bottom: 1px; background: #FFF1E0; }
+.start.has::before { left: 50%; right: 0; } .end::before { left: 0; right: 50%; }
+.start span, .end span { background: #FA8C16 !important; color: #fff; font-weight: 600; }
+.sum { margin: 10px 0 0; font-size: 12px; color: #71717A; text-align: center; }
+</style>
+<script>
+const box = document.querySelector(".days"), sum = document.querySelector(".sum"), TODAY = 2; let a = 5, b = 10;
+const render = () => {
+  box.innerHTML = Array.from({ length: 30 }, (_, i) => {
+    const d = i + 1, c = [d === TODAY && "today", d === a && "start", d === b && "end", a && b && d > a && d < b && "mid", d === a && b && "has"].filter(Boolean).join(" ");
+    return `<button class="${c}" ${d < TODAY ? "disabled" : ""} style="${d === 1 ? "grid-column:1" : ""}"><span>${d}</span></button>`;
+  }).join("");
+  sum.textContent = a && b ? `11月${a}日 – 11月${b}日 · 共 ${b - a} 晚` : a ? "再选退房日期" : "请选择入住日期";
+};
+box.addEventListener("click", (e) => {
+  const d = +e.target.closest("button:not(:disabled)")?.textContent; if (!d) return;
+  if (!a || b || d <= a) { a = d; b = 0; } else b = d; render();
+});
+render();
+</script>

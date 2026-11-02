@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Bottom Navigation", "zh": "底部标签栏",
+  "lead": "手机 App 最常见的主导航：屏幕底部 3 到 5 个图标 + 文字，拇指最好够到。当前项变品牌色，图标轻轻弹一下，中间可以放一个突出的发布按钮。",
+  "vague": ["App 底部那一排", "手机端导航"],
+  "terms": ["Tab Bar", "Bottom Navigation", "Thumb Zone 拇指热区", "Safe Area"],
+  "prompt": "做手机 Bottom Navigation：固定在底部、高 56px + 安全区内边距，白底顶部 1px 细线和轻微毛玻璃；4 个标签（首页/发现/消息/我的）图标 22px + 文字 10px，未选灰色，选中品牌色且图标 scale 弹跳 300ms；中间一个 44px 圆形品牌色“+”发布按钮略微上凸；“消息”带红色数字角标。"
+}
+-->
+<div class="phone">
+  <div class="screen"><p>首页</p></div>
+  <nav class="tb">
+    <button class="on"><i>⌂</i>首页</button><button><i>◎</i>发现</button>
+    <button class="plus" aria-label="发布">+</button>
+    <button><i>✉<b>2</b></i>消息</button><button><i>☺</i>我的</button>
+  </nav>
+</div>
+
+<style>
+.phone { width: 260px; height: 300px; border-radius: 26px; border: 6px solid #18181B; overflow: hidden; display: flex; flex-direction: column; background: #F4F4F5; }
+.screen { flex: 1; display: grid; place-items: center; color: #A1A1AA; font-size: 22px; } .screen p { margin: 0; animation: fade .3s; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+.tb { display: flex; align-items: center; justify-content: space-around; height: 56px; padding-bottom: 6px; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-top: 1px solid #E4E4E7; }
+.tb button { border: 0; background: none; display: grid; justify-items: center; gap: 2px; font-size: 10px; color: #A1A1AA; cursor: pointer; width: 46px; }
+.tb i { position: relative; font-style: normal; font-size: 19px; line-height: 1; }
+.tb b { position: absolute; top: -4px; right: -10px; background: #EF4444; color: #fff; font-size: 9px; border-radius: 8px; padding: 1px 4px; }
+.tb .on { color: #FA8C16; } .tb .on i { animation: bounce .35s cubic-bezier(.34,1.6,.64,1); }
+@keyframes bounce { 50% { transform: scale(1.25); } }
+.tb .plus { width: 42px; height: 42px; border-radius: 50%; background: #FA8C16; color: #fff; font-size: 22px; margin-top: -16px; box-shadow: 0 6px 14px rgba(250,140,22,.4); display: block; }
+</style>
+<script>
+const p = document.querySelector(".screen p"), tabs = [...document.querySelectorAll(".tb button:not(.plus)")];
+tabs.forEach((b) => b.addEventListener("click", () => {
+  tabs.forEach((x) => x.classList.toggle("on", x === b));
+  p.textContent = b.textContent.replace(/\d/g, "").slice(1); p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
+}));
+</script>

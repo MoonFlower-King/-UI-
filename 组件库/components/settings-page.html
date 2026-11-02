@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Settings Page", "zh": "设置页",
+  "lead": "设置页靠“分组列表”撑起来：每组一个小标题，每行左边是名称和说明，右边是开关、箭头或当前值。改了开关立刻生效，不用再点保存。",
+  "vague": ["设置页好乱", "选项太多不好找"],
+  "terms": ["Grouped List 分组列表", "Toggle Switch", "Disclosure Indicator 箭头", "Auto-save 自动保存"],
+  "prompt": "做一个 Settings Page：灰底 #F4F4F5，内容按分组排成白色圆角 12px 列表块，组上方 12px 灰色小标题；每行高 52px，左侧名称 + 一行灰色说明，右侧是 Toggle Switch、当前值 + › 箭头；行与行之间 1px 分隔线从文字处开始；切换开关后右上角出现“已自动保存” Toast。"
+}
+-->
+<div class="settings">
+  <h4>通知</h4>
+  <div class="group">
+    <label class="row"><span>推送通知<small>新评论和点赞</small></span><input type="checkbox" checked></label>
+    <label class="row"><span>邮件周报<small>每周一早上发送</small></span><input type="checkbox"></label>
+  </div>
+  <h4>外观</h4>
+  <div class="group">
+    <button class="row"><span>主题</span><em>跟随系统 ›</em></button>
+    <button class="row"><span>语言</span><em>简体中文 ›</em></button>
+  </div>
+  <div class="saved">已自动保存</div>
+</div>
+
+<style>
+.settings { position: relative; width: 300px; padding: 6px 14px 14px; background: #F4F4F5; border-radius: 16px; }
+h4 { margin: 12px 4px 6px; font-size: 11px; font-weight: 500; color: #71717A; }
+.group { background: #fff; border-radius: 12px; overflow: hidden; }
+.row { position: relative; width: 100%; min-height: 50px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; box-sizing: border-box; border: 0; background: none; font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.row + .row::before { content: ""; position: absolute; top: 0; left: 14px; right: 0; height: 1px; background: #F0F0F2; }
+.row:hover { background: #FAFAFA; }
+.row small { display: block; color: #A1A1AA; font-size: 11px; margin-top: 2px; }
+.row em { font-style: normal; color: #71717A; font-size: 13px; }
+input { appearance: none; width: 42px; height: 24px; border-radius: 999px; background: #E4E4E7; position: relative; cursor: pointer; transition: background .25s; flex: none; margin: 0; }
+input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: transform .25s cubic-bezier(.34,1.4,.64,1); }
+input:checked { background: #FA8C16; } input:checked::after { transform: translateX(18px); }
+.saved { position: absolute; top: 8px; right: 12px; background: #18181B; color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 999px; opacity: 0; transform: translateY(-4px); transition: all .25s; }
+.saved.show { opacity: 1; transform: none; }
+</style>
+<script>
+const saved = document.querySelector(".saved"); let t;
+document.querySelectorAll("input").forEach((i) => i.addEventListener("change", () => { saved.classList.add("show"); clearTimeout(t); t = setTimeout(() => saved.classList.remove("show"), 1400); }));
+</script>
