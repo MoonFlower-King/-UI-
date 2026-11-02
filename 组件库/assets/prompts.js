@@ -1,4 +1,4 @@
-// 提示词调配台（prompts.html）。数据来自 data/prompts.js（npm run build:ui 生成）。
+// 提示词调配台（prompts.html）。数据来自 data/prompts.js 和 data/prompt-code/（npm run build:ui 生成）。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
 const { kinds, groups, items, stages, kits = {} } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
@@ -127,10 +127,19 @@ const SHADOW_CSS = ':host{all:initial;display:block;position:relative;width:100%
   'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}' +
   ':host(:not(.run)) *,:host(:not(.run)) *::before,:host(:not(.run)) *::after{animation-play-state:paused!important}' +
   '@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}';
-function paint(host) {
+// 预览代码按分组放在 data/prompt-code/<分组>.js，第一次画到这一组时才下载（同一组只下载一次）
+const codeLoads = {};
+const loadCode = (g) => (codeLoads[g] ||= new Promise((ok, no) => {
+  const s = document.createElement('script');
+  s.src = `data/prompt-code/${g}.js`; s.onload = () => ok(window.JY_PROMPT_CODE[g]); s.onerror = no;
+  document.head.append(s);
+}));
+async function paint(host) {
   if (host.shadowRoot) return;
   const it = byId[host.dataset.id], stage = groupById[it.group].stage;
-  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${it.code}`;
+  const code = (await loadCode(it.group))[it.id];
+  if (host.shadowRoot) return;
+  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${code}`;
   host.closest('.thumb').classList.add('ready');
 }
 const painter = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { painter.unobserve(e.target); paint(e.target); } }), { rootMargin: '600px 0px' });
