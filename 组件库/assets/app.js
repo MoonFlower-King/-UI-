@@ -99,12 +99,37 @@ syncTheme();
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
 const AUTO = window.JY_AUTOPLAY;
-const doc = (c) => AUTO && !calm.matches
-  ? `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.post})()<\/script>`
-  : BASE + c.code;
+const doc = (c) => !AUTO ? BASE + c.code : calm.matches
+  ? `${BASE}${c.code}\n<script>(${AUTO.fit})()<\/script>`
+  : `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.fit})();(${AUTO.post})()<\/script>`;
+
+// 预览占满：组件按 560×350 的画布写，但很多只占中间一小块。量出实际大小后，把预览「视口」缩到刚好包住它，
+// 再整体放大到卡片宽度，组件就占满预览框。每个组件只量一次，记在 fitCache 里。
+const fitCache = {};
+function setFit(id, w, h) {
+  if (!(w > 0)) return;
+  const need = Math.round(Math.min(560, Math.max(240, w * 1.1, h * 1.36 * 1.6)));
+  if (fitCache[id] && need <= fitCache[id] + 2) return; // 只放宽、不收窄，避免来回跳
+  fitCache[id] = Math.max(need, fitCache[id] || 0);
+  $$(`.thumb iframe[data-id="${id}"]`).forEach((f) => f.parentElement.style.setProperty('--vw', fitCache[id]));
+}
+// 量 Shadow DOM 首帧里组件的实际大小（换算回预览视口里的像素）
+function measurePoster(id, host, root) {
+  const o = host.getBoundingClientRect(), vw = fitCache[id] || 560, k = o.width / vw, W = vw, H = vw / 1.6;
+  if (!(k > 0)) return;
+  let l = 1e9, t = 1e9, r = -1e9, b = -1e9;
+  root.querySelectorAll('*').forEach((el) => {
+    if (el.tagName === 'STYLE') return;
+    const q = el.getBoundingClientRect(), x = (q.left - o.left) / k, y = (q.top - o.top) / k, w = q.width / k, h = q.height / k;
+    if (w < 2 || h < 2 || x + w <= -W || y + h <= -H || x >= 2 * W || y >= 2 * H || (w >= W - 1 && h >= H - 1)) return;
+    const cs = getComputedStyle(el); if (cs.opacity === '0' || cs.visibility === 'hidden') return;
+    l = Math.min(l, x); t = Math.min(t, y); r = Math.max(r, x + w); b = Math.max(b, y + h);
+  });
+  if (r > l) setFit(id, Math.max(r - W / 2, W / 2 - l) * 2, Math.max(b - H / 2, H / 2 - t) * 2);
+}
 
 // 静态首帧：:root / html / body 上的样式改挂到 Shadow DOM 的宿主上
-const POSTER_CSS = ':host{all:initial;display:grid;place-items:center;width:560px;height:350px;background:#FAFAFA;color:#18181B;' +
+const POSTER_CSS = ':host{all:initial;display:grid;place-items:center;width:100%;height:100%;background:#FAFAFA;color:#18181B;' +
   'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}' +
   '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
 function paintPoster(t) {
@@ -112,8 +137,12 @@ function paintPoster(t) {
   if (!host || host.shadowRoot) return;
   const html = c.code.replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/(^|[\s,}>])(:root|html|body)(?=\s*[{,.:#\[\s])/g, '$1:host');
-  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${POSTER_CSS}</style>${html}`;
+  const root = host.attachShadow({ mode: 'open' });
+  root.innerHTML = `<style>${POSTER_CSS}</style>${html}`;
   t.classList.add('ready');
+  // 首帧画好就顺手量一下组件大小，预览立刻按实际大小放大；放大后可能换行变高，下一帧再量一次确认装得下
+  measurePoster(c.id, host, root);
+  requestAnimationFrame(() => measurePoster(c.id, host, root));
 }
 const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (e.isIntersecting) { paintPoster(e.target); posters.unobserve(e.target); }
@@ -139,16 +168,17 @@ const watch = new IntersectionObserver((entries) => entries.forEach((e) => {
   else if (playing.delete(f)) { queue.delete(f); f.classList.add('swap'); delete f.dataset.live; f.srcdoc = ''; }
 }), { rootMargin: '120px 0px' });
 addEventListener('message', (e) => {
-  if (e.data !== 'jy-replay') return;
   const f = [...playing].find((x) => x.contentWindow === e.source);
-  if (f) load(f);
+  if (!f) return;
+  if (e.data === 'jy-replay') load(f);
+  else if (e.data?.jyFit) setFit(f.dataset.id, ...e.data.jyFit);
 });
-const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--s', e.contentRect.width / 560)));
+const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--tw', e.contentRect.width)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb"><div class="poster" aria-hidden="true"></div><iframe class="swap" data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">点一下，换你来玩</span></div>
-    <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p>
-      <div class="card-actions"><button class="btn sm" data-copy="${c.id}">复制提示词</button><button class="btn sm add-btn" data-add="${c.id}"></button></div></div>
+    <div class="thumb"${fitCache[c.id] ? ` style="--vw:${fitCache[c.id]}"` : ''}><div class="poster" aria-hidden="true"></div><iframe class="swap" data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe>
+      <div class="thumb-actions"><button class="glass-btn" data-copy="${c.id}">复制提示词</button><button class="glass-btn add-btn" data-add="${c.id}"></button></div><span class="live">点一下，换你来玩</span></div>
+    <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p></div>
   </article>`;
 }
 function hydrate(root) {
