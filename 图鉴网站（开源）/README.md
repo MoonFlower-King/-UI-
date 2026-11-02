@@ -27,6 +27,7 @@
 | 5 | 弹窗与浮层组件 | Drawer · Bottom Sheet · Popover · Command Palette · Toast · Backdrop Modal |
 | 6 | 加载与状态反馈 | Skeleton Screen · Shimmer Effect · Progressive Blur · Optimistic UI · Stepper Progress · Pull to Refresh |
 | 7 | UI 视觉质感风格 | Glassmorphism · Neumorphism · Neo-Brutalism · Aurora Background · Bento Dark Mode · Layered Elevation |
+| 8 | 动画缓动与节奏 | Ease-in-out · Spring · Stagger · Anticipation · Squash & Stretch · Motion Path |
 
 ## 本地预览
 
