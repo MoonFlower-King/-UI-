@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Timeline Layout",
+  "zh": "时间轴",
+  "alias": [
+    "时间线",
+    "历程页"
+  ],
+  "lead": "页面沿一条竖线往下走，每个节点一个年份或日期，内容左右交错挂在线上。清楚、有叙事感、让人想往下看，适合品牌历程、项目路线图、活动议程和个人履历。",
+  "prompt": "时间轴风格：浅暖白背景，一条贯穿的细竖线（主色或深灰）带圆点节点，节点旁为大号年份数字与小卡片内容，卡片左右交错，当前节点用实心主色圆点强调，无衬线标题，等宽字标注日期，克制配色",
+  "promptEn": "timeline layout style: light warm white background, one continuous thin vertical line (main color or dark gray) with round nodes, big year numbers and small content cards beside each node, cards alternating left and right, the current node emphasized with a solid main-color dot, sans-serif headings, monospaced date labels, restrained palette",
+  "avoid": "线要连续不断，节点间距要一致；大年份数字是节奏感来源，不要省。当前节点只高亮一个。",
+  "neg": [
+    "节点间距忽大忽小、到处高亮",
+    "uneven node spacing, highlights everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2E5E8C; --a2: #2E5E8C; --on: #fff; background: #FAF8F4; color: #1F2328; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 6px; } .hero h1 { font-weight: 800; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art { border-left: 2px solid #C9CFD6; margin-left: 20px; }
+.art::before { content: "2019\A 2022\A 2026"; white-space: pre; position: absolute; left: 16px; top: 4px; font: 800 22px/2.1 -apple-system, "Inter", "PingFang SC", sans-serif; color: #C9CFD6; }
+.art::after { content: ""; position: absolute; left: -7px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: #FAF8F4; border: 2px solid #C9CFD6; box-shadow: 0 46px 0 -2px #C9CFD6; }
+.art .m { position: absolute; left: -8px; top: 106px; width: 14px; height: 14px; border-radius: 50%; background: #2E5E8C; box-shadow: 0 0 0 4px rgba(46,94,140,.2); }
+.art .h { position: absolute; left: 80px; top: 100px; width: 80px; height: 30px; border-radius: 6px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.feats { position: relative; } .feats article { padding: 12px; border-radius: 10px; background: #fff; border-top: 3px solid #E5E7EA; } .feats article:nth-child(3) { border-color: #2E5E8C; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #2E5E8C; }
+.stats b { color: #2E5E8C; }
+</style>

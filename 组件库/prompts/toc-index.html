@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Table of Contents",
+  "zh": "目录页",
+  "alias": [
+    "索引式",
+    "目录排版"
+  ],
+  "lead": "整个首页像一本书的目录：章节名、点线连到页码，层层缩进，读者一眼看清全貌。条理、安静、有书卷气，适合出版社、在线课程、年报、知识库和长文专题。",
+  "prompt": "目录页风格：纸白背景，内容以目录形式排列（章节编号、标题、点线引导到右侧页码），一级标题衬线大字、二级缩进小字，细分隔线，强调色只用于当前章节编号，几乎无图片，排版严格对齐",
+  "promptEn": "table of contents style: paper white background, content arranged as a book contents page (chapter numbers, titles, dotted leaders to page numbers on the right), level-one headings in large serif, level-two indented in small type, thin dividers, accent color only on the current chapter number, almost no images, strictly aligned typography",
+  "avoid": "点线引导和右对齐页码是灵魂；层级最多两级，再多就乱。别加图标装饰。",
+  "neg": [
+    "多级缩进、图标装饰",
+    "deep nested levels, decorative icons"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F1F1F; --a2: #B0462F; --on: #FAF8F3; background: #FAF8F3; color: #1F1F1F; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 500; } .kicker { color: #B0462F; font-variant: small-caps; letter-spacing: 2px; }
+.art::before { content: "壹　夜读 ·········· 03\A 贰　借阅 ·········· 17\A 叁　茶席 ·········· 29\A 肆　书单 ·········· 41"; white-space: pre; position: absolute; left: 0; right: 0; top: 8px; font: 12.5px/2.4 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.art::after { content: ""; position: absolute; left: 0; top: 14px; width: 14px; height: 16px; background: rgba(176,70,47,.18); }
+.feats b { color: #B0462F; } .feats h3 { font-weight: 500; } .feats article { border-bottom: 1px dotted #9A958C; padding-bottom: 10px; }
+.stats { border-top: 1px solid #1F1F1F; border-bottom: 1px solid #1F1F1F; margin: 0 26px; } .stats b { font-weight: 400; }
+</style>

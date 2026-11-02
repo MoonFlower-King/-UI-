@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Crumpled Paper",
+  "zh": "揉皱的纸",
+  "alias": [
+    "皱纸",
+    "手揉纸张"
+  ],
+  "lead": "一张揉过又摊平的纸：不规则的折痕和明暗，像草稿被重新捡回来。随性、真实、有创作过程的温度，适合设计工作室、作家主页、独立游戏和手作品牌。",
+  "prompt": "揉皱的纸风格：米白纸背景带大面积不规则折痕明暗（浅灰阴影与高光交错的多边形面），文字为黑色或炭笔灰，粗无衬线或手写感标题，内容卡为较平整的纸片，一点红色铅笔圈画点缀",
+  "promptEn": "crumpled paper style: off-white paper background with large irregular crease shading (polygonal facets of light gray shadow and highlight), black or charcoal text, bold sans or handwritten-feel headings, content cards as flatter paper scraps, a touch of red pencil circling as accent",
+  "avoid": "折痕明暗要很淡，读得出字才行；红色圈画一两处就好。",
+  "neg": [
+    "折痕太深、到处红圈",
+    "creases too dark, red circles everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1E1E; --a2: #C8372D; --on: #FBFAF6; background: #F4F2EC; color: #1E1E1E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { background: linear-gradient(115deg, rgba(0,0,0,.035) 0 22%, transparent 22% 48%, rgba(255,255,255,.5) 48% 52%, rgba(0,0,0,.03) 52% 70%, transparent 70%), linear-gradient(200deg, transparent 0 35%, rgba(0,0,0,.03) 35% 55%, rgba(255,255,255,.45) 55% 58%, transparent 58%), linear-gradient(20deg, rgba(0,0,0,.025) 0 30%, transparent 30%); }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 900; }
+.hero h1::after { content: ""; display: block; width: 110px; height: 10px; margin-top: 2px; border-bottom: 2px solid #C8372D; border-radius: 0 0 60% 40%; transform: rotate(-2deg); }
+.art .m { position: absolute; left: 20px; top: 10px; width: 130px; height: 130px; background: linear-gradient(135deg, #FBFAF6 0 40%, #E8E5DD 40% 60%, #F6F4EE 60%), #FBFAF6;
+  clip-path: polygon(4% 8%, 40% 0, 70% 6%, 100% 2%, 96% 40%, 100% 70%, 94% 100%, 55% 94%, 20% 100%, 0 76%, 6% 40%); box-shadow: 0 4px 10px rgba(0,0,0,.1); }
+.art .h { position: absolute; left: 50px; top: 50px; width: 70px; height: 40px; border: 2px solid #C8372D; border-radius: 50%; transform: rotate(-8deg); }
+.feats article { padding: 12px; background: #FBFAF6; box-shadow: 0 2px 6px rgba(0,0,0,.06); } .feats b { color: #C8372D; font-weight: 700; }
+.stats b { font-weight: 900; }
+</style>

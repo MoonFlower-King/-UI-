@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Lantern Festival",
+  "zh": "元宵花灯",
+  "alias": [
+    "花灯",
+    "灯会"
+  ],
+  "lead": "元宵夜的灯会：深夜蓝底上一串串圆灯笼亮着暖橙色的光，灯下流苏轻轻摆，远处是更小、更模糊的灯。温暖、团圆、热闹又不吵，适合元宵中秋营销、夜游文旅、餐厅活动和节日贺卡。",
+  "prompt": "元宵花灯风格：深夜蓝背景，主视觉为几只发光的圆灯笼（朱红灯身、金色上下盖、暖橙内光晕向外柔和扩散、底部流苏），远处更小更虚的灯形成层次，文字为暖白，衬线标题，内容卡为深蓝半透明块配金色细线",
+  "promptEn": "lantern festival style: deep night-blue background, a hero of a few glowing round lanterns (vermilion bodies, gold caps, warm orange inner glow softly spreading outward, tassels below), smaller blurrier lanterns in the distance for depth, warm white text, serif headings, content cards as translucent dark-blue blocks with thin gold lines",
+  "avoid": "光晕要柔、只给灯笼，别给文字加发光；远近大小虚实拉开才有灯会的深度。别用荧光霓虹红。",
+  "neg": [
+    "文字发光、霓虹红",
+    "glowing text, neon red"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E8A33D; --a2: #F2C46E; --on: #14203A; background: #14203A; color: #F4E9D6; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; letter-spacing: 2px; } .kicker { color: #F2C46E; letter-spacing: 3px; }
+.art { overflow: visible; }
+.art .m { position: absolute; left: 50px; top: 20px; width: 70px; height: 62px; border-radius: 50%; background: radial-gradient(ellipse at 50% 45%, #FFD38A, #E2502E 55%, #A8261E);
+  box-shadow: 0 0 30px 6px rgba(232,120,60,.45), inset 0 0 0 0 transparent; border-top: 6px solid #D9A63E; border-bottom: 6px solid #D9A63E; }
+.art .m::after { content: ""; position: absolute; left: 31px; top: 66px; width: 6px; height: 28px; background: repeating-linear-gradient(90deg, #E2502E 0 1px, transparent 1px 2px); }
+.art .h { position: absolute; left: 130px; top: 0; width: 26px; height: 24px; border-radius: 50%; background: radial-gradient(#FFC97A, #C8402A 70%); box-shadow: 0 0 16px 4px rgba(232,120,60,.35); filter: blur(.6px);
+  outline: 0; }
+.art::before { content: ""; position: absolute; left: 10px; top: 96px; width: 18px; height: 16px; border-radius: 50%; background: radial-gradient(#FFC97A, #B83A28 70%); filter: blur(1.2px); box-shadow: 120px 24px 0 -3px #A8361F; opacity: .8; }
+.art::after { content: ""; position: absolute; left: 85px; top: -30px; width: 1px; height: 56px; background: rgba(244,233,214,.4); }
+.feats article { padding: 12px; background: rgba(255,255,255,.04); border-top: 1px solid rgba(242,196,110,.45); } .feats b { color: #F2C46E; }
+.stats b { color: #F2C46E; font-weight: 500; }
+</style>

@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Star Chart",
+  "zh": "星图",
+  "alias": [
+    "天文星图",
+    "星座图"
+  ],
+  "lead": "一张老式星图：深蓝底上的金色星点和细线连成星座，外圈是刻度和赤经赤纬的环。神秘、精确、浪漫，适合天文馆、占星类内容、香氛、夜间活动和科普教育。",
+  "prompt": "星图风格：深午夜蓝背景，主视觉为一个圆形星图（外圈两层细刻度环与小号度数、内部金色星点大小不一、细金线连成两三个星座、淡淡的经纬弧线），衬线标题为象牙白，正文为浅灰蓝，点缀极少的暖金",
+  "promptEn": "star chart style: deep midnight blue background, a hero of a circular star chart (two outer rings of fine ticks with small degree numbers, gold star dots of varying sizes inside, thin gold lines connecting two or three constellations, faint coordinate arcs), ivory serif headings, pale gray-blue body text, very sparse warm gold accents",
+  "avoid": "星点要大小不一才自然；刻度环细而精确是“图”的感觉。别加紫色星云和光晕粒子特效。",
+  "neg": [
+    "紫色星云、粒子光效",
+    "purple nebulae, particle glow effects"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D9B969; --a2: #D9B969; --on: #0F1A33; background: #0F1A33; color: #EDE6D4; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 400; letter-spacing: 2px; } .kicker { letter-spacing: 3px; color: #D9B969; }
+.art .m { position: absolute; left: 10px; top: 0; width: 150px; height: 150px; border-radius: 50%; border: 1px solid rgba(217,185,105,.7);
+  background: repeating-conic-gradient(rgba(217,185,105,.7) 0 .6deg, transparent .6deg 5deg); -webkit-mask: radial-gradient(circle, transparent 66px, #000 66.5px); mask: radial-gradient(circle, transparent 66px, #000 66.5px); }
+.art .h { position: absolute; left: 20px; top: 10px; width: 130px; height: 130px; border-radius: 50%; border: 1px solid rgba(217,185,105,.35);
+  background: radial-gradient(circle at 30% 35%, #F4E2A8 0 2px, transparent 2.5px), radial-gradient(circle at 45% 28%, #F4E2A8 0 1.2px, transparent 1.6px), radial-gradient(circle at 58% 40%, #F4E2A8 0 2.4px, transparent 3px), radial-gradient(circle at 66% 62%, #F4E2A8 0 1.4px, transparent 1.8px), radial-gradient(circle at 40% 70%, #F4E2A8 0 1.8px, transparent 2.2px), radial-gradient(circle at 75% 30%, #F4E2A8 0 1px, transparent 1.4px), radial-gradient(circle at 22% 58%, #F4E2A8 0 1px, transparent 1.4px), radial-gradient(ellipse 60% 100% at 50% 50%, transparent 59%, rgba(217,185,105,.2) 60%, transparent 61%); }
+.art::after { content: ""; position: absolute; left: 59px; top: 46px; width: 34px; height: 1px; background: rgba(217,185,105,.7); transform: rotate(-26deg); transform-origin: left; box-shadow: 0 0 0 transparent; }
+.art::before { content: ""; position: absolute; left: 78px; top: 62px; width: 32px; height: 1px; background: rgba(217,185,105,.7); transform: rotate(64deg); transform-origin: left; }
+.feats article { border-top: 1px solid rgba(217,185,105,.35); padding-top: 10px; } .feats b { color: #D9B969; } .feats h3 { font-weight: 400; }
+.stats b { color: #D9B969; font-weight: 400; }
+</style>

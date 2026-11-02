@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Orphism",
+  "zh": "奥费主义",
+  "alias": [
+    "色彩圆盘",
+    "同心色环"
+  ],
+  "lead": "把画面切成一圈圈同心彩环和半圆，颜色像光一样在旋转，互补色紧挨着发出振动感。明亮、律动、诗意又抽象，适合音乐节、艺术教育、儿童美育和品牌活动。",
+  "prompt": "奥费主义风格：奶白背景，主视觉为若干同心圆环与切分的半圆、四分之一圆组合（明黄、钴蓝、朱红、翠绿、粉橙等纯色互补相邻），圆形相互叠交，标题为几何无衬线粗体，正文简洁，卡片用一个色环角标",
+  "promptEn": "Orphism style: cream background, a hero of concentric color rings combined with split half and quarter circles (pure colors such as bright yellow, cobalt, vermilion, emerald and pink-orange placed in complementary pairs), circles overlapping one another, bold geometric sans headings, simple body text, cards marked by a small color-ring badge",
+  "avoid": "色环要同心、互补色相邻才会“振”；别用渐变，纯色平涂才是。正文区不要放色环。",
+  "neg": [
+    "渐变色环、色环压字",
+    "gradient rings, rings under text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F3E9C; --a2: #E2402E; --on: #fff; background: #FBF6EC; color: #1A1A22; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 800; } .hero h1 { font-weight: 900; }
+.art .m { position: absolute; left: 0; top: 10px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, #F2C230 0 14px, #1F3E9C 14px 28px, #E2402E 28px 42px, #2E9A6A 42px 60px); clip-path: inset(0 50% 0 0); }
+.art .m::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, #1F3E9C 0 14px, #F2C230 14px 28px, #2E9A6A 28px 42px, #E2402E 42px 60px); clip-path: inset(0 0 0 50%); }
+.art .h { position: absolute; left: 80px; top: 40px; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, #F49B74 0 12px, #1A1A22 12px 18px, #F2C230 18px 32px, #1F3E9C 32px 45px); mix-blend-mode: multiply; }
+.feats article { padding: 12px 12px 12px 40px; position: relative; background: #fff; border-radius: 12px; } .feats article::before { content: ""; position: absolute; left: 12px; top: 14px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle, #E2402E 0 4px, #F2C230 4px 7px, #1F3E9C 7px); }
+.feats b { color: #1F3E9C; font-weight: 800; } .stats b { color: #E2402E; font-weight: 900; }
+</style>

@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Coffee Roaster",
+  "zh": "咖啡烘焙坊",
+  "alias": [
+    "精品咖啡",
+    "烘豆工作室"
+  ],
+  "lead": "精品咖啡烘焙坊：牛皮纸豆袋、烘焙度色阶、产地风味轮和手写的风味描述，颜色从生豆绿到深烘褐。专业又亲切、有手艺人的讲究，适合咖啡店、烘豆品牌、咖啡课程和订阅服务。",
+  "prompt": "咖啡烘焙坊风格：燕麦米白背景，主色为深烘焙褐与焦糖棕，点缀一抹生豆青绿，主视觉为一只立式牛皮纸豆袋（白色标签印产地与烘焙度），一条五格烘焙度色阶（浅到深），衬线标题，等宽字标注风味与海拔，卡片为纸色细框",
+  "promptEn": "coffee roaster style: oatmeal off-white background, main colors deep roast brown and caramel with a touch of green-bean sage, a hero of a stand-up kraft coffee bag (white label printed with origin and roast level) and a five-step roast scale from light to dark, serif headings, monospaced notes for flavor and altitude, paper-toned cards with thin frames",
+  "avoid": "烘焙度色阶是专业感来源；颜色都在咖啡色系里，别加奶茶粉。风味描述具体（柑橘、可可），比“香浓”有说服力。",
+  "neg": [
+    "奶茶粉配色、空泛形容词",
+    "milk-tea pink palette, vague adjectives"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #4A2C1C; --a2: #7E8F5A; --on: #F6EFE3; background: #F4EDE2; color: #2E1E14; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #7E8F5A; }
+.art .m { position: absolute; left: 40px; top: 4px; width: 84px; height: 116px; background: linear-gradient(90deg, rgba(0,0,0,.08), transparent 30% 70%, rgba(0,0,0,.08)), #C9A574; clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); }
+.art .m::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 4px; background: repeating-linear-gradient(90deg, #A8834F 0 3px, transparent 3px 5px); }
+.art .m::after { content: "埃塞俄比亚\A 浅烘 · 1950m"; white-space: pre; position: absolute; left: 12px; right: 12px; top: 40px; padding: 8px 4px; background: #FBF7F0; font: 8.5px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-align: center; color: #2E1E14; }
+.art .h { position: absolute; left: 20px; top: 132px; width: 130px; height: 10px; background: linear-gradient(90deg, #9BAA6E 0 20%, #C9A574 0 40%, #A8703E 0 60%, #6E4024 0 80%, #2E1A10 0); border-radius: 2px; }
+.feats article { padding: 12px; border: 1px solid #D8CBB4; background: #FBF7F0; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #7E8F5A; }
+.stats { background: #4A2C1C; color: #F6EFE3; } .stats b { color: #E3C08A; }
+</style>

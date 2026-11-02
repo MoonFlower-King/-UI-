@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Tie-dye",
+  "zh": "扎染螺旋",
+  "alias": [
+    "彩色扎染",
+    "螺旋染"
+  ],
+  "lead": "布料扎起来染出的放射与螺旋，颜色在边缘晕开，带点七十年代的自由。随性、温柔、有手工的不完美，适合服饰品牌、音乐节、手作课程和夏日活动。",
+  "prompt": "扎染螺旋风格：米白背景，主视觉为一块螺旋或放射状扎染图样（三四种柔和色：赭橙、玫瑰粉、靛蓝、芥黄，色与色之间边缘晕开、留有白色扎痕线），圆润粗无衬线标题，正文区为纯米白，卡片配一条扎染色带",
+  "promptEn": "tie-dye style: off-white background, a hero of a spiral or radial tie-dye pattern (three or four soft colors: ochre orange, rose pink, indigo, mustard, with blurred edges between colors and white binding lines left behind), rounded bold sans headings, body area in plain off-white, cards with one tie-dye color strip",
+  "avoid": "颜色要柔和、边缘晕开，高饱和彩虹色会显得廉价；扎染只做主视觉，正文区干净。和蓝染（单色靛蓝）区分。",
+  "neg": [
+    "高饱和彩虹色、满版扎染",
+    "saturated rainbow colors, tie-dye everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3B4A8A; --a2: #D9743A; --on: #fff; background: #FBF6EE; color: #2A2620; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 800; } .hero h1 { font-weight: 900; }
+.art .m { position: absolute; left: 15px; top: 5px; width: 140px; height: 140px; border-radius: 50%; filter: blur(2.5px);
+  background: repeating-conic-gradient(from 0deg, #D9743A 0 30deg, #E9A0A8 45deg 75deg, #3B4A8A 90deg 120deg, #E8C25A 135deg 165deg, #D9743A 180deg); -webkit-mask: radial-gradient(circle, #000 66px, transparent 70px); mask: radial-gradient(circle, #000 66px, transparent 70px); }
+.art .h { position: absolute; left: 15px; top: 5px; width: 140px; height: 140px; border-radius: 50%; background: repeating-conic-gradient(rgba(251,246,238,.75) 0 1deg, transparent 1deg 30deg); }
+.art::after { content: ""; position: absolute; left: 77px; top: 67px; width: 16px; height: 16px; border-radius: 50%; background: #FBF6EE; filter: blur(2px); }
+.feats article { padding: 12px; border-radius: 14px; background: #fff; border-top: 6px solid; border-image: linear-gradient(90deg, #D9743A, #E9A0A8, #3B4A8A, #E8C25A) 1; } .feats b { color: #3B4A8A; font-weight: 800; }
+.stats b { color: #D9743A; font-weight: 900; }
+</style>

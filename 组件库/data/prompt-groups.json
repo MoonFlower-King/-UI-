@@ -73,7 +73,10 @@
         "yunjin",
         "tea-ceremony",
         "cloisonne",
-        "bamboo"
+        "bamboo",
+        "water-town",
+        "crackle",
+        "lantern"
       ]
     },
     {
@@ -107,7 +110,10 @@
         "wax-print",
         "azulejo",
         "persian-rug",
-        "tartan"
+        "tartan",
+        "iceland",
+        "savanna",
+        "subway-tile"
       ]
     },
     {
@@ -156,7 +162,10 @@
         "concrete-poetry",
         "chinoiserie",
         "illuminated",
-        "renaissance"
+        "renaissance",
+        "byzantine",
+        "vorticism",
+        "orphism"
       ]
     },
     {
@@ -205,7 +214,11 @@
         "docs-site",
         "single-hue",
         "type-mask",
-        "pill-ui"
+        "pill-ui",
+        "timeline",
+        "toc-index",
+        "chat-ui",
+        "command-palette"
       ]
     },
     {
@@ -247,7 +260,10 @@
         "copper",
         "velvet",
         "cork",
-        "slate"
+        "slate",
+        "sand-dune",
+        "ice",
+        "crumpled-paper"
       ]
     },
     {
@@ -285,7 +301,10 @@
         "knit",
         "pressed-flower",
         "marquetry",
-        "pyrography"
+        "pyrography",
+        "layered-paper",
+        "tie-dye",
+        "stencil"
       ]
     },
     {
@@ -328,7 +347,11 @@
         "teletext",
         "lcd-handheld",
         "cassette",
-        "retro-radio"
+        "retro-radio",
+        "pinball",
+        "motel",
+        "slide-film",
+        "workout-80s"
       ]
     },
     {
@@ -372,7 +395,11 @@
         "flip-board",
         "chess",
         "board-game",
-        "wine-label"
+        "wine-label",
+        "star-chart",
+        "envelope",
+        "luggage-tag",
+        "weather-map"
       ]
     },
     {
@@ -418,7 +445,10 @@
         "law-firm",
         "real-estate",
         "barber",
-        "tech-conference"
+        "tech-conference",
+        "architect",
+        "coffee-roaster",
+        "music-festival"
       ]
     },
     {
