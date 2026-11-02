@@ -1,10 +1,10 @@
-# 把「图鉴网站（开源）」发布到 GitHub Pages。
+# 把「图鉴网站（开源）」发布到 GitHub Pages 根目录，「组件库」发布到 /ui/。
 # 首次使用：仓库 Settings → Pages → Build and deployment → Source 选「GitHub Actions」。
-name: 发布图鉴网站
+name: 发布图鉴网站与组件库
 on:
   push:
     branches: [main]
-    paths: ['图鉴网站（开源）/**', '.github/workflows/pages.yml']
+    paths: ['图鉴网站（开源）/**', '组件库/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,9 +26,17 @@ jobs:
           node-version: 20
       - name: 生成词条数据
         run: node "图鉴网站（开源）/scripts/build.mjs"
+      - name: 生成组件库数据
+        run: node 组件库/scripts/build.mjs
+      - name: 组装站点
+        run: |
+          mkdir -p _site
+          cp -r "图鉴网站（开源）/." _site/
+          mkdir -p _site/ui
+          cp -r 组件库/. _site/ui/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 图鉴网站（开源）
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Toggle Switch", "zh": "开关切换", "group": "按钮点击反馈", "episode": "EP11",
+  "lead": "像实体开关一样的二选一控件，圆形滑块左右滑动，底色同时变化。比复选框更适合“立即生效”的设置。",
+  "vague": ["那个开关", "像 iPhone 设置里那样"],
+  "terms": ["Toggle Switch", "Thumb 滑块", "Track 轨道"],
+  "prompt": "做一个 iOS 风格的 Toggle Switch：轨道 52×32px 圆角胶囊，关闭灰色 #E4E4E7，打开绿色 #34C759；白色圆形滑块 26px 带轻微投影，切换时 250ms 带回弹的缓动滑动，按住时滑块横向拉长 4px。"
+}
+-->
+<label class="switch"><input type="checkbox" checked><span></span></label>
+
+<style>
+.switch { position: relative; display: inline-block; width: 52px; height: 32px; }
+.switch input { position: absolute; opacity: 0; }
+.switch span { position: absolute; inset: 0; border-radius: 999px; background: #E4E4E7; cursor: pointer; transition: background .25s; }
+.switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%;
+  background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .18); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), width .15s; }
+.switch input:checked + span { background: #34C759; }
+.switch input:checked + span::after { transform: translateX(20px); }
+.switch span:active::after { width: 30px; }
+.switch input:checked + span:active::after { transform: translateX(16px); }
+.switch input:focus-visible + span { outline: 2px solid #007AFF; outline-offset: 2px; }
+</style>

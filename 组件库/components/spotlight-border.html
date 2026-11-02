@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Spotlight Border", "zh": "聚光边框", "group": "鼠标悬停微交互", "episode": "EP02",
+  "lead": "鼠标在卡片上移动时，边框跟着鼠标位置亮起一圈光晕，像手电筒扫过。很多 AI 产品官网都在用。",
+  "vague": ["不够高级", "卡片太平了"],
+  "terms": ["Spotlight Border", "Cursor-follow 跟随光标", "Radial Gradient 径向渐变"],
+  "prompt": "给功能卡片加 Spotlight Border：用 CSS 变量记录鼠标在卡片内的坐标，边框是以鼠标为圆心、半径 160px 的橙色径向渐变（#FA8C16 → 透明），鼠标离开时 300ms 淡出；卡片本身深色背景。"
+}
+-->
+<div class="spot-scene">
+  <div class="spot"><h3>实时协作</h3><p>多人同时编辑，光标位置实时同步。</p></div>
+</div>
+
+<style>
+.spot-scene { position: fixed; inset: 0; display: grid; place-items: center; background: #0F0F11; }
+.spot { --x: 50%; --y: 50%; --glow: 0; position: relative; width: min(300px, 88vw); padding: 24px; border-radius: 16px;
+  background: #18181B; color: #FAFAFA; }
+.spot::before { content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: #2E2E33; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; }
+.spot::after { content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(160px circle at var(--x) var(--y), #FA8C16, transparent 70%); opacity: var(--glow); transition: opacity .3s;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.spot h3 { margin: 0 0 6px; font-size: 18px; }
+.spot p { margin: 0; color: #A1A1AA; font-size: 14px; }
+</style>
+
+<script>
+document.querySelectorAll(".spot").forEach(card => {
+  card.addEventListener("pointermove", e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--x", e.clientX - r.left + "px");
+    card.style.setProperty("--y", e.clientY - r.top + "px");
+    card.style.setProperty("--glow", 1);
+  });
+  card.addEventListener("pointerleave", () => card.style.setProperty("--glow", 0));
+});
+</script>

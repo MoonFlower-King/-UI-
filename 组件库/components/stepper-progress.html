@@ -1,0 +1,51 @@
+<!--
+{
+  "en": "Stepper Progress", "zh": "步骤进度条", "group": "加载与状态反馈", "episode": "EP05",
+  "lead": "把一个长流程拆成几步，用一排圆点和连线显示“你在第几步、还剩几步”。注册、下单、填表时最常见。",
+  "vague": ["流程太长用户会跑", "不知道还要填多久"],
+  "terms": ["Stepper", "Progress Indicator 进度指示", "Multi-step Form 分步表单"],
+  "prompt": "下单流程顶部加 Stepper Progress：4 个步骤（购物车、地址、支付、完成），圆点 28px 带序号，已完成变成橙色 #FA8C16 实心对勾，当前步骤橙色描边并外发光，连线随进度从左到右填色（400ms ease-in-out）。"
+}
+-->
+<div class="stepper-demo">
+  <ol class="stepper">
+    <li class="done"><i>1</i><span>购物车</span></li>
+    <li class="current"><i>2</i><span>地址</span></li>
+    <li><i>3</i><span>支付</span></li>
+    <li><i>4</i><span>完成</span></li>
+  </ol>
+  <div class="stepper-actions"><button class="prev">上一步</button><button class="next">下一步</button></div>
+</div>
+
+<style>
+.stepper-demo { width: min(440px, 92vw); display: grid; gap: 28px; }
+.stepper { display: flex; margin: 0; padding: 0; list-style: none; }
+.stepper li { flex: 1; position: relative; display: grid; justify-items: center; gap: 8px; font-size: 13px; color: #A1A1AA; }
+.stepper li + li::before { content: ""; position: absolute; top: 13px; right: 50%; width: 100%; height: 2px; z-index: 0;
+  background: linear-gradient(#FA8C16, #FA8C16) left / 0 100% no-repeat, #E4E4E7; transition: background-size .4s ease-in-out; }
+.stepper li.done + li::before { background-size: 100% 100%; }
+.stepper i { position: relative; z-index: 1; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  font-style: normal; font-weight: 600; background: #fff; border: 2px solid #E4E4E7; color: #A1A1AA; transition: .3s; }
+.stepper li.current { color: #18181B; font-weight: 600; }
+.stepper li.current i { border-color: #FA8C16; color: #FA8C16; box-shadow: 0 0 0 5px #FFE7BA; }
+.stepper li.done { color: #3F3F46; }
+.stepper li.done i { background: #FA8C16; border-color: #FA8C16; color: transparent; }
+.stepper li.done i::after { content: "✓"; position: absolute; color: #fff; font-size: 14px; }
+.stepper-actions { display: flex; justify-content: center; gap: 10px; }
+.stepper-actions button { border: 1px solid #E4E4E7; background: #fff; padding: 9px 20px; border-radius: 10px; font-size: 14px; cursor: pointer; }
+.stepper-actions .next { background: #18181B; border-color: #18181B; color: #fff; }
+</style>
+
+<script>
+const steps = [...document.querySelectorAll(".stepper li")];
+let current = 1;
+function render() {
+  steps.forEach((li, i) => {
+    li.classList.toggle("done", i < current);
+    li.classList.toggle("current", i === current);
+  });
+}
+document.querySelector(".next").addEventListener("click", () => { current = Math.min(current + 1, steps.length - 1); render(); });
+document.querySelector(".prev").addEventListener("click", () => { current = Math.max(current - 1, 0); render(); });
+render();
+</script>

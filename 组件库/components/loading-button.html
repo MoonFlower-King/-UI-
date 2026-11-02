@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Loading Button", "zh": "加载按钮", "group": "按钮点击反馈", "episode": "EP11",
+  "lead": "点击提交后，按钮自己变成转圈状态并暂时不能再点，完成后显示对勾。防止用户重复提交，也让等待有交代。",
+  "vague": ["点了不知道在干嘛", "老是被重复提交"],
+  "terms": ["Loading Button", "Spinner 加载圈", "Disabled State 禁用态"],
+  "prompt": "提交按钮做成 Loading Button：点击后文字淡出，按钮中间出现 18px 白色旋转圆环（800ms 一圈），按钮禁用；请求成功后圆环变成对勾，背景转为绿色 #34C759，1.5 秒后恢复原状。"
+}
+-->
+<button class="load-btn"><span class="label">提交订单</span><span class="spin"></span><span class="ok">✓ 已提交</span></button>
+
+<style>
+.load-btn { position: relative; min-width: 160px; height: 48px; border: 0; border-radius: 12px; background: #18181B;
+  color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .3s; }
+.load-btn > span { position: absolute; inset: 0; display: grid; place-items: center; transition: opacity .2s; }
+.load-btn .spin, .load-btn .ok { opacity: 0; }
+.load-btn .spin::before { content: ""; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .3);
+  border-top-color: #fff; animation: spin .8s linear infinite; }
+.load-btn.loading { cursor: wait; }
+.load-btn.loading .label, .load-btn.done .label { opacity: 0; }
+.load-btn.loading .spin { opacity: 1; }
+.load-btn.done { background: #34C759; }
+.load-btn.done .ok { opacity: 1; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+document.querySelectorAll(".load-btn").forEach(btn => btn.addEventListener("click", () => {
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.classList.add("loading");
+  // 这里换成你的真实请求
+  setTimeout(() => {
+    btn.classList.replace("loading", "done");
+    setTimeout(() => { btn.classList.remove("done"); btn.disabled = false; }, 1500);
+  }, 1600);
+}));
+</script>

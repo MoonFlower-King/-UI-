@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Ripple Effect", "zh": "水波纹点击", "group": "按钮点击反馈", "episode": "EP11",
+  "lead": "点击按钮时，从手指落点扩散出一圈半透明的波纹，告诉用户“我收到了”。Material Design 的标志性反馈。",
+  "vague": ["点了没反应", "按钮太死板"],
+  "terms": ["Ripple Effect", "Tap Feedback 点击反馈"],
+  "prompt": "给主按钮加 Ripple Effect：点击时以鼠标落点为圆心，生成白色 35% 透明度的圆形波纹，600ms 内从 0 放大到按钮对角线的 2 倍并淡出，缓动 ease-out，按钮 overflow: hidden。"
+}
+-->
+<button class="ripple-btn">立即开始</button>
+
+<style>
+.ripple-btn { position: relative; overflow: hidden; border: 0; padding: 14px 32px;
+  border-radius: 12px; background: #FA8C16; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
+.ripple-btn .wave { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, .35);
+  transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events: none; }
+@keyframes ripple { to { transform: scale(1); opacity: 0; } }
+</style>
+
+<script>
+document.querySelectorAll(".ripple-btn").forEach(btn => btn.addEventListener("click", e => {
+  const r = btn.getBoundingClientRect();
+  const size = Math.hypot(r.width, r.height) * 2;
+  const wave = document.createElement("span");
+  wave.className = "wave";
+  wave.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+  btn.appendChild(wave);
+  wave.addEventListener("animationend", () => wave.remove());
+}));
+</script>

@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Hold to Confirm", "zh": "长按确认", "group": "按钮点击反馈", "episode": "EP11",
+  "lead": "危险操作不弹窗确认，而是要求按住按钮一会儿，进度条填满才执行。既防误触，又比弹窗少打断一次。",
+  "vague": ["怕用户手滑删掉", "确认弹窗太烦"],
+  "terms": ["Hold to Confirm", "Long Press 长按", "Destructive Action 危险操作"],
+  "prompt": "删除按钮做成 Hold to Confirm：按住时红色进度从左到右填满按钮（1.2 秒，线性），中途松手进度 200ms 回退到 0；填满后按钮轻微缩放 0.96 再回弹，文字变成「已删除」。"
+}
+-->
+<button class="hold-btn"><span class="fill"></span><span class="text">按住删除</span></button>
+
+<style>
+.hold-btn { position: relative; overflow: hidden; width: 180px; height: 48px; border: 1.5px solid #FF3B30; border-radius: 12px;
+  background: #FFF2F1; color: #D70015; font-size: 15px; font-weight: 600; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none; }
+.hold-btn .fill { position: absolute; inset: 0; background: #FF3B30; transform: scaleX(0); transform-origin: left; transition: transform .2s ease-out; }
+.hold-btn.holding .fill { transform: scaleX(1); transition: transform 1.2s linear; }
+.hold-btn .text { position: relative; }
+.hold-btn.holding .text, .hold-btn.done .text { color: #fff; }
+.hold-btn.done .fill { transform: scaleX(1); }
+.hold-btn.done { animation: pop .3s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes pop { 40% { transform: scale(.96); } }
+</style>
+
+<script>
+document.querySelectorAll(".hold-btn").forEach(btn => {
+  let timer;
+  const text = btn.querySelector(".text");
+  const start = () => {
+    if (btn.classList.contains("done")) return;
+    btn.classList.add("holding");
+    timer = setTimeout(() => {
+      btn.classList.replace("holding", "done");
+      text.textContent = "已删除";
+      setTimeout(() => { btn.classList.remove("done"); text.textContent = "按住删除"; }, 1800);
+    }, 1200);
+  };
+  const cancel = () => { clearTimeout(timer); btn.classList.remove("holding"); };
+  btn.addEventListener("pointerdown", start);
+  ["pointerup", "pointerleave", "pointercancel"].forEach(ev => btn.addEventListener(ev, cancel));
+});
+</script>
