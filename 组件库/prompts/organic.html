@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Organic Natural",
+  "zh": "有机自然",
+  "alias": [
+    "自然风",
+    "Organic Shapes"
+  ],
+  "lead": "不规则的圆润形状、植物绿与大地色、像手撕纸一样的边缘，没有尖角和直线网格感。健康、放松、亲近自然，适合食品、护肤、户外、身心健康类品牌。",
+  "prompt": "有机自然风格：鼠尾草绿、苔藓绿、燕麦色、陶土色为主，大量使用不规则的有机曲线形状（类似鹅卵石、叶片）作为图片框和背景色块，衬线标题配圆润正文，柔和投影，整体温和舒展",
+  "promptEn": "organic natural style: sage, moss green, oat and terracotta palette, irregular organic curves (pebble and leaf-like) used as image frames and background shapes, serif headings with rounded body text, soft shadows, gentle and relaxed overall",
+  "avoid": "有机形状用在图片框和背景色块上就好，按钮和输入框还是要规整，否则不好点也不好认。绿色要偏灰的自然绿，荧光绿会很廉价。",
+  "neg": [
+    "荧光绿、规整直角网格",
+    "neon green, rigid square grid"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #5E7A55; --a2: #B0703E; --on: #F6F1E6; background: #F3EEE2; color: #2D3326; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%; } .cta, .b1 { border-radius: 99px; } .hero h1, .feats h3 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.art { border-radius: 62% 38% 46% 54% / 48% 56% 44% 52%; background: radial-gradient(circle at 40% 40%, #A9BE97, #5E7A55); }
+.art .m { position: absolute; right: 18px; top: 18px; width: 60px; height: 34px; border-radius: 0 100% 0 100%; background: #CFDCBF; transform: rotate(-25deg); }
+.feats article { padding: 14px; border-radius: 40% 60% 50% 50% / 30% 30% 70% 70%; background: #E5E2CF; } .feats article:nth-child(2) { background: #EBD3BC; } .stats b { color: #5E7A55; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+</style>

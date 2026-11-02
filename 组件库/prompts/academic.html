@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Academic Paper",
+  "zh": "学术文档",
+  "alias": [
+    "论文风",
+    "Scholarly"
+  ],
+  "lead": "像一篇排得很讲究的论文或技术文档：衬线正文、编号章节、脚注、目录和引用块，没有多余装饰。可信、严谨、耐读，适合研究机构、技术博客、文档站、白皮书。",
+  "prompt": "学术文档风格：纯白或极浅米色背景，衬线正文字号适中、行宽控制在 60 到 70 字符，章节标题带编号（1. 2. 3.），左侧或顶部为目录，引用为左边竖线缩进块，脚注和图注用小号字，仅使用一种深蓝色作链接色",
+  "promptEn": "academic paper style: white or very light cream background, serif body text at a comfortable size with 60-70 characters per line, numbered section headings (1. 2. 3.), table of contents on the left or top, quotes as indented blocks with a left rule, small footnotes and captions, one dark blue as the only link color",
+  "avoid": "学术风的核心是可读性，不是「看起来很学术」。别为了显得专业把字做得又小又密。标题层级最多三级，再多读者会迷路。",
+  "neg": [
+    "装饰插画、花哨配色",
+    "decorative illustrations, flashy colors"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #1F3A6B; --a2: #1F3A6B; --on: #fff; background: #FDFCF9; color: #222; font-family: "Times New Roman", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #ccc; } .logo i { display: none; } .logo { font-variant: small-caps; letter-spacing: 1px; } .cta { background: none; color: #1F3A6B; text-decoration: underline; padding: 0; }
+.hero { grid-template-columns: 110px 1fr; padding: 22px 26px; } .art { order: -1; min-height: 0; font-size: 10.5px; line-height: 2; border-right: 1px solid #ddd; }
+.art::before { content: "目录\A 1. 夜读\A 2. 借阅\A 3. 茶席\A 4. 数据"; white-space: pre; color: #1F3A6B; }
+.kicker { font-style: italic; color: #555; } .hero h1 { font-size: 24px; font-weight: 700; } .hero h1::before { content: "0. "; color: #888; }
+.sub { padding-left: 10px; border-left: 3px solid #ccc; font-style: italic; } .sub::after { content: "¹"; color: #1F3A6B; } .b1 { background: none; color: #1F3A6B; padding: 0; text-decoration: underline; font-weight: 400; } .b2 { font-weight: 400; }
+.feats { padding-left: 162px; grid-template-columns: 1fr; gap: 8px; } .feats article { display: flex; gap: 10px; align-items: baseline; } .feats b::after { content: "."; } .feats h3 { font-size: 13px; } .feats p { font-size: 11.5px; }
+.stats { margin-left: 162px; justify-content: flex-start; gap: 30px; border-top: 1px solid #ccc; font-size: 11px; } .stats b { font-size: 18px; }
+.ft { border-top: 1px solid #ccc; margin: 0 26px; padding-left: 0; } .ft::before { content: "¹ 座位数为每晚固定数。 "; }
+</style>

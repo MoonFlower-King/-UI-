@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Blueprint",
+  "zh": "工程蓝图",
+  "alias": [
+    "蓝图风",
+    "Technical Drawing"
+  ],
+  "lead": "深蓝底上的白色细线、网格、尺寸标注和编号，像建筑师的施工图纸。精确、专业、有理工美感，适合建筑、硬件、工程、开源技术项目。",
+  "prompt": "工程蓝图风格：普鲁士蓝背景带浅色细网格，所有图形为白色或浅青色的细线描绘（无填充），配尺寸标注线、编号、十字定位标记，标签用等宽大写小字，标题为无衬线细体，整体像技术图纸",
+  "promptEn": "blueprint style: Prussian blue background with a fine light grid, all graphics drawn as thin white or pale cyan outlines with no fills, dimension lines, reference numbers and crosshair marks, small uppercase monospace labels, thin sans-serif headings, like a technical drawing",
+  "avoid": "线条粗细要分级（轮廓粗、标注细），全一样粗就失去图纸感。蓝底白字适合短文本，长篇阅读区要换回浅色背景。",
+  "neg": [
+    "实心填色、渐变",
+    "solid fills, gradients"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #E8F1FA; --a2: #9CC7EA; --on: #123B6B; background: #123B6B; color: #E8F1FA; font-family: -apple-system, "Inter", "PingFang SC", sans-serif;
+  background-image: linear-gradient(rgba(232,241,250,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(232,241,250,.12) 1px, transparent 1px); background-size: 20px 20px; }
+.nav { border-bottom: 1px solid rgba(232,241,250,.6); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-transform: uppercase; font-size: 10.5px; } .logo i { background: none; border: 1px solid #E8F1FA; border-radius: 50%; } .cta { background: none; border: 1px solid #E8F1FA; color: #E8F1FA; }
+.kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .kicker::before { content: "A-01 / "; } .hero h1 { font-weight: 300; font-size: 30px; } .b1 { background: none; border: 1px solid #E8F1FA; color: #E8F1FA; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art { border: 1px solid #E8F1FA; } .art .m { position: absolute; left: 30px; top: 30px; width: 100px; height: 80px; border: 1.5px solid #E8F1FA; }
+.art .h { position: absolute; left: 30px; top: 122px; width: 100px; height: 1px; background: #9CC7EA; } .art::after { content: "1200"; position: absolute; left: 66px; top: 126px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #9CC7EA; }
+.art::before { content: ""; position: absolute; left: 76px; top: 66px; width: 10px; height: 10px; border-left: 1px solid #9CC7EA; border-top: 1px solid #9CC7EA; transform: translate(-50%,-50%) rotate(45deg); }
+.feats article { padding: 10px; border: 1px dashed rgba(232,241,250,.6); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .stats b { font: 300 26px ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Monochrome",
+  "zh": "单色调",
+  "alias": [
+    "单色系",
+    "Monochromatic"
+  ],
+  "lead": "整个页面只用一种颜色的深浅变化，比如从浅雾蓝到深海蓝。统一、沉静、很有品牌感，适合品牌官网、作品集、单品发布。",
+  "prompt": "单色调风格：全页只使用同一色相（如蓝色）的 5 到 6 个明度层级，背景最浅、文字最深，按钮和强调用中间色，不引入第二种色相，用明度差而不是颜色差区分层级",
+  "promptEn": "monochromatic style: the whole page uses five or six lightness steps of a single hue (e.g. blue), lightest for the background, darkest for text, mid tones for buttons and accents, no second hue, hierarchy built from lightness rather than color",
+  "avoid": "单色最怕对比度不够：相邻层级要拉开明度，正文和背景至少差出 4.5:1。选的色相本身也要低调一些，单色的大红大紫会很压抑。",
+  "neg": [
+    "多种色相、对比度不足",
+    "multiple hues, insufficient contrast"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #2F5D8A; --a2: #4F7BA6; --on: #F1F5F9; background: #EAF0F6; color: #10263C; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: #DCE6F0; } .logo i { border-radius: 50%; } .cta { border-radius: 8px; }
+.art { border-radius: 14px; background: linear-gradient(160deg, #A9C1D9, #4F7BA6 60%, #2F5D8A); } .art .m { position: absolute; right: 22px; top: 22px; width: 40px; height: 40px; border-radius: 50%; background: #DCE6F0; }
+.b1 { border-radius: 8px; } .feats article { padding: 12px; border-radius: 12px; background: #DCE6F0; } .feats article:nth-child(2) { background: #C6D6E6; } .feats article:nth-child(3) { background: #2F5D8A; color: #F1F5F9; } .feats article:nth-child(3) b { color: #A9C1D9; }
+.stats b { color: #2F5D8A; }
+</style>

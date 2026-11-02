@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Collage",
+  "zh": "拼贴风",
+  "alias": [
+    "剪贴簿风",
+    "Scrapbook Collage"
+  ],
+  "lead": "照片剪片、胶带、手写字、报纸碎片随意又讲究地拼在一起，像一本手账或杂志拼贴。个性、生动、有人味，适合独立品牌、音乐、展览、个人作品集。",
+  "prompt": "拼贴风格：米白纸张背景，主视觉由带白边的照片剪片、半透明纸胶带、撕边纸片和手写标注拼贴而成，元素轻微旋转错落，标题混用衬线和手写体，配色由照片决定并以一两种主色统一",
+  "promptEn": "collage style: off-white paper background, hero built from white-bordered photo cutouts, translucent washi tape, torn paper scraps and handwritten notes, elements slightly rotated and overlapping, headings mixing serif and handwritten type, palette set by the photos and unified by one or two main colors",
+  "avoid": "拼贴看起来随意，其实每块的位置、角度都要设计过。正文区不要拼贴，保持规整。元素太多会变成杂物堆。",
+  "neg": [
+    "正文区也拼贴、元素杂乱堆叠",
+    "collaged body text, cluttered pile of elements"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #2B4C7E; --a2: #C2452D; --on: #fff; background: #F4EFE6; color: #2A2420; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { background: #C2452D; transform: rotate(8deg); } .cta { background: #FCE9A6; color: #2A2420; transform: rotate(-3deg); }
+.hero h1 { font-size: 30px; } .hero h1::after { content: "真的！"; display: inline-block; margin-left: 6px; font: 16px "Bradley Hand", "Comic Sans MS", cursive; color: #C2452D; transform: rotate(-8deg); }
+.art { min-height: 170px; } .art .m { position: absolute; left: 10px; top: 10px; width: 110px; height: 90px; background: linear-gradient(#7E9CC0, #2B4C7E); border: 6px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.25); transform: rotate(-6deg); }
+.art .h { position: absolute; right: 0; top: 60px; width: 100px; height: 80px; background: linear-gradient(#E8B48A, #C2452D); border: 6px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.25); transform: rotate(5deg); }
+.art::after { content: ""; position: absolute; left: 70px; top: 0; width: 60px; height: 18px; background: rgba(252,233,166,.8); transform: rotate(-12deg); }
+.feats article { padding: 10px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15); } .feats article:nth-child(1) { transform: rotate(-1.5deg); } .feats article:nth-child(3) { transform: rotate(1.5deg); } .stats b { color: #C2452D; }
+</style>

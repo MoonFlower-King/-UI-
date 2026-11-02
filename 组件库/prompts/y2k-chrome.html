@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Y2K Chrome",
+  "zh": "千禧金属",
+  "alias": [
+    "Y2K 风",
+    "千禧年风格"
+  ],
+  "lead": "千禧年的未来幻想：银色铬金属质感、液态反光、圆润的胶囊按钮、星星闪光。潮、复古又未来，适合潮流服饰、音乐、年轻向活动。",
+  "prompt": "Y2K 千禧金属风格：浅银灰背景，标题和装饰为高光铬金属质感的渐变（白到银灰到深灰的多段反光），胶囊形按钮，四角星闪光点缀，圆润的宽体字，局部点缀一种亮色（如电光蓝）",
+  "promptEn": "Y2K chrome style: light silver background, headings and ornaments with glossy chrome gradients (multi-step reflections from white to silver to dark gray), pill-shaped buttons, four-point sparkle accents, rounded wide typefaces, one bright accent such as electric blue",
+  "avoid": "铬金属只用在标题或一两个装饰上，满屏金属会又冷又吵。亮色只选一种。这种风格时效性强，适合活动和潮流品牌，不适合需要长期稳重的产品。",
+  "neg": [
+    "满屏金属、多种荧光色",
+    "chrome everywhere, multiple neon colors"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #2E5BFF; --a2: #5A6070; --on: #fff; background: radial-gradient(80% 60% at 50% 0%, #FFFFFF, #DADDE3); color: #1B1E26; font-family: "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: linear-gradient(135deg, #fff, #9AA0AC 45%, #3B404A 55%, #E7EAF0); } .cta, .b1 { border-radius: 99px; }
+.hero h1 { font-size: 36px; font-weight: 900; background: linear-gradient(180deg, #FFFFFF 0%, #A9AFBA 40%, #3E4450 52%, #D9DDE4 70%, #7D8390 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: .6px #4A505C; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 110px; height: 110px; margin: -55px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff, #B7BCC6 35%, #4A505C 60%, #E2E5EA 80%, #8A909C); }
+.art::after { content: ""; position: absolute; right: 16px; top: 10px; width: 26px; height: 26px; background: #2E5BFF; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); }
+.feats article { padding: 12px; border-radius: 18px; background: linear-gradient(#fff, #E6E9EE); border: 1px solid #fff; box-shadow: 0 4px 10px rgba(40,50,70,.12); } .stats b { color: #2E5BFF; }
+</style>

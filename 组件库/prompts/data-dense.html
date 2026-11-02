@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Data Dense",
+  "zh": "信息密集",
+  "alias": [
+    "专业终端风",
+    "Data-Dense Dashboard"
+  ],
+  "lead": "一屏塞满数据，但每一格都对得整整齐齐：小字号、等宽数字、细线表格、颜色只表示涨跌和状态。高效、专业，适合金融、运维监控、数据分析工具。",
+  "prompt": "信息密集风格：深灰或白色背景，12 到 13px 小字号，数字一律用等宽字体右对齐，细 1px 表格线和紧凑行高，多个面板以网格紧密排列，颜色只用于语义（绿色上涨、红色下跌、黄色警告），没有装饰元素",
+  "promptEn": "data-dense style: dark gray or white background, small 12-13px type, all numbers in right-aligned monospace, 1px table rules with tight line height, multiple panels packed in a grid, color used only for meaning (green up, red down, yellow warning), no decorative elements",
+  "avoid": "密而不乱的关键是对齐和一致：同类数据同一个格式、同一个位置。普通用户看的页面别这样做，信息密度太高会直接劝退。颜色别只靠红绿区分，色弱用户分不出来，加上箭头或正负号。",
+  "neg": [
+    "装饰插图、只用颜色区分涨跌",
+    "decorative illustrations, color-only up/down signals"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #3FB68B; --a2: #8B95A5; --on: #0E1116; background: #0E1116; color: #C9D1DC; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 11px; }
+.pg { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1px; background: #232A35; } .nav, .hero, .feats, .stats, .ft { background: #0E1116; }
+.nav { grid-column: 1 / -1; padding: 8px 12px; font-size: 11px; } .logo { font: 600 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .logo i { width: 8px; height: 8px; border-radius: 50%; } .cta { padding: 3px 8px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.hero { grid-column: 1; grid-template-columns: 1fr; padding: 12px; gap: 8px; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .hero h1 { font-size: 18px; margin-top: 4px; } .hero h1 br { display: none; } .sub { font-size: 11px; margin-top: 4px; }
+.acts { margin-top: 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; } .b1 { padding: 4px 10px; }
+.art { min-height: 80px; background: linear-gradient(transparent 49.5%, #232A35 49.5% 50.5%, transparent 50.5%) 0 0 / 100% 20px, linear-gradient(90deg, transparent 49.5%, #232A35 49.5% 50.5%, transparent 50.5%) 0 0 / 30px 100%; border: 1px solid #232A35; }
+.art::after { content: ""; position: absolute; inset: 6px; background: linear-gradient(170deg, transparent 45%, #3FB68B 45% 47%, transparent 47%), linear-gradient(15deg, transparent 52%, #3FB68B 52% 54%, transparent 54%); }
+.feats { grid-column: 2; grid-row: 2; grid-template-columns: 1fr; gap: 0; padding: 0; } .feats article { display: flex; gap: 8px; align-items: baseline; padding: 8px 12px; border-bottom: 1px solid #232A35; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .feats h3 { font-size: 12px; } .feats p { margin-left: auto; font-size: 10.5px; }
+.stats { grid-column: 1 / -1; justify-content: space-between; padding: 10px 12px; } .stats b { font: 600 18px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E6EBF2; } .stats div:nth-child(1) b::after { content: " ▲"; color: #3FB68B; font-size: 11px; } .stats div:nth-child(2) b::after { content: " ▼"; color: #E5534B; font-size: 11px; }
+.ft { grid-column: 1 / -1; padding: 8px 12px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "70s Retro",
+  "zh": "七十年代复古",
+  "alias": [
+    "70 年代风",
+    "Groovy Retro"
+  ],
+  "lead": "焦橙、芥末黄、棕色的彩虹条纹，粗圆的波浪字体，暖洋洋的复古电台感。轻松、怀旧、有温度，适合咖啡、唱片、复古市集、生活方式品牌。",
+  "prompt": "七十年代复古风格：奶油色背景，焦橙、芥末黄、焦糖棕、橄榄绿组成的平行彩虹条纹作为装饰，粗圆、带弧度的复古展示字体，圆角卡片，轻微颗粒质感，整体暖色调",
+  "promptEn": "1970s retro style: cream background, parallel rainbow stripes of burnt orange, mustard, caramel brown and olive as decoration, chunky rounded groovy display type, rounded cards, slight grain, warm tones throughout",
+  "avoid": "条纹和波浪字是调味，一页里用一两处就好。正文一定用普通易读的字体，别让复古字体从标题蔓延到每一行小字。",
+  "neg": [
+    "冷色调、正文也用花体字",
+    "cool tones, decorative fonts for body text"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #C8541E; --a2: #8A5A2B; --on: #FFF3DE; background: #F7EBD3; color: #3B2414; font-family: "Cooper Black", "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: conic-gradient(#C8541E 0 25%, #E3A12F 0 50%, #8A5A2B 0 75%, #6E7B3A 0); } .cta, .b1 { border-radius: 99px; }
+.hero h1 { font-size: 34px; font-weight: 900; color: #C8541E; text-shadow: 2px 2px 0 #E3A12F; } .sub { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art { border-radius: 90px 90px 0 0; overflow: hidden; background: repeating-radial-gradient(circle at 50% 100%, #C8541E 0 14px, #E3A12F 14px 28px, #8A5A2B 28px 42px, #6E7B3A 42px 56px, #F7EBD3 56px 62px); }
+.feats p, .stats span, .ft { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .feats article { padding: 12px; border-radius: 20px; background: #F2DDB4; } .stats b { color: #C8541E; }
+</style>

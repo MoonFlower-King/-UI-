@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Retro-Futurism",
+  "zh": "复古未来",
+  "alias": [
+    "太空时代风",
+    "Space Age"
+  ],
+  "lead": "六十年代人想象的未来：流线型、太空舱、星球与轨道、复古的橙和青。浪漫、乐观、有故事感，适合科技活动、科普、游戏、潮流品牌。",
+  "prompt": "复古未来风格：深靛蓝背景，复古橙、薄荷青、奶油白点缀，主视觉为带轨道环的星球、流线型火箭或太空舱，圆角胶囊形面板，几何宽体无衬线字，细线星点，颗粒质感，整体像六十年代科幻海报",
+  "promptEn": "retro-futurism style: deep indigo background accented with retro orange, mint teal and cream, hero visual of a ringed planet, streamlined rocket or space capsule, pill-shaped panels, wide geometric sans type, fine star dots, grain texture, like a 1960s sci-fi poster",
+  "avoid": "复古未来要「复古」，颜色用褪色的老海报色，不要赛博朋克的霓虹。插图走扁平几何，别用写实 3D 渲染。",
+  "neg": [
+    "赛博霓虹、写实 3D 渲染",
+    "cyberpunk neon, realistic 3D renders"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #F08A4B; --a2: #7FD3C3; --on: #1A1B3A; background: #1A1B3A radial-gradient(#F4E9D6 .8px, transparent 1px) 0 0 / 34px 34px; color: #F4E9D6; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; box-shadow: 0 0 0 3px #1A1B3A, 0 0 0 4px #7FD3C3; } .cta, .b1 { border-radius: 99px; }
+.hero h1 { font-size: 32px; letter-spacing: 1px; } .b2 { color: #7FD3C3; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 96px; height: 96px; margin: -48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFC59A, #F08A4B 55%, #A9502A); }
+.art .h { position: absolute; left: 50%; top: 50%; width: 170px; height: 46px; margin: -23px -85px; border-radius: 50%; border: 3px solid #7FD3C3; transform: rotate(-18deg); }
+.feats article { padding: 12px; border-radius: 22px; border: 1px solid rgba(127,211,195,.5); background: rgba(26,27,58,.8); } .stats b { color: #F08A4B; }
+</style>
