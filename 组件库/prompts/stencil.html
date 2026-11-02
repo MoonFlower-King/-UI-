@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Spray Stencil",
+  "zh": "喷漆模板",
+  "alias": [
+    "模板喷漆",
+    "镂空喷绘"
+  ],
+  "lead": "用镂空模板喷出来的字和图：边缘有喷雾的颗粒和轻微溢色，字母带模板必须留下的“桥”断口。粗犷、街头、工业，适合户外装备、滑板、仓储式商店和工业风品牌。",
+  "prompt": "喷漆模板风格：混凝土灰或牛皮纸背景，标题为带断口的模板字（字母笔画有规律的小缺口），图形为单色喷漆剪影，边缘有喷雾颗粒晕开，配色限一两色（军绿、橙红或黑），正文为干净等宽字，卡片如喷在板上的方框",
+  "promptEn": "spray stencil style: concrete gray or kraft background, headings in stencil letters with bridges (regular small gaps in strokes), graphics as single-color spray-painted silhouettes with speckled overspray at the edges, one or two colors (army green, orange-red or black), clean monospaced body text, cards like boxes sprayed on a board",
+  "avoid": "字的断口要规律，喷雾颗粒只在边缘；颜色一两种封顶。别弄成涂鸦墙，模板喷漆比涂鸦整齐克制。",
+  "neg": [
+    "满墙涂鸦、颜色太多",
+    "graffiti walls, too many colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2B28; --a2: #E0522E; --on: #E4E1DA; background: #D9D6CF; color: #2B2B28; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.cta, .b1 { border-radius: 0; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.hero h1 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; font-size: 34px; letter-spacing: 1px; color: #2B2B28; text-shadow: 0 0 2px rgba(43,43,40,.5);
+  -webkit-mask: linear-gradient(90deg, #000 0 90%, transparent 0) 0 0 / 17px 100%; mask: linear-gradient(90deg, #000 0 90%, transparent 0) 0 0 / 17px 100%; }
+.kicker { color: #E0522E; }
+.art .m { position: absolute; left: 20px; top: 15px; width: 130px; height: 120px; background: #4E5A3A; filter: drop-shadow(0 0 2px rgba(78,90,58,.6));
+  clip-path: polygon(50% 0, 62% 30%, 96% 32%, 68% 52%, 80% 88%, 50% 66%, 20% 88%, 32% 52%, 4% 32%, 38% 30%); }
+.art::after { content: ""; position: absolute; left: 10px; top: 5px; width: 150px; height: 140px; background: radial-gradient(circle, rgba(78,90,58,.35) .8px, transparent 1.2px) 0 0 / 5px 5px; -webkit-mask: radial-gradient(circle, transparent 40%, #000 46%, transparent 62%); mask: radial-gradient(circle, transparent 40%, #000 46%, transparent 62%); }
+.feats article { padding: 12px; border: 3px solid #2B2B28; } .feats b { color: #E0522E; } .feats h3 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; text-transform: uppercase; }
+.stats { background: #2B2B28; color: #E4E1DA; } .stats b { color: #E0522E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; }
+</style>

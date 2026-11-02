@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Roadside Motel",
+  "zh": "公路汽车旅馆",
+  "alias": [
+    "公路招牌",
+    "中途旅馆"
+  ],
+  "lead": "公路边的老汽车旅馆：箭头形招牌、圆润的手写感大字、“有空房”小灯牌，配薄荷绿与橘红，背景是辽阔的黄昏。自由、在路上、带点电影感，适合公路旅行、汽车品牌、民宿和复古服饰。",
+  "prompt": "公路汽车旅馆风格：暖奶油背景，主视觉为一块箭头形招牌（薄荷绿底、橘红描边、圆润手写感招牌字、一排灯泡点），一块“有空房”小牌，配色薄荷绿、橘红、奶油与深棕，粗圆体或手写感标题，卡片为圆角奶油块配深棕细框",
+  "promptEn": "roadside motel style: warm cream background, a hero of an arrow-shaped sign (mint green field, orange-red outline, rounded script-feel sign lettering, a row of bulb dots) and a small \"vacancy\" sign, palette of mint green, orange-red, cream and dark brown, bold rounded or script-feel headings, rounded cream cards with thin dark brown frames",
+  "avoid": "招牌只用一块，灯泡点要整齐；颜色保持薄荷绿加橘红这类复古组合，别用霓虹紫粉（那是另一种被用烂的风格）。",
+  "neg": [
+    "霓虹紫粉、招牌堆满",
+    "neon purple-pink, piles of signs"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E2573A; --a2: #3E9C8A; --on: #FFF6E6; background: #FBF1DF; color: #3A2418; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 800; } .hero h1 { font-weight: 900; font-style: italic; color: #3A2418; } .kicker { color: #3E9C8A; font-weight: 800; letter-spacing: 2px; }
+.art .m { position: absolute; left: 0; top: 10px; width: 150px; height: 66px; background: #8ED1BF; border: 4px solid #E2573A; border-radius: 12px 0 0 12px; clip-path: polygon(0 0, 82% 0, 100% 50%, 82% 100%, 0 100%); }
+.art .m::before { content: "山月"; position: absolute; left: 14px; top: 12px; font: italic 900 26px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #3A2418; }
+.art .m::after { content: ""; position: absolute; left: 10px; right: 30px; bottom: 6px; height: 4px; background: radial-gradient(circle, #FFE49A 0 2px, transparent 2.5px) 0 0 / 9px 4px; }
+.art .h { position: absolute; left: 30px; top: 92px; width: 92px; height: 26px; border-radius: 6px; background: #3A2418; }
+.art .h::after { content: "VACANCY · 有空房"; position: absolute; inset: 0; display: grid; place-items: center; font: 800 9px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 1px; color: #FF8A5E; }
+.art::after { content: ""; position: absolute; left: 70px; top: 80px; width: 4px; height: 70px; background: #3A2418; z-index: -1; }
+.feats article { padding: 12px; border-radius: 12px; background: #FFF8EA; border: 1.5px solid #3A2418; } .feats b { color: #E2573A; font-weight: 800; }
+.stats { background: #3E9C8A; color: #FFF6E6; } .stats b { color: #FFE49A; }
+</style>

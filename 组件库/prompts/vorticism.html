@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Vorticism",
+  "zh": "漩涡主义",
+  "alias": [
+    "漩涡派",
+    "锐角动势"
+  ],
+  "lead": "一战前伦敦的先锋派：锐利的斜角、楔形与齿轮般的几何从一个中心向外爆开，粗黑字横冲直撞。凌厉、机械、充满速度，适合先锋艺术展、工业设计、科技论坛和运动品牌。",
+  "prompt": "漩涡主义风格：米白背景，主视觉为从一点向外放射的锐角楔形与斜线块（墨黑、铁锈红、钢灰三色平涂），角度尖锐、无曲线，标题为粗黑无衬线大字带斜向排列，正文规整，分隔用粗斜条",
+  "promptEn": "Vorticism style: off-white background, a hero of sharp wedges and diagonal blocks radiating from a single point (ink black, rust red and steel gray flats), acute angles with no curves, bold black sans headings set at an angle, tidy body text, heavy diagonal bars as dividers",
+  "avoid": "只用直线和锐角，一出现曲线就像别的流派；动势从一个中心发出，乱放的斜块会显得杂乱。",
+  "neg": [
+    "曲线、色彩过多、没有中心",
+    "curves, too many colors, no focal point"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #161616; --a2: #A63A22; --on: #F3EFE6; background: #F3EFE6; color: #161616; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; overflow: hidden; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 900; letter-spacing: -1px; transform: skewY(-4deg); } .kicker { color: #A63A22; font-weight: 800; letter-spacing: 2px; }
+.art .m { position: absolute; left: 0; top: 0; width: 170px; height: 150px; background: #161616; clip-path: polygon(60% 45%, 100% 0, 100% 30%); }
+.art .h { position: absolute; left: 0; top: 0; width: 170px; height: 150px; background: #A63A22; clip-path: polygon(60% 45%, 10% 0, 40% 0); }
+.art::before { content: ""; position: absolute; inset: 0; background: #7C858A; clip-path: polygon(60% 45%, 0 100%, 0 70%); }
+.art::after { content: ""; position: absolute; inset: 0; background: #161616; clip-path: polygon(60% 45%, 90% 100%, 70% 100%, 60% 45%, 100% 60%, 100% 75%); }
+.feats { border-top: 6px solid #161616; padding-top: 14px; } .feats b { color: #A63A22; font-weight: 900; } .feats h3 { font-weight: 900; }
+.stats { background: linear-gradient(100deg, #161616 70%, #A63A22 70%); color: #F3EFE6; } .stats b { font-weight: 900; }
+</style>

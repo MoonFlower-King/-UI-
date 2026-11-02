@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Luggage Tag",
+  "zh": "行李吊牌",
+  "alias": [
+    "吊牌",
+    "旅行标签"
+  ],
+  "lead": "一块挂在行李箱上的牛皮吊牌：一端切角、打着孔、穿着麻绳，上面印着出发地和目的地的大写代码。出发、冒险、带点仪式感，适合旅行社、户外品牌、行李箱和城市漫游活动。",
+  "prompt": "行李吊牌风格：深海军蓝或米白背景，内容卡为吊牌形状（一端切去两角、中间一个加固圆孔、穿一段麻绳），吊牌为牛皮色或白色，印大号三字母城市代码与小字信息栏，等宽字段名，粗无衬线代码，点缀一条红色斜纹",
+  "promptEn": "luggage tag style: deep navy or off-white background, content cards shaped as tags (one end with two clipped corners, a reinforced round hole, a length of twine through it), tags in kraft or white, printed big three-letter city codes with small info fields, monospaced field labels, bold sans codes, a red diagonal stripe accent",
+  "avoid": "切角加孔眼是吊牌的轮廓，缺一个就不像；城市代码用虚构或通用简称，不要仿真实航司行李牌。",
+  "neg": [
+    "去掉孔眼、仿真实航司行李牌",
+    "missing the eyelet, imitating real airline bag tags"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E8D9BC; --a2: #D2452F; --on: #1D2A44; background: #1D2A44; color: #F1EBDF; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 2px; font-weight: 800; } .hero h1 { font-weight: 800; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E8B86A; }
+.art .m { position: absolute; left: 10px; top: 20px; width: 156px; height: 92px; background: #D9B88A; transform: rotate(-6deg);
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 14% 100%, 0 80%, 0 20%); }
+.art .m::before { content: "HGH"; position: absolute; left: 44px; top: 18px; font: 900 30px -apple-system, "Inter", "PingFang SC", sans-serif; color: #1D2A44; letter-spacing: 2px; }
+.art .m::after { content: "FROM 山月 · TO 远方"; position: absolute; left: 44px; top: 60px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #4A3A26; }
+.art .h { position: absolute; left: 22px; top: 58px; width: 12px; height: 12px; border-radius: 50%; background: #1D2A44; box-shadow: 0 0 0 3px #B89466; z-index: 1; transform: rotate(-6deg); }
+.art::after { content: ""; position: absolute; left: -10px; top: 50px; width: 40px; height: 40px; border: 2px solid #C9A877; border-radius: 50%; border-right-color: transparent; border-bottom-color: transparent; transform: rotate(-30deg); }
+.feats article { padding: 12px 12px 12px 22px; background: #F1EBDF; color: #1D2A44; clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #D2452F; }
+.stats b { color: #E8B86A; font-weight: 900; }
+</style>

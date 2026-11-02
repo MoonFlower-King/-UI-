@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Subway Tile",
+  "zh": "地铁白瓷砖",
+  "alias": [
+    "白色地铁砖",
+    "老地铁站"
+  ],
+  "lead": "老地铁站的白色长方瓷砖，墙上一条深色腰线，站名用瓷砖拼成。干净、复古、城市感，适合咖啡店、面包房、城市指南、交通主题和复古餐厅。",
+  "prompt": "地铁白瓷砖风格：页头和主视觉为白色长方瓷砖错缝铺贴（细灰缝、釉面微光），一条深墨绿或砖红腰线贯穿，标题像瓷砖拼成的站名牌（白字深底、方正无衬线），正文区为平整白底，点缀黄铜色",
+  "promptEn": "subway tile style: header and hero with white rectangular tiles in running bond (thin gray grout, slight glaze sheen), one deep green or brick red band running across, headings like tiled station name plaques (white letters on a dark ground, square sans-serif), body area on plain white, brass accents",
+  "avoid": "瓷砖只铺页头和图形区，正文区放平白底；站名牌一处就够。别出现真实城市地铁的标志和线路配色。",
+  "neg": [
+    "整页瓷砖、仿真实地铁标志",
+    "tiles over the whole page, imitating real transit logos"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F4A3C; --a2: #A8432E; --on: #fff; background: #FCFCFA; color: #1E2523; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: linear-gradient(#D9DCD8 1px, transparent 1px) 0 0 / 100% 12px, linear-gradient(90deg, #D9DCD8 1px, transparent 1px) 0 0 / 26px 24px, linear-gradient(90deg, #D9DCD8 1px, transparent 1px) 13px 12px / 26px 24px, #F7F8F5; border-bottom: 8px solid #1F4A3C; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 800; }
+.art { background: linear-gradient(#D9DCD8 1px, transparent 1px) 0 0 / 100% 14px, linear-gradient(90deg, #D9DCD8 1px, transparent 1px) 0 0 / 30px 28px, linear-gradient(90deg, #D9DCD8 1px, transparent 1px) 15px 14px / 30px 28px, #F7F8F5; height: 150px; }
+.art .m { position: absolute; left: 0; right: 0; top: 56px; height: 36px; background: #1F4A3C; box-shadow: 0 -4px 0 #A8432E, 0 4px 0 #A8432E; }
+.art .m::after { content: "山月书房站"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font: 800 15px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 6px; }
+.feats article { padding: 12px; border: 1px solid #E2E4E0; } .feats b { color: #A8432E; font-weight: 700; }
+.stats { background: #1F4A3C; color: #fff; } .stats b { color: #E9C77E; }
+</style>

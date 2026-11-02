@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Envelope",
+  "zh": "信封",
+  "alias": [
+    "寄信",
+    "航空信封"
+  ],
+  "lead": "一封信：牛皮或白色信封，三角封口贴着火漆或胶带，边缘是航空信的红蓝斜条，地址用钢笔写。郑重、期待、带着慢的温度，适合邀请函、新闻订阅、婚礼回执和品牌故事。",
+  "prompt": "信封风格：浅米色背景，主视觉为一只信封（三角翻盖、封口一枚深红火漆、边缘一圈红蓝斜条纹航空边），内容卡像信纸从信封里抽出一半，标题为衬线，正文为手写感斜体与规整衬线混排，点缀邮票与邮戳",
+  "promptEn": "envelope style: light beige background, a hero of an envelope (triangular flap, a deep red wax seal at the closure, a red-and-blue diagonal airmail border around the edge), content cards like letter paper half pulled out of the envelope, serif headings, body mixing handwritten-feel italics with regular serif, stamp and postmark accents",
+  "avoid": "红蓝航空边只在信封边上一圈，别铺到正文卡；邮票邮戳一两个就够。和明信片区分：信封重在封口和抽出的信纸。",
+  "neg": [
+    "航空边满页、邮票堆满",
+    "airmail stripes everywhere, piles of stamps"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2F4E7C; --a2: #A8323A; --on: #FBF8F1; background: #F3EDE1; color: #2A2622; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; } .kicker { font-style: italic; color: #A8323A; }
+.art .m { position: absolute; left: 0; top: 34px; width: 170px; height: 110px; background: #FBF8F1; box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  border: 6px solid transparent; border-image: repeating-linear-gradient(45deg, #A8323A 0 6px, #FBF8F1 6px 10px, #2F4E7C 10px 16px, #FBF8F1 16px 20px) 6; }
+.art .m::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 56px; background: linear-gradient(to bottom right, transparent 49.5%, #E5DCCB 50%) left / 50% 100% no-repeat, linear-gradient(to bottom left, transparent 49.5%, #E5DCCB 50%) right / 50% 100% no-repeat; transform: scaleY(-1); }
+.art .h { position: absolute; left: 70px; top: 76px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #C8454C, #8A2028 70%); box-shadow: 0 2px 3px rgba(0,0,0,.3); z-index: 1;
+  clip-path: polygon(50% 0, 66% 6%, 84% 4%, 92% 20%, 100% 40%, 96% 62%, 100% 80%, 80% 92%, 60% 100%, 40% 96%, 20% 100%, 8% 82%, 0 60%, 4% 40%, 0 20%, 16% 6%); }
+.art::after { content: ""; position: absolute; left: 20px; top: 0; width: 130px; height: 60px; background: repeating-linear-gradient(transparent 0 11px, #E0D8C8 11px 12px), #FFFDF7; z-index: -1; transform: rotate(-3deg); }
+.feats article { padding: 12px; background: #FFFDF7; background-image: repeating-linear-gradient(transparent 0 19px, #ECE4D4 19px 20px); } .feats b { font-style: italic; color: #A8323A; }
+.stats b { color: #2F4E7C; font-weight: 500; }
+</style>

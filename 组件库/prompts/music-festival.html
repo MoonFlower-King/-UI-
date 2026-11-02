@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Music Festival",
+  "zh": "户外音乐节",
+  "alias": [
+    "音乐节海报",
+    "草地音乐节"
+  ],
+  "lead": "户外音乐节的海报：一大串艺人名字按大小排成阶梯，日期和场地醒目，配大胆的撞色与太阳、草地、舞台的简化图形。热闹、年轻、让人想立刻买票，适合音乐节、市集、校园活动和品牌快闪。",
+  "prompt": "户外音乐节风格：暖橙或深森林绿背景，主视觉为一轮大太阳与起伏草地的简化平涂图形，阵容名单按字号阶梯排列（头牌最大、依次递减、用圆点分隔），日期与场地为粗压缩无衬线大字，两三种撞色（橙、粉、森林绿），按钮大圆角",
+  "promptEn": "outdoor music festival style: warm orange or deep forest green background, a hero of a big sun and rolling grass in simplified flat shapes, a line-up stacked in descending type sizes (headliner largest, separated by dots), date and venue in bold condensed sans, two or three contrasting colors (orange, pink, forest green), large rounded buttons",
+  "avoid": "阵容名单的字号阶梯是音乐节海报的灵魂；颜色两三种撞色封顶。别用荧光渐变和赛博元素。",
+  "neg": [
+    "荧光渐变、阵容字号一样大",
+    "neon gradients, line-up all in one size"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F7B2C4; --a2: #F7B2C4; --on: #1F3B2A; background: #1F3B2A; color: #FBEFD9; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 900; } .kicker { color: #F59A3C; font-weight: 900; letter-spacing: 2px; }
+.hero h1 { font-weight: 900; letter-spacing: -.5px; text-transform: uppercase; }
+.sub::before { content: "山月乐队 · 江上明月 · 夜读合唱团 · "; display: block; font-weight: 900; font-size: 12px; color: #F7B2C4; margin-bottom: 4px; }
+.art { overflow: hidden; border-radius: 12px; background: #F59A3C; }
+.art .m { position: absolute; left: 40px; top: 20px; width: 90px; height: 90px; border-radius: 50%; background: #FBE36A; }
+.art .h { position: absolute; left: -20px; right: -20px; top: 96px; height: 80px; border-radius: 50% 50% 0 0; background: #3E7A4A; box-shadow: 60px 20px 0 -6px #2D5E38; }
+.art::after { content: "07.19—07.21"; position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font: 900 15px -apple-system, "Inter", "PingFang SC", sans-serif; color: #FBEFD9; letter-spacing: 1px; }
+.feats article { padding: 12px; border-radius: 14px; background: #28492F; } .feats b { color: #F59A3C; font-weight: 900; }
+.stats { background: #F7B2C4; color: #1F3B2A; } .stats b { font-weight: 900; }
+</style>

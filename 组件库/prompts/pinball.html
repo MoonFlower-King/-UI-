@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Pinball",
+  "zh": "弹珠台",
+  "alias": [
+    "弹球机",
+    "街机台面"
+  ],
+  "lead": "老弹珠台的台面：亮色的圆形弹射柱、闪烁的灯泡圈、粗体描边的标题和得分数字。热闹、刺激、带着游戏厅的喧嚣，适合游戏活动、酒吧夜场、潮玩品牌和复古娱乐。",
+  "prompt": "弹珠台风格：深海军蓝背景，主视觉为几个圆形弹射柱（同心圆：红、黄、白，外圈一圈小灯泡点）和一颗银色钢珠，标题为粗体斜体带双层描边，得分数字用七段数码管样式，卡片为圆角亮色块，点缀星形与箭头",
+  "promptEn": "pinball style: deep navy background, a hero of a few round pop bumpers (concentric red, yellow and white with a ring of small bulbs) and one silver steel ball, bold italic headings with double outlines, scores in seven-segment display style, rounded bright cards, star and arrow accents",
+  "avoid": "热闹但要有主次：弹射柱两三个、钢珠一颗；描边大字只给标题。别直接仿真实品牌的弹珠台美术。",
+  "neg": [
+    "元素塞满、仿真实机台美术",
+    "crammed elements, copying real machine artwork"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F2C230; --a2: #E5413A; --on: #13204A; background: #13204A; color: #F4F0E6; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 900; } .kicker { color: #F2C230; font-weight: 800; letter-spacing: 2px; }
+.hero h1 { font-weight: 900; font-style: italic; color: #F2C230; text-shadow: 2px 2px 0 #E5413A, 4px 4px 0 #0A1230; letter-spacing: .5px; }
+.art .m { position: absolute; left: 20px; top: 10px; width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle, #fff 0 8px, #E5413A 8px 18px, #F2C230 18px 26px, #E5413A 26px 30px, transparent 30px);
+  box-shadow: 72px 30px 0 -8px #E5413A, 0 0 0 4px rgba(255,240,180,.35); }
+.art .m::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; background: radial-gradient(circle, #FFF2B0 0 2px, transparent 2.5px) 0 0 / 11px 11px; -webkit-mask: radial-gradient(circle, transparent 34px, #000 35px 38px, transparent 39px); mask: radial-gradient(circle, transparent 34px, #000 35px 38px, transparent 39px); }
+.art .h { position: absolute; left: 60px; top: 100px; width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #B8BEC8 50%, #6A7080); box-shadow: 0 3px 4px rgba(0,0,0,.4); }
+.art::after { content: "0 4 8 2 0 0"; position: absolute; right: 0; bottom: 0; padding: 3px 8px; background: #000; color: #FF6A3A; font: 700 14px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 2px; border-radius: 4px; }
+.feats article { padding: 12px; border-radius: 14px; background: #1E2E63; border: 2px solid #F2C230; } .feats b { color: #E5413A; font-weight: 900; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF6A3A; background: #000; padding: 0 6px; border-radius: 4px; display: inline-block; }
+</style>

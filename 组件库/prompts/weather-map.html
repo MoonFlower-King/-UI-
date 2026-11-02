@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Weather Map",
+  "zh": "气象图",
+  "alias": [
+    "天气预报图",
+    "等压线"
+  ],
+  "lead": "电视天气预报背后的图：浅色地形、蜿蜒的等压线、蓝色三角冷锋和红色半圆暖锋，几个温度数字。理性、亲切、信息清楚，适合天气应用、农业服务、户外活动和数据新闻。",
+  "prompt": "气象图风格：浅灰白背景，主视觉为一块淡色地形图（浅绿陆地与浅蓝海洋）上叠加几条深灰细等压线、一条带蓝色三角的冷锋线与一条带红色半圆的暖锋线，几个大号温度数字，无衬线标题，等宽小字标注，配色克制",
+  "promptEn": "weather map style: light gray-white background, a hero of a pale terrain map (light green land and light blue sea) overlaid with a few thin dark gray isobars, one cold front line with blue triangles and one warm front line with red half-circles, a few big temperature numbers, sans-serif headings, small monospaced labels, restrained palette",
+  "avoid": "锋面符号（蓝三角、红半圆）是辨识点，一两条就够；地图要淡，别让地形压过数据。",
+  "neg": [
+    "地形色太重、锋面线太多",
+    "heavy terrain colors, too many front lines"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B4C7E; --a2: #C8423A; --on: #fff; background: #F5F6F4; color: #22262B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 6px; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #2B4C7E; }
+.art { overflow: hidden; border-radius: 6px; background: radial-gradient(ellipse 60% 50% at 30% 40%, #DDEBD5 60%, transparent 61%), radial-gradient(ellipse 40% 40% at 80% 80%, #DDEBD5 60%, transparent 61%), #D8E8F2; }
+.art .m { position: absolute; left: -20px; top: -10px; width: 140px; height: 140px; border-radius: 50%; border: 1px solid rgba(34,38,43,.45); box-shadow: 0 0 0 16px transparent, inset 0 0 0 18px transparent; outline: 1px solid rgba(34,38,43,.3); outline-offset: 16px; }
+.art .h { position: absolute; left: 20px; top: 104px; width: 140px; height: 12px; background: linear-gradient(#2B4C7E 0 0) 0 100% / 100% 2px no-repeat, conic-gradient(from 135deg at 50% 100%, #2B4C7E 0 90deg, transparent 0) 0 0 / 20px 12px repeat-x; transform: rotate(-14deg); }
+.art::before { content: ""; position: absolute; left: 70px; top: 30px; width: 110px; height: 10px; background: linear-gradient(#C8423A 0 0) 0 100% / 100% 2px no-repeat, radial-gradient(circle at 50% 100%, #C8423A 0 6px, transparent 6.5px) 0 0 / 22px 10px repeat-x; transform: rotate(18deg); }
+.art::after { content: "24°"; position: absolute; left: 40px; top: 50px; font: 800 22px -apple-system, "Inter", "PingFang SC", sans-serif; color: #C8423A; }
+.feats article { padding: 12px; border-radius: 10px; background: #fff; border: 1px solid #E2E5E8; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #2B4C7E; }
+.stats b { color: #2B4C7E; }
+</style>

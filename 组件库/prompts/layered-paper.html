@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Layered Paper Art",
+  "zh": "纸雕层叠",
+  "alias": [
+    "层叠纸艺",
+    "剪纸立体"
+  ],
+  "lead": "一层层剪好的彩纸叠在一起，每层之间投下柔和的阴影，像一个有景深的立体小剧场。精致、童话、有温度，适合儿童出版、节日营销、文创礼品和品牌故事页。",
+  "prompt": "纸雕层叠风格：主视觉为四五层剪纸叠出的景（山峦、云或海浪的波浪形边缘），每层同一色系由浅到深，层与层之间有柔和投影，正文区为平整纸色，圆润衬线标题，配色温和（如青绿系或暖橙系任选一系）",
+  "promptEn": "layered paper art style: a hero scene built from four or five cut paper layers (mountains, clouds or waves with wavy edges), each layer one step darker in a single color family, soft shadows between layers, body area on plain paper color, rounded serif headings, gentle palette (pick one family such as teal or warm orange)",
+  "avoid": "层次靠同色系明暗和层间阴影，换颜色太多就乱；每层边缘要是剪出来的平滑曲线。和剪纸（单层镂空）区分。",
+  "neg": [
+    "多色层叠、没有层间阴影",
+    "multicolor layers, no shadows between layers"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F5C5A; --a2: #2E7D78; --on: #F3F7F5; background: #F3F7F5; color: #1B3A38; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 999px; } .hero h1 { font-weight: 600; }
+.art { overflow: hidden; border-radius: 10px; background: #DDEDE8; height: 150px; }
+.art .m { position: absolute; left: -10px; right: -10px; top: 50px; bottom: 0; background: #A9D2C8; border-radius: 40% 60% 0 0 / 50% 70% 0 0; box-shadow: 0 -4px 8px rgba(0,0,0,.12); }
+.art .h { position: absolute; left: -30px; right: 20px; top: 80px; bottom: 0; background: #6FB0A4; border-radius: 60% 40% 0 0 / 70% 50% 0 0; box-shadow: 0 -4px 8px rgba(0,0,0,.14); }
+.art::before { content: ""; position: absolute; left: 40px; right: -40px; top: 104px; bottom: 0; background: #2E7D78; border-radius: 50% 50% 0 0 / 80% 60% 0 0; box-shadow: 0 -4px 8px rgba(0,0,0,.16); z-index: 1; }
+.art::after { content: ""; position: absolute; left: 30px; top: 20px; width: 30px; height: 30px; border-radius: 50%; background: #F8F2DC; box-shadow: 0 3px 6px rgba(0,0,0,.1); }
+.feats article { padding: 12px; border-radius: 12px; background: #fff; box-shadow: 0 3px 0 #DDEDE8; } .feats b { color: #2E7D78; }
+.stats { background: #1F5C5A; color: #F3F7F5; } .stats b { color: #CDEBE2; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Command Palette",
+  "zh": "命令面板式",
+  "alias": [
+    "快捷指令",
+    "键盘优先"
+  ],
+  "lead": "首屏中间就是一个搜索命令框：输入什么都能找，下面列出快捷操作和键盘快捷键提示。高效、专业、为老手设计，适合开发者工具、效率软件、笔记应用和内部系统。",
+  "prompt": "命令面板式风格：深炭灰背景，首屏中央为一个大圆角命令输入框（带放大镜图标与闪烁光标），下方为操作列表（每行图标、名称、右侧键盘按键提示小框），当前行高亮，等宽与无衬线混排，单一主色",
+  "promptEn": "command palette style: deep charcoal background, a large rounded command input box at the center of the first screen (with a search icon and blinking cursor), an action list below (each row with an icon, a name and small keyboard shortcut keycaps on the right), the current row highlighted, mixed monospaced and sans type, a single main color",
+  "avoid": "按键提示小框是辨识点；列表五六行就够，高亮只给一行。别给整个页面都套成终端黑框。",
+  "neg": [
+    "列表太长、多行高亮",
+    "overlong lists, several highlighted rows"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #8FB0FF; --a2: #8FB0FF; --on: #15171C; background: #15171C; color: #E6E8EE; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 8px; font-weight: 700; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art .m { position: absolute; left: 0; right: 0; top: 0; height: 34px; border-radius: 10px; background: #22252D; border: 1px solid #343844; }
+.art .m::after { content: "⌕  搜索书单、座位…|"; position: absolute; left: 12px; top: 10px; font-size: 11px; color: #8A90A0; }
+.art::before { content: "预约今晚\A 找一本书\A 看茶单"; white-space: pre; position: absolute; left: 10px; top: 44px; font: 11px/2.6 -apple-system, "Inter", "PingFang SC", sans-serif; color: #C9CDD8; }
+.art .h { position: absolute; left: 0; right: 0; top: 46px; height: 24px; border-radius: 6px; background: rgba(143,176,255,.14); }
+.art::after { content: "⌘ K\A ⌘ F\A ⌘ T"; white-space: pre; position: absolute; right: 8px; top: 44px; font: 10px/2.86 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8A90A0; }
+.feats article { padding: 12px; border-radius: 10px; background: #1C1F26; border: 1px solid #2A2E38; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8FB0FF; border: 1px solid #343844; border-radius: 4px; padding: 0 5px; }
+.stats { border-top: 1px solid #2A2E38; } .stats b { color: #fff; }
+</style>

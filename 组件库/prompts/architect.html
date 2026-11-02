@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Architecture Studio",
+  "zh": "建筑事务所",
+  "alias": [
+    "建筑工作室",
+    "设计院"
+  ],
+  "lead": "建筑事务所的作品站：大幅黑白建筑照片、细线平面图、项目编号和极其严格的网格，文字少到只有名称、地点和年份。冷静、精确、高级，适合建筑、室内设计、景观和城市规划。",
+  "prompt": "建筑事务所风格：纯白背景，主视觉为黑白或低饱和的建筑体块（几何立面与光影），配一张细线平面图，项目信息为小号等宽字（编号、地点、年份），严格网格对齐，细无衬线标题，几乎无色，只有一处极小的强调色",
+  "promptEn": "architecture studio style: pure white background, a hero of black-and-white or desaturated building volumes (geometric facades with light and shadow) paired with a fine-line floor plan, project info in small monospaced text (number, location, year), strict grid alignment, thin sans headings, almost colorless with one tiny accent",
+  "avoid": "图要大、字要少，信息只留名称、地点、年份；别加渐变和插画，建筑师的网站靠克制。",
+  "neg": [
+    "渐变插画、文案冗长",
+    "gradients and illustrations, long copy"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #D9442E; --on: #fff; background: #fff; color: #111; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo { font-weight: 500; letter-spacing: 3px; text-transform: uppercase; } .logo i { width: 10px; height: 10px; } .cta { background: none; color: #111; padding: 0; border-bottom: 1px solid; }
+.hero h1 { font-weight: 300; letter-spacing: -.3px; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #111; opacity: .6; } .b1 { border-radius: 0; } .b2 { color: #111; }
+.art { background: linear-gradient(90deg, #E9E9E9 0 45%, #BDBDBD 45% 70%, #8A8A8A 70%) 0 30px / 100% 90px no-repeat; }
+.art .m { position: absolute; left: 20px; top: 50px; width: 40px; height: 70px; background: repeating-linear-gradient(90deg, #fff 0 2px, transparent 2px 8px); opacity: .7; }
+.art .h { position: absolute; right: 0; top: 0; width: 60px; height: 24px; border: 1px solid #111; background: linear-gradient(90deg, transparent 33%, #111 33% calc(33% + 1px), transparent 0); }
+.art::after { content: "P-017 · 杭州 · 2026"; position: absolute; left: 0; top: 126px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 1px; }
+.art::before { content: ""; position: absolute; left: 0; top: 122px; width: 6px; height: 6px; background: #D9442E; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #111; opacity: .6; } .feats h3 { font-weight: 400; } .feats article { border-top: 1px solid #111; padding-top: 8px; }
+.stats { border-top: 1px solid #111; margin: 0 26px; } .stats b { font-weight: 300; }
+</style>
