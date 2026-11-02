@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Uppercase Tracking", "zh": "大写字母加字距",
+  "lead": "英文全大写的小标签、导航、按钮，字母会显得挤在一起。加一点字距（0.08–0.15em）就立刻精致、透气，这是杂志和高端品牌的常用手法。",
+  "vague": ["英文小标签看着挤", "大写字母不好看"],
+  "terms": ["Letter-spacing / Tracking", "All Caps 全大写", "Eyebrow Text 眉标"],
+  "prompt": "所有全大写的英文小字（眉标、按钮、标签）加 letter-spacing: 0.12em，字号 11–12px、字重 600；大写用 text-transform: uppercase 而不是直接写大写字母；正文和小写英文不要加字距；大标题反而可以略微收紧（-0.01em）。"
+}
+-->
+<div class="cmp">
+  <div><small>默认字距</small><span class="eb a">NEW COLLECTION</span><button class="a">SHOP NOW</button></div>
+  <div><small>+0.12em</small><span class="eb b">NEW COLLECTION</span><button class="b">SHOP NOW</button></div>
+</div>
+
+<style>
+.cmp { display: flex; gap: 16px; }
+.cmp > div { width: 150px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 12px; justify-items: start; }
+.cmp > div:last-child { border-color: #FA8C16; }
+small { font-size: 10px; color: #A1A1AA; }
+.eb { font: 600 11px -apple-system, "Inter", "Helvetica Neue", sans-serif; color: #C2410C; }
+button { border: 1px solid #18181B; background: #fff; padding: 9px 14px; border-radius: 0; font: 600 12px -apple-system, "Inter", sans-serif; cursor: pointer; }
+.a { letter-spacing: 0; } .b { letter-spacing: .12em; }
+</style>

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Checkbox Tree", "zh": "树形多选",
+  "lead": "有层级的勾选框：勾父级会勾上全部子项；子项只勾了一部分时，父级显示一条横线的“半选”状态。权限设置、分类筛选、文件选择都离不开它。",
+  "vague": ["全选和部分选怎么表示", "权限一层层勾选"],
+  "terms": ["Checkbox Tree", "Indeterminate 半选", "Tri-state Checkbox"],
+  "prompt": "权限设置用 Checkbox Tree：父项勾选/取消时同步所有子项；子项部分勾选时父项设为 indeterminate（显示一条横线）；子项缩进 24px，左侧细竖线连接；父项右侧显示“3/5”计数；用原生 checkbox 的 indeterminate 属性，保证读屏软件读出“部分选中”。"
+}
+-->
+<div class="tree"></div>
+
+<style>
+.tree { width: 260px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 13px; }
+.grp + .grp { margin-top: 6px; }
+label { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 7px; cursor: pointer; } label:hover { background: #FAFAFA; }
+input { width: 16px; height: 16px; accent-color: #FA8C16; margin: 0; }
+.parent { font-weight: 600; } .parent small { margin-left: auto; font-weight: 400; color: #A1A1AA; font-size: 11px; }
+.kids { margin-left: 13px; padding-left: 11px; border-left: 1px solid #F0F0F2; }
+</style>
+
+<script>
+const T = { 作品: ["查看", "编辑", "发布"], 团队: ["邀请成员", "移除成员"] }, pre = new Set(["查看", "编辑"]);
+const tree = document.querySelector(".tree");
+tree.innerHTML = Object.entries(T).map(([g, ks]) => `<div class="grp"><label class="parent"><input type="checkbox" data-g="${g}">${g}<small></small></label><div class="kids">${ks.map((k) => `<label><input type="checkbox" data-k="${g}" ${pre.has(k) ? "checked" : ""}>${k}</label>`).join("")}</div></div>`).join("");
+function sync() {
+  tree.querySelectorAll("[data-g]").forEach((p) => {
+    const kids = [...tree.querySelectorAll(`[data-k="${p.dataset.g}"]`)], n = kids.filter((k) => k.checked).length;
+    p.checked = n === kids.length; p.indeterminate = n > 0 && n < kids.length; p.parentElement.querySelector("small").textContent = `${n}/${kids.length}`;
+  });
+}
+tree.addEventListener("change", (e) => { const g = e.target.dataset.g; if (g) tree.querySelectorAll(`[data-k="${g}"]`).forEach((k) => (k.checked = e.target.checked)); sync(); });
+sync();
+</script>

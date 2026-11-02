@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Drag to Select", "zh": "框选",
+  "lead": "在空白处按住鼠标拖出一个半透明矩形，框住的项目全部被选中，像桌面上框选文件。相册、文件管理、设计画布里批量操作必备。",
+  "vague": ["一个个点选太累", "想像电脑桌面那样框选"],
+  "terms": ["Marquee Selection 框选", "Rubber-band Selection 橡皮筋选择", "Lasso"],
+  "prompt": "相册网格支持框选：在网格空白处按下鼠标拖动，出现 1px 江月橘描边 + 10% 橘色填充的选框，实时计算与每张缩略图的相交，被框中的图片出现勾选角标和橘色描边；按住 Shift 框选为追加；顶部显示“已选 6 项”和批量操作按钮。"
+}
+-->
+<div class="ds"><header>已选 <b>0</b> 项</header><div class="grid"></div><i class="box" hidden></i></div>
+<style>
+.ds { position: relative; width: 320px; padding: 12px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; user-select: none; touch-action: none; }
+header { margin-bottom: 10px; font-size: 12px; color: #71717A; } header b { color: #FA8C16; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.grid i { position: relative; aspect-ratio: 1; border-radius: 8px; outline: 2px solid transparent; outline-offset: 1px; transition: outline-color .15s; }
+.grid i.sel { outline-color: #FA8C16; }
+.grid i.sel::after { content: "✓"; position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; border-radius: 50%; background: #FA8C16; color: #fff; font: 700 10px/16px system-ui; text-align: center; font-style: normal; }
+.box { position: absolute; border: 1px solid #FA8C16; background: rgba(250,140,22,.1); pointer-events: none; }
+</style>
+<script>
+const ds = document.querySelector(".ds"), grid = ds.querySelector(".grid"), box = ds.querySelector(".box"), cnt = ds.querySelector("b");
+grid.innerHTML = Array.from({ length: 12 }, (_, i) => `<i style="background:hsl(${i * 30} 55% 82%)"></i>`).join("");
+const items = [...grid.children]; let sx, sy, keep = [];
+function rect(x1, y1, x2, y2) {
+  const l = Math.min(x1, x2), t = Math.min(y1, y2), w = Math.abs(x2 - x1), h = Math.abs(y2 - y1);
+  Object.assign(box.style, { left: l + "px", top: t + "px", width: w + "px", height: h + "px" }); box.hidden = false;
+  const o = ds.getBoundingClientRect();
+  items.forEach((it, i) => { const r = it.getBoundingClientRect(), a = r.left - o.left, b = r.top - o.top; it.classList.toggle("sel", keep[i] || (a < l + w && a + r.width > l && b < t + h && b + r.height > t)); });
+  cnt.textContent = grid.querySelectorAll(".sel").length;
+}
+let user = false;
+ds.addEventListener("pointerdown", e => { user = true; const o = ds.getBoundingClientRect(); sx = e.clientX - o.left; sy = e.clientY - o.top; keep = items.map(i => e.shiftKey && i.classList.contains("sel")); ds.setPointerCapture(e.pointerId); rect(sx, sy, sx, sy); });
+ds.addEventListener("pointermove", e => { if (sx == null) return; const o = ds.getBoundingClientRect(); rect(sx, sy, e.clientX - o.left, e.clientY - o.top); });
+ds.addEventListener("pointerup", () => { sx = null; box.hidden = true; });
+let p = 0; (function loop() { if (!user) { p = (p + .012) % 1.4; keep = []; if (p < 1) rect(14, 40, 14 + p * 200, 40 + p * 120); else box.hidden = true; } requestAnimationFrame(loop); })();
+</script>

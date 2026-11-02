@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Number Formatting", "zh": "数字格式化",
+  "lead": "同一个数字，写成 1234567 和 123.5 万、¥1,234,567.00，阅读体验天差地别。大数字加千分位或换成“万/亿”，金额统一小数位，百分比带正负号。",
+  "vague": ["数字太长看不清", "金额显示不统一"],
+  "terms": ["Number Formatting", "Intl.NumberFormat", "Compact Notation 缩写"],
+  "prompt": "全站数字用 Intl.NumberFormat 统一格式：金额 zh-CN 货币格式保留 2 位小数；大于 1 万的统计数字用 compact 写成“12.3万”；百分比带正负号和 1 位小数（+12.5%）；表格里的数字等宽右对齐；不要手写字符串拼接。"
+}
+-->
+<div class="nf">
+  <label>原始数字<input type="number" value="12345678.9"></label>
+  <dl></dl>
+</div>
+
+<style>
+.nf { width: 300px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+label { display: grid; gap: 6px; font-size: 12px; color: #71717A; }
+input { height: 36px; padding: 0 10px; border: 1px solid #E4E4E7; border-radius: 9px; font: 14px ui-monospace, Menlo, monospace; outline: 0; } input:focus { border-color: #FA8C16; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin: 14px 0 0; font-size: 13px; }
+dt { color: #A1A1AA; } dd { margin: 0; text-align: right; font-weight: 600; color: #18181B; font-variant-numeric: tabular-nums; }
+</style>
+
+<script>
+const input = document.querySelector("input"), dl = document.querySelector("dl");
+function render() {
+  const n = +input.value || 0;
+  const rows = [["千分位", new Intl.NumberFormat("zh-CN").format(n)], ["金额", new Intl.NumberFormat("zh-CN", { style: "currency", currency: "CNY" }).format(n)],
+    ["缩写", new Intl.NumberFormat("zh-CN", { notation: "compact", maximumFractionDigits: 1 }).format(n)], ["百分比", new Intl.NumberFormat("zh-CN", { style: "percent", signDisplay: "always", maximumFractionDigits: 1 }).format(n / 1e8)]];
+  dl.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+}
+input.addEventListener("input", render); render();
+</script>

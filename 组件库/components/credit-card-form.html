@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Card Payment Form", "zh": "银行卡支付表单",
+  "lead": "填卡号的时候，上方有一张实时预览的卡片跟着变：卡号逐位出现、自动识别卡组织，填到安全码时卡片翻到背面。让枯燥的付款表单变得直观又安心。",
+  "vague": ["付款表单很枯燥", "填卡号容易错"],
+  "terms": ["Payment Form", "Live Card Preview 实时预览", "Input Mask"],
+  "prompt": "支付页做 Card Payment Form：表单上方一张 3D 卡片预览，卡号输入时每 4 位一组实时显示在卡面上（未填位显示 •），根据卡号开头显示卡组织标识；聚焦安全码输入框时卡片 rotateY(180deg) 翻到背面显示 CVV；输入框使用 inputmode=numeric 和 autocomplete=cc-number 等属性。"
+}
+-->
+<div class="pay">
+  <div class="scene"><div class="card">
+    <div class="face front"><span class="chip"></span><span class="brand">—</span><p class="num">•••• •••• •••• ••••</p><div class="row"><span class="name">持卡人姓名</span><span class="exp">MM/YY</span></div></div>
+    <div class="face back"><i class="strip"></i><span class="cvv">•••</span></div>
+  </div></div>
+  <form>
+    <input id="num" inputmode="numeric" autocomplete="cc-number" placeholder="卡号" maxlength="19">
+    <div class="two"><input id="exp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5"><input id="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="安全码" maxlength="3"></div>
+  </form>
+</div>
+
+<style>
+.pay { width: 260px; display: grid; gap: 14px; }
+.scene { perspective: 900px; } .card { position: relative; height: 150px; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.4, .2, .2, 1); } .pay.flip .card { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 14px; padding: 16px; box-sizing: border-box; color: #fff; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(135deg, #24365A, #0F1218 70%); box-shadow: 0 14px 28px -10px rgba(15,18,24,.6); }
+.chip { display: block; width: 32px; height: 24px; border-radius: 5px; background: linear-gradient(135deg, #FFD58A, #B7791F); }
+.brand { position: absolute; right: 16px; top: 16px; font: 800 13px sans-serif; font-style: italic; color: #FFD58A; }
+.num { margin: 22px 0 14px; font: 600 16px ui-monospace, Menlo, monospace; letter-spacing: .08em; }
+.row { display: flex; justify-content: space-between; font-size: 10px; opacity: .8; }
+.back { transform: rotateY(180deg); padding: 0; } .strip { display: block; height: 30px; margin-top: 18px; background: #000; }
+.cvv { position: absolute; right: 16px; top: 64px; padding: 4px 10px; border-radius: 4px; background: #fff; color: #18181B; font: 13px ui-monospace, Menlo, monospace; }
+form { display: grid; gap: 8px; } .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+input { height: 38px; padding: 0 10px; border: 1px solid #E4E4E7; border-radius: 9px; font: 14px ui-monospace, Menlo, monospace; outline: 0; min-width: 0; } input:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+</style>
+
+<script>
+const $ = (s) => document.querySelector(s), pay = $(".pay");
+$("#num").addEventListener("input", (e) => {
+  const d = e.target.value.replace(/\D/g, "").slice(0, 16); e.target.value = d.replace(/(\d{4})(?=\d)/g, "$1 ");
+  $(".num").textContent = (d + "•".repeat(16 - d.length)).replace(/(.{4})(?=.)/g, "$1 ");
+  $(".brand").textContent = /^4/.test(d) ? "VISA" : /^5[1-5]/.test(d) ? "MASTER" : /^62/.test(d) ? "银联" : "—";
+});
+$("#exp").addEventListener("input", (e) => { const d = e.target.value.replace(/\D/g, "").slice(0, 4); e.target.value = d.length > 2 ? d.slice(0, 2) + "/" + d.slice(2) : d; $(".exp").textContent = e.target.value || "MM/YY"; });
+$("#cvv").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, ""); $(".cvv").textContent = e.target.value.padEnd(3, "•"); });
+$("#cvv").addEventListener("focus", () => pay.classList.add("flip")); $("#cvv").addEventListener("blur", () => pay.classList.remove("flip"));
+</script>

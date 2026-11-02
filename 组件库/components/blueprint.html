@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Blueprint Style", "zh": "蓝图风",
+  "lead": "像工程蓝图：深蓝底、白色细线网格、标注尺寸的箭头和等宽小字。透出精确、理性、工程师的气质，适合开发者工具、硬件产品和技术文档的封面。",
+  "vague": ["想要工程图纸的感觉", "技术感的背景"],
+  "terms": ["Blueprint", "Technical Drawing 技术图纸", "Grid Paper 网格纸"],
+  "prompt": "技术产品页用 Blueprint 风：背景钴蓝 #1D4E89，叠两层白色网格（20px 细网格 8% 透明 + 100px 粗网格 16% 透明）；图形用 1.5px 白色线框，不填色；关键尺寸用带箭头的标注线和等宽小字（如 320 × 200）；标题等宽字体、全大写、加字距。"
+}
+-->
+<div class="bp">
+  <svg viewBox="0 0 300 180">
+    <rect x="60" y="40" width="140" height="90" rx="10"/><circle cx="130" cy="85" r="22"/><path d="M60 150 H200 M60 145 V155 M200 145 V155"/><path d="M220 40 V130 M215 40 H225 M215 130 H225"/>
+    <text x="130" y="166" text-anchor="middle">140</text><text x="236" y="88">90</text>
+  </svg>
+  <span class="t">MODULE / JY-01</span>
+</div>
+
+<style>
+.bp { position: relative; width: 340px; height: 210px; border-radius: 6px; overflow: hidden; background-color: #1D4E89;
+  background-image: linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px; }
+svg { position: absolute; inset: 10px 20px; width: calc(100% - 40px); }
+svg rect, svg circle, svg path { fill: none; stroke: #fff; stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s ease-out forwards; }
+svg path { stroke-width: 1; opacity: .8; } text { fill: #fff; font: 10px ui-monospace, Menlo, monospace; }
+.t { position: absolute; left: 14px; bottom: 10px; font: 600 11px ui-monospace, Menlo, monospace; letter-spacing: .15em; color: #fff; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+</style>

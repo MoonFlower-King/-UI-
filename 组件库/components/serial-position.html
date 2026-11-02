@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Serial Position Effect", "zh": "系列位置效应",
+  "lead": "一串东西里，人最容易记住开头和结尾的几个，中间的最容易忘。所以底部导航把最重要的放两端，长列表把关键信息放在第一条和最后一条。",
+  "vague": ["导航顺序怎么排", "重要功能用户找不到"],
+  "terms": ["Serial Position Effect", "Primacy Effect 首因效应", "Recency Effect 近因效应"],
+  "prompt": "App 底部 5 个 Tab 按系列位置效应排序：最常用的“首页”放最左、“我的”放最右，低频的“消息”“发现”放中间；用一张 U 型记忆曲线示意图说明，曲线两端用江月橘标出“记得最牢”。"
+}
+-->
+<div class="sp"><div class="bars"></div><div class="tabs"><span>首页</span><span>发现</span><span>＋</span><span>消息</span><span>我的</span></div><p>两端记得最牢 · 中间最容易忘</p></div>
+<style>
+.sp { width: 300px; padding: 16px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 110px; padding: 0 4px; border-bottom: 1px solid #E4E4E7; }
+.bars i { flex: 1; border-radius: 4px 4px 0 0; background: #E4E4E7; height: var(--h); animation: g 3s cubic-bezier(.2,.8,.2,1) infinite; animation-delay: var(--d); transform-origin: bottom; }
+.bars i.k { background: #FA8C16; }
+@keyframes g { 0% { transform: scaleY(0); } 30%, 100% { transform: scaleY(1); } }
+.tabs { display: flex; margin-top: 12px; border-radius: 12px; background: #F4F4F5; padding: 6px; }
+.tabs span { flex: 1; text-align: center; font-size: 11px; color: #A1A1AA; padding: 6px 0; border-radius: 8px; }
+.tabs span:first-child, .tabs span:last-child { color: #FA8C16; font-weight: 700; background: #fff; }
+p { margin: 10px 0 0; text-align: center; font-size: 11px; color: #71717A; }
+</style>
+<script>
+const H = [92, 78, 60, 44, 34, 30, 36, 50, 72, 88];
+document.querySelector(".bars").innerHTML = H.map((h, i) => `<i class="${i < 2 || i > 7 ? "k" : ""}" style="--h:${h}%;--d:${i * 60}ms"></i>`).join("");
+</script>

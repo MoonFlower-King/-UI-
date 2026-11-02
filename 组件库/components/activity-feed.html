@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Activity Feed", "zh": "动态流",
+  "lead": "按时间倒序排列的一串“谁做了什么”：头像 + 一句话 + 相对时间，新动态从顶部滑入。团队协作、后台首页常用，让人感到“这里有人在活动”。",
+  "vague": ["首页死气沉沉", "想看到最近谁干了什么"],
+  "terms": ["Activity Feed", "Activity Stream 活动流", "Relative Time 相对时间"],
+  "prompt": "仪表盘右栏做动态流：每条左侧 28px 圆形头像（彩色首字母），正文“<b>林舟</b> 评论了 设计稿 v3”，下方灰色小字相对时间“2 分钟前”；条目之间用左侧细竖线串起来；新动态从顶部以高度展开 + 淡入方式插入，背景先短暂高亮成浅橘再褪去；最多保留 5 条。"
+}
+-->
+<div class="af"><h4>最近动态</h4><ul></ul></div>
+<style>
+.af { width: 290px; height: 300px; padding: 14px 16px; box-sizing: border-box; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+h4 { margin: 0 0 10px; font: 600 14px "Songti SC","Noto Serif SC",serif; color: #18181B; }
+ul { list-style: none; margin: 0; padding: 0; position: relative; }
+ul::before { content: ""; position: absolute; left: 13px; top: 8px; bottom: 8px; width: 1px; background: #E4E4E7; }
+li { display: flex; gap: 10px; padding: 6px 6px; border-radius: 8px; position: relative; animation: in .5s ease-out; font-size: 12px; color: #3F3F46; line-height: 1.5; }
+li.new { animation: in .5s ease-out, hl 1.6s ease-out; }
+@keyframes in { from { opacity: 0; max-height: 0; padding-block: 0; } to { max-height: 60px; } }
+@keyframes hl { 0%, 30% { background: #FFF4E6; } }
+.av { flex: none; width: 24px; height: 24px; margin-left: -4px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 11px; font-weight: 600; box-shadow: 0 0 0 3px #fff; }
+li small { display: block; color: #A1A1AA; font-size: 11px; }
+</style>
+<script>
+const P = [["林舟", "#FA8C16"], ["小满", "#7C3AED"], ["阿岚", "#0EA5E9"], ["白露", "#10B981"]];
+const A = ["评论了 设计稿 v3", "上传了 3 张图片", "完成了 任务「首页改版」", "邀请了 新成员", "把 发布时间 改为周五", "点赞了 你的方案"];
+const ul = document.querySelector("ul"); let n = 0;
+function push(isNew) {
+  const [name, c] = P[n % 4], act = A[n++ % A.length];
+  ul.insertAdjacentHTML("afterbegin", `<li class="${isNew ? "new" : ""}"><span class="av" style="background:${c}">${name[0]}</span><div><b>${name}</b> ${act}<small>刚刚</small></div></li>`);
+  [...ul.children].forEach((li, i) => { li.querySelector("small").textContent = i ? `${i * 3} 分钟前` : "刚刚"; });
+  while (ul.children.length > 5) ul.lastElementChild.remove();
+}
+for (let i = 0; i < 4; i++) push(false);
+setInterval(() => push(true), 2200);
+</script>

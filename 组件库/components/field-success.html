@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Inline Success Validation", "zh": "填写正确提示",
+  "lead": "表单不只在出错时说话：用户填对了，输入框右侧亮起一个小对勾，边框变绿。这种“正向反馈”让人更有信心往下填，尤其是用户名、密码这种有规则的字段。",
+  "vague": ["只会报错不会表扬", "填对了也没反应"],
+  "terms": ["Inline Validation 实时校验", "Positive Feedback 正向反馈", "Success State"],
+  "prompt": "注册表单的用户名和邮箱做正向校验：用户停止输入 400ms 后校验，通过时输入框右侧出现绿色圆形对勾（从 scale 0 弹出），边框变为 #52C41A，下方小字“这个名字可以用”；不通过时只在失焦后显示错误；校验中显示小转圈。"
+}
+-->
+<form class="fs" onsubmit="return false">
+  <label>用户名<div class="f"><input id="u" autocomplete="off" placeholder="3–12 位字母或数字"><i></i></div><small></small></label>
+  <label>邮箱<div class="f"><input id="m" autocomplete="off" placeholder="name@example.com"><i></i></div><small></small></label>
+</form>
+<style>
+.fs { width: 300px; padding: 18px; box-sizing: border-box; display: grid; gap: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+label { display: grid; gap: 6px; font-size: 12px; color: #3F3F46; font-weight: 600; }
+.f { position: relative; }
+input { width: 100%; box-sizing: border-box; height: 38px; padding: 0 36px 0 12px; border: 1px solid #E4E4E7; border-radius: 8px; font-size: 13px; outline: none; transition: border-color .2s, box-shadow .2s; }
+input:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.f i { position: absolute; right: 10px; top: 10px; width: 18px; height: 18px; border-radius: 50%; transform: scale(0); transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
+.ok input { border-color: #52C41A; } .ok i { transform: none; background: #52C41A; }
+.ok i::after { content: ""; position: absolute; left: 6px; top: 3px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.wait i { transform: none; border: 2px solid #E4E4E7; border-top-color: #FA8C16; box-sizing: border-box; animation: sp .7s linear infinite; } @keyframes sp { to { transform: rotate(360deg); } }
+.bad input { border-color: #F5222D; }
+small { min-height: 14px; font-weight: 400; color: #52C41A; } .bad + small, label.bad small { color: #F5222D; }
+</style>
+<script>
+const rules = { u: [v => /^[a-z0-9]{3,12}$/i.test(v), "这个名字可以用", "需要 3–12 位字母或数字"], m: [v => /^\S+@\S+\.\S+$/.test(v), "格式正确", "邮箱格式不对"] };
+document.querySelectorAll("input").forEach(inp => {
+  const lab = inp.closest("label"), f = inp.parentNode, msg = lab.querySelector("small"), [ok, good, bad] = rules[inp.id]; let t;
+  const check = final => { const pass = ok(inp.value); f.className = "f " + (pass ? "ok" : ""); lab.classList.toggle("bad", !pass && final && inp.value); msg.textContent = pass ? good : (final && inp.value ? bad : ""); };
+  inp.addEventListener("input", () => { clearTimeout(t); f.className = "f wait"; msg.textContent = ""; lab.classList.remove("bad"); t = setTimeout(() => check(false), 400); });
+  inp.addEventListener("blur", () => check(true));
+  inp.demo = async s => { inp.value = ""; check(false); for (const ch of s) { await new Promise(r => setTimeout(r, 110)); inp.value += ch; inp.dispatchEvent(new Event("input")); } };
+});
+const [u, m] = document.querySelectorAll("input");
+async function demo() { if (document.activeElement.tagName === "INPUT") return; await u.demo("moonflower"); await new Promise(r => setTimeout(r, 500)); await m.demo("hi@jiangyue.design"); }
+demo(); setInterval(demo, 7000);
+</script>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Text Fill on Hover", "zh": "文字填色",
+  "lead": "导航或大标题平时是描边字或浅灰字，鼠标移上去，颜色像墨水一样从左到右灌满整个字。比直接变色更有过程感，适合品牌官网的大导航。",
+  "vague": ["导航悬停想更有设计感", "颜色从左往右填满文字"],
+  "terms": ["Text Fill", "background-clip: text", "Hover Reveal"],
+  "prompt": "全屏菜单的大字导航做 Text Fill：文字用 background-clip: text，背景是左半江月橘、右半浅灰 #D4D4D8 的硬边渐变（background-size: 200%），默认 background-position: 100%（显示灰色），悬停时移动到 0（400ms cubic-bezier(.7,0,.3,1)），颜色从左向右灌满。"
+}
+-->
+<nav><a>作品</a><a>组件</a><a>关于</a></nav>
+
+<style>
+nav { display: grid; gap: 4px; }
+a { font: 800 44px/1.15 "Songti SC", "Noto Serif SC", serif; cursor: pointer; color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(90deg, #FA8C16 50%, #D4D4D8 50%); background-size: 200% 100%; background-position: 100% 0; transition: background-position .4s cubic-bezier(.7, 0, .3, 1); }
+a:hover, a.demo { background-position: 0 0; }
+</style>
+<script>
+const links = [...document.querySelectorAll("a")]; let i = 0, user = false;
+document.querySelector("nav").addEventListener("pointerenter", () => { user = true; links.forEach(a => a.classList.remove("demo")); });
+document.querySelector("nav").addEventListener("pointerleave", () => user = false);
+setInterval(() => { if (user) return; links.forEach(a => a.classList.remove("demo")); links[i++ % links.length].classList.add("demo"); }, 1100);
+</script>

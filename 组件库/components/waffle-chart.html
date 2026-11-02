@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Waffle Chart", "zh": "华夫图",
+  "lead": "10×10 共 100 个小方格，按百分比涂色，比如 37 格亮着就是 37%。比饼图更容易数清楚，很适合讲“每 100 人里有几个”。",
+  "vague": ["饼图看不出具体多少", "想让百分比更直观"],
+  "terms": ["Waffle Chart", "Unit Chart 单位图", "Part-to-Whole 部分与整体"],
+  "prompt": "数据卡片里放一个 10×10 华夫图：每格 14px 圆角 3px、间距 3px，未选中为浅灰 #F4F4F5，按占比从左下角逐格点亮为江月橘（每格延迟 8ms）；右侧大号数字“37%”和说明“每 100 位用户里，有 37 位每天打开”；切换标签时格子重新点亮。"
+}
+-->
+<div class="wf">
+  <div class="grid"></div>
+  <div class="txt"><b></b><p></p><nav><button class="on">日活</button><button>付费</button><button>推荐</button></nav></div>
+</div>
+<style>
+.wf { display: flex; gap: 18px; align-items: center; width: 320px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.grid { display: grid; grid-template-columns: repeat(10, 12px); gap: 3px; transform: scaleY(-1); }
+.grid i { width: 12px; height: 12px; border-radius: 3px; background: #F4F4F5; transition: background .2s; }
+.grid i.on { background: #FA8C16; }
+.txt b { font: 700 32px "Songti SC","Noto Serif SC",serif; color: #18181B; }
+.txt p { margin: 4px 0 10px; font-size: 12px; line-height: 1.6; color: #71717A; }
+nav { display: flex; gap: 4px; } nav button { font-size: 11px; padding: 3px 8px; border: 1px solid #E4E4E7; background: #fff; border-radius: 99px; cursor: pointer; color: #71717A; }
+nav button.on { border-color: #FA8C16; color: #FA8C16; }
+</style>
+<script>
+const g = document.querySelector(".grid"), b = document.querySelector(".txt b"), p = document.querySelector(".txt p"), btns = [...document.querySelectorAll("nav button")];
+const D = [[37, "每 100 位用户里，有 37 位每天打开"], [12, "每 100 位用户里，有 12 位付费"], [64, "每 100 位用户里，有 64 位愿意推荐"]];
+g.innerHTML = "<i></i>".repeat(100);
+const cells = [...g.children]; let cur = 0, timers = [];
+function show(k) {
+  cur = k; btns.forEach((x, i) => x.classList.toggle("on", i === k)); timers.forEach(clearTimeout); timers = [];
+  const [n, t] = D[k]; b.textContent = n + "%"; p.textContent = t;
+  cells.forEach(c => c.classList.remove("on"));
+  for (let i = 0; i < n; i++) { const r = Math.floor(i / 10), c = r % 2 ? 9 - i % 10 : i % 10; timers.push(setTimeout(() => cells[r * 10 + c].classList.add("on"), i * 8)); }
+}
+btns.forEach((x, i) => x.onclick = () => show(i));
+show(0); setInterval(() => show((cur + 1) % 3), 3500);
+</script>

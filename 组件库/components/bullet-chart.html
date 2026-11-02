@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Bullet Chart", "zh": "子弹图",
+  "lead": "一根细横条放在几段深浅不同的背景带上，再加一根竖线代表目标。一行就能看出“实际做到多少、目标多少、算差/中/好”，比仪表盘省地方得多。",
+  "vague": ["仪表盘太占地方", "想同时看实际和目标"],
+  "terms": ["Bullet Chart", "Target Line 目标线", "Qualitative Range 定性区间"],
+  "prompt": "KPI 区用子弹图代替仪表盘：每行左侧标签（营收 / 新用户 / 满意度），中间背景三段灰带（差/中/好，由深到浅），上面一根 8px 高的江月橘实际值条，再加一根 2px 宽、比条高的黑色目标竖线；右侧数值“82 / 目标 90”；条从 0 增长到实际值，悬停显示差距。"
+}
+-->
+<div class="bc"></div>
+<style>
+.bc { width: 300px; padding: 16px; display: grid; gap: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 12px; color: #71717A; }
+.row { display: grid; grid-template-columns: 48px 1fr; gap: 4px 10px; align-items: center; }
+.row b { color: #18181B; font-weight: 600; }
+.track { position: relative; height: 18px; border-radius: 3px; background: linear-gradient(90deg, #D4D4D8 0 var(--a), #E4E4E7 0 var(--b), #F4F4F5 0); }
+.val { position: absolute; left: 0; top: 5px; height: 8px; width: var(--v); background: #FA8C16; border-radius: 2px; animation: g 1s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes g { from { width: 0; } }
+.tgt { position: absolute; top: 1px; bottom: 1px; left: var(--t); width: 2px; background: #18181B; }
+.row small { grid-column: 2; font-variant-numeric: tabular-nums; }
+.row:hover .val { background: #D46B08; }
+</style>
+<script>
+const rows = [["营收", 82, 90, 50, 75], ["新用户", 64, 70, 40, 60], ["满意度", 93, 85, 60, 80]];
+const el = document.querySelector(".bc");
+function draw() {
+  el.innerHTML = rows.map(([n, v, t, a, b]) => `<div class="row" title="差距 ${v - t > 0 ? "+" : ""}${v - t}"><b>${n}</b><div class="track" style="--a:${a}%;--b:${b}%"><i class="val" style="--v:${v}%"></i><i class="tgt" style="--t:${t}%"></i></div><small>${v} / 目标 ${t}${v >= t ? " ✓" : ""}</small></div>`).join("");
+}
+draw(); setInterval(draw, 4000);
+</script>

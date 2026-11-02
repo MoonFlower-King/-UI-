@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Glitch Text", "zh": "故障文字",
+  "lead": "文字像信号不好的屏幕：偶尔错位、闪出红蓝两个重影、被横条切开。适合科技、游戏、赛博朋克风格的标题，少量使用效果最好。",
+  "vague": ["字像屏幕出故障", "赛博风的标题"],
+  "terms": ["Glitch Effect", "RGB Split 色彩分离", "clip-path Slice"],
+  "prompt": "标题做 Glitch 效果：用 ::before / ::after 复制文字（content: attr(data-text)），分别偏移 ±2px 并着色青 #00E5FF 和品红 #FF2D95，混合模式 screen；每 3 秒触发一次 300ms 的故障：用 clip-path: inset() 随机切出横条并左右抖动；其余时间静止；prefers-reduced-motion 时关闭。"
+}
+-->
+<div class="bg"><h2 class="gl" data-text="SIGNAL 江月">SIGNAL 江月</h2></div>
+
+<style>
+.bg { padding: 28px 32px; border-radius: 14px; background: #0B0D14; }
+.gl { position: relative; margin: 0; font: 900 40px/1 "Helvetica Neue", Arial, "PingFang SC", sans-serif; color: #F4F4F5; letter-spacing: .02em; }
+.gl::before, .gl::after { content: attr(data-text); position: absolute; inset: 0; mix-blend-mode: screen; opacity: .8; }
+.gl::before { color: #00E5FF; transform: translateX(-2px); animation: g1 3s infinite steps(1); } .gl::after { color: #FF2D95; transform: translateX(2px); animation: g2 3s infinite steps(1); }
+@keyframes g1 { 0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translateX(-2px); } 90% { clip-path: inset(10% 0 60% 0); transform: translateX(-8px); } 93% { clip-path: inset(55% 0 20% 0); transform: translateX(6px); } 96% { clip-path: inset(30% 0 45% 0); transform: translateX(-4px); } }
+@keyframes g2 { 0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translateX(2px); } 91% { clip-path: inset(65% 0 10% 0); transform: translateX(8px); } 94% { clip-path: inset(20% 0 55% 0); transform: translateX(-6px); } 97% { clip-path: inset(40% 0 35% 0); transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) { .gl::before, .gl::after { animation: none; } }
+</style>

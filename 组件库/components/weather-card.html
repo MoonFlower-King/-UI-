@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Weather Card", "zh": "天气卡片",
+  "lead": "一张卡片讲清今天的天气：大号温度、天气图标、体感和湿度，下面一排逐小时预报。背景颜色随天气和昼夜变化，信息层级清楚，是练习“大数字 + 辅助信息 + 横向列表”排版的好例子。",
+  "vague": ["做一个天气小组件", "信息卡片怎么排得有层次"],
+  "terms": ["Weather Widget", "Information Hierarchy 信息层级", "Contextual Theming 情境配色"],
+  "prompt": "天气卡片 300×280：顶部城市“杭州 · 西湖”和日期；左侧 56px 细体温度“18°”，右侧动态天气图标（晴：旋转光芒的暖金太阳；夜：月牙 + 闪烁星点；雨：下落雨线）；下方一行“体感 16° · 湿度 72% · 东风 2 级”；底部横向 6 个逐小时预报，当前小时高亮；背景渐变随天气切换并缓慢过渡。"
+}
+-->
+<div class="wc">
+  <header><b>杭州 · 西湖</b><small>11月2日 周日</small></header>
+  <div class="now"><strong></strong><div class="ic"></div></div>
+  <p class="desc"></p>
+  <ul class="hrs"></ul>
+</div>
+<style>
+.wc { --bg: linear-gradient(160deg, #FFB347, #FA8C16); position: relative; width: 300px; height: 280px; padding: 16px; box-sizing: border-box; display: grid; grid-template-rows: auto 1fr auto auto; border-radius: 18px; background: var(--bg); color: #fff; overflow: hidden; transition: background 1s; }
+.wc.night { --bg: linear-gradient(160deg, #1E2A4A, #0B1020); } .wc.rain { --bg: linear-gradient(160deg, #7B8AA6, #46536B); }
+header { display: flex; justify-content: space-between; align-items: baseline; } header b { font: 700 15px "Songti SC","Noto Serif SC",serif; } header small { font-size: 11px; opacity: .8; }
+.now { display: flex; justify-content: space-between; align-items: center; }
+strong { font: 200 60px/1 system-ui; letter-spacing: -2px; }
+.ic { position: relative; width: 80px; height: 80px; }
+.sun { position: absolute; inset: 18px; border-radius: 50%; background: #FFF4C2; box-shadow: 0 0 30px #FFE58F; }
+.ray { position: absolute; inset: 0; animation: r 12s linear infinite; background: repeating-conic-gradient(#FFF4C2 0 4deg, transparent 4deg 30deg); -webkit-mask: radial-gradient(circle, transparent 48%, #000 50% 62%, transparent 64%); mask: radial-gradient(circle, transparent 48%, #000 50% 62%, transparent 64%); }
+@keyframes r { to { transform: rotate(360deg); } }
+.moon { position: absolute; inset: 16px; border-radius: 50%; box-shadow: inset -14px 6px 0 0 #FFE7BA; }
+.star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; animation: tw 2s infinite; } @keyframes tw { 50% { opacity: .2; } }
+.cloud { position: absolute; left: 8px; top: 16px; width: 64px; height: 28px; border-radius: 20px; background: #E4E8F0; } .cloud::before { content: ""; position: absolute; left: 14px; top: -14px; width: 30px; height: 30px; border-radius: 50%; background: inherit; }
+.drop { position: absolute; top: 50px; width: 2px; height: 10px; border-radius: 2px; background: #BFD3F2; animation: dr .8s linear infinite; } @keyframes dr { from { transform: translateY(0); opacity: 1; } to { transform: translateY(24px); opacity: 0; } }
+.desc { margin: 0 0 12px; font-size: 12px; opacity: .9; }
+.hrs { display: grid; grid-template-columns: repeat(6, 1fr); list-style: none; margin: 0; padding: 10px 0 0; border-top: 1px solid rgba(255,255,255,.25); text-align: center; font-size: 10px; }
+.hrs li { display: grid; gap: 4px; padding: 4px 0; border-radius: 8px; } .hrs li b { font-size: 12px; } .hrs li.on { background: rgba(255,255,255,.2); }
+</style>
+<script>
+const W = [["sun", 18, "晴 · 体感 16° · 湿度 52% · 东风 2 级"], ["rain", 13, "小雨 · 体感 11° · 湿度 88% · 带伞"], ["night", 9, "晴夜 · 体感 7° · 月色很好"]];
+const wc = document.querySelector(".wc"), ic = wc.querySelector(".ic"); let k = 0;
+const icons = { sun: '<i class="ray"></i><i class="sun"></i>', night: '<i class="moon"></i><i class="star" style="left:6px;top:10px"></i><i class="star" style="left:66px;top:62px;animation-delay:.7s"></i><i class="star" style="left:70px;top:8px;animation-delay:1.3s"></i>', rain: '<i class="cloud"></i>' + [16, 30, 44, 58].map((x, i) => `<i class="drop" style="left:${x}px;animation-delay:${i * .2}s"></i>`).join("") };
+function show() {
+  const [t, deg, d] = W[k]; wc.className = "wc " + (t === "sun" ? "" : t); ic.innerHTML = icons[t];
+  wc.querySelector("strong").textContent = deg + "°"; wc.querySelector(".desc").textContent = d;
+  wc.querySelector(".hrs").innerHTML = ["现在", "15时", "16时", "17时", "18时", "19时"].map((h, i) => `<li class="${i ? "" : "on"}">${h}<b>${deg - i}°</b></li>`).join("");
+  k = (k + 1) % W.length;
+}
+show(); setInterval(show, 3000);
+</script>

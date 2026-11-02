@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Error Summary", "zh": "表单错误汇总",
+  "lead": "提交失败时，在表单最上面列出所有错误，每条都是可点的链接，点了直接跳到对应输入框。长表单里用户不用上下翻着找哪里填错了，读屏软件也能第一时间读到。",
+  "vague": ["表单报错找不到在哪", "提交失败不知道哪错了"],
+  "terms": ["Error Summary", "Form Validation 表单校验", "Accessibility"],
+  "prompt": "长表单提交时做 Error Summary：在表单顶部插入红色边框的提示框（role=alert，并自动获得焦点），标题“有 2 处需要修改”，下面每条错误都是锚点链接，点击后滚动并聚焦到对应字段；同时每个出错字段自身也显示红框和行内错误文字；修正后对应条目即时消失。"
+}
+-->
+<form novalidate>
+  <div class="sum" role="alert" tabindex="-1" hidden><b></b><ul></ul></div>
+  <label>昵称<input id="nick" required></label>
+  <label>邮箱<input id="mail" type="email" required value="moon@"></label>
+  <button>提交</button>
+</form>
+
+<style>
+form { width: 280px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; display: grid; gap: 8px; }
+.sum { padding: 10px 12px; border: 2px solid #DC2626; border-radius: 10px; background: #FEF2F2; outline: 0; animation: in .2s; } @keyframes in { from { opacity: 0; transform: translateY(-4px); } }
+.sum b { font-size: 13px; color: #991B1B; } .sum ul { margin: 6px 0 0; padding-left: 18px; } .sum a { font-size: 12px; color: #B91C1C; text-underline-offset: 2px; }
+label { display: grid; gap: 5px; font-size: 12px; color: #52525B; font-weight: 500; }
+input { height: 32px; padding: 0 10px; border: 1px solid #E4E4E7; border-radius: 9px; font-size: 14px; outline: 0; } input:focus { border-color: #FA8C16; }
+input.bad { border-color: #DC2626; box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+.err { font-size: 11px; color: #DC2626; font-weight: 400; }
+button { height: 32px; border: 0; border-radius: 9px; background: #18181B; color: #fff; font-size: 13px; cursor: pointer; }
+</style>
+
+<script>
+const form = document.querySelector("form"), sum = form.querySelector(".sum");
+const rules = { nick: (v) => (v.trim() ? "" : "请填写昵称"), mail: (v) => (/^\S+@\S+\.\S+$/.test(v) ? "" : "邮箱格式不对，例如 moon@jiangyue.design") };
+function check(focus) {
+  const errs = Object.entries(rules).map(([id, f]) => [id, f(document.getElementById(id).value)]).filter(([, m]) => m);
+  form.querySelectorAll("input").forEach((i) => { const m = errs.find(([id]) => id === i.id)?.[1]; i.classList.toggle("bad", !!m); i.parentElement.querySelector(".err")?.remove(); if (m) i.insertAdjacentHTML("afterend", `<span class="err">${m}</span>`); });
+  sum.hidden = !errs.length; sum.querySelector("b").textContent = `有 ${errs.length} 处需要修改`;
+  sum.querySelector("ul").innerHTML = errs.map(([id, m]) => `<li><a href="#${id}">${m}</a></li>`).join("");
+  if (focus && errs.length) sum.focus();
+}
+form.addEventListener("submit", (e) => { e.preventDefault(); check(true); });
+form.addEventListener("input", () => !sum.hidden && check(false));
+sum.addEventListener("click", (e) => { const a = e.target.closest("a"); if (a) { e.preventDefault(); document.querySelector(a.getAttribute("href")).focus(); } });
+check(false);
+</script>

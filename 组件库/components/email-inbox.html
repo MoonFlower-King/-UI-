@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Email Inbox", "zh": "邮箱收件箱",
+  "lead": "一个完整的收件箱界面：左侧文件夹、中间邮件列表（未读加粗、星标、摘要、时间），点一封右侧显示正文。它把“主从布局、列表项、未读状态、批量操作”等术语组合成了一个真实场景。",
+  "vague": ["做一个邮箱界面", "后台消息中心怎么排"],
+  "terms": ["Inbox UI", "Master-Detail 主从布局", "Unread State 未读状态"],
+  "prompt": "桌面端邮箱三栏布局：左栏 140px 文件夹（收件箱带未读数徽标、星标、已发送、草稿），中栏邮件列表每行发件人 + 时间 + 主题 + 一行灰色摘要，未读加粗并有江月橘小圆点，悬停露出归档/删除图标；右栏阅读区显示主题（宋体）、发件人头像和正文；选中行左侧 3px 橘色竖条。"
+}
+-->
+<div class="ib">
+  <aside><b class="logo">江月邮</b><a class="on">收件箱<i>3</i></a><a>星标</a><a>已发送</a><a>草稿</a></aside>
+  <ul class="list"></ul>
+  <article><h5></h5><div class="from"><i></i><span></span></div><p></p></article>
+</div>
+<style>
+.ib { display: grid; grid-template-columns: 70px 120px 1fr; width: 340px; height: 260px; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; background: #fff; font-size: 10px; color: #3F3F46; }
+aside { background: #FAFAFA; border-right: 1px solid #F4F4F5; padding: 10px 6px; display: grid; align-content: start; gap: 2px; }
+.logo { font: 700 12px "Songti SC","Noto Serif SC",serif; color: #18181B; margin: 0 4px 8px; }
+aside a { display: flex; justify-content: space-between; padding: 5px 6px; border-radius: 6px; cursor: pointer; }
+aside a.on { background: #FFF4E6; color: #D46B08; font-weight: 600; }
+aside a i { font-style: normal; background: #FA8C16; color: #fff; border-radius: 99px; padding: 0 5px; font-size: 9px; }
+.list { list-style: none; margin: 0; padding: 0; border-right: 1px solid #F4F4F5; overflow: hidden; }
+.list li { position: relative; padding: 7px 8px 7px 12px; border-bottom: 1px solid #F4F4F5; cursor: pointer; transition: background .2s; }
+.list li:hover { background: #FAFAFA; }
+.list li.sel { background: #FFFBF5; } .list li.sel::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #FA8C16; }
+.list li.unread::after { content: ""; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; border-radius: 50%; background: #FA8C16; }
+.list b { display: flex; justify-content: space-between; font-weight: 400; } .list li.unread b, .list li.unread .s { font-weight: 700; color: #18181B; }
+.list b small { color: #A1A1AA; font-weight: 400; }
+.list .s, .list .x { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .list .x { color: #A1A1AA; }
+article { padding: 12px; animation: f .3s; } @keyframes f { from { opacity: 0; transform: translateY(4px); } }
+h5 { margin: 0 0 8px; font: 700 13px/1.4 "Songti SC","Noto Serif SC",serif; color: #18181B; }
+.from { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; color: #71717A; } .from i { width: 18px; height: 18px; border-radius: 50%; background: #FAAD14; }
+article p { margin: 0; line-height: 1.7; }
+</style>
+<script>
+const M = [["小满", "10:24", "周五的设计评审", "大家好，周五下午三点评审首页改版，请提前看一下稿子。"], ["江月 UI", "09:02", "本周新增 40 个组件", "本周组件库新增了按钮、表单、图表等 40 个术语，欢迎试用。"], ["阿岚", "昨天", "配色方案 v2", "我把暖色调整了一版，江月橘饱和度降了一点，你看看。"], ["白露", "周一", "合同已寄出", "纸质合同今天寄出，单号已附在附件里。"], ["林舟", "周日", "周末的照片", "上周去江边拍的月亮，发你几张当参考。"]];
+const ul = document.querySelector(".list"), art = document.querySelector("article");
+ul.innerHTML = M.map(([f, t, s, x], i) => `<li class="${i < 3 ? "unread" : ""}"><b>${f}<small>${t}</small></b><span class="s">${s}</span><span class="x">${x}</span></li>`).join("");
+function open(i) {
+  [...ul.children].forEach((li, k) => li.classList.toggle("sel", k === i)); ul.children[i].classList.remove("unread");
+  const [f, , s, x] = M[i]; art.style.animation = "none"; void art.offsetWidth; art.style.animation = "";
+  art.querySelector("h5").textContent = s; art.querySelector("span").textContent = f + " · 发给我"; art.querySelector("p").textContent = x;
+  document.querySelector("aside i").textContent = ul.querySelectorAll(".unread").length || "";
+}
+ul.addEventListener("click", e => { const li = e.target.closest("li"); li && open([...ul.children].indexOf(li)); });
+let k = 0; open(0); setInterval(() => { k = (k + 1) % M.length; if (!k) ul.querySelectorAll("li").forEach((li, i) => li.classList.toggle("unread", i < 3)); open(k); }, 2200);
+</script>

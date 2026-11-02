@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Retry State", "zh": "失败重试",
+  "lead": "网络请求失败时，不留一片空白，而是在原位置显示“加载失败”的说明和一个“重试”按钮，重试中还会倒数自动重试。用户知道发生了什么、也知道下一步能做什么。",
+  "vague": ["加载失败就一片空白", "断网后页面卡住了"],
+  "terms": ["Retry State", "Error State 错误状态", "Exponential Backoff 指数退避"],
+  "prompt": "卡片内容加载失败时原位显示错误态：断开的云朵线条图标、标题“暂时没加载出来”、说明“网络有点慢，稍后会自动重试”、描边按钮“立即重试”，按钮下方小字倒计时“3 秒后自动重试”；自动重试间隔按 2s、4s、8s 递增；重试时按钮显示转圈，成功后内容淡入替换。"
+}
+-->
+<div class="rt"></div>
+<style>
+.rt { width: 300px; height: 240px; padding: 20px; box-sizing: border-box; display: grid; place-content: center; justify-items: center; text-align: center; gap: 6px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; animation: f .4s; }
+@keyframes f { from { opacity: 0; } }
+svg { width: 48px; height: 36px; fill: none; stroke: #A1A1AA; stroke-width: 2; stroke-linecap: round; }
+b { font: 600 15px "Songti SC","Noto Serif SC",serif; color: #18181B; }
+p { margin: 0 0 6px; font-size: 12px; color: #71717A; }
+button { height: 32px; padding: 0 16px; border: 1px solid #E4E4E7; border-radius: 8px; background: #fff; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+button:hover { border-color: #FA8C16; color: #FA8C16; }
+small { font-size: 11px; color: #A1A1AA; font-variant-numeric: tabular-nums; }
+.sp { width: 12px; height: 12px; border: 2px solid #E4E4E7; border-top-color: #FA8C16; border-radius: 50%; animation: s .7s linear infinite; } @keyframes s { to { transform: rotate(360deg); } }
+.ok { width: 100%; display: grid; gap: 8px; text-align: left; } .ok i { height: 12px; border-radius: 6px; background: #F4F4F5; } .ok i:first-child { width: 60%; height: 16px; background: #FFE7BA; }
+</style>
+<script>
+const el = document.querySelector(".rt"); let tries = 0, tick;
+const cloud = '<svg viewBox="0 0 48 36"><path d="M14 30h22a8 8 0 0 0 0-16 12 12 0 0 0-23-2A9 9 0 0 0 14 30"/><path d="M6 4l36 28" stroke="#FA8C16"/></svg>';
+function fail() {
+  const wait = 2 ** (tries + 1); let left = wait;
+  el.innerHTML = `${cloud}<b>暂时没加载出来</b><p>网络有点慢，稍后会自动重试</p><button>立即重试</button><small>${left} 秒后自动重试</small>`;
+  el.querySelector("button").onclick = retry;
+  clearInterval(tick); tick = setInterval(() => { left--; if (left <= 0) return retry(); el.querySelector("small").textContent = `${left} 秒后自动重试`; }, 1000);
+}
+function retry() {
+  clearInterval(tick); tries++; const b = el.querySelector("button"); b.innerHTML = '<i class="sp"></i>重试中'; b.disabled = true; el.querySelector("small").textContent = `第 ${tries} 次重试`;
+  setTimeout(() => { if (tries % 2) fail(); else { el.innerHTML = '<div class="ok"><i></i><i></i><i></i><i style="width:80%"></i></div>'; setTimeout(() => { tries = 0; fail(); }, 2500); } }, 900);
+}
+fail();
+</script>

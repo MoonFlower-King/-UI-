@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Dreamy Gradient Style", "zh": "梦幻渐变风",
+  "lead": "大片柔和的粉、紫、蓝、桃色渐变像云雾一样晕开，配白色半透明卡片和圆润的字体。温柔、轻盈、有点梦幻，适合美妆、音乐、AI 产品和女性向品牌。",
+  "vague": ["想要温柔梦幻的感觉", "柔和渐变背景"],
+  "terms": ["Dreamy Gradient", "Pastel 粉彩", "Soft Blur 柔焦"],
+  "prompt": "首页改成 Dreamy Gradient 风：背景由 3–4 个大号模糊圆形色团（桃 #FFD6C9、薰衣草 #D9C8FF、天蓝 #C7E6FF、浅粉 #FFD1E8，filter: blur(60px)）缓慢漂移组成；前景卡片白色 60% 透明 + backdrop-filter: blur(16px) + 1px 白色描边；字体圆润、字重偏轻，按钮用柔和的渐变胶囊。"
+}
+-->
+<div class="dream">
+  <i class="b1"></i><i class="b2"></i><i class="b3"></i>
+  <div class="card"><small>月光电台</small><h4>今晚，听一首慢歌</h4><button>开始收听</button></div>
+</div>
+
+<style>
+.dream { position: relative; width: 340px; height: 220px; border-radius: 18px; overflow: hidden; background: #FFF5F0; display: grid; place-items: center; }
+.dream i { position: absolute; width: 180px; height: 180px; border-radius: 50%; filter: blur(50px); animation: drift 10s ease-in-out infinite alternate; }
+.b1 { background: #FFC9B8; left: -40px; top: -40px; } .b2 { background: #D9C8FF; right: -50px; top: 10px; animation-delay: -3s; } .b3 { background: #C7E6FF; left: 80px; bottom: -80px; animation-delay: -6s; }
+@keyframes drift { to { transform: translate(30px, 20px) scale(1.15); } }
+.card { position: relative; padding: 18px 22px; border-radius: 18px; background: rgba(255,255,255,.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.8); text-align: center; }
+small { font-size: 11px; color: #9F7AEA; letter-spacing: .1em; } h4 { margin: 6px 0 12px; font-size: 18px; font-weight: 500; color: #3F3354; }
+button { border: 0; border-radius: 999px; padding: 8px 18px; background: linear-gradient(90deg, #FFB199, #C3A6FF); color: #fff; font-size: 13px; cursor: pointer; box-shadow: 0 8px 18px -8px rgba(160,120,255,.7); }
+@media (prefers-reduced-motion: reduce) { .dream i { animation: none; } }
+</style>

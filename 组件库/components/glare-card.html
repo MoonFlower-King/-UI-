@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Glare Card", "zh": "反光卡片",
+  "lead": "鼠标在卡片上移动时，一道斜向的高光跟着划过，像手里转动一张亮面卡。会员卡、收藏卡、NFT 展示常用，让平面卡片有“材质感”。",
+  "vague": ["卡片太平没质感", "想要像实体卡一样反光"],
+  "terms": ["Glare Effect", "Specular Highlight 镜面高光", "Holographic Card 镭射卡"],
+  "prompt": "会员卡悬停时做反光：卡片用深色渐变底 + 宋体金字“江月会员”，上面叠一层 linear-gradient(105deg, transparent 40%, rgba(255,255,255,.45) 50%, transparent 60%) 的高光层，位置跟随鼠标 X 坐标移动，配合 mix-blend-mode: overlay；同时卡片随鼠标轻微 3D 倾斜不超过 10°；离开时高光淡出、卡片回正。"
+}
+-->
+<div class="stage"><div class="gc"><small>JIANGYUE · MEMBER</small><b>江月会员</b><span>NO. 0815 · 2026</span><i class="glare"></i></div></div>
+<style>
+.stage { width: 320px; height: 240px; display: grid; place-items: center; perspective: 700px; background: #0B1020; border-radius: 14px; }
+.gc { --x: 50%; --rx: 0deg; --ry: 0deg; position: relative; width: 240px; height: 150px; padding: 18px; box-sizing: border-box; border-radius: 14px; overflow: hidden; display: grid; align-content: space-between; color: #F5D9A8; background: radial-gradient(circle at 80% 20%, #3A2A12, transparent 60%), linear-gradient(135deg, #1A1A22, #2B2118); box-shadow: 0 20px 40px rgba(0,0,0,.5), inset 0 0 0 1px rgba(245,217,168,.25); transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .15s; }
+.gc small { font: 600 9px system-ui; letter-spacing: .2em; opacity: .7; }
+.gc b { font: 700 24px "Songti SC","Noto Serif SC",serif; letter-spacing: .1em; }
+.gc span { font: 11px ui-monospace, monospace; opacity: .7; }
+.glare { position: absolute; inset: 0; background: linear-gradient(105deg, transparent calc(var(--x) - 18%), rgba(255,255,255,.5) var(--x), transparent calc(var(--x) + 18%)); mix-blend-mode: overlay; pointer-events: none; }
+</style>
+<script>
+const c = document.querySelector(".gc"); let user = false;
+function set(px, py) { c.style.setProperty("--x", px * 100 + "%"); c.style.setProperty("--ry", (px - .5) * 18 + "deg"); c.style.setProperty("--rx", (.5 - py) * 14 + "deg"); }
+c.addEventListener("pointermove", e => { user = true; const r = c.getBoundingClientRect(); set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); });
+c.addEventListener("pointerleave", () => { user = false; });
+(function loop(t) { if (!user) { const p = (Math.sin(t / 900) + 1) / 2; set(p, .5 + Math.cos(t / 900) * .2); } requestAnimationFrame(loop); })(0);
+</script>

@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "High Contrast Mode", "zh": "高对比模式",
+  "lead": "给视力不好、在强光下看屏幕的用户准备的模式：文字更黑、背景更白、边框更明显、浅灰提示字变深。系统打开“增强对比度”时自动启用。",
+  "vague": ["字太浅看不清", "老人看不清界面"],
+  "terms": ["High Contrast", "prefers-contrast: more", "WCAG AAA"],
+  "prompt": "支持高对比模式：在 @media (prefers-contrast: more) 下把正文改为纯黑 #000、背景纯白、次要文字从 #A1A1AA 加深到 #3F3F46、边框从 #E4E4E7 加深到 #52525B 并加粗到 2px、焦点环加粗；同时提供页面内的手动开关；对比度达到 WCAG AAA（7:1）。"
+}
+-->
+<div class="wrap">
+  <div class="card"><b>账户安全</b><p>上次登录：今天 21:03 · 上海</p><span class="in">请输入验证码</span><button>确认</button></div>
+  <label><input type="checkbox"> 高对比模式</label>
+</div>
+
+<style>
+.wrap { display: grid; gap: 10px; justify-items: center; }
+.card { width: 240px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 8px; transition: .2s; }
+b { font-size: 15px; color: #18181B; } p { margin: 0; font-size: 12px; color: #A1A1AA; }
+.in { height: 34px; padding: 0 10px; display: flex; align-items: center; border: 1px solid #E4E4E7; border-radius: 8px; font-size: 13px; color: #A1A1AA; }
+button { height: 34px; border: 0; border-radius: 8px; background: #FDBA74; color: #fff; font-weight: 600; }
+.wrap:has(input:checked) .card { border: 2px solid #000; } .wrap:has(input:checked) b { color: #000; } .wrap:has(input:checked) p { color: #3F3F46; }
+.wrap:has(input:checked) .in { border: 2px solid #52525B; color: #3F3F46; } .wrap:has(input:checked) button { background: #000; outline: 2px solid #000; outline-offset: 2px; }
+@media (prefers-contrast: more) { .card { border: 2px solid #000; } p, .in { color: #3F3F46; } button { background: #000; } }
+label { font-size: 12px; color: #52525B; display: flex; gap: 6px; align-items: center; } input { accent-color: #FA8C16; }
+</style>

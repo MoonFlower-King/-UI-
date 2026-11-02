@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Art Direction (picture)", "zh": "按屏幕换图",
+  "lead": "同一张横幅，宽屏用横构图、手机用竖构图裁好的另一张，而不是把大图硬缩小。HTML 的 <picture> + <source media> 就是干这个的，主体不会被裁没。",
+  "vague": ["手机上主图人物被裁掉了", "大图缩到手机看不清"],
+  "terms": ["Art Direction", "<picture> 元素", "Responsive Images 响应式图片"],
+  "prompt": "首页横幅使用 <picture> 做艺术指导：≥768px 用 16:6 横版（主体在右、左侧留白放标题），<768px 用 4:5 竖版（主体居中偏上、标题压在下方渐变遮罩上），各自提供 1x/2x 的 srcset，<img> 写好 alt 和宽高避免布局跳动。"
+}
+-->
+<div class="ad"><div class="view"><div class="ban"><div class="sky"><i class="moon"></i><i class="hill"></i></div><b>江上明月</b></div></div><small></small></div>
+<style>
+.ad { width: 320px; height: 280px; display: grid; justify-items: center; align-content: center; gap: 10px; background: #F4F4F5; border-radius: 14px; }
+.view { width: 280px; height: 200px; display: grid; place-items: center; }
+.ban { position: relative; width: var(--w); height: var(--h); border-radius: 10px; overflow: hidden; transition: width .7s cubic-bezier(.6,0,.2,1), height .7s cubic-bezier(.6,0,.2,1); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.sky { position: absolute; inset: 0; background: linear-gradient(#0B1020, #2A3A66 70%, #FA8C16 130%); }
+.moon { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: #FFE7BA; box-shadow: 0 0 24px rgba(255,214,145,.7); transition: .7s cubic-bezier(.6,0,.2,1); left: var(--mx); top: var(--my); }
+.hill { position: absolute; left: -10%; right: -10%; bottom: -30%; height: 60%; border-radius: 50%; background: #0B1020; }
+.ban b { position: absolute; font: 700 18px "Songti SC","Noto Serif SC",serif; color: #F5D9A8; letter-spacing: .15em; transition: .7s cubic-bezier(.6,0,.2,1); left: var(--tx); top: var(--ty); white-space: nowrap; }
+.wide { --w: 270px; --h: 102px; --mx: 200px; --my: 18px; --tx: 20px; --ty: 38px; }
+.tall { --w: 136px; --h: 170px; --mx: 51px; --my: 26px; --tx: 22px; --ty: 126px; }
+small { font: 11px ui-monospace, monospace; color: #71717A; }
+</style>
+<script>
+const ban = document.querySelector(".ban"), lab = document.querySelector("small"); let w = true;
+function set() { ban.className = "ban " + (w ? "wide" : "tall"); lab.textContent = w ? '<source media="(min-width:768px)" srcset="hero-wide.jpg">' : '<img src="hero-tall.jpg">  · 手机'; }
+set(); setInterval(() => { w = !w; set(); }, 2400);
+</script>

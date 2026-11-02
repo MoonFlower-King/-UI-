@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "State Layer", "zh": "状态叠加层",
+  "lead": "按钮、列表项悬停或按下时，不是换一个新颜色，而是在上面盖一层半透明的同色薄膜（悬停 8%、按下 12%）。任何底色都能用同一套规则，颜色永远协调。",
+  "vague": ["悬停颜色每个都要单独调", "按下的颜色不协调"],
+  "terms": ["State Layer", "Overlay Tint 叠加着色", "Interaction States 交互状态"],
+  "prompt": "所有可交互元素用 State Layer 表达状态：在元素上加 ::after 覆盖层，颜色取 currentColor，悬停透明度 8%、聚焦 12%、按下 12%、拖动 16%，过渡 150ms；这样不同底色（白底、橘底、深色底）的按钮都自动得到协调的悬停/按下效果，不需要为每个颜色单独定义。"
+}
+-->
+<div class="row">
+  <button class="sl a">白底按钮</button>
+  <button class="sl b">主色按钮</button>
+  <button class="sl c">深色按钮</button>
+</div>
+
+<style>
+.row { display: flex; gap: 10px; }
+.sl { position: relative; overflow: hidden; height: 40px; padding: 0 18px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; isolation: isolate; }
+.sl::after { content: ""; position: absolute; inset: 0; background: currentColor; opacity: 0; transition: opacity .15s; z-index: -1; }
+.sl:hover::after { opacity: .08; } .sl:focus-visible::after, .sl:active::after { opacity: .12; }
+.a { border: 1px solid #E4E4E7; background: #fff; color: #18181B; }
+.b { border: 0; background: #FA8C16; color: #fff; } .b::after { background: #fff; } .b:hover::after { opacity: .15; } .b:active::after { opacity: .25; }
+.c { border: 0; background: #18181B; color: #fff; }
+</style>

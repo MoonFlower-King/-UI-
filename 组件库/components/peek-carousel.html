@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Peek Carousel", "zh": "露边轮播",
+  "lead": "横向滑动的卡片列表，当前卡片完整显示，右边露出下一张的一小截。露出的那一截在暗示“还能往右滑”，比整齐切断的轮播更容易被发现。",
+  "vague": ["用户不知道能左右滑", "轮播图没人滑"],
+  "terms": ["Peek Carousel", "scroll-snap", "Affordance 暗示"],
+  "prompt": "推荐卡片用 Peek Carousel：横向滚动容器 scroll-snap-type: x mandatory，每张卡片宽 80%、间距 12px、scroll-snap-align: start，左侧留 16px 内边距让下一张露出约 15%；下方分页圆点同步高亮当前卡片；桌面端额外显示左右箭头按钮；隐藏滚动条。"
+}
+-->
+<div class="pc">
+  <div class="track"></div>
+  <div class="dots"></div>
+</div>
+
+<style>
+.pc { width: 280px; }
+.track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 16px; padding: 4px 16px 10px; scrollbar-width: none; }
+.track::-webkit-scrollbar { display: none; }
+.card { flex: 0 0 80%; scroll-snap-align: start; height: 150px; border-radius: 16px; padding: 14px; box-sizing: border-box; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 8px 20px -10px rgba(0,0,0,.4); }
+.card b { font: 700 17px "Songti SC", serif; } .card small { font-size: 11px; opacity: .8; }
+.dots { display: flex; justify-content: center; gap: 5px; } .dots i { width: 6px; height: 6px; border-radius: 3px; background: #D4D4D8; transition: width .25s, background .25s; } .dots i.on { width: 16px; background: #FA8C16; }
+</style>
+
+<script>
+const C = [["夜江", "布局示范", "#1E3A5F,#0F1218"], ["暖橘", "配色示范", "#FA8C16,#F472B6"], ["青雾", "质感示范", "#0EA5E9,#A7F3D0"], ["紫烟", "动效示范", "#7C3AED,#C4B5FD"]];
+const track = document.querySelector(".track"), dots = document.querySelector(".dots");
+track.innerHTML = C.map(([t, s, g]) => `<div class="card" style="background:linear-gradient(150deg,${g})"><small>${s}</small><b>${t}</b></div>`).join("");
+dots.innerHTML = C.map(() => "<i></i>").join("");
+const sync = () => { const w = track.children[0].offsetWidth + 12, i = Math.round(track.scrollLeft / w); [...dots.children].forEach((d, k) => d.classList.toggle("on", k === i)); };
+track.addEventListener("scroll", sync, { passive: true }); sync();
+</script>

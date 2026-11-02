@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Swipe Actions", "zh": "左滑操作",
+  "lead": "手机列表里把一行往左拖，右边露出“置顶 / 删除”等按钮；拖得足够远直接执行删除。省掉了每行都放一排按钮的拥挤，是邮件、聊天列表的标配。",
+  "vague": ["列表每行按钮太多", "手机上删除很麻烦"],
+  "terms": ["Swipe Actions", "Swipe to Delete 滑动删除", "Leading / Trailing Actions"],
+  "prompt": "移动端会话列表支持左滑：手指拖动行内容 translateX 跟随，右侧依次露出灰色“置顶”和红色“删除”按钮（各 64px）；松手时超过 64px 吸附到展开态，超过 70% 宽度直接删除（行高收起动画）；同时只允许一行展开，点别处自动收回；桌面端用鼠标拖拽同样可用。"
+}
+-->
+<div class="sw"><ul></ul></div>
+<style>
+.sw { width: 300px; height: 280px; background: #F4F4F5; border-radius: 14px; overflow: hidden; }
+ul { list-style: none; margin: 0; padding: 0; }
+li { position: relative; height: 56px; overflow: hidden; transition: height .3s; touch-action: pan-y; }
+li.gone { height: 0; }
+.acts { position: absolute; inset: 0 0 0 auto; display: flex; visibility: hidden; } li.open .acts { visibility: visible; }
+.acts button { width: 64px; border: 0; color: #fff; font-size: 12px; cursor: pointer; }
+.pin { background: #A1A1AA; } .del { background: #F5222D; }
+.row { position: absolute; inset: 0 -1px 0 0; display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #fff; border-bottom: 1px solid #F4F4F5; cursor: grab; user-select: none; }
+.row.anim { transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.av { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+.row b { display: block; font-size: 13px; color: #18181B; } .row small { font-size: 11px; color: #A1A1AA; }
+</style>
+<script>
+const ul = document.querySelector("ul");
+const data = [["江月设计组", "新稿子已上传"], ["小满", "周五见～"], ["白露", "收到，马上改"], ["产品周会", "会议纪要.pdf"], ["阿岚", "这个配色好看"]];
+ul.innerHTML = data.map(([a, b], i) => `<li><div class="acts"><button class="pin">置顶</button><button class="del">删除</button></div><div class="row"><i class="av" style="background:hsl(${i * 60 + 20} 70% 75%)"></i><div><b>${a}</b><small>${b}</small></div></div></li>`).join("");
+let open = null;
+const setX = (row, x, anim) => { row.classList.toggle("anim", anim); row.style.transform = `translateX(${x}px)`; if (x < 0) row.parentNode.classList.add("open"); else setTimeout(() => row.style.transform === "translateX(0px)" && row.parentNode.classList.remove("open"), 300); };
+const remove = li => { li.classList.add("gone"); setTimeout(() => li.remove(), 300); };
+ul.querySelectorAll(".row").forEach(row => {
+  let sx, dx = 0, base = 0, drag = false;
+  row.addEventListener("pointerdown", e => { drag = true; sx = e.clientX; base = open === row ? -128 : 0; if (open && open !== row) setX(open, 0, true), open = null; row.setPointerCapture(e.pointerId); });
+  row.addEventListener("pointermove", e => { if (!drag) return; dx = Math.min(0, base + e.clientX - sx); setX(row, dx, false); });
+  row.addEventListener("pointerup", () => { drag = false; if (dx < -210) remove(row.parentNode); else if (dx < -64) { setX(row, -128, true); open = row; } else { setX(row, 0, true); open = null; } dx = 0; });
+});
+ul.addEventListener("click", e => { if (e.target.closest(".del")) remove(e.target.closest("li")); if (e.target.closest(".pin")) { const li = e.target.closest("li"); setX(li.querySelector(".row"), 0, true); ul.prepend(li); open = null; } });
+let k = 0; setInterval(() => { const r = ul.querySelectorAll(".row")[1]; if (!r) return; setX(r, k++ % 2 ? 0 : -128, true); open = k % 2 ? r : null; }, 1800);
+</script>
