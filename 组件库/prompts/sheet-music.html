@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Sheet Music",
+  "zh": "乐谱",
+  "alias": [
+    "五线谱",
+    "曲谱页"
+  ],
+  "lead": "一页印刷的古典乐谱：五条细线一组的谱表、黑色的音符和符杠、高音谱号、上方斜体的速度术语，纸张微微泛黄。优雅、有节奏、艺术气质，适合音乐学校、演出票务、乐团、唱片和咖啡馆。",
+  "prompt": "乐谱风格：泛黄的乐谱纸背景，主视觉为一两行五线谱（细黑谱线，高音谱号、符杠连接的八分音符与四分音符、小节线），上方斜体意大利速度术语，衬线标题，深黑正文，细线分隔，单色印刷感",
+  "promptEn": "sheet music style: yellowed manuscript paper background, a hero of one or two staves of music (fine black staff lines, treble clef, beamed eighth notes and quarter notes, bar lines), an italic Italian tempo marking above, serif headings, deep black body text, hairline dividers, monochrome print feel",
+  "avoid": "谱线要细且五条一组，音符要像印刷乐谱那样规整；只用黑色。别把音符画成彩色卡通或到处飘的装饰。",
+  "neg": [
+    "彩色卡通音符、满屏飘音符",
+    "colorful cartoon notes, floating notes everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1814; --a2: #6A4A2A; --on: #F3EBD8; background: #F1E8D2; color: #1A1814; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 400; } .kicker { font-style: italic; }
+.art .m { position: absolute; left: 0; right: 0; top: 30px; height: 33px; background: repeating-linear-gradient(transparent 0 7px, #1A1814 7px 8px); border-left: 1px solid #1A1814; border-right: 1px solid #1A1814; }
+.art .m::before { content: "𝄞"; position: absolute; left: 2px; top: -16px; font: 54px/1 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.art .h { position: absolute; left: 50px; top: 32px; width: 110px; height: 40px;
+  background: radial-gradient(ellipse 5px 3.6px at 4px 30px, #1A1814 0 98%, transparent) 0 0 / 28px 40px, linear-gradient(#1A1814, #1A1814) 8px 0 / 1.5px 30px no-repeat, linear-gradient(#1A1814, #1A1814) 36px 0 / 1.5px 22px no-repeat, linear-gradient(#1A1814, #1A1814) 8px 0 / 30px 3px no-repeat, linear-gradient(#1A1814, #1A1814) 64px 0 / 1.5px 26px no-repeat, linear-gradient(#1A1814, #1A1814) 92px 0 / 1.5px 30px no-repeat, linear-gradient(#1A1814, #1A1814) 64px 0 / 30px 3px no-repeat; }
+.art::after { content: "Andante"; position: absolute; left: 6px; top: 0; font: italic 13px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.feats article { border-top: 1px solid #1A1814; padding-top: 10px; } .feats h3 { font-weight: 400; } .feats b { font-style: italic; }
+.stats b { font-weight: 400; }
+</style>

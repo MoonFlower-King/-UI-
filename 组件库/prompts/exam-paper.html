@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Exam Paper",
+  "zh": "试卷",
+  "alias": [
+    "考卷",
+    "答题卡"
+  ],
+  "lead": "把页面做成一张熟悉的考试卷：顶部是“姓名、班级、得分”的横线，题目带着一二三的大题号，选项ABCD，旁边红笔打的对勾和分数。熟悉、好玩、带点学生时代的回忆，适合教育产品、知识测验、品牌互动和校园活动。",
+  "prompt": "试卷风格：略带灰的白纸背景，顶部是“姓名、班级、得分”横线栏与密封线虚线，正文为宋体题目与大题号（一、二、三），选择题选项ABCD，右上角红笔圈出的大分数和手写红色对勾，黑色印刷字为主，红色只用于批改痕迹",
+  "promptEn": "exam paper style: slightly grayish white paper background, a header row of underlined blanks for name, class and score with a dashed seal line, Song-style serif questions with big section numerals, multiple-choice options A–D, a big red circled score in the top right and handwritten red check marks, mostly black print with red only for grading marks",
+  "avoid": "红色只用来“批改”，其余全是黑色印刷感；版式要像真卷子那样密而规整。别把题目做成花哨的答题卡片或游戏界面。",
+  "neg": [
+    "花哨答题卡片、游戏界面",
+    "fancy quiz cards, game UI"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1A1A; --a2: #C8201E; --on: #FAFAF6; background: #F6F6F1; color: #1A1A1A; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .nav { border-bottom: 1px dashed #888; } .hero h1 { font-weight: 700; }
+.kicker { color: #1A1A1A; } .kicker::after { content: "   姓名 ______  得分 ______"; white-space: pre; }
+.art .m { position: absolute; right: 10px; top: 0; width: 76px; height: 60px; border: 3px solid #C8201E; border-radius: 50% 46% 52% 44%; transform: rotate(-8deg); color: #C8201E; font: italic 700 32px/54px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; text-align: center; }
+.art .m::before { content: "100"; }
+.art .h { position: absolute; left: 10px; top: 80px; width: 150px; font: 12px/2 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; white-space: pre; } .art .h::before { content: "A. 夜读     B. 借阅\A C. 茶席     D. 以上都是"; }
+.art::after { content: ""; position: absolute; left: 116px; top: 104px; width: 18px; height: 9px; border-left: 3px solid #C8201E; border-bottom: 3px solid #C8201E; transform: rotate(-45deg); }
+.feats b { color: #1A1A1A; } .feats b::before { content: "第"; } .feats b::after { content: "题"; } .feats article { border-top: 1px solid #1A1A1A; padding-top: 8px; }
+.stats b { color: #C8201E; font-style: italic; }
+</style>

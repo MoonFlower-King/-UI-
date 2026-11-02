@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Sidenotes",
+  "zh": "旁注版式",
+  "alias": [
+    "边注排版",
+    "学术旁注"
+  ],
+  "lead": "像一本讲究的学术书那样排网页：正文在中间一栏，旁边留出窄窄的页边，注释、引用和小图放在页边里，和正文对齐。理性、可信、读得舒服，适合长文博客、研究机构、技术文档和知识类产品。",
+  "prompt": "旁注版式风格：暖白背景，单栏正文居中偏左（衬线正文、行距舒适），右侧窄页边放置小号旁注（上标编号、小号无衬线或斜体、与正文对应行对齐），细线分隔，标题衬线，极少色彩，仅用一种点缀色标注编号",
+  "promptEn": "sidenotes style: warm white background, a single main text column slightly left of center (serif body, comfortable leading), a narrow right margin holding small sidenotes (superscript numbers, small sans-serif or italic, aligned with the matching line in the text), hairline dividers, serif headings, very little color, a single accent color for note numbers",
+  "avoid": "旁注要和正文对应的那一行对齐，页边要窄；正文才是主角。别把旁注做成浮动卡片或弹窗提示。",
+  "neg": [
+    "浮动卡片、弹窗注释",
+    "floating cards, popover notes"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1E1E; --a2: #A8432E; --on: #FBF8F2; background: #FBF8F2; color: #1E1E1E; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .cta { background: none; color: #1E1E1E; border-bottom: 1px solid; padding: 3px 0; } .logo i { display: none; } .logo { font-weight: 400; font-style: italic; }
+.hero h1 { font-weight: 400; } .hero h1::after { content: "1"; font: 600 11px -apple-system, "Inter", "PingFang SC", sans-serif; color: #A8432E; vertical-align: super; margin-left: 2px; }
+.art { border-left: 1px solid rgba(30,30,30,.2); padding-left: 12px; }
+.art .m { position: absolute; left: 12px; top: 54px; right: 0; font: 11px/1.6 -apple-system, "Inter", "PingFang SC", sans-serif; color: #555; } .art .m::before { content: "1  书房原是一间老粮仓，2019 年改建。"; color: #555; }
+.art .h { position: absolute; left: 12px; top: 106px; width: 120px; height: 46px; background: linear-gradient(135deg, #D8CCB4, #B8A888); } .art .h::after { content: "图 1 · 夜读区"; position: absolute; top: 50px; font: 10px -apple-system, "Inter", "PingFang SC", sans-serif; color: #777; white-space: nowrap; }
+.feats b { color: #A8432E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .feats h3 { font-weight: 400; }
+.stats b { font-weight: 400; }
+</style>

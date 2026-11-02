@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Street Signs",
+  "zh": "城市路牌",
+  "alias": [
+    "路名牌",
+    "街道标牌"
+  ],
+  "lead": "把城市的蓝色路牌和指示牌当作设计语言：深蓝底白字的路名牌、白色细边框、箭头和距离、拼音或英文小字。清楚、好找、有城市感，适合城市指南、本地生活、交通出行和文旅地图。",
+  "prompt": "城市路牌风格：浅灰白背景，主视觉为一块深蓝色路名牌（白色细边框、中文路名粗黑体大字、下方拼音或英文小字、一侧白色箭头与方位），旁边可叠一块小指示牌，无衬线粗体标题，深蓝与白为主，少量黄色提示，清晰的标识感",
+  "promptEn": "street sign style: light gray-white background, a hero of a deep blue street name sign (thin white border, a bold Chinese street name in large heavy sans, pinyin or English in small text below, a white arrow and direction on one side), a smaller direction sign stacked beside it, bold sans-serif headings, mostly deep blue and white with a little yellow, clear signage feel",
+  "avoid": "关键是“深蓝底 + 白细边框 + 白字”，层级清楚；箭头要规范。别加阴影立体效果，也别用花哨字体。",
+  "neg": [
+    "立体阴影、花哨字体",
+    "3D shadows, decorative fonts"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1C3F8C; --a2: #1C3F8C; --on: #FFFFFF; background: #EEF0F2; color: #1A2230; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 3px; } .hero h1 { font-weight: 900; } .logo i { background: #1C3F8C; border-radius: 2px; box-shadow: inset 0 0 0 2px #fff, 0 0 0 1px #1C3F8C; }
+.art .m { position: absolute; left: 0; top: 20px; width: 168px; height: 66px; background: #1C3F8C; border-radius: 4px; box-shadow: inset 0 0 0 3px #1C3F8C, inset 0 0 0 4.5px #fff; color: #fff; }
+.art .m::before { content: "江边路"; position: absolute; left: 14px; top: 10px; font: 900 24px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 4px; }
+.art .m::after { content: "JIANGBIAN RD   →"; white-space: pre; position: absolute; left: 14px; bottom: 9px; font: 700 9px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 1.5px; }
+.art .h { position: absolute; left: 40px; top: 96px; width: 100px; height: 32px; background: #fff; border-radius: 4px; box-shadow: inset 0 0 0 2px #1C3F8C; }
+.art .h::before { content: "← 山月书房  200m"; position: absolute; left: 0; right: 0; top: 9px; text-align: center; font: 700 10px -apple-system, "Inter", "PingFang SC", sans-serif; color: #1C3F8C; white-space: pre; }
+.feats article { border-top: 4px solid #1C3F8C; padding-top: 10px; } .feats b { color: #D8A21E; }
+.stats b { color: #1C3F8C; font-weight: 900; }
+</style>
