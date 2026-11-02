@@ -154,8 +154,14 @@ a.pill { color: var(--accent-ink); border-color: rgba(250,140,22,.3); background
 .tcard:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--line-2); }
 .thumb { position: relative; display: block; aspect-ratio: 16 / 10; background: #FAFAFA; overflow: hidden; }
 .thumb iframe { position: absolute; left: 0; top: 0; width: 560px; height: 350px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .5)); pointer-events: none; }
-.thumb::after { content: "查看代码 →"; position: absolute; right: 10px; bottom: 10px; padding: 4px 10px; border-radius: 99px; background: rgba(18,23,42,.85); color: #fff; font-size: 12px; opacity: 0; transform: translateY(4px); transition: .2s; }
-.tcard:hover .thumb::after { opacity: 1; transform: none; }
+.thumb-link { position: absolute; right: 10px; bottom: 10px; z-index: 1; padding: 4px 12px; border-radius: 99px; background: rgba(18,23,42,.88); color: #fff; font-size: 12px; text-decoration: none; opacity: 0; transform: translateY(4px); transition: .2s; }
+.tcard:hover .thumb-link, .thumb-link:focus-visible { opacity: 1; transform: none; }
+.thumb::before { content: "● 实时预览 · 可以直接点"; position: absolute; left: 10px; top: 10px; z-index: 1; padding: 3px 10px; border-radius: 99px; background: rgba(250,140,22,.92); color: #fff; font-size: 11px; font-weight: 600; opacity: 0; transition: .2s; pointer-events: none; }
+@media (hover: hover) {
+  .tcard:hover .thumb iframe { pointer-events: auto; }
+  .tcard:hover .thumb::before { opacity: 1; }
+}
+@media (hover: none) { .thumb { cursor: pointer; } .thumb-link { opacity: 1; transform: none; } }
 .tbody { display: flex; flex-direction: column; gap: 4px; flex: 1; padding: 14px 16px 16px; }
 .tbody .en { font: 600 12px var(--sans); color: var(--ink-3); letter-spacing: .3px; }
 .tbody h3 { margin: 0; font: 700 18px var(--serif); } .tbody h3 a { text-decoration: none; }
