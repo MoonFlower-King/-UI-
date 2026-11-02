@@ -1,7 +1,7 @@
 {
   "kinds": [
-    { "id": "video", "name": "视频", "en": "Video", "intro": "运镜和景别。预览是分层的江边场景，右上角的俯视图告诉你摄影机怎么走。",
-      "subject": "画面里拍什么", "subjectEg": "雨夜江边，一个提灯的人站在石头上", "subjectEgEn": "a person holding a lantern on a riverside rock at night",
+    { "id": "video", "name": "视频", "en": "Video", "intro": "运镜和景别。预览是一片分层的晴天草地，右上角的俯视图告诉你摄影机怎么走。",
+      "subject": "画面里拍什么", "subjectEg": "晴天的草地上，一个穿橘色外套的人", "subjectEgEn": "a person in an orange coat standing on a sunny meadow",
       "head": "生成一段视频", "headEn": "Generate a video" },
     { "id": "image", "name": "图片", "en": "Image", "intro": "光线和构图。预览先给你看「没加这个词」的平淡样子，再看加上之后。",
       "subject": "画面里是什么", "subjectEg": "一位穿浅色毛衣的年轻人半身像", "subjectEgEn": "a half-length portrait of a young person in a light sweater",

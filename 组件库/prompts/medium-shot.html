@@ -2,14 +2,14 @@
 {
   "en": "Medium Shot", "zh": "中景", "alias": ["MS", "腰部以上"],
   "lead": "从腰部往上取景，看得清手上的动作和大致表情。对话、讲解、日常叙事最常用的景别。",
-  "prompt": "中景，从人物腰部以上取景，能看清手中提灯的动作和面部轮廓，背景保留少量江景",
-  "promptEn": "medium shot framed from the waist up, the lantern in hand and the face outline clearly visible, a hint of the river in the background",
+  "prompt": "中景，从人物腰部以上取景，能看清手部动作和面部表情，背景保留少量树木和远山",
+  "promptEn": "medium shot framed from the waist up, hand gestures and facial expression clearly visible, a hint of trees and mountains in the background",
   "avoid": "别在关节处切画面（膝盖、手腕正好被画框切断会很别扭）。中景写清楚「腰部以上」，比只写 medium shot 稳定。",
   "neg": ["画框切在关节上", "frame cuts at the joints"]
 }
 -->
 <style>
 .cut { display: none; }
-.scene { --fov: 3.4; --y: -28; animation: breathe 9s ease-in-out infinite alternate; }
-@keyframes breathe { from { --fov: 3.4; } to { --fov: 3.52; } }
+.scene { --fov: 4.4; --y: -30; animation: breathe 9s ease-in-out infinite alternate; }
+@keyframes breathe { from { --fov: 4.4; } to { --fov: 4.55; } }
 </style>
