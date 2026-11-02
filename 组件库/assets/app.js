@@ -106,13 +106,24 @@ const lazy = new IntersectionObserver((entries) => entries.forEach((e) => {
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--s', e.contentRect.width / 560)));
 function card(c) {
   return `<article class="tcard">
-    <a class="thumb" href="#${c.id}" aria-label="${esc(c.zh)} 的实时预览"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1" loading="lazy"></iframe></a>
+    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><a class="thumb-link" href="#${c.id}" aria-label="查看 ${esc(c.zh)} 的代码">查看代码 →</a></div>
     <div class="tbody"><div class="en">${esc(c.en)}</div><h3><a href="#${c.id}">${esc(c.zh)}</a></h3><p>${esc(c.lead)}</p>
       <div class="tact"><button class="btn sm" data-copy="${c.id}">复制提示词</button><button class="btn sm ghost add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
 }
+// 鼠标移到卡片上：从头重播动画，并且可以直接在预览里点、悬停（触屏设备点卡片进详情）
+const canHover = matchMedia('(hover: hover)').matches;
+function replayThumb(e) {
+  const f = e.currentTarget.querySelector('iframe');
+  lazy.unobserve(f);
+  f.srcdoc = BASE + byId[f.dataset.id].code;
+}
 function hydrate(root) {
-  root.querySelectorAll('.thumb').forEach((t) => fit.observe(t));
+  root.querySelectorAll('.thumb').forEach((t) => {
+    fit.observe(t);
+    if (canHover) t.addEventListener('mouseenter', replayThumb);
+    else t.addEventListener('click', () => { location.hash = t.querySelector('iframe').dataset.id; });
+  });
   root.querySelectorAll('.thumb iframe').forEach((f) => lazy.observe(f));
   root.querySelectorAll('[data-add]').forEach(syncAddBtn);
 }
