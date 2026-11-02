@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Collapsible Sidebar", "zh": "可折叠侧边栏",
+  "lead": "后台左侧的导航栏可以一键收窄，只留图标，把空间让给内容；需要时再展开看到文字。收起时把鼠标放到图标上会提示名字。",
+  "vague": ["侧边栏太占地方", "想让内容区更大"],
+  "terms": ["Collapsible Sidebar", "Mini Variant 迷你模式", "Icon Rail"],
+  "prompt": "后台导航做 Collapsible Sidebar：展开 220px（图标 + 文字），收起 64px（只剩图标），底部一个 « 按钮切换，宽度 250ms ease 过渡、文字同时淡出；收起时悬停图标显示右侧 Tooltip；当前项浅橘底 #FFF4E6 + 左侧 3px 江月橘竖条；记住用户的选择。"
+}
+-->
+<div class="app">
+  <aside class="side">
+    <div class="logo"><i>月</i><span>江月后台</span></div>
+    <a class="on" data-tip="概览"><i>◫</i><span>概览</span></a><a data-tip="作品"><i>▤</i><span>作品</span></a><a data-tip="数据"><i>◔</i><span>数据</span></a><a data-tip="设置"><i>⚙</i><span>设置</span></a>
+    <button class="fold" aria-label="收起侧边栏"><i>«</i></button>
+  </aside>
+  <main><i></i><i></i><i class="s"></i></main>
+</div>
+
+<style>
+.app { display: flex; width: 400px; height: 240px; background: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 12px; overflow: hidden; }
+.side { width: 150px; flex: none; display: flex; flex-direction: column; gap: 2px; padding: 10px 8px; background: #fff; border-right: 1px solid #F0F0F2; transition: width .25s ease; }
+.app.mini .side { width: 48px; }
+.side a, .logo { position: relative; display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 8px; border-radius: 8px; font-size: 13px; color: #52525B; white-space: nowrap; cursor: pointer; }
+.logo { font-weight: 700; color: #18181B; margin-bottom: 6px; } .logo i { width: 18px; height: 18px; border-radius: 5px; background: #FA8C16; color: #fff; font-size: 11px; display: grid; place-items: center; }
+.side i { flex: none; width: 18px; text-align: center; font-style: normal; }
+.side span { transition: opacity .2s; } .app.mini .side span { opacity: 0; }
+.side a:hover { background: #F4F4F5; }
+.side a.on { background: #FFF4E6; color: #C2410C; font-weight: 600; } .side a.on::before { content: ""; position: absolute; left: -8px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; background: #FA8C16; }
+.app.mini .side a::after { content: attr(data-tip); position: absolute; left: 44px; padding: 4px 8px; border-radius: 6px; background: #18181B; color: #fff; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 2; }
+.app.mini .side a:hover::after { opacity: 1; }
+.fold { margin-top: auto; height: 30px; border: 0; background: none; border-radius: 8px; color: #A1A1AA; cursor: pointer; text-align: left; padding: 0 8px; }
+.fold:hover { background: #F4F4F5; } .fold i { display: inline-block; transition: transform .25s; } .app.mini .fold i { transform: rotate(180deg); }
+main { flex: 1; padding: 16px; display: grid; gap: 10px; align-content: start; } main i { height: 40px; border-radius: 8px; background: #fff; border: 1px solid #F0F0F2; } main .s { height: 80px; }
+</style>
+
+<script>
+const app = document.querySelector(".app");
+document.querySelector(".fold").addEventListener("click", () => app.classList.toggle("mini"));
+document.querySelectorAll(".side a").forEach((a, i, all) => a.addEventListener("click", () => all.forEach((x) => x.classList.toggle("on", x === a))));
+</script>

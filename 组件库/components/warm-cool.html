@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Color Temperature", "zh": "冷暖色调",
+  "lead": "红橙黄是暖色，让人觉得热情、亲近、有食欲；蓝绿紫是冷色，让人觉得冷静、专业、可信。同一个界面换个色温，气质完全不同。",
+  "vague": ["想要温暖一点的感觉", "界面太冷冰冰"],
+  "terms": ["Color Temperature 色温", "Warm / Cool Colors", "Mood 情绪"],
+  "prompt": "整体改成暖色调：背景用带一点黄的暖白 #FBF7EF 而不是纯白，灰色系换成偏暖的灰（如 #78716C），主色江月橘 #FA8C16；阴影带一点棕色 rgba(120,80,30,.12)；避免冷蓝灰混进来。若要显得专业冷静则反过来用冷白、蓝灰和蓝色主色。"
+}
+-->
+<div class="wrap">
+  <div class="card" data-t="warm"><h4>周末市集</h4><p>手作、咖啡和刚出炉的面包</p><button>去逛逛</button></div>
+  <div class="ctrl"><button class="on" data-t="warm">暖</button><button data-t="cool">冷</button></div>
+</div>
+
+<style>
+.wrap { display: grid; gap: 12px; justify-items: center; }
+.card { width: 240px; padding: 20px; border-radius: 16px; transition: all .4s; }
+.card[data-t="warm"] { background: #FBF7EF; color: #44281C; box-shadow: 0 10px 24px rgba(120,80,30,.14); border: 1px solid #EFE3CC; }
+.card[data-t="cool"] { background: #F4F7FB; color: #0F1F33; box-shadow: 0 10px 24px rgba(30,60,110,.14); border: 1px solid #DCE5F0; }
+h4 { margin: 0; font-size: 18px; } p { margin: 6px 0 14px; font-size: 13px; opacity: .7; }
+.card button { border: 0; border-radius: 9px; padding: 8px 16px; color: #fff; font-size: 13px; font-weight: 600; transition: background .4s; }
+.card[data-t="warm"] button { background: #FA8C16; } .card[data-t="cool"] button { background: #2563EB; }
+.ctrl { display: inline-flex; padding: 3px; border-radius: 9px; background: #F4F4F5; }
+.ctrl button { border: 0; background: none; padding: 4px 16px; border-radius: 7px; font-size: 12px; cursor: pointer; color: #71717A; }
+.ctrl .on { background: #fff; color: #18181B; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+</style>
+
+<script>
+const card = document.querySelector(".card"), bs = document.querySelectorAll(".ctrl button");
+bs.forEach((b) => b.addEventListener("click", () => { card.dataset.t = b.dataset.t; bs.forEach((x) => x.classList.toggle("on", x === b)); }));
+</script>

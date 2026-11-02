@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Memphis Style", "zh": "孟菲斯风格",
+  "lead": "上世纪 80 年代意大利孟菲斯设计小组带起的风格：撞色、波浪线、圆点、锯齿、彩色几何块随意散落，活泼、叛逆、好玩。适合潮流、年轻、活动类页面。",
+  "vague": ["想要活泼好玩的感觉", "那种花花绿绿的几何图案"],
+  "terms": ["Memphis Design", "Playful 俏皮", "Pattern 图形"],
+  "prompt": "活动页用 Memphis 风格：奶油底 #FFF6E5，主色粉 #FF6FAE、薄荷 #3DDBB4、明黄 #FFD23F、紫 #7B61FF 撞色；四周散落波浪线、圆点、三角、锯齿等小图形并轻微旋转漂浮；卡片用 2px 黑色描边 + 黑色硬阴影（4px 4px 0），标题粗圆体。"
+}
+-->
+<div class="m">
+  <svg class="deco" viewBox="0 0 320 220">
+    <path d="M20 40 q10 -12 20 0 t20 0 t20 0" stroke="#7B61FF" stroke-width="4" fill="none" stroke-linecap="round" class="f1"/>
+    <circle cx="270" cy="40" r="14" fill="#FFD23F" stroke="#111" stroke-width="2" class="f2"/>
+    <path d="M250 170 l14 -24 l14 24z" fill="#3DDBB4" stroke="#111" stroke-width="2" class="f1"/>
+    <path d="M30 180 l10 -10 l10 10 l10 -10 l10 10" stroke="#FF6FAE" stroke-width="4" fill="none" class="f2"/>
+    <g fill="#111" class="f1"><circle cx="230" cy="90" r="2.5"/><circle cx="242" cy="90" r="2.5"/><circle cx="254" cy="90" r="2.5"/><circle cx="230" cy="102" r="2.5"/><circle cx="242" cy="102" r="2.5"/><circle cx="254" cy="102" r="2.5"/></g>
+    <rect x="40" y="96" width="22" height="22" fill="#FF6FAE" stroke="#111" stroke-width="2" transform="rotate(15 51 107)" class="f2"/>
+  </svg>
+  <div class="card"><h3>夏夜派对</h3><p>8 月 20 日 · 江边草坪</p><button>报名 →</button></div>
+</div>
+
+<style>
+.m { position: relative; width: 320px; height: 220px; background: #FFF6E5; border-radius: 12px; overflow: hidden; display: grid; place-items: center; }
+.deco { position: absolute; inset: 0; width: 100%; height: 100%; }
+.f1 { animation: float 4s ease-in-out infinite; } .f2 { animation: float 5s ease-in-out infinite reverse; }
+@keyframes float { 50% { transform: translateY(-6px) rotate(4deg); } }
+.f1, .f2 { transform-box: fill-box; transform-origin: center; }
+.card { position: relative; padding: 16px 22px; background: #fff; border: 2px solid #111; border-radius: 14px; box-shadow: 5px 5px 0 #111; text-align: center; }
+h3 { margin: 0; font: 900 24px "Arial Rounded MT Bold", "PingFang SC", sans-serif; color: #111; }
+p { margin: 4px 0 10px; font-size: 12px; color: #444; }
+button { border: 2px solid #111; background: #FFD23F; border-radius: 999px; padding: 5px 16px; font-weight: 800; box-shadow: 3px 3px 0 #111; cursor: pointer; transition: transform .1s, box-shadow .1s; }
+button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 #111; }
+</style>

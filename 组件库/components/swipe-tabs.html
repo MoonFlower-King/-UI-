@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Swipeable Tabs", "zh": "左右滑动切换标签",
+  "lead": "标签页的内容区可以用手指左右滑动来切换，上方标签下的指示条跟着手指实时移动。手机上比点小标签方便得多，很多资讯 App 都这么做。",
+  "vague": ["手机上切标签要点很准", "左右滑切换"],
+  "terms": ["Swipeable Tabs", "scroll-snap", "Tab Indicator 指示条"],
+  "prompt": "手机端分类页用 Swipeable Tabs：内容区横向 scroll-snap-type: x mandatory，每页占满宽度；滑动时根据 scrollLeft 实时插值移动标签下 3px 江月橘指示条的位置和宽度；点标签平滑滚到对应页；当前标签文字加粗变深色。"
+}
+-->
+<div class="tabs">
+  <nav><button>推荐</button><button>布局</button><button>配色</button><button>动效</button><i class="ink"></i></nav>
+  <div class="pages"><section>推荐的词条</section><section>布局相关</section><section>配色相关</section><section>动效相关</section></div>
+</div>
+
+<style>
+.tabs { width: 240px; border-radius: 16px; overflow: hidden; background: #fff; border: 1px solid #E4E4E7; }
+nav { position: relative; display: flex; justify-content: space-around; border-bottom: 1px solid #F4F4F5; }
+nav button { flex: 1; border: 0; background: none; padding: 12px 0; font-size: 14px; color: #A1A1AA; cursor: pointer; transition: color .2s; }
+nav button.on { color: #18181B; font-weight: 700; }
+.ink { position: absolute; bottom: -1px; left: 0; height: 3px; border-radius: 3px; background: #FA8C16; }
+.pages { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.pages::-webkit-scrollbar { display: none; }
+section { flex: 0 0 100%; height: 200px; scroll-snap-align: start; display: grid; place-items: center; font-size: 13px; color: #71717A;
+  background: repeating-linear-gradient(0deg, transparent 0 40px, #FAFAFA 40px 41px); }
+</style>
+
+<script>
+const pages = document.querySelector(".pages"), btns = [...document.querySelectorAll("nav button")], ink = document.querySelector(".ink");
+function sync() {
+  const p = pages.scrollLeft / pages.clientWidth, i = Math.floor(p), t = p - i, a = btns[i], b = btns[Math.min(i + 1, btns.length - 1)];
+  const w = 24, ax = a.offsetLeft + (a.offsetWidth - w) / 2, bx = b.offsetLeft + (b.offsetWidth - w) / 2;
+  ink.style.width = w + "px"; ink.style.transform = `translateX(${ax + (bx - ax) * t}px)`;
+  btns.forEach((x, k) => x.classList.toggle("on", k === Math.round(p)));
+}
+pages.addEventListener("scroll", sync, { passive: true });
+btns.forEach((b, i) => b.addEventListener("click", () => pages.scrollTo({ left: i * pages.clientWidth, behavior: "smooth" })));
+sync();
+</script>

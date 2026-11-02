@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Hover Image Reveal", "zh": "悬停跟随预览图",
+  "lead": "一列文字链接，鼠标划到哪一行，旁边就浮出那个项目的预览图，并且跟着鼠标轻轻移动。作品集、文章列表常用，干净又有惊喜。",
+  "vague": ["列表悬停出图片", "作品集列表想更有趣"],
+  "terms": ["Image Reveal", "Cursor Follow 跟随光标", "Hover Preview"],
+  "prompt": "作品列表做 Hover Image Reveal：每行大字号标题 + 右侧年份，悬停时在光标附近浮出 160×110 的圆角预览图，从 0.85 缩放、-4° 旋转淡入（250ms），并以 lerp 缓动跟随鼠标（每帧靠近 15%）；切换行时图片交叉淡入；其他行变淡到 40%。手机上不启用。"
+}
+-->
+<div class="wrap">
+  <ul class="list">
+    <li data-c="#1E3A5F,#FA8C16"><b>夜江官网</b><span>2026</span></li>
+    <li data-c="#FFE4C4,#F472B6"><b>月白茶室</b><span>2025</span></li>
+    <li data-c="#0F172A,#38BDF8"><b>潮汐数据台</b><span>2025</span></li>
+    <li data-c="#FEF3C7,#22C55E"><b>渔火手账</b><span>2024</span></li>
+  </ul>
+  <div class="img"></div>
+</div>
+
+<style>
+.wrap { position: relative; width: 360px; }
+.list { margin: 0; padding: 0; list-style: none; }
+li { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 4px; border-bottom: 1px solid #E4E4E7; cursor: pointer; transition: opacity .2s; }
+b { font: 700 22px "Songti SC", "Noto Serif SC", serif; color: #18181B; } span { font-size: 12px; color: #A1A1AA; }
+.list:hover li:not(:hover) { opacity: .4; }
+.img { position: absolute; left: 0; top: 0; width: 160px; height: 110px; border-radius: 12px; pointer-events: none; box-shadow: 0 16px 32px rgba(0,0,0,.18); opacity: 0; transform: translate(var(--x), var(--y)) scale(.85) rotate(-4deg); transition: opacity .25s, transform .25s, background .3s; }
+.img.on { opacity: 1; transform: translate(var(--x), var(--y)) scale(1) rotate(-2deg); transition: opacity .25s, background .3s; }
+.img::after { content: ""; position: absolute; right: 16px; top: 16px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.8); }
+</style>
+
+<script>
+const wrap = document.querySelector(".wrap"), img = document.querySelector(".img");
+let tx = 0, ty = 0, x = 0, y = 0;
+wrap.addEventListener("mousemove", (e) => { const r = wrap.getBoundingClientRect(); tx = e.clientX - r.left + 20; ty = e.clientY - r.top - 120; });
+document.querySelectorAll("li").forEach((li) => {
+  li.addEventListener("mouseenter", () => { const [a, b] = li.dataset.c.split(","); img.style.background = `linear-gradient(135deg, ${a}, ${b})`; img.classList.add("on"); });
+  li.addEventListener("mouseleave", () => img.classList.remove("on"));
+});
+(function loop() { x += (tx - x) * 0.15; y += (ty - y) * 0.15; img.style.setProperty("--x", x + "px"); img.style.setProperty("--y", y + "px"); requestAnimationFrame(loop); })();
+</script>

@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Fullscreen Menu", "zh": "全屏菜单",
+  "lead": "点汉堡按钮后，一整块背景从角落铺满屏幕，菜单项用大字号一个个出场。比侧边抽屉更有冲击力，常见于品牌官网、作品集。",
+  "vague": ["菜单想更有气势", "点开菜单铺满整屏"],
+  "terms": ["Fullscreen Menu", "Overlay Navigation", "Staggered Reveal"],
+  "prompt": "移动端导航做 Fullscreen Menu：点击右上角汉堡按钮，深色背景 #121722 从按钮位置以圆形 clip-path 扩散铺满（500ms cubic-bezier(.7,0,.3,1)），汉堡变成 ×；菜单项 36px 衬线大字依次从下方 20px 淡入（每项延迟 60ms），悬停项变江月橘并右移；Esc 关闭，打开时锁定页面滚动。"
+}
+-->
+<div class="screen open">
+  <header><b>江月</b><button class="burger" aria-label="关闭菜单" aria-expanded="true"><i></i><i></i></button></header>
+  <nav class="menu"><a>作品</a><a>组件</a><a>关于</a><a>联系</a><small>moonflower.design</small></nav>
+</div>
+
+<style>
+.screen { position: relative; width: 240px; height: 320px; border-radius: 20px; overflow: hidden; background: #FAFAFA; border: 1px solid #E4E4E7; }
+header { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; }
+header b { font: 700 16px "Songti SC", serif; transition: color .3s; }
+.open header b { color: #fff; }
+.burger { width: 32px; height: 32px; border: 0; background: none; cursor: pointer; display: grid; place-content: center; gap: 6px; }
+.burger i { display: block; width: 20px; height: 2px; background: #18181B; border-radius: 2px; transition: transform .3s, background .3s; }
+.open .burger i { background: #fff; } .open .burger i:first-child { transform: translateY(4px) rotate(45deg); } .open .burger i:last-child { transform: translateY(-4px) rotate(-45deg); }
+.menu { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 28px; background: #121722; clip-path: circle(0 at calc(100% - 34px) 32px); transition: clip-path .5s cubic-bezier(.7, 0, .3, 1); }
+.open .menu { clip-path: circle(150% at calc(100% - 34px) 32px); }
+.menu a { font: 600 32px "Songti SC", "Noto Serif SC", serif; color: #F4F1EA; cursor: pointer; opacity: 0; transform: translateY(20px); transition: opacity .3s, transform .3s, color .2s; }
+.open .menu a { opacity: 1; transform: none; } .open .menu a:hover { color: #FA8C16; transform: translateX(6px); }
+.menu a:nth-child(1) { transition-delay: .25s; } .menu a:nth-child(2) { transition-delay: .31s; } .menu a:nth-child(3) { transition-delay: .37s; } .menu a:nth-child(4) { transition-delay: .43s; }
+.open .menu a:hover { transition-delay: 0s; }
+.menu small { margin-top: 18px; font-size: 11px; color: #71717A; }
+</style>
+
+<script>
+const scr = document.querySelector(".screen"), b = document.querySelector(".burger");
+const set = (v) => { scr.classList.toggle("open", v); b.setAttribute("aria-expanded", v); b.setAttribute("aria-label", v ? "关闭菜单" : "打开菜单"); };
+b.addEventListener("click", () => set(!scr.classList.contains("open")));
+document.addEventListener("keydown", (e) => e.key === "Escape" && set(false));
+</script>

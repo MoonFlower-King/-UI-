@@ -1,0 +1,56 @@
+<!--
+{
+  "en": "Checkout Page", "zh": "结算页",
+  "lead": "下单前最后一步：左边填地址、选配送和支付方式，右边是一直可见的订单摘要和总价。组合了卡片式单选、输入框组合、分步提示和醒目的主按钮。",
+  "vague": ["结算页怎么做才不让人放弃", "付款页面太乱"],
+  "terms": ["Checkout", "Order Summary 订单摘要", "Radio Cards", "Sticky Sidebar"],
+  "prompt": "做一个 Checkout 页：顶部 3 步进度（购物车 ✓ → 结算 → 完成）；左栏表单：收货信息两列输入框、配送方式用 Radio Cards（选中江月橘描边）；右栏 Sticky 订单摘要：商品缩略图 + 小计 / 运费 / 合计（合计 20px 粗体），底部全宽主按钮“支付 ¥138”；切换配送方式时合计数字平滑更新。"
+}
+-->
+<div class="co">
+  <ol class="steps"><li class="done">购物车</li><li class="on">结算</li><li>完成</li></ol>
+  <div class="cols">
+    <form>
+      <b>收货信息</b>
+      <div class="two"><input placeholder="姓名" value="江小月"><input placeholder="手机" value="138 0000 0000"></div>
+      <input placeholder="地址" value="江边路 18 号">
+      <b>配送方式</b>
+      <label><input type="radio" name="s" value="0" checked><span>标准 · 3–5 天</span><em>免费</em></label>
+      <label><input type="radio" name="s" value="12"><span>次日达</span><em>¥12</em></label>
+    </form>
+    <aside>
+      <div class="item"><i></i><span>月白马克杯 ×2</span><em>¥138</em></div>
+      <p><span>运费</span><span class="ship">¥0</span></p>
+      <p class="total"><span>合计</span><span class="sum">¥138</span></p>
+      <button>支付 <span class="sum">¥138</span></button>
+    </aside>
+  </div>
+</div>
+
+<style>
+.co { width: 470px; padding: 14px; background: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 12px; color: #3F3F46; }
+.steps { display: flex; gap: 6px; margin: 0 0 12px; padding: 0; list-style: none; }
+.steps li { flex: 1; padding-top: 6px; border-top: 3px solid #E4E4E7; color: #A1A1AA; } .steps .done { border-color: #22C55E; color: #15803D; } .steps .done::after { content: " ✓"; } .steps .on { border-color: #FA8C16; color: #18181B; font-weight: 600; }
+.cols { display: grid; grid-template-columns: 1fr 170px; gap: 12px; align-items: start; }
+form { display: grid; gap: 7px; padding: 12px; background: #fff; border: 1px solid #F0F0F2; border-radius: 12px; }
+b { font-size: 12px; color: #18181B; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+form > input, .two input { height: 30px; padding: 0 8px; border: 1px solid #E4E4E7; border-radius: 7px; font-size: 12px; min-width: 0; }
+label { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid #E4E4E7; border-radius: 9px; cursor: pointer; }
+label span { flex: 1; } label em { font-style: normal; font-weight: 600; }
+label input { accent-color: #FA8C16; margin: 0; }
+label:has(:checked) { border-color: #FA8C16; background: #FFF8EF; box-shadow: inset 0 0 0 1px #FA8C16; }
+aside { position: sticky; top: 0; display: grid; gap: 8px; padding: 12px; background: #fff; border: 1px solid #F0F0F2; border-radius: 12px; }
+.item { display: flex; align-items: center; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid #F4F4F5; } .item i { width: 30px; height: 30px; border-radius: 7px; background: linear-gradient(135deg, #F4F1EA, #E7DCC8); } .item span { flex: 1; } .item em { font-style: normal; }
+aside p { margin: 0; display: flex; justify-content: space-between; } .total { font-size: 13px; font-weight: 700; color: #18181B; } .total .sum { font-size: 18px; }
+aside button { height: 36px; border: 0; border-radius: 9px; background: #FA8C16; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 16px -6px rgba(250,140,22,.6); }
+</style>
+
+<script>
+const sums = document.querySelectorAll(".sum"), ship = document.querySelector(".ship");
+document.querySelectorAll("input[name=s]").forEach((r) => r.addEventListener("change", () => {
+  const s = +r.value; ship.textContent = "¥" + s;
+  sums.forEach((el) => { el.animate([{ opacity: .3, transform: "translateY(-3px)" }, { opacity: 1, transform: "none" }], { duration: 250 }); el.textContent = "¥" + (138 + s); });
+}));
+document.querySelector("aside button").addEventListener("click", () => document.querySelector(".steps li:last-child").className = "on");
+</script>

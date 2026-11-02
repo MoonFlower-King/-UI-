@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Colored Shadow", "zh": "彩色投影",
+  "lead": "阴影不用灰黑色，而是用元素自己的颜色（调淡、模糊），像彩色灯光打在桌面上。按钮和卡片看起来更通透、更有光感，不会脏。",
+  "vague": ["阴影显得脏", "按钮想有发光感"],
+  "terms": ["Colored Shadow", "Tinted Shadow 着色阴影", "Glow"],
+  "prompt": "主按钮和彩色卡片改用 Colored Shadow：阴影颜色取元素主色的 35% 透明度（如 rgba(250,140,22,.35)），偏移 0 8px、模糊 24px、扩散 -6px（让阴影比元素窄，更像投影）；悬停时上移 2px、阴影加深；白底卡片仍用中性灰阴影。"
+}
+-->
+<div class="row">
+  <div class="cmp"><button class="grey">灰色阴影</button><small>发闷</small></div>
+  <div class="cmp"><button class="tint">彩色投影</button><small>通透</small></div>
+  <div class="tile"><b>月光会员</b></div>
+</div>
+
+<style>
+.row { display: flex; gap: 22px; align-items: center; }
+.cmp { display: grid; gap: 10px; justify-items: center; } small { font-size: 11px; color: #A1A1AA; }
+button { border: 0; border-radius: 12px; padding: 12px 20px; background: #FA8C16; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.grey { box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+.tint { box-shadow: 0 8px 24px -6px rgba(250,140,22,.6); }
+.tint:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -6px rgba(250,140,22,.7); }
+.tile { width: 110px; height: 110px; border-radius: 18px; display: grid; place-items: end start; padding: 12px; box-sizing: border-box; color: #fff; font-size: 13px;
+  background: linear-gradient(140deg, #7B61FF, #3B82F6); box-shadow: 0 16px 30px -10px rgba(91,97,255,.6); }
+</style>

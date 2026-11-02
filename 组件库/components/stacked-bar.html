@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Stacked Bar Chart", "zh": "堆叠柱状图",
+  "lead": "每根柱子由几段颜色叠起来，既能看总量，又能看每部分占多少。比如每月收入里各渠道的贡献。",
+  "vague": ["总数和组成一起看", "柱子分好几段颜色"],
+  "terms": ["Stacked Bar", "Composition 构成", "Legend 图例"],
+  "prompt": "月度收入用 Stacked Bar Chart：6 根柱子、圆角只加在最顶段，三段颜色从深到浅（江月橘 #FA8C16、琥珀 #FDBA74、浅橘 #FFE4C4），段间 1px 白缝；出场时每根从底部长出（600ms ease-out，柱间延迟 60ms）；悬停一根时其余变淡，并在上方显示各段数值与合计。"
+}
+-->
+<div class="ch">
+  <header><b>渠道收入（万）</b><span class="tip">悬停柱子看明细</span></header>
+  <div class="bars"></div>
+  <div class="lg"><span><i style="background:#FA8C16"></i>官网</span><span><i style="background:#FDBA74"></i>小程序</span><span><i style="background:#FFE4C4"></i>线下</span></div>
+</div>
+
+<style>
+.ch { width: 320px; padding: 14px 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+header { display: flex; justify-content: space-between; align-items: baseline; } header b { font-size: 14px; } .tip { font-size: 11px; color: #A1A1AA; }
+.bars { display: flex; align-items: flex-end; gap: 14px; height: 140px; margin: 12px 0 8px; padding-bottom: 18px; border-bottom: 1px solid #F0F0F2; }
+.col { position: relative; flex: 1; display: flex; flex-direction: column-reverse; gap: 1px; height: 100%; justify-content: flex-start; cursor: pointer; transition: opacity .2s; }
+.col i { display: block; transform-origin: bottom; animation: grow .6s ease-out both; animation-delay: var(--d); }
+.col i:last-child { border-radius: 5px 5px 0 0; }
+.col small { position: absolute; bottom: -18px; left: 0; right: 0; text-align: center; font-size: 10px; color: #A1A1AA; }
+.bars:hover .col:not(:hover) { opacity: .35; }
+@keyframes grow { from { transform: scaleY(0); } }
+.lg { display: flex; gap: 12px; font-size: 11px; color: #71717A; } .lg i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
+</style>
+
+<script>
+const M = ["5月", "6月", "7月", "8月", "9月", "10月"], D = [[22, 14, 8], [26, 16, 9], [30, 20, 12], [28, 24, 10], [34, 26, 14], [40, 30, 16]], C = ["#FA8C16", "#FDBA74", "#FFE4C4"], MAX = 90;
+const bars = document.querySelector(".bars"), tip = document.querySelector(".tip");
+bars.innerHTML = D.map((d, i) => `<div class="col" data-i="${i}">${d.map((v, k) => `<i style="height:${(v / MAX) * 100}%;background:${C[k]};--d:${i * 60}ms"></i>`).join("")}<small>${M[i]}</small></div>`).join("");
+bars.addEventListener("mouseover", (e) => { const c = e.target.closest(".col"); if (!c) return; const d = D[c.dataset.i]; tip.textContent = `${M[c.dataset.i]}：${d.join(" + ")} = ${d.reduce((a, b) => a + b)}`; });
+</script>

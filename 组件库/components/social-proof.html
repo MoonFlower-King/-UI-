@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Social Proof", "zh": "社会认同",
+  "lead": "人会参考别人的选择：“已有 12,000 人在用”“4.9 分”“某某也在用”。在注册按钮、定价旁边放这些真实数据，能让犹豫的人更放心。注意必须是真的。",
+  "vague": ["用户不信任我们", "怎么让人放心注册"],
+  "terms": ["Social Proof", "Trust Signals 信任信号", "Testimonial 用户评价"],
+  "prompt": "注册按钮下方加 Social Proof：一排叠放的 5 个用户头像 + “已有 12,000+ 位设计师在用”，旁边 5 颗星和 4.9 评分；数字用真实数据并在加载时从 0 滚动到目标值；文字 13px 灰色，不抢主按钮；不要编造数据和虚假评价。"
+}
+-->
+<div class="box">
+  <h4>开始用江月 UI</h4>
+  <button>免费注册</button>
+  <div class="proof">
+    <span class="avs"><i style="background:#FA8C16">月</i><i style="background:#1E3A5F">白</i><i style="background:#0EA5E9">潮</i><i style="background:#8B5CF6">秋</i><i style="background:#22C55E">渔</i></span>
+    <span>已有 <b class="n" data-to="12000">0</b>+ 位创作者在用</span>
+  </div>
+  <div class="stars">★★★★★ <b>4.9</b><small>· 示例数据</small></div>
+</div>
+
+<style>
+.box { width: 280px; padding: 20px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; display: grid; gap: 12px; justify-items: center; text-align: center; }
+h4 { margin: 0; font: 700 18px "Songti SC", serif; }
+button { width: 100%; height: 42px; border: 0; border-radius: 10px; background: #FA8C16; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
+.proof { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #71717A; }
+.avs { display: flex; } .avs i { width: 24px; height: 24px; border-radius: 50%; color: #fff; font: normal 10px/24px sans-serif; box-shadow: 0 0 0 2px #fff; } .avs i + i { margin-left: -7px; }
+.n { color: #18181B; font-variant-numeric: tabular-nums; }
+.stars { font-size: 13px; color: #F5B800; } .stars b { color: #18181B; } .stars small { color: #A1A1AA; }
+</style>
+
+<script>
+const n = document.querySelector(".n"), to = +n.dataset.to, t0 = performance.now();
+(function step(now) { const p = Math.min(1, (now - t0) / 1200); n.textContent = Math.round(to * (1 - (1 - p) ** 3)).toLocaleString(); if (p < 1) requestAnimationFrame(step); })(t0);
+</script>

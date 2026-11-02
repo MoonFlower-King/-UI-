@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Rule of Thirds", "zh": "三分法构图",
+  "lead": "把画面横竖各切两刀，分成九宫格，把主角放在四个交叉点附近，而不是正中间。画面会更自然、更有张力，做首图、Banner 时很好用。",
+  "vague": ["首图太呆板", "东西都放正中间很死"],
+  "terms": ["Rule of Thirds", "Focal Point 视觉焦点", "Composition 构图"],
+  "prompt": "首屏 Banner 按 Rule of Thirds 构图：主视觉（月亮插画）放在右上三分交点附近，标题和按钮放在左下三分区域并左对齐，留出大面积夜空做负空间；不要把主体和文字都居中。"
+}
+-->
+<div class="hero">
+  <span class="moon"></span>
+  <div class="txt"><h3>江上明月</h3><p>说对一个词，AI 就懂你的审美</p><button>开始</button></div>
+  <div class="grid"><i></i><i></i><i></i><i></i></div>
+  <label><input type="checkbox" checked> 显示九宫格</label>
+</div>
+
+<style>
+.hero { position: relative; width: 420px; height: 236px; border-radius: 14px; overflow: hidden; background: linear-gradient(180deg, #1E2A44, #0F1218 75%); color: #fff; }
+.moon { position: absolute; left: 66.6%; top: 33.3%; width: 56px; height: 56px; margin: -28px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF4D6, #FFD58A 60%, #FA8C16); box-shadow: 0 0 40px rgba(255,213,138,.5); }
+.txt { position: absolute; left: 24px; top: 58%; }
+h3 { margin: 0; font: 700 24px "Songti SC", serif; } p { margin: 4px 0 10px; font-size: 12px; color: #A1A1AA; }
+button { border: 0; border-radius: 8px; background: #FA8C16; color: #fff; padding: 6px 14px; font-size: 12px; }
+.grid i { position: absolute; background: rgba(250,140,22,.6); transition: opacity .3s; }
+.grid i:nth-child(1) { left: 33.3%; top: 0; bottom: 0; width: 1px; } .grid i:nth-child(2) { left: 66.6%; top: 0; bottom: 0; width: 1px; }
+.grid i:nth-child(3) { top: 33.3%; left: 0; right: 0; height: 1px; } .grid i:nth-child(4) { top: 66.6%; left: 0; right: 0; height: 1px; }
+.hero:has(input:not(:checked)) .grid i { opacity: 0; }
+label { position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: #A1A1AA; display: flex; gap: 4px; align-items: center; cursor: pointer; }
+</style>

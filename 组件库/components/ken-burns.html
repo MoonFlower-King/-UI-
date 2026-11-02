@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Ken Burns Effect", "zh": "缓慢推拉镜头",
+  "lead": "静态图片慢慢放大、同时轻轻平移，像纪录片里镜头在照片上缓缓推进。让首图、轮播图“活”起来，又不会喧宾夺主。",
+  "vague": ["首图太静态", "图片慢慢放大那种"],
+  "terms": ["Ken Burns Effect", "Slow Zoom 慢推", "Pan & Zoom"],
+  "prompt": "首屏背景图加 Ken Burns Effect：图片容器 overflow: hidden，图片在 12 秒内从 scale(1) 缓慢放大到 1.15 并向右上平移 3%（ease-in-out，alternate 无限循环）；轮播时每张图方向不同；只用 transform 并加 will-change；prefers-reduced-motion 时静止。"
+}
+-->
+<div class="frame">
+  <div class="img"><span class="moon"></span><span class="hill h1"></span><span class="hill h2"></span></div>
+  <div class="cap"><b>江上明月</b><small>镜头慢慢推近</small></div>
+</div>
+
+<style>
+.frame { position: relative; width: 380px; height: 230px; border-radius: 14px; overflow: hidden; }
+.img { position: absolute; inset: 0; background: linear-gradient(180deg, #24365A, #0F1218 75%); animation: kb 12s ease-in-out infinite alternate; will-change: transform; }
+@keyframes kb { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.15) translate(3%, -3%); } }
+.moon { position: absolute; left: 62%; top: 22%; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF4D6, #FFD58A 60%, #FA8C16); box-shadow: 0 0 50px rgba(255,213,138,.5); }
+.hill { position: absolute; bottom: 0; border-radius: 50% 50% 0 0; }
+.h1 { left: -10%; width: 70%; height: 38%; background: #1B2638; } .h2 { right: -15%; width: 80%; height: 30%; background: #121a28; }
+.cap { position: absolute; left: 20px; bottom: 18px; color: #fff; display: grid; } .cap b { font: 700 22px "Songti SC", serif; } .cap small { font-size: 12px; opacity: .7; }
+@media (prefers-reduced-motion: reduce) { .img { animation: none; } }
+</style>

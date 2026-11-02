@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Time Picker", "zh": "时间选择器",
+  "lead": "选几点几分的控件。常见做法是两列可滚动的数字（小时、分钟），中间一条高亮带表示选中，像老式的滚轮。手机上手指一划就能选。",
+  "vague": ["选时间不好用", "那种滚轮选时间的"],
+  "terms": ["Time Picker", "Wheel Picker 滚轮", "Scroll Snap"],
+  "prompt": "预约时间用 Wheel Time Picker：小时、分钟两列，每列用 scroll-snap-type: y mandatory 滚动吸附，行高 36px，上下渐隐遮罩，中间一条浅灰圆角高亮带；选中项 18px 加粗深色，其余 15px 灰色；分钟以 5 为步长；上方实时显示“已选 19:30”。"
+}
+-->
+<div class="tp">
+  <p>预约时间 <b class="val">19:30</b></p>
+  <div class="wheels"><div class="col" data-k="h"></div><span>:</span><div class="col" data-k="m"></div><i class="band"></i></div>
+</div>
+
+<style>
+.tp { width: 220px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+p { margin: 0 0 8px; font-size: 13px; color: #71717A; } .val { color: #18181B; font-variant-numeric: tabular-nums; }
+.wheels { position: relative; display: flex; justify-content: center; align-items: center; height: 180px; gap: 6px; }
+.col { position: relative; z-index: 1; width: 64px; height: 180px; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; padding: 72px 0; box-sizing: border-box;
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent); -webkit-mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent); }
+.col::-webkit-scrollbar { display: none; }
+.col div { height: 36px; scroll-snap-align: center; display: grid; place-items: center; font-size: 15px; color: #A1A1AA; font-variant-numeric: tabular-nums; transition: color .15s, font-size .15s; }
+.col div.on { font-size: 19px; font-weight: 700; color: #18181B; }
+.wheels > span { z-index: 1; font-weight: 700; }
+.band { position: absolute; left: 10px; right: 10px; top: 72px; height: 36px; border-radius: 10px; background: #F4F4F5; }
+</style>
+
+<script>
+const pad = (n) => String(n).padStart(2, "0"), val = document.querySelector(".val"), pick = { h: 19, m: 30 };
+document.querySelectorAll(".col").forEach((col) => {
+  const k = col.dataset.k, items = k === "h" ? [...Array(24).keys()] : [...Array(12).keys()].map((i) => i * 5);
+  col.innerHTML = items.map((n) => `<div data-v="${n}">${pad(n)}</div>`).join("");
+  const sync = () => {
+    const i = Math.round(col.scrollTop / 36), el = col.children[Math.max(0, Math.min(items.length - 1, i))];
+    [...col.children].forEach((d) => d.classList.toggle("on", d === el));
+    pick[k] = +el.dataset.v; val.textContent = `${pad(pick.h)}:${pad(pick.m)}`;
+  };
+  col.scrollTop = items.indexOf(pick[k]) * 36;
+  col.addEventListener("scroll", sync, { passive: true });
+  col.addEventListener("click", (e) => { const d = e.target.closest("[data-v]"); if (d) col.scrollTo({ top: [...col.children].indexOf(d) * 36, behavior: "smooth" }); });
+  sync();
+});
+</script>

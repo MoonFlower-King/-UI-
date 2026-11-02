@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Balanced Text Wrap", "zh": "标题均衡换行",
+  "lead": "标题换行时，浏览器默认把第一行塞满，第二行常常只剩一两个字，很难看。“均衡换行”会让每行长度差不多，标题看起来整整齐齐。",
+  "vague": ["标题最后一行就一个字", "换行很丑"],
+  "terms": ["text-wrap: balance", "Widow 孤字", "Orphan"],
+  "prompt": "所有标题加 text-wrap: balance，让多行标题每行长度接近、避免最后一行只剩一两个字；正文段落用 text-wrap: pretty 减少段尾孤字；不支持的浏览器保持默认。"
+}
+-->
+<div class="cmp">
+  <div><small>默认</small><h3 class="a">把你对界面的感觉翻译成专业的提示词</h3></div>
+  <div><small>text-wrap: balance</small><h3 class="b">把你对界面的感觉翻译成专业的提示词</h3></div>
+</div>
+
+<style>
+.cmp { display: grid; gap: 12px; width: 300px; }
+.cmp > div { padding: 12px 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+.cmp > div:last-child { border-color: #FA8C16; }
+small { font-size: 11px; color: #A1A1AA; font-family: ui-monospace, Menlo, monospace; }
+h3 { margin: 6px 0 0; font: 700 22px/1.35 "Songti SC", "Noto Serif SC", serif; color: #18181B; }
+.b { text-wrap: balance; }
+</style>

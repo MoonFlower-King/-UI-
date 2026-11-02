@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Tints & Shades", "zh": "色阶（浅色调与深色调）",
+  "lead": "从一个主色出发，加白得到一串更浅的“浅色调”，加黑得到更深的“深色调”，排成 50 到 900 的色阶。按钮、背景、文字都从这一串里挑，整站颜色就统一了。",
+  "vague": ["主色有了其他颜色不会配", "浅一点深一点的同色怎么来"],
+  "terms": ["Tint 浅色调", "Shade 深色调", "Color Scale 色阶"],
+  "prompt": "以江月橘 #FA8C16 为 500 生成 10 级色阶（50/100/…/900）：越浅越接近暖白、越深越偏棕而不是发灰；用 50 做浅背景、100 做标签底、500 做主按钮、600 做悬停、700 做浅底上的文字，保证文字与背景对比度 ≥ 4.5:1。"
+}
+-->
+<div class="scale"></div>
+<p class="info">点一格复制色值</p>
+
+<style>
+.scale { display: grid; grid-template-columns: repeat(10, 34px); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+.scale button { height: 110px; border: 0; padding: 0 0 8px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; font: 600 10px ui-monospace, Menlo, monospace; cursor: pointer; transition: transform .15s; }
+.scale button:hover { transform: scaleY(1.06); }
+.scale button.base { outline: 2px solid #18181B; outline-offset: -2px; }
+.info { position: absolute; bottom: 40px; left: 0; right: 0; margin: 0; text-align: center; font-size: 12px; color: #71717A; font-family: ui-monospace, Menlo, monospace; }
+</style>
+
+<script>
+// 和白色 / 黑色按比例混合；深色一侧混一点棕色，避免发灰
+const base = [250, 140, 22], mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+const steps = [[50, .92], [100, .82], [200, .64], [300, .44], [400, .22], [500, 0], [600, -.14], [700, -.3], [800, -.48], [900, -.64]];
+const hex = (c) => "#" + c.map((v) => v.toString(16).padStart(2, "0")).join("").toUpperCase();
+const box = document.querySelector(".scale"), info = document.querySelector(".info");
+box.innerHTML = steps.map(([n, t]) => {
+  const c = t >= 0 ? mix(base, [255, 250, 243], t) : mix(base, [60, 22, 4], -t);
+  return `<button style="background:${hex(c)};color:${n >= 500 ? "#fff" : "#7C2D12"}" data-hex="${hex(c)}" class="${n === 500 ? "base" : ""}" title="${n} ${hex(c)}">${n}</button>`;
+}).join("");
+box.addEventListener("click", (e) => { const h = e.target.dataset.hex; if (!h) return; navigator.clipboard?.writeText(h).catch(() => {}); info.textContent = `已复制 ${h}`; });
+</script>

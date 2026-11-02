@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Curtain Reveal", "zh": "幕布揭开",
+  "lead": "图片出场时，先有一块色块像幕布一样从左边扫过去盖住，再继续扫走，露出后面的图片。节奏干脆利落，作品集和品牌官网很爱用。",
+  "vague": ["图片出场想更有设计感", "色块扫过去再露出图"],
+  "terms": ["Curtain Reveal", "Wipe Reveal 擦除显现", "clip-path"],
+  "prompt": "作品图片滚动进入视口时做 Curtain Reveal：一层江月橘色块从左向右展开盖住图片区域（400ms cubic-bezier(.7,0,.3,1)），然后继续向右收走（400ms），色块收走的同时图片从 scale(1.1) 回到 1；用伪元素 + transform: scaleX 实现，IntersectionObserver 触发一次。"
+}
+-->
+<div class="wrap">
+  <figure class="cv"><div class="pic"></div></figure>
+  <button>重播</button>
+</div>
+
+<style>
+.wrap { display: grid; gap: 12px; justify-items: center; }
+.cv { position: relative; width: 300px; height: 190px; margin: 0; overflow: hidden; border-radius: 10px; }
+.pic { position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, #FFD58A 0 18px, transparent 20px), linear-gradient(180deg, #24365A, #0F1218 70%, #1E3A5F); opacity: 0; transform: scale(1.1); animation: show .6s .4s cubic-bezier(.2, .7, .2, 1) forwards; }
+.cv::after { content: ""; position: absolute; inset: 0; background: #FA8C16; transform: scaleX(0); transform-origin: left; animation: curtain .8s cubic-bezier(.7, 0, .3, 1) forwards; }
+@keyframes curtain { 50% { transform: scaleX(1); transform-origin: left; } 50.1% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
+@keyframes show { 0% { opacity: 1; } to { opacity: 1; transform: none; } }
+button { border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+document.querySelector("button").addEventListener("click", () => {
+  const cv = document.querySelector(".cv"), n = cv.cloneNode(true); cv.replaceWith(n); // 换新节点，动画从头播
+});
+</script>

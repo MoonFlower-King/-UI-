@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Funnel Chart", "zh": "漏斗图",
+  "lead": "从上到下一层比一层窄，表示用户一步步流失：访问 → 注册 → 下单 → 付款。一眼就能看出哪一步掉人最多，该优化哪里。",
+  "vague": ["转化率怎么展示", "看用户在哪一步走掉了"],
+  "terms": ["Funnel Chart", "Conversion 转化率", "Drop-off 流失"],
+  "prompt": "转化分析用 Funnel Chart：4 层横条居中对齐，宽度按人数比例，颜色从江月橘 #FA8C16 逐层变浅；每层左侧写步骤名、条内写人数，层与层之间标注转化率（如 ↓ 42%），流失最多的那一步转化率标红；出场时各层依次从中间向两边展开。"
+}
+-->
+<div class="fn"></div>
+
+<style>
+.fn { width: 320px; display: grid; gap: 2px; }
+.row { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 10px; }
+.row span { font-size: 12px; color: #52525B; text-align: right; }
+.bar { height: 30px; margin: 0 auto; border-radius: 6px; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; animation: open .5s ease-out both; animation-delay: var(--d); }
+@keyframes open { from { transform: scaleX(0); } }
+.rate { grid-column: 2; text-align: center; font-size: 11px; color: #A1A1AA; height: 16px; }
+.rate.worst { color: #EF4444; font-weight: 700; }
+</style>
+
+<script>
+const S = [["访问", 12000], ["注册", 5040], ["下单", 1410], ["付款", 1130]], C = ["#FA8C16", "#FB9F3E", "#FDB66B", "#FDCB97"];
+const rates = S.slice(1).map(([, v], i) => v / S[i][1]), worst = rates.indexOf(Math.min(...rates));
+document.querySelector(".fn").innerHTML = S.map(([n, v], i) =>
+  (i ? `<div class="row"><i></i><div class="rate ${i - 1 === worst ? "worst" : ""}">↓ ${Math.round(rates[i - 1] * 100)}%</div></div>` : "") +
+  `<div class="row"><span>${n}</span><div class="bar" style="width:${Math.max(18, (v / S[0][1]) * 100)}%;background:${C[i]};--d:${i * 120}ms">${v.toLocaleString()}</div></div>`).join("");
+</script>

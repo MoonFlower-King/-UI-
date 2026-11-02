@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Paper Texture", "zh": "纸张质感",
+  "lead": "背景不是一块死平的纯色，而是带一点纤维、颗粒和边缘阴影，像真的纸。让读书、笔记、手账、文化类页面多一份温度和手作感。",
+  "vague": ["页面太电子感", "想要像纸一样的温度"],
+  "terms": ["Paper Texture", "Grain 颗粒", "Tactile 触感"],
+  "prompt": "笔记卡片加 Paper Texture：暖白底 #FBF7EF，用 SVG feTurbulence 生成极淡的纤维噪点叠在上面（透明度 6–10%），四角稍暗的 radial-gradient 暗角，卡片有极轻的 1–2° 随机旋转和柔和投影；正文用衬线字和偏棕的墨色 #3B2F25。"
+}
+-->
+<div class="desk">
+  <div class="paper p1"><b>11 月 2 日</b><p>今晚的江面很静，月亮像被谁轻轻放上去的。</p></div>
+  <div class="paper p2"><b>待办</b><p>· 给按钮换个暖色<br>· 标题改成宋体</p></div>
+</div>
+
+<style>
+.desk { display: flex; gap: 18px; }
+.paper { position: relative; width: 150px; min-height: 150px; padding: 16px; box-sizing: border-box; color: #3B2F25; font-family: "Songti SC", "Noto Serif SC", serif;
+  background: radial-gradient(120% 120% at 50% 40%, transparent 60%, rgba(120,90,50,.12)), #FBF7EF; box-shadow: 0 1px 1px rgba(0,0,0,.05), 0 8px 20px rgba(80,60,30,.12); }
+.paper::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8 .04' numOctaves='3' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .3 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23f)'/%3E%3C/svg%3E"); }
+.p1 { transform: rotate(-2deg); } .p2 { transform: rotate(1.5deg); background-color: #F8F0DE; }
+b { font-size: 14px; } p { margin: 8px 0 0; font-size: 13px; line-height: 1.8; }
+</style>
