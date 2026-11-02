@@ -24,7 +24,23 @@ window.JY_AUTOPLAY = {
   },
 
   // 放在组件代码之后：开始演示
-  post: function () {
+  // 放在组件代码之后、演示之前：量一下组件实际占多大，告诉外层把预览放大到占满卡片
+  // 放在组件代码之后、演示之前：量一下组件实际占多大（以画面中心为准的宽高），告诉外层把预览放大到刚好占满卡片。
+  // 外层缩小视口后组件可能换行变高，所以每次加载都再量一次，外层发现装不下会再放宽。
+  fit: function () {
+    const W = innerWidth, H = innerHeight;
+    let l = 1e9, t = 1e9, r = -1e9, b = -1e9;
+    for (const el of document.body.querySelectorAll('*')) {
+      if (/SCRIPT|STYLE/.test(el.tagName)) continue;
+      const q = el.getBoundingClientRect();
+      if (q.width < 2 || q.height < 2 || q.right <= -W || q.bottom <= -H || q.left >= 2 * W || q.top >= 2 * H || (q.width >= W - 1 && q.height >= H - 1)) continue;
+      const cs = getComputedStyle(el); if (cs.opacity === '0' || cs.visibility === 'hidden') continue;
+      l = Math.min(l, q.left); t = Math.min(t, q.top); r = Math.max(r, q.right); b = Math.max(b, q.bottom);
+    }
+    if (r > l) parent.postMessage({ jyFit: [Math.max(r - W / 2, W / 2 - l) * 2, Math.max(b - H / 2, H / 2 - t) * 2] }, '*');
+  },
+
+  post: function () { setTimeout(() => {
     const STOP = {};
     const wait = (ms) => new Promise((ok, no) => setTimeout(() => (window.__jyStop ? no(STOP) : ok()), ms));
     const W = innerWidth, H = innerHeight;
@@ -191,5 +207,5 @@ window.JY_AUTOPLAY = {
       await wait(900);
       parent.postMessage('jy-replay', '*');
     })().catch((e) => { if (e !== STOP) throw e; });
-  },
+  }, 160); },
 };

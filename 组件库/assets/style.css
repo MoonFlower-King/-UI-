@@ -160,28 +160,38 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 .card { position: relative; display: flex; flex-direction: column; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); overflow: hidden; transition: border-color .2s, box-shadow .2s, transform .2s; }
 .card:hover { border-color: var(--line-2); box-shadow: var(--shadow); transform: translateY(-2px); }
-.thumb { position: relative; aspect-ratio: 16 / 10; margin: 6px 6px 0; border-radius: 10px; background: var(--canvas); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .04); }
-.thumb iframe { position: absolute; left: 0; top: 0; width: 560px; height: 350px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .5)); pointer-events: none; }
+.thumb { --vw: 560; --tw: 280; position: relative; aspect-ratio: 16 / 10; background: var(--canvas); overflow: hidden; border-bottom: 1px solid var(--line); }
+/* 预览的「视口」宽 --vw（按组件实际大小算，见 app.js 的 setFit），再放大到卡片宽 --tw，组件就占满预览框 */
+.thumb iframe, .thumb .poster { position: absolute; left: 0; top: 0; width: calc(var(--vw) * 1px); height: calc(var(--vw) * 1px / 1.6); transform-origin: 0 0; transform: scale(calc(var(--tw) / var(--vw))); }
+.thumb iframe { border: 0; pointer-events: none; }
 .thumb iframe { z-index: 1; transition: opacity .25s ease; }
-.thumb .poster { position: absolute; left: 0; top: 0; width: 560px; height: 350px; transform-origin: 0 0; transform: scale(var(--s, .5)); contain: strict; pointer-events: none; }
+.thumb .poster { contain: strict; pointer-events: none; }
+/* 顶部半透明按钮：叠在预览上，平时淡一些不挡画面，鼠标移进卡片时变清楚 */
+.thumb-actions { position: absolute; top: 10px; right: 10px; z-index: 3; display: flex; gap: 6px; }
+.glass-btn { height: 28px; padding: 0 11px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .7); background: rgba(255, 255, 255, .5); color: #1D1B18;
+  font-size: 12px; font-weight: 600; white-space: nowrap; backdrop-filter: blur(10px) saturate(1.4); -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 1px 3px rgba(20, 15, 5, .1); opacity: .72; transition: opacity .2s, background .2s, transform .1s; }
+.card:hover .glass-btn, .glass-btn:focus-visible { opacity: 1; background: rgba(255, 255, 255, .82); }
+.glass-btn:hover { background: #fff !important; }
+.glass-btn:active { transform: scale(.95); }
+.glass-btn.add-btn[aria-pressed="true"] { opacity: 1; background: rgba(250, 140, 22, .9); border-color: transparent; color: var(--on-accent); }
+@media (hover: none) { .glass-btn { opacity: .9; } }
 /* 首帧还没画好时（极少见）显示一道流光，而不是一块死白 */
 .thumb:not(.ready)::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .7) 50%, transparent 70%) var(--canvas); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
 @keyframes shimmer { from { background-position: 150% 0; } to { background-position: -50% 0; } }
 .thumb iframe.swap { opacity: 0; }
-.thumb .live { position: absolute; left: 8px; top: 8px; z-index: 2; padding: 2px 8px; border-radius: 99px; background: rgba(18, 23, 34, .78); color: #fff; font-size: 11px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.thumb .live { position: absolute; left: 10px; bottom: 10px; z-index: 2; padding: 2px 8px; border-radius: 99px; background: rgba(18, 23, 34, .78); color: #fff; font-size: 11px; opacity: 0; transition: opacity .2s; pointer-events: none; }
 @media (hover: hover) {
   .card:hover .thumb iframe { pointer-events: auto; }
   .card:hover .thumb .live { opacity: 1; }
 }
-.card-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 14px; }
+.card-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; }
 .card-title { display: flex; align-items: baseline; gap: 8px; margin: 0; }
 .card-title a { font: 700 17px/1.35 var(--serif); }
 .card-title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .card:hover .card-title a { color: var(--accent-ink); }
 .card-title small { font-size: 12px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.card p { margin: 6px 0 12px; color: var(--ink-2); font-size: 13px; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.card-actions { position: relative; z-index: 2; display: flex; gap: 6px; margin-top: auto; }
-.card-actions .btn:first-child { flex: 1; }
+.card p { margin: 6px 0 0; color: var(--ink-2); font-size: 13px; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 @media (hover: hover) { .card .thumb { z-index: 2; } }
 .add-btn[aria-pressed="true"] { border-color: var(--accent); }
 
@@ -325,7 +335,8 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
   .grid.compact .card p, .answer .grid .card p, .grid.compact .card-title small, .answer .grid .card-title small { display: none; }
   .grid.compact .card-body, .answer .grid .card-body { padding: 10px 12px 12px; }
   .grid.compact .card-title a, .answer .grid .card-title a { font-size: 15px; }
-  .grid.compact .card-actions .btn:first-child, .answer .grid .card-actions .btn:first-child { padding: 0 6px; }
+  .grid.compact .thumb-actions, .answer .grid .thumb-actions { top: 6px; right: 6px; gap: 4px; }
+  .grid.compact .glass-btn, .answer .grid .glass-btn { height: 24px; padding: 0 8px; font-size: 11px; }
   .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .cat-tile { padding: 14px; }
   .cat-tile p, .cat-tile .names { display: none; }
