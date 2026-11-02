@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Text Mask", "zh": "文字镂空填充",
+  "lead": "把图片、渐变或动态画面“装进”文字里，文字就像一扇窗，透出后面的画面。用在品牌大标题上很有记忆点。",
+  "vague": ["字里面有图", "标题想做得像海报"],
+  "terms": ["Text Mask", "background-clip: text", "Knockout Text 镂空字"],
+  "prompt": "首页大标题用 Text Mask：96px 超粗字，用 background-clip: text + 透明文字，把一张夜江月色的渐变背景（深蓝到月光金）装进字里，背景缓慢平移（12s 线性循环）像水在流；不支持 background-clip 的浏览器回退成纯色江月橘。"
+}
+-->
+<h1 class="mask">江月</h1>
+<p class="cap">字是窗，后面是流动的江面</p>
+
+<style>
+.mask { margin: 0; font: 900 120px/1 "Songti SC", "Noto Serif SC", serif; letter-spacing: .04em; color: #FA8C16; }
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .mask { color: transparent; -webkit-background-clip: text; background-clip: text; background-size: 300% 100%;
+    background-image: radial-gradient(circle at 30% 30%, #FFE7B0 0 6%, transparent 14%), linear-gradient(100deg, #0F1A33 0%, #1E3A5F 25%, #FA8C16 45%, #FFD58A 55%, #1E3A5F 75%, #0F1A33 100%);
+    animation: flow 12s linear infinite; }
+}
+@keyframes flow { to { background-position: 300% 0, 300% 0; } }
+.cap { position: absolute; bottom: 40px; left: 0; right: 0; margin: 0; text-align: center; font-size: 12px; color: #A1A1AA; }
+@media (prefers-reduced-motion: reduce) { .mask { animation: none; } }
+</style>

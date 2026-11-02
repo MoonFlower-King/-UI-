@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Fill Sweep", "zh": "填充扫入",
+  "lead": "按钮平时是线框，悬停时一块颜色从一侧“扫”进来铺满，文字同时反色。比瞬间变色更有动感，常见于品牌官网、作品集。",
+  "vague": ["按钮悬停没感觉", "想要那种颜色铺过来的效果"],
+  "terms": ["Fill Sweep", "Background Slide", "Hover Fill"],
+  "prompt": "次要按钮用 Fill Sweep：平时 1.5px 深色描边、透明底；悬停时一层深色 #18181B 从左向右铺满（::before scaleX 0→1，transform-origin 左侧，300ms cubic-bezier(.7,0,.3,1)），文字变白；离开时从右侧退出（transform-origin 改为右侧）。"
+}
+-->
+<div class="row">
+  <button class="fs">联系我们</button>
+  <button class="fs up">下载作品集</button>
+</div>
+
+<style>
+.row { display: flex; gap: 14px; }
+.fs { position: relative; overflow: hidden; isolation: isolate; padding: 12px 24px; border: 1.5px solid #18181B; border-radius: 10px; background: transparent; color: #18181B; font-size: 14px; font-weight: 600; cursor: pointer; transition: color .3s cubic-bezier(.7, 0, .3, 1); }
+.fs::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #18181B; transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.7, 0, .3, 1); }
+.fs:hover { color: #fff; } .fs:hover::before { transform: scaleX(1); transform-origin: left; }
+.up { border-color: #FA8C16; color: #C2410C; } .up::before { background: #FA8C16; transform: scaleY(0); transform-origin: top; }
+.up:hover::before { transform: scaleY(1); transform-origin: bottom; }
+</style>

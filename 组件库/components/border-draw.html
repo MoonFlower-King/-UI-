@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Border Draw", "zh": "描边绘制",
+  "lead": "鼠标移上去时，按钮或卡片的边框像有人用笔沿着边画了一圈，从一个角出发绕到另一个角。比单纯变色更精致、更有设计感。",
+  "vague": ["边框动起来", "悬停想更高级"],
+  "terms": ["Border Draw", "Stroke Animation", "SVG stroke-dasharray"],
+  "prompt": "卡片悬停时做 Border Draw：用一个和卡片同尺寸的 SVG 矩形（rx 12）描边 1.5px 江月橘 #FA8C16，平时 stroke-dashoffset 等于周长（看不见），悬停时 600ms ease-out 画满一圈；离开时反向收回；卡片本身保留 1px 浅灰边框做底。"
+}
+-->
+<div class="row">
+  <a class="bd" href="#"><svg><rect x="1" y="1" rx="12" pathLength="100"/></svg><b>组件库</b><small>两百多个即用组件</small></a>
+  <a class="bd" href="#"><svg><rect x="1" y="1" rx="12" pathLength="100"/></svg><b>调配台</b><small>拼出整段提示词</small></a>
+</div>
+
+<style>
+.row { display: flex; gap: 14px; }
+.bd { position: relative; display: grid; gap: 4px; width: 150px; padding: 20px 18px; border-radius: 12px; border: 1px solid #E4E4E7; background: #fff; text-decoration: none; }
+.bd svg { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); overflow: visible; pointer-events: none; }
+.bd rect { width: calc(100% - 2px); height: calc(100% - 2px); fill: none; stroke: #FA8C16; stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset .6s ease-out; }
+.bd:hover rect, .bd:focus-visible rect { stroke-dashoffset: 0; }
+.bd b { font-size: 15px; color: #18181B; } .bd small { font-size: 12px; color: #71717A; }
+</style>

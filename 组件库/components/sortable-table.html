@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Sortable Table", "zh": "可排序表格",
+  "lead": "点表头就能按这一列排序，再点一次反过来排。表头上的小箭头告诉你现在按哪列、正着还是倒着。数据多的时候特别省事。",
+  "vague": ["表格想按价格排", "点表头排序"],
+  "terms": ["Sortable Table", "Sort Indicator 排序指示", "aria-sort"],
+  "prompt": "订单表格做成 Sortable Table：可排序的表头悬停变深色并显示 ↕ 图标，当前排序列显示 ↑ 或 ↓ 且文字加粗；点击切换升序 / 降序，行重新排列时淡入；数字列右对齐用等宽数字；表头加 aria-sort 让读屏软件知道排序状态。"
+}
+-->
+<table>
+  <thead><tr><th data-k="0">作品</th><th data-k="1" class="num">浏览</th><th data-k="2" class="num">收藏</th></tr></thead>
+  <tbody></tbody>
+</table>
+
+<style>
+table { width: 320px; border-collapse: separate; border-spacing: 0; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; overflow: hidden; font-size: 13px; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #F4F4F5; }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 500; font-size: 12px; color: #71717A; background: #FAFAFA; cursor: pointer; user-select: none; white-space: nowrap; }
+th:hover { color: #18181B; }
+th::after { content: "↕"; margin-left: 4px; opacity: 0; transition: opacity .15s; }
+th:hover::after { opacity: .5; }
+th[aria-sort] { color: #18181B; font-weight: 700; }
+th[aria-sort="ascending"]::after { content: "↑"; opacity: 1; color: #FA8C16; } th[aria-sort="descending"]::after { content: "↓"; opacity: 1; color: #FA8C16; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr { animation: fade .25s ease-out; } @keyframes fade { from { opacity: 0; } }
+tbody tr:hover { background: #FAFAFA; }
+</style>
+
+<script>
+const rows = [["夜江登录页", 1820, 96], ["月光按钮组", 3240, 210], ["潮汐动效", 960, 58], ["暖金配色", 2410, 175], ["渔火卡片", 1350, 120]];
+const tbody = document.querySelector("tbody"), ths = [...document.querySelectorAll("th")];
+let key = 1, dir = -1;
+function render() {
+  rows.sort((a, b) => (a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0) * dir);
+  tbody.innerHTML = rows.map((r) => `<tr><td>${r[0]}</td><td class="num">${r[1].toLocaleString()}</td><td class="num">${r[2]}</td></tr>`).join("");
+  ths.forEach((th) => (+th.dataset.k === key ? th.setAttribute("aria-sort", dir > 0 ? "ascending" : "descending") : th.removeAttribute("aria-sort")));
+}
+ths.forEach((th) => th.addEventListener("click", () => { const k = +th.dataset.k; dir = k === key ? -dir : k === 0 ? 1 : -1; key = k; render(); }));
+render();
+</script>

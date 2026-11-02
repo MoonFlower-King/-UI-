@@ -1,0 +1,53 @@
+<!--
+{
+  "en": "Popconfirm", "zh": "气泡确认框",
+  "lead": "点删除这类危险按钮时，不弹全屏对话框，而是在按钮旁边冒出一个小气泡问“确定吗？”。够提醒，又不打断。",
+  "vague": ["删除要不要确认", "弹窗太重了"],
+  "terms": ["Popconfirm", "Inline Confirmation", "Destructive Action 危险操作"],
+  "prompt": "列表里的删除按钮用 Popconfirm：点击后在按钮上方弹出小气泡（白底圆角 10px、阴影、带 8px 小三角指向按钮），内容是警告图标 + 一句话 + 「取消」「删除」两个小按钮，删除按钮红色 #EF4444；气泡从按钮方向缩放淡入（150ms），焦点自动落在「取消」上，按 Esc 或点外面关闭。"
+}
+-->
+<ul class="list">
+  <li><span>首页改版草稿</span><button class="del">删除</button></li>
+  <li><span>配色方案 v2</span><button class="del">删除</button></li>
+</ul>
+<div class="pop" role="alertdialog" aria-label="确认删除" hidden>
+  <p><i>!</i>删除后无法恢复，确定吗？</p>
+  <div><button class="no">取消</button><button class="yes">删除</button></div>
+</div>
+
+<style>
+.list { width: 300px; margin: 0; padding: 6px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 10px; font-size: 13px; color: #18181B; border-radius: 8px; transition: opacity .25s, transform .25s; }
+li + li { border-top: 1px solid #F4F4F5; }
+li.gone { opacity: 0; transform: translateX(16px); }
+.del { border: 0; background: none; color: #EF4444; font-size: 12px; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+.del:hover { background: #FEF2F2; }
+.pop { position: absolute; width: 200px; padding: 12px; background: #fff; border: 1px solid #F0F0F2; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.12); transform-origin: 85% 100%; animation: pop .15s ease-out; }
+.pop::after { content: ""; position: absolute; right: 22px; bottom: -5px; width: 8px; height: 8px; background: #fff; border: solid #F0F0F2; border-width: 0 1px 1px 0; transform: rotate(45deg); }
+@keyframes pop { from { opacity: 0; transform: scale(.9); } }
+.pop p { margin: 0 0 10px; font-size: 13px; color: #3F3F46; display: flex; gap: 6px; align-items: center; }
+.pop i { width: 16px; height: 16px; border-radius: 50%; background: #F59E0B; color: #fff; font: 700 11px/16px sans-serif; text-align: center; flex: none; }
+.pop div { display: flex; justify-content: flex-end; gap: 6px; }
+.pop button { height: 26px; padding: 0 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+.no { border: 1px solid #E4E4E7; background: #fff; } .yes { border: 0; background: #EF4444; color: #fff; }
+</style>
+
+<script>
+const pop = document.querySelector(".pop");
+let row = null;
+function close() { pop.hidden = true; row = null; }
+document.querySelectorAll(".del").forEach((b) => b.addEventListener("click", (e) => {
+  e.stopPropagation(); row = b.closest("li");
+  const r = b.getBoundingClientRect();
+  pop.hidden = false; pop.style.left = r.right - 200 + 10 + "px"; pop.style.top = r.top - pop.offsetHeight - 10 + "px";
+  pop.querySelector(".no").focus();
+}));
+pop.querySelector(".no").addEventListener("click", close);
+pop.querySelector(".yes").addEventListener("click", () => {
+  const li = row; li.classList.add("gone"); close();
+  setTimeout(() => li.classList.remove("gone"), 1500); // 演示里过一会儿放回来
+});
+document.addEventListener("click", (e) => { if (!pop.contains(e.target)) close(); });
+document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+</script>

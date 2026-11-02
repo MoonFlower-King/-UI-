@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Copy to Clipboard Feedback", "zh": "复制成功反馈",
+  "lead": "点“复制”后，图标立刻变成对勾、文字变成“已复制”，两秒后自己变回去。不用弹窗，就让人确定东西已经进了剪贴板。",
+  "vague": ["点了复制不知道成没成功", "复制按钮没反馈"],
+  "terms": ["Copy Button", "State Swap 状态切换", "Clipboard API"],
+  "prompt": "代码块右上角加复制按钮并做 Copy Feedback：点击后用 navigator.clipboard 复制，复制图标交叉淡出、绿色对勾缩放弹入（200ms），按钮文字变“已复制”，2 秒后恢复；复制失败时显示“请手动复制”并自动选中代码文字；按钮宽度固定，切换文字时不跳动。"
+}
+-->
+<div class="code">
+  <header><span>安装</span><button aria-live="polite"><i class="ic"><svg class="a" viewBox="0 0 16 16"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 10V4a1 1 0 0 1 1-1h6"/></svg><svg class="b" viewBox="0 0 16 16"><path d="m3.5 8.5 3 3 6-6.5"/></svg></i><span class="t">复制</span></button></header>
+  <pre>npm create jiangyue-ui@latest</pre>
+</div>
+
+<style>
+.code { width: 320px; background: #18181B; border-radius: 12px; overflow: hidden; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 8px 8px 8px 14px; border-bottom: 1px solid #27272A; font-size: 12px; color: #A1A1AA; }
+button { display: flex; align-items: center; gap: 6px; width: 84px; justify-content: center; height: 28px; border: 1px solid #3F3F46; border-radius: 7px; background: #27272A; color: #E4E4E7; font-size: 12px; cursor: pointer; transition: border-color .2s; }
+button:hover { border-color: #52525B; }
+.ic { position: relative; width: 14px; height: 14px; }
+.ic svg { position: absolute; inset: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: opacity .2s, transform .2s cubic-bezier(.34, 1.56, .64, 1); }
+.b { opacity: 0; transform: scale(.4); stroke: #4ADE80 !important; stroke-width: 2 !important; }
+.done .a { opacity: 0; transform: scale(.4); } .done .b { opacity: 1; transform: none; }
+.done { color: #4ADE80; border-color: #166534; }
+pre { margin: 0; padding: 16px 14px; font: 13px ui-monospace, Menlo, monospace; color: #FDE68A; }
+</style>
+
+<script>
+const btn = document.querySelector("button"), t = btn.querySelector(".t");
+let timer;
+btn.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(document.querySelector("pre").textContent); t.textContent = "已复制"; }
+  catch { getSelection().selectAllChildren(document.querySelector("pre")); t.textContent = "请手动复制"; }
+  btn.classList.add("done"); clearTimeout(timer);
+  timer = setTimeout(() => { btn.classList.remove("done"); t.textContent = "复制"; }, 2000);
+});
+</script>

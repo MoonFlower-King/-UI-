@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Pulse Indicator", "zh": "脉冲指示点",
+  "lead": "一个小圆点外面一圈一圈扩散出光晕，像心跳。用来表示“正在直播”“在线”“有新消息”这种实时状态，安静但抓眼。",
+  "vague": ["在线状态怎么表示", "想让人注意到又不吵"],
+  "terms": ["Pulse", "Live Indicator", "Status Dot 状态点"],
+  "prompt": "直播标签和在线状态用 Pulse Indicator：8px 实心圆点，外层同色光环从 1 倍放大到 2.5 倍并淡出（1.6s ease-out 无限循环）；直播用红 #EF4444，在线用绿 #22C55E，离线灰色不加脉冲；开启 prefers-reduced-motion 时停止扩散只保留圆点。"
+}
+-->
+<div class="list">
+  <span class="live"><i class="dot red"></i>直播中</span>
+  <div class="user"><span class="av">月<i class="dot green"></i></span><div><b>江小月</b><small>在线</small></div></div>
+  <div class="user"><span class="av gray">白<i class="dot off"></i></span><div><b>白露</b><small>2 小时前在线</small></div></div>
+  <button class="bell" aria-label="3 条新通知">🔔<i class="dot orange"></i></button>
+</div>
+
+<style>
+.list { display: grid; gap: 14px; justify-items: start; }
+.dot { position: relative; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--c); animation: pulse 1.6s ease-out infinite; }
+@keyframes pulse { from { transform: scale(1); opacity: .7; } to { transform: scale(2.5); opacity: 0; } }
+.red { --c: #EF4444; } .green { --c: #22C55E; } .orange { --c: #FA8C16; } .off { --c: #D4D4D8; } .off::after { display: none; }
+@media (prefers-reduced-motion: reduce) { .dot::after { animation: none; opacity: 0; } }
+.live { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; background: #FEF2F2; color: #B91C1C; font-size: 13px; font-weight: 600; }
+.user { display: flex; gap: 10px; align-items: center; }
+.av { position: relative; width: 36px; height: 36px; border-radius: 50%; background: #FA8C16; color: #fff; display: grid; place-items: center; font-size: 14px; }
+.av.gray { background: #A1A1AA; }
+.av .dot { position: absolute; right: 0; bottom: 0; width: 10px; height: 10px; box-shadow: 0 0 0 2px #FAFAFA; }
+.user b { display: block; font-size: 13px; } .user small { font-size: 12px; color: #71717A; }
+.bell { position: relative; width: 38px; height: 38px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; font-size: 16px; }
+.bell .dot { position: absolute; top: 6px; right: 7px; }
+</style>

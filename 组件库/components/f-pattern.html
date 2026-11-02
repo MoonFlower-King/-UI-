@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "F-Pattern", "zh": "F 型阅读布局",
+  "lead": "人看文字密集的页面（搜索结果、文章列表）时，视线大致走一个“F”：先横扫第一行，再扫第二行的前半段，然后沿左边往下。所以重要信息要放在每行开头。",
+  "vague": ["列表重点不突出", "用户只扫一眼"],
+  "terms": ["F-Pattern", "Scanning 扫读", "Front-loading 关键词前置"],
+  "prompt": "按 F-Pattern 排列表页：每行最左侧放最关键的信息（加粗标题、关键数字），说明文字放后面并截断为一行；标题行前置关键词，不以“关于”“如何”这类虚词开头；左侧对齐形成一条清晰的竖向扫读线，避免居中对齐。"
+}
+-->
+<div class="demo">
+  <ul>
+    <li><b>上海 · 设计师</b><span>3–5 年经验，熟悉组件库和动效…</span></li>
+    <li><b>杭州 · 前端</b><span>负责官网和活动页的开发…</span></li>
+    <li><b>远程 · 插画</b><span>为短视频系列绘制封面…</span></li>
+    <li><b>北京 · 产品</b><span>规划提示词工具的路线图…</span></li>
+  </ul>
+  <svg class="eye" viewBox="0 0 300 200" preserveAspectRatio="none"><path pathLength="1" d="M14 22 H286 M286 22 L14 70 H190 M190 70 L14 118 V190"/></svg>
+</div>
+
+<style>
+.demo { position: relative; width: 320px; }
+ul { margin: 0; padding: 8px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+li { display: flex; gap: 10px; padding: 12px 10px; font-size: 13px; border-radius: 8px; white-space: nowrap; overflow: hidden; }
+li + li { border-top: 1px solid #F4F4F5; }
+b { color: #18181B; flex: none; } span { color: #A1A1AA; overflow: hidden; text-overflow: ellipsis; }
+.eye { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); pointer-events: none; }
+.eye path { fill: none; stroke: #FA8C16; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: .55; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; animation: scan 3s ease-in-out infinite; }
+@keyframes scan { 60%, 85% { stroke-dashoffset: 0; opacity: .55; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+</style>

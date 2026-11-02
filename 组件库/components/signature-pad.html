@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Signature Pad", "zh": "手写签名板",
+  "lead": "一块可以用手指或鼠标写字的画板，常见于签合同、确认收货。笔画要跟手、线条要圆润，还要能清除重写。",
+  "vague": ["让用户手写签名", "在手机上签字"],
+  "terms": ["Signature Pad", "Canvas 画布", "Pointer Events"],
+  "prompt": "做一个 Signature Pad：白底圆角 12px，底部一条虚线和浅灰“在此签名”提示，开始写后提示淡出；用 canvas + Pointer Events 同时支持鼠标、触屏和手写笔，笔画 2.5px 深色圆头、用二次贝塞尔平滑；按 devicePixelRatio 放大画布保证清晰；右上角“清除”按钮，没写时“确认”按钮禁用。"
+}
+-->
+<div class="pad">
+  <canvas aria-label="签名区域"></canvas>
+  <span class="hint">在此签名</span>
+  <div class="row"><button class="clear">清除</button><button class="ok" disabled>确认签名</button></div>
+</div>
+
+<style>
+.pad { position: relative; width: 320px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+canvas { display: block; width: 100%; height: 150px; touch-action: none; cursor: crosshair; border-bottom: 1.5px dashed #D4D4D8; }
+.hint { position: absolute; left: 0; right: 0; top: 110px; text-align: center; font-size: 13px; color: #A1A1AA; pointer-events: none; transition: opacity .2s; }
+.pad.signed .hint { opacity: 0; }
+.row { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+button { height: 32px; padding: 0 14px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.clear { border: 1px solid #E4E4E7; background: #fff; color: #3F3F46; }
+.ok { border: 0; background: #18181B; color: #fff; } .ok:disabled { background: #D4D4D8; cursor: not-allowed; }
+</style>
+
+<script>
+const pad = document.querySelector(".pad"), cv = pad.querySelector("canvas"), ctx = cv.getContext("2d"), ok = pad.querySelector(".ok");
+function size() {
+  const r = window.devicePixelRatio || 1;
+  cv.width = cv.offsetWidth * r; cv.height = cv.offsetHeight * r; ctx.scale(r, r);
+  ctx.lineWidth = 2.5; ctx.lineCap = ctx.lineJoin = "round"; ctx.strokeStyle = "#18181B";
+}
+size();
+let pts = null;
+const at = (e) => { const b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+cv.addEventListener("pointerdown", (e) => { cv.setPointerCapture(e.pointerId); pts = [at(e)]; pad.classList.add("signed"); ok.disabled = false; });
+cv.addEventListener("pointermove", (e) => {
+  if (!pts) return;
+  pts.push(at(e));
+  if (pts.length < 3) return;
+  const [a, b, c] = pts.slice(-3); // 用中点做二次贝塞尔，笔画更圆润
+  ctx.beginPath(); ctx.moveTo((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); ctx.quadraticCurveTo(b[0], b[1], (b[0] + c[0]) / 2, (b[1] + c[1]) / 2); ctx.stroke();
+});
+addEventListener("pointerup", () => (pts = null));
+pad.querySelector(".clear").addEventListener("click", () => { ctx.clearRect(0, 0, cv.width, cv.height); pad.classList.remove("signed"); ok.disabled = true; });
+</script>

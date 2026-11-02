@@ -1,0 +1,50 @@
+<!--
+{
+  "en": "Coach Mark", "zh": "新功能引导",
+  "lead": "把整个界面压暗，只在某个按钮周围“挖”一个亮洞，旁边配一句说明：“这是新加的筛选，点这里试试”。一步一步带用户认识关键功能。",
+  "vague": ["新功能没人发现", "第一次用要教一下"],
+  "terms": ["Coach Mark", "Spotlight Tour 聚光灯引导", "Product Tour"],
+  "prompt": "上线新功能时用 Coach Mark 引导：全屏半透明黑色遮罩（rgba(0,0,0,.55)），用超大 box-shadow 在目标按钮周围挖出圆角 10px 的亮洞，亮洞位置在步骤间 300ms 平滑移动；旁边白色说明卡片带“1 / 3”步数、「跳过」和「下一步」按钮；最后一步按钮变成「知道了」。"
+}
+-->
+<div class="app">
+  <header><b>我的作品</b><button id="t1">筛选</button><button id="t2">＋ 新建</button></header>
+  <div class="cards"><i></i><i></i><i></i></div>
+  <footer><button id="t3">分享</button></footer>
+</div>
+<div class="hole"></div>
+<div class="tipcard"><small class="step"></small><p class="msg"></p><div><button class="skip">跳过</button><button class="next">下一步</button></div></div>
+
+<style>
+.app { position: relative; width: 340px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 14px; }
+header { display: flex; gap: 8px; align-items: center; } header b { margin-right: auto; font-size: 14px; }
+.app button { border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 12px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; } .cards i { aspect-ratio: 1; border-radius: 8px; background: #F4F4F5; }
+footer { display: flex; justify-content: flex-end; }
+.hole { position: fixed; border-radius: 10px; box-shadow: 0 0 0 9999px rgba(0,0,0,.55); transition: all .3s cubic-bezier(.4, 0, .2, 1); pointer-events: none; }
+.tipcard { position: fixed; width: 200px; padding: 12px; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.2); transition: all .3s cubic-bezier(.4, 0, .2, 1); }
+.step { font-size: 11px; color: #FA8C16; font-weight: 600; } .msg { margin: 4px 0 10px; font-size: 13px; line-height: 1.5; color: #18181B; }
+.tipcard div { display: flex; justify-content: space-between; }
+.tipcard button { border: 0; border-radius: 7px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+.skip { background: none; color: #A1A1AA; } .next { background: #FA8C16; color: #fff; }
+.done .hole, .done .tipcard { opacity: 0; pointer-events: none; }
+</style>
+
+<script>
+const steps = [["#t2", "从这里新建作品，支持导入图片。"], ["#t1", "新功能：按颜色、风格筛选作品。"], ["#t3", "做完一键分享给朋友。"]];
+const hole = document.querySelector(".hole"), card = document.querySelector(".tipcard");
+let i = 0;
+function show() {
+  const [sel, msg] = steps[i], r = document.querySelector(sel).getBoundingClientRect(), pad = 6;
+  Object.assign(hole.style, { left: r.left - pad + "px", top: r.top - pad + "px", width: r.width + pad * 2 + "px", height: r.height + pad * 2 + "px" });
+  const below = r.bottom + 14 + 110 < innerHeight;
+  Object.assign(card.style, { left: Math.min(innerWidth - 210, Math.max(10, r.right - 200)) + "px", top: (below ? r.bottom + 14 : r.top - 120) + "px" });
+  card.querySelector(".step").textContent = `${i + 1} / ${steps.length}`;
+  card.querySelector(".msg").textContent = msg;
+  card.querySelector(".next").textContent = i === steps.length - 1 ? "知道了" : "下一步";
+}
+function end() { document.body.classList.add("done"); setTimeout(() => { i = 0; document.body.classList.remove("done"); show(); }, 2000); }
+card.querySelector(".next").addEventListener("click", () => (++i < steps.length ? show() : end()));
+card.querySelector(".skip").addEventListener("click", end);
+show();
+</script>

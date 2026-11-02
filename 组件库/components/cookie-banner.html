@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Cookie Consent Banner", "zh": "Cookie 同意横幅",
+  "lead": "第一次打开网站时从底部浮起的一小块，问用户是否同意收集数据。好的做法是“接受”和“拒绝”一样好点，不要把拒绝藏起来。",
+  "vague": ["隐私弹窗", "网站底部那个同意框"],
+  "terms": ["Cookie Banner", "Consent 同意", "Dark Pattern 暗黑模式（要避免）"],
+  "prompt": "做一个 Cookie Consent 卡片：固定在左下角距边 16px，宽 320px，白底圆角 14px 阴影，从下方 12px 处淡入上滑（300ms ease-out）；一句话说明 + “隐私政策”链接；“全部接受”和“只用必要的”两个按钮同样大小、并排，不要用灰色小字藏起拒绝；选择后卡片下滑淡出。"
+}
+-->
+<div class="site"><i></i><i></i><i class="s"></i><i></i></div>
+<div class="cookie" role="dialog" aria-label="Cookie 设置">
+  <p><b>🍪 我们用 Cookie 记住你的偏好</b>只用来改进体验，不卖给任何人。<a href="#">隐私政策</a></p>
+  <div class="row"><button class="ghost">只用必要的</button><button class="ok">全部接受</button></div>
+</div>
+
+<style>
+.site { width: 400px; display: grid; gap: 10px; opacity: .6; }
+.site i { height: 14px; border-radius: 6px; background: #E4E4E7; } .site .s { width: 55%; }
+.cookie { position: fixed; left: 16px; bottom: 16px; width: 300px; padding: 16px; background: #fff; border: 1px solid #F0F0F2; border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.12); animation: rise .3s ease-out; transition: .25s ease-in; }
+.cookie.bye { opacity: 0; transform: translateY(12px); }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+p { margin: 0 0 12px; font-size: 12px; line-height: 1.6; color: #71717A; }
+p b { display: block; font-size: 14px; color: #18181B; margin-bottom: 2px; }
+a { color: #3F3F46; text-underline-offset: 2px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+button { height: 34px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.ghost { border: 1px solid #E4E4E7; background: #fff; color: #18181B; }
+.ok { border: 0; background: #18181B; color: #fff; }
+</style>
+
+<script>
+const ck = document.querySelector(".cookie");
+document.querySelectorAll(".cookie button").forEach((b) => b.addEventListener("click", () => {
+  ck.classList.add("bye");
+  setTimeout(() => { ck.classList.remove("bye"); ck.style.animation = "none"; ck.offsetWidth; ck.style.animation = ""; }, 2000);
+}));
+</script>

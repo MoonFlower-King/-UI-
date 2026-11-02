@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Success Checkmark", "zh": "成功打勾动画",
+  "lead": "支付、提交成功后，一个圆圈先画出来，接着对勾一笔划过，最后轻轻弹一下。让“成功了”这件事有仪式感，用户不会怀疑是不是真的完成了。",
+  "vague": ["成功提示太平淡", "付完款没感觉"],
+  "terms": ["Success Checkmark", "Stroke Animation 描边动画", "Confirmation 确认反馈"],
+  "prompt": "支付成功页用 Success Checkmark：64px 圆圈先用 stroke-dashoffset 画出（400ms ease-out），紧接着对勾一笔画出（300ms），然后整体放大到 1.08 再回弹（弹性缓动 200ms），颜色绿 #22C55E；下面标题和金额依次淡入上移 8px（间隔 100ms）。"
+}
+-->
+<div class="ok">
+  <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" pathLength="1"/><path d="M15 27l7 7 15-15" pathLength="1"/></svg>
+  <h3>支付成功</h3><p>¥ 138.00 · 月白陶瓷马克杯</p>
+  <button>再来一次</button>
+</div>
+
+<style>
+.ok { text-align: center; }
+svg { width: 64px; height: 64px; animation: bump .2s cubic-bezier(.34, 1.56, .64, 1) .7s; }
+circle, path { fill: none; stroke: #22C55E; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+circle { animation: draw .4s ease-out forwards; } path { animation: draw .3s ease-out .4s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes bump { 50% { transform: scale(1.08); } }
+h3, p { margin: 0; opacity: 0; animation: up .3s ease-out forwards; }
+h3 { margin-top: 12px; font-size: 18px; color: #18181B; animation-delay: .8s; } p { margin-top: 4px; font-size: 13px; color: #71717A; animation-delay: .9s; }
+@keyframes up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+button { margin-top: 18px; border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 6px 14px; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+function replay() {
+  const ok = document.querySelector(".ok"), copy = ok.cloneNode(true); // 换成一份新节点，动画就会从头播
+  ok.replaceWith(copy);
+  copy.querySelector("button").addEventListener("click", replay);
+}
+document.querySelector("button").addEventListener("click", replay);
+</script>

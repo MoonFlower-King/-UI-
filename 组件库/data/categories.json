@@ -16,7 +16,10 @@
       "visual-hierarchy",
       "masonry",
       "holy-grail",
-      "asymmetrical-grid"
+      "asymmetrical-grid",
+      "f-pattern",
+      "full-bleed",
+      "sticky-stack"
     ]
   },
   {
@@ -31,7 +34,9 @@
       "measure",
       "serif-sans",
       "display-font",
-      "truncation"
+      "truncation",
+      "drop-cap",
+      "tabular-nums"
     ]
   },
   {
@@ -48,7 +53,10 @@
       "blur-reveal",
       "rotating-words",
       "outline-text",
-      "glow-text"
+      "glow-text",
+      "wavy-text",
+      "text-mask",
+      "char-hover"
     ]
   },
   {
@@ -135,7 +143,17 @@
       "progress-bar",
       "spinner",
       "alert-banner",
-      "back-to-top"
+      "back-to-top",
+      "split-button",
+      "icon-button",
+      "button-group",
+      "mega-menu",
+      "announcement-bar",
+      "cookie-banner",
+      "scroll-progress",
+      "kbd-shortcut",
+      "avatar-group",
+      "stories-bar"
     ]
   },
   {
@@ -158,7 +176,13 @@
       "color-picker",
       "search-bar",
       "number-input",
-      "textarea-autosize"
+      "textarea-autosize",
+      "input-group",
+      "character-counter",
+      "inline-edit",
+      "multi-select",
+      "input-mask",
+      "signature-pad"
     ]
   },
   {
@@ -176,7 +200,13 @@
       "bar-chart",
       "line-chart",
       "donut-chart",
-      "heatmap-calendar"
+      "heatmap-calendar",
+      "gauge",
+      "radar-chart",
+      "area-chart",
+      "description-list",
+      "leaderboard",
+      "sortable-table"
     ]
   },
   {
@@ -195,7 +225,9 @@
       "context-menu",
       "alert-dialog",
       "lightbox",
-      "hover-card"
+      "hover-card",
+      "popconfirm",
+      "coachmark"
     ]
   },
   {
@@ -211,7 +243,10 @@
       "card-lift",
       "hover-reveal",
       "hover-expand",
-      "custom-cursor"
+      "custom-cursor",
+      "border-draw",
+      "arrow-nudge",
+      "fill-sweep"
     ]
   },
   {
@@ -226,7 +261,8 @@
       "swipe-cards",
       "long-press",
       "double-tap-like",
-      "pinch-zoom"
+      "pinch-zoom",
+      "slide-to-confirm"
     ]
   },
   {
@@ -249,7 +285,11 @@
       "particle-burst",
       "shimmer-effect",
       "progressive-blur",
-      "pull-to-refresh"
+      "pull-to-refresh",
+      "success-check",
+      "shake-error",
+      "copy-feedback",
+      "pulse-dot"
     ]
   },
   {
@@ -275,7 +315,8 @@
       "squash-stretch",
       "motion-path",
       "shared-element",
-      "icon-morph"
+      "icon-morph",
+      "flip-card"
     ]
   },
   {
@@ -308,7 +349,9 @@
       "consistency",
       "microcopy",
       "fitts-law",
-      "gestalt-proximity"
+      "gestalt-proximity",
+      "affordance",
+      "hicks-law"
     ]
   },
   {

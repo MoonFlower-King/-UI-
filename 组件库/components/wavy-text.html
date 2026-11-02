@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Wavy Text", "zh": "波浪文字",
+  "lead": "一行字里的每个字依次上下浮动，像水面起伏。适合轻松、活泼的标题或加载提示，不适合正文。",
+  "vague": ["字会跳舞", "标题想活泼一点"],
+  "terms": ["Wavy Text", "Staggered Animation 错峰动画", "Per-character Animation"],
+  "prompt": "加载提示用 Wavy Text：把每个字拆成 span，依次上下浮动 6px（1.2s ease-in-out 无限循环，每个字延迟 80ms），颜色在浮到最高点时变成江月橘 #FA8C16；开启 prefers-reduced-motion 时不动；整句保留 aria-label，避免读屏软件逐字念。"
+}
+-->
+<p class="wavy" aria-label="正在载入月光…">正在载入月光…</p>
+
+<style>
+.wavy { margin: 0; font: 700 34px/1 "Songti SC", "Noto Serif SC", serif; color: #18181B; letter-spacing: .02em; }
+.wavy span { display: inline-block; animation: wave 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 80ms); }
+@keyframes wave { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); color: #FA8C16; } }
+@media (prefers-reduced-motion: reduce) { .wavy span { animation: none; } }
+</style>
+
+<script>
+const w = document.querySelector(".wavy");
+w.innerHTML = [...w.textContent].map((c, i) => `<span aria-hidden="true" style="--i:${i}">${c}</span>`).join("");
+</script>

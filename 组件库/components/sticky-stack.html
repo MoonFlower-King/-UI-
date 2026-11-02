@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Sticky Stacking Cards", "zh": "堆叠卡片滚动",
+  "lead": "往下滚时，一张张卡片依次滑上来、叠在前一张上面，前面的卡片被压住、略微缩小变暗。常用在功能介绍、步骤讲解，像翻一叠卡片。",
+  "vague": ["卡片一张压一张", "滚动的时候叠起来"],
+  "terms": ["Sticky Stacking", "position: sticky", "Scroll-driven"],
+  "prompt": "功能介绍用 Sticky Stacking Cards：每张卡片 position: sticky、top 依次递增 12px，滚动时后一张盖住前一张；被盖住的卡片随滚动缩小到 0.92 并变暗（用 scroll-driven animation 或 IntersectionObserver 计算），卡片圆角 20px、各自一种柔和底色；手机上同样适用。"
+}
+-->
+<div class="viewport">
+  <div class="stack">
+    <section style="--i:0;--bg:#FFF4E6"><b>01</b><h4>说出感觉</h4><p>输入“不高级”“太乱”</p></section>
+    <section style="--i:1;--bg:#EEF2FF"><b>02</b><h4>找到专业词</h4><p>系统翻译成 AI 听得懂的话</p></section>
+    <section style="--i:2;--bg:#ECFDF5"><b>03</b><h4>复制给 AI</h4><p>一句提示词，直接改好界面</p></section>
+    <div class="tail">滚动看看 ↑</div>
+  </div>
+</div>
+
+<style>
+.viewport { width: 300px; height: 260px; overflow-y: auto; border-radius: 14px; background: #fff; border: 1px solid #E4E4E7; scrollbar-width: none; }
+.stack { padding: 14px 14px 0; }
+section { position: sticky; top: calc(14px + var(--i) * 12px); height: 170px; margin-bottom: 40px; padding: 18px; box-sizing: border-box; border-radius: 20px; background: var(--bg); box-shadow: 0 -6px 20px rgba(0,0,0,.06); transform-origin: top center; transition: transform .1s linear, filter .1s linear; }
+b { font: 700 12px ui-monospace, Menlo, monospace; color: #FA8C16; }
+h4 { margin: 28px 0 4px; font: 700 20px "Songti SC", serif; color: #18181B; } p { margin: 0; font-size: 13px; color: #52525B; }
+.tail { height: 120px; display: grid; place-items: center; font-size: 12px; color: #A1A1AA; }
+</style>
+
+<script>
+const vp = document.querySelector(".viewport"), cards = [...document.querySelectorAll("section")];
+vp.addEventListener("scroll", () => {
+  cards.forEach((c, i) => {
+    const next = cards[i + 1]; if (!next) return;
+    // 下一张离自己的距离越近，自己被压得越小越暗
+    const gap = next.getBoundingClientRect().top - c.getBoundingClientRect().top, p = Math.max(0, Math.min(1, 1 - gap / 170));
+    c.style.transform = `scale(${1 - p * 0.08})`; c.style.filter = `brightness(${1 - p * 0.12})`;
+  });
+}, { passive: true });
+</script>

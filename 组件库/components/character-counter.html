@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Character Counter", "zh": "字数统计",
+  "lead": "输入框右下角显示“已写 / 上限”，快到上限时变色提醒，超了就变红。比等用户点提交才说“太长了”友好得多。",
+  "vague": ["字数限制怎么提示", "写多了才报错"],
+  "terms": ["Character Counter", "Character Limit 字数上限", "Inline Validation"],
+  "prompt": "简介输入框加 Character Counter：右下角 12px 等宽数字“42 / 100”，平时灰色 #A1A1AA；剩 20% 时变江月橘 #FA8C16；超出时数字和边框都变红 #EF4444、多出的部分不截断但提交按钮禁用；数字用 tabular-nums 防止跳动，并加 aria-live 让读屏软件播报。"
+}
+-->
+<div class="box">
+  <label for="bio">个人简介</label>
+  <textarea id="bio" rows="4" maxlength="140">喜欢在夜里画界面，偏爱暖色和衬线字。</textarea>
+  <div class="foot"><span class="hint">写点能让别人记住你的话</span><span class="count" aria-live="polite"></span></div>
+  <button>保存</button>
+</div>
+
+<style>
+.box { width: 300px; display: grid; gap: 6px; }
+label { font-size: 12px; font-weight: 500; color: #52525B; }
+textarea { resize: none; padding: 10px 12px; border: 1px solid #E4E4E7; border-radius: 10px; font-family: inherit; font-size: 14px; line-height: 1.6; color: #18181B; outline: 0; transition: border-color .15s, box-shadow .15s; }
+textarea:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.box.over textarea { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,.12); }
+.foot { display: flex; justify-content: space-between; font-size: 12px; color: #A1A1AA; }
+.count { font-variant-numeric: tabular-nums; font-family: ui-monospace, Menlo, monospace; transition: color .15s; }
+.box.near .count { color: #FA8C16; } .box.over .count { color: #EF4444; font-weight: 600; }
+button { justify-self: end; margin-top: 4px; height: 34px; padding: 0 18px; border: 0; border-radius: 8px; background: #18181B; color: #fff; font-size: 13px; cursor: pointer; }
+button:disabled { background: #D4D4D8; cursor: not-allowed; }
+</style>
+
+<script>
+const MAX = 60, ta = document.querySelector("textarea"), box = document.querySelector(".box"), count = document.querySelector(".count"), btn = document.querySelector("button");
+function update() {
+  const n = [...ta.value].length;
+  count.textContent = `${n} / ${MAX}`;
+  box.classList.toggle("near", n >= MAX * 0.8 && n <= MAX);
+  box.classList.toggle("over", n > MAX);
+  btn.disabled = n > MAX;
+}
+ta.addEventListener("input", update); update();
+</script>

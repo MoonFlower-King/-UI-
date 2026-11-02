@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Avatar Group", "zh": "头像组",
+  "lead": "几个头像叠在一起，每个压住前一个一点点，最后用“+5”表示还有更多人。一小块地方就能表达“谁在参与”“有多少人”。",
+  "vague": ["多个头像怎么放", "显示参与的人"],
+  "terms": ["Avatar Group", "Avatar Stack", "Overflow Count 溢出计数"],
+  "prompt": "协作者用 Avatar Group：32px 圆形头像向左重叠 10px，每个加 2px 白色描边隔开；最多显示 4 个，多余的显示为灰底“+N”圆；悬停整组时头像间距展开到 4px（200ms），悬停单个头像时上浮 2px 并显示名字 Tooltip。"
+}
+-->
+<div class="wrap">
+  <div class="ag"></div>
+  <span>6 人正在编辑</span>
+</div>
+
+<style>
+.wrap { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; font-size: 13px; color: #52525B; }
+.ag { display: flex; }
+.ag i { position: relative; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: normal 600 13px sans-serif; box-shadow: 0 0 0 2px #fff; transition: margin .2s, transform .2s; }
+.ag i + i { margin-left: -10px; }
+.ag:hover i + i { margin-left: 4px; }
+.ag i:hover { transform: translateY(-2px); z-index: 1; }
+.ag i::after { content: attr(data-name); position: absolute; bottom: 38px; padding: 3px 8px; border-radius: 6px; background: #18181B; font-size: 11px; font-weight: 400; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.ag i:hover::after { opacity: 1; }
+.ag .more { background: #F4F4F5; color: #52525B; }
+</style>
+
+<script>
+const people = [["江小月", "#FA8C16"], ["白露", "#1E3A5F"], ["听潮", "#0EA5E9"], ["秋水", "#8B5CF6"], ["渔火", "#22C55E"], ["清风", "#EC4899"]], SHOW = 4;
+document.querySelector(".ag").innerHTML = people.slice(0, SHOW).map(([n, c]) => `<i style="background:${c}" data-name="${n}">${n[0]}</i>`).join("")
+  + (people.length > SHOW ? `<i class="more" data-name="${people.slice(SHOW).map((p) => p[0]).join("、")}">+${people.length - SHOW}</i>` : "");
+</script>

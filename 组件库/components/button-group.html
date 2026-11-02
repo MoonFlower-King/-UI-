@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Button Group", "zh": "按钮组",
+  "lead": "几个相关按钮紧贴在一起，共用一个外框，看起来像一个整体。适合“左对齐 / 居中 / 右对齐”“上一页 / 下一页”这种成套的操作。",
+  "vague": ["按钮东一个西一个", "几个按钮想并排"],
+  "terms": ["Button Group", "Toggle Group", "Joined Buttons"],
+  "prompt": "文字对齐用 Button Group：三个 36px 高的按钮紧贴成一组，只有最外侧两个角是 8px 圆角，中间用 1px #E4E4E7 分隔；选中的那个白底变浅灰 #F4F4F5、图标变深色，其余图标 #A1A1AA；用 role=\"group\" 和 aria-pressed 标明状态。"
+}
+-->
+<div class="wrap">
+  <div class="group" role="group" aria-label="对齐方式">
+    <button aria-pressed="true" aria-label="左对齐"><svg viewBox="0 0 20 20"><path d="M3 5h14M3 9h9M3 13h14M3 17h9"/></svg></button>
+    <button aria-pressed="false" aria-label="居中"><svg viewBox="0 0 20 20"><path d="M3 5h14M5.5 9h9M3 13h14M5.5 17h9"/></svg></button>
+    <button aria-pressed="false" aria-label="右对齐"><svg viewBox="0 0 20 20"><path d="M3 5h14M8 9h9M3 13h14M8 17h9"/></svg></button>
+  </div>
+  <p class="doc">月出于东山之上，徘徊于斗牛之间。</p>
+</div>
+
+<style>
+.wrap { display: grid; gap: 16px; width: 260px; }
+.group { display: inline-flex; justify-self: start; border: 1px solid #E4E4E7; border-radius: 9px; overflow: hidden; background: #fff; }
+button { width: 40px; height: 36px; border: 0; background: #fff; color: #A1A1AA; cursor: pointer; display: grid; place-items: center; transition: background .15s, color .15s; }
+button + button { border-left: 1px solid #E4E4E7; }
+button:hover { color: #3F3F46; }
+button[aria-pressed="true"] { background: #F4F4F5; color: #18181B; }
+svg { width: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
+.doc { margin: 0; padding: 14px; background: #fff; border: 1px solid #F0F0F2; border-radius: 10px; font-size: 14px; color: #3F3F46; transition: text-align .2s; }
+</style>
+
+<script>
+const bs = [...document.querySelectorAll(".group button")], doc = document.querySelector(".doc");
+bs.forEach((b, i) => b.addEventListener("click", () => {
+  bs.forEach((x) => x.setAttribute("aria-pressed", x === b));
+  doc.style.textAlign = ["left", "center", "right"][i];
+}));
+</script>
