@@ -1,0 +1,15 @@
+<!--
+{
+  "en": "Extreme Long Shot", "zh": "大远景", "alias": ["ELS", "Extreme Wide Shot"],
+  "lead": "人小到只是画面里的一个点，环境才是主角。适合开场交代地点、表现孤独或天地之大。",
+  "prompt": "大远景，人物在画面中只占很小一部分，辽阔的江面、远山和夜空占据大部分画面",
+  "promptEn": "extreme long shot, the subject is a tiny figure in the frame, the vast river, distant mountains and night sky dominate the image",
+  "avoid": "大远景要有可看的环境层次（近、中、远），否则就是一张空荡的风景照。人物也别完全消失，留一个能被找到的小点，观众才有情绪的落脚处。",
+  "neg": ["人物过大、环境单调", "subject too large, monotonous environment"]
+}
+-->
+<style>
+.cut { display: none; }
+.scene { --fov: .58; --y: 6; animation: breathe 9s ease-in-out infinite alternate; }
+@keyframes breathe { from { --fov: .58; } to { --fov: .61; } }
+</style>

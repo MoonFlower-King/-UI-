@@ -1,0 +1,112 @@
+/* 提示词调配台（prompts.html）专用样式，配色、按钮、卡片沿用 style.css。 */
+
+/* 运镜舞台（prompts/_scene.html）的摄影机变量。登记成数字，关键帧里才能平滑过渡；
+   @property 在 Shadow DOM 里写不生效，所以统一登记在这里。 */
+@property --x { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --y { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --z { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --fov { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --pan { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --tilt { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --orb { syntax: "<number>"; inherits: true; initial-value: 0; }
+
+.beta { margin-left: 3px; padding: 1px 5px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-ink); font-size: 10px; font-weight: 600; vertical-align: 4px; }
+.top-end { margin-left: auto; }
+
+.mix { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 32px; max-width: 1480px; margin: 0 auto; padding: 40px 40px 96px 48px; }
+.mix-main { min-width: 0; }
+.mix-main .grid { align-items: start; }
+.mix-hero .lead em { font-style: normal; color: var(--accent-ink); font-weight: 600; }
+.mix-filter { margin: 0 -32px 8px -48px; padding: 12px 32px 12px 48px; }
+.kind { margin-top: 40px; }
+.kind-head { margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.kind-head .h2 { font-size: 28px; }
+.kind-head .h2 small { margin-left: 10px; font: 500 14px var(--sans); color: var(--ink-3); letter-spacing: .5px; }
+.kind-head p { margin: 6px 0 0; color: var(--ink-2); font-size: 14px; }
+.kind .group { margin-top: 32px; }
+.group-head .rule { flex: none; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--line-2); color: var(--ink-3); font-size: 11px; }
+
+/* 词卡 */
+.mix-card { contain-intrinsic-size: auto 330px; }
+.mix-card:hover { transform: none; }
+.mix-card .thumb { --vw: 560; cursor: pointer; }
+.mix-card .poster { contain: strict; }
+.mix-card .tick { position: absolute; left: 10px; top: 10px; z-index: 2; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 800; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); transform: scale(0); transition: transform .2s cubic-bezier(.34, 1.56, .64, 1); }
+.mix-card.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); }
+.mix-card.on .tick { transform: scale(1); }
+.mix-body { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px 12px; }
+.mix-title { display: flex; align-items: center; gap: 8px; }
+.mix-title h3 { flex: 1; min-width: 0; margin: 0; font: 650 15px/1.4 var(--sans); }
+.mix-title h3 small { margin-left: 6px; font-weight: 500; font-size: 12px; color: var(--ink-3); }
+.pick-btn { flex: none; height: 28px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line-2); background: var(--surface); font-size: 12.5px; font-weight: 600; transition: background .15s, border-color .15s; }
+.pick-btn:hover { border-color: var(--accent); }
+.pick-btn[aria-pressed="true"] { background: var(--accent); border-color: transparent; color: var(--on-accent); }
+.mix-lead { margin: 0; color: var(--ink-2); font-size: 13px; line-height: 1.65; }
+.mix-card details { border-top: 1px dashed var(--line); padding-top: 6px; font-size: 13px; }
+.mix-card summary { cursor: pointer; color: var(--accent-ink); font-weight: 600; font-size: 12.5px; list-style: none; }
+.mix-card summary::-webkit-details-marker { display: none; }
+.mix-card summary::after { content: " ▾"; }
+.mix-card details[open] summary::after { content: " ▴"; }
+.mix-card dl { margin: 8px 0 10px; display: grid; gap: 2px; }
+.mix-card dt { margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--ink-3); letter-spacing: .5px; }
+.mix-card dt.warn { color: #C2410C; }
+:root[data-theme="dark"] .mix-card dt.warn { color: #FB923C; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mix-card dt.warn { color: #FB923C; } }
+.mix-card dd { margin: 0; color: var(--ink-2); line-height: 1.65; }
+.btn.sm { height: 30px; padding: 0 12px; font-size: 12.5px; }
+
+/* 右侧：拼好的提示词 */
+.composer { position: sticky; top: calc(var(--top-h) + 24px); align-self: start; max-height: calc(100vh - var(--top-h) - 48px); overflow-y: auto;
+  display: grid; gap: 14px; padding: 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); scrollbar-width: thin; }
+.comp-head { display: flex; align-items: center; gap: 10px; }
+.comp-head h2 { flex: 1; margin: 0; font: 700 19px var(--serif); }
+.comp-close, .mix-bar { display: none; }
+.comp-empty { margin: 0; color: var(--ink-2); font-size: 14px; }
+.presets { display: grid; gap: 8px; }
+.presets > span { font-size: 12px; color: var(--ink-3); }
+.preset { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); text-align: left; transition: border-color .15s; }
+.preset:hover { border-color: var(--accent); }
+.preset b { font: 650 14px var(--serif); }
+.preset small { color: var(--ink-3); font-size: 12px; }
+.comp-subject { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-3); }
+.comp-subject input, .comp-out textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font: 14px/1.6 var(--sans); }
+.comp-subject input { height: 38px; padding: 0 10px; }
+.comp-subject input:focus, .comp-out textarea:focus { outline: none; border-color: var(--accent); }
+.comp-picks { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.comp-picks li { display: inline-flex; align-items: center; gap: 2px; height: 30px; padding: 0 4px 0 10px; border-radius: 99px; background: var(--accent-soft); font-size: 13px; font-weight: 600; }
+.comp-picks small { margin-left: 4px; font-weight: 500; color: var(--ink-3); font-size: 11px; }
+.comp-picks button { display: grid; place-items: center; width: 22px; height: 22px; border: 0; border-radius: 50%; background: none; color: var(--ink-3); }
+.comp-picks button:hover { background: var(--surface); color: var(--ink); }
+.comp-picks svg { width: 14px; height: 14px; }
+.comp-out { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--ink-3); }
+.comp-out textarea { padding: 10px 12px; resize: vertical; }
+.comp-out.neg textarea { font-size: 13px; color: var(--ink-2); }
+.comp-actions { display: flex; gap: 8px; }
+.comp-actions .primary { flex: 1; }
+.composer .hint { margin: 0; color: var(--ink-3); font-size: 12px; line-height: 1.6; }
+
+@media (max-width: 1180px) {
+  .mix { grid-template-columns: minmax(0, 1fr) 330px; padding: 32px 24px 96px 32px; gap: 24px; }
+  .mix-filter { margin: 0 -24px 8px -32px; padding: 12px 24px 12px 32px; }
+}
+@media (max-width: 900px) {
+  .mix { grid-template-columns: minmax(0, 1fr); padding: 24px 16px calc(100px + env(safe-area-inset-bottom)); }
+  .mix-filter { margin: 0 -16px 8px; padding: 10px 16px; }
+  .top-nav { display: flex !important; }
+  .top-nav a { padding: 6px 8px; font-size: 13px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .composer { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 60; max-height: 86vh; border-radius: 20px 20px 0 0; border-width: 1px 0 0;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateY(105%); transition: transform .3s cubic-bezier(.2, .8, .2, 1); box-shadow: var(--shadow-lg); }
+  .composer.open { transform: none; }
+  .comp-close { display: inline-grid; }
+  .mix-bar:not([hidden]) { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px;
+    border: 0; border-radius: 16px; background: var(--night); color: #F4EFE6; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-lg); }
+  .mix-bar b { display: inline-grid; place-items: center; min-width: 22px; height: 22px; border-radius: 99px; background: var(--accent); color: var(--on-accent); font-size: 12px; }
+  .toast { bottom: calc(80px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 720px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .brand-name b { display: none; }
+}
+@media (max-width: 900px) { body:has(.composer.open) .toast { top: calc(var(--top-h) + 12px); bottom: auto; } }

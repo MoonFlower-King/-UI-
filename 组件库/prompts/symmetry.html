@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Symmetrical Composition", "zh": "中心对称构图", "alias": ["对称构图", "Symmetry"],
+  "lead": "画面沿中轴线左右（或上下）镜像，主体放在正中。庄重、安静、有仪式感，拍建筑、拱门、倒影特别好看。",
+  "prompt": "严格的中心对称构图，一座圆拱石桥位于画面正中，桥与水中倒影合成一个完整的圆，月亮恰好在圆心，左右两侧景物镜像对称",
+  "promptEn": "strictly symmetrical composition, a round stone arch bridge in the exact center, the bridge and its reflection forming a perfect circle with the moon at its center, mirrored elements on both sides",
+  "avoid": "对称最怕「差一点」：歪了两度、偏了一点，看起来比随便拍还难受。要么严格对称，要么干脆打破。写提示词时加上 perfectly centered、正面平视，减少透视歪斜。",
+  "neg": ["画面倾斜、透视歪斜", "tilted horizon, skewed perspective"]
+}
+-->
+<div class="sy">
+  <div class="bg"></div>
+  <div class="comp"><svg width="560" height="350" viewBox="0 0 560 350">
+    <circle cx="280" cy="175" r="16" fill="#FFF1D2"/><circle cx="280" cy="175" r="40" fill="#FFF1D2" opacity=".12"/>
+    <g fill="#1E2A30"><path d="M60 175 L60 150 L170 150 C176 104 220 72 280 72 C340 72 384 104 390 150 L500 150 L500 175 L430 175 C424 116 360 92 280 92 C200 92 136 116 130 175 Z"/>
+      <rect x="60" y="140" width="440" height="10"/><g><rect x="70" y="128" width="3" height="12"/><rect x="100" y="128" width="3" height="12"/><rect x="130" y="128" width="3" height="12"/><rect x="427" y="128" width="3" height="12"/><rect x="457" y="128" width="3" height="12"/><rect x="487" y="128" width="3" height="12"/></g>
+      <path d="M20 175 C20 150 34 132 50 128 C66 132 78 150 78 175Z"/><path d="M482 175 C482 150 494 132 510 128 C526 132 540 150 540 175Z"/></g>
+    <g fill="#1E2A30" opacity=".45" transform="translate(0 350) scale(1 -1)"><path d="M60 175 L60 150 L170 150 C176 104 220 72 280 72 C340 72 384 104 390 150 L500 150 L500 175 L430 175 C424 116 360 92 280 92 C200 92 136 116 130 175 Z"/>
+      <rect x="60" y="140" width="440" height="10"/><path d="M20 175 C20 150 34 132 50 128 C66 132 78 150 78 175Z"/><path d="M482 175 C482 150 494 132 510 128 C526 132 540 150 540 175Z"/></g>
+    <circle cx="280" cy="175" r="8" fill="#FFF1D2" opacity=".25" transform="translate(0 0)"/>
+  </svg></div>
+  <i class="axis"></i>
+</div>
+<style>
+.sy { position: absolute; inset: 0; overflow: hidden; }
+.bg { position: absolute; inset: 0; background: linear-gradient(#5F7A80 0%, #A9B8B0 49.8%, #8EA29B 50.2%, #4E666C 100%); }
+.comp { position: absolute; inset: 0; transform-origin: 50% 50%; animation: sy 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+.comp svg { display: block; }
+@keyframes sy { 0%, 18% { transform: translate(-70px, 14px) rotate(-5deg) scale(1.12); } 30%, 88% { transform: none; } 100% { transform: translate(-70px, 14px) rotate(-5deg) scale(1.12); } }
+.axis { position: absolute; left: 279.5px; top: 10px; bottom: 10px; width: 1px; background: repeating-linear-gradient(#FA8C16 0 6px, transparent 6px 11px); transform-origin: 50% 50%; animation: axis 7s ease-in-out infinite; }
+@keyframes axis { 0%, 26% { transform: scaleY(0); } 40%, 84% { transform: scaleY(1); } 94%, 100% { transform: scaleY(0); } }
+</style>

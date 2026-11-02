@@ -1,0 +1,13 @@
+<!--
+  构图词条共用的舞台：只放左下角的「随手一拍 → 加上这个词」标签。
+  词条自己画画面，动画用 7 秒一循环：0%–18% 是「随手一拍」，30%–88% 是「加上这个词」，最后回到开头。
+-->
+<div class="tag"><span class="a">随手一拍</span><span class="b">加上这个词</span></div>
+<style>
+.tag { position: absolute; left: 14px; bottom: 14px; z-index: 9; font: 600 14px/1 -apple-system, "PingFang SC", sans-serif; }
+.tag span { position: absolute; left: 0; bottom: 0; white-space: nowrap; padding: 6px 10px; border-radius: 99px; background: rgba(18, 23, 34, .72); color: #F4EFE6; }
+.tag .a { animation: tag-a 7s ease-in-out infinite; }
+.tag .b { background: #FA8C16; color: #231405; animation: tag-b 7s ease-in-out infinite; }
+@keyframes tag-a { 0%, 18% { opacity: 1; } 30%, 88% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes tag-b { 0%, 18% { opacity: 0; } 30%, 88% { opacity: 1; } 100% { opacity: 0; } }
+</style>

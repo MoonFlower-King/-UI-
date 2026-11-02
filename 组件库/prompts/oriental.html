@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Oriental Elegance", "zh": "东方雅致", "alias": ["新中式", "中式极简"],
+  "lead": "宣纸色底、宋体类衬线字、大量留白，少量朱砂红或旧金色点缀，可以加竖排标题和印章。安静、文气，适合茶、书、文旅、手作品牌。江月 UI 本身就是这个方向。",
+  "prompt": "东方雅致风格：宣纸般的暖白背景，墨色文字，宋体类衬线标题，标题可竖排，大量留白，只用朱砂红（印章、小标记）和旧金色两种点缀，细线分隔，按钮为细描边直角，插图为水墨晕染的远山与月",
+  "promptEn": "refined Oriental style: warm rice-paper background, ink-colored text, Song-style serif headlines that may be set vertically, generous white space, accents limited to cinnabar red (a seal stamp, small marks) and antique gold, hairline dividers, thin outlined square buttons, ink-wash mountains and moon as illustration",
+  "avoid": "最容易做成「中国风模板」：满屏祥云、龙纹、书法字体、大红大金。高级的东方感靠留白和节制，纹样最多点到为止。书法字体只能用在一两个字上，正文还是要清楚的宋体或黑体。",
+  "neg": ["祥云龙纹、大红大金、满屏书法字", "auspicious clouds, dragons, heavy red and gold, calligraphy everywhere"]
+}
+-->
+<style>
+.site { background: #F3EEE3; color: #2A2622; font-family: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif; }
+.nav { justify-content: space-between; padding: 18px 30px; font-size: 12px; letter-spacing: 2px; }
+.logo { display: flex; align-items: center; gap: 10px; font-size: 16px; letter-spacing: 4px; }
+.logo i { width: 18px; height: 18px; border-radius: 3px; background: #B4372A; box-shadow: inset 0 0 0 2px #B4372A, inset 0 0 0 3.5px #F3EEE3; }
+.nav nav { gap: 22px; color: #6E655A; } .cta { padding: 5px 12px; border: 1px solid #2A2622; }
+.hero { position: relative; display: grid; grid-template-columns: 1fr 180px; padding: 18px 30px 34px; min-height: 262px; }
+.copy { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto 1fr auto; column-gap: 26px; }
+.hero h1 { grid-row: 1 / 4; writing-mode: vertical-rl; font-size: 32px; line-height: 1.5; letter-spacing: 8px; font-weight: 700; }
+.kicker { font-size: 11px; color: #B08A4A; letter-spacing: 3px; padding-top: 6px; }
+.sub { align-self: end; max-width: 170px; font-size: 12px; line-height: 2; color: #5A5249; }
+.acts { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 12px; letter-spacing: 2px; }
+.b1 { padding: 7px 16px; background: #2A2622; color: #F3EEE3; } .b2 { color: #B4372A; }
+.art { position: relative; } .art .m { position: absolute; right: 18px; top: 16px; width: 92px; height: 92px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #FBF3DF, #EADBB8); }
+.art .h { position: absolute; left: -30px; right: -30px; bottom: 0; height: 120px; background: linear-gradient(transparent, rgba(42, 38, 34, .08)),
+  radial-gradient(60% 70% at 30% 100%, rgba(42, 38, 34, .5), transparent 70%), radial-gradient(50% 60% at 78% 100%, rgba(42, 38, 34, .3), transparent 70%); filter: blur(1.5px); }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 30px; border-top: 1px solid #CDBFA8; }
+.feats article { padding: 18px 16px 20px 0; } .feats article + article { padding-left: 16px; border-left: 1px solid #E0D5C2; }
+.feats b { font-size: 11px; color: #B4372A; letter-spacing: 2px; } .feats h3 { margin-top: 4px; font-size: 17px; letter-spacing: 4px; font-weight: 700; } .feats p { margin-top: 4px; font-size: 11px; line-height: 1.8; color: #6E655A; }
+.stats { justify-content: space-around; margin: 0 30px; padding: 20px 0; border-top: 1px solid #CDBFA8; border-bottom: 1px solid #CDBFA8; text-align: center; }
+.stats b { display: block; font-size: 24px; color: #B08A4A; font-weight: 400; } .stats span { font-size: 10px; letter-spacing: 3px; color: #6E655A; }
+.ft { padding: 18px 30px 24px; font-size: 10px; letter-spacing: 3px; color: #8E8577; text-align: center; }
+</style>

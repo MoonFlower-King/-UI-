@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Dark Tech", "zh": "暗色技术风", "alias": ["开发者风", "Developer Aesthetic"],
+  "lead": "深色底、等宽字体做标签、1 像素细线、低饱和的微光点缀，像精心设计过的开发者工具。冷静、专业、可信，适合技术产品、数据平台。",
+  "prompt": "暗色技术风：接近黑色的深灰背景，正文用无衬线字体，标签、编号和数字用等宽字体，1px 细线分隔和描边，背景有极淡的网格，只用一种低饱和的薄荷绿作微光强调，状态面板用细进度条",
+  "promptEn": "dark tech aesthetic: near-black charcoal background, sans-serif body text with monospace for labels, indices and numbers, 1px hairline borders and dividers, a very faint grid in the background, a single low-saturation mint green as a subtle glow accent, status panel with thin progress bars",
+  "avoid": "暗色不等于「赛博朋克」：霓虹紫蓝渐变、满屏发光、故障特效是最典型的 AI 味。发光只给一两个地方。另外深色背景上的灰字很容易对比度不够，正文至少要 #C8CCD4 这个亮度。",
+  "neg": ["霓虹紫蓝渐变、过度发光", "neon purple-blue gradients, excessive glow"]
+}
+-->
+<style>
+.site { background: #0B0D10; color: #D4D8DF; font-family: -apple-system, "Inter", "PingFang SC", sans-serif;
+  background-image: linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px); background-size: 28px 28px; }
+.site .pg { --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav { justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid #1F242C; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font: 600 13px var(--mono); } .logo i { width: 8px; height: 8px; border-radius: 50%; background: #7FD1AE; box-shadow: 0 0 10px #7FD1AE; }
+.nav nav { gap: 18px; color: #8A919C; font-family: var(--mono); font-size: 11px; } .cta { padding: 5px 10px; border: 1px solid #2C333D; border-radius: 6px; font: 11px var(--mono); }
+.hero { display: grid; grid-template-columns: 1fr 190px; gap: 18px; padding: 26px 24px; }
+.kicker { font: 11px var(--mono); color: #7FD1AE; } .kicker::before { content: "// "; color: #4D5562; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 650; letter-spacing: -.5px; color: #F1F3F6; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; color: #A3AAB5; }
+.acts { gap: 10px; margin-top: 16px; font: 11.5px var(--mono); } .b1 { padding: 7px 12px; border-radius: 6px; background: #E6EAF0; color: #0B0D10; } .b2 { color: #A3AAB5; }
+.art { position: relative; border: 1px solid #1F242C; border-radius: 10px; background: #0F1216; padding: 12px; }
+.art::before { content: "seats.tonight"; display: block; font: 10px var(--mono); color: #6B7380; }
+.art::after { content: "08 / 12"; display: block; margin-top: 8px; font: 600 26px var(--mono); color: #F1F3F6; }
+.art .m { margin-top: 12px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #7FD1AE 66%, #232830 0); box-shadow: 0 0 8px rgba(127, 209, 174, .35); }
+.art .h { margin-top: 8px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #5D6B7D 40%, #232830 0); }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 24px; border: 1px solid #1F242C; border-radius: 10px; }
+.feats article { padding: 14px; } .feats article + article { border-left: 1px solid #1F242C; }
+.feats b { font: 10px var(--mono); color: #6B7380; } .feats h3 { margin-top: 4px; font-size: 14px; font-weight: 600; color: #F1F3F6; } .feats p { font-size: 11px; color: #8A919C; }
+.stats { justify-content: space-between; padding: 24px; } .stats b { display: block; font: 600 24px var(--mono); color: #F1F3F6; } .stats span { font: 10px var(--mono); color: #6B7380; }
+.ft { padding: 14px 24px 20px; border-top: 1px solid #1F242C; font: 10px var(--mono); color: #4D5562; }
+</style>

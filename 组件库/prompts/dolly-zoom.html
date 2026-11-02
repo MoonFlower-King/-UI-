@@ -1,0 +1,16 @@
+<!--
+{
+  "en": "Dolly Zoom", "zh": "滑动变焦", "alias": ["希区柯克变焦", "眩晕镜头", "Vertigo Effect"],
+  "lead": "摄影机往后退，同时镜头往前变焦，人物大小不变，背景却像被吸过来一样放大。专门用来表现震惊、眩晕、世界突然变形的那一秒。",
+  "prompt": "滑动变焦效果：摄影机向后移动的同时镜头拉近焦距，人物在画面中的大小保持不变，背景明显向前压近、透视发生扭曲",
+  "promptEn": "dolly zoom (vertigo effect): the camera dollies back while zooming in, the subject stays the same size in frame while the background visibly stretches toward the camera",
+  "avoid": "这是重口味镜头，一部片子用一两次就够，放在真正的情绪转折上。只写 vertigo 或「希区柯克」AI 未必认识，要把「人物大小不变、背景放大」这个结果写出来。",
+  "neg": ["人物大小跟着变化", "subject size changes"],
+  "tip": "这个镜头对视频模型来说偏难，可能要多生成几次挑一条，时长控制在 3 到 4 秒左右。"
+}
+-->
+<style>
+.scene { animation: dolly-zoom 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+/* 人物大小 = --fov × 8 ÷ (8 − --z)，两者按同样节奏变化，人物就不变 */
+@keyframes dolly-zoom { 0%, 10% { --z: 2; --fov: .75; } 80%, 100% { --z: -6; --fov: 1.75; } }
+</style>

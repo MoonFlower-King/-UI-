@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Swiss Style", "zh": "瑞士国际主义", "alias": ["国际主义平面风格", "International Typographic Style"],
+  "lead": "严格的网格、粗黑的无衬线大字、大片留白，只用黑白加一个强调色。理性、清楚、信息一眼就能读完。适合品牌、作品集、展览。",
+  "prompt": "瑞士国际主义风格：严格的 12 栏网格，左对齐，粗体无衬线超大标题，黑白为主，只用一种红色作强调，用细线分隔区块，大量留白，不使用阴影和圆角",
+  "promptEn": "Swiss International Style: strict 12-column grid, flush-left alignment, oversized bold sans-serif headlines, black and white with a single red accent, thin rules to divide sections, generous white space, no shadows or rounded corners",
+  "avoid": "瑞士风的力量来自克制。一加渐变、圆角、阴影、插画就全毁了；强调色也只能有一个。中文标题要选笔画干净的黑体，字距略收紧。",
+  "neg": ["渐变、阴影、圆角卡片", "gradients, drop shadows, rounded cards"]
+}
+-->
+<style>
+.site { background: #F4F3EF; color: #111; font-family: "Helvetica Neue", Arial, "PingFang SC", sans-serif; }
+.nav { justify-content: space-between; padding: 16px 28px 12px; border-bottom: 2px solid #111; font-size: 12px; font-weight: 600; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; letter-spacing: -.2px; } .logo i { width: 12px; height: 12px; border-radius: 50%; background: #E3352A; }
+.nav nav { gap: 20px; } .cta { border-bottom: 2px solid #E3352A; }
+.hero { display: grid; grid-template-columns: 1fr 150px; gap: 20px; padding: 26px 28px 30px; }
+.kicker { font-size: 11px; font-weight: 700; color: #E3352A; letter-spacing: .5px; }
+.hero h1 { margin-top: 10px; font-size: 46px; line-height: 1.02; font-weight: 800; letter-spacing: -2px; }
+.sub { margin-top: 16px; max-width: 270px; font-size: 12px; line-height: 1.6; color: #333; }
+.acts { gap: 16px; margin-top: 18px; font-size: 12px; font-weight: 700; } .b1 { padding: 8px 14px; background: #111; color: #fff; }
+.art { position: relative; border-left: 1px solid #111; } .art .m { position: absolute; left: 22px; top: 20px; width: 104px; height: 104px; border-radius: 50%; background: #E3352A; }
+.art .h { position: absolute; left: 22px; right: 0; bottom: 0; height: 52px; background: #111; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #111; border-bottom: 1px solid #111; margin: 0 28px; }
+.feats article { padding: 14px 14px 18px 0; } .feats article + article { padding-left: 14px; border-left: 1px solid #111; }
+.feats b { font-size: 30px; font-weight: 800; letter-spacing: -1px; } .feats h3 { margin-top: 4px; font-size: 14px; font-weight: 700; } .feats p { font-size: 11px; color: #444; }
+.stats { justify-content: space-between; padding: 26px 28px; } .stats b { display: block; font-size: 38px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; } .stats span { font-size: 11px; color: #555; }
+.ft { padding: 14px 28px 20px; border-top: 2px solid #111; font-size: 11px; font-weight: 600; }
+</style>

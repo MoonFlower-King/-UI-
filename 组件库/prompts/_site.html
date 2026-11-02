@@ -1,0 +1,30 @@
+<!--
+  网站风格词条共用的舞台：一个虚构的小书房官网（560 宽），内容和结构固定，词条只写 CSS 换风格，方便公平对比。
+  页面会慢慢自动滚到底再回来，让你看到整页。词条可用的结构：
+  .pg 整页 > .nav（.logo / nav / .cta）、.hero（.copy > .kicker h1 .sub .acts > .b1 .b2；.art 插图位 > .m .h）、
+  .feats > article × 3（b 编号 h3 p）、.stats > div × 3（b 数字 span 说明）、.ft 页脚
+-->
+<div class="site"><div class="pg">
+  <header class="nav"><b class="logo"><i></i>山月书房</b><nav><a>书目</a><a>夜读</a><a>关于</a></nav><a class="cta">预约座位</a></header>
+  <section class="hero">
+    <div class="copy"><p class="kicker">2026 秋 · 第 12 期书单</p><h1>慢读一本书，<br>等一轮月亮。</h1><p class="sub">城市边上的小书房，每晚只开放十二个座位。手机请留在门口，留一点时间给自己。</p><div class="acts"><a class="b1">预约今晚</a><a class="b2">看看书单 →</a></div></div>
+    <div class="art"><i class="m"></i><i class="h"></i></div>
+  </section>
+  <section class="feats">
+    <article><b>01</b><h3>夜读</h3><p>七点以后，只留一盏灯。</p></article>
+    <article><b>02</b><h3>借阅</h3><p>每人每月可借三本书。</p></article>
+    <article><b>03</b><h3>茶席</h3><p>一壶白茶，续水不限。</p></article>
+  </section>
+  <section class="stats"><div><b>12</b><span>夜间座位</span></div><div><b>3600</b><span>册藏书</span></div><div><b>22:30</b><span>闭馆时间</span></div></section>
+  <footer class="ft">山月书房 · 江边路 18 号 · 本页为风格示例</footer>
+</div></div>
+<style>
+.site { position: absolute; inset: 0; overflow: hidden; }
+.pg { animation: site-scroll 14s ease-in-out infinite; }
+@keyframes site-scroll { 0%, 14% { transform: none; } 50%, 64% { transform: translateY(calc(-100% + 350px)); } 100% { transform: none; } }
+/* 基础重置用 :where() 包起来，优先级为 0，词条里随便写都能覆盖 */
+:where(.site) :where(h1, h3, p) { margin: 0; font-weight: inherit; }
+:where(.site) a { color: inherit; text-decoration: none; cursor: default; }
+:where(.site) i { display: block; font-style: normal; }
+:where(.nav, .nav nav, .acts, .stats) { display: flex; align-items: center; }
+</style>

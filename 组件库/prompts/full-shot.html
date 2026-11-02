@@ -1,0 +1,15 @@
+<!--
+{
+  "en": "Full Shot", "zh": "全景", "alias": ["FS", "全身镜头"],
+  "lead": "人从头到脚完整入画，还带一些周围环境。既看得清动作和姿态，也知道人在哪。",
+  "prompt": "全景，人物全身完整入画，头顶和脚下留有少量空间，能看到人物所处的江边环境",
+  "promptEn": "full shot, the subject's whole body in frame with a little headroom and space below the feet, the riverside setting visible around them",
+  "avoid": "全景最常见的错误是切到脚或头顶贴边。提示词里写上「全身完整入画、头顶留空间」，AI 就不容易裁掉。",
+  "neg": ["裁掉脚或头顶", "cropped feet or head"]
+}
+-->
+<style>
+.cut { display: none; }
+.scene { --fov: 1.5; --y: -46; animation: breathe 9s ease-in-out infinite alternate; }
+@keyframes breathe { from { --fov: 1.5; } to { --fov: 1.55; } }
+</style>
