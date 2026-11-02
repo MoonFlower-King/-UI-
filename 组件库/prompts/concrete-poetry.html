@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Concrete Poetry",
+  "zh": "具象诗排版",
+  "alias": [
+    "文字成图",
+    "字的造型"
+  ],
+  "lead": "用文字本身排成图形：一首诗排成雨滴、一排字堆成山、一个字重复成一片波纹。安静、聪明、耐看，适合诗歌出版、文学奖、书店活动和语言类产品。",
+  "prompt": "具象诗排版风格：纸白背景，纯黑或墨蓝文字，主视觉不用图片而是由重复的单字或短句排成的形状（山、雨、波纹、圆），等宽或衬线字，大量留白，正文排版极其克制，只用一个低饱和点缀色",
+  "promptEn": "concrete poetry style: paper white background, pure black or ink blue text, a hero made not of images but of repeated single characters or short phrases arranged into a shape (mountain, rain, ripples, a circle), monospaced or serif type, vast white space, extremely restrained body typography, only one muted accent color",
+  "avoid": "文字图形要一眼看出是什么形状，又能凑近读出字；图形只做一个，其他部分越朴素越好。",
+  "neg": [
+    "形状看不出来、到处都是文字图形",
+    "shape unrecognizable, word-shapes everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E2A44; --a2: #A0522D; --on: #FAF8F3; background: #FAF8F3; color: #1E2A44; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta { background: none; color: #1E2A44; padding: 0; border-bottom: 1px solid; } .hero h1 { font-weight: 400; letter-spacing: 2px; } .b1 { border-radius: 0; }
+.art { font: 11px/1.15 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #1E2A44; }
+.art::before { content: "月\A月 月\A月 山 月\A月 山 山 月\A山 山 山 山 山\A山 山 山 山 山 山\A山 山 山 山 山 山 山"; white-space: pre; position: absolute; left: 0; right: 0; top: 8px; text-align: center; letter-spacing: 1px; line-height: 1.45; }
+.art::after { content: "水 水 水 水 水 水 水 水 水"; position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; white-space: nowrap; color: #A0522D; opacity: .7; letter-spacing: 1px; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #A0522D; } .feats h3 { font-weight: 500; letter-spacing: 2px; }
+.stats { border-top: 1px solid rgba(30,42,68,.25); margin: 0 26px; } .stats b { font-weight: 400; }
+</style>

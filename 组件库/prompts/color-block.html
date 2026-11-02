@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Color Blocking",
+  "zh": "色块拼接",
+  "alias": [
+    "撞色块",
+    "色块布局"
+  ],
+  "lead": "页面被几块大面积纯色切开，每块一种颜色、一种内容，像一面拼色墙。鲜明、有序、现代感强，适合时尚品牌、设计周、活动官网和儿童产品。",
+  "prompt": "色块拼接风格：页面由三四块大面积纯色矩形拼成（如深绿、珊瑚、浅粉、奶白），每块承载一个内容分区，色块之间无缝相接，无阴影无描边，粗无衬线标题，文字颜色随色块切换保证对比",
+  "promptEn": "color blocking style: the page built from three or four large solid rectangles (e.g. deep green, coral, light pink, cream), each block carrying one content section, blocks meeting edge to edge, no shadows or outlines, bold sans-serif headings, text color switching per block to keep contrast",
+  "avoid": "色块要大、要少，切太碎就成了马赛克；每块上的字色要单独检查对比度。",
+  "neg": [
+    "色块切太碎、字色对比不足",
+    "blocks too fragmented, low text contrast"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F4E9DA; --a2: #F7B9A8; --on: #1F4D3E; background: #1F4D3E; color: #F4E9DA; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; font-weight: 800; } .hero { padding: 0; gap: 0; } .copy { padding: 26px; } .hero h1 { font-weight: 900; letter-spacing: -.5px; }
+.art { background: #E8644A; min-height: 210px; }
+.art .m { position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: #F7B9A8; }
+.art .h { position: absolute; left: 30px; top: 30px; width: 60px; height: 60px; border-radius: 50%; background: #F4E9DA; }
+.feats { background: #F4E9DA; color: #1F4D3E; padding: 20px 26px; } .feats b { color: #E8644A; font-weight: 800; } .feats h3 { font-weight: 800; }
+.stats { background: #F7B9A8; color: #1F4D3E; } .stats b { font-weight: 900; } .ft { background: #1F4D3E; }
+</style>

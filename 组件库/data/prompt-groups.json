@@ -67,7 +67,10 @@
         "zen-garden",
         "huizhou",
         "dancheong",
-        "lingnan"
+        "lingnan",
+        "shadow-puppet",
+        "nianhua",
+        "yunjin"
       ]
     },
     {
@@ -95,7 +98,10 @@
         "mudcloth",
         "british-heritage",
         "copacabana",
-        "surf"
+        "surf",
+        "delft",
+        "andean",
+        "wax-print"
       ]
     },
     {
@@ -138,7 +144,10 @@
         "pointillism",
         "atomic-age",
         "space-age",
-        "polish-poster"
+        "polish-poster",
+        "rococo",
+        "swiss-punk",
+        "concrete-poetry"
       ]
     },
     {
@@ -179,7 +188,11 @@
         "visible-grid",
         "long-shadow",
         "micro-type",
-        "friendly-illustration"
+        "friendly-illustration",
+        "card-stack",
+        "hairline",
+        "big-number",
+        "color-block"
       ]
     },
     {
@@ -215,7 +228,10 @@
         "embossed",
         "rattan",
         "red-brick",
-        "jade"
+        "jade",
+        "linen",
+        "kraft",
+        "copper"
       ]
     },
     {
@@ -247,7 +263,10 @@
         "crayon",
         "calligraphy",
         "rubber-stamp",
-        "origami"
+        "origami",
+        "cross-stitch",
+        "screen-print",
+        "knit"
       ]
     },
     {
@@ -282,7 +301,11 @@
         "circus",
         "vintage-ad",
         "retro-airline",
-        "matchbox"
+        "matchbox",
+        "telegram",
+        "dot-matrix",
+        "sixties-mod",
+        "film-noir"
       ]
     },
     {
@@ -318,7 +341,11 @@
         "passport",
         "vinyl",
         "sticky-wall",
-        "trading-card"
+        "trading-card",
+        "museum-label",
+        "seed-packet",
+        "film-strip",
+        "postcard"
       ]
     },
     {
@@ -358,7 +385,10 @@
         "esports",
         "wedding",
         "eco-green",
-        "craft-beer"
+        "craft-beer",
+        "bakery",
+        "florist",
+        "law-firm"
       ]
     },
     {

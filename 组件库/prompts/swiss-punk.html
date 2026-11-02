@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Swiss Punk",
+  "zh": "瑞士朋克",
+  "alias": [
+    "新浪潮排版",
+    "叛逆网格"
+  ],
+  "lead": "把严谨的瑞士网格掰弯：字层层叠压、斜着走、大小剧烈跳变，但底下还是有秩序。叛逆、聪明、充满能量，适合设计学院、独立音乐、艺术节和实验出版。",
+  "prompt": "瑞士朋克风格：米白背景，黑色加一个高饱和色（荧光以外的正红或钴蓝），超大无衬线字倾斜、叠压、局部被色块切断，细线网格若隐若现，字号对比极大，小字仍严格对齐，色块与线条构成动势",
+  "promptEn": "Swiss punk style: off-white background, black plus one saturated color (a true red or cobalt, not neon), oversized sans-serif type tilted, overlapped and cut by color blocks, a faint thin-line grid underneath, extreme size contrast, small text still strictly aligned, blocks and lines creating momentum",
+  "avoid": "乱只给大字和色块，小字和按钮必须守规矩，否则就没法用；叠压的字要保证主标题仍读得出。",
+  "neg": [
+    "小字也乱排、主标题叠到读不出",
+    "small text scattered too, overlapped headline unreadable"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #E1251B; --on: #F4F1EA; background: #F4F1EA; color: #111; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; overflow: hidden; }
+.cta { border-radius: 0; } .hero { grid-template-columns: 1fr 150px; }
+.kicker { color: #E1251B; font-weight: 800; letter-spacing: 3px; }
+.hero h1 { font-size: 44px; line-height: .95; font-weight: 900; letter-spacing: -2px; transform: rotate(-4deg); transform-origin: left; margin: 14px 0 6px; mix-blend-mode: multiply; }
+.b1 { border-radius: 0; } .b2 { color: #E1251B; }
+.art .m { position: absolute; left: -40px; top: 0; width: 120px; height: 150px; background: #E1251B; transform: skewX(-12deg); mix-blend-mode: multiply; }
+.art .h { position: absolute; left: 30px; top: 40px; width: 120px; height: 2px; background: #111; transform: rotate(-30deg); box-shadow: 0 12px 0 #111, 0 24px 0 #111; }
+.art::after { content: "26"; position: absolute; right: 0; bottom: -10px; font: 900 90px/1 -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: -6px; -webkit-text-stroke: 1.5px #111; color: transparent; }
+.feats { border-top: 2px solid #111; padding-top: 12px; } .feats b { color: #E1251B; font-weight: 900; font-size: 18px; } .feats h3 { font-weight: 900; text-transform: uppercase; }
+.stats { background: #111; color: #F4F1EA; } .stats b { font-size: 30px; font-weight: 900; letter-spacing: -1px; } .stats div:nth-child(2) b { color: #E1251B; }
+</style>

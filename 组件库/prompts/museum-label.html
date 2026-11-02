@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Museum Label",
+  "zh": "博物馆展签",
+  "alias": [
+    "展品说明",
+    "展签排版"
+  ],
+  "lead": "展柜旁边那块小小的展签：编号、名称、年代、材质，一段克制的说明，周围是大片墙面。安静、权威、让内容自己说话，适合博物馆、画廊、藏品电商和品牌历史页。",
+  "prompt": "博物馆展签风格：大面积浅暖灰墙面背景，内容以小卡片形式出现（白卡、细边或无边），卡内严格层级：编号、粗体名称、年代材质等宽小字、一段说明，主视觉为灯光下的单件展品，衬线与无衬线搭配，几乎无装饰",
+  "promptEn": "museum label style: large light warm gray wall background, content appearing as small cards (white card, thin border or none) with strict hierarchy inside: index number, bold title, date and material in small monospaced text, one paragraph of description, a hero of a single spot-lit object, serif and sans pairing, almost no decoration",
+  "avoid": "展签要小，留白要大，才有博物馆的安静；层级固定统一，每张卡字段顺序一样。",
+  "neg": [
+    "大卡片挤满、字段顺序不一",
+    "large crowded cards, inconsistent field order"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2B2B; --a2: #7A6A55; --on: #fff; background: #E8E5E0; color: #2B2B2B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo { font-weight: 500; letter-spacing: 2px; } .logo i { display: none; } .cta, .b1 { border-radius: 0; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #7A6A55; }
+.art { background: radial-gradient(ellipse 50% 40% at 50% 10%, rgba(255,250,240,.8), transparent 70%); }
+.art .m { position: absolute; left: 55px; top: 14px; width: 60px; height: 84px; border-radius: 40% 40% 30% 30% / 20% 20% 60% 60%; background: radial-gradient(circle at 35% 30%, #E3D7C3, #A89276 60%, #7A6A55); box-shadow: 0 16px 12px -8px rgba(0,0,0,.25); }
+.art .h { position: absolute; left: 40px; top: 100px; width: 90px; height: 8px; background: #F5F3EF; }
+.art::after { content: "No. 017\A 青釉瓶 · 宋\A 瓷 / 高 24cm"; white-space: pre; position: absolute; left: 100px; top: 116px; width: 80px; padding: 5px 6px; background: #fff; font: 8.5px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #2B2B2B; }
+.feats article { padding: 10px 12px; background: #fff; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #7A6A55; } .feats h3 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; }
+.stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; } .ft { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

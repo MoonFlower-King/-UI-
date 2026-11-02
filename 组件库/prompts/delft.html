@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Delft Blue",
+  "zh": "代尔夫特蓝陶",
+  "alias": [
+    "荷兰蓝陶",
+    "蓝白瓷砖"
+  ],
+  "lead": "荷兰老房子里的手绘蓝陶瓷砖：白釉底、钴蓝笔触，角落一朵小花，中间是风车或帆船。干净、温和、带欧洲小镇的手作味道，适合家居、陶瓷器物、旅行和烘焙品牌。",
+  "prompt": "代尔夫特蓝陶风格：乳白釉色背景，单一钴蓝色系（深浅三阶），方形瓷砖网格作为装饰区（每块角上有小花饰、中间一个简笔图案），手绘感细线，衬线标题，卡片为白瓷方块配蓝色细边",
+  "promptEn": "Delft blue style: milky glaze white background, a single cobalt blue family (three shades), square tile grids as decoration (small corner flourishes, one simple brush motif in the center of each), hand-painted thin lines, serif headings, cards as white porcelain squares with thin blue borders",
+  "avoid": "只用一种蓝，加别的颜色就不像了；瓷砖格只做局部装饰，正文落在白底上。和青花瓷别混：蓝陶是方砖、欧式图案、笔触更随意。",
+  "neg": [
+    "多色彩绘、整页铺瓷砖",
+    "multicolor painting, tiles over the whole page"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #24489A; --a2: #24489A; --on: #FAF9F4; background: #FAF9F4; color: #1C2E5C; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; } .kicker { font-style: italic; }
+.art { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; background: #CBD5EA; padding: 3px; height: 150px; }
+.art .m, .art .h { position: relative; background: radial-gradient(circle at 0 0, #24489A 0 5px, transparent 6px), radial-gradient(circle at 100% 0, #24489A 0 5px, transparent 6px), radial-gradient(circle at 0 100%, #24489A 0 5px, transparent 6px), radial-gradient(circle at 100% 100%, #24489A 0 5px, transparent 6px), radial-gradient(circle, transparent 18px, #6F8BC9 18.5px 19.5px, transparent 20px), #FDFDF9; }
+.art .m::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 22px; background: #24489A; transform: translate(-50%, -50%); box-shadow: 0 0 0 0 #24489A; }
+.art .m::before { content: ""; position: absolute; left: 50%; top: 50%; width: 26px; height: 4px; background: #24489A; transform: translate(-50%, -50%) rotate(45deg); box-shadow: 0 0 0 0; }
+.art .h::after { content: ""; position: absolute; left: 50%; top: 52%; width: 22px; height: 14px; border-radius: 0 0 50% 50%; background: #24489A; transform: translate(-50%, 0); }
+.art .h::before { content: ""; position: absolute; left: 50%; top: 24%; border-left: 12px solid #6F8BC9; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+.art::before, .art::after { content: ""; background: radial-gradient(circle at 0 0, #24489A 0 5px, transparent 6px), radial-gradient(circle at 100% 100%, #24489A 0 5px, transparent 6px), radial-gradient(circle, #6F8BC9 0 6px, transparent 6.5px), #FDFDF9; }
+.feats article { padding: 12px; background: #fff; border: 1px solid #24489A; box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 4px #CBD5EA; } .feats b { font-style: italic; }
+.stats { border-top: 2px solid #24489A; margin: 0 26px; } .stats b { font-weight: 500; }
+</style>

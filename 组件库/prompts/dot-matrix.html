@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Dot Matrix Print",
+  "zh": "针式打印",
+  "alias": [
+    "针打纸",
+    "连续打印纸"
+  ],
+  "lead": "老式针式打印机打出的连续纸：两侧带齿孔，浅绿横条，字由小点组成，略微发虚。机械、怀旧、带着办公室和机房的味道，适合开发者工具、复古游戏、档案项目和账单类页面。",
+  "prompt": "针式打印风格：白底配浅绿与白交替的横条纹（连续打印纸），页面两侧有一列圆形齿孔，所有文字为点阵感等宽字体（略带墨色不均），标题全大写，用短横线和星号做分隔，无图片",
+  "promptEn": "dot matrix print style: white continuous-form paper with alternating pale green and white bands, a column of round sprocket holes on both page edges, all text in a dotted-feeling monospaced font (slightly uneven ink), uppercase headings, dashes and asterisks as dividers, no images",
+  "avoid": "横条和齿孔要淡、要规整，字才清楚；所有文字都用等宽字，混进比例字体就破功。",
+  "neg": [
+    "条纹太深、混用比例字体",
+    "dark bands, mixing proportional fonts"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #23262A; --a2: #3D6B4A; --on: #fff; background: #fff; color: #23262A; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.pg { padding: 0 22px; background: radial-gradient(circle, #E6E6E2 0 4px, transparent 4.5px) 6px 6px / 12px 20px repeat-y, radial-gradient(circle, #E6E6E2 0 4px, transparent 4.5px) right 6px top 6px / 12px 20px repeat-y,
+  repeating-linear-gradient(#fff 0 22px, #E5F1E6 22px 44px); }
+.nav { padding: 16px 6px; border-bottom: 1px dashed #23262A; } .logo i { background: none; } .logo i::before { content: "*"; } .cta, .b1 { border-radius: 0; }
+.hero { padding: 22px 6px; } .hero h1 { font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: .88; text-shadow: .4px 0 0 #23262A; }
+.kicker { color: #3D6B4A; } .kicker::before { content: "*** "; } .b2 { color: #3D6B4A; }
+.art { border: 1px dashed #23262A; }
+.art::before { content: "+--------+\A|  12 座  |\A|  每 晚  |\A+--------+"; white-space: pre; position: absolute; left: 0; right: 0; top: 30px; text-align: center; font: 13px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.feats { padding: 0 6px 18px; } .feats b::before { content: "> "; } .feats b { color: #3D6B4A; } .feats h3 { text-transform: uppercase; font-size: 13px; }
+.stats { border-top: 1px dashed #23262A; border-bottom: 1px dashed #23262A; margin: 0 6px; } .ft { padding: 14px 6px 20px; }
+</style>

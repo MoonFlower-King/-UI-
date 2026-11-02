@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Film Strip",
+  "zh": "胶片条",
+  "alias": [
+    "胶卷",
+    "135 胶片"
+  ],
+  "lead": "一条 135 胶卷：深橙棕的片基、两排齿孔、片边的编号小字，一格一格的画面排成一排。怀旧、有故事、像在翻旧照片，适合摄影师、影展、电影节和回忆类产品。",
+  "prompt": "胶片条风格：深暖黑背景，主视觉和图片组排成横向胶片条（深橙棕片基、上下两排圆角方形齿孔、片边橙色小号编号），帧与帧之间细缝，画面略带暖色偏色和颗粒，衬线标题配等宽小字",
+  "promptEn": "film strip style: deep warm black background, hero and image groups laid out as a horizontal 35mm film strip (dark orange-brown film base, two rows of rounded-square sprocket holes, small orange edge numbers), thin gaps between frames, images with slight warm cast and grain, serif headings with small monospaced text",
+  "avoid": "齿孔要规整、片边编号要小而清楚，这两样一对就像；胶片条只放一两条，别把所有内容都塞进格子里。",
+  "neg": [
+    "齿孔歪斜、全站都是胶片格",
+    "uneven sprocket holes, everything in film frames"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E8883A; --a2: #E8883A; --on: #1A1512; background: #1A1512; color: #EFE6DA; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; } .hero h1 { font-weight: 600; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art { background: radial-gradient(circle at 50% 50%, #1A1512 0 0) ; }
+.art .m { position: absolute; left: 0; right: 0; top: 14px; height: 120px; background: #4A2A14; border-radius: 2px;
+  background: linear-gradient(90deg, #1A1512 0 3px, transparent 3px 7px) 0 6px / 12px 8px repeat-x, linear-gradient(90deg, #1A1512 0 3px, transparent 3px 7px) 0 calc(100% - 6px) / 12px 8px repeat-x, #4A2A14; }
+.art .m::before { content: "17 ▸ 17A"; position: absolute; left: 8px; top: 16px; font: 7px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E8883A; }
+.art .h { position: absolute; left: 6px; right: 6px; top: 46px; height: 64px; background: linear-gradient(90deg, #C99A6E 0 48%, transparent 48% 52%, #8E6F57 52%); border-radius: 2px; }
+.art .h::after { content: ""; position: absolute; left: 18%; top: 14px; width: 22px; height: 22px; border-radius: 50%; background: #F3D7A8; box-shadow: 78px 10px 0 -4px #E9C08A; }
+.feats article { border-top: 1px solid rgba(232,136,58,.35); padding-top: 10px; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.stats { border-top: 1px solid rgba(232,136,58,.25); } .stats b { color: #E8883A; font-weight: 500; }
+</style>

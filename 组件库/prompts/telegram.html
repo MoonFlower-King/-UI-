@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Telegram",
+  "zh": "老电报",
+  "alias": [
+    "电报纸",
+    "电报单"
+  ],
+  "lead": "一张老电报：浅黄电报纸、贴上去的打字纸条、全大写的短句和“STOP”，右上角盖着收报时间。简短、郑重、带点悬念，适合邀请函、发布倒计时、复古品牌和情书类活动。",
+  "prompt": "老电报风格：浅黄或浅绿电报纸背景，内容为贴上去的白色打字纸条（等宽大写字，句末 STOP），表头为细线框和印刷小字栏目，右上角圆形收报戳，单色深墨印刷，衬线小标题，无图片",
+  "promptEn": "telegram style: pale yellow or pale green telegram form background, content on pasted white typed paper strips (monospaced uppercase text ending in STOP), a header of thin-line boxes and small printed field labels, a round receipt stamp in the top-right corner, single dark ink print, small serif labels, no images",
+  "avoid": "纸条一条只放一句话，长文字放进去就不像电报了；颜色只用纸色加一种墨色。",
+  "neg": [
+    "长段落贴纸条、多色印刷",
+    "long paragraphs on strips, multicolor print"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2A26; --a2: #8C3B2A; --on: #F6EFCF; background: #EFE6BE; color: #2B2A26; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #2B2A26; margin: 0 20px; padding: 16px 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .cta, .b1 { border-radius: 0; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8C3B2A; } .hero h1 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 22px; text-transform: uppercase; font-weight: 700; line-height: 1.5; background: #FFFDF5; padding: 2px 8px; box-shadow: 1px 1px 0 rgba(0,0,0,.1); display: inline; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.sub { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; } .sub::after { content: " STOP"; font-weight: 700; }
+.art .m { position: absolute; right: 10px; top: 4px; width: 84px; height: 84px; border-radius: 50%; border: 2px solid rgba(140,59,42,.75); transform: rotate(-10deg); }
+.art .m::after { content: "RECEIVED\A 17:40\A 03 · NOV"; white-space: pre; position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font: 700 9px/1.4 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: rgba(140,59,42,.85); }
+.art .h { position: absolute; left: 0; right: 0; top: 100px; height: 40px; border: 1px solid #2B2A26; background: linear-gradient(90deg, transparent 33%, #2B2A26 33% calc(33% + 1px), transparent 0 66%, #2B2A26 66% calc(66% + 1px), transparent 0); }
+.feats article { padding: 10px; background: #FFFDF5; box-shadow: 1px 1px 0 rgba(0,0,0,.1); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8C3B2A; } .feats h3 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-transform: uppercase; font-size: 13px; }
+.stats { border-top: 1px solid #2B2A26; border-bottom: 1px solid #2B2A26; margin: 0 26px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .ft { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>
