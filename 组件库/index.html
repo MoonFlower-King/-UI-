@@ -4,41 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>江月 UI · 给 AI 描述界面的词典</title>
-<meta name="description" content="说对一个词，AI 就懂你的审美。149 个界面术语，每个都有实时效果、可复制的代码和一句能直接发给 AI 的话。">
-<meta name="theme-color" content="#0B0F1A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0F1A'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23FFD58A'/%3E%3Cpath d='M7 23h18M10 27h12' stroke='%23FA8C16' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="description" content="说不清界面哪里不对？说出你的感觉，翻译成 AI 听得懂的专业词。149 个界面术语，每个都有实时效果、一句能直接发给 AI 的话和可复制的代码。">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1218" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23121722'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23FFD58A'/%3E%3Cpath d='M7 23h18M10 27h12' stroke='%23FA8C16' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>try { const t = JSON.parse(localStorage.getItem('jy-theme')); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span><span><span>江月 <b>UI</b></span></span></a>
-  <button class="icon-btn" id="menu-btn" aria-label="打开目录">☰</button>
+<header class="top">
+  <a class="brand" href="#home" aria-label="江月 UI 首页"><span class="mark" aria-hidden="true"></span><span class="brand-name">江月<b>UI</b></span></a>
+  <nav class="top-nav" aria-label="主导航">
+    <a href="#home" data-tab="home">感觉翻译</a>
+    <a href="#all" data-tab="all">词典</a>
+  </nav>
+  <button class="search-btn" id="search-btn" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>搜词，或说出你的感觉…</span><kbd>/</kbd></button>
+  <div class="top-end">
+    <button class="icon-btn mobile-only" id="search-btn-m" type="button" aria-label="搜索"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg></button>
+    <button class="basket-btn" id="basket-btn" type="button" aria-label="打开提示词篮子"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14l-1.6 9.2a1 1 0 0 1-1 .8H5.6a1 1 0 0 1-1-.8z"/><path d="M7 7l3-4 3 4"/></svg><span class="desktop-only">篮子</span><b class="count" data-basket-count>0</b></button>
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="切换明暗"></button>
+    <a class="icon-btn desktop-only" href="https://github.com/MoonFlower-King/-UI-" aria-label="GitHub 仓库"><svg viewBox="0 0 16 16" aria-hidden="true" class="fill"><path d="M8 0C3.6 0 0 3.6 0 8c0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.6 3.9.3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 16 8c0-4.4-3.6-8-8-8z"/></svg></a>
+  </div>
 </header>
 
-<aside class="side" id="side">
-  <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span><span><span>江月 <b>UI</b></span><small>给 AI 描述界面的词典</small></span></a>
-  <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="搜词或说感觉…" aria-label="搜索术语"><kbd>/</kbd></label>
-  <nav class="nav" id="nav"></nav>
-  <footer class="side-foot">
-    <button class="icon-btn" id="theme-btn" aria-label="切换明暗"></button>
-    <a href="../">图鉴网站</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub</a>
-  </footer>
-</aside>
-<div class="scrim" id="scrim"></div>
+<div class="shell">
+  <aside class="side" id="side" aria-label="主题目录"></aside>
+  <main class="main" id="main"></main>
+</div>
 
-<main class="main" id="main"></main>
+<nav class="tabbar" aria-label="底部导航">
+  <a href="#home" data-tab="home"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h8M4 15h5"/><path d="m13 13 2 2 3-4"/></svg>翻译</a>
+  <a href="#all" data-tab="all"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg>词典</a>
+  <button type="button" data-open-search><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>搜索</button>
+  <button type="button" data-open-basket><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14l-1.6 9.2a1 1 0 0 1-1 .8H5.6a1 1 0 0 1-1-.8z"/><path d="M7 7l3-4 3 4"/></svg>篮子<b class="count" data-basket-count>0</b></button>
+</nav>
 
-<button class="basket-fab" id="basket-fab" hidden><span>提示词篮子</span><b id="basket-count">0</b></button>
-<div class="basket" id="basket" hidden>
-  <div class="basket-panel" role="dialog" aria-label="提示词篮子">
-    <header><h2>提示词篮子</h2><button class="icon-btn" id="basket-close" aria-label="关闭">✕</button></header>
-    <p class="muted">挑几个词放进来，自动拼成一段完整的提示词，一次发给 AI。</p>
-    <ul id="basket-list"></ul>
-    <textarea id="basket-text" rows="9" aria-label="拼好的提示词"></textarea>
-    <div class="row"><button class="btn ghost" id="basket-clear">清空</button><button class="btn primary" id="basket-copy">复制整段提示词</button></div>
+<div class="overlay" id="palette" hidden>
+  <div class="palette" role="dialog" aria-modal="true" aria-label="搜索">
+    <label class="palette-input"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><input id="q" type="search" placeholder="搜词，或说出你的感觉：太乱、不高级、EP04…" autocomplete="off" aria-label="搜索" aria-controls="results"><button class="icon-btn sm" type="button" data-close aria-label="关闭">esc</button></label>
+    <div class="results" id="results" role="listbox"></div>
   </div>
 </div>
-<div class="toast" id="toast" role="status"></div>
+
+<div class="overlay" id="basket" hidden>
+  <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="basket-title">
+    <header><div><h2 id="basket-title">提示词篮子</h2><p class="muted">挑几个词放进来，拼成一整段话，一次发给 AI。</p></div><button class="icon-btn" type="button" data-close aria-label="关闭"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></header>
+    <ul class="basket-list" id="basket-list"></ul>
+    <label class="basket-text"><span>拼好的提示词（可以直接改）</span><textarea id="basket-text" rows="8"></textarea></label>
+    <footer><button class="btn ghost" type="button" id="basket-clear">清空</button><button class="btn primary" type="button" id="basket-copy">复制整段提示词</button></footer>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="data/components.js"></script>
 <script src="assets/app.js"></script>
