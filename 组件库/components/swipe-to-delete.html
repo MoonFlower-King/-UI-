@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Swipe Actions",
+  "zh": "左滑操作",
+  "lead": "手指往左一滑，列表项后面露出“删除”“置顶”按钮。手机上的消息列表、邮件几乎都有。用鼠标往左拖试试。",
+  "prompt": "消息列表用 Swipe Actions：列表项向左拖动露出右侧“置顶”（灰）和“删除”（红）按钮，各 72px；拖过一半自动吸附展开，否则回弹；点删除后该行高度收起淡出。"
+}
+-->
+<ul class="sw">
+  <li><div class="acts"><button class="pin">置顶</button><button class="del">删除</button></div><div class="row"><b>江小月</b><span>新一期视频剪好了，来看看</span></div></li>
+  <li><div class="acts"><button class="pin">置顶</button><button class="del">删除</button></div><div class="row"><b>设计周报</b><span>本周新增 25 个组件</span></div></li>
+  <li><div class="acts"><button class="pin">置顶</button><button class="del">删除</button></div><div class="row"><b>林一舟</b><span>那个磁吸按钮怎么做的？</span></div></li>
+</ul>
+
+<style>
+.sw { list-style: none; margin: 0; padding: 0; width: min(320px, 88vw); background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+.sw li { position: relative; overflow: hidden; border-bottom: 1px solid #F4F4F5; max-height: 80px; transition: max-height .3s, opacity .3s; }
+.sw li.gone { max-height: 0; opacity: 0; }
+.acts { position: absolute; inset: 0 0 0 auto; display: flex; }
+.acts button { width: 72px; border: 0; color: #fff; font-size: 13px; cursor: pointer; }
+.pin { background: #A1A1AA; } .del { background: #EF4444; }
+.row { position: relative; padding: 12px 16px; background: #fff; touch-action: pan-y; user-select: none; cursor: grab; transition: transform .25s ease-out; }
+.row.drag { transition: none; }
+.row b { display: block; font-size: 14px; } .row span { font-size: 12px; color: #71717A; }
+</style>
+<script>
+document.querySelectorAll(".sw li").forEach(li => {
+  const row = li.querySelector(".row"); let x0, open = 0;
+  row.addEventListener("pointerdown", e => { x0 = e.clientX; row.classList.add("drag"); row.setPointerCapture(e.pointerId); });
+  row.addEventListener("pointermove", e => { if (x0 == null) return; const dx = Math.min(0, Math.max(-144, e.clientX - x0 + open)); row.style.transform = `translateX(${dx}px)`; });
+  row.addEventListener("pointerup", e => { const dx = e.clientX - x0 + open; x0 = null; row.classList.remove("drag"); open = dx < -72 ? -144 : 0; row.style.transform = `translateX(${open}px)`; });
+  li.querySelector(".del").addEventListener("click", () => li.classList.add("gone"));
+  li.querySelector(".pin").addEventListener("click", () => { open = 0; row.style.transform = ""; li.parentNode.prepend(li); });
+});
+// 演示：第一行自动滑开再合上
+const demo = document.querySelector(".sw .row");
+setTimeout(() => demo.style.transform = "translateX(-144px)", 500);
+setTimeout(() => demo.style.transform = "", 1800);
+</script>

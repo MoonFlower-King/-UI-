@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Autocomplete",
+  "zh": "输入联想",
+  "lead": "边打字边在下面列出匹配的选项，匹配的字加粗，上下键选、回车确认。搜索框、选城市、@人都用它。",
+  "prompt": "搜索框加 Autocomplete：输入时下方弹出最多 5 条匹配建议，匹配部分加粗高亮，支持 ↑↓ 键切换、回车选中、Esc 关闭，当前项浅灰底，无结果时显示“没有找到”。"
+}
+-->
+<div class="ac">
+  <input placeholder="搜索城市，比如“杭”" />
+  <ul class="list" hidden></ul>
+</div>
+
+<style>
+.ac { position: relative; width: min(280px, 86vw); align-self: start; margin-top: 50px; }
+.ac input { width: 100%; box-sizing: border-box; height: 44px; padding: 0 14px; border: 1.5px solid #D4D4D8; border-radius: 10px; font-size: 15px; outline: none; }
+.ac input:focus { border-color: #FA8C16; }
+.list { position: absolute; left: 0; right: 0; top: 50px; margin: 0; padding: 6px; list-style: none; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); font-size: 14px; }
+.list li { padding: 8px 10px; border-radius: 8px; cursor: pointer; color: #52525B; }
+.list li b { color: #FA8C16; }
+.list li.active { background: #F4F4F5; color: #18181B; }
+.list li.none { color: #A1A1AA; cursor: default; }
+</style>
+<script>
+const cities = ["杭州", "杭州湾", "上海", "苏州", "南京", "南昌", "广州", "深圳", "成都", "重庆", "长沙", "西安", "武汉"];
+const input = document.querySelector(".ac input"), list = document.querySelector(".list"); let idx = 0, items = [];
+function render() {
+  const q = input.value.trim(); items = q ? cities.filter(c => c.includes(q)).slice(0, 5) : [];
+  list.hidden = !q; idx = 0;
+  list.innerHTML = items.length ? items.map((c, i) => `<li class="${i === idx ? "active" : ""}">${c.replace(q, `<b>${q}</b>`)}</li>`).join("") : '<li class="none">没有找到</li>';
+}
+function move(d) { if (!items.length) return; idx = (idx + d + items.length) % items.length; [...list.children].forEach((li, i) => li.classList.toggle("active", i === idx)); }
+function pick(i) { if (items[i]) { input.value = items[i]; list.hidden = true; } }
+input.addEventListener("input", render);
+input.addEventListener("keydown", e => { if (e.key === "ArrowDown") { e.preventDefault(); move(1); } if (e.key === "ArrowUp") { e.preventDefault(); move(-1); } if (e.key === "Enter") pick(idx); if (e.key === "Escape") list.hidden = true; });
+list.addEventListener("mousedown", e => { const li = e.target.closest("li"); if (li) pick([...list.children].indexOf(li)); });
+input.focus(); setTimeout(() => { input.value = "南"; render(); }, 500); setTimeout(() => move(1), 1200);
+</script>

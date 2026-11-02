@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Progress Ring",
+  "zh": "环形进度",
+  "lead": "把进度画成一个圆环，中间写百分比。比横条更紧凑，适合放在卡片角落、个人资料完成度、运动目标上。",
+  "prompt": "资料完成度用 Progress Ring：直径 120px，环宽 10px，底环浅灰，进度环品牌色圆头端点，从 12 点方向顺时针增长，中间大号百分比 + 小字说明，进度变化 800ms 缓动。"
+}
+-->
+<div class="ring-card">
+  <svg viewBox="0 0 120 120" class="ring">
+    <circle cx="60" cy="60" r="50" class="bg" />
+    <circle cx="60" cy="60" r="50" class="fg" />
+  </svg>
+  <div class="center"><b>0%</b><span>资料完成度</span></div>
+  <button>+ 完善一项</button>
+</div>
+
+<style>
+.ring-card { position: relative; display: grid; justify-items: center; gap: 14px; }
+.ring { width: 140px; height: 140px; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; }
+.ring .bg { stroke: #F4F4F5; }
+.ring .fg { stroke: #FA8C16; stroke-linecap: round; stroke-dasharray: 314.16; stroke-dashoffset: 314.16; transition: stroke-dashoffset .8s cubic-bezier(.22, 1, .36, 1); }
+.center { position: absolute; top: 0; height: 140px; display: grid; place-content: center; text-align: center; }
+.center b { font-size: 28px; font-variant-numeric: tabular-nums; } .center span { font-size: 12px; color: #71717A; }
+.ring-card button { border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+</style>
+<script>
+const fg = document.querySelector(".fg"), label = document.querySelector(".center b"); let value = 0;
+function set(v) {
+  value = Math.min(v, 100); fg.style.strokeDashoffset = 314.16 * (1 - value / 100);
+  const from = +label.textContent.replace("%", ""), start = performance.now();
+  (function step(now) { const p = Math.min((now - start) / 800, 1); label.textContent = Math.round(from + (value - from) * (1 - Math.pow(1 - p, 3))) + "%"; if (p < 1) requestAnimationFrame(step); })(start);
+}
+document.querySelector(".ring-card button").addEventListener("click", () => set(value >= 100 ? 0 : value + 20));
+setTimeout(() => set(60), 300);
+</script>

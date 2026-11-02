@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Tree View",
+  "zh": "树形目录",
+  "lead": "一层套一层的结构，点箭头展开或收起子级。文件夹、组织架构、多级分类都用它，缩进和连线让层级一目了然。",
+  "prompt": "文件侧栏用 Tree View：每级缩进 16px，带竖向引导线，文件夹前有可旋转的 ▸ 箭头（展开时转 90°），子级展开有高度过渡，当前选中项浅品牌色底，文件夹和文件用不同图标。"
+}
+-->
+<div class="tree">
+  <details open><summary>📁 江月 UI</summary>
+    <details open><summary>📁 components</summary>
+      <a>📄 button.html</a><a class="sel">📄 tree-view.html</a><a>📄 tabs.html</a>
+    </details>
+    <details><summary>📁 assets</summary><a>🎨 style.css</a><a>📜 app.js</a></details>
+    <a>📝 README.md</a>
+  </details>
+</div>
+
+<style>
+.tree { width: min(240px, 80vw); padding: 10px; background: #fff; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.06); font-size: 13px; color: #3F3F46; }
+.tree details details, .tree details > a { margin-left: 14px; padding-left: 8px; border-left: 1px solid #E4E4E7; }
+.tree summary { list-style: none; display: flex; align-items: center; gap: 4px; padding: 5px 6px; border-radius: 6px; cursor: pointer; }
+.tree summary::-webkit-details-marker { display: none; }
+.tree summary::before { content: "▸"; display: inline-block; width: 12px; color: #A1A1AA; transition: transform .2s; }
+.tree details[open] > summary::before { transform: rotate(90deg); }
+.tree a { display: block; padding: 5px 6px 5px 22px; border-radius: 6px; cursor: pointer; }
+.tree summary:hover, .tree a:hover { background: #F4F4F5; }
+.tree a.sel { background: #FFF4E6; color: #C2410C; }
+</style>
+<script>
+document.querySelectorAll(".tree a").forEach(a => a.addEventListener("click", () => {
+  document.querySelectorAll(".tree a").forEach(x => x.classList.remove("sel")); a.classList.add("sel");
+}));
+setTimeout(() => document.querySelectorAll(".tree details")[2].open = true, 800);
+</script>

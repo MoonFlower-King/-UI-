@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Floating Label",
+  "zh": "浮动标签",
+  "lead": "提示文字先待在输入框里，一点进去就缩小飘到上方，不占地方又不会消失。点输入框试试。",
+  "prompt": "表单输入框用 Floating Label：未聚焦且为空时标签在框内居中当占位文字；聚焦或有内容时标签缩小到 12px 并上移到边框上，颜色变品牌色，过渡 200ms ease-out。"
+}
+-->
+<form class="fl-form">
+  <label class="fl"><input placeholder=" " /><span>邮箱地址</span></label>
+  <label class="fl"><input type="password" placeholder=" " /><span>密码</span></label>
+</form>
+
+<style>
+.fl-form { display: grid; gap: 18px; width: min(280px, 86vw); }
+.fl { position: relative; display: block; }
+.fl input { width: 100%; box-sizing: border-box; height: 48px; padding: 16px 14px 0; border: 1.5px solid #D4D4D8; border-radius: 10px; font-size: 15px; outline: none; background: #fff; transition: border-color .2s; }
+.fl span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #A1A1AA; font-size: 15px; pointer-events: none; transition: all .2s ease-out; }
+.fl input:focus { border-color: #FA8C16; }
+.fl input:focus + span, .fl input:not(:placeholder-shown) + span { top: 13px; font-size: 12px; color: #FA8C16; }
+.fl input:not(:focus):not(:placeholder-shown) + span { color: #71717A; }
+</style>
+<script>
+const first = document.querySelector(".fl input");
+setTimeout(() => first.focus(), 600);
+</script>

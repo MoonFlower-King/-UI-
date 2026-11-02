@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Marquee",
+  "zh": "跑马灯",
+  "lead": "一排内容无限循环横向滚动，常用来展示合作品牌 logo、用户评价、标签云。悬停时暂停，两端渐隐更精致。",
+  "prompt": "合作品牌区用 Marquee：logo 一行无缝循环向左滚动，30s 一圈匀速，两侧用 mask 渐隐 15%，鼠标悬停时暂停，第二行反方向滚动形成交错感。"
+}
+-->
+<div class="mq">
+  <div class="row"><div class="track"><span>Figma</span><span>江月 UI</span><span>Trae</span><span>Cursor</span><span>豆包</span><span>Claude</span><span>Framer</span></div></div>
+  <div class="row rev"><div class="track"><span>玻璃拟态</span><span>便当网格</span><span>弹簧动画</span><span>磁吸按钮</span><span>骨架屏</span><span>视差滚动</span></div></div>
+</div>
+
+<style>
+.mq { width: 100%; display: grid; gap: 12px; }
+.row { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); mask: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
+.track { display: flex; gap: 12px; width: max-content; animation: scroll 24s linear infinite; }
+.rev .track { animation-direction: reverse; animation-duration: 30s; }
+.row:hover .track { animation-play-state: paused; }
+.track span { padding: 10px 18px; border-radius: 12px; background: #fff; border: 1px solid #E4E4E7; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.rev .track span { background: #18181B; color: #fff; border-color: #18181B; font-weight: 500; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+</style>
+<script>
+// 把内容复制一份接在后面，平移 -50% 时正好无缝衔接
+document.querySelectorAll(".track").forEach(t => t.innerHTML += t.innerHTML);
+</script>

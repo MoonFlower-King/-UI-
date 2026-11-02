@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Highlight Marker",
+  "zh": "荧光笔划重点",
+  "lead": "像用荧光笔在纸上划线一样，给关键词刷上一道底色，而且是“刷”出来的动画。正文里强调重点很好用。",
+  "prompt": "正文关键词用 Highlight Marker：关键词背后加一道 40% 高度、略微倾斜的浅品牌色色块（像荧光笔），进入视口时从左到右刷出，800ms ease-out，多个关键词依次出现。"
+}
+-->
+<p class="hl-p">好的界面不是堆砌装饰，而是<mark>层次清楚</mark>、<mark>留白充足</mark>，再加一点<mark>恰到好处的动效</mark>。</p>
+
+<style>
+.hl-p { max-width: min(340px, 88vw); margin: 0; font-size: 19px; line-height: 1.9; color: #27272A; }
+.hl-p mark { color: inherit; background: linear-gradient(transparent 58%, rgba(250,140,22,.35) 58%, rgba(250,140,22,.35) 92%, transparent 92%) no-repeat 0 0 / 0% 100%; padding: 0 2px; transition: background-size .8s ease-out; }
+.hl-p mark.on { background-size: 100% 100%; }
+</style>
+<script>
+const marks = document.querySelectorAll(".hl-p mark");
+new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) marks.forEach((m, i) => setTimeout(() => m.classList.add("on"), 300 + i * 500));
+})).observe(document.querySelector(".hl-p"));
+</script>

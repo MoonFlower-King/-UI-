@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Drag to Reorder",
+  "zh": "拖拽排序",
+  "lead": "按住一项拖到别的位置，其他项自动让位。待办清单、歌单、导航菜单排序都用它。拖住左边的把手试试。",
+  "prompt": "任务列表用 Drag to Reorder：每行左侧 ⋮⋮ 把手，按住拖动时该行抬起（阴影加深、放大 1.02、轻微倾斜），其他行平滑让位，松手落位，拖动中原位置显示虚线占位。"
+}
+-->
+<ul class="sort">
+  <li><i>⋮⋮</i>写视频脚本</li>
+  <li><i>⋮⋮</i>录制第 9 期</li>
+  <li><i>⋮⋮</i>补组件代码</li>
+  <li><i>⋮⋮</i>发布网站</li>
+</ul>
+
+<style>
+.sort { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; width: min(260px, 84vw); }
+.sort li { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; font-size: 14px; user-select: none; touch-action: none; transition: transform .2s; }
+.sort i { font-style: normal; color: #A1A1AA; cursor: grab; letter-spacing: -2px; }
+.sort li.dragging { position: relative; z-index: 2; transition: none; box-shadow: 0 12px 28px rgba(0,0,0,.15); border-color: #FA8C16; }
+.sort li.ghost { background: #FAFAFA; border-style: dashed; color: transparent; }
+</style>
+<script>
+const list = document.querySelector(".sort");
+list.addEventListener("pointerdown", e => {
+  const li = e.target.closest("li"); if (!li) return;
+  const h = li.offsetHeight + 8; let base = e.clientY;   // base：当前位置对应的鼠标起点
+  li.classList.add("dragging"); li.setPointerCapture(e.pointerId);
+  li.onpointermove = ev => {
+    let dy = ev.clientY - base;
+    if (dy > h / 2 && li.nextElementSibling) { li.nextElementSibling.after(li); base += h; }
+    if (dy < -h / 2 && li.previousElementSibling) { li.previousElementSibling.before(li); base -= h; }
+    dy = ev.clientY - base;
+    li.style.transform = `translateY(${dy}px) scale(1.02) rotate(-1deg)`;
+  };
+  li.onpointerup = () => { li.onpointermove = null; li.classList.remove("dragging"); li.style.transform = ""; };
+});
+</script>

@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Split Text Reveal",
+  "zh": "逐字浮现",
+  "lead": "把一句话拆成单个字，让每个字依次从下方带模糊浮上来。大标题出场用它，节奏感和仪式感都很强。",
+  "prompt": "首屏标题用 Split Text Reveal：拆分成单字，每个字从 translateY(100%)、模糊 8px、透明度 0 动画到原位，每字延迟 50ms，单字时长 600ms，缓动 cubic-bezier(.22,1,.36,1)。"
+}
+-->
+<h1 class="split">江畔何人初见月</h1>
+<button class="again">再来一次</button>
+
+<style>
+.split { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif SC", serif; font-size: clamp(30px, 9vw, 52px); font-weight: 700; letter-spacing: .06em; }
+.split span { display: inline-block; opacity: 0; transform: translateY(60%); filter: blur(8px); animation: rise .6s cubic-bezier(.22, 1, .36, 1) forwards; }
+@keyframes rise { to { opacity: 1; transform: none; filter: none; } }
+.again { position: absolute; bottom: 24px; border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+</style>
+<script>
+const h = document.querySelector(".split"), text = h.textContent;
+function play() { h.innerHTML = [...text].map((c, i) => `<span style="animation-delay:${i * 60}ms">${c}</span>`).join(""); }
+document.querySelector(".again").addEventListener("click", play); play();
+</script>

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Star Rating",
+  "zh": "星级评分",
+  "lead": "鼠标划过时星星跟着亮，点一下定下分数，再配一句文字解释分数。比让用户填数字友好得多。",
+  "prompt": "评价区用 Star Rating：5 颗 28px 星星，悬停时从左到右预览高亮，点击确定分数并有 1.3 倍弹跳动画，右侧显示对应文字（很差/一般/还行/不错/超赞）。"
+}
+-->
+<div class="rate">
+  <div class="stars"><button>★</button><button>★</button><button>★</button><button>★</button><button>★</button></div>
+  <span class="word">点星星打分</span>
+</div>
+
+<style>
+.rate { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: #fff; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+.stars { display: flex; }
+.stars button { border: 0; background: none; padding: 2px; font-size: 30px; line-height: 1; color: #E4E4E7; cursor: pointer; transition: color .15s, transform .15s; }
+.stars button.on { color: #FBBF24; }
+.stars button.pop { animation: pop .35s ease-out; }
+@keyframes pop { 50% { transform: scale(1.3); } }
+.word { width: 72px; font-size: 14px; color: #52525B; }
+</style>
+<script>
+const stars = [...document.querySelectorAll(".stars button")], word = document.querySelector(".word");
+const words = ["很差", "一般", "还行", "不错", "超赞"]; let score = 0;
+const paint = n => { stars.forEach((s, i) => s.classList.toggle("on", i < n)); word.textContent = n ? words[n - 1] : "点星星打分"; };
+stars.forEach((s, i) => {
+  s.addEventListener("mouseenter", () => paint(i + 1));
+  s.addEventListener("click", () => { score = i + 1; paint(score); stars.slice(0, score).forEach((x, j) => { x.classList.remove("pop"); void x.offsetWidth; x.style.animationDelay = j * 40 + "ms"; x.classList.add("pop"); }); });
+});
+document.querySelector(".stars").addEventListener("mouseleave", () => paint(score));
+setTimeout(() => stars[3].click(), 500);
+</script>
