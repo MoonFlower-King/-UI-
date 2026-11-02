@@ -89,30 +89,44 @@ $('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; documen
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
 syncTheme();
 
-/* ---------------- 词卡与懒加载预览 ---------------- */
-// 预览滚到附近才加载；卡片缩略图用 560×350 的画布按卡片宽度缩放
-const lazy = new IntersectionObserver((entries) => entries.forEach((e) => {
-  if (!e.isIntersecting) return;
-  e.target.srcdoc = BASE + byId[e.target.dataset.id].code; lazy.unobserve(e.target);
-}), { rootMargin: '300px' });
+/* ---------------- 词卡与自动演示预览 ---------------- */
+// 卡片预览只在屏幕内时运行：滚进来就加载并自动演示（assets/autoplay.js），滚出去就卸掉，省电省 CPU。
+// 鼠标移进卡片时换成可以亲手玩的版本；系统开了「减少动态效果」就不自动演示。
+const calm = matchMedia('(prefers-reduced-motion: reduce)');
+const canHover = matchMedia('(hover: hover)').matches;
+const AUTO = window.JY_AUTOPLAY;
+const doc = (c, auto) => auto && AUTO && !calm.matches
+  ? `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.post})()<\/script>`
+  : BASE + c.code;
+const playing = new Set();
+const load = (f, auto = true) => { f.srcdoc = doc(byId[f.dataset.id], auto); };
+const watch = new IntersectionObserver((entries) => entries.forEach((e) => {
+  const f = e.target;
+  if (e.isIntersecting) { playing.add(f); if (!f.dataset.hold) load(f); }
+  else if (playing.delete(f)) f.srcdoc = BASE;
+}), { rootMargin: '80px' });
+addEventListener('message', (e) => {
+  if (e.data !== 'jy-replay') return;
+  const f = [...playing].find((x) => x.contentWindow === e.source);
+  if (f && !f.dataset.hold) load(f);
+});
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--s', e.contentRect.width / 560)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1" loading="lazy"></iframe><span class="live">实时预览 · 可以直接点</span></div>
+    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">换你来玩 · 可以直接点</span></div>
     <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p>
       <div class="card-actions"><button class="btn sm" data-copy="${c.id}">复制提示词</button><button class="btn sm add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
 }
-// 鼠标移进卡片：预览从头重播，并且能直接在预览里点、悬停
-const canHover = matchMedia('(hover: hover)').matches;
 function hydrate(root) {
   $$('.thumb', root).forEach((t) => {
-    fit.observe(t);
-    if (canHover) t.closest('.card').addEventListener('mouseenter', () => {
-      const f = t.firstElementChild; lazy.unobserve(f); f.srcdoc = BASE + byId[f.dataset.id].code;
-    });
+    const f = t.firstElementChild, cardEl = t.closest('.card');
+    fit.observe(t); watch.observe(f);
+    if (canHover) {
+      cardEl.addEventListener('mouseenter', () => { f.dataset.hold = 1; load(f, false); });
+      cardEl.addEventListener('mouseleave', () => { delete f.dataset.hold; if (playing.has(f)) load(f); });
+    }
   });
-  $$('.thumb iframe', root).forEach((f) => lazy.observe(f));
   $$('[data-add]', root).forEach(syncAddBtn);
 }
 document.addEventListener('click', (e) => {
