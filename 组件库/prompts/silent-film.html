@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Silent Film",
+  "zh": "默片字幕卡",
+  "alias": [
+    "老电影",
+    "Intertitle"
+  ],
+  "lead": "黑白默片里的字幕卡：黑底白字、装饰边框、轻微的胶片颗粒和闪烁。复古、戏剧、有仪式感，适合电影节、剧场、复古酒吧、魔术和怀旧活动。",
+  "prompt": "默片字幕卡风格：黑色背景带细微胶片颗粒，象牙白文字居中，标题外围是细线装饰框和角花，衬线或装饰艺术式字体，画面边缘有暗角，图片为高对比黑白，可带极轻微的闪烁效果",
+  "promptEn": "silent film intertitle style: black background with subtle film grain, centered ivory text, headlines inside fine ornamental frames with corner flourishes, serif or Art Deco display type, vignetted edges, high-contrast black-and-white imagery, an optional very subtle flicker",
+  "avoid": "闪烁一定要非常轻、要慢，太明显会让人不舒服。黑底白字的正文段落要短、字号要大。",
+  "neg": [
+    "强烈闪烁、长段小字",
+    "strong flicker, long small paragraphs"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #EDE6D3; --a2: #EDE6D3; --on: #111; background: radial-gradient(ellipse at center, #1C1C1C 50%, #050505); color: #EDE6D3; font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; animation: sf-flicker 3s steps(2) infinite; }
+@keyframes sf-flicker { 50% { filter: brightness(.94); } }
+.nav { border-bottom: 1px solid rgba(237, 230, 211, .3); } .logo i { display: none; } .cta { background: none; color: #EDE6D3; border: 1px solid #EDE6D3; }
+.hero { grid-template-columns: 1fr; margin: 18px 40px; padding: 26px; text-align: center; border: 1px solid #EDE6D3; outline: 1px solid rgba(237, 230, 211, .5); outline-offset: 5px; } .art { display: none; } .acts { justify-content: center; }
+.kicker { color: rgba(237, 230, 211, .7); letter-spacing: 4px; } .kicker::before, .kicker::after { content: "✦"; margin: 0 8px; }
+.hero h1 { font-weight: 400; letter-spacing: 4px; } .b2 { color: #EDE6D3; }
+.feats article { padding: 12px; text-align: center; border-top: 1px solid rgba(237, 230, 211, .4); } .stats b { font-weight: 400; }
+</style>

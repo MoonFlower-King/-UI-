@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Chinese Almanac",
+  "zh": "老黄历",
+  "alias": [
+    "黄历风",
+    "月历牌"
+  ],
+  "lead": "老黄历的版式：一大一小的日期数字、竖排的「宜」「忌」、节气和农历小字，朱红配墨黑。有趣、接地气、很有中国味，适合节气内容、文创日历、茶饮和本地生活。",
+  "prompt": "老黄历风格：米黄纸背景，墨黑和朱红两色，超大号的日期数字居中，四周是竖排小字（宜、忌、节气、农历），细线分格，宋体或楷体标题，信息排得满但有秩序，像一页撕下来的日历",
+  "promptEn": "Chinese almanac style: warm paper background, ink black and vermilion only, an oversized date numeral in the center surrounded by small vertical text (auspicious, avoid, solar term, lunar date), fine rules dividing cells, Song or Kai style headings, dense but orderly information, like a page torn from a daily calendar",
+  "avoid": "信息多但必须分格对齐，竖排字只用于短词。红色只用于日期和「宜」字，红多了会像对联。",
+  "neg": [
+    "字挤成一片、红色过多",
+    "cramped text, too much red"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C0302B; --a2: #C0302B; --on: #FAF3E3; background: #F5ECD7; color: #1F1A17; font-family: "Kaiti SC", "STKaiti", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 2px solid #1F1A17; } .logo i { background: #C0302B; } .cta, .b1 { border-radius: 2px; }
+.hero { grid-template-columns: 1fr 150px; } .hero h1 { font-weight: 700; letter-spacing: 3px; }
+.art { border: 2px solid #1F1A17; background: #FAF3E3; }
+.art .m { position: absolute; left: 0; right: 0; top: 18px; text-align: center; font: 900 72px/1 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #C0302B; } .art .m::before { content: "18"; }
+.art .h { position: absolute; left: 8px; top: 10px; writing-mode: vertical-rl; font-size: 11px; letter-spacing: 3px; } .art .h::before { content: "宜 读书 访友"; }
+.art::after { content: "忌 熬夜"; position: absolute; right: 8px; top: 10px; writing-mode: vertical-rl; font-size: 11px; letter-spacing: 3px; color: #555; }
+.art::before { content: "九月廿七 · 霜降"; position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-size: 11px; border-top: 1px solid #1F1A17; padding-top: 6px; }
+.feats article { padding-top: 8px; border-top: 1px solid #1F1A17; } .feats b { color: #C0302B; } .stats { border-top: 2px solid #1F1A17; border-bottom: 2px solid #1F1A17; margin: 0 26px; } .stats b { color: #C0302B; }
+</style>

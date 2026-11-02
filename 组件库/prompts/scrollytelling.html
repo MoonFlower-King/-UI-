@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Scrollytelling",
+  "zh": "长卷叙事",
+  "alias": [
+    "滚动叙事",
+    "Scroll Story"
+  ],
+  "lead": "一页就是一个故事：往下滚，画面一段段换场，大字旁白配进度线，像在读一本会动的长卷。有沉浸感、记忆点强，适合品牌故事、年度报告、专题报道、产品发布。",
+  "prompt": "长卷叙事风格：整页分成若干全屏「章节」，每章一句大号旁白和一张主图，左侧或顶部有细细的阅读进度线和章节编号，章节之间用背景色渐变过渡，衬线大标题配无衬线小字，元素随滚动淡入",
+  "promptEn": "scrollytelling style: the page split into full-screen chapters, each with one large narrative line and one hero image, a thin reading-progress line with chapter numbers along the side or top, background colors blending between chapters, large serif headlines with small sans text, elements fading in on scroll",
+  "avoid": "每一屏只讲一件事，信息塞多了就失去节奏。滚动动效要轻，劫持滚动速度或强制翻页会让人很烦。",
+  "neg": [
+    "一屏塞满信息、劫持滚动",
+    "cramming each screen, scroll hijacking"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E2A44; --a2: #C36A3D; --on: #fff; color: #1E2A44; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; background: #1E2A44; }
+.pg { background: linear-gradient(#F6EFE4 0 40%, #E7DCCB 62%, #1E2A44 82%); }
+.pg::before { content: ""; position: absolute; left: 12px; top: 70px; width: 2px; height: 260px; background: linear-gradient(#C36A3D 0 40%, rgba(30, 42, 68, .15) 40%); }
+.hero { grid-template-columns: 1fr; padding: 40px 40px 30px; min-height: 260px; } .art { display: none; }
+.kicker { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; color: #C36A3D; letter-spacing: 3px; } .kicker::before { content: "第一章 · "; }
+.hero h1 { font-size: 36px; font-weight: 600; line-height: 1.35; } .sub { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; max-width: 300px; }
+.feats { grid-template-columns: 1fr; gap: 26px; padding: 20px 40px 40px; } .feats article { display: grid; grid-template-columns: 40px 1fr; align-items: baseline; }
+.feats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; color: #C36A3D; } .feats h3 { font-size: 20px; } .feats p { grid-column: 2; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.stats { color: #F6EFE4; padding: 30px 40px; } .stats b { font-size: 30px; font-weight: 500; } .ft { color: #F6EFE4; }
+</style>

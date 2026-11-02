@@ -63,7 +63,12 @@
         "indigo-dye",
         "mexican-folk",
         "bohemian",
-        "tropical"
+        "tropical",
+        "korean-minimal",
+        "jaipur",
+        "seal-carving",
+        "blue-green-landscape",
+        "old-shanghai"
       ]
     },
     {
@@ -95,7 +100,11 @@
         "gothic",
         "futurism",
         "streamline",
-        "neoclassical"
+        "neoclassical",
+        "baroque",
+        "secession",
+        "suprematism",
+        "arts-and-crafts"
       ]
     },
     {
@@ -124,7 +133,11 @@
         "duotone",
         "kinetic-type",
         "dark-minimal",
-        "asymmetric"
+        "asymmetric",
+        "zakka",
+        "scrollytelling",
+        "geometric",
+        "soft-gray"
       ]
     },
     {
@@ -151,7 +164,10 @@
         "marble",
         "wood-grain",
         "concrete",
-        "foil-stamp"
+        "foil-stamp",
+        "leather",
+        "ceramic-glaze",
+        "felt"
       ]
     },
     {
@@ -164,7 +180,7 @@
       "pick": "one",
       "exclusive": "web-style",
       "stage": "site",
-      "intro": "印刷工艺和手工材料：孔版、网点、活版、木刻、水彩、刺绣、彩色玻璃、水磨石。",
+      "intro": "印刷工艺和手工材料：孔版、网点、活版、木刻、水彩、水粉、蓝晒、刺绣、彩色玻璃、马赛克、水磨石、浮墨纸。",
       "items": [
         "risograph",
         "halftone",
@@ -173,7 +189,11 @@
         "watercolor",
         "embroidery",
         "stained-glass",
-        "terrazzo"
+        "terrazzo",
+        "cyanotype",
+        "mosaic",
+        "marbled-paper",
+        "gouache"
       ]
     },
     {
@@ -198,7 +218,10 @@
         "grunge",
         "zine",
         "travel-poster",
-        "polaroid"
+        "polaroid",
+        "silent-film",
+        "diner",
+        "apothecary"
       ]
     },
     {
@@ -223,7 +246,11 @@
         "cinematic",
         "gallery",
         "postage",
-        "card-catalog"
+        "card-catalog",
+        "recipe-card",
+        "periodic",
+        "almanac",
+        "bookshelf"
       ]
     },
     {
@@ -254,7 +281,10 @@
         "comic",
         "kids-playful",
         "sport",
-        "finance-trust"
+        "finance-trust",
+        "sticker",
+        "medical-clean",
+        "wellness"
       ]
     },
     {

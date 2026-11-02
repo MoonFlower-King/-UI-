@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Geometric Composition",
+  "zh": "几何构成",
+  "alias": [
+    "几何风",
+    "Geometric"
+  ],
+  "lead": "用圆、方、三角和半圆拼出插画和版面，颜色平涂、边缘清晰，像一张构成练习。理性、明快、现代，适合建筑、教育、科技、咨询和设计工作室。",
+  "prompt": "几何构成风格：浅色背景，三到四种平涂色（如墨蓝、砖红、芥黄、浅灰），主视觉由圆、正方形、三角、半圆拼成的抽象插画，所有形状对齐网格，几何无衬线标题，按钮和卡片也用简单的几何形",
+  "promptEn": "geometric composition style: light background, three or four flat colors (such as ink blue, brick red, mustard and pale gray), a hero illustration assembled from circles, squares, triangles and half-circles, all shapes snapped to a grid, geometric sans headings, buttons and cards in simple geometric forms",
+  "avoid": "形状要对齐网格、大小有规律，随手摆会显得乱。颜色限定三四种，每种在画面里出现不止一次才统一。",
+  "neg": [
+    "形状随意乱摆、颜色太多",
+    "shapes placed at random, too many colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #22336B; --a2: #C4472F; --on: #fff; background: #F3F1EC; color: #1C1C1C; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50% 50% 0 0; background: #C4472F; } .hero h1 { font-weight: 700; }
+.art { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; min-height: 170px; }
+.art .m { background: #22336B; border-radius: 100% 0 0 0; } .art .h { background: #E7B33D; border-radius: 50%; }
+.art::before { content: ""; background: #C4472F; clip-path: polygon(0 100%, 100% 100%, 100% 0); } .art::after { content: ""; background: #D6D2C8; border-radius: 0 0 100% 100% / 0 0 100% 100%; }
+.feats article { padding: 12px; background: #fff; } .feats article:nth-child(1) { border-top-left-radius: 40px; } .feats article:nth-child(3) { border-bottom-right-radius: 40px; }
+.feats b { color: #C4472F; } .stats { background: #22336B; color: #fff; } .stats b { color: #E7B33D; }
+</style>

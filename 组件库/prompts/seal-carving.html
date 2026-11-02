@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Seal Carving",
+  "zh": "篆刻印章",
+  "alias": [
+    "印章风",
+    "金石"
+  ],
+  "lead": "朱红方印、白文朱文、刀刻感的边框，配大面积的宣纸白。古雅、有金石味、记忆点强，适合书法篆刻、文创、茶、老字号和文化机构。",
+  "prompt": "篆刻印章风格：宣纸白背景，墨黑文字，朱砂红作为唯一强调色，标志和关键按钮做成方形印章（白文或朱文），印章边缘带轻微残破的刀刻感，衬线标题字距宽，版面疏朗，红色只出现在印章上",
+  "promptEn": "seal carving style: rice-paper white background, ink-black type, cinnabar red as the only accent, logo and key buttons shaped as square seals (relief or intaglio), seal edges with slightly worn carved texture, widely tracked serif headings, airy layout, red appearing only on seals",
+  "avoid": "印章红只能少量出现，一页两三枚就够；到处盖章会像公文。印章里的字要能认，别为了「像」用看不懂的篆字。",
+  "neg": [
+    "满页红印、看不懂的篆字",
+    "red seals everywhere, unreadable seal script"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B8322A; --a2: #B8322A; --on: #FBF8F1; background: #F8F4EA; color: #1F1C1A; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { width: 18px; height: 18px; border-radius: 2px; box-shadow: inset 0 0 0 2px #B8322A, inset 0 0 0 4px #F8F4EA; }
+.cta { background: none; color: #1F1C1A; border: 1px solid #1F1C1A; } .hero h1 { font-weight: 600; letter-spacing: 5px; }
+.b1 { border-radius: 2px; box-shadow: inset 0 0 0 2px #B8322A, inset 0 0 0 3px #FBF8F1; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 96px; height: 96px; margin: -48px; border-radius: 4px; background: #B8322A;
+  clip-path: polygon(0 2%, 30% 0, 70% 1%, 100% 0, 99% 40%, 100% 100%, 60% 99%, 20% 100%, 0 97%, 1% 50%); }
+.art .m::before { content: "山月"; position: absolute; inset: 10px; display: grid; place-items: center; border: 3px solid #F8F4EA; color: #F8F4EA; font-size: 30px; font-weight: 700; letter-spacing: 2px; }
+.feats article { padding-top: 10px; border-top: 1px solid #1F1C1A; } .feats b { color: #B8322A; } .feats h3 { letter-spacing: 4px; }
+.stats b { font-weight: 400; }
+</style>

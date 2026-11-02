@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Calm Wellness",
+  "zh": "疗愈舒缓",
+  "alias": [
+    "冥想风",
+    "Spa Calm"
+  ],
+  "lead": "雾绿、沙色和柔光的渐变，慢慢呼吸的圆形，很大的留白和很轻的字。放松、安静、温柔，适合冥想 App、瑜伽馆、水疗、心理咨询和睡眠产品。",
+  "prompt": "疗愈舒缓风格：沙色或雾白背景，雾绿、浅鼠尾草、暖沙为主色，主视觉为一个柔光渐变的圆形并做缓慢的呼吸式缩放，细衬线标题，正文为轻柔的无衬线，大量留白，按钮为柔和的胶囊，几乎没有线条",
+  "promptEn": "calm wellness style: sand or misty white background, mist green, pale sage and warm sand as main colors, a hero of one softly glowing gradient circle that slowly breathes in and out, thin serif headings, gentle sans body text, lots of white space, soft pill buttons, almost no lines",
+  "avoid": "呼吸动画要慢（四到六秒一次）、幅度要小，快了反而让人紧张。字可以细，但别细到和背景糊在一起。",
+  "neg": [
+    "快速动画、过细过浅的字",
+    "fast animation, hairline pale text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #7F9B86; --a2: #7F9B86; --on: #FAF7F1; background: #F4EFE6; color: #3F4A42; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 99px; } .nav { font-size: 11px; } .logo { font-weight: 500; } .logo i { border-radius: 50%; }
+.hero h1 { font-weight: 400; letter-spacing: 3px; line-height: 1.5; } .sub { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; color: #6C756E; opacity: 1; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 130px; height: 130px; margin: -65px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #F6F1E7, #C9D8C8 55%, #A8BFA9); box-shadow: 0 0 40px rgba(127, 155, 134, .35); animation: breathe 6s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(.88); } 50% { transform: scale(1); } }
+.feats p, .stats span { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .feats article { padding: 14px; border-radius: 20px; background: #EDE6DA; } .feats h3 { font-weight: 400; letter-spacing: 2px; }
+.feats b, .stats b { color: #7F9B86; font-weight: 400; }
+</style>

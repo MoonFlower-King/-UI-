@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Blue-Green Landscape",
+  "zh": "青绿山水",
+  "alias": [
+    "青绿",
+    "金碧山水"
+  ],
+  "lead": "石青、石绿层层叠起的山峦，配一点金线和留白的江水。明丽、雅致、有大气象，适合文旅、国风游戏、茶饮、艺术展和高端礼盒。",
+  "prompt": "青绿山水风格：绢本米黄背景，主视觉为石青、石绿分层平涂的山峦，山顶边缘略带金色勾线，江面留白，衬线标题，文字放在留白的天空或水面处，配色饱和但温润，整体像长卷的一段",
+  "promptEn": "blue-green landscape style: warm silk-beige background, a hero of layered mountain ridges in flat azurite blue and malachite green with faint gold outlines along the peaks, the river left blank, serif headings placed in the empty sky or water, saturated yet mellow palette, like a section of a long handscroll",
+  "avoid": "青绿要分层，前山深、远山浅，同一个绿涂满会像游戏地图。别和水墨混用，两种画法放一起会打架。",
+  "neg": [
+    "同色涂满、混用水墨",
+    "one flat green everywhere, mixing with ink wash"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F5A6E; --a2: #2F7D5B; --on: #F4ECD8; background: #F1E7CF; color: #263830; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 250px; padding: 26px; } .copy { position: relative; z-index: 1; max-width: 240px; }
+.hero h1 { font-weight: 600; letter-spacing: 3px; } .cta, .b1 { border-radius: 2px; }
+.art { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; min-height: 0; }
+.art .m { position: absolute; inset: 0; background: #7FB3A8; clip-path: polygon(30% 100%, 48% 30%, 58% 52%, 70% 10%, 84% 46%, 100% 24%, 100% 100%); }
+.art .h { position: absolute; inset: 0; background: #1F5A6E; clip-path: polygon(40% 100%, 60% 48%, 70% 62%, 82% 34%, 100% 60%, 100% 100%); box-shadow: 0 0 0 1px #C9A24B; }
+.art::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: linear-gradient(transparent, #F1E7CF 70%); }
+.art::before { content: ""; position: absolute; inset: 0; background: #2F7D5B; clip-path: polygon(55% 100%, 74% 60%, 84% 72%, 94% 52%, 100% 58%, 100% 100%); z-index: 1; }
+.feats article { padding: 12px; background: rgba(255, 250, 238, .7); border-top: 3px solid #2F7D5B; } .feats b { color: #1F5A6E; } .stats b { color: #1F5A6E; }
+</style>
