@@ -162,6 +162,8 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
 .card:hover { border-color: var(--line-2); box-shadow: var(--shadow); transform: translateY(-2px); }
 .thumb { position: relative; aspect-ratio: 16 / 10; margin: 6px 6px 0; border-radius: 10px; background: var(--canvas); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .04); }
 .thumb iframe { position: absolute; left: 0; top: 0; width: 560px; height: 350px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .5)); pointer-events: none; }
+.thumb iframe { transition: opacity .18s ease; }
+.thumb iframe.swap { opacity: 0; }
 .thumb .live { position: absolute; left: 8px; top: 8px; z-index: 2; padding: 2px 8px; border-radius: 99px; background: rgba(18, 23, 34, .78); color: #fff; font-size: 11px; opacity: 0; transition: opacity .2s; pointer-events: none; }
 @media (hover: hover) {
   .card:hover .thumb iframe { pointer-events: auto; }

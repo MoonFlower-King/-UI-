@@ -18,11 +18,15 @@ window.JY_AUTOPLAY = {
     // 演示时点到链接或提交表单，不要真的跳走
     document.addEventListener('click', (e) => { if (!e.isTrusted && e.target.closest?.('a[href]')) e.preventDefault(); }, true);
     document.addEventListener('submit', (e) => e.preventDefault(), true);
+    // 访客自己按下鼠标、按键或滚动时，演示立刻让位，交给访客亲手玩
+    const handOver = (e) => { if (e.isTrusted && !window.__jyStop) { window.__jyStop = true; document.dispatchEvent(new Event('jy-stop')); } };
+    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((t) => add.call(document, t, handOver, { capture: true, passive: true }));
   },
 
   // 放在组件代码之后：开始演示
   post: function () {
-    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const STOP = {};
+    const wait = (ms) => new Promise((ok, no) => setTimeout(() => (window.__jyStop ? no(STOP) : ok()), ms));
     const W = innerWidth, H = innerHeight;
     const seen = window.__jy;
 
@@ -83,28 +87,39 @@ window.JY_AUTOPLAY = {
       over = el;
     };
     const place = () => { cur.style.transform = `translate(${x - 3}px,${y - 2}px)`; };
-    const moveTo = (tx, ty, ms = 650) => new Promise((done) => {
-      const sx = x, sy = y, t0 = performance.now();
+    // 鼠标移动：画面每帧都更新，但「告诉组件鼠标在哪」隔一帧做一次，同屏十几张卡片也不卡
+    const moveTo = (tx, ty, ms = 700) => new Promise((done, no) => {
+      const sx = x, sy = y, t0 = performance.now(); let n = 0;
       const step = (now) => {
+        if (window.__jyStop) return no(STOP);
         const p = Math.min(1, (now - t0) / ms), e = p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
         x = sx + (tx - sx) * e; y = sy + (ty - sy) * e; place();
-        const el = document.elementFromPoint(x, y);
-        if (!down) setHover(el);
-        if (el) { ev(down || el, 'pointermove'); ev(down || el, 'mousemove'); }
+        if (n++ % 2 === 0 || p === 1) {
+          const el = document.elementFromPoint(x, y);
+          if (!down) setHover(el);
+          if (el) { ev(down || el, 'pointermove'); ev(down || el, 'mousemove'); }
+        }
         p < 1 ? requestAnimationFrame(step) : done();
       };
       requestAnimationFrame(step);
     });
+    // 按下时在鼠标尖上泛起一圈涟漪，让人看清「这里点了一下」
+    const ring = () => {
+      const r = document.createElement('div');
+      r.style.cssText = `position:fixed;left:${x - 14}px;top:${y - 14}px;width:28px;height:28px;border-radius:50%;background:rgba(250,140,22,.35);pointer-events:none;z-index:2147483646`;
+      document.body.append(r);
+      r.animate([{ transform: 'scale(.3)', opacity: 1 }, { transform: 'scale(1.6)', opacity: 0 }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' }).onfinish = () => r.remove();
+    };
     const center = (el) => { const r = el.getBoundingClientRect(); return [Math.min(W - 8, Math.max(8, r.left + r.width / 2)), Math.min(H - 8, Math.max(8, r.top + r.height / 2))]; };
-    const press = (el) => { down = el; el.classList.add('jy-active'); cur.style.scale = '.85'; ev(el, 'pointerdown'); ev(el, 'mousedown'); };
+    const press = (el) => { down = el; el.classList.add('jy-active'); cur.style.scale = '.82'; ring(); ev(el, 'pointerdown'); ev(el, 'mousedown'); };
     const release = (el, click = true) => { ev(el, 'pointerup'); ev(el, 'mouseup'); el.classList.remove('jy-active'); cur.style.scale = ''; down = null; if (click) el.click(); };
     const sample = (el) => el.type === 'email' ? 'moon@jiangyue.design' : el.type === 'password' ? 'Moon2026!' : el.type === 'number' || el.inputMode === 'numeric' || el.maxLength === 1 ? '2026' : el.type === 'search' || el.list ? '江' : '江月 UI';
 
     const demo = {
       async hover(el) { const [cx, cy] = center(el); await moveTo(cx, cy); const r = el.getBoundingClientRect(); await moveTo(cx + r.width * .25, cy - r.height * .2, 500); await moveTo(cx - r.width * .2, cy + r.height * .15, 500); await wait(500); },
-      async click(el) { const [cx, cy] = center(el); await moveTo(cx, cy); await wait(250); press(el); await wait(120); release(el); await wait(1100); },
+      async click(el) { const [cx, cy] = center(el); await moveTo(cx, cy); await wait(380); press(el); await wait(150); release(el); await wait(1200); },
       async type(el) {
-        const [cx, cy] = center(el); await moveTo(cx, cy); press(el); release(el, false); el.focus();
+        const [cx, cy] = center(el); await moveTo(cx, cy); await wait(250); press(el); release(el, false); el.focus(); await wait(300);
         const text = sample(el);
         for (const ch of text) {
           const t = document.activeElement?.matches?.('input,textarea') ? document.activeElement : el;
@@ -144,15 +159,19 @@ window.JY_AUTOPLAY = {
       const max = horizontal ? el.scrollWidth - el.clientWidth : el.scrollHeight - el.clientHeight;
       for (const to of [max, 0]) {
         const from = horizontal ? el.scrollLeft : el.scrollTop, t0 = performance.now();
-        await new Promise((ok) => { const f = (n) => { const p = Math.min(1, (n - t0) / 1800); const v = from + (to - from) * (p < .5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2); horizontal ? (el.scrollLeft = v) : (el.scrollTop = v); p < 1 ? requestAnimationFrame(f) : ok(); }; requestAnimationFrame(f); });
+        await new Promise((ok, no) => { const f = (n) => { if (window.__jyStop) return no(STOP); const p = Math.min(1, (n - t0) / 1800); const v = from + (to - from) * (p < .5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2); horizontal ? (el.scrollLeft = v) : (el.scrollTop = v); p < 1 ? requestAnimationFrame(f) : ok(); }; requestAnimationFrame(f); });
         await wait(500);
       }
     };
 
     // 4. 演示一轮，然后请外层重载重来
+    document.addEventListener('jy-stop', () => {
+      cur.remove(); document.querySelectorAll('.jy-hover,.jy-active').forEach((n) => n.classList.remove('jy-hover', 'jy-active'));
+      if (down) { ev(down, 'pointerup'); ev(down, 'mouseup'); down = null; }
+    });
     (async () => {
       place();
-      await wait(700);
+      await wait(450);
       const anims = document.getAnimations().filter((a) => a !== undefined && a.effect?.target !== cur);
       if (!targets.length && !scrollers.length && !hScrollers.length) {
         cur.remove();
@@ -171,6 +190,6 @@ window.JY_AUTOPLAY = {
       await moveTo(W * 0.82, H * 0.86, 600);
       await wait(900);
       parent.postMessage('jy-replay', '*');
-    })();
+    })().catch((e) => { if (e !== STOP) throw e; });
   },
 };
