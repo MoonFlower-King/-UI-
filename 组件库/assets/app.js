@@ -177,8 +177,9 @@ const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.styl
 function card(c) {
   return `<article class="card">
     <div class="thumb"${fitCache[c.id] ? ` style="--vw:${fitCache[c.id]}"` : ''}><div class="poster" aria-hidden="true"></div><iframe class="swap" data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe>
-      <div class="thumb-actions"><button class="glass-btn" data-copy="${c.id}">复制提示词</button><button class="glass-btn add-btn" data-add="${c.id}"></button></div><span class="live">点一下，换你来玩</span></div>
-    <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p></div>
+<span class="live">点一下，换你来玩</span></div>
+    <div class="card-body"><h3 class="card-title"><a href="#${c.id}" title="${esc(c.lead)}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3>
+      <div class="card-actions"><button class="glass-btn" data-copy="${c.id}">复制提示词</button><button class="glass-btn add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
 }
 function hydrate(root) {
