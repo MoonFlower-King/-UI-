@@ -12,6 +12,9 @@
 //   -->
 //   <div>…</div>  <style>…</style>
 //
+// 很多词条共用的一段 CSS 可以抽成「骨架」：prompts/_<名字>.css，词条元信息写 "kit": "<名字>" 就会先套上它，
+// 这样几百个词条不用每个都复制一遍（比如网站风格的 _site-kit.css）。
+//
 // 和组件库的区别：
 // - 预览只用 HTML + CSS（不许写 <script>），直接画进卡片，不开 iframe，又轻又省电
 // - 同一组词条可以共用一个「舞台」：prompts/_<舞台名>.html（比如所有运镜共用一个江边场景），
@@ -26,7 +29,10 @@ const fail = (msg) => { console.error('✗ prompts/' + msg); process.exit(1); };
 const { kinds, groups } = JSON.parse(readFileSync(join(ROOT, 'data/prompt-groups.json'), 'utf8'));
 const noScript = (file, code) => { if (/<script/i.test(code)) fail(`${file}：预览只用 HTML + CSS，不要写 <script>`); return code; };
 
-const stages = {}, byId = new Map();
+const stages = {}, kits = {}, byId = new Map();
+for (const file of readdirSync(join(ROOT, 'prompts')).filter((f) => f.startsWith('_') && f.endsWith('.css'))) {
+  kits[basename(file, '.css').slice(1)] = readFileSync(join(ROOT, 'prompts', file), 'utf8').trim();
+}
 for (const file of readdirSync(join(ROOT, 'prompts')).filter((f) => f.endsWith('.html'))) {
   const raw = readFileSync(join(ROOT, 'prompts', file), 'utf8');
   if (file.startsWith('_')) { stages[basename(file, '.html').slice(1)] = noScript(file, raw.trim()); continue; }
@@ -36,6 +42,7 @@ for (const file of readdirSync(join(ROOT, 'prompts')).filter((f) => f.endsWith('
   try { meta = JSON.parse(m[1]); } catch (e) { fail(`${file}：元信息不是合法 JSON（${e.message}）`); }
   const missing = ['en', 'zh', 'lead', 'prompt', 'promptEn', 'avoid'].filter((k) => !meta[k]);
   if (missing.length) fail(`${file}：元信息缺少 ${missing.join('、')}`);
+  if (meta.kit && !kits[meta.kit]) fail(`${file}：kit「${meta.kit}」对应的 prompts/_${meta.kit}.css 不存在`);
   if (meta.neg && !(Array.isArray(meta.neg) && meta.neg.length === 2)) fail(`${file}：neg 要写成 ["中文", "English"]`);
   byId.set(basename(file, '.html'), { ...meta, code: noScript(file, raw.slice(m[0].length).trim()) });
 }
@@ -56,7 +63,7 @@ for (const g of groups) {
 const orphan = [...byId].filter(([, it]) => !it.group).map(([id]) => id);
 if (orphan.length) fail(`这些词条没有在 data/prompt-groups.json 里登记：${orphan.join('、')}`);
 
-const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items, stages };
+const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items, stages, kits };
 writeFileSync(join(ROOT, 'data/prompts.js'),
   `// 由 scripts/build-prompts.mjs 生成，不要手改。\nwindow.JY_PROMPTS = ${JSON.stringify(out)};\n`);
-console.log(`✓ 提示词调配台：${groups.length} 组、${items.length} 个词条、${Object.keys(stages).length} 个舞台`);
+console.log(`✓ 提示词调配台：${groups.length} 组、${items.length} 个词条、${Object.keys(stages).length} 个舞台、${Object.keys(kits).length} 套骨架`);

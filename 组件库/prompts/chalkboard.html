@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Chalkboard",
+  "zh": "黑板粉笔",
+  "alias": [
+    "黑板风",
+    "粉笔字"
+  ],
+  "lead": "墨绿黑板上的粉笔字和粉笔线，带一点淡淡的擦拭痕迹。亲切、有烟火气，适合咖啡馆菜单、小餐馆、课堂、手工市集。",
+  "prompt": "黑板风格：墨绿黑板背景带淡淡的擦拭痕迹，文字和线条为粉笔白，少量粉笔黄和粉笔粉做强调，标题像粉笔书写，分隔线为粉笔虚线，框线带手画的不规则圆角，排版像餐厅手写菜单",
+  "promptEn": "chalkboard style: deep green chalkboard background with faint eraser smudges, chalk-white type and lines, a little chalk yellow and pink for accents, chalk-lettered headings, chalk dashed dividers, hand-drawn frames with irregular corners, laid out like a hand-written cafe menu",
+  "avoid": "粉笔质感只加在标题和线条上，正文用清楚的字体。擦拭痕迹要淡，太脏会显得旧和乱。",
+  "neg": [
+    "正文用粉笔字、脏乱擦痕",
+    "chalk font for body text, messy smudges"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F4E27A; --a2: #F4E27A; --on: #2B3A33; color: #EDEFE8; font-family: "Chalkboard SE", -apple-system, "Inter", "PingFang SC", sans-serif;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, .06), transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(255, 255, 255, .05), transparent 45%), #2B3A33; }
+.nav { border-bottom: 2px dashed rgba(237, 239, 232, .4); } .cta, .b1 { border-radius: 6px; } .b2 { color: #F2A7B8; }
+.hero h1 { font-weight: 700; letter-spacing: 1px; text-shadow: 0 0 1px rgba(255, 255, 255, .6), 1px 1px 0 rgba(255, 255, 255, .12); }
+.art { border: 3px solid rgba(237, 239, 232, .75); border-radius: 6px 14px 8px 12px; }
+.art .m { position: absolute; left: 50%; top: 26px; width: 50px; height: 50px; margin-left: -25px; border-radius: 50%; border: 3px solid #F4E27A; }
+.art .h { position: absolute; left: 30px; right: 30px; bottom: 44px; height: 3px; border-radius: 3px; background: #F2A7B8; box-shadow: 0 12px 0 rgba(237, 239, 232, .7), 0 24px 0 rgba(237, 239, 232, .45); }
+.feats article { padding-top: 8px; border-top: 2px solid rgba(237, 239, 232, .5); } .feats b { color: #F2A7B8; } .stats b { color: #F4E27A; }
+</style>

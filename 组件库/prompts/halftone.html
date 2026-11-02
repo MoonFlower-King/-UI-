@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Halftone",
+  "zh": "半调网点",
+  "alias": [
+    "网点图",
+    "Halftone Dots"
+  ],
+  "lead": "用大小渐变的圆点表现明暗，像旧报纸照片和丝网印刷。有印刷质感又很现代，适合摄影、音乐、潮流杂志、活动海报。",
+  "prompt": "半调网点风格：浅色背景，主视觉图片处理成单色或双色的半调网点（圆点大小随明暗变化），网点颜色为深墨色或一种强调色，粗无衬线标题，其余版面干净平涂，网点只出现在图片和局部装饰",
+  "promptEn": "halftone style: light background, hero imagery rendered as one- or two-color halftone dots whose size follows the tones, dots in deep ink or one accent color, bold sans headings, the rest of the layout clean and flat, dots only on images and small accents",
+  "avoid": "网点要有「大小渐变」才像半调，均匀的波点只是装饰花纹。网点放在文字背后会严重影响阅读。",
+  "neg": [
+    "均匀波点、网点在文字背后",
+    "uniform polka dots, dots behind text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1A1A; --a2: #E2501E; --on: #fff; background: #F1EEE8; color: #1A1A1A; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 900; } .nav { border-bottom: 2px solid #1A1A1A; }
+.art { overflow: hidden; border-radius: 4px; }
+.art .m { position: absolute; inset: 0; filter: brightness(1.4) contrast(22);
+  background: radial-gradient(circle, #000 0, #fff 6px) 0 0 / 10px 10px, radial-gradient(circle at 28% 30%, #fff 0, #fff 12%, #4A4A4A 100%); background-blend-mode: multiply; }
+.art .h { position: absolute; inset: 0; background: #E2501E; mix-blend-mode: screen; }
+.feats article { padding-left: 10px; border-left: 4px solid #E2501E; }
+.stats { background: #1A1A1A; color: #F1EEE8; } .stats b { color: #E2501E; }
+</style>

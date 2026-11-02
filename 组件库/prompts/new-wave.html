@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "New Wave Typography",
+  "zh": "新浪潮排版",
+  "alias": [
+    "瑞士朋克",
+    "Swiss Punk"
+  ],
+  "lead": "把瑞士风的网格局部打破：大标题倾斜、字号悬殊、粗细线和色块穿插，但整体仍有节奏。先锋、有态度，适合设计工作室、艺术院校、实验音乐、展览。",
+  "prompt": "新浪潮排版风格：白底或浅灰底，黑色加一种亮色（橘红或钴蓝），大标题有意倾斜、层叠，字号对比极大，粗细线条和矩形色块穿插版面，网格只在一两处被打破，其余严格对齐，无衬线字体",
+  "promptEn": "New Wave typography style: white or light gray background, black plus one bright accent (orange red or cobalt), the headline deliberately tilted and layered with extreme size contrast, thick and thin rules and rectangles cutting through the layout, the grid broken in one or two places while the rest stays strictly aligned, sans-serif type",
+  "avoid": "「打破网格」不是乱排：只破一两处（比如一个倾斜的大标题），其余保持对齐。正文和按钮不要倾斜。",
+  "neg": [
+    "整页歪斜、正文倾斜",
+    "everything skewed, tilted body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #FF4A1C; --a2: #111; --on: #fff; background: #EDEDEA; color: #111; font-family: "Helvetica Neue", Arial, -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 6px solid #111; } .logo i { transform: rotate(15deg); }
+.kicker { color: #FF4A1C; font-weight: 700; } .hero h1 { margin: 22px 0 14px; font-size: 38px; font-weight: 900; line-height: 1.05; transform: rotate(-6deg); transform-origin: left center; }
+.art { background: #111; overflow: hidden; }
+.art .m { position: absolute; left: -30px; top: 50px; width: 150px; height: 18px; background: #FF4A1C; transform: rotate(-20deg); }
+.art .h { position: absolute; right: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; border: 6px solid #EDEDEA; }
+.feats article { padding-top: 6px; border-top: 2px solid #111; } .feats article:nth-child(2) { margin-top: 16px; border-top-width: 8px; }
+.feats b { font-size: 22px; font-weight: 900; color: #FF4A1C; } .stats b { font-size: 30px; font-weight: 900; } .stats div:nth-child(2) b { color: #FF4A1C; }
+</style>

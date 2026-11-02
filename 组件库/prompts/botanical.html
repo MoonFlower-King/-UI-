@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Botanical Plate",
+  "zh": "植物图鉴",
+  "alias": [
+    "博物图鉴",
+    "标本册"
+  ],
+  "lead": "像博物馆的植物标本册：细线描的叶子、编号和学名小标签、细线框。安静、有学识感，适合花店、护肤、茶饮、自然教育和博物馆。",
+  "prompt": "植物图鉴风格：淡米色纸张背景，深橄榄绿和褐色为主，主视觉为细线描加淡彩的植物插画，配编号和小字学名标签，衬线标题，内容放在细线框里，像一页自然史标本册",
+  "promptEn": "botanical plate style: pale cream paper background, deep olive and brown as main colors, a finely line-drawn and lightly tinted plant illustration as the hero with a numbered specimen caption, serif headings, content inside thin rule frames, like a page from a natural history specimen book",
+  "avoid": "植物要用细线描或淡彩，写实照片会失去图鉴感。标签小字要克制，一两处就够。",
+  "neg": [
+    "写实照片、大量装饰小字",
+    "photos, lots of tiny decorative labels"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #4E5E3A; --a2: #8A5A3B; --on: #F7F2E5; background: #F7F2E5; color: #2E3424; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta { background: none; color: #4E5E3A; border: 1px solid #4E5E3A; } .logo i { border-radius: 0 100%; } .hero h1 { font-weight: 600; }
+.art { border: 1px solid #4E5E3A; background: #FBF8EF; }
+.art .m { position: absolute; left: 50%; top: 18px; bottom: 34px; width: 1.5px; background: #4E5E3A; }
+.art::before { content: ""; position: absolute; left: calc(50% - 46px); top: 36px; width: 44px; height: 22px; border: 1.5px solid #4E5E3A; border-radius: 100% 0; background: rgba(78, 94, 58, .14); }
+.art::after { content: ""; position: absolute; left: 50%; top: 72px; width: 44px; height: 22px; border: 1.5px solid #4E5E3A; border-radius: 0 100%; background: rgba(78, 94, 58, .14); }
+.art .h { position: absolute; left: 8px; right: 8px; bottom: 8px; padding-top: 4px; border-top: 1px solid #4E5E3A; font-size: 9px; color: #8A5A3B; }
+.art .h::before { content: "No.12 · 茶 Camellia sinensis"; }
+.feats article { padding-top: 8px; border-top: 1px solid #4E5E3A; } .feats b { color: #8A5A3B; }
+.stats b { font-weight: 400; color: #4E5E3A; }
+</style>

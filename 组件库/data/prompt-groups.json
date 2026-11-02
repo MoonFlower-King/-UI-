@@ -4,7 +4,7 @@
       "id": "web",
       "name": "网站风格",
       "en": "Web style",
-      "intro": "同一个示例网站换上 50 种不同风格，一眼看出差别。一个网站只选一种主风格。",
+      "intro": "同一个示例网站换上不同风格，一眼看出差别。一个网站只选一种主风格；风格多，可以用上面的搜索框找。",
       "subject": "做什么网站",
       "subjectEg": "一家城市小书房的官网首页",
       "subjectEgEn": "the homepage of a small city bookshop",
@@ -45,14 +45,19 @@
       "pick": "one",
       "exclusive": "web-style",
       "stage": "site",
-      "intro": "东方雅致、水墨、侘寂，加上北欧和地中海这些有地域气质的风格。",
+      "intro": "东方雅致、水墨、宋式、青花、敦煌、浮世绘，加上北欧、地中海、摩洛哥这些有地域气质的风格。",
       "items": [
         "oriental",
         "ink-wash",
         "wabi-sabi",
         "guochao",
         "nordic",
-        "mediterranean"
+        "mediterranean",
+        "ukiyo-e",
+        "blue-white",
+        "dunhuang",
+        "song-minimal",
+        "moroccan"
       ]
     },
     {
@@ -74,7 +79,13 @@
         "constructivism",
         "de-stijl",
         "mid-century",
-        "memphis"
+        "memphis",
+        "art-nouveau",
+        "victorian",
+        "pop-art",
+        "op-art",
+        "psychedelic",
+        "new-wave"
       ]
     },
     {
@@ -124,6 +135,28 @@
       ]
     },
     {
+      "id": "web-craft",
+      "kind": "web",
+      "name": "版画与手工",
+      "en": "Print & craft",
+      "label": "整体风格",
+      "labelEn": "Overall style",
+      "pick": "one",
+      "exclusive": "web-style",
+      "stage": "site",
+      "intro": "印刷工艺和手工材料：孔版、网点、活版、木刻、水彩、刺绣、彩色玻璃、水磨石。",
+      "items": [
+        "risograph",
+        "halftone",
+        "letterpress",
+        "woodcut",
+        "watercolor",
+        "embroidery",
+        "stained-glass",
+        "terrazzo"
+      ]
+    },
+    {
       "id": "web-retro",
       "kind": "web",
       "name": "复古与印刷",
@@ -142,6 +175,28 @@
         "retro-terminal",
         "newspaper",
         "collage"
+      ]
+    },
+    {
+      "id": "web-scene",
+      "kind": "web",
+      "name": "物件与场景",
+      "en": "Objects & scenes",
+      "label": "整体风格",
+      "labelEn": "Overall style",
+      "pick": "one",
+      "exclusive": "web-style",
+      "stage": "site",
+      "intro": "让网站像一件熟悉的东西：标本册、地图、票、笔记本、黑板、打字稿、旧电脑、电影。",
+      "items": [
+        "botanical",
+        "cartographic",
+        "ticket",
+        "grid-notebook",
+        "chalkboard",
+        "typewriter",
+        "retro-os",
+        "cinematic"
       ]
     },
     {
@@ -166,7 +221,10 @@
         "data-dense",
         "blueprint",
         "isometric",
-        "academic"
+        "academic",
+        "solarpunk",
+        "cottagecore",
+        "comic"
       ]
     },
     {

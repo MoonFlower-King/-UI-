@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Stained Glass",
+  "zh": "彩色玻璃",
+  "alias": [
+    "花窗玻璃",
+    "彩绘玻璃"
+  ],
+  "lead": "黑色铅条分隔的一块块彩色玻璃，光从后面透过来，饱满又通透。庄重、有仪式感，适合古建文旅、珠宝、灯具、艺术展。",
+  "prompt": "彩色玻璃风格：深色背景，主视觉为由粗黑色铅条分隔的几何或花形彩色玻璃窗，宝石红、钴蓝、琥珀黄、翠绿，玻璃块中间亮、边缘暗，有透光感，文字放在深色纯色区，衬线标题，整体对称庄重",
+  "promptEn": "stained glass style: dark background, a hero window of geometric or floral glass panes separated by thick black lead lines, ruby red, cobalt, amber and emerald, panes glowing brighter in the middle and darker at the edges, text placed on solid dark areas, serif headings, symmetrical and solemn overall",
+  "avoid": "彩色玻璃要「透光」，每块中间亮边缘暗；平涂的色块会像儿童拼图。别把整页做成玻璃，只做主视觉。",
+  "neg": [
+    "平涂色块、整页拼花",
+    "flat color patches, mosaic across the whole page"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E0A93B; --a2: #E0A93B; --on: #1A1420; background: #1A1420; color: #EDE4D3; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 99px; } .hero h1 { font-weight: 600; letter-spacing: 2px; }
+.art { min-height: 176px; border-radius: 85px 85px 4px 4px; border: 4px solid #0E0B10; overflow: hidden;
+  background: conic-gradient(from 0deg at 50% 72%, #B3243A 0 45deg, #1F4FB0 0 90deg, #E0A93B 0 135deg, #1E8A5A 0 180deg, #B3243A 0 225deg, #1F4FB0 0 270deg, #E0A93B 0 315deg, #1E8A5A 0); }
+.art .m { position: absolute; inset: 0; background: repeating-conic-gradient(from -1deg at 50% 72%, #0E0B10 0 2deg, transparent 2deg 45deg),
+  radial-gradient(circle at 50% 72%, #F6D58A 0 14px, #0E0B10 14px 18px, transparent 18px 52px, #0E0B10 52px 56px, transparent 56px); }
+.art .h { position: absolute; inset: 0; background: radial-gradient(circle at 50% 60%, rgba(255, 255, 255, .32), transparent 62%); mix-blend-mode: screen; }
+.feats article { padding: 12px; background: #241C2C; border-top: 3px solid #E0A93B; } .feats article:nth-child(2) { border-color: #1F4FB0; } .feats article:nth-child(3) { border-color: #B3243A; }
+.feats b, .stats b { color: #E0A93B; }
+</style>

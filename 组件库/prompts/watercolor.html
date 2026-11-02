@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Watercolor",
+  "zh": "水彩晕染",
+  "alias": [
+    "水彩风",
+    "Watercolour"
+  ],
+  "lead": "水彩颜料在纸上晕开的半透明色块，叠色处自然加深。温柔、有艺术感，适合花艺、婚礼、儿童绘本、手作和生活方式品牌。",
+  "prompt": "水彩风格：白色水彩纸背景，主视觉为半透明、边缘不规则的水彩晕染色块（柔和的蓝、粉、杏黄），色块叠加处自然加深，深灰色清晰的衬线标题，正文放在干净的留白区，按钮为圆润胶囊",
+  "promptEn": "watercolor style: white watercolor-paper background, translucent irregular watercolor washes (soft blue, pink, apricot) as the hero, natural darkening where washes overlap, clear dark gray serif headings, body text kept in clean white areas, soft pill buttons",
+  "avoid": "水彩是「透明叠色」，不是模糊渐变。颜色要浅，文字不要放在色块中央。",
+  "neg": [
+    "数码模糊渐变、文字压在色块上",
+    "digital blurry gradients, text on washes"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #5B7DA8; --a2: #C0687A; --on: #fff; background: #FDFCFA; color: #3E4552; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 99px; } .logo i { border-radius: 50%; } .hero h1 { font-weight: 600; }
+.art .m { position: absolute; left: 4px; top: 4px; width: 124px; height: 112px; border-radius: 58% 42% 61% 39% / 47% 55% 45% 53%; filter: blur(.8px); mix-blend-mode: multiply;
+  background: radial-gradient(circle at 40% 40%, rgba(120, 160, 210, .3), rgba(110, 150, 205, .55) 70%, rgba(90, 130, 190, .75)); }
+.art .h { position: absolute; right: 0; bottom: 4px; width: 112px; height: 100px; border-radius: 44% 56% 38% 62% / 60% 40% 60% 40%; filter: blur(.8px); mix-blend-mode: multiply;
+  background: radial-gradient(circle at 60% 50%, rgba(240, 150, 160, .28), rgba(230, 130, 150, .6) 78%); }
+.art::after { content: ""; position: absolute; left: 66px; top: 66px; width: 72px; height: 62px; border-radius: 50% 45% 55% 50%; background: rgba(245, 190, 120, .5); mix-blend-mode: multiply; filter: blur(.8px); }
+.feats article { padding: 12px; border-radius: 14px; background: linear-gradient(135deg, rgba(120, 160, 210, .13), rgba(240, 150, 160, .11)); }
+.feats b { color: #C0687A; } .stats b { color: #5B7DA8; font-weight: 500; }
+</style>

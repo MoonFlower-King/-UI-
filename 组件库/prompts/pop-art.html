@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Pop Art",
+  "zh": "波普艺术",
+  "alias": [
+    "波普风",
+    "流行艺术"
+  ],
+  "lead": "放大的漫画网点、粗黑描边、红黄蓝撞色和对话框，像六十年代的流行海报。大胆、好玩、抓眼，适合潮牌、快消、活动推广、年轻品牌。",
+  "prompt": "波普艺术风格：亮黄或白色背景，大红、亮黄、钴蓝的高饱和撞色，粗黑色描边，主视觉用放大的圆形网点和漫画对话框，粗壮的无衬线大标题，按钮带黑边和硬阴影，整体像流行海报",
+  "promptEn": "pop art style: bright yellow or white background, saturated red, yellow and cobalt clashes, thick black outlines, enlarged halftone dots and comic speech bubbles as the hero, chunky bold sans headlines, buttons with black borders and hard shadows, poster-like overall",
+  "avoid": "网点和对话框是点缀，不是底纹，正文区要纯色。别直接用某位艺术家的名作或某部漫画的角色。",
+  "neg": [
+    "网点铺满正文、照搬名作",
+    "dots behind body text, copying famous artworks"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E63323; --a2: #1F4FC9; --on: #fff; background: #FFE45C; color: #111; font-family: "Arial Black", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: #fff; border-bottom: 3px solid #111; } .logo i { border: 2px solid #111; border-radius: 50%; }
+.cta, .b1 { border: 2.5px solid #111; box-shadow: 3px 3px 0 #111; } .b2 { color: #111; text-decoration: underline; }
+.hero h1 { font-size: 34px; font-weight: 900; }
+.art { border: 3px solid #111; overflow: hidden; background: radial-gradient(circle, #E63323 0 3.5px, transparent 4px) 0 0 / 11px 11px, #fff; }
+.art .m { position: absolute; left: 14px; top: 16px; width: 112px; height: 62px; border-radius: 50%; background: #fff; border: 3px solid #111; }
+.art .m::after { content: "哇！"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 22px; font-weight: 900; }
+.art .h { position: absolute; right: -22px; bottom: -22px; width: 92px; height: 92px; border-radius: 50%; background: #1F4FC9; border: 3px solid #111; }
+.feats article { padding: 12px; background: #fff; border: 2.5px solid #111; box-shadow: 4px 4px 0 #111; } .feats b { color: #E63323; }
+.stats { background: #1F4FC9; color: #fff; border-top: 3px solid #111; border-bottom: 3px solid #111; } .stats b { font-weight: 900; }
+</style>

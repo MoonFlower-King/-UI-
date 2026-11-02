@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Op Art",
+  "zh": "欧普艺术",
+  "alias": [
+    "视错觉风",
+    "Optical Art"
+  ],
+  "lead": "用黑白条纹和同心圆制造视觉振动，画面像在动。冲击力强、很现代，适合展览、音乐节、潮流品牌、设计工作室。",
+  "prompt": "欧普艺术风格：纯黑白，主视觉为高对比的同心圆、弯曲条纹或渐变格子产生的视错觉动感，文字放在纯白或纯黑的干净区域，粗无衬线标题，图形与文字严格分区",
+  "promptEn": "op art style: strict black and white, high-contrast concentric circles, warped stripes or graduated checkers creating optical vibration as the hero, text placed on clean solid white or black areas, bold sans headings, strict separation of pattern and text",
+  "avoid": "错觉图形看久了会晕，只放一块主视觉，绝对不能放在文字后面。大面积高频条纹对光敏感的人不友好，别做成闪动动画。",
+  "neg": [
+    "条纹在文字后面、闪烁动画",
+    "stripes behind text, flashing animation"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #fff; color: #111; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 2px solid #111; } .logo i { border-radius: 50%; background: repeating-radial-gradient(circle, #111 0 2px, #fff 2px 4px); }
+.hero { grid-template-columns: 1fr 196px; } .hero h1 { font-weight: 900; letter-spacing: -.5px; }
+.art { min-height: 190px; background: repeating-radial-gradient(circle at 42% 50%, #111 0 6px, #fff 6px 12px); }
+.art .m { position: absolute; left: 34%; top: 26%; width: 70px; height: 70px; border-radius: 50%; background: repeating-radial-gradient(circle at 65% 50%, #fff 0 6px, #111 6px 12px); }
+.feats article { padding-top: 8px; border-top: 6px solid #111; } .stats { background: #111; color: #fff; } .stats b { font-weight: 900; }
+.ft { border-top: 1px solid #111; }
+</style>

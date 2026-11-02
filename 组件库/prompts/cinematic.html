@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Cinematic",
+  "zh": "电影感",
+  "alias": [
+    "宽银幕",
+    "Film Look"
+  ],
+  "lead": "宽银幕黑边、暗调画面、字距很宽的标题和字幕式小字，像一部电影的官网。有情绪和氛围，适合电影、纪录片、高端品牌发布、摄影作品集。",
+  "prompt": "电影感风格：近黑背景，主视觉为宽银幕比例的暗调画面，上下留黑边，标题用字距很宽的细字，字幕条式的白色说明文字，一种低饱和的暖橙配青色调做氛围，演职员表式的居中页脚",
+  "promptEn": "cinematic style: near-black background, a widescreen dark-toned frame as the hero with letterbox bars, thin widely tracked display type, subtitle-like white captions, a desaturated orange-and-teal grade for atmosphere, a centered credits-style footer",
+  "avoid": "暗调不等于全黑，画面要有明暗层次。正文字号别太小、灰度别太低，深色背景上小灰字最难读。",
+  "neg": [
+    "全黑无层次、低对比小字",
+    "pitch black with no depth, low-contrast tiny text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E8D3A8; --a2: #E8D3A8; --on: #111; background: #0D0D0F; color: #E9E6E0; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { font-size: 11px; letter-spacing: 3px; } .logo i { display: none; } .cta { background: none; color: #E8D3A8; border: 1px solid rgba(232, 211, 168, .5); }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 232px; margin-bottom: 18px; padding: 0; }
+.art { position: absolute; inset: 0; min-height: 0; background: linear-gradient(#0D0D0F 0 24px, transparent 24px calc(100% - 24px), #0D0D0F calc(100% - 24px)),
+  radial-gradient(ellipse at 72% 58%, rgba(232, 160, 90, .55), transparent 55%), linear-gradient(160deg, #1E3A44, #3B2A22); }
+.art .m { position: absolute; right: 92px; top: 66px; width: 28px; height: 28px; border-radius: 50%; background: #F5E6C8; box-shadow: 0 0 30px rgba(245, 230, 200, .6); }
+.copy { position: relative; z-index: 1; padding: 42px 30px 30px; } .kicker { letter-spacing: 4px; color: #E8D3A8; }
+.hero h1 { font-size: 28px; font-weight: 300; letter-spacing: 8px; } .sub { max-width: 300px; }
+.feats h3 { font-weight: 400; letter-spacing: 3px; } .feats b { color: #E8D3A8; } .stats b { font-weight: 300; }
+.ft { text-align: center; letter-spacing: 3px; }
+</style>

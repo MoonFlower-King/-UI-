@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Comic Panels",
+  "zh": "漫画分镜",
+  "alias": [
+    "漫画风",
+    "Comic Book"
+  ],
+  "lead": "粗黑边框的漫画分格、速度线、拟声字和平涂描边，内容像一格格分镜。有叙事感和活力，适合漫画平台、游戏、儿童教育、活动故事页。",
+  "prompt": "漫画分镜风格：白底，内容放在粗黑边框的漫画分格里，格子大小不一但间距统一，插画用粗描边平涂，只在一格里放放射速度线和拟声字，粗无衬线标题，配色为黑白加一两种亮色（红、黄）",
+  "promptEn": "comic panel style: white background, content arranged in thick-bordered comic panels of varied sizes with even gutters, bold-outlined flat illustrations, radial speed lines and sound-effect lettering in just one panel, bold sans headings, black and white plus one or two bright colors (red, yellow)",
+  "avoid": "别用任何现有漫画的角色和画风。分格要整齐（统一的粗边框和间距），乱切格子会显得廉价。速度线只用在一格里。",
+  "neg": [
+    "照搬现有角色、格子间距混乱",
+    "existing characters, messy panel gutters"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #E23B2E; --on: #fff; background: #fff; color: #111; font-family: "Arial Black", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { gap: 10px; padding: 16px 22px; } .copy { padding: 14px; border: 3px solid #111; }
+.art { border: 3px solid #111; overflow: hidden; background: repeating-conic-gradient(from 0deg at 50% 50%, #fff 0 6deg, #111 6deg 7deg); }
+.art .m { position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; margin: -35px; border-radius: 50%; background: #FFD23F; border: 3px solid #111; }
+.copy { position: relative; } .copy::after { content: "咚！"; position: absolute; right: 12px; top: 10px; font-size: 30px; font-weight: 900; color: #E23B2E; -webkit-text-stroke: 1.5px #111; transform: rotate(-10deg); }
+.hero h1 { font-weight: 900; } .b1 { background: #E23B2E; border: 2.5px solid #111; } .b2 { color: #111; text-decoration: underline; }
+.feats { gap: 10px; padding: 0 22px 16px; } .feats article { padding: 10px; border: 3px solid #111; } .feats article:nth-child(2) { background: #FFD23F; }
+.feats b { color: #E23B2E; } .stats { margin: 0 22px; border: 3px solid #111; } .stats b { font-weight: 900; }
+</style>

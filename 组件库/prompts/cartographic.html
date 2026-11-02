@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Cartographic",
+  "zh": "地图风",
+  "alias": [
+    "等高线",
+    "Map Style"
+  ],
+  "lead": "等高线、经纬网格、坐标和一个醒目的地点标记，像一张精致的地图。理性又有探索感，适合旅行、户外、城市指南、地产和物流。",
+  "prompt": "地图风格：浅灰绿背景，主视觉为细线等高线和经纬网格，配坐标数字和指北针这类小标注，深蓝主色，一种亮色标记地点（橘红圆点），几何无衬线标题，编号和数字用等宽字体，信息排版像图例",
+  "promptEn": "cartographic map style: pale sage background, fine contour lines and a latitude-longitude grid as the hero, small coordinate numbers and a north arrow, deep navy as main color, one bright marker color for locations (orange red dot), geometric sans headings, monospace numbers, information laid out like a map legend",
+  "avoid": "等高线要细、要淡，只做背景层次。坐标、比例尺这些小标注挑两三个就够，多了像工程图。",
+  "neg": [
+    "粗重等高线、标注堆满",
+    "heavy contour lines, labels everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F3B4D; --a2: #E2582B; --on: #fff; background: #EEF0E6; color: #1F3B4D; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art { border: 1px solid #1F3B4D; background: repeating-radial-gradient(ellipse at 40% 56%, transparent 0 9px, rgba(31, 59, 77, .32) 9px 10px),
+  linear-gradient(rgba(31, 59, 77, .12) 1px, transparent 1px) 0 0 / 34px 34px, linear-gradient(90deg, rgba(31, 59, 77, .12) 1px, transparent 1px) 0 0 / 34px 34px, #F6F7EF; }
+.art .m { position: absolute; left: 40%; top: 56%; width: 12px; height: 12px; margin: -6px; border-radius: 50%; background: #E2582B; box-shadow: 0 0 0 5px rgba(226, 88, 43, .25); }
+.art .h { position: absolute; right: 12px; top: 10px; width: 0; height: 0; border: 7px solid transparent; border-bottom: 18px solid #1F3B4D; border-top: 0; }
+.art::after { content: "N 30°15′  E 120°10′"; position: absolute; left: 8px; bottom: 6px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.feats article { padding-left: 10px; border-left: 2px solid #1F3B4D; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E2582B; }
+.stats { margin: 0 26px; border-top: 1px dashed #1F3B4D; border-bottom: 1px dashed #1F3B4D; } .stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; }
+</style>
