@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Big Typography", "zh": "大字排版", "alias": ["超大字号", "Typographic Hero"],
+  "lead": "把文字放到超大，字本身就是主视觉，不用图片也能撑满一屏。强烈、自信、过目不忘，适合品牌宣言、活动主题、个人作品集首页。",
+  "prompt": "大字排版风格：首屏用超大字号的标题作为主视觉（占据画面宽度的大半），字重极粗、字距收紧、行距压缩，文字可以出血到画面边缘，其他元素都很小，形成强烈的大小对比，配色只有黑、白和一种强调色",
+  "promptEn": "big typography style: an oversized headline is the hero visual, filling most of the screen width, extra-bold weight with tight letter-spacing and compressed leading, text may bleed off the edges, everything else is small for extreme scale contrast, palette of black, white and one accent color",
+  "avoid": "大字的前提是字少，十个字以内效果最好，一整句话放大只会变成难读的墙。手机上超大字要重新断行，不能直接缩小。别再加大图，两个主视觉会打架。",
+  "neg": ["大图与大字同时出现、文字过多", "large photo competing with large text, too much text"]
+}
+-->
+<style>
+.site { background: #EFEDE8; color: #111; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; overflow: hidden; }
+.nav { justify-content: space-between; padding: 14px 22px; font-size: 11px; font-weight: 600; }
+.logo { font-size: 12px; } .logo i { display: none; } .nav nav { gap: 16px; } .cta { color: #E8461E; }
+.hero { padding: 6px 0 20px; } .art { display: none; }
+.kicker { padding: 0 22px; font-size: 11px; font-weight: 600; color: #E8461E; }
+.hero h1 { margin: 4px -6px 0; font-size: 82px; line-height: .92; font-weight: 900; letter-spacing: -5px; white-space: nowrap; }
+.hero h1 br + * , .hero h1 { word-break: keep-all; }
+.sub { margin-top: 18px; padding: 0 22px; max-width: 300px; font-size: 11.5px; line-height: 1.6; }
+.acts { gap: 14px; padding: 0 22px; margin-top: 14px; font-size: 12px; font-weight: 700; } .b1 { padding: 8px 14px; background: #111; color: #EFEDE8; } .b2 { color: #E8461E; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #111; }
+.feats article { padding: 12px 22px; } .feats article + article { border-left: 1px solid #111; }
+.feats b { font-size: 34px; font-weight: 900; letter-spacing: -2px; color: #E8461E; } .feats h3 { font-size: 13px; font-weight: 800; } .feats p { font-size: 10.5px; }
+.stats { border-top: 1px solid #111; padding: 10px 22px; gap: 28px; } .stats b { display: block; font-size: 44px; font-weight: 900; letter-spacing: -3px; line-height: 1; } .stats span { font-size: 10.5px; }
+.ft { padding: 12px 22px 18px; border-top: 1px solid #111; font-size: 10.5px; font-weight: 600; }
+</style>
