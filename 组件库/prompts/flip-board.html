@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Split-flap Board",
+  "zh": "翻牌显示屏",
+  "alias": [
+    "机场翻牌",
+    "车站信息牌"
+  ],
+  "lead": "火车站那块会“哗啦啦”翻动的信息牌：黑色小翻片、白色或黄色字母，每个字一格，中间一道细缝。期待、移动、有出发的感觉，适合旅行、活动倒计时、交通品牌和发布会。",
+  "prompt": "翻牌显示屏风格：近黑背景，标题与数据装在一格一格的翻片里（深灰圆角小方块，中间一道水平细缝，上半略亮下半略暗），字为白或琥珀黄等宽粗字，表格式排版（时间、目的地、状态），状态用绿或琥珀色小灯",
+  "promptEn": "split-flap board style: near-black background, headings and data set in individual flap tiles (dark gray rounded small squares with a thin horizontal split in the middle, upper half slightly lighter than the lower), white or amber bold monospaced characters, table-like layout (time, destination, status), small green or amber status lights",
+  "avoid": "每个字一格、中间一道缝，这两样最关键；长段正文不要放进翻片，只放标题和数字。",
+  "neg": [
+    "整段正文装进翻片、没有中缝",
+    "whole paragraphs in flaps, missing the center split"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F2B630; --a2: #F2B630; --on: #111; background: #111214; color: #E9E9E9; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 3px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #F2B630; letter-spacing: 2px; }
+.hero h1 { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 700; font-size: 24px; letter-spacing: 7px; line-height: 1.6; color: #fff;
+  background: linear-gradient(transparent 48%, #000 48% 52%, transparent 52%), repeating-linear-gradient(90deg, #2A2C30 0 28px, #111214 28px 31px); padding: 0; display: inline-block; }
+.art::before { content: "08:40  杭州\A 09:15  京都\A 10:05  里斯本"; white-space: pre; position: absolute; left: 0; right: 0; top: 14px; font: 700 12px/2.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #F2B630; letter-spacing: 1px;
+  background: linear-gradient(transparent 49%, rgba(0,0,0,.8) 49% 51%, transparent 51%) 0 0 / 100% 31px, #232529; padding-left: 8px; border-radius: 4px; }
+.art::after { content: ""; position: absolute; right: 8px; top: 25px; width: 7px; height: 7px; border-radius: 50%; background: #3DD68C; box-shadow: 0 31px 0 #3DD68C, 0 62px 0 #F2B630; }
+.feats article { padding: 10px; background: #1C1D20; border-radius: 4px; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #F2B630; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #fff; background: #2A2C30; padding: 2px 6px; border-radius: 3px; display: inline-block; }
+</style>

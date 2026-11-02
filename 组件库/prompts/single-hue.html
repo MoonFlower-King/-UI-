@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Single Hue",
+  "zh": "单色系",
+  "alias": [
+    "单色调",
+    "同色系配色"
+  ],
+  "lead": "整页只用一种颜色，从最浅的底色到最深的文字都是它的深浅变化。统一、高级、品牌感强，适合品牌官网、产品发布、作品集和单品营销页。",
+  "prompt": "单色系风格：整页只用一个色相（如赤陶、深蓝或橄榄），背景为该色最浅阶，卡片和色块为中间阶，标题与正文为最深阶，按钮为中深阶，无其他颜色（连灰色也换成该色相的低饱和版本），无衬线或衬线均可",
+  "promptEn": "single hue style: the whole page uses one hue (e.g. terracotta, deep blue or olive), background in its lightest step, cards and blocks in middle steps, headings and body in the darkest step, buttons in a mid-dark step, no other colors (even grays replaced by low-saturation versions of the hue), sans or serif",
+  "avoid": "至少拉开五阶深浅，阶数太少会糊成一片；文字那一阶要足够深，保证对比度。",
+  "neg": [
+    "只有两三阶、文字对比不足",
+    "only two or three steps, insufficient text contrast"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #A6492D; --a2: #A6492D; --on: #FBEDE6; background: #FBEDE6; color: #3E1A0F; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; } .kicker { color: #A6492D; } .hero h1 { font-weight: 800; color: #5E2615; } .b2 { color: #A6492D; }
+.art .m { position: absolute; left: 10px; top: 10px; width: 150px; height: 130px; border-radius: 18px; background: #F2CDBC; }
+.art .h { position: absolute; left: 40px; top: 36px; width: 90px; height: 90px; border-radius: 50%; background: #D98563; box-shadow: 30px -16px 0 -20px #A6492D, inset -14px -10px 0 #C46A47; }
+.feats article { padding: 14px; border-radius: 14px; background: #F6DCCF; } .feats b { color: #A6492D; font-weight: 700; } .feats h3 { color: #5E2615; }
+.stats { background: #5E2615; color: #F6DCCF; margin: 0 26px; border-radius: 14px; } .stats b { color: #FBEDE6; } .ft { color: #7A3A24; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Cork Board",
+  "zh": "软木板",
+  "alias": [
+    "软木质感",
+    "木塞纹"
+  ],
+  "lead": "软木板的颗粒纹理，上面用图钉钉着便签、照片和票根。随性、温暖、有工作室的生活感，适合创意工作室、手作课程、咖啡馆、葡萄酒和灵感收集类产品。",
+  "prompt": "软木板风格：主视觉与页头为软木颗粒纹理（浅棕到深棕的细密斑点），内容卡片为钉在板上的白纸片和拍立得（彩色图钉、轻微旋转、投影），正文区为米白纯底，粗无衬线或手写感标题，点缀红色图钉",
+  "promptEn": "cork board style: hero and header with cork granule texture (dense light-to-dark brown specks), content cards as white paper scraps and instant photos pinned to the board (colored pushpins, slight rotation, drop shadows), body area on plain off-white, bold sans or handwritten-feel headings, red pushpin accents",
+  "avoid": "软木纹理只放在板上，正文区保持纯色；钉上去的东西别太多，三五样就有生活感。",
+  "neg": [
+    "整页软木、钉满东西",
+    "cork over the whole page, board crammed with items"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2A2420; --a2: #C8392F; --on: #FBF7F0; background: #FBF7F0; color: #2A2420; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; } .hero h1 { font-weight: 800; }
+.art { border-radius: 4px; height: 150px; border: 6px solid #8A6644;
+  background: radial-gradient(circle, rgba(90,60,30,.55) .8px, transparent 1.2px) 0 0 / 5px 6px, radial-gradient(circle, rgba(240,210,160,.5) .8px, transparent 1.2px) 2px 3px / 7px 5px, radial-gradient(circle, rgba(110,70,40,.4) 1.2px, transparent 1.6px) 1px 1px / 9px 8px, #C69A68; }
+.art .m { position: absolute; left: 14px; top: 14px; width: 66px; height: 76px; background: #fff; padding: 5px; box-shadow: 0 4px 8px rgba(0,0,0,.25); transform: rotate(-5deg);
+  background: linear-gradient(#9DB8C9, #E8D9B8) 5px 5px / 56px 52px no-repeat, #fff; }
+.art .h { position: absolute; left: 86px; top: 40px; width: 62px; height: 52px; background: #FDF2A6; box-shadow: 0 4px 8px rgba(0,0,0,.2); transform: rotate(4deg); }
+.art::before, .art::after { content: ""; position: absolute; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F07A6E, #C8392F); box-shadow: 0 2px 2px rgba(0,0,0,.35); z-index: 2; }
+.art::before { left: 42px; top: 12px; } .art::after { left: 113px; top: 38px; background: radial-gradient(circle at 35% 35%, #7FB0E8, #2D6BB8); }
+.feats article { padding: 12px; background: #fff; box-shadow: 0 3px 8px rgba(0,0,0,.1); } .feats article:nth-child(2) { transform: rotate(1deg); } .feats b { color: #C8392F; font-weight: 700; }
+.stats { border-top: 1px solid #E6DCCD; } .stats b { color: #8A6644; }
+</style>

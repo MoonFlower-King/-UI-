@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Board Game",
+  "zh": "桌游",
+  "alias": [
+    "棋盘游戏",
+    "大富翁式"
+  ],
+  "lead": "桌游盒里倒出来的样子：一条蜿蜒的彩色格子路、骰子、小木人和卡牌，规则说明框框清楚。欢乐、好玩、适合朋友一起，适合桌游吧、亲子活动、团建、教育游戏和社区活动。",
+  "prompt": "桌游风格：米白背景，主视觉为一条蜿蜒的方格路径（格子交替为番茄红、天蓝、柠檬黄、薄荷绿，带白边）、一枚白色骰子和一两个圆头小木人，卡片为圆角带粗边框的“规则卡”，圆润粗无衬线标题，配色明快但不刺眼",
+  "promptEn": "board game style: off-white background, a hero of a winding square-tile path (tiles alternating tomato red, sky blue, lemon yellow, mint green with white borders), one white die and one or two round-headed wooden pawns, cards as rounded \"rule cards\" with thick borders, rounded bold sans headings, cheerful but not harsh colors",
+  "avoid": "格子路只放主视觉，别把导航也做成格子；颜色四种以内并压一点饱和度。不要模仿已有桌游的版式和名称。",
+  "neg": [
+    "仿知名桌游、颜色刺眼",
+    "imitating famous board games, garish colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E5533D; --a2: #2F7FC1; --on: #fff; background: #FBF6EC; color: #23262B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 10px; font-weight: 800; } .hero h1 { font-weight: 900; }
+.art .m { position: absolute; left: 0; top: 10px; width: 170px; height: 130px;
+  background: linear-gradient(90deg, #E5533D 0 25%, #F4C542 0 50%, #4FB48A 0 75%, #2F7FC1 0) 0 0 / 100% 28px no-repeat, linear-gradient(#2F7FC1 0 25%, #E5533D 0 50%, #F4C542 0 75%, #4FB48A 0) 100% 0 / 28px 100% no-repeat, linear-gradient(270deg, #4FB48A 0 25%, #2F7FC1 0 50%, #E5533D 0 75%, #F4C542 0) 0 100% / 100% 28px no-repeat; }
+.art .m::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #FBF6EC 2px, transparent 2px) 0 0 / 42.5px 100%, linear-gradient(#FBF6EC 2px, transparent 2px) 0 0 / 100% 32.5px; -webkit-mask: linear-gradient(#000 0 0) 0 0 / 100% 28px no-repeat, linear-gradient(#000 0 0) 100% 0 / 28px 100% no-repeat, linear-gradient(#000 0 0) 0 100% / 100% 28px no-repeat; mask: linear-gradient(#000 0 0) 0 0 / 100% 28px no-repeat, linear-gradient(#000 0 0) 100% 0 / 28px 100% no-repeat, linear-gradient(#000 0 0) 0 100% / 100% 28px no-repeat; }
+.art .h { position: absolute; left: 30px; top: 52px; width: 38px; height: 38px; border-radius: 8px; background: #fff; box-shadow: 0 4px 0 #D9D2C3, 0 6px 10px rgba(0,0,0,.15);
+  background: radial-gradient(circle at 50% 50%, #23262B 0 3.5px, transparent 4px), radial-gradient(circle at 25% 25%, #23262B 0 3.5px, transparent 4px), radial-gradient(circle at 75% 25%, #23262B 0 3.5px, transparent 4px), radial-gradient(circle at 25% 75%, #23262B 0 3.5px, transparent 4px), radial-gradient(circle at 75% 75%, #23262B 0 3.5px, transparent 4px), #fff; }
+.art::after { content: ""; position: absolute; left: 86px; top: 56px; width: 18px; height: 18px; border-radius: 50%; background: #E5533D; box-shadow: 0 16px 0 2px #E5533D; }
+.feats article { padding: 12px; border-radius: 12px; border: 3px solid #23262B; background: #fff; } .feats b { color: #2F7FC1; font-weight: 800; } .feats h3 { font-weight: 900; }
+.stats b { color: #E5533D; font-weight: 900; }
+</style>

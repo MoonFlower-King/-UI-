@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Chessboard",
+  "zh": "国际象棋",
+  "alias": [
+    "棋盘格",
+    "棋局"
+  ],
+  "lead": "一张木质棋盘和几枚棋子的剪影，黑白格子严整排列，带着对弈时的安静与张力。理性、策略、经典，适合咨询公司、策略游戏、教育机构和高端俱乐部。",
+  "prompt": "国际象棋风格：象牙白背景，主视觉为倾斜或俯视的棋盘局部（象牙白与深胡桃色方格）上立着一两枚棋子剪影，深墨色文字，经典衬线标题，分隔线为细线，卡片为纯白或深色交替（呼应黑白格），点缀一点深绿",
+  "promptEn": "chessboard style: ivory background, a hero of a partial chessboard seen at an angle or from above (ivory and dark walnut squares) with one or two piece silhouettes standing on it, deep ink text, classic serif headings, thin line dividers, cards alternating white and dark (echoing the squares), a touch of deep green",
+  "avoid": "棋盘只露一角就够，满屏格子会晃；黑白交替的卡片别超过三张。棋子用简化剪影即可。",
+  "neg": [
+    "满屏棋盘格、写实棋子",
+    "full-screen checkerboard, realistic pieces"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2520; --a2: #2F5D4A; --on: #F6F1E7; background: #F6F1E7; color: #2B2520; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 600; } .kicker { color: #2F5D4A; letter-spacing: 2px; }
+.art .m { position: absolute; left: 10px; top: 60px; width: 150px; height: 90px; background: conic-gradient(#5A3E2B 25%, #EFE4CF 0 50%, #5A3E2B 0 75%, #EFE4CF 0) 0 0 / 37.5px 45px; transform: perspective(200px) rotateX(35deg); transform-origin: bottom; }
+.art .h { position: absolute; left: 58px; top: 14px; width: 30px; height: 70px; background: #2B2520; z-index: 1;
+  clip-path: polygon(38% 0, 62% 0, 62% 12%, 74% 12%, 74% 22%, 62% 22%, 62% 30%, 76% 44%, 64% 54%, 72% 86%, 90% 92%, 90% 100%, 10% 100%, 10% 92%, 28% 86%, 36% 54%, 24% 44%, 38% 30%, 38% 22%, 26% 22%, 26% 12%, 38% 12%); }
+.art::after { content: ""; position: absolute; left: 100px; top: 40px; width: 24px; height: 44px; border-radius: 50% 50% 0 0 / 30% 30% 0 0; background: #EFE4CF; border: 1.5px solid #2B2520; clip-path: polygon(30% 0, 70% 0, 70% 30%, 80% 85%, 100% 100%, 0 100%, 20% 85%, 30% 30%); }
+.feats article { padding: 12px; border: 1px solid #2B2520; } .feats article:nth-child(2) { background: #2B2520; color: #F6F1E7; } .feats article:nth-child(2) b { color: #9CC7B2; } .feats b { color: #2F5D4A; }
+.stats { border-top: 1px solid #2B2520; border-bottom: 1px solid #2B2520; margin: 0 26px; } .stats b { font-weight: 500; }
+</style>

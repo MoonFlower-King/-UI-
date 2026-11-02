@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Tech Conference",
+  "zh": "技术大会",
+  "alias": [
+    "开发者大会",
+    "峰会官网"
+  ],
+  "lead": "一场技术大会的官网：大号日期与城市、讲者头像网格、日程时间表和醒目的报名按钮，配深色底和一个鲜亮主色。专业、活力、信息清楚，适合开发者大会、行业峰会、黑客松和线上发布会。",
+  "prompt": "技术大会风格：深墨蓝背景，一个鲜亮但不荧光的主色（如珊瑚橙或柠檬黄），首屏超大日期与城市名，讲者区为圆形头像网格配姓名职位，日程为时间轴列表，等宽字标注时间，几何无衬线粗标题，按钮主色大圆角",
+  "promptEn": "tech conference style: deep ink-blue background, one bright but non-neon main color (coral orange or lemon yellow), a first screen with an oversized date and city name, speakers as a grid of round avatars with names and titles, schedule as a timeline list, monospaced time labels, bold geometric sans headings, large rounded main-color buttons",
+  "avoid": "主色只给日期、按钮和当前日程，别到处用；不要霓虹渐变和赛博网格，那是过度用烂的套路。",
+  "neg": [
+    "霓虹渐变、赛博网格",
+    "neon gradients, cyber grids"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #FF7A50; --a2: #FF7A50; --on: #0F1A2E; background: #0F1A2E; color: #E8ECF3; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 800; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF7A50; } .hero h1 { font-weight: 900; letter-spacing: -.5px; }
+.art::before { content: "11.17"; position: absolute; right: 0; top: -6px; font: 900 56px/1 -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: -3px; color: #FF7A50; }
+.art::after { content: "杭州 · 两天 · 40 场"; position: absolute; right: 2px; top: 52px; font: 600 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #A9B4C8; }
+.art .m { position: absolute; left: 30px; top: 86px; width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(#D8C3A5, #A88A6A); box-shadow: 42px 0 0 #3A4A66, 84px 0 0 #8FA3C2, 21px 30px 0 -40px transparent; border: 2px solid #0F1A2E; outline: 2px solid #FF7A50; }
+.feats article { padding: 12px; border-radius: 12px; background: #16233C; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF7A50; }
+.stats { border-top: 1px solid #22314F; border-bottom: 1px solid #22314F; } .stats b { color: #fff; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Teletext",
+  "zh": "图文电视",
+  "alias": [
+    "电视文字广播",
+    "马赛克字符画"
+  ],
+  "lead": "老电视里的图文信息页：黑底、八种纯色、块状马赛克图形和方方正正的等宽字，页码在右上角跳动。复古、直白、带点数字考古的趣味，适合复古游戏、新闻小站、音乐活动和极客社区。",
+  "prompt": "图文电视风格：纯黑背景，只用八种纯色（白、黄、青、绿、品红、红、蓝）中的三四种，大号块状马赛克标题与图形（由小方块拼成），等宽粗字，顶部一行彩色页码条，色块横条分区，无圆角无阴影",
+  "promptEn": "teletext style: pure black background, only three or four of eight pure colors (white, yellow, cyan, green, magenta, red, blue), large blocky mosaic headings and graphics (built from small squares), bold monospaced type, a colored page-number strip on top, color bar rows dividing sections, no rounded corners or shadows",
+  "avoid": "纯色要限制在三四种，八种全上会像故障；正文仍要保持足够大、行距宽，方便阅读。",
+  "neg": [
+    "颜色全上、正文太小",
+    "all colors at once, tiny body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #00E0E0; --a2: #FFE600; --on: #000; background: #000; color: #fff; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav { background: #0033CC; color: #FFE600; } .logo i { background: #FFE600; } .cta { border-radius: 0; background: #FFE600; color: #000; }
+.kicker { color: #00E0E0; } .kicker::before { content: "P100 "; color: #FFE600; }
+.hero h1 { font-weight: 700; color: #FFE600; letter-spacing: 2px; text-shadow: 3px 0 0 #000; background: repeating-linear-gradient(transparent 0 3px, #000 3px 4px); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: #FFE600; }
+.b1 { border-radius: 0; } .b2 { color: #00E0E0; }
+.art { background: conic-gradient(#00E0E0 25%, transparent 0 50%, #00E0E0 0 75%, transparent 0) 0 0 / 20px 20px; height: 150px;
+  -webkit-mask: linear-gradient(#000 0 0) 0 0 / 60% 40% no-repeat, linear-gradient(#000 0 0) 40% 60% / 60% 40% no-repeat, linear-gradient(#000 0 0) 100% 100% / 40% 20% no-repeat; mask: linear-gradient(#000 0 0) 0 0 / 60% 40% no-repeat, linear-gradient(#000 0 0) 40% 60% / 60% 40% no-repeat, linear-gradient(#000 0 0) 100% 100% / 40% 20% no-repeat; }
+.feats article { padding: 10px; background: #000; border-top: 8px solid #FF2E9A; } .feats article:nth-child(2) { border-color: #00D800; } .feats article:nth-child(3) { border-color: #00E0E0; } .feats b { color: #FFE600; }
+.stats { background: #C00000; } .stats b { color: #FFE600; }
+</style>
