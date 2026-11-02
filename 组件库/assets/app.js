@@ -90,8 +90,11 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme)
 syncTheme();
 
 /* ---------------- 词卡与自动演示预览 ---------------- */
-// 卡片预览只在大部分露出屏幕时运行：露出来就加载并自动演示（assets/autoplay.js），滚出去就卸掉，省电省 CPU。
-// 所有预览和网页共用一条主线程，所以一次只启动一张、错开 140ms，重播时先淡出再淡入，不闪白。
+// 每张卡片的预览分两层：
+// 1. 底层「静态首帧」：把组件的 HTML + CSS（去掉脚本、暂停动画）直接画进卡片的 Shadow DOM，离屏幕还远就画好，
+//    又轻又快，所以滚到哪都不会看到空白。
+// 2. 上层「自动演示」iframe（assets/autoplay.js）：卡片快进入屏幕时才加载，加载好后淡入盖住首帧；滚出去就卸掉，省电省 CPU。
+// 所有预览和网页共用一条主线程，所以 iframe 一次只启动一张、错开 80ms。
 // 鼠标移进卡片：从头重播一遍；访客自己点一下就接管。系统开了「减少动态效果」就不自动演示。
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
@@ -99,21 +102,42 @@ const AUTO = window.JY_AUTOPLAY;
 const doc = (c) => AUTO && !calm.matches
   ? `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.post})()<\/script>`
   : BASE + c.code;
+
+// 静态首帧：:root / html / body 上的样式改挂到 Shadow DOM 的宿主上
+const POSTER_CSS = ':host{all:initial;display:grid;place-items:center;width:560px;height:350px;background:#FAFAFA;color:#18181B;' +
+  'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}' +
+  '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
+function paintPoster(t) {
+  const c = byId[t.querySelector('iframe').dataset.id], host = t.querySelector('.poster');
+  if (!host || host.shadowRoot) return;
+  const html = c.code.replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/(^|[\s,}>])(:root|html|body)(?=\s*[{,.:#\[\s])/g, '$1:host');
+  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${POSTER_CSS}</style>${html}`;
+  t.classList.add('ready');
+}
+const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (e.isIntersecting) { paintPoster(e.target); posters.unobserve(e.target); }
+}), { rootMargin: '1200px 0px' });
+
 const playing = new Set(), queue = new Set();
 let pumping = false;
-const swap = (f) => { f.classList.add('swap'); setTimeout(() => { if (playing.has(f)) f.srcdoc = doc(byId[f.dataset.id]); }, 180); };
+const swap = (f, fade) => {
+  if (!fade) { f.srcdoc = doc(byId[f.dataset.id]); return; }
+  f.classList.add('swap');
+  setTimeout(() => { if (playing.has(f)) f.srcdoc = doc(byId[f.dataset.id]); }, 180);
+};
 function pump() {
   const f = queue.values().next().value;
   if (!f) { pumping = false; return; }
-  queue.delete(f); pumping = true; swap(f);
-  setTimeout(pump, 140);
+  queue.delete(f); pumping = true; swap(f, f.dataset.live);
+  setTimeout(pump, 80);
 }
-const load = (f, now) => { queue.delete(f); if (now) swap(f); else { queue.add(f); if (!pumping) pump(); } };
+const load = (f, now) => { queue.delete(f); if (now) swap(f, true); else { queue.add(f); if (!pumping) pump(); } };
 const watch = new IntersectionObserver((entries) => entries.forEach((e) => {
   const f = e.target;
-  if (e.intersectionRatio >= .3) { if (!playing.has(f)) { playing.add(f); load(f); } }
-  else if (playing.delete(f)) { queue.delete(f); f.srcdoc = BASE; }
-}), { threshold: [0, .3] });
+  if (e.isIntersecting) { if (!playing.has(f)) { playing.add(f); load(f); } }
+  else if (playing.delete(f)) { queue.delete(f); f.classList.add('swap'); delete f.dataset.live; f.srcdoc = ''; }
+}), { rootMargin: '120px 0px' });
 addEventListener('message', (e) => {
   if (e.data !== 'jy-replay') return;
   const f = [...playing].find((x) => x.contentWindow === e.source);
@@ -122,16 +146,16 @@ addEventListener('message', (e) => {
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--s', e.contentRect.width / 560)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">点一下，换你来玩</span></div>
+    <div class="thumb"><div class="poster" aria-hidden="true"></div><iframe class="swap" data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">点一下，换你来玩</span></div>
     <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p>
       <div class="card-actions"><button class="btn sm" data-copy="${c.id}">复制提示词</button><button class="btn sm add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
 }
 function hydrate(root) {
   $$('.thumb', root).forEach((t) => {
-    const f = t.firstElementChild, cardEl = t.closest('.card');
-    fit.observe(t); watch.observe(f);
-    f.addEventListener('load', () => f.classList.remove('swap'));
+    const f = t.querySelector('iframe'), cardEl = t.closest('.card');
+    fit.observe(t); posters.observe(t); watch.observe(f);
+    f.addEventListener('load', () => { if (f.srcdoc) { f.classList.remove('swap'); f.dataset.live = 1; } });
     if (canHover) {
       cardEl.addEventListener('mouseenter', () => { if (playing.has(f)) load(f, true); });
       cardEl.addEventListener('mouseleave', () => { let stopped = false; try { stopped = f.contentWindow.__jyStop; } catch {} if (stopped && playing.has(f)) load(f); });
