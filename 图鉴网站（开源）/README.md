@@ -39,29 +39,27 @@ npx serve .
 
 ## 部署到 GitHub Pages
 
-把本目录推送到 GitHub 仓库，在仓库 **Settings → Pages** 里选择从 `main` 分支根目录发布即可，不需要任何构建步骤。
+仓库根目录的 `.github/workflows/pages.yml` 会在合并到 `main` 后自动构建并发布（在 **Settings → Pages → Source** 里选 **GitHub Actions**）。本地预览：在仓库根目录运行 `npm run build`，然后双击 `index.html`。
 
 ## 目录结构
 
 ```
 index.html              网站首页
 assets/                 样式、脚本、预览图
-data/terms.js(.json)    由脚本生成的词条数据
-demos/                  由脚本生成的单个词条动画页（首页用 iframe 嵌入）
-episodes/
-  episodes.json         每期的编号、主题、类型、关键词
-  EP01/index.html       该期 6 宫格动画页
-  EP01/post.md          该期文案：6 行大白话解释 + 6 段提示词
-scripts/build.mjs       从 episodes/ 生成 data/ 与 demos/
+episodes.json           每期的编号、主题、类型、关键词
+scripts/build.mjs       读取仓库根目录各期「EPxx 主题/」的动画网页和发布文案，生成下面三项
+data/terms.js           （生成，不入库）词条数据
+demos/                  （生成，不入库）单个词条动画页，首页用 iframe 嵌入
+episodes/EPxx/          （生成，不入库）整期动画页
 ```
 
 ## 新增一期
 
-1. 在 `episodes/` 下新建目录（如 `EP12/`），放入：
-   - `index.html`：6 宫格动画页，每个宫格是一个 `<div class="cell">`，里面的 `.term-en` / `.term-zh` 是英文与中文术语名
-   - `post.md`：正文里每个词一行，格式为 `1️⃣ English Term，大白话解释，比如具体场景`；提示词写成 `**1. English Term（中文）**` 换行后接 `> 提示词内容`
-2. 在 `episodes/episodes.json` 里追加该期的 `id`、`series_no`、`theme`、`title`、`type`、`keywords`
-3. 运行 `node scripts/build.mjs`（需要 Node.js 18+），会重新生成 `data/` 和 `demos/`
+1. 在仓库根目录新建 `EPxx 主题/` 文件夹，放入：
+   - `主题 动画网页.html`：6 宫格动画页，每个宫格是一个 `<div class="cell">`，里面的 `.term-en` / `.term-zh` 是英文与中文术语名
+   - `主题 发布文案.md`：正文里每个词一行，格式为 `1️⃣ English Term，大白话解释，比如具体场景`；提示词写成 `**1. English Term（中文）**` 换行后接 `> 提示词内容`
+2. 在 `episodes.json` 里追加该期的 `id`、`series_no`、`theme`、`title`、`type`、`keywords`
+3. 确认 6 个词在 `../组件库/components/` 里都有组件，然后在仓库根目录运行 `npm run build`（需要 Node.js 18+）
 
 欢迎通过 Issue 或 Pull Request 补充新的术语、修正描述或提示词。
 

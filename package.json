@@ -8,7 +8,8 @@
     "render": "node .claude/skills/jiangyue-ui-video/scripts/render.mjs",
     "build:site": "node \"图鉴网站（开源）/scripts/build.mjs\"",
     "setup": "npm install && npx playwright install chromium",
-    "build:ui": "node 组件库/scripts/build.mjs"
+    "build:ui": "node 组件库/scripts/build.mjs",
+    "build": "npm run build:ui && npm run build:site"
   },
   "devDependencies": {
     "playwright": "^1.48.0"

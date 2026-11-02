@@ -25,7 +25,7 @@ EPxx 主题/                      ← 仓库根目录下，每期一个文件夹
   主题（竖屏 9比16）.mp4
   主题 封面（横屏）.png
   主题 封面（竖屏）.png
-图鉴网站（开源）/episodes/EPxx/   ← 网站用的副本：index.html = 动画网页，post.md = 发布文案
+图鉴网站（开源）/episodes.json    ← 网站的期数登记表；网站直接读上面的动画网页和发布文案，不另存副本
 ```
 
 下文 `$SKILL` 指本 skill 所在目录 `.claude/skills/jiangyue-ui-video`。
@@ -73,13 +73,9 @@ node $SKILL/scripts/render.mjs "EPxx 主题/主题 动画网页.html"
 - **字体**：已发布的成片是在 Windows 上用「Microsoft YaHei」渲染的。在其他系统上渲染，中文字形会略有不同。要和历史成片完全一致，就在作者的 Windows 电脑上跑这一步。
 
 ### 7. 接入图鉴网站（开源 UI 词典）
-```bash
-mkdir -p "图鉴网站（开源）/episodes/EPxx"
-cp "EPxx 主题/主题 动画网页.html" "图鉴网站（开源）/episodes/EPxx/index.html"
-cp "EPxx 主题/主题 发布文案.md"  "图鉴网站（开源）/episodes/EPxx/post.md"
-```
-- 在 `图鉴网站（开源）/episodes/episodes.json` 末尾追加 `{ id, series_no, theme, title, type, keywords }`。`type` 是 2 字类别，例如滚动、悬停、点击、布局、浮层、加载、风格；`keywords` 取发布文案里的核心词和长尾词。
-- 运行 `node "图鉴网站（开源）/scripts/build.mjs"`，应输出 `✓ N 期 / 6N 个词条`。
+网站构建时直接读 `EPxx 主题/` 里的动画网页和发布文案，**不用复制**。
+- 在 `图鉴网站（开源）/episodes.json` 末尾追加 `{ id, series_no, theme, title, type, keywords }`。`type` 是 2 字类别，例如滚动、悬停、点击、布局、浮层、加载、风格；`keywords` 取发布文案里的核心词和长尾词。
+- 先确认 6 个词在 `组件库/components/` 里都有对应组件（没有就先补），再运行 `npm run build`，应输出 `✓ N 期 / 6N 个词条`。生成的 `data/`、`demos/`、`episodes/` 不入库，不要提交。
 - 在 `图鉴网站（开源）/README.md` 的「已收录」表格和根目录 `README.md` 的期数表里各加一行。
 
 ### 8. 收尾
@@ -90,5 +86,5 @@ cp "EPxx 主题/主题 发布文案.md"  "图鉴网站（开源）/episodes/EPxx
 
 ## 只改某一步时
 - **只重导视频或封面**：直接跑第 6 步。可以加 `--only portrait` 或 `--only landscape`。
-- **只写文案**：第 4、5 步。改完发布文案后，同步到网站的 `post.md` 并重新 build。
-- **修改已发布的期**：先改根目录那一期的文件，再同步网站副本、重新 build。两处必须保持一致。
+- **只写文案**：第 4、5 步。改完发布文案后重新 `npm run build` 检查。
+- **修改已发布的期**：直接改根目录那一期的文件，再 `npm run build`。网站只读这一份，不存在同步问题。

@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 Thumbs.db
+# 以下由 npm run build:site 生成，不入库
+/data/
+/demos/
+/episodes/
