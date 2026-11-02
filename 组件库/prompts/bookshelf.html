@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Bookshelf Spines",
+  "zh": "书脊书架",
+  "alias": [
+    "书架风",
+    "Book Spines"
+  ],
+  "lead": "一排高矮不一、颜色各异的书脊，竖排书名，导航和分类像书架上的隔板。有书卷气、温暖、可浏览，适合书店、出版社、阅读 App、图书馆和读书会。",
+  "prompt": "书脊书架风格：暖白背景，主视觉为一排高度和宽度各异的彩色书脊（墨绿、酒红、藏青、芥黄、米白），书脊上竖排书名和细横线装饰，底部有一条木色隔板，衬线标题，卡片像书的封面",
+  "promptEn": "bookshelf spine style: warm white background, a hero row of book spines in varied heights and widths (forest green, wine, navy, mustard, cream) with vertical titles and thin horizontal bands, a wooden shelf line at the bottom, serif headings, cards like book covers",
+  "avoid": "书脊的颜色要从一套配色里取，五六种就够，随机彩虹色会很乱。书名竖排只用于书脊，正文横排。",
+  "neg": [
+    "彩虹乱色、正文竖排",
+    "random rainbow colors, vertical body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2F4A3E; --a2: #8E2B33; --on: #FBF7EE; background: #FBF7EE; color: #2A2622; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 700; }
+.art { display: flex; align-items: flex-end; gap: 3px; padding: 0 8px; border-bottom: 8px solid #A9825A; }
+.art .m, .art .h, .art::before, .art::after { content: ""; flex: none; border-radius: 2px 2px 0 0; box-shadow: inset 0 14px 0 -11px rgba(255, 255, 255, .5), inset 0 -16px 0 -13px rgba(255, 255, 255, .5); }
+.art .m { width: 38px; height: 150px; background: #2F4A3E; } .art .h { width: 30px; height: 126px; background: #8E2B33; }
+.art::before { width: 44px; height: 140px; background: #233A5E; } .art::after { width: 34px; height: 112px; background: #D9A93E; }
+.art .m::before { content: "慢读"; display: block; margin-top: 26px; writing-mode: vertical-rl; color: #FBF7EE; font-size: 11px; letter-spacing: 4px; margin-left: 12px; }
+.feats article { padding: 12px; border-left: 8px solid #8E2B33; background: #F2ECDF; } .feats article:nth-child(2) { border-color: #233A5E; } .feats article:nth-child(3) { border-color: #D9A93E; }
+.feats b { color: #8E2B33; } .stats b { color: #2F4A3E; }
+</style>

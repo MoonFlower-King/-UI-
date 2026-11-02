@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Suprematism",
+  "zh": "至上主义",
+  "alias": [
+    "至上派",
+    "Suprematist"
+  ],
+  "lead": "白色画面里漂浮着几块纯色几何：方块、长条、圆，带一点倾斜和失重感。纯粹、先锋、有艺术感，适合美术馆、建筑、设计学院、实验品牌。",
+  "prompt": "至上主义风格：大面积米白背景，少量黑、红、蓝、黄的纯色几何块（正方形、长条、圆、十字）以不同角度漂浮在画面中，元素之间留有大量空白，无衬线标题小而精，文字与几何块错开摆放",
+  "promptEn": "Suprematism style: large off-white background, a few pure-color geometric shapes in black, red, blue and yellow (squares, bars, circles, crosses) floating at varied angles, generous space between elements, small precise sans headings, text placed clear of the shapes",
+  "avoid": "几何块要少（四五个），而且大小差异大；数量一多就成了普通的几何装饰。别和构成主义的标语式大字混在一起。",
+  "neg": [
+    "几何块堆满、口号式大字",
+    "shapes everywhere, slogan-like huge type"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #C8281E; --on: #F5F1E8; background: #F5F1E8; color: #111; font-family: "Futura", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { position: relative; min-height: 230px; } .hero h1 { font-size: 26px; font-weight: 600; }
+.art { position: relative; min-height: 190px; }
+.art .m { position: absolute; left: 20px; top: 20px; width: 80px; height: 80px; background: #111; transform: rotate(-12deg); }
+.art .h { position: absolute; left: -40px; top: 120px; width: 190px; height: 12px; background: #C8281E; transform: rotate(-24deg); }
+.art::before { content: ""; position: absolute; right: 8px; top: 4px; width: 34px; height: 34px; border-radius: 50%; background: #2B4FA8; }
+.art::after { content: ""; position: absolute; right: 20px; bottom: 6px; width: 44px; height: 20px; background: #E8B923; transform: rotate(18deg); }
+.feats article { padding-top: 8px; border-top: 3px solid #111; } .feats article:nth-child(2) { border-color: #C8281E; } .feats b { color: #C8281E; }
+.stats b { font-weight: 500; }
+</style>

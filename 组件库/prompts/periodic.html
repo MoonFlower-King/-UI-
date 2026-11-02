@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Periodic Grid",
+  "zh": "元素周期表",
+  "alias": [
+    "周期表风",
+    "Element Grid"
+  ],
+  "lead": "像元素周期表一样的方格：每格一个缩写大字、编号和小字说明，按类别分色。理性、好玩、有科学感，适合科普、教育、实验室、化妆品成分和数据产品。",
+  "prompt": "元素周期表风格：浅色背景，内容做成整齐的正方形格子，每格左上角小编号、中间一个大号缩写、底部一行小字名称，按类别用四五种柔和的颜色区分，等宽数字，几何无衬线字体，网格间距统一",
+  "promptEn": "periodic table style: light background, content as tidy square tiles, each with a small number top-left, a large abbreviation in the middle and a tiny name at the bottom, categories distinguished by four or five soft colors, tabular numerals, geometric sans type, even grid gaps",
+  "avoid": "格子大小和间距一定要统一，这种风格的魅力全在秩序。类别颜色要柔和并配图例，五种以内。",
+  "neg": [
+    "格子大小不一、颜色太多",
+    "uneven tiles, too many colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #23395B; --a2: #23395B; --on: #fff; background: #F5F6F3; color: #1E2430; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; min-height: 0; align-self: start; }
+.art .m, .art .h, .art::before, .art::after { aspect-ratio: 1; display: grid; place-items: center; border-radius: 4px; font-size: 26px; font-weight: 700; }
+.art .m { background: #CFE3F4; } .art .m::before { content: "Sh"; } .art .h { background: #F6D9C9; } .art .h::before { content: "Yu"; }
+.art::before { content: "Du"; background: #D9EBD3; } .art::after { content: "Ye"; background: #EADBF3; }
+.feats { gap: 6px; } .feats article { aspect-ratio: 1.6; padding: 8px; border-radius: 4px; background: #CFE3F4; } .feats article:nth-child(2) { background: #F6D9C9; } .feats article:nth-child(3) { background: #D9EBD3; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #23395B; } .stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; }
+</style>

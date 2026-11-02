@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Zakka Minimal",
+  "zh": "日系杂货",
+  "alias": [
+    "生活杂货风",
+    "日系简约"
+  ],
+  "lead": "原木、牛皮纸、白棉布和细细的黑字，商品图整齐排在浅色底上，像一家安静的生活杂货店。朴素、干净、让人放松，适合家居用品、文具、服饰基础款、生活方式电商。",
+  "prompt": "日系杂货风格：米白或牛皮纸浅色背景，原木色、灰白、浅卡其为主，细小的黑色无衬线或明朝体字，商品图在纯色底上整齐排列，网格规整、间距宽松，几乎没有装饰和强调色，按钮为细线框",
+  "promptEn": "zakka minimal style: off-white or light kraft background, natural wood, gray-white and pale khaki tones, small thin black sans or Mincho-style type, product photos neatly arranged on plain backgrounds, a regular grid with relaxed spacing, almost no ornament or accent color, thin outlined buttons",
+  "avoid": "朴素靠的是网格和留白，别为了「有感觉」加手写字和贴纸。商品图的背景和光线要统一，杂乱的图一多就不像一家店了。",
+  "neg": [
+    "手写贴纸装饰、商品图风格不一",
+    "handwriting and sticker decor, inconsistent product photos"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2926; --a2: #2B2926; --on: #FAF8F3; background: #F6F3EC; color: #2B2926; font-family: "Hiragino Mincho ProN", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { font-size: 11px; border-bottom: 1px solid #DDD6C9; } .logo { font-weight: 500; } .logo i { width: 10px; height: 10px; background: #C8B08A; }
+.cta { background: none; color: #2B2926; border: 1px solid #2B2926; } .hero h1 { font-size: 24px; font-weight: 500; letter-spacing: 3px; }
+.b1 { background: none; color: #2B2926; border: 1px solid #2B2926; }
+.art { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-height: 150px; }
+.art .m { background: radial-gradient(circle at 50% 55%, #D8C3A0 0 26%, transparent 27%), #ECE6DA; } .art .h { background: radial-gradient(ellipse 30% 40% at 50% 55%, #B9C2BE 98%, transparent), #ECE6DA; }
+.art::before { content: ""; background: linear-gradient(#ECE6DA, #ECE6DA) padding-box, #ECE6DA; box-shadow: inset 0 -30px 0 #E2D9C8; }
+.art::after { content: ""; background: radial-gradient(ellipse 34% 18% at 50% 60%, #8E7A5F 98%, transparent), #ECE6DA; }
+.feats article { padding-top: 10px; border-top: 1px solid #DDD6C9; } .feats h3 { font-weight: 500; letter-spacing: 2px; } .feats b { color: #9A8B73; font-weight: 400; }
+.stats b { font-weight: 400; }
+</style>
