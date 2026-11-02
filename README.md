@@ -9,7 +9,7 @@
 | | 是什么 | 在哪 |
 |---|---|---|
 | 🧩 **开源 UI 词典** | 「UI 提示词图鉴」网站：每个术语都配实时动画、大白话解释和一键复制的提示词，可以搜索，零依赖 | [`图鉴网站（开源）/`](图鉴网站（开源）/) |
-| 🎬 **视频素材库** | 每期一个文件夹：动画网页、横屏/竖屏视频、封面、小红书和抖音发布文案 | `EP01 …` ~ `EP12 …` |
+| 🎬 **视频素材库** | 每期一个文件夹：动画网页、横屏/竖屏视频、封面、小红书和抖音发布文案 | `EP01 …` ~ `EP13 …` |
 | 🛠️ **制作 skill** | 在 Claude Code 里说「做下一期」，就会按系列风格走完选题 → 动画 → 渲染 → 文案 → 上线 | [`.claude/skills/jiangyue-ui-video/`](.claude/skills/jiangyue-ui-video/SKILL.md) |
 
 ## 已发布
@@ -24,8 +24,9 @@
 | 6 | [EP05 加载与状态反馈](EP05%20加载与状态反馈/) | Skeleton Screen · Shimmer Effect · Progressive Blur · Optimistic UI · Stepper Progress · Pull to Refresh |
 | 7 | [EP06 UI 视觉质感风格](EP06%20UI%20视觉质感风格/) | Glassmorphism · Neumorphism · Neo-Brutalism · Aurora Background · Bento Dark Mode · Layered Elevation |
 | 8 | [EP12 动画缓动与节奏](EP12%20动画缓动与节奏/) | Ease-in-out · Spring · Stagger · Anticipation · Squash & Stretch · Motion Path |
+| 9 | [EP13 页面转场](EP13%20页面转场/) | Shared Element · Fade Through · Slide Over · Zoom Transition · Circular Reveal · Flip Transition |
 
-下一期（已预告）：**第 9 期 · 页面转场**。排期和选题池见 [期数台账](.claude/skills/jiangyue-ui-video/references/期数台账.md)。
+下一期（已预告）：**第 10 期 · 导航与菜单**。排期和选题池见 [期数台账](.claude/skills/jiangyue-ui-video/references/期数台账.md)。
 
 > EP 编号是制作编号，“第 N 期”是发布顺序，所以 EP11 是第 3 期。
 

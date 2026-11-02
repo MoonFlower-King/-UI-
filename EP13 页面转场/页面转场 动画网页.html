@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EP13 · 页面转场</title>
+<style>
+/* ========== 外壳：所有期数共用，不要修改 ========== */
+:root { --clock: 4s infinite cubic-bezier(0.4, 0, 0.2, 1); --baked: 4s infinite linear;
+  /* 标题关键词色（金橘，暖色抓第一眼）。各镜头的颜色由下方调色板按语义分配 */
+  --accent: #FA8C16; --accent-strong: #D46B08; --accent-light: #FFC069; --accent-soft: #FFE7BA; --accent-faint: #FFF7E6;
+  --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+.title em { font-style: normal; color: var(--accent); padding: 0 4px; margin: 0 2px; }
+/* 调色板：苹果系统色。同一套明度/饱和度设计，彼此天然和谐，也是用户每天在手机上看到的 UI 颜色。
+   给元素加 .hue-xxx，就把它和子元素的 --accent 系列切换成该色相；按“语义”选色，规则见 SKILL.md「配色」 */
+.hue-blue   { --accent: #007AFF; --accent-strong: #0062CC; --accent-light: #8CC2FF; --accent-soft: #DCEBFF; --accent-faint: #F0F6FF; }
+.hue-green  { --accent: #34C759; --accent-strong: #248A3D; --accent-light: #9BE3AD; --accent-soft: #DDF5E3; --accent-faint: #F0FAF2; }
+.hue-orange { --accent: #FF9500; --accent-strong: #C93400; --accent-light: #FFCA80; --accent-soft: #FFEBCC; --accent-faint: #FFF7EB; }
+.hue-red    { --accent: #FF3B30; --accent-strong: #D70015; --accent-light: #FF9D97; --accent-soft: #FFE1DF; --accent-faint: #FFF2F1; }
+.hue-pink   { --accent: #FF2D55; --accent-strong: #D30F45; --accent-light: #FF96AA; --accent-soft: #FFDFE6; --accent-faint: #FFF1F4; }
+.hue-purple { --accent: #AF52DE; --accent-strong: #8944AB; --accent-light: #D7A9EF; --accent-soft: #F1E2F9; --accent-faint: #F9F2FC; }
+.hue-indigo { --accent: #5856D6; --accent-strong: #3634A3; --accent-light: #ABAAEB; --accent-soft: #E4E4F9; --accent-faint: #F3F3FC; }
+.hue-teal   { --accent: #30B0C7; --accent-strong: #0E7C8F; --accent-light: #98D8E3; --accent-soft: #DCF2F6; --accent-faint: #F0F9FB; }
+.hue-yellow { --accent: #FFCC00; --accent-strong: #A68500; --accent-light: #FFE680; --accent-soft: #FFF5CC; --accent-faint: #FFFBEB; }
+[class*="hue-"] { --accent-shadow: 0 8px 20px color-mix(in srgb, var(--accent-strong) 28%, transparent); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #F4F4F5; }
+body { min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif; }
+#stage { position: relative; flex-shrink: 0; width: 1600px; height: 1000px; background: #FFFFFF; padding: 56px 80px;
+  display: flex; flex-direction: column; transform-origin: center; }
+.title { text-align: center; font-size: 38px; font-weight: 700; color: #18181B; margin-bottom: 44px; letter-spacing: -0.5px; line-height: 1.2; }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 36px 32px; }
+.cell { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.sandbox { height: 250px; background: #FAFAFA; border: 1.5px solid #E4E4E7; border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.browser-bar { height: 26px; flex-shrink: 0; border-bottom: 1px solid #F4F4F5; display: flex; align-items: center; padding: 0 12px; gap: 6px; background: #FFFFFF; }
+.browser-bar i { width: 6px; height: 6px; background: #D4D4D8; border-radius: 50%; }
+.viewport { flex: 1; position: relative; overflow: hidden; padding: 16px; }
+.label-group { text-align: center; margin-top: 14px; }
+.term-en { font-size: 16px; color: #52525B; font-weight: 500; line-height: 1.35; font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+.term-zh { font-size: 22px; color: #18181B; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.watermark { position: absolute; right: 32px; bottom: 22px; font-size: 14px; color: #A1A1AA; }
+
+/* 骨架条 */
+.bar { height: 10px; border-radius: 5px; background: #E4E4E7; }
+.bar.soft { background: #F4F4F5; }
+
+/* scroll 类：右侧模拟滚动条 */
+.scrollbar { position: absolute; top: 8px; right: 5px; bottom: 8px; width: 4px; border-radius: 2px; background: #F4F4F5; z-index: 20; }
+.scrollbar::after { content: ""; position: absolute; left: 0; top: 0; width: 4px; height: 36%; border-radius: 2px; background: #A1A1AA; animation: thumb var(--clock); }
+@keyframes thumb { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(178%); } 100% { transform: translateY(0); } }
+
+/* hover / click 类：SVG 鼠标指针（用 translate 移动，指尖在元素左上角） */
+.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 30; pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18)); }
+/* 竖屏版式：URL 带 #portrait 时启用，画布 1080×1920（9:16）。宫格宽度锁定 456px，与横屏一致，镜头内坐标无需改动 */
+.portrait #stage { width: 1080px; height: 1920px; padding: 180px 0 0; }
+.portrait .title { font-size: 56px; letter-spacing: -1px; margin-bottom: 72px; line-height: 1.25; }
+.portrait .title span { display: block; }
+.portrait .title .comma { display: none; }
+.portrait .title .sub { font-size: 40px; color: #3F3F46; margin-top: 10px; }
+.portrait .grid { flex: none; grid-template-columns: repeat(2, 456px); grid-template-rows: repeat(3, auto); justify-content: center; gap: 56px 40px; }
+.portrait .term-en { font-size: 20px; }
+.portrait .term-zh { font-size: 30px; }
+.portrait .watermark { position: static; width: 952px; margin: 40px auto 0; text-align: right; font-size: 20px; }
+/* ========== 外壳结束 ========== */
+
+/* 点击类通用：指针以指尖为原点缩放表示“按下”；点击点泛起一圈指示环 */
+.cursor { transform-origin: 4.6px 2.3px; }
+.click-ring { position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%; border: 2px solid #A1A1AA;
+  opacity: 0; z-index: 25; animation: click-ring var(--clock); }
+@keyframes click-ring { 0%, 22% { opacity: 0; transform: scale(0.3); } 24% { opacity: 0.9; transform: scale(0.6); } 34%, 100% { opacity: 0; transform: scale(1.8); } }
+/* 转场类通用：一整页 = 铺满宫格的白底层 */
+.pg { position: absolute; inset: 0; background: #FFFFFF; padding: 14px 18px; }
+.pg .bar { margin-bottom: 9px; }
+.row { display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 14px; margin-bottom: 8px; border-radius: 12px; background: #FFFFFF; border: 1.5px solid #E4E4E7; }
+.row i { width: 22px; height: 22px; border-radius: 50%; background: #E4E4E7; flex-shrink: 0; }
+.row .bar { flex: 1; max-width: 150px; margin: 0; }
+.row .bar.soft { max-width: 60px; margin-left: auto; }
+
+/* 1. Shared Element：点列表里的缩略图，这张图本身飞到详情页变成大图，其余内容淡入；
+      虚线框 = 它原来的位置，虚线 = 它飞过的路，封面上也看得出“是同一张图” */
+.se-row { position: absolute; left: 16px; right: 16px; height: 54px; border-radius: 12px; background: #FFFFFF; border: 1.5px solid #E4E4E7; padding: 13px 16px; }
+.se-row .bar { width: 150px; margin-bottom: 8px; }
+.se-row .bar.soft { width: 96px; }
+.se-thumb { position: absolute; left: 389px; width: 40px; height: 40px; border-radius: 10px; background: #E4E4E7; }
+.se-detail { position: absolute; inset: 0; z-index: 2; background: #FFFFFF; opacity: 0; animation: se-detail var(--clock); }
+.se-detail .bar { position: absolute; left: 228px; height: 10px; }
+.se-detail .bt { position: absolute; left: 228px; top: 108px; width: 104px; height: 28px; border-radius: 14px; background: #E4E4E7; }
+.se-ghost { position: absolute; left: 389px; top: 149px; width: 40px; height: 40px; border-radius: 10px; border: 1.5px dashed var(--accent-light);
+  z-index: 3; opacity: 0; animation: se-trace var(--clock); }
+.se-line { position: absolute; left: 0; top: 0; width: 453px; height: 224px; overflow: visible; z-index: 3; opacity: 0; animation: se-trace var(--clock); }
+.se-line path { fill: none; stroke: var(--accent-light); stroke-width: 2; stroke-dasharray: 5 6; }
+.se-hero { position: absolute; z-index: 4; left: 389px; top: 149px; width: 40px; height: 40px; border-radius: 10px; overflow: hidden;
+  background: var(--accent); box-shadow: var(--accent-shadow); animation: se-hero var(--clock); }
+.se-hero::before { content: ""; position: absolute; left: 18%; top: 18%; width: 20%; height: 26%; border-radius: 50%; background: var(--accent-soft); }
+.se-hero::after { content: ""; position: absolute; inset: 0; background: var(--accent-strong); opacity: 0.55;
+  clip-path: polygon(0 100%, 0 78%, 30% 46%, 52% 70%, 72% 50%, 100% 80%, 100% 100%); }
+.se-cursor { animation: se-cursor var(--clock); }
+@keyframes se-cursor {
+  0%, 15% { transform: translate(300px, 205px) scale(1); } 21% { transform: translate(408px, 168px) scale(1); }
+  23% { transform: translate(408px, 168px) scale(0.85); } 26%, 65% { transform: translate(408px, 168px) scale(1); }
+  100% { transform: translate(300px, 205px) scale(1); } }
+@keyframes se-hero {
+  0%, 24% { left: 389px; top: 149px; width: 40px; height: 40px; border-radius: 10px; }
+  44%, 66% { left: 20px; top: 18px; width: 190px; height: 150px; border-radius: 16px; }
+  88%, 100% { left: 389px; top: 149px; width: 40px; height: 40px; border-radius: 10px; } }
+@keyframes se-detail { 0%, 28% { opacity: 0; } 42%, 66% { opacity: 1; } 80%, 100% { opacity: 0; } }
+@keyframes se-trace { 0%, 42% { opacity: 0; } 48%, 66% { opacity: 1; } 72%, 100% { opacity: 0; } }
+
+/* 2. Fade Through：点底部第二个标签，旧页面先淡出到完全看不见，新页面再从 0.92 倍淡入放大——两页不重叠 */
+.ft-pg { position: absolute; left: 0; right: 0; top: 0; bottom: 48px; padding: 14px 18px; background: #FFFFFF; }
+.ft-pg > .bar { margin-bottom: 12px; }
+.ft-a { animation: ft-a var(--clock); }
+.ft-b { opacity: 0; transform: scale(0.92); animation: ft-b var(--clock); }
+.ft-cards { display: flex; gap: 12px; }
+.ft-card { flex: 1; height: 112px; border-radius: 12px; background: #FFFFFF; border: 1.5px solid var(--accent-soft); padding: 8px; }
+.ft-card i { display: block; height: 52px; border-radius: 8px; background: var(--accent); margin-bottom: 10px; }
+.ft-card:nth-child(2) i { background: var(--accent-light); }
+.ft-card:nth-child(3) i { background: var(--accent-soft); }
+.ft-card .bar { margin-bottom: 7px; }
+.ft-tabs { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; background: #FFFFFF; border-top: 1.5px solid #E4E4E7;
+  display: flex; align-items: center; justify-content: space-around; }
+.ft-tab { width: 24px; height: 24px; border-radius: 8px; background: #D4D4D8; }
+.ft-tab.t1 { animation: ft-t1 var(--clock); }
+.ft-tab.t2 { animation: ft-t2 var(--clock); }
+.ft-cursor { animation: ft-cursor var(--clock); }
+@keyframes ft-cursor {
+  0%, 15% { transform: translate(330px, 140px) scale(1); } 21% { transform: translate(226px, 198px) scale(1); }
+  23% { transform: translate(226px, 198px) scale(0.85); } 26%, 65% { transform: translate(226px, 198px) scale(1); }
+  100% { transform: translate(330px, 140px) scale(1); } }
+@keyframes ft-a {
+  0%, 24% { opacity: 1; transform: scale(1); } 32%, 74% { opacity: 0; transform: scale(1); }
+  75% { opacity: 0; transform: scale(0.92); } 88%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes ft-b {
+  0%, 32% { opacity: 0; transform: scale(0.92); } 46%, 66% { opacity: 1; transform: scale(1); }
+  74% { opacity: 0; transform: scale(1); } 75%, 100% { opacity: 0; transform: scale(0.92); } }
+@keyframes ft-t1 { 0%, 23% { background: var(--accent); } 27%, 70% { background: #D4D4D8; } 74%, 100% { background: var(--accent); } }
+@keyframes ft-t2 { 0%, 23% { background: #D4D4D8; transform: scale(1); } 26% { transform: scale(1.18); } 30% { background: var(--accent); transform: scale(1); }
+  70% { background: var(--accent); } 74%, 100% { background: #D4D4D8; transform: scale(1); } }
+
+/* 3. Slide Over：点一行，新页面从右侧滑进来盖在旧页面上；旧页面只往左挪一点、被压暗，看得出“上下两层” */
+.so-old { animation: so-old var(--clock); }
+.so-old .row .chev { width: 8px; height: 8px; border-right: 2px solid #D4D4D8; border-top: 2px solid #D4D4D8; transform: rotate(45deg); margin-left: auto; }
+.so-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(24,24,27,0.22); opacity: 0; animation: so-scrim var(--clock); }
+.so-new { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; z-index: 2; background: #FFFFFF; border-left: 1.5px solid #E4E4E7;
+  box-shadow: -12px 0 28px rgba(24,24,27,0.16); padding: 0 18px; transform: translateX(105%); animation: so-new var(--clock); }
+.so-head { height: 44px; display: flex; align-items: center; gap: 12px; margin: 0 -18px 12px; padding: 0 18px; border-bottom: 1.5px solid #F4F4F5; }
+.so-head i { width: 10px; height: 10px; border-left: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent); transform: rotate(45deg); margin-left: 4px; }
+.so-head .bar { width: 96px; margin: 0; }
+.so-hero { height: 70px; border-radius: 12px; background: var(--accent-soft); border: 1.5px solid var(--accent-light); margin-bottom: 12px; position: relative; }
+.so-hero::after { content: ""; position: absolute; left: 14px; top: 14px; width: 40px; height: 40px; border-radius: 12px; background: var(--accent); }
+.so-new .bar { margin-bottom: 9px; }
+.so-cursor { animation: so-cursor var(--clock); }
+@keyframes so-cursor {
+  0%, 15% { transform: translate(330px, 196px) scale(1); } 21% { transform: translate(236px, 104px) scale(1); }
+  23% { transform: translate(236px, 104px) scale(0.85); } 26%, 65% { transform: translate(236px, 104px) scale(1); }
+  100% { transform: translate(330px, 196px) scale(1); } }
+@keyframes so-new { 0%, 24% { transform: translateX(105%); } 44%, 66% { transform: translateX(64px); } 88%, 100% { transform: translateX(105%); } }
+@keyframes so-old { 0%, 24% { transform: translateX(0); } 44%, 66% { transform: translateX(-28px); } 88%, 100% { transform: translateX(0); } }
+@keyframes so-scrim { 0%, 24% { opacity: 0; } 44%, 66% { opacity: 1; } 88%, 100% { opacity: 0; } }
+
+/* 4. Zoom Transition：点桌面上的 App 图标，整页从这个图标的位置放大铺满屏幕；
+      虚线框 + 四条虚线 = 从图标“拉”出来的轨迹 */
+.zm-icon { position: absolute; width: 44px; height: 44px; border-radius: 12px; background: #E4E4E7; }
+.zm-icon::after { content: ""; position: absolute; left: 5px; top: 52px; width: 34px; height: 6px; border-radius: 3px; background: #F4F4F5; }
+.zm-page { position: absolute; z-index: 3; left: 238px; top: 120px; width: 44px; height: 44px; border-radius: 12px; overflow: hidden;
+  background: var(--accent); box-shadow: var(--accent-shadow); animation: zm-page var(--clock); }
+.zm-glyph { position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 6px; border: 3px solid #FFFFFF; animation: zm-glyph var(--clock); }
+.zm-head { position: absolute; left: 18px; top: 18px; width: 140px; height: 12px; border-radius: 6px; background: rgba(255,255,255,0.7); opacity: 0; animation: zm-body var(--clock); }
+.zm-body { position: absolute; left: 0; right: 0; top: 50px; bottom: 0; background: #FFFFFF; padding: 16px 18px; opacity: 0; animation: zm-body var(--clock); }
+.zm-body .bar { margin-bottom: 10px; }
+.zm-trace { position: absolute; left: 0; top: 0; width: 453px; height: 224px; overflow: visible; z-index: 4; opacity: 0; animation: zm-trace var(--clock); }
+.zm-trace path, .zm-trace rect { fill: none; stroke: var(--accent-light); stroke-width: 2; stroke-dasharray: 5 6; }
+.zm-trace rect { stroke: var(--accent); }
+.zm-cursor { animation: zm-cursor var(--clock); }
+@keyframes zm-cursor {
+  0%, 15% { transform: translate(350px, 200px) scale(1); } 21% { transform: translate(258px, 140px) scale(1); }
+  23% { transform: translate(258px, 140px) scale(0.85); } 26%, 65% { transform: translate(258px, 140px) scale(1); }
+  100% { transform: translate(350px, 200px) scale(1); } }
+@keyframes zm-page {
+  0%, 24% { left: 238px; top: 120px; width: 44px; height: 44px; border-radius: 12px; }
+  44%, 66% { left: 0; top: 0; width: 100%; height: 100%; border-radius: 0; }
+  88%, 100% { left: 238px; top: 120px; width: 44px; height: 44px; border-radius: 12px; } }
+@keyframes zm-glyph { 0%, 25% { opacity: 1; } 31%, 80% { opacity: 0; } 88%, 100% { opacity: 1; } }
+@keyframes zm-body { 0%, 32% { opacity: 0; } 42%, 66% { opacity: 1; } 78%, 100% { opacity: 0; } }
+@keyframes zm-trace { 0%, 42% { opacity: 0; } 48%, 66% { opacity: 1; } 72%, 100% { opacity: 0; } }
+
+/* 5. Circular Reveal：点右下角的悬浮按钮，新页面以按钮为圆心画圆扩散开；虚线圆环 = 扩散的波纹 */
+.cr-fab { position: absolute; right: 20px; bottom: 18px; width: 44px; height: 44px; border-radius: 50%; z-index: 2; background: var(--accent); box-shadow: var(--accent-shadow); }
+.cr-fab::before, .cr-fab::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 3px; margin: -1.5px 0 0 -8px; border-radius: 2px; background: #FFFFFF; }
+.cr-fab::after { transform: rotate(90deg); }
+.cr-new { position: absolute; inset: 0; z-index: 3; background: var(--accent-faint); padding: 0 18px;
+  clip-path: circle(0px at calc(100% - 42px) calc(100% - 40px)); animation: cr-new var(--clock); }
+.cr-head { height: 44px; margin: 0 -18px 14px; padding: 17px 18px 0; background: var(--accent); }
+.cr-head .bar { width: 120px; background: rgba(255,255,255,0.7); }
+.cr-input { height: 34px; border-radius: 10px; background: #FFFFFF; border: 1.5px solid var(--accent-soft); margin-bottom: 10px; padding: 11px 12px; }
+.cr-input .bar { width: 46%; }
+.cr-input.tall { height: 64px; }
+.cr-ring { position: absolute; left: calc(100% - 42px); top: 184px; border-radius: 50%; border: 2px dashed var(--accent-light); z-index: 4; opacity: 0; animation: cr-ring var(--clock); }
+.cr-ring.r1 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+.cr-ring.r2 { width: 380px; height: 380px; margin: -190px 0 0 -190px; }
+.cr-cursor { animation: cr-cursor var(--clock); }
+@keyframes cr-cursor {
+  0%, 15% { transform: translate(330px, 110px) scale(1); } 21% { transform: translate(410px, 182px) scale(1); }
+  23% { transform: translate(410px, 182px) scale(0.85); } 26%, 65% { transform: translate(410px, 182px) scale(1); }
+  100% { transform: translate(330px, 110px) scale(1); } }
+@keyframes cr-new {
+  0%, 24% { clip-path: circle(0px at calc(100% - 42px) calc(100% - 40px)); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  46%, 66% { clip-path: circle(520px at calc(100% - 42px) calc(100% - 40px)); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  88%, 100% { clip-path: circle(0px at calc(100% - 42px) calc(100% - 40px)); } }
+@keyframes cr-ring { 0%, 44% { opacity: 0; } 50%, 66% { opacity: 0.9; } 72%, 100% { opacity: 0; } }
+
+/* 6. Flip Transition：点“去注册”，登录卡片绕竖轴翻过去，背面就是注册表单；弧形虚线箭头 = 翻转方向 */
+.fl-scene { position: absolute; left: 50%; top: 48px; width: 210px; height: 150px; margin-left: -105px; perspective: 800px; }
+.fl-card { position: absolute; inset: 0; transform-style: preserve-3d; animation: fl-card var(--clock); }
+.fl-face { position: absolute; inset: 0; border-radius: 14px; background: #FFFFFF; border: 1.5px solid #E4E4E7; backface-visibility: hidden; padding: 0 22px; overflow: hidden;
+  box-shadow: 0 10px 24px rgba(24,24,27,0.08); }
+.fl-face .av { width: 28px; height: 28px; border-radius: 50%; background: #E4E4E7; margin: 12px auto 10px; }
+.fl-face .in { height: 18px; border-radius: 6px; background: #F4F4F5; border: 1.5px solid #E4E4E7; margin-bottom: 8px; }
+.fl-face .btn { height: 20px; border-radius: 10px; background: #D4D4D8; margin-top: 2px; }
+.fl-face .lk { width: 52px; height: 6px; border-radius: 3px; background: var(--accent); margin: 10px auto 0; }
+.fl-back { transform: rotateY(180deg); border-color: var(--accent-light); }
+.fl-back .hd { height: 34px; margin: 0 -22px 12px; background: var(--accent); padding: 12px 22px 0; }
+.fl-back .hd .bar { width: 70px; background: rgba(255,255,255,0.7); }
+.fl-back .in { border-color: var(--accent-soft); }
+.fl-back .btn { background: var(--accent); }
+.fl-arrow { position: absolute; left: 0; top: 0; width: 453px; height: 224px; overflow: visible; opacity: 0; animation: fl-arrow var(--clock); }
+.fl-arrow path { fill: none; stroke: var(--accent-light); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fl-arrow .arc { stroke-dasharray: 5 6; }
+.fl-cursor { animation: fl-cursor var(--clock); }
+@keyframes fl-cursor {
+  0%, 15% { transform: translate(340px, 206px) scale(1); } 21% { transform: translate(234px, 180px) scale(1); }
+  23% { transform: translate(234px, 180px) scale(0.85); } 26%, 65% { transform: translate(234px, 180px) scale(1); }
+  100% { transform: translate(340px, 206px) scale(1); } }
+@keyframes fl-card {
+  0%, 24% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1); }
+  40% { transform: rotateY(194deg); animation-timing-function: ease-in-out; }
+  46%, 66% { transform: rotateY(180deg); animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  88%, 100% { transform: rotateY(0deg); } }
+@keyframes fl-arrow { 0%, 42% { opacity: 0; } 48%, 66% { opacity: 1; } 72%, 100% { opacity: 0; } }
+</style>
+<script>if (/portrait/.test(location.hash + location.search)) document.documentElement.classList.add('portrait');</script>
+</head>
+<body>
+<div id="stage">
+  <h1 class="title"><span>给 AI 描述<em>页面转场</em></span><span class="comma">，</span><span class="sub">记住这 6 个词</span></h1>
+  <div class="grid">
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-blue">
+          <div class="se-row" style="top:14px"><div class="bar"></div><div class="bar soft"></div></div>
+          <div class="se-row" style="top:78px"><div class="bar" style="width:124px"></div><div class="bar soft"></div></div>
+          <div class="se-row" style="top:142px"><div class="bar" style="width:138px"></div><div class="bar soft"></div></div>
+          <div class="se-thumb" style="top:21px"></div>
+          <div class="se-thumb" style="top:85px"></div>
+          <div class="se-detail">
+            <div class="bar" style="top:24px;width:150px;height:14px;border-radius:7px"></div>
+            <div class="bar soft" style="top:50px;width:180px"></div>
+            <div class="bar soft" style="top:68px;width:160px"></div>
+            <div class="bar soft" style="top:86px;width:120px"></div>
+            <div class="bt"></div>
+          </div>
+          <div class="se-ghost"></div>
+          <svg class="se-line" viewBox="0 0 453 224"><path d="M 387 168 C 320 176, 262 160, 214 126"/></svg>
+          <div class="se-hero"></div>
+          <div class="click-ring" style="left:408px;top:168px"></div>
+          <svg class="cursor se-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Shared Element</div><div class="term-zh">共享元素</div></div>
+    </div>
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-purple">
+          <div class="ft-pg ft-a">
+            <div class="bar" style="width:30%"></div>
+            <div class="row"><i></i><div class="bar"></div><div class="bar soft"></div></div>
+            <div class="row"><i></i><div class="bar" style="max-width:118px"></div><div class="bar soft"></div></div>
+            <div class="row"><i></i><div class="bar" style="max-width:136px"></div><div class="bar soft"></div></div>
+          </div>
+          <div class="ft-pg ft-b">
+            <div class="bar" style="width:24%"></div>
+            <div class="ft-cards">
+              <div class="ft-card"><i></i><div class="bar"></div><div class="bar soft" style="width:60%"></div></div>
+              <div class="ft-card"><i></i><div class="bar"></div><div class="bar soft" style="width:50%"></div></div>
+              <div class="ft-card"><i></i><div class="bar"></div><div class="bar soft" style="width:66%"></div></div>
+            </div>
+          </div>
+          <div class="ft-tabs"><i class="ft-tab t1"></i><i class="ft-tab t2"></i><i class="ft-tab"></i></div>
+          <div class="click-ring" style="left:226px;top:198px"></div>
+          <svg class="cursor ft-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Fade Through</div><div class="term-zh">淡入穿透</div></div>
+    </div>
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-teal">
+          <div class="pg so-old">
+            <div class="bar" style="width:30%;margin-bottom:12px"></div>
+            <div class="row"><i></i><div class="bar"></div><span class="chev"></span></div>
+            <div class="row"><i></i><div class="bar" style="max-width:118px"></div><span class="chev"></span></div>
+            <div class="row"><i></i><div class="bar" style="max-width:136px"></div><span class="chev"></span></div>
+          </div>
+          <div class="so-scrim"></div>
+          <div class="so-new">
+            <div class="so-head"><i></i><div class="bar"></div></div>
+            <div class="so-hero"></div>
+            <div class="bar" style="width:70%"></div>
+            <div class="bar soft" style="width:52%"></div>
+          </div>
+          <div class="click-ring" style="left:236px;top:104px"></div>
+          <svg class="cursor so-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Slide Over</div><div class="term-zh">滑动覆盖</div></div>
+    </div>
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-green">
+          <i class="zm-icon" style="left:40px;top:36px"></i><i class="zm-icon" style="left:106px;top:36px"></i><i class="zm-icon" style="left:172px;top:36px"></i>
+          <i class="zm-icon" style="left:238px;top:36px"></i><i class="zm-icon" style="left:304px;top:36px"></i><i class="zm-icon" style="left:370px;top:36px"></i>
+          <i class="zm-icon" style="left:40px;top:120px"></i><i class="zm-icon" style="left:106px;top:120px"></i><i class="zm-icon" style="left:172px;top:120px"></i>
+          <i class="zm-icon" style="left:238px;top:120px"></i><i class="zm-icon" style="left:304px;top:120px"></i><i class="zm-icon" style="left:370px;top:120px"></i>
+          <div class="zm-page"><i class="zm-glyph"></i><div class="zm-head"></div>
+            <div class="zm-body"><div class="bar" style="width:62%"></div><div class="bar soft" style="width:80%"></div><div class="bar soft" style="width:44%"></div></div>
+          </div>
+          <svg class="zm-trace" viewBox="0 0 453 224"><rect x="238" y="120" width="44" height="44" rx="12"/><path d="M 244 124 L 6 6 M 276 124 L 447 6 M 244 160 L 6 218 M 276 160 L 447 218"/></svg>
+          <div class="click-ring" style="left:258px;top:140px"></div>
+          <svg class="cursor zm-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Zoom Transition</div><div class="term-zh">缩放转场</div></div>
+    </div>
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-orange">
+          <div class="pg">
+            <div class="bar" style="width:30%;margin-bottom:12px"></div>
+            <div class="row"><i></i><div class="bar"></div><div class="bar soft"></div></div>
+            <div class="row"><i></i><div class="bar" style="max-width:118px"></div><div class="bar soft"></div></div>
+            <div class="row"><i></i><div class="bar" style="max-width:136px"></div><div class="bar soft"></div></div>
+          </div>
+          <div class="cr-fab"></div>
+          <div class="cr-new">
+            <div class="cr-head"><div class="bar"></div></div>
+            <div class="cr-input"><div class="bar"></div></div>
+            <div class="cr-input tall"><div class="bar" style="width:64%"></div></div>
+          </div>
+          <i class="cr-ring r1"></i><i class="cr-ring r2"></i>
+          <div class="click-ring" style="left:410px;top:182px"></div>
+          <svg class="cursor cr-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Circular Reveal</div><div class="term-zh">圆形揭示</div></div>
+    </div>
+
+    <div class="cell">
+      <div class="sandbox">
+        <div class="browser-bar"><i></i><i></i><i></i></div>
+        <div class="viewport hue-indigo">
+          <svg class="fl-arrow" viewBox="0 0 453 224"><path class="arc" d="M 150 38 Q 226 2 302 38"/><path d="M 292 28 L 303 39 L 288 42"/></svg>
+          <div class="fl-scene">
+            <div class="fl-card">
+              <div class="fl-face"><div class="av"></div><div class="in"></div><div class="in"></div><div class="btn"></div><div class="lk"></div></div>
+              <div class="fl-face fl-back"><div class="hd"><div class="bar"></div></div><div class="in"></div><div class="in"></div><div class="in"></div><div class="btn"></div></div>
+            </div>
+          </div>
+          <div class="click-ring" style="left:234px;top:180px"></div>
+          <svg class="cursor fl-cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.6-4.4 3 6.6 2.9-1.3-3-6.5h6.4z" fill="#18181B" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="label-group"><div class="term-en">Flip Transition</div><div class="term-zh">翻转转场</div></div>
+    </div>
+
+  </div>
+  <div class="watermark">江月AI设计</div>
+</div>
+<script>
+  // 仅用于窗口小于画布时等比缩小预览；录屏视口足够大时不缩放。动画本身是纯 CSS。
+  (function fit() {
+    const st = document.getElementById('stage');
+    const s = Math.min(1, (innerWidth - 24) / st.offsetWidth, (innerHeight - 24) / st.offsetHeight);
+    st.style.transform = s < 1 ? `scale(${s})` : '';
+    addEventListener('resize', fit, { once: true });
+  })();
+</script>
+</body>
+</html>
