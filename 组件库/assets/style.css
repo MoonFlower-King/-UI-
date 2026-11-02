@@ -65,7 +65,7 @@ svg.fill { fill: currentColor; stroke: none; }
 
 /* ---------- 顶栏 ---------- */
 .top { position: sticky; top: 0; z-index: 40; height: var(--top-h); display: flex; align-items: center; gap: 24px; padding: 0 24px;
-  background: color-mix(in srgb, var(--bg) 96%, transparent); border-bottom: 1px solid var(--line); }
+  background: var(--bg); border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .brand-name { font: 700 19px/1 var(--serif); letter-spacing: 1px; }
 .brand-name b { margin-left: 4px; font: 800 14px var(--sans); letter-spacing: 0; color: var(--accent-ink); }
