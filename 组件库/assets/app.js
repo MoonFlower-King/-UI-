@@ -5,6 +5,20 @@ const { categories, components, vague } = window.UI_KIT;
 const byId = Object.fromEntries(components.map((c) => [c.id, c]));
 const catById = Object.fromEntries(categories.map((c) => [c.id, c]));
 const inCat = (id) => components.filter((x) => x.cat === id);
+// 组件代码按主题分文件（data/code/<主题>.js），用到哪个主题才加载哪个，组件再多首页也不变慢。
+// 用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
+const codeLoads = {};
+window.JY_CODE = (cat, map) => { for (const id in map) if (byId[id]) byId[id].code = map[id]; };
+function loadCode(cat) {
+  return codeLoads[cat] ||= new Promise((ok, no) => {
+    const s = document.createElement('script');
+    s.src = `data/code/${cat}.js`;
+    s.onload = ok;
+    s.onerror = () => { delete codeLoads[cat]; s.remove(); no(new Error(cat)); }; // 网络抖一下的话，下次用到再试
+    document.head.append(s);
+  });
+}
+const withCode = (c) => (c.code != null ? Promise.resolve(c) : loadCode(c.cat).then(() => c));
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -124,8 +138,9 @@ syncTheme();
 // 每张卡片的预览分两层：
 // 1. 底层「静态首帧」：把组件的 HTML + CSS（去掉脚本、暂停动画）直接画进卡片的 Shadow DOM，离屏幕还远就画好，
 //    又轻又快，所以滚到哪都不会看到空白。
-// 2. 上层「自动演示」iframe（assets/autoplay.js）：卡片快进入屏幕时才加载，加载好后淡入盖住首帧；滚出去就卸掉，省电省 CPU。
-// 所有预览和网页共用一条主线程，所以 iframe 一次只启动一张、错开 80ms。
+// 2. 上层「自动演示」iframe（assets/autoplay.js）：卡片进入屏幕才临时建一个 iframe，加载好后淡入盖住首帧；
+//    滚出去就把 iframe 整个删掉（连同里面的网页），所以几百张卡片的页面也只有屏幕里那几个 iframe，省内存、省 CPU。
+// 所有预览和网页共用一条主线程，所以 iframe 一次只启动一张、错开 60ms；同时最多播 MAX_LIVE 张（离屏幕中心近的优先）。
 // 鼠标移进卡片：从头重播一遍；访客自己点一下就接管。系统开了「减少动态效果」就不自动演示。
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
@@ -148,7 +163,7 @@ function setFit(id, w, h) {
   const need = Math.round(Math.min(560, Math.max(240, w * 1.1, h * 1.36 * 1.6)));
   if (fitCache[id] && need <= fitCache[id] + 2) return; // 只放宽、不收窄，避免来回跳
   fitCache[id] = Math.max(need, fitCache[id] || 0);
-  $$(`.thumb iframe[data-id="${id}"]`).forEach((f) => f.parentElement.style.setProperty('--vw', fitCache[id]));
+  $$(`.thumb[data-id="${id}"]`).forEach((t) => t.style.setProperty('--vw', fitCache[id]));
 }
 // 量 Shadow DOM 首帧里组件的实际大小（换算回预览视口里的像素）
 function measurePoster(id, host, root) {
@@ -170,8 +185,9 @@ const POSTER_CSS = ':host{all:initial;display:grid;place-items:center;width:100%
   'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif;overflow:hidden}' +
   '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
 function paintPoster(t) {
-  const c = byId[t.querySelector('iframe').dataset.id], host = t.querySelector('.poster');
+  const c = byId[t.dataset.id], host = t.querySelector('.poster');
   if (!host || host.shadowRoot) return;
+  if (c.code == null) { withCode(c).then(() => t.isConnected && paintPoster(t), () => {}); return; }
   const html = c.code.replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/(^|[\s,}>])(:root|html|body)(?=\s*[{,.:#\[\s])/g, '$1:host');
   const root = host.attachShadow({ mode: 'open' });
@@ -208,30 +224,42 @@ const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (!painting) { painting = true; idle(paintSome, { timeout: 200 }); }
 }), { rootMargin: '600px 0px' });
 
-// 屏幕里看得到的卡片全部播放演示，滑出屏幕的立刻停掉、换回静态首帧，所以同时在跑的只有一屏的量。
+// 屏幕里看得到的卡片播放演示（最多 MAX_LIVE 张），滑出屏幕的立刻停掉、换回静态首帧。
 // 新进屏幕的卡片按离屏幕中心由近到远、每隔一小会儿开一张，避免一下子全挤在同一帧里卡住。
+// 下面的 t 都是卡片里的 .thumb，播放时 t.frame 是临时建的 iframe。
+const MAX_LIVE = canHover ? 10 : 4;
 const inView = new Set(), playing = new Set(), queue = new Set();
 let pumping = false, hovered = null, pickTimer;
-const swap = (f, fade) => {
-  if (!fade) { f.srcdoc = doc(byId[f.dataset.id]); return; }
+function frameOf(t) {
+  if (t.frame) return t.frame;
+  const f = t.frame = document.createElement('iframe');
+  f.className = 'swap'; f.tabIndex = -1; f.title = `${byId[t.dataset.id].zh} 预览`;
+  f.addEventListener('load', () => { if (f.srcdoc) { f.classList.remove('swap'); f.dataset.live = 1; } });
+  t.append(f);
+  return f;
+}
+const swap = (t, fade) => withCode(byId[t.dataset.id]).then((c) => {
+  if (!playing.has(t)) return;
+  const f = frameOf(t);
+  if (!fade) { f.srcdoc = doc(c); return; }
   f.classList.add('swap');
-  setTimeout(() => { if (playing.has(f)) f.srcdoc = doc(byId[f.dataset.id]); }, 180);
-};
+  setTimeout(() => { if (playing.has(t) && t.frame === f) f.srcdoc = doc(c); }, 180);
+}, () => {});
 function pump() {
-  const f = queue.values().next().value;
-  if (!f) { pumping = false; return; }
-  queue.delete(f); pumping = true; if (playing.has(f)) swap(f, f.dataset.live);
+  const t = queue.values().next().value;
+  if (!t) { pumping = false; return; }
+  queue.delete(t); pumping = true; if (playing.has(t)) swap(t, t.frame?.dataset.live);
   setTimeout(pump, 60);
 }
-const load = (f, now) => { queue.delete(f); if (now) swap(f, true); else { queue.add(f); if (!pumping) pump(); } };
-const stop = (f) => { playing.delete(f); queue.delete(f); f.classList.add('swap'); delete f.dataset.live; if (f.srcdoc) f.srcdoc = ''; };
+const load = (t, now) => { queue.delete(t); if (now) swap(t, true); else { queue.add(t); if (!pumping) pump(); } };
+const stop = (t) => { playing.delete(t); queue.delete(t); if (t.frame) { t.frame.remove(); t.frame = null; } };
 function pick() {
   const mid = innerHeight / 2;
-  const dist = (f) => { const r = f.parentElement.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid) + Math.abs(r.left + r.width / 2 - innerWidth / 2) / 4; };
-  const want = new Set([...inView].sort((x, y) => dist(x) - dist(y)));
-  if (hovered) want.add(hovered);
-  playing.forEach((f) => { if (!want.has(f)) stop(f); });
-  want.forEach((f) => { if (!playing.has(f)) { playing.add(f); load(f); } });
+  const dist = (t) => { const r = t.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid) + Math.abs(r.left + r.width / 2 - innerWidth / 2) / 4; };
+  const want = new Set([...inView].filter((t) => t.isConnected).sort((x, y) => dist(x) - dist(y)).slice(0, MAX_LIVE));
+  if (hovered?.isConnected) want.add(hovered);
+  playing.forEach((t) => { if (!want.has(t)) stop(t); });
+  want.forEach((t) => { if (!playing.has(t)) { playing.add(t); load(t); } });
 }
 const repick = () => { clearTimeout(pickTimer); pickTimer = setTimeout(pick, 100); };
 addEventListener('scroll', repick, { passive: true });
@@ -241,28 +269,30 @@ const watch = new IntersectionObserver((entries) => {
   repick();
 }, { threshold: [0, .5] });
 addEventListener('message', (e) => {
-  const f = [...playing].find((x) => x.contentWindow === e.source);
-  if (!f) return;
-  if (e.data === 'jy-replay') load(f);
-  else if (e.data?.jyFit) { measured.add(f.dataset.id); setFit(f.dataset.id, ...e.data.jyFit); }
+  const t = [...playing].find((x) => x.frame?.contentWindow === e.source);
+  if (!t) return;
+  if (e.data === 'jy-replay') load(t);
+  else if (e.data?.jyFit) { measured.add(t.dataset.id); setFit(t.dataset.id, ...e.data.jyFit); }
 });
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--tw', e.contentRect.width)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb"${fitCache[c.id] ? ` style="--vw:${fitCache[c.id]}"` : ''}><div class="poster" aria-hidden="true"></div><iframe class="swap" data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe>
+    <div class="thumb" data-id="${c.id}"${fitCache[c.id] ? ` style="--vw:${fitCache[c.id]}"` : ''}><div class="poster" aria-hidden="true"></div>
 <span class="live">点一下，换你来玩</span></div>
     <div class="card-body"><h3 class="card-title"><a href="#${c.id}" title="${esc(c.lead)}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3>
       <div class="card-actions"><button class="glass-btn" data-copy="${c.id}">复制提示词</button><button class="glass-btn add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
 }
+// 换页时上一页的卡片都被删掉了，把它们从播放名单里清出去
+function forget() { [...inView].forEach((t) => { if (!t.isConnected) inView.delete(t); }); [...playing].forEach((t) => { if (!t.isConnected) stop(t); }); }
 function hydrate(root) {
+  forget();
   $$('.thumb', root).forEach((t) => {
-    const f = t.querySelector('iframe'), cardEl = t.closest('.card');
-    fit.observe(t); posters.observe(t); watch.observe(f);
-    f.addEventListener('load', () => { if (f.srcdoc) { f.classList.remove('swap'); f.dataset.live = 1; } });
+    const cardEl = t.closest('.card');
+    fit.observe(t); posters.observe(t); watch.observe(t);
     if (canHover) {
-      cardEl.addEventListener('mouseenter', () => { hovered = f; if (!playing.has(f)) { playing.add(f); pick(); } load(f, true); });
-      cardEl.addEventListener('mouseleave', () => { if (hovered === f) hovered = null; let stopped = false; try { stopped = f.contentWindow.__jyStop; } catch {} if (stopped && playing.has(f)) load(f); repick(); });
+      cardEl.addEventListener('mouseenter', () => { hovered = t; if (!playing.has(t)) { playing.add(t); pick(); } load(t, true); });
+      cardEl.addEventListener('mouseleave', () => { if (hovered === t) hovered = null; let stopped = false; try { stopped = t.frame.contentWindow.__jyStop; } catch {} if (stopped && playing.has(t)) load(t); repick(); });
     }
   });
   $$('[data-add]', root).forEach(syncAddBtn);
@@ -424,12 +454,22 @@ function filterBar(curId) {
   return `<nav class="filter" aria-label="按主题筛选"><a href="#all"${curId ? '' : ' aria-current="page"'}>全部<small>${components.length}</small></a>` +
     categories.map((c) => `<a href="#cat-${c.id}"${c.id === curId ? ' aria-current="page"' : ''}>${esc(c.name)}<small>${c.count}</small></a>`).join('') + '</nav>';
 }
+const lazyGrids = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && lazyGrids.fill(e.target)), { rootMargin: '1600px 0px' });
 function renderAll() {
   $('#main').innerHTML = `<header class="page-head"><h1 class="h1">词典</h1><p class="lead">${components.length} 个界面术语，分成 ${categories.length} 个主题。鼠标放在卡片上能直接玩预览，点名字看代码。</p></header>
     ${filterBar()}
     ${categories.map((c) => `<section class="group"><div class="group-head"><h2>${esc(c.name)}</h2><p>${esc(c.intro)}</p><a href="#cat-${c.id}">只看这个主题</a></div>
-      <div class="grid">${inCat(c.id).map(card).join('')}</div></section>`).join('')}${foot()}`;
-  hydrate($('#main'));
+      <div class="grid" data-lazy="${c.id}"></div></section>`).join('')}${foot()}`;
+  // 几百张卡片一次全塞进页面会卡：每个主题先放一个等高的空格子，快滚到时（提前约两屏）才真正生成卡片
+  const grids = $$('[data-lazy]');
+  grids.forEach((g) => {
+    const cols = getComputedStyle(g).gridTemplateColumns.split(' ').length, w = g.clientWidth / cols;
+    g.style.minHeight = Math.ceil(catById[g.dataset.lazy].count / cols) * (w / 1.6 + 76) + 'px';
+  });
+  const fill = (g) => { lazyGrids.unobserve(g); g.innerHTML = inCat(g.dataset.lazy).map(card).join(''); g.style.minHeight = ''; hydrate(g); };
+  lazyGrids.disconnect();
+  grids.forEach((g) => lazyGrids.observe(g));
+  lazyGrids.fill = fill;
   document.title = '词典 · 江月 UI';
 }
 function renderCategory(cat) {
@@ -493,6 +533,10 @@ function renderDetail(c) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1)) || 'home', keepScroll = h === 'translator' || pendingFeel;
   let tab = 'home', curCat = '';
+  if (byId[h] && byId[h].code == null) { // 词条页要用代码：先加载它所在主题的代码文件，再画页面
+    withCode(byId[h]).then(() => byId[h].code != null && route(), () => toast('网络不太好，代码没加载出来，刷新试试'));
+    return;
+  }
   if (byId[h]) { renderDetail(byId[h]); tab = 'all'; curCat = byId[h].cat; }
   else if (h.startsWith('cat-') && catById[h.slice(4)]) { renderCategory(catById[h.slice(4)]); tab = 'all'; curCat = h.slice(4); }
   else if (h === 'all') { renderAll(); tab = 'all'; }

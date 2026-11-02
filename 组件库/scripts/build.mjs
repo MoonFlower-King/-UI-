@@ -10,7 +10,7 @@
 //   <div>…</div>  <style>…</style>  <script>…</script>
 //
 // 组件属于哪个主题、在主题里的顺序，由 data/categories.json 决定。新组件要在那里登记。
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -48,8 +48,22 @@ const orphan = [...byId].filter(([, c]) => !c.cat).map(([id]) => id);
 if (orphan.length) fail(`这些组件没有在 categories.json 里登记：${orphan.join('、')}`);
 for (const v of vague) for (const [, , id] of v.terms) if (id && !byId.has(id)) fail(`vague-words.json：找不到组件 ${id}`);
 
+// 拆成两部分，组件再多打开也快：
+// - data/components.js：只有名字、说明、提示词（搜索、感觉翻译、篮子都只用这些），一打开就加载
+// - data/code/<主题>.js：每个主题一个文件，装这个主题所有组件的代码；滚到这个主题、或打开它的词条时才加载
 // 用 .js 而不是 .json：双击 index.html（file://）时浏览器不允许 fetch 本地文件
+const HEAD = '// 由 scripts/build.mjs 生成，不要手改。改组件请改 components/ 下的文件后重新运行 npm run build:ui。\n';
 const cats = categories.map(({ items, ...c }) => ({ ...c, count: items.length }));
-writeFileSync(join(ROOT, 'data/components.js'),
-  `// 由 scripts/build.mjs 生成，不要手改。改组件请改 components/ 下的文件后重新运行 npm run build:ui。\nwindow.UI_KIT = ${JSON.stringify({ categories: cats, components, vague })};\n`);
-console.log(`✓ ${categories.length} 个主题、${components.length} 个组件、${vague.length} 条“说不清”速查`);
+const meta = components.map(({ code, ...c }) => c);
+writeFileSync(join(ROOT, 'data/components.js'), `${HEAD}window.UI_KIT = ${JSON.stringify({ categories: cats, components: meta, vague })};\n`);
+const CODE = join(ROOT, 'data/code');
+rmSync(CODE, { recursive: true, force: true });
+mkdirSync(CODE);
+for (const cat of categories) {
+  const code = Object.fromEntries(components.filter((c) => c.cat === cat.id).map((c) => [c.id, c.code]));
+  writeFileSync(join(CODE, `${cat.id}.js`), `${HEAD}window.JY_CODE(${JSON.stringify(cat.id)}, ${JSON.stringify(code)});\n`);
+}
+const kb = (n) => `${Math.round(n / 1024)}KB`;
+const biggest = Math.max(...categories.map((c) => components.filter((x) => x.cat === c.id).reduce((n, x) => n + x.code.length, 0)));
+console.log(`✓ ${categories.length} 个主题、${components.length} 个组件、${vague.length} 条“说不清”速查（索引 ${kb(JSON.stringify(meta).length)}，最大的主题代码 ${kb(biggest)}）`);
+if (biggest > 400 * 1024) console.warn('! 有主题的代码超过 400KB，考虑把它拆成两个主题');
