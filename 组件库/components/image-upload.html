@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Image Upload Preview", "zh": "图片上传预览",
+  "lead": "选了图片后立刻在框里显示缩略图，可以删掉重选，还能看到“还能再传几张”。比只显示一个文件名直观得多，发帖、头像、商品图都用得上。",
+  "vague": ["上传图片看不到是哪张", "传图的地方太简陋"],
+  "terms": ["Image Upload", "Thumbnail Preview 缩略图预览", "URL.createObjectURL"],
+  "prompt": "发帖页的图片上传：3 列方形网格，已选图片显示为圆角 10px 缩略图（object-fit: cover），右上角半透明黑色 × 删除按钮；最后一格是虚线框“＋ 添加图片（2/9）”，点击打开文件选择；本地用 URL.createObjectURL 即时预览，新图缩放淡入。"
+}
+-->
+<div class="up">
+  <div class="grid"></div>
+  <input type="file" accept="image/*" multiple hidden>
+</div>
+
+<style>
+.up { width: 300px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cell { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; animation: pop .25s ease-out; }
+.cell img, .cell .ph { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cell button { position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border: 0; border-radius: 50%; background: rgba(0,0,0,.55); color: #fff; font-size: 12px; line-height: 20px; cursor: pointer; }
+.add { aspect-ratio: 1; border: 1.5px dashed #D4D4D8; border-radius: 10px; background: #FAFAFA; display: grid; place-content: center; text-align: center; gap: 2px; color: #A1A1AA; font-size: 11px; cursor: pointer; transition: border-color .15s, color .15s; }
+.add b { font-size: 22px; font-weight: 300; } .add:hover { border-color: #FA8C16; color: #FA8C16; }
+@keyframes pop { from { transform: scale(.85); opacity: 0; } }
+</style>
+
+<script>
+const MAX = 9, grid = document.querySelector(".grid"), input = document.querySelector("input");
+// 演示用的两张“图片”是渐变色块；真实项目里是用户选的文件
+const items = [{ ph: "linear-gradient(135deg,#24365A,#FA8C16)" }, { ph: "linear-gradient(135deg,#FDE68A,#F472B6)" }];
+function render() {
+  grid.innerHTML = items.map((it, i) => `<div class="cell">${it.url ? `<img src="${it.url}" alt="">` : `<div class="ph" style="background:${it.ph}"></div>`}<button data-i="${i}" aria-label="删除">×</button></div>`).join("")
+    + (items.length < MAX ? `<button class="add"><b>＋</b>添加图片 ${items.length}/${MAX}</button>` : "");
+}
+grid.addEventListener("click", (e) => {
+  if (e.target.dataset.i) { const [it] = items.splice(+e.target.dataset.i, 1); if (it.url) URL.revokeObjectURL(it.url); render(); }
+  else if (e.target.closest(".add")) { if (e.isTrusted) input.click(); else { items.push({ ph: `hsl(${Math.random() * 360} 70% 70%)` }); render(); } }
+});
+input.addEventListener("change", () => { [...input.files].slice(0, MAX - items.length).forEach((f) => items.push({ url: URL.createObjectURL(f) })); input.value = ""; render(); });
+render();
+</script>

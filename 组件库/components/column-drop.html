@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Column Drop", "zh": "列下沉布局",
+  "lead": "宽屏时三栏并排；屏幕变窄，最右边那栏先“掉”到下面去；再窄，第二栏也掉下去，最后变成一列。每一栏的内容都不缩水，只是换了位置。",
+  "vague": ["多栏布局在小屏挤成一团", "窄屏时栏目往下排"],
+  "terms": ["Column Drop", "Responsive Pattern 响应式模式", "flex-wrap"],
+  "prompt": "三栏页面用 Column Drop：主栏 flex: 1 1 260px、侧栏 flex: 1 1 140px、附加栏 flex: 1 1 140px，父容器 flex-wrap: wrap；容器变窄时最右栏先掉到下一行并占满宽度，再窄时变单列；栏间距 12px；不需要写断点。"
+}
+-->
+<div class="demo">
+  <div class="box">
+    <main>主内容</main><aside class="a">目录</aside><aside class="b">相关推荐</aside>
+  </div>
+  <small>容器会自动变窄 / 变宽</small>
+</div>
+
+<style>
+.demo { display: grid; gap: 8px; justify-items: center; }
+.box { display: flex; flex-wrap: wrap; gap: 8px; width: 460px; padding: 10px; background: #FAFAFA; border: 1px dashed #D4D4D8; border-radius: 12px; animation: w 7s ease-in-out infinite alternate; }
+.box:hover { animation-play-state: paused; }
+@keyframes w { from { width: 460px; } to { width: 200px; } }
+.box > * { height: 64px; border-radius: 9px; display: grid; place-items: center; font-size: 12px; font-weight: 600; }
+main { flex: 1 1 200px; background: #FFF4E6; color: #C2410C; height: 100px; }
+.a { flex: 1 1 100px; background: #EEF2FF; color: #3730A3; } .b { flex: 1 1 100px; background: #ECFDF5; color: #15803D; }
+small { font-size: 11px; color: #A1A1AA; }
+</style>

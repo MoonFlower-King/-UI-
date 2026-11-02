@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Text Scrim", "zh": "图上文字遮罩",
+  "lead": "文字压在照片上时，在文字后面垫一层从透明到深色的渐变，保证无论照片多亮多花，字都看得清。是封面、Banner 的必备小技巧。",
+  "vague": ["图片上的字看不清", "字和背景糊在一起"],
+  "terms": ["Scrim", "Gradient Overlay 渐变遮罩", "Legibility 可读性"],
+  "prompt": "封面图上的标题加 Text Scrim：在图片底部叠一层 linear-gradient(to top, rgba(0,0,0,.7), transparent 60%)，标题白色放在左下角，必要时加 text-shadow 0 1px 2px rgba(0,0,0,.3)；保证文字与背景对比度 ≥ 4.5:1；不要给整张图加灰蒙蒙的半透明黑。"
+}
+-->
+<div class="wrap">
+  <figure class="cover"><figcaption><b>夏夜江边音乐会</b><small>8 月 20 日 · 免费入场</small></figcaption></figure>
+  <label><input type="checkbox" checked> 开启渐变遮罩</label>
+</div>
+
+<style>
+.wrap { display: grid; gap: 10px; justify-items: center; }
+.cover { position: relative; width: 320px; height: 200px; margin: 0; border-radius: 14px; overflow: hidden;
+  background: radial-gradient(circle at 30% 70%, #FFF3C4, transparent 40%), radial-gradient(circle at 80% 85%, #FDE68A, transparent 35%), linear-gradient(160deg, #FDBA74, #F9A8D4 60%, #FEF3C7); }
+.cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.7), transparent 60%); transition: opacity .3s; }
+.wrap:has(input:not(:checked)) .cover::after { opacity: 0; }
+figcaption { position: absolute; left: 18px; bottom: 16px; z-index: 1; display: grid; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+b { font: 700 22px "Songti SC", serif; } small { font-size: 12px; opacity: .85; }
+label { font-size: 12px; color: #71717A; display: flex; gap: 6px; align-items: center; } input { accent-color: #FA8C16; }
+</style>

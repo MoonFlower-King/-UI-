@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Responsive Table", "zh": "响应式表格",
+  "lead": "宽屏时是普通表格；手机上屏幕太窄，每一行自动变成一张小卡片，左边字段名、右边值，不用左右滑也能看全。",
+  "vague": ["表格在手机上看不了", "表格太宽要横着滑"],
+  "terms": ["Responsive Table", "Stacked Cards 卡片化", "Container Query"],
+  "prompt": "订单表格做成 Responsive Table：容器宽度大于 480px 时显示标准表格；小于 480px 时（用 container query）每行变成一张圆角卡片，每个单元格占一行，用 ::before 读取 data-label 显示字段名（左侧灰色）和值（右侧）；状态列保留彩色标签；不出现横向滚动条。"
+}
+-->
+<div class="demo">
+  <div class="box">
+    <table>
+      <thead><tr><th>订单</th><th>商品</th><th>金额</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td data-label="订单">#1024</td><td data-label="商品">月白马克杯</td><td data-label="金额">¥138</td><td data-label="状态"><em class="ok">已发货</em></td></tr>
+        <tr><td data-label="订单">#1023</td><td data-label="商品">江月帆布袋</td><td data-label="金额">¥59</td><td data-label="状态"><em>待付款</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <small>容器会自动变窄 / 变宽</small>
+</div>
+
+<style>
+.demo { display: grid; gap: 8px; justify-items: center; }
+.box { container-type: inline-size; width: 460px; padding: 10px; background: #FAFAFA; border: 1px dashed #D4D4D8; border-radius: 12px; animation: w 6s ease-in-out infinite alternate; }
+.box:hover { animation-play-state: paused; }
+@keyframes w { from { width: 460px; } to { width: 220px; } }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; font-size: 12px; }
+th { text-align: left; padding: 8px 10px; background: #F4F4F5; color: #71717A; font-weight: 500; } td { padding: 9px 10px; border-top: 1px solid #F4F4F5; color: #18181B; white-space: nowrap; }
+em { font-style: normal; padding: 2px 8px; border-radius: 999px; background: #FFF7ED; color: #C2410C; font-size: 11px; } em.ok { background: #F0FDF4; color: #15803D; }
+@container (max-width: 380px) {
+  table, tbody, tr, td { display: block; } thead { display: none; } table { background: none; }
+  tr { margin-bottom: 8px; padding: 4px 12px; background: #fff; border-radius: 10px; border: 1px solid #F0F0F2; }
+  td { display: flex; justify-content: space-between; padding: 6px 0; border: 0; } td + td { border-top: 1px solid #F4F4F5; }
+  td::before { content: attr(data-label); color: #A1A1AA; }
+}
+small { font-size: 11px; color: #A1A1AA; }
+</style>

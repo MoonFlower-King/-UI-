@@ -1,0 +1,49 @@
+<!--
+{
+  "en": "Calendar View", "zh": "月历视图",
+  "lead": "按月展示的日历格子，每天里放当天的日程小色条，今天用圆圈标出，点某天下方显示详情。排期、预约、打卡类产品的核心界面。",
+  "vague": ["日程怎么按月看", "日历界面"],
+  "terms": ["Calendar View", "Month Grid 月网格", "Event Chip 日程条"],
+  "prompt": "做一个 Month Calendar View：7 列网格，表头“一 二 … 日”灰色小字；非本月日期浅灰；今天的日期用江月橘实心圆白字；有日程的日子下方显示 1–2 个小色点（多于 2 个显示 +N）；点击某天该格变浅橘底，下方列出当天日程；左右箭头切换月份并有横向滑动过渡。"
+}
+-->
+<div class="cal">
+  <header><button aria-label="上个月">‹</button><b class="title"></b><button aria-label="下个月">›</button></header>
+  <div class="wk"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+  <div class="days"></div>
+  <p class="detail"></p>
+</div>
+
+<style>
+.cal { width: 280px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+header b { font-size: 14px; } header button { width: 28px; height: 28px; border: 0; border-radius: 8px; background: none; font-size: 18px; cursor: pointer; color: #52525B; } header button:hover { background: #F4F4F5; }
+.wk, .days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+.wk span { font-size: 11px; color: #A1A1AA; padding-bottom: 4px; }
+.days { animation: slide .25s ease-out; } @keyframes slide { from { opacity: 0; transform: translateX(var(--dir, 8px)); } }
+.d { position: relative; height: 34px; display: grid; place-items: center; font-size: 12px; color: #18181B; border-radius: 8px; cursor: pointer; }
+.d:hover { background: #F4F4F5; } .d.out { color: #D4D4D8; } .d.sel { background: #FFF4E6; }
+.d.today span { width: 24px; height: 24px; border-radius: 50%; background: #FA8C16; color: #fff; display: grid; place-items: center; font-weight: 700; }
+.dots { position: absolute; bottom: 3px; display: flex; gap: 2px; } .dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--c); }
+.detail { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid #F4F4F5; font-size: 12px; color: #52525B; min-height: 18px; }
+</style>
+
+<script>
+const EV = { 3: [["评审会", "#2563EB"]], 7: [["发版", "#FA8C16"], ["复盘", "#8B5CF6"]], 12: [["拍视频", "#16A34A"]], 18: [["设计周会", "#2563EB"]], 24: [["上线", "#FA8C16"]] };
+let y = 2026, m = 10, sel = 2; const today = [2026, 10, 2];
+function render(dir) {
+  const first = (new Date(y, m, 1).getDay() + 6) % 7, n = new Date(y, m + 1, 0).getDate(), prevN = new Date(y, m, 0).getDate();
+  document.querySelector(".title").textContent = `${y} 年 ${m + 1} 月`;
+  const cells = [];
+  for (let i = 0; i < 42; i++) {
+    const d = i - first + 1, out = d < 1 || d > n, num = d < 1 ? prevN + d : d > n ? d - n : d;
+    const ev = out ? [] : EV[d] || [], isT = !out && y === today[0] && m === today[1] && d === today[2];
+    cells.push(`<div class="d ${out ? "out" : ""} ${isT ? "today" : ""} ${!out && d === sel ? "sel" : ""}" data-d="${out ? "" : d}"><span>${num}</span>${ev.length ? `<span class="dots">${ev.slice(0, 2).map((e) => `<i style="--c:${e[1]}"></i>`).join("")}</span>` : ""}</div>`);
+  }
+  const days = document.querySelector(".days"); days.style.setProperty("--dir", (dir || 0) * 8 + "px"); days.innerHTML = cells.join(""); days.style.animation = "none"; days.offsetWidth; days.style.animation = "";
+  const ev = EV[sel] || []; document.querySelector(".detail").textContent = `${m + 1} 月 ${sel} 日：` + (ev.length ? ev.map((e) => e[0]).join("、") : "暂无日程");
+}
+document.querySelector(".days").addEventListener("click", (e) => { const d = e.target.closest(".d")?.dataset.d; if (d) { sel = +d; render(); } });
+document.querySelectorAll("header button").forEach((b, i) => b.addEventListener("click", () => { m += i ? 1 : -1; if (m > 11) { m = 0; y++; } if (m < 0) { m = 11; y--; } render(i ? 1 : -1); }));
+render();
+</script>

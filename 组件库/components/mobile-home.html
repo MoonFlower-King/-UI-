@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Mobile App Home", "zh": "手机 App 首页",
+  "lead": "一个典型 App 首页：顶部问候和头像、搜索框、横向滑动的分类、一张大的推荐卡、下面是列表，底部固定标签栏。把常见组件、手势和安全区组合成一屏。",
+  "vague": ["App 首页怎么排", "手机首页太乱"],
+  "terms": ["Mobile Home", "Bottom Navigation", "Horizontal Scroll", "Safe Area"],
+  "prompt": "做一个手机 App 首页（390 宽）：顶部“晚上好，小月”+ 右侧头像；圆角搜索框；一行可横向滑动的分类胶囊（scroll-snap）；一张 16:9 的推荐大卡（渐变 + 标题 + 按钮）；“最近浏览”列表 3 行；底部固定 4 个图标的标签栏，当前项江月橘，底部留出 env(safe-area-inset-bottom)。"
+}
+-->
+<div class="phone">
+  <div class="scroll">
+    <header><div><small>晚上好</small><b>小月 🌙</b></div><span class="av">月</span></header>
+    <label class="search">🔍 <span>搜索词条、配色、动效</span></label>
+    <div class="cats"><a class="on">推荐</a><a>布局</a><a>配色</a><a>动效</a><a>表单</a><a>案例</a></div>
+    <div class="hero"><small>今日推荐</small><b>江上明月配色</b><button>去看看</button></div>
+    <p class="h">最近浏览</p>
+    <ul><li><i style="background:#FFF4E6">◐</i>彩色投影<span>›</span></li><li><i style="background:#EEF2FF">▤</i>卡片布局<span>›</span></li><li><i style="background:#ECFDF5">↻</i>下拉刷新<span>›</span></li></ul>
+  </div>
+  <nav><a class="on">⌂<small>首页</small></a><a>▦<small>词典</small></a><a>◍<small>篮子</small></a><a>☺<small>我的</small></a></nav>
+</div>
+
+<style>
+.phone { position: relative; width: 230px; height: 340px; border-radius: 26px; overflow: hidden; background: #FAFAFA; border: 6px solid #18181B; }
+.scroll { height: 100%; overflow-y: auto; padding: 14px 12px 64px; box-sizing: border-box; scrollbar-width: none; }
+header { display: flex; justify-content: space-between; align-items: center; } header small { font-size: 10px; color: #A1A1AA; display: block; } header b { font-size: 15px; }
+.av { width: 30px; height: 30px; border-radius: 50%; background: #121722; color: #FFD58A; display: grid; place-items: center; font-size: 12px; }
+.search { display: block; margin: 10px 0; padding: 8px 10px; border-radius: 10px; background: #fff; border: 1px solid #F0F0F2; font-size: 11px; color: #A1A1AA; }
+.cats { display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -12px; padding: 0 12px; }
+.cats a { flex: none; scroll-snap-align: start; padding: 4px 10px; border-radius: 999px; background: #fff; border: 1px solid #F0F0F2; font-size: 11px; color: #52525B; }
+.cats .on { background: #18181B; color: #fff; border-color: #18181B; }
+.hero { margin: 10px 0; aspect-ratio: 16 / 9; border-radius: 14px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+  background: radial-gradient(circle at 78% 30%, #FFD58A 0 14px, transparent 16px), linear-gradient(160deg, #24365A, #0F1218); }
+.hero small { font-size: 10px; opacity: .7; } .hero b { font: 700 15px "Songti SC", serif; } .hero button { align-self: flex-start; margin-top: 6px; border: 0; border-radius: 999px; padding: 3px 10px; background: #FA8C16; color: #fff; font-size: 10px; }
+.h { margin: 4px 0 6px; font-size: 12px; font-weight: 700; }
+ul { margin: 0; padding: 0; list-style: none; background: #fff; border-radius: 12px; }
+li { display: flex; align-items: center; gap: 8px; padding: 8px 10px; font-size: 12px; } li + li { border-top: 1px solid #F4F4F5; } li i { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; font-style: normal; font-size: 11px; } li span { margin-left: auto; color: #D4D4D8; }
+nav { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-around; padding: 6px 0 calc(8px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-top: 1px solid #F0F0F2; }
+nav a { display: grid; justify-items: center; font-size: 15px; color: #A1A1AA; cursor: pointer; } nav small { font-size: 9px; } nav .on { color: #FA8C16; }
+</style>
+
+<script>
+document.querySelectorAll(".cats a, nav a").forEach((a) => a.addEventListener("click", () => [...a.parentElement.children].forEach((x) => x.classList.toggle("on", x === a))));
+</script>

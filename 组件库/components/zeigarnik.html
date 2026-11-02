@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Zeigarnik Effect", "zh": "蔡格尼克效应",
+  "lead": "人对“没做完的事”记得特别清楚，总想把它完成。所以资料完善度“已完成 60%”、任务清单打勾，能有效推动用户继续做下去。",
+  "vague": ["用户填到一半就走了", "怎么让人把资料填完"],
+  "terms": ["Zeigarnik Effect", "Progress Indicator 进度提示", "Completion 完成感"],
+  "prompt": "个人资料页加“资料完善度”卡片：环形进度显示百分比（江月橘），下方列出剩余待办（上传头像 / 填写简介 / 绑定邮箱），已完成项打勾划线变灰；每完成一项进度环平滑增加，100% 时出现庆祝小动画并收起卡片。"
+}
+-->
+<div class="card">
+  <div class="top"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" class="bg"/><circle cx="18" cy="18" r="15" class="fg" pathLength="100"/></svg><div><b>资料完善度 <span class="pct">40</span>%</b><small>完善资料，让别人更快认识你</small></div></div>
+  <ul></ul>
+</div>
+
+<style>
+.card { width: 280px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+svg { width: 46px; height: 46px; transform: rotate(-90deg); } circle { fill: none; stroke-width: 4; } .bg { stroke: #F0F0F2; }
+.fg { stroke: #FA8C16; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 60; transition: stroke-dashoffset .5s ease-out; }
+.top b { font-size: 14px; display: block; } .top small { font-size: 11px; color: #A1A1AA; } .pct { font-variant-numeric: tabular-nums; }
+ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+li { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 8px; font-size: 13px; color: #18181B; cursor: pointer; transition: background .15s; }
+li:hover { background: #FAFAFA; }
+li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #D4D4D8; box-sizing: border-box; flex: none; transition: .2s; }
+li.done { color: #A1A1AA; text-decoration: line-through; } li.done::before { border: 0; background: #22C55E url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='m3 6 2 2 4-4' fill='none' stroke='white' stroke-width='1.8'/%3E%3C/svg%3E") center/10px no-repeat; }
+.card.full { animation: yay .5s; } @keyframes yay { 30% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(250,140,22,.15); } }
+</style>
+
+<script>
+const tasks = [["注册账号", true], ["设置昵称", true], ["上传头像", false], ["填写简介", false], ["绑定邮箱", false]];
+const ul = document.querySelector("ul"), fg = document.querySelector(".fg"), pct = document.querySelector(".pct"), card = document.querySelector(".card");
+function render() {
+  ul.innerHTML = tasks.map(([n, d], i) => `<li class="${d ? "done" : ""}" data-i="${i}">${n}</li>`).join("");
+  const p = Math.round((tasks.filter((t) => t[1]).length / tasks.length) * 100);
+  fg.style.strokeDashoffset = 100 - p; pct.textContent = p;
+  if (p === 100) { card.classList.remove("full"); card.offsetWidth; card.classList.add("full"); setTimeout(() => { tasks.forEach((t, i) => (t[1] = i < 2)); render(); }, 2000); }
+}
+ul.addEventListener("click", (e) => { const i = e.target.dataset.i; if (i) { tasks[i][1] = !tasks[i][1]; render(); } });
+render();
+</script>

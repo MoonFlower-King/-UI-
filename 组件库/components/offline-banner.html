@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Offline Banner", "zh": "离线提示条",
+  "lead": "网络断了，页面顶部滑下一条提示“你已离线，修改会在恢复后同步”；网络回来再变绿说“已重新连接”然后收起。让用户知道不是自己操作出了问题。",
+  "vague": ["断网了用户不知道", "没网的时候怎么提示"],
+  "terms": ["Offline Banner", "Connectivity Status 连接状态", "online / offline 事件"],
+  "prompt": "监听 window 的 online / offline 事件，离线时在页面顶部滑下一条 36px 高的提示条（深灰底 #3F3F46、白字、断开的 Wi-Fi 图标、“你已离线，修改会在联网后自动同步”）；恢复时变成绿色“已重新连接”，2 秒后上滑收起；提示条不遮挡导航，把内容往下推。"
+}
+-->
+<div class="app">
+  <div class="ob"><span class="ic">⌁</span><span class="msg"></span></div>
+  <header>江月笔记</header>
+  <div class="body"><i></i><i></i><i class="s"></i></div>
+  <button class="sim">模拟断网</button>
+</div>
+
+<style>
+.app { position: relative; width: 320px; height: 230px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid #E4E4E7; display: flex; flex-direction: column; }
+.ob { height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; background: #3F3F46; color: #fff; font-size: 12px; transition: height .25s ease, background .3s; flex: none; }
+.app.off .ob, .app.back .ob { height: 36px; } .app.back .ob { background: #16A34A; }
+.ic { font-size: 14px; }
+header { padding: 12px 16px; font-weight: 700; font-size: 14px; border-bottom: 1px solid #F4F4F5; }
+.body { padding: 16px; display: grid; gap: 8px; } .body i { height: 10px; border-radius: 4px; background: #F4F4F5; } .body .s { width: 50%; }
+.sim { position: absolute; right: 12px; bottom: 12px; border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+const app = document.querySelector(".app"), msg = document.querySelector(".msg"), sim = document.querySelector(".sim");
+let off = false, t;
+function set(isOff) {
+  off = isOff; clearTimeout(t); sim.textContent = off ? "模拟恢复网络" : "模拟断网";
+  if (off) { app.className = "app off"; msg.textContent = "你已离线，修改会在联网后自动同步"; }
+  else { app.className = "app back"; msg.textContent = "已重新连接"; t = setTimeout(() => (app.className = "app"), 2000); }
+}
+addEventListener("offline", () => set(true)); addEventListener("online", () => set(false));
+sim.addEventListener("click", () => set(!off));
+</script>

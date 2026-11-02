@@ -23,7 +23,10 @@
       "rule-of-thirds",
       "golden-ratio",
       "gutter",
-      "sticky-sidebar"
+      "sticky-sidebar",
+      "single-column",
+      "magazine-layout",
+      "section-rhythm"
     ]
   },
   {
@@ -43,7 +46,9 @@
       "tabular-nums",
       "text-balance",
       "vertical-text",
-      "pull-quote"
+      "pull-quote",
+      "font-pairing",
+      "text-scrim"
     ]
   },
   {
@@ -66,7 +71,10 @@
       "char-hover",
       "line-reveal",
       "strike-through",
-      "shiny-text"
+      "shiny-text",
+      "text-path",
+      "neon-flicker",
+      "squiggle-underline"
     ]
   },
   {
@@ -88,7 +96,9 @@
       "duotone",
       "tint-shade",
       "analogous-color",
-      "warm-cool"
+      "warm-cool",
+      "color-blind-safe",
+      "design-tokens"
     ]
   },
   {
@@ -113,7 +123,10 @@
       "editorial",
       "bauhaus",
       "ink-wash",
-      "memphis"
+      "memphis",
+      "terminal-style",
+      "paper-cut",
+      "line-art"
     ]
   },
   {
@@ -134,7 +147,9 @@
       "divider",
       "colored-shadow",
       "paper-texture",
-      "pattern-background"
+      "pattern-background",
+      "glossy",
+      "double-border"
     ]
   },
   {
@@ -175,7 +190,10 @@
       "stories-bar",
       "pill-nav",
       "floating-toolbar",
-      "collapsible-sidebar"
+      "collapsible-sidebar",
+      "status-pill",
+      "list-item",
+      "callout"
     ]
   },
   {
@@ -208,7 +226,11 @@
       "password-toggle",
       "time-picker",
       "radio-cards",
-      "cascader"
+      "cascader",
+      "image-upload",
+      "dual-range",
+      "filter-chips",
+      "user-picker"
     ]
   },
   {
@@ -235,7 +257,10 @@
       "sortable-table",
       "stacked-bar",
       "funnel-chart",
-      "scatter-plot"
+      "scatter-plot",
+      "calendar-view",
+      "gantt-chart",
+      "treemap"
     ]
   },
   {
@@ -258,7 +283,9 @@
       "popconfirm",
       "coachmark",
       "fullscreen-menu",
-      "toast-stack"
+      "toast-stack",
+      "onboarding-modal",
+      "emoji-picker"
     ]
   },
   {
@@ -279,7 +306,9 @@
       "arrow-nudge",
       "fill-sweep",
       "image-reveal",
-      "icon-swap"
+      "icon-swap",
+      "dock-magnify",
+      "image-grayscale"
     ]
   },
   {
@@ -297,7 +326,9 @@
       "pinch-zoom",
       "slide-to-confirm",
       "drag-to-dismiss",
-      "swipe-tabs"
+      "swipe-tabs",
+      "pan-canvas",
+      "knob-dial"
     ]
   },
   {
@@ -326,7 +357,10 @@
       "copy-feedback",
       "pulse-dot",
       "typing-indicator",
-      "upload-progress"
+      "upload-progress",
+      "promise-toast",
+      "offline-banner",
+      "autosave-indicator"
     ]
   },
   {
@@ -356,7 +390,9 @@
       "flip-card",
       "ken-burns",
       "blob-morph",
-      "curtain-reveal"
+      "curtain-reveal",
+      "path-draw",
+      "grid-wave"
     ]
   },
   {
@@ -373,7 +409,9 @@
       "hamburger-menu",
       "container-query",
       "aspect-ratio",
-      "priority-plus"
+      "priority-plus",
+      "responsive-table",
+      "column-drop"
     ]
   },
   {
@@ -394,7 +432,10 @@
       "affordance",
       "hicks-law",
       "error-prevention",
-      "social-proof"
+      "social-proof",
+      "jakobs-law",
+      "cognitive-load",
+      "zeigarnik"
     ]
   },
   {
@@ -418,7 +459,10 @@
       "music-player",
       "error-404",
       "checkout-page",
-      "blog-article"
+      "blog-article",
+      "search-results",
+      "mobile-home",
+      "invoice"
     ]
   }
 ]

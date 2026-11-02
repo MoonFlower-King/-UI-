@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Double Border", "zh": "双层描边",
+  "lead": "元素外面套两层边框：一层贴身的细线，外面隔一点距离再一层半透明的光圈。显得精致、有层次，常用于头像、卡片、选中态和 Logo 徽章。",
+  "vague": ["边框想更精致", "头像外面一圈光"],
+  "terms": ["Double Border", "Ring 光圈", "Inset Border"],
+  "prompt": "头像和选中卡片用 Double Border：内层 1px rgba(0,0,0,.08) 细线贴边，外层用 box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgba(250,140,22,.5) 做出间隔的江月橘光圈；暗色背景时内层改为 1px rgba(255,255,255,.12)；不用 outline 以免圆角不跟随。"
+}
+-->
+<div class="row">
+  <span class="av">月</span>
+  <div class="card"><b>专业版</b><small>当前方案</small></div>
+  <div class="dark"><span class="logo">江</span></div>
+</div>
+
+<style>
+.row { display: flex; gap: 26px; align-items: center; }
+.av { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: #121722; color: #FFD58A; font: 700 24px "Songti SC", serif; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 0 3px #FAFAFA, 0 0 0 5px rgba(250,140,22,.6); }
+.card { width: 120px; padding: 14px; border-radius: 14px; background: #fff; display: grid; gap: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 0 0 3px #FAFAFA, 0 0 0 5px rgba(250,140,22,.45); }
+.card b { font-size: 14px; } .card small { font-size: 11px; color: #FA8C16; }
+.dark { padding: 18px; border-radius: 14px; background: #121722; }
+.logo { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(#24365A, #121722); color: #fff; font: 700 18px "Songti SC", serif; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 0 0 3px #121722, 0 0 0 4px rgba(255,213,138,.5); }
+</style>

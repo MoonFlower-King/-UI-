@@ -1,0 +1,54 @@
+<!--
+{
+  "en": "User Picker", "zh": "成员选择器",
+  "lead": "@ 某人、分配任务时用的选择框：输入名字就出现带头像的候选列表，已选的人变成带头像的小标签。比纯文字列表好认得多。",
+  "vague": ["选人的时候认不出谁是谁", "分配给谁怎么选"],
+  "terms": ["User Picker", "Mention 提及", "Avatar Select"],
+  "prompt": "任务“负责人”用 User Picker：输入框内已选成员显示为带 18px 圆形头像的胶囊标签；输入时下拉候选列表，每项 = 28px 头像 + 名字 + 灰色角色，匹配的字高亮为江月橘；上下键移动、回车选中；已选成员在列表中标记 ✓。"
+}
+-->
+<div class="up">
+  <label>负责人</label>
+  <div class="field"><span class="tags"></span><input placeholder="输入名字…" aria-label="搜索成员"></div>
+  <ul class="list"></ul>
+</div>
+
+<style>
+.up { position: relative; width: 300px; align-self: start; margin-top: 30px; }
+label { font-size: 12px; font-weight: 500; color: #52525B; }
+.field { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; min-height: 40px; margin-top: 6px; padding: 5px 8px; box-sizing: border-box; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; }
+.field:focus-within { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.tags { display: contents; }
+.tag { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px 2px 2px; border-radius: 999px; background: #F4F4F5; font-size: 12px; animation: pop .15s; }
+.av { width: 18px; height: 18px; border-radius: 50%; color: #fff; font-size: 10px; display: grid; place-items: center; flex: none; }
+input { flex: 1; min-width: 80px; border: 0; outline: 0; font-size: 13px; padding: 4px; }
+.list { position: absolute; left: 0; right: 0; top: 76px; margin: 0; padding: 4px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.08); z-index: 1; }
+.list:empty { display: none; }
+.list li { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 7px; font-size: 13px; cursor: pointer; }
+.list li .av { width: 28px; height: 28px; font-size: 12px; } .list small { color: #A1A1AA; margin-left: auto; font-size: 11px; }
+.list li.hi { background: #F4F4F5; } .list li.sel::after { content: "✓"; color: #FA8C16; font-weight: 700; }
+mark { background: none; color: #FA8C16; font-weight: 700; }
+@keyframes pop { from { transform: scale(.85); } }
+</style>
+
+<script>
+const people = [["江小月", "设计", "#FA8C16"], ["白露", "前端", "#1E3A5F"], ["听潮", "产品", "#0EA5E9"], ["秋水", "插画", "#8B5CF6"], ["渔火", "运营", "#22C55E"]];
+const sel = new Set(["江小月"]), input = document.querySelector("input"), list = document.querySelector(".list"), tags = document.querySelector(".tags");
+let hi = 0, shown = [];
+const av = (p) => `<span class="av" style="background:${p[2]}">${p[0][0]}</span>`;
+function render(open) {
+  tags.innerHTML = people.filter((p) => sel.has(p[0])).map((p) => `<span class="tag">${av(p)}${p[0]}</span>`).join("");
+  const q = input.value.trim(); shown = open ? people.filter((p) => !q || p[0].includes(q)) : [];
+  list.innerHTML = shown.map((p, i) => `<li class="${i === hi ? "hi" : ""} ${sel.has(p[0]) ? "sel" : ""}" data-n="${p[0]}">${av(p)}<span>${q ? p[0].replace(q, `<mark>${q}</mark>`) : p[0]}</span><small>${p[1]}</small></li>`).join("");
+}
+const pick = (n) => { sel.has(n) ? sel.delete(n) : sel.add(n); input.value = ""; hi = 0; render(true); input.focus(); };
+input.addEventListener("input", () => { hi = 0; render(true); });
+input.addEventListener("focus", () => render(true));
+input.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown") hi = Math.min(shown.length - 1, hi + 1); else if (e.key === "ArrowUp") hi = Math.max(0, hi - 1);
+  else if (e.key === "Enter" && shown[hi]) pick(shown[hi][0]); else return; e.preventDefault(); render(true);
+});
+list.addEventListener("mousedown", (e) => { const li = e.target.closest("li"); if (li) { e.preventDefault(); pick(li.dataset.n); } });
+input.addEventListener("blur", () => render(false));
+render(true);
+</script>

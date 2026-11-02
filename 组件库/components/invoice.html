@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Invoice Page", "zh": "账单页",
+  "lead": "一张清楚的账单：顶部品牌和账单号，左右两栏写“开给谁 / 来自谁”，中间明细表格，右下角小计、税费、合计，底部状态和下载按钮。组合了详情列表、表格、等宽数字和状态标签。",
+  "vague": ["账单页怎么排版", "发票看着不专业"],
+  "terms": ["Invoice", "Line Items 明细", "Tabular Numbers", "Status Pill"],
+  "prompt": "做一个 Invoice 页：白纸卡片带细边框，顶部左侧品牌名、右侧“账单 #JY-1102”和状态标签（已支付绿）；两栏“开票方 / 收票方”小字地址；明细表格四列（项目 / 数量 / 单价 / 金额），金额列右对齐用等宽数字；右下角小计、税费、合计（合计 20px 粗体、上方 2px 分隔线）；底部“下载 PDF”和“打印”按钮。"
+}
+-->
+<div class="inv">
+  <header><b class="brand">江月设计</b><div><small>账单</small><b>#JY-1102</b><em>已支付</em></div></header>
+  <div class="who"><div><small>来自</small>江月设计工作室<br>江边路 18 号</div><div><small>开给</small>望月咖啡<br>2026-11-02</div></div>
+  <table>
+    <thead><tr><th>项目</th><th>数量</th><th>单价</th><th>金额</th></tr></thead>
+    <tbody><tr><td>品牌视觉</td><td>1</td><td>4,800.00</td><td>4,800.00</td></tr><tr><td>官网设计</td><td>5 页</td><td>1,200.00</td><td>6,000.00</td></tr></tbody>
+  </table>
+  <dl><dt>小计</dt><dd>10,800.00</dd><dt>税费 6%</dt><dd>648.00</dd><dt class="t">合计</dt><dd class="t">¥ 11,448.00</dd></dl>
+  <footer><button class="ghost">打印</button><button>下载 PDF</button></footer>
+</div>
+
+<style>
+.inv { width: 380px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; font-size: 11px; color: #52525B; }
+header { display: flex; justify-content: space-between; align-items: flex-start; }
+.brand { font: 700 16px "Songti SC", serif; color: #18181B; }
+header div { display: grid; justify-items: end; gap: 2px; } header small { color: #A1A1AA; } header div b { color: #18181B; font: 600 12px ui-monospace, Menlo, monospace; }
+header em { font-style: normal; padding: 1px 8px; border-radius: 999px; background: #F0FDF4; color: #15803D; font-weight: 600; }
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; line-height: 1.6; color: #3F3F46; } .who small { display: block; color: #A1A1AA; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th { text-align: left; padding: 6px 0; border-bottom: 1px solid #E4E4E7; color: #A1A1AA; font-weight: 500; } td { padding: 7px 0; border-bottom: 1px solid #F4F4F5; color: #18181B; }
+th:nth-child(n+2), td:nth-child(n+2) { text-align: right; }
+dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; width: 170px; margin: 10px 0 0 auto; font-variant-numeric: tabular-nums; }
+dt { color: #71717A; } dd { margin: 0; text-align: right; color: #18181B; }
+.t { margin-top: 4px; padding-top: 6px; border-top: 2px solid #18181B; font-weight: 700; color: #18181B; } dd.t { font-size: 15px; }
+footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 14px; }
+footer button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #18181B; color: #fff; font-size: 12px; cursor: pointer; } footer .ghost { background: #fff; border: 1px solid #E4E4E7; color: #18181B; }
+</style>

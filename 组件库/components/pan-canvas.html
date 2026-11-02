@@ -1,0 +1,44 @@
+<!--
+{
+  "en": "Infinite Canvas", "zh": "无限画布",
+  "lead": "像白板工具那样，按住空白处就能把整个画布拖来拖去，滚轮缩放，内容可以摆得无限大。适合思维导图、设计稿、看板这类“铺开来看”的内容。",
+  "vague": ["内容太大一屏放不下", "像白板一样拖着看"],
+  "terms": ["Infinite Canvas", "Pan & Zoom 平移缩放", "Viewport Transform"],
+  "prompt": "做一个 Infinite Canvas：点状网格背景随画布移动；按住空白处拖动平移（光标 grab/grabbing），滚轮以鼠标位置为中心缩放（0.5–2 倍），右下角显示缩放百分比和“重置”按钮；所有内容放在一个 transform: translate() scale() 的容器里，用 Pointer Events 同时支持触屏。"
+}
+-->
+<div class="cv">
+  <div class="world">
+    <div class="note" style="left:40px;top:40px;background:#FFF4E6">💡 想法：做一个感觉翻译器</div>
+    <div class="note" style="left:240px;top:120px;background:#EEF2FF">📐 布局：单栏、居中</div>
+    <div class="note" style="left:90px;top:200px;background:#ECFDF5">🎨 配色：江月橘 + 夜蓝</div>
+    <svg class="lines"><path d="M150 70 C 220 80, 220 120, 260 130 M120 70 C 100 140, 140 160, 150 200"/></svg>
+  </div>
+  <div class="hud"><span class="z">100%</span><button>重置</button></div>
+</div>
+
+<style>
+.cv { position: relative; width: 360px; height: 240px; border-radius: 14px; overflow: hidden; border: 1px solid #E4E4E7; background-color: #FAFAFA; background-image: radial-gradient(#D4D4D8 1px, transparent 1.2px); background-size: calc(20px * var(--k, 1)) calc(20px * var(--k, 1)); background-position: var(--bx, 0) var(--by, 0); cursor: grab; touch-action: none; }
+.cv.drag { cursor: grabbing; }
+.world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.note { position: absolute; padding: 10px 12px; border-radius: 10px; font-size: 12px; white-space: nowrap; color: #18181B; box-shadow: 0 4px 12px rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.05); }
+.lines { position: absolute; left: 0; top: 0; width: 400px; height: 300px; overflow: visible; pointer-events: none; z-index: -1; } .lines path { fill: none; stroke: #D4D4D8; stroke-width: 1.5; stroke-dasharray: 4 4; }
+.hud { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; align-items: center; padding: 4px 4px 4px 10px; border-radius: 9px; background: #fff; border: 1px solid #E4E4E7; font: 11px ui-monospace, Menlo, monospace; color: #52525B; cursor: default; }
+.hud button { border: 0; border-radius: 6px; background: #F4F4F5; padding: 3px 8px; font-size: 11px; cursor: pointer; }
+</style>
+
+<script>
+const cv = document.querySelector(".cv"), world = cv.querySelector(".world"), z = cv.querySelector(".z");
+let x = 0, y = 0, k = 1, start = null;
+const apply = () => { world.style.transform = `translate(${x}px, ${y}px) scale(${k})`; cv.style.setProperty("--k", k); cv.style.setProperty("--bx", x + "px"); cv.style.setProperty("--by", y + "px"); z.textContent = Math.round(k * 100) + "%"; };
+cv.addEventListener("pointerdown", (e) => { if (e.target.closest(".hud")) return; start = [e.clientX - x, e.clientY - y]; cv.classList.add("drag"); cv.setPointerCapture(e.pointerId); });
+cv.addEventListener("pointermove", (e) => { if (!start) return; x = e.clientX - start[0]; y = e.clientY - start[1]; apply(); });
+cv.addEventListener("pointerup", () => { start = null; cv.classList.remove("drag"); });
+cv.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, nk = Math.min(2, Math.max(.5, k * (e.deltaY < 0 ? 1.1 : 0.9)));
+  x = mx - ((mx - x) * nk) / k; y = my - ((my - y) * nk) / k; k = nk; apply(); // 以鼠标位置为中心缩放
+}, { passive: false });
+cv.querySelector(".hud button").addEventListener("click", () => { x = y = 0; k = 1; apply(); });
+apply();
+</script>

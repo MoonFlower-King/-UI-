@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Squiggle Underline", "zh": "波浪下划线",
+  "lead": "关键词下面画一条手绘感的波浪线，像老师用笔圈重点。比直线下划线更活泼，悬停时波浪还会流动，适合轻松友好的品牌。",
+  "vague": ["重点词想手绘感", "下划线太死板"],
+  "terms": ["Squiggle Underline", "Hand-drawn 手绘感", "Wavy Decoration"],
+  "prompt": "正文关键词加 Squiggle Underline：用内联 SVG 波浪线做 background-image，江月橘 #FA8C16、线宽 2px、波长 12px，放在文字下方 2px；悬停时 background-position 横向移动让波浪流动（1s 线性循环）；只在少数关键词上用，避免满屏波浪。"
+}
+-->
+<p>说不清界面哪里不对？先找到<span class="sq">那个词</span>，再把它<span class="sq">告诉 AI</span>。</p>
+
+<style>
+p { width: 300px; margin: 0; font-size: 18px; line-height: 2; color: #3F3F46; }
+.sq { color: #18181B; font-weight: 700; padding-bottom: 6px; cursor: default;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 3 Q3 0 6 3 T12 3' fill='none' stroke='%23FA8C16' stroke-width='2'/%3E%3C/svg%3E") repeat-x 0 100% / 12px 6px; }
+.sq:hover { animation: flow 1s linear infinite; }
+@keyframes flow { to { background-position: 12px 100%; } }
+</style>

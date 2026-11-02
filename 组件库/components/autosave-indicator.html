@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Autosave Indicator", "zh": "自动保存状态",
+  "lead": "编辑器角落一行小字，告诉你保存状态：打字时显示“正在保存…”，停下一会儿变成“已保存 · 刚刚”。用户不用再手动点保存，也不会担心丢稿。",
+  "vague": ["怕写的东西没保存", "要不要放保存按钮"],
+  "terms": ["Autosave", "Save Status 保存状态", "Debounce 防抖"],
+  "prompt": "编辑器标题旁加 Autosave Indicator：用户停止输入 800ms 后（debounce）自动保存，期间显示灰色小转圈 +“正在保存…”，完成后显示云朵对勾 +“已保存”，并每分钟更新相对时间（刚刚 / 1 分钟前）；保存失败显示红色“未保存，点此重试”。"
+}
+-->
+<div class="ed">
+  <header><b>未命名文档</b><span class="st"><i class="ic">☁︎</i><span class="tx">已保存</span></span></header>
+  <textarea>今晚的江面很安静，适合写点东西。</textarea>
+</div>
+
+<style>
+.ed { width: 320px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid #F4F4F5; }
+header b { font-size: 14px; }
+.st { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #A1A1AA; transition: color .2s; }
+.ic { font-style: normal; } .st.saved .ic::after { content: "✓"; font-size: 9px; margin-left: -6px; color: #16A34A; }
+.st.saving .ic { width: 10px; height: 10px; border: 1.5px solid #D4D4D8; border-top-color: #71717A; border-radius: 50%; font-size: 0; animation: sp .7s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+textarea { display: block; width: 100%; height: 130px; box-sizing: border-box; border: 0; outline: 0; resize: none; padding: 14px; font: 14px/1.8 "Songti SC", "Noto Serif SC", serif; color: #3F3F46; }
+</style>
+
+<script>
+const ta = document.querySelector("textarea"), st = document.querySelector(".st"), tx = st.querySelector(".tx");
+let timer, savedAt = Date.now();
+const ago = () => { const s = (Date.now() - savedAt) / 1000; return s < 60 ? "刚刚" : Math.floor(s / 60) + " 分钟前"; };
+const showSaved = () => { st.className = "st saved"; tx.textContent = "已保存 · " + ago(); };
+ta.addEventListener("input", () => {
+  st.className = "st saving"; tx.textContent = "正在保存…"; clearTimeout(timer);
+  timer = setTimeout(() => { savedAt = Date.now(); showSaved(); }, 800); // 停止输入 800ms 后才真正保存
+});
+setInterval(() => st.classList.contains("saved") && showSaved(), 30000);
+showSaved();
+</script>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "SVG Path Drawing", "zh": "线条描绘动画",
+  "lead": "一条 SVG 线像有人用笔画出来一样，从头到尾慢慢出现。常用于签名、Logo 开场、路线图、手绘图标，比整张图直接出现更有生命力。",
+  "vague": ["线条一笔一笔画出来", "Logo 开场想有手绘感"],
+  "terms": ["Path Drawing", "stroke-dasharray / dashoffset", "Line Animation"],
+  "prompt": "Logo 开场用 SVG Path Drawing：路径设 pathLength=\"1\"，stroke-dasharray: 1、stroke-dashoffset 从 1 动画到 0（1.6s cubic-bezier(.65,0,.35,1)）；多条路径依次延迟 200ms；画完后填充色 300ms 淡入；滚动进入视口时才触发。"
+}
+-->
+<div class="wrap">
+  <svg viewBox="0 0 240 120" class="logo">
+    <path pathLength="1" d="M70 28 A32 32 0 1 0 98 82 A26 26 0 1 1 70 28Z"/>
+    <path pathLength="1" d="M120 60 q12 -10 24 0 t24 0 t24 0 t24 0"/>
+    <path pathLength="1" d="M120 82 q12 -10 24 0 t24 0 t24 0 t24 0"/>
+    <circle cx="214" cy="30" r="6" class="dot"/>
+  </svg>
+  <button>重播</button>
+</div>
+
+<style>
+.wrap { display: grid; gap: 10px; justify-items: center; }
+.logo { width: 300px; }
+.logo path { fill: none; stroke: #18181B; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.65, 0, .35, 1) forwards; }
+.logo path:nth-of-type(2) { animation-delay: .2s; } .logo path:nth-of-type(3) { animation-delay: .4s; }
+.dot { fill: #FA8C16; opacity: 0; animation: fade .3s 1.8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } } @keyframes fade { to { opacity: 1; } }
+button { border: 1px solid #E4E4E7; background: #fff; border-radius: 8px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+document.querySelector("button").addEventListener("click", () => { const s = document.querySelector(".logo"); s.replaceWith(s.cloneNode(true)); });
+</script>

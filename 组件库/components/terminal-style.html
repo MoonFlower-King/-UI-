@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Terminal Style", "zh": "终端风格",
+  "lead": "模仿命令行窗口：黑底、等宽字体、绿或琥珀色文字、闪烁的光标、一行行打出来的输出。开发者工具、技术博客、极客感的品牌页很爱用。",
+  "vague": ["想要程序员风格", "黑底绿字那种"],
+  "terms": ["Terminal UI", "Monospace 等宽", "CLI Aesthetic"],
+  "prompt": "开发者页面用 Terminal Style：深色窗口 #0D1117，顶部三个小圆点的窗口栏，正文 13px 等宽字体、行高 1.7；提示符用江月橘“❯”，命令白色、输出灰色、成功行绿色；最后一行带闪烁的块状光标；命令逐字打出（每字 40ms）。"
+}
+-->
+<div class="term">
+  <header><i></i><i></i><i></i><span>~/jiangyue</span></header>
+  <pre></pre>
+</div>
+
+<style>
+.term { width: 340px; border-radius: 12px; overflow: hidden; background: #0D1117; box-shadow: 0 16px 40px rgba(0,0,0,.25); }
+header { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #161B22; }
+header i { width: 10px; height: 10px; border-radius: 50%; background: #FF5F57; } header i:nth-child(2) { background: #FEBC2E; } header i:nth-child(3) { background: #28C840; }
+header span { margin-left: 8px; font: 11px ui-monospace, Menlo, monospace; color: #8B949E; }
+pre { margin: 0; padding: 14px; min-height: 150px; font: 13px/1.7 ui-monospace, Menlo, Consolas, monospace; color: #C9D1D9; white-space: pre-wrap; }
+.p { color: #FA8C16; } .o { color: #8B949E; } .ok { color: #3FB950; }
+.cur { display: inline-block; width: 8px; height: 15px; background: #C9D1D9; vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+
+<script>
+const pre = document.querySelector("pre");
+const script = [["cmd", "npm create jiangyue-ui"], ["o", "正在创建项目…"], ["ok", "✓ 组件库已就绪"], ["cmd", "npm run dev"], ["o", "本地地址 http://localhost:5173"]];
+async function run() {
+  pre.innerHTML = "";
+  for (const [k, t] of script) {
+    const line = document.createElement("div"); pre.append(line);
+    if (k === "cmd") { line.innerHTML = '<span class="p">❯ </span><span></span>'; for (const ch of t) { line.lastChild.textContent += ch; await new Promise((r) => setTimeout(r, 40)); } }
+    else { await new Promise((r) => setTimeout(r, 300)); line.className = k; line.textContent = t; }
+  }
+  pre.insertAdjacentHTML("beforeend", '<span class="p">❯ </span><span class="cur"></span>');
+  setTimeout(run, 3000);
+}
+run();
+</script>

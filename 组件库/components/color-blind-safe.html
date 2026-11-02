@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Color-blind Safe", "zh": "色盲友好",
+  "lead": "大约每 12 个男性里就有 1 个分不清红和绿。只靠红绿区分“对/错”“涨/跌”，他们就看不懂了。办法是颜色之外再加图标、文字或形状。",
+  "vague": ["红绿色盲看不清", "只用颜色区分状态"],
+  "terms": ["Color-blind Safe", "Redundant Encoding 冗余编码", "Accessibility 无障碍"],
+  "prompt": "所有状态做到 Color-blind Safe：成功/失败、涨/跌不只靠红绿区分，同时加图标（✓ / ✕、▲ / ▼）和文字；图表系列用色盲友好的配色（如蓝 #2563EB 与橙 #FA8C16）并配不同线型或标记形状；用色盲模拟器检查一遍。"
+}
+-->
+<div class="wrap">
+  <div class="grid">
+    <div><small>只靠颜色</small><span class="st g1">通过</span><span class="st r1">失败</span></div>
+    <div><small>颜色 + 图标 + 文字</small><span class="st g2">✓ 通过</span><span class="st r2">✕ 失败</span></div>
+  </div>
+  <label><input type="checkbox"> 模拟红绿色盲</label>
+  <svg width="0" height="0"><filter id="deut"><feColorMatrix values="0.367 0.861 -0.228 0 0  0.280 0.673 0.047 0 0  -0.012 0.043 0.969 0 0  0 0 0 1 0"/></filter></svg>
+</div>
+
+<style>
+.wrap { display: grid; gap: 12px; justify-items: center; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; transition: filter .3s; }
+.wrap:has(input:checked) .grid { filter: url(#deut); }
+.grid > div { width: 140px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 8px; }
+small { font-size: 11px; color: #71717A; }
+.st { padding: 6px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.g1 { background: #22C55E; color: #22C55E; background: #DCFCE7; } .r1 { background: #FEE2E2; color: #EF4444; }
+.g1, .r1 { color: transparent; position: relative; } .g1::after, .r1::after { content: "●"; position: absolute; left: 10px; } .g1::after { color: #22C55E; } .r1::after { color: #EF4444; }
+.g2 { background: #DCFCE7; color: #15803D; } .r2 { background: #FEE2E2; color: #B91C1C; }
+label { font-size: 12px; color: #71717A; display: flex; gap: 6px; align-items: center; } input { accent-color: #FA8C16; }
+</style>

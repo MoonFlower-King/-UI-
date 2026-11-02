@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Neon Flicker", "zh": "霓虹灯闪烁",
+  "lead": "文字像夜里的霓虹招牌：外面一圈彩色光晕，偶尔“滋啦”闪两下像接触不良。用在夜店风、赛博风、活动页标题上很有氛围。",
+  "vague": ["想要霓虹招牌的感觉", "夜店风的字"],
+  "terms": ["Neon", "Glow 光晕", "Flicker 闪烁"],
+  "prompt": "深色背景上的标题做 Neon Flicker：文字浅粉 #FFE4F1，用多层 text-shadow 叠出由近到远的粉色光晕（0 0 4px、0 0 12px、0 0 32px #FF4FA3）；每 4 秒随机闪烁两下（亮度骤降到 40% 再恢复，各 60ms）；副标题用冷蓝光；prefers-reduced-motion 时不闪。"
+}
+-->
+<div class="sign"><h2>江月夜市</h2><p>OPEN · 通宵营业</p></div>
+
+<style>
+.sign { padding: 26px 34px; border-radius: 14px; background: #0B0D14; text-align: center; box-shadow: inset 0 0 40px rgba(255,79,163,.08); }
+h2 { margin: 0; font: 800 40px "Songti SC", serif; color: #FFE4F1; text-shadow: 0 0 4px #FFB3D6, 0 0 12px #FF4FA3, 0 0 32px #FF4FA3, 0 0 60px rgba(255,79,163,.6); animation: flick 4s infinite; }
+p { margin: 8px 0 0; font: 600 13px ui-monospace, Menlo, monospace; letter-spacing: .3em; color: #DFF6FF; text-shadow: 0 0 6px #38BDF8, 0 0 18px #0EA5E9; }
+@keyframes flick { 0%, 70%, 74%, 78%, 100% { opacity: 1; } 72%, 76% { opacity: .4; text-shadow: none; } }
+@media (prefers-reduced-motion: reduce) { h2 { animation: none; } }
+</style>
