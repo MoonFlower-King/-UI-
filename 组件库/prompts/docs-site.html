@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Documentation Site",
+  "zh": "文档站",
+  "alias": [
+    "开发文档",
+    "技术文档"
+  ],
+  "lead": "开发者文档的样子：左侧目录树、中间清楚的标题层级、灰底代码块和提示框，右侧本页小目录。清晰、高效、让人找得到东西，适合开源项目、API 文档、知识库和帮助中心。",
+  "prompt": "文档站风格：白色背景，左侧浅灰竖向目录栏（当前项高亮主色竖条），正文区标题层级分明，等宽字代码块为浅灰圆角底，信息提示框带左侧色条（蓝提示、黄注意），无衬线正文，单一主色（如墨绿或深蓝），无装饰图片",
+  "promptEn": "documentation site style: white background, a light gray vertical table-of-contents sidebar on the left (active item highlighted with a main-color bar), clear heading hierarchy in the content area, monospaced code blocks on light gray rounded backgrounds, callout boxes with a left color bar (blue note, yellow warning), sans-serif body, a single main color (deep green or deep blue), no decorative images",
+  "avoid": "层级和留白决定好不好用，别为了好看把代码块做成深色大卡片；提示框颜色只用两三种，并保持含义固定。",
+  "neg": [
+    "装饰插画、提示框颜色混乱",
+    "decorative illustrations, inconsistent callout colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F6F5C; --a2: #1F6F5C; --on: #fff; background: #fff; color: #1F2328; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 1px solid #E5E7EA; } .logo i { border-radius: 3px; } .cta, .b1 { border-radius: 6px; }
+.hero { grid-template-columns: 120px 1fr; padding: 0; gap: 0; } .copy { order: 2; padding: 22px 24px; }
+.hero h1 { font-size: 26px; font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.sub { background: #F4F6F8; border-left: 3px solid #3A7BD5; padding: 8px 10px; border-radius: 0 6px 6px 0; }
+.art { order: 1; background: #F7F8FA; border-right: 1px solid #E5E7EA; min-height: 210px; }
+.art::before { content: "开始\A 安装\A 配置\A 指南\A 接口\A 常见问题"; white-space: pre; position: absolute; left: 18px; top: 18px; font-size: 11.5px; line-height: 2.2; color: #57606A; }
+.art::after { content: ""; position: absolute; left: 10px; top: 46px; width: 3px; height: 18px; border-radius: 2px; background: #1F6F5C; }
+.feats article { padding: 10px 12px; border: 1px solid #E5E7EA; border-radius: 8px; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: #F4F6F8; padding: 1px 5px; border-radius: 4px; }
+.stats { border-top: 1px solid #E5E7EA; } .stats b { font-size: 20px; } .ft { border-top: 1px solid #E5E7EA; }
+</style>

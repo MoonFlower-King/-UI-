@@ -70,7 +70,10 @@
         "lingnan",
         "shadow-puppet",
         "nianhua",
-        "yunjin"
+        "yunjin",
+        "tea-ceremony",
+        "cloisonne",
+        "bamboo"
       ]
     },
     {
@@ -101,7 +104,10 @@
         "surf",
         "delft",
         "andean",
-        "wax-print"
+        "wax-print",
+        "azulejo",
+        "persian-rug",
+        "tartan"
       ]
     },
     {
@@ -147,7 +153,10 @@
         "polish-poster",
         "rococo",
         "swiss-punk",
-        "concrete-poetry"
+        "concrete-poetry",
+        "chinoiserie",
+        "illuminated",
+        "renaissance"
       ]
     },
     {
@@ -192,7 +201,11 @@
         "card-stack",
         "hairline",
         "big-number",
-        "color-block"
+        "color-block",
+        "docs-site",
+        "single-hue",
+        "type-mask",
+        "pill-ui"
       ]
     },
     {
@@ -231,7 +244,10 @@
         "jade",
         "linen",
         "kraft",
-        "copper"
+        "copper",
+        "velvet",
+        "cork",
+        "slate"
       ]
     },
     {
@@ -266,7 +282,10 @@
         "origami",
         "cross-stitch",
         "screen-print",
-        "knit"
+        "knit",
+        "pressed-flower",
+        "marquetry",
+        "pyrography"
       ]
     },
     {
@@ -305,7 +324,11 @@
         "telegram",
         "dot-matrix",
         "sixties-mod",
-        "film-noir"
+        "film-noir",
+        "teletext",
+        "lcd-handheld",
+        "cassette",
+        "retro-radio"
       ]
     },
     {
@@ -345,7 +368,11 @@
         "museum-label",
         "seed-packet",
         "film-strip",
-        "postcard"
+        "postcard",
+        "flip-board",
+        "chess",
+        "board-game",
+        "wine-label"
       ]
     },
     {
@@ -388,7 +415,10 @@
         "craft-beer",
         "bakery",
         "florist",
-        "law-firm"
+        "law-firm",
+        "real-estate",
+        "barber",
+        "tech-conference"
       ]
     },
     {

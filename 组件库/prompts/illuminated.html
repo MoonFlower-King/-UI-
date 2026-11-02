@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Illuminated Manuscript",
+  "zh": "泥金手抄本",
+  "alias": [
+    "中世纪手抄本",
+    "泥金装饰"
+  ],
+  "lead": "中世纪手抄本的一页：羊皮纸色底、首字母巨大并贴金描边、页边有藤蔓花饰，正文是端正的黑字和朱红小标题。庄严、珍贵、有历史厚度，适合博物馆、古籍出版、高端酒庄和奇幻题材。",
+  "prompt": "泥金手抄本风格：羊皮纸米黄背景，正文黑色端正衬线，小标题朱红，首字母为放大的装饰字（金色描边、深蓝或深红填底的方框），页边一条细藤蔓与小花装饰，双栏版式，点缀群青和贴金",
+  "promptEn": "illuminated manuscript style: parchment beige background, upright black serif body text, vermilion subheadings, an enlarged decorated initial letter (gold outlined, in a deep blue or deep red square), a thin vine-and-flower border on the margin, two-column layout, accents of ultramarine and gilding",
+  "avoid": "装饰只给首字母和页边，正文要端正易读；别用难读的哥特黑体做正文，只用于极少的大字。",
+  "neg": [
+    "哥特体正文、满页花饰",
+    "blackletter body text, ornaments everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F3C8C; --a2: #B03A2E; --on: #F4E9D0; background: #EFE2C2; color: #2A221A; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg { box-shadow: inset 10px 0 0 #EFE2C2, inset 12px 0 0 #B8923F; }
+.cta, .b1 { border-radius: 0; } .kicker { color: #B03A2E; font-variant: small-caps; letter-spacing: 2px; }
+.hero h1 { font-weight: 600; } .hero h1::first-letter { float: left; font-size: 58px; line-height: 1; padding: 4px 8px; margin: 2px 8px 0 0; background: #1F3C8C; color: #E8C35A; border: 2px solid #C9A24A; }
+.sub { columns: 2; column-gap: 14px; } .b2 { color: #B03A2E; }
+.art { border-left: 2px solid #B8923F; }
+.art .m { position: absolute; left: 10px; top: 0; bottom: 0; width: 30px; background: radial-gradient(circle at 50% 12px, #B03A2E 0 4px, transparent 4.5px) 0 0 / 30px 34px, radial-gradient(circle at 20% 28px, #1F3C8C 0 3px, transparent 3.5px) 0 0 / 30px 34px; }
+.art .h { position: absolute; left: 20px; top: 0; bottom: 0; width: 10px; border-left: 1.5px solid #6E7A3A; border-radius: 50%; }
+.art::after { content: "Anno MMXXVI"; position: absolute; left: 50px; top: 60px; font-style: italic; color: #B03A2E; font-size: 14px; }
+.feats b { color: #B03A2E; font-variant: small-caps; } .feats h3 { font-weight: 600; }
+.stats { border-top: 1px solid #B8923F; border-bottom: 1px solid #B8923F; margin: 0 26px; } .stats b { color: #1F3C8C; font-weight: 500; }
+</style>

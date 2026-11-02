@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Pill UI",
+  "zh": "胶囊圆角",
+  "alias": [
+    "全圆角界面",
+    "药丸按钮"
+  ],
+  "lead": "所有东西都是胶囊形：按钮、标签、卡片、导航，圆润到底，配柔和的浅色底。友好、轻松、好点击，适合移动 App 官网、消费金融、社交产品和生活服务。",
+  "prompt": "胶囊圆角风格：浅灰白背景，所有按钮、标签、导航项、输入框都是全圆角胶囊形，卡片为大半径圆角（24px 以上），柔和浅色填充块（浅绿、浅蓝、浅黄）区分功能，几何无衬线标题，一个饱和主色给主按钮",
+  "promptEn": "pill UI style: light gray-white background, every button, tag, nav item and input as a fully rounded pill, cards with large radii (24px+), soft pale fill blocks (pale green, blue, yellow) separating functions, geometric sans headings, one saturated main color for the primary button",
+  "avoid": "圆角要统一大，混进直角会很突兀；浅色块别超过三种，主按钮颜色只留给最重要的操作。",
+  "neg": [
+    "圆角大小不一、浅色块太多",
+    "inconsistent radii, too many pastel blocks"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E66F5; --a2: #1E66F5; --on: #fff; background: #F4F5F7; color: #16181D; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 999px; width: 22px; } .nav nav a { padding: 4px 10px; border-radius: 999px; background: #fff; } .cta, .b1 { border-radius: 999px; padding: 8px 16px; }
+.b2 { background: #E6ECFA; padding: 8px 14px; border-radius: 999px; } .kicker { display: inline-block; padding: 3px 10px; border-radius: 999px; background: #DFF3E6; color: #1E7A44; }
+.hero h1 { font-weight: 800; letter-spacing: -.5px; }
+.art .m { position: absolute; left: 10px; top: 8px; width: 150px; height: 64px; border-radius: 999px; background: #fff; box-shadow: 0 6px 16px rgba(22,24,29,.06); }
+.art .m::after { content: ""; position: absolute; right: 8px; top: 8px; width: 48px; height: 48px; border-radius: 50%; background: #1E66F5; }
+.art .h { position: absolute; left: 10px; top: 84px; width: 150px; height: 56px; border-radius: 28px; background: #FFF1C9; }
+.art .h::after { content: ""; position: absolute; left: 14px; top: 20px; width: 80px; height: 16px; border-radius: 999px; background: #F5C542; }
+.feats article { padding: 14px; border-radius: 24px; background: #fff; } .feats b { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #E6ECFA; color: #1E66F5; }
+.stats { margin: 0 26px; border-radius: 999px; background: #fff; } .stats b { color: #1E66F5; }
+</style>
