@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Pull to Refresh",
+  "zh": "下拉刷新",
+  "lead": "在列表顶部往下拉，出现转圈，松手后刷新内容。手机 App 最常见的刷新方式。在预览里用鼠标往下拖试试。",
+  "prompt": "列表加 Pull to Refresh：在顶部下拉时列表跟手下移（阻尼 0.5），超过 60px 显示“松开刷新”并旋转箭头，松手后显示转圈 1 秒，刷新完成后列表弹回顶部。"
+}
+-->
+<div class="ptr">
+  <div class="hint"><i>↓</i><span>下拉刷新</span></div>
+  <ul class="list"><li>第 3 条消息</li><li>第 2 条消息</li><li>第 1 条消息</li></ul>
+</div>
+
+<style>
+.ptr { position: relative; width: 220px; height: 240px; border-radius: 22px; border: 6px solid #18181B; background: #F4F4F5; overflow: hidden; touch-action: none; user-select: none; }
+.hint { position: absolute; top: 14px; left: 0; right: 0; display: flex; gap: 6px; justify-content: center; font-size: 12px; color: #71717A; }
+.hint i { font-style: normal; transition: transform .2s; } .ptr.ready .hint i { transform: rotate(180deg); }
+.ptr.loading .hint i { animation: spin .7s linear infinite; }
+.list { list-style: none; margin: 0; padding: 10px; display: grid; gap: 8px; background: #F4F4F5; position: relative; transition: transform .3s cubic-bezier(.34,1.3,.64,1); }
+.list li { padding: 12px; border-radius: 10px; background: #fff; font-size: 13px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+<script>
+const ptr = document.querySelector(".ptr"), list = ptr.querySelector(".list"), text = ptr.querySelector(".hint span");
+let startY = null, dist = 0, n = 3;
+function release() {
+  if (dist > 60) {
+    ptr.classList.add("loading"); text.textContent = "刷新中"; list.style.transform = "translateY(50px)";
+    setTimeout(() => { list.insertAdjacentHTML("afterbegin", `<li>第 ${++n} 条消息</li>`); ptr.classList.remove("loading", "ready"); text.textContent = "下拉刷新"; list.style.transform = ""; }, 1000);
+  } else list.style.transform = "";
+  startY = null; dist = 0;
+}
+ptr.addEventListener("pointerdown", e => { startY = e.clientY; list.style.transition = "none"; });
+ptr.addEventListener("pointermove", e => {
+  if (startY === null) return;
+  dist = Math.max(0, (e.clientY - startY) * .5); list.style.transform = `translateY(${dist}px)`;
+  ptr.classList.toggle("ready", dist > 60); text.textContent = dist > 60 ? "松开刷新" : "下拉刷新";
+});
+["pointerup", "pointerleave"].forEach(ev => ptr.addEventListener(ev, () => { if (startY === null) return; list.style.transition = ""; release(); }));
+// 预览时自动演示一次
+setTimeout(() => { dist = 80; ptr.classList.add("ready"); list.style.transform = "translateY(40px)"; setTimeout(release, 500); }, 600);
+</script>

@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Masonry",
+  "zh": "瀑布流",
+  "lead": "等宽不等高的卡片一列列往下排，像砌砖一样严丝合缝，没有空隙。小红书、Pinterest 都是这样。",
+  "prompt": "图片列表用 Masonry 瀑布流：桌面 3 列、手机 2 列，每张卡片按图片原始比例显示高度，列间距 12px，用 CSS columns 实现，卡片 break-inside: avoid。"
+}
+-->
+<div class="masonry">
+  <div style="height:90px;background:#FFE7BA"></div><div style="height:140px;background:#DCEBFF"></div><div style="height:70px;background:#DDF5E3"></div>
+  <div style="height:120px;background:#F1E2F9"></div><div style="height:80px;background:#FFE1DF"></div><div style="height:110px;background:#DCF2F6"></div>
+  <div style="height:60px;background:#FFF5CC"></div><div style="height:100px;background:#E4E4F9"></div>
+</div>
+
+<style>
+.masonry { columns: 3; column-gap: 10px; width: min(320px, 90vw); }
+.masonry div { break-inside: avoid; margin-bottom: 10px; border-radius: 12px; animation: in .5s backwards; }
+.masonry div:nth-child(2n) { animation-delay: .1s; } .masonry div:nth-child(3n) { animation-delay: .2s; }
+@keyframes in { from { opacity: 0; transform: translateY(12px); } }
+</style>

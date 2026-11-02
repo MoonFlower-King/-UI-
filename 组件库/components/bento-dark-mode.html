@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Bento Dark Mode",
+  "zh": "暗色便当盒",
+  "lead": "便当盒布局配上深色背景、细描边和局部发光，科技感很强。苹果发布会、AI 产品官网的功能区常用。",
+  "prompt": "功能区用 Bento Dark Mode：背景 #0A0A0A，格子 #141414 加 1px rgba(255,255,255,.08) 描边，圆角 20px；主格子里放一个渐变发光的数字，悬停时描边变亮。"
+}
+-->
+<div class="bdm">
+  <div class="big"><strong>10×</strong><small>生成速度提升</small></div>
+  <div>端侧运行</div><div>隐私保护</div><div class="wide">支持 30+ 种语言</div>
+</div>
+
+<style>
+.bdm { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 70px; gap: 8px; width: min(380px, 92vw); padding: 12px; background: #0A0A0A; border-radius: 22px; box-sizing: border-box; }
+.bdm > div { border-radius: 16px; background: #141414; border: 1px solid rgba(255,255,255,.08); color: #A1A1AA; font-size: 12px; padding: 10px; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color .3s; }
+.bdm > div:hover { border-color: rgba(255,255,255,.25); }
+.bdm .big { grid-column: span 2; grid-row: span 2; background: radial-gradient(circle at 30% 20%, rgba(250,140,22,.25), transparent 60%), #141414; }
+.bdm strong { font-size: 40px; line-height: 1; background: linear-gradient(135deg, #FFD58A, #FA8C16); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bdm .wide { grid-column: span 2; }
+</style>

@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "3D Tilt",
+  "zh": "3D 倾斜",
+  "lead": "鼠标在卡片上移动时，卡片朝鼠标方向倾斜，像拿在手里转动，还带一道反光。把鼠标移到卡片上试试。",
+  "prompt": "商品卡片加 3D Tilt：perspective 800px，根据鼠标位置绕 X/Y 轴最多旋转 12 度，表面叠一层跟随鼠标的白色径向高光，离开时 500ms 回正。"
+}
+-->
+<div class="tilt"><div class="shine"></div><b>限量款</b><small>江月 · 2026</small></div>
+
+<style>
+.tilt { position: relative; width: 200px; height: 260px; border-radius: 20px; padding: 20px; box-sizing: border-box; color: #fff; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(145deg, #2B3A67, #121A33); box-shadow: 0 20px 40px rgba(18,26,51,.35); transform: perspective(800px); transition: transform .5s ease-out; overflow: hidden; }
+.tilt b { font-size: 22px; } .tilt small { opacity: .7; }
+.shine { position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.35), transparent 50%); opacity: 0; transition: opacity .3s; }
+.tilt:hover .shine { opacity: 1; } .tilt.moving { transition: transform .08s linear; }
+</style>
+<script>
+const card = document.querySelector(".tilt");
+card.addEventListener("pointermove", e => {
+  const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+  card.classList.add("moving");
+  card.style.transform = `perspective(800px) rotateY(${(px - .5) * 24}deg) rotateX(${(.5 - py) * 24}deg)`;
+  card.style.setProperty("--x", px * 100 + "%"); card.style.setProperty("--y", py * 100 + "%");
+});
+card.addEventListener("pointerleave", () => { card.classList.remove("moving"); card.style.transform = "perspective(800px)"; });
+</script>

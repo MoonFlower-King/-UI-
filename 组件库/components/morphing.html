@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Morphing",
+  "zh": "形变",
+  "lead": "一个形状平滑地变成另一个形状：圆变方、按钮变输入框、播放变暂停。悬停或点击都可以触发。",
+  "prompt": "搜索按钮做成 Morphing：默认是 44px 圆形图标按钮，点击后宽度平滑展开成 240px 的圆角输入框（400ms ease-in-out），图标移到左侧，再点外部收回。"
+}
+-->
+<div class="morph"><span>⌕</span><input placeholder="搜索组件…"></div>
+
+<style>
+.morph { display: flex; align-items: center; width: 48px; height: 48px; border-radius: 24px; background: #18181B; color: #fff; overflow: hidden; cursor: pointer;
+  transition: width .4s cubic-bezier(.65,0,.35,1), background .4s; }
+.morph span { flex: 0 0 48px; text-align: center; font-size: 20px; }
+.morph input { border: 0; outline: 0; background: none; color: #18181B; font-size: 14px; width: 180px; opacity: 0; transition: opacity .2s; }
+.morph.open { width: 240px; background: #fff; color: #18181B; box-shadow: 0 0 0 1px #E4E4E7, 0 8px 20px rgba(0,0,0,.08); cursor: default; }
+.morph.open input { opacity: 1; transition-delay: .2s; }
+</style>
+<script>
+const m = document.querySelector(".morph");
+m.addEventListener("click", e => { e.stopPropagation(); m.classList.add("open"); m.querySelector("input").focus(); });
+document.addEventListener("click", () => m.classList.remove("open"));
+setInterval(() => m.classList.toggle("open"), 1800);
+</script>

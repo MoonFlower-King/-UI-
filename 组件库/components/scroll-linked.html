@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Scroll-linked",
+  "zh": "滚动联动",
+  "lead": "滚多少动多少：动画进度直接绑在滚动位置上。最常见的是文章顶部的阅读进度条。在预览里滚动试试。",
+  "prompt": "文章顶部加 Scroll-linked 阅读进度条：高 3px，品牌色，宽度 = 已滚动距离 ÷ 可滚动总高度，随滚动实时变化，不加过渡。"
+}
+-->
+<div class="article">
+  <div class="progress"></div>
+  <h3>如何给 AI 描述界面</h3>
+  <p></p><p></p><p class="short"></p><p></p><p></p><p class="short"></p><p></p><p></p><p></p><p class="short"></p>
+</div>
+
+<style>
+.article { position: relative; width: min(300px, 90vw); height: 240px; overflow-y: auto; padding: 20px 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; box-sizing: border-box; }
+.progress { position: sticky; top: -20px; margin: -20px -18px 14px; height: 3px; width: 0; background: #FA8C16; }
+.article h3 { margin: 0 0 12px; font-size: 16px; }
+.article p { margin: 0 0 10px; height: 8px; border-radius: 4px; background: #F4F4F5; } .article p.short { width: 60%; }
+</style>
+<script>
+const art = document.querySelector(".article"), bar = document.querySelector(".progress");
+art.addEventListener("scroll", () => { bar.style.width = art.scrollTop / (art.scrollHeight - art.clientHeight) * 100 + "%"; });
+let t = 0; const auto = setInterval(() => { art.scrollTop = 80 * (1 - Math.cos(t += .04)); if (t > 6.3) clearInterval(auto); }, 30);
+</script>

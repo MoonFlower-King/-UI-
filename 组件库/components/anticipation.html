@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Anticipation",
+  "zh": "预备动作",
+  "lead": "动作开始前先往反方向蓄一下力，比如起跳前先下蹲。动画原理里的经典一条，让动作更有力量。",
+  "prompt": "发送按钮加 Anticipation：点击后纸飞机图标先向左后退 6px 并缩小（150ms），然后向右上方快速飞出并淡出（300ms ease-in），再从左侧淡入回原位。"
+}
+-->
+<div class="ant">
+  <figure><i class="no"></i><figcaption>直接出发</figcaption></figure>
+  <figure><i class="yes"></i><figcaption>先蓄力再出发</figcaption></figure>
+</div>
+
+<style>
+.ant { display: flex; gap: 20px; } .ant figure { margin: 0; width: 140px; display: grid; gap: 8px; }
+.ant figcaption { font-size: 12px; color: #71717A; text-align: center; }
+.ant i { width: 36px; height: 36px; border-radius: 10px; background: #A1A1AA; animation: 1.8s infinite; }
+.ant .no { animation-name: go; } .ant .yes { background: #FA8C16; animation-name: wind; }
+@keyframes go { 0%, 20% { transform: none; } 50%, 100% { transform: translateX(100px); } }
+@keyframes wind { 0%, 10% { transform: none; } 25% { transform: translateX(-14px) scaleX(.85); } 50%, 100% { transform: translateX(100px); } }
+</style>

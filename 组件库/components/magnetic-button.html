@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Magnetic Button",
+  "zh": "磁吸按钮",
+  "lead": "鼠标靠近时，按钮会被“吸”过去，跟着鼠标轻微移动，离开后弹回原位。很多设计师作品集网站在用。",
+  "prompt": "主按钮加 Magnetic Button：鼠标进入按钮周围 60px 范围时，按钮向鼠标方向偏移距离的 30%，文字再额外偏移 10%；离开时 400ms 弹簧动画回到原位。"
+}
+-->
+<div class="mag-area"><button class="mag"><span>联系我</span></button></div>
+
+<style>
+.mag-area { padding: 60px; }
+.mag { width: 120px; height: 120px; border-radius: 50%; border: 0; background: #18181B; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.mag span { display: inline-block; transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.mag.near, .mag.near span { transition: transform .1s linear; }
+</style>
+<script>
+const area = document.querySelector(".mag-area"), btn = document.querySelector(".mag"), label = btn.querySelector("span");
+area.addEventListener("pointermove", e => {
+  const r = btn.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+  btn.classList.add("near");
+  btn.style.transform = `translate(${x * .3}px, ${y * .3}px)`; label.style.transform = `translate(${x * .1}px, ${y * .1}px)`;
+});
+area.addEventListener("pointerleave", () => { btn.classList.remove("near"); btn.style.transform = label.style.transform = ""; });
+</script>

@@ -77,6 +77,18 @@ rmSync(join(ROOT, 'demos'), { recursive: true, force: true });
 mkdirSync(join(ROOT, 'demos'), { recursive: true });
 mkdirSync(join(ROOT, 'data'), { recursive: true });
 
+// 每个术语对应「江月 UI」（../组件库）里一个真正能用的组件，卡片上的「看代码」显示它的代码。
+// 组件 id 默认由英文名转成小写连字符，个别名字不一致的写在这里。
+const KIT = join(ROOT, '..', '组件库', 'components');
+const ALIAS = { 'Sticky': 'sticky-header', 'Hamburger Toggle': 'hamburger-menu' };
+const kitId = (en) => ALIAS[en] ?? en.toLowerCase().replace(/&/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function kitCode(en) {
+  const id = kitId(en);
+  let raw;
+  try { raw = readFileSync(join(KIT, `${id}.html`), 'utf8'); } catch { throw new Error(`「${en}」在 组件库/components/ 里没有对应的 ${id}.html，请先在江月 UI 里补上这个组件`); }
+  return { kit: id, code: raw.replace(/^\s*<!--[\s\S]*?-->\s*/, '').trimEnd() + '\n' };
+}
+
 const terms = [];
 for (const ep of episodes) {
   const html = readFileSync(join(ROOT, 'episodes', ep.id, 'index.html'), 'utf8');
@@ -90,7 +102,7 @@ for (const ep of episodes) {
     const line = lines.find((l) => l.en === en) ?? {};
     const id = `${ep.id}-${i + 1}`;
     writeFileSync(join(ROOT, 'demos', `${id}.html`), demoShell(style, cell, `${en} · ${zh}`));
-    terms.push({ id, episode: ep.id, en, zh, say: line.say ?? '', example: line.example ?? '', prompt: prompts[en] ?? '', demo: `demos/${id}.html` });
+    terms.push({ id, episode: ep.id, en, zh, say: line.say ?? '', example: line.example ?? '', prompt: prompts[en] ?? '', demo: `demos/${id}.html`, ...kitCode(en) });
   });
 }
 

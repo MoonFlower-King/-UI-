@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Progressive Blur",
+  "zh": "渐进模糊",
+  "lead": "图片先显示一张很模糊的小图，等高清图加载好再平滑变清晰。不会出现白块，也不会一行一行“刷”出来。",
+  "prompt": "图片加载用 Progressive Blur：先显示 20px 宽的缩略图并 filter: blur(20px)，高清图加载完成后 600ms 过渡到 blur(0)，同时轻微缩小 scale(1.05→1)。"
+}
+-->
+<div class="pb"><div class="photo"></div><small>加载中…</small></div>
+
+<style>
+.pb { position: relative; width: 260px; height: 180px; border-radius: 16px; overflow: hidden; }
+.photo { position: absolute; inset: 0; transform: scale(1.05); filter: blur(20px); transition: filter .6s ease, transform .6s ease;
+  background: radial-gradient(circle at 75% 25%, #FFF3D6 0 10%, transparent 11%), linear-gradient(transparent 60%, #2B3A67 61%), linear-gradient(#7AB3FF, #FFD9B0); }
+.pb.loaded .photo { filter: blur(0); transform: none; }
+.pb small { position: absolute; left: 12px; bottom: 10px; color: #fff; font-size: 12px; transition: opacity .3s; }
+.pb.loaded small { opacity: 0; }
+</style>
+<script>
+// 真实项目里，在高清图片的 onload 里加上 loaded；这里用定时器模拟
+const pb = document.querySelector(".pb"); setInterval(() => pb.classList.toggle("loaded"), 1800);
+</script>
