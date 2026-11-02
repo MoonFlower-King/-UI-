@@ -183,9 +183,8 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
   .card-actions { position: relative; margin-left: auto; flex-shrink: 0; }
   .card-actions .glass-btn { height: 26px; padding: 0 9px; font-size: 11px; background: var(--surface-2); border-color: var(--line); color: var(--ink); box-shadow: none; backdrop-filter: none; }
 }
-/* 首帧还没画好时（极少见）显示一道流光，而不是一块死白 */
-.thumb:not(.ready)::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .7) 50%, transparent 70%) var(--canvas); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
-@keyframes shimmer { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+/* 首帧还没画好时（极少见）显示一层淡淡的底色，而不是一块死白。不用循环的流光：那个动画一直占着 CPU */
+.thumb:not(.ready)::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .55) 50%, transparent 70%) var(--canvas); }
 .thumb iframe.swap { opacity: 0; }
 .thumb .live { position: absolute; left: 10px; bottom: 10px; z-index: 2; padding: 2px 8px; border-radius: 99px; background: rgba(18, 23, 34, .78); color: #fff; font-size: 11px; opacity: 0; transition: opacity .2s; pointer-events: none; }
 @media (hover: hover) {

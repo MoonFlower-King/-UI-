@@ -103,21 +103,23 @@ window.JY_AUTOPLAY = {
       over = el;
     };
     const place = () => { cur.style.transform = `translate(${x - 3}px,${y - 2}px)`; };
-    // 鼠标移动：画面每帧都更新，但「告诉组件鼠标在哪」隔一帧做一次，同屏十几张卡片也不卡
+    // 鼠标移动：箭头的滑动交给浏览器动画（在合成线程跑，不占页面主线程）；
+    // 「告诉组件鼠标在哪」只每隔 70ms 算一次（拖拽时 35ms，保证被拖的东西跟手）。十几张卡片同时播也不费电。
+    const ease = (p) => p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
     const moveTo = (tx, ty, ms = 700) => new Promise((done, no) => {
-      const sx = x, sy = y, t0 = performance.now(); let n = 0;
-      const step = (now) => {
+      const sx = x, sy = y, t0 = performance.now();
+      cur.animate([{ transform: `translate(${sx - 3}px,${sy - 2}px)` }, { transform: `translate(${tx - 3}px,${ty - 2}px)` }], { duration: ms, easing: 'cubic-bezier(.65,0,.35,1)' });
+      x = tx; y = ty; place(); x = sx; y = sy;
+      const step = () => {
         if (window.__jyStop) return no(STOP);
-        const p = Math.min(1, (now - t0) / ms), e = p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
-        x = sx + (tx - sx) * e; y = sy + (ty - sy) * e; place();
-        if (n++ % 2 === 0 || p === 1) {
-          const el = document.elementFromPoint(x, y);
-          if (!down) setHover(el);
-          if (el) { ev(down || el, 'pointermove'); ev(down || el, 'mousemove'); }
-        }
-        p < 1 ? requestAnimationFrame(step) : done();
+        const p = Math.min(1, (performance.now() - t0) / ms), e = ease(p);
+        x = sx + (tx - sx) * e; y = sy + (ty - sy) * e;
+        const el = document.elementFromPoint(x, y);
+        if (!down) setHover(el);
+        if (el) { ev(down || el, 'pointermove'); ev(down || el, 'mousemove'); }
+        p < 1 ? setTimeout(step, down ? 35 : 70) : done();
       };
-      requestAnimationFrame(step);
+      setTimeout(step, down ? 35 : 70);
     });
     // 按下时在鼠标尖上泛起一圈涟漪，让人看清「这里点了一下」
     const ring = () => {
