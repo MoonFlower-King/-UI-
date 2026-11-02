@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Holy Grail",
+  "zh": "圣杯布局",
+  "lead": "经典网页骨架：顶部页头、底部页脚，中间三栏（左导航、主内容、右侧栏），主内容最宽。后台、文档站都用它。",
+  "prompt": "页面用 Holy Grail 布局：CSS Grid，grid-template-areas 为 header / nav main aside / footer，左右栏各 200px，中间自适应；手机上变成单列从上到下排列。"
+}
+-->
+<div class="grail">
+  <header>页头 Header</header><nav>导航</nav><main>主内容 Main</main><aside>侧栏</aside><footer>页脚 Footer</footer>
+</div>
+
+<style>
+.grail { display: grid; width: min(380px, 92vw); height: 220px; gap: 6px; font-size: 12px;
+  grid-template: "header header header" 36px "nav main aside" 1fr "footer footer footer" 30px / 70px 1fr 70px; }
+.grail > * { border-radius: 8px; display: grid; place-items: center; color: #3F3F46; }
+.grail header { grid-area: header; background: #18181B; color: #fff; } .grail footer { grid-area: footer; background: #E4E4E7; }
+.grail nav { grid-area: nav; background: #FFE7BA; } .grail main { grid-area: main; background: #fff; border: 1px dashed #FA8C16; } .grail aside { grid-area: aside; background: #DCEBFF; }
+@media (max-width: 340px) { .grail { grid-template: "header" 30px "nav" 24px "main" 1fr "aside" 24px "footer" 24px / 1fr; } }
+</style>

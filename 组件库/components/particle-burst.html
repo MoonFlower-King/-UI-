@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Particle Burst",
+  "zh": "粒子迸发",
+  "lead": "点赞、收藏时，从按钮中心炸开一圈小彩点，几百毫秒后消失。让一次点击有庆祝感。点心形试试。",
+  "prompt": "点赞按钮加 Particle Burst：点击时从中心向四周发射 12 个 6px 彩色小圆点，飞出 40px 后缩小淡出（500ms ease-out），心形同时放大回弹并变红。"
+}
+-->
+<button class="burst" aria-label="点赞">♥</button>
+
+<style>
+.burst { position: relative; width: 64px; height: 64px; border-radius: 50%; border: 0; background: #F4F4F5; color: #A1A1AA; font-size: 28px; cursor: pointer; }
+.burst.on { color: #FF2D55; animation: pop .45s cubic-bezier(.34,1.8,.64,1); }
+.burst i { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; pointer-events: none; animation: fly .5s ease-out forwards; }
+@keyframes fly { to { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; } }
+@keyframes pop { 40% { transform: scale(1.3); } }
+</style>
+<script>
+const btn = document.querySelector(".burst"), colors = ["#FF2D55", "#FA8C16", "#FFCC00", "#34C759", "#007AFF", "#AF52DE"];
+btn.addEventListener("click", () => {
+  btn.classList.toggle("on");
+  if (!btn.classList.contains("on")) return;
+  for (let k = 0; k < 12; k++) {
+    const a = k / 12 * Math.PI * 2, dot = document.createElement("i");
+    dot.style.background = colors[k % colors.length];
+    dot.style.setProperty("--x", Math.cos(a) * 44 + "px"); dot.style.setProperty("--y", Math.sin(a) * 44 + "px");
+    btn.appendChild(dot); dot.addEventListener("animationend", () => dot.remove());
+  }
+});
+setInterval(() => btn.click(), 1400);
+</script>

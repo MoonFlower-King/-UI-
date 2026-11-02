@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Scroll Snap",
+  "zh": "滚动吸附",
+  "lead": "滑动停下时，自动对齐到最近的一屏或一张卡片，不会停在两张中间。手机上的图片浏览、全屏翻页都是这样。",
+  "prompt": "横向卡片列表加 Scroll Snap：容器 scroll-snap-type: x mandatory，每张卡片 scroll-snap-align: center，卡片宽 80%，滑动松手后自动居中对齐。"
+}
+-->
+<div class="snap"><div>1</div><div>2</div><div>3</div><div>4</div></div>
+
+<style>
+.snap { display: flex; gap: 12px; width: min(300px, 90vw); overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 10%; box-sizing: border-box; scrollbar-width: none; }
+.snap::-webkit-scrollbar { display: none; }
+.snap div { flex: 0 0 80%; height: 150px; scroll-snap-align: center; border-radius: 16px; display: grid; place-items: center; font-size: 40px; font-weight: 800; color: #fff; }
+.snap div:nth-child(1) { background: #FA8C16; } .snap div:nth-child(2) { background: #007AFF; } .snap div:nth-child(3) { background: #34C759; } .snap div:nth-child(4) { background: #AF52DE; }
+</style>
+<script>
+const s = document.querySelector(".snap"); let i = 0;
+setInterval(() => { i = (i + 1) % 4; s.children[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }); }, 1500);
+</script>

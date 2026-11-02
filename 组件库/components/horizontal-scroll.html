@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Horizontal Scroll",
+  "zh": "横向滚动",
+  "lead": "往下滚动页面，内容却横着走。适合展示一排作品、时间线。在预览里往下滚试试。",
+  "prompt": "作品集区块做成 Horizontal Scroll：外层高度 300vh，内层 position: sticky 固定在视口，页面向下滚动时，内部卡片横向平移，滚到底刚好看完最后一张。"
+}
+-->
+<div class="hs-outer">
+  <div class="hs-sticky"><div class="hs-track"><div>2019</div><div>2021</div><div>2023</div><div>2025</div><div>2026</div></div></div>
+</div>
+
+<style>
+.hs-outer { width: min(320px, 90vw); height: 220px; overflow-y: auto; border-radius: 14px; background: #18181B; }
+.hs-sticky { position: sticky; top: 0; height: 220px; overflow: hidden; display: flex; align-items: center; }
+.hs-track { display: flex; gap: 12px; padding: 0 20px; will-change: transform; }
+.hs-track div { flex: 0 0 140px; height: 140px; border-radius: 14px; background: linear-gradient(135deg, #FFB86B, #FA8C16); color: #fff; font-size: 22px; font-weight: 800; display: grid; place-items: center; }
+.hs-outer::after { content: ""; display: block; height: 500px; }
+</style>
+<script>
+const outer = document.querySelector(".hs-outer"), track = document.querySelector(".hs-track");
+outer.addEventListener("scroll", () => {
+  const p = outer.scrollTop / (outer.scrollHeight - outer.clientHeight);
+  track.style.transform = `translateX(${-p * (track.scrollWidth - outer.clientWidth)}px)`;
+});
+let t = 0; const auto = setInterval(() => { outer.scrollTop = 250 * (1 - Math.cos(t += .03)); if (t > 6.3) clearInterval(auto); }, 30);
+</script>

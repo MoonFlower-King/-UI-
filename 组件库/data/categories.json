@@ -1,24 +1,210 @@
 [
-  { "id": "layout", "name": "布局与留白", "intro": "页面东西怎么摆。说清楚布局，AI 才不会把所有东西堆成一列。",
-    "items": ["whitespace", "grid-system", "bento-grid", "hero-section", "above-the-fold", "split-screen", "card-layout", "sticky-header", "z-pattern", "visual-hierarchy"] },
-  { "id": "type", "name": "字体与文字", "intro": "文字占了界面的大部分。“字不好看”往往是这几个参数没调好。",
-    "items": ["type-scale", "font-weight", "line-height", "letter-spacing", "measure", "serif-sans", "display-font", "truncation"] },
-  { "id": "color", "name": "色彩", "intro": "配色难看，通常不是颜色选错，而是颜色太多、没有主次。",
-    "items": ["accent-color", "neutral-palette", "60-30-10-rule", "contrast", "gradient", "mesh-gradient", "semantic-color", "dark-mode", "monochrome"] },
-  { "id": "style", "name": "视觉风格流派", "intro": "一个风格名就能让 AI 把整套界面的感觉对上。想要“某种感觉”时先查这里。",
-    "items": ["minimalism", "flat-design", "material-design", "skeuomorphism", "neumorphism", "glassmorphism", "neo-brutalism", "claymorphism", "swiss-style", "y2k", "aurora-background"] },
-  { "id": "texture", "name": "质感与细节", "intro": "“高级感”大多藏在这些细节里。",
-    "items": ["layered-elevation", "border-radius", "hairline-border", "inner-shadow", "noise-texture", "spotlight-border", "backdrop-blur", "iconography"] },
-  { "id": "components", "name": "常见组件", "intro": "很多人知道长什么样，但叫不出名字。说出名字，AI 就能直接做对。",
-    "items": ["navbar", "breadcrumb", "tabs", "segmented-control", "accordion", "carousel", "badge", "chip", "avatar", "pagination", "infinite-scroll", "fab", "toggle-switch", "stepper-progress"] },
-  { "id": "overlay", "name": "弹窗与浮层", "intro": "盖在页面上面的东西。重要程度不同，该用的浮层也不同。",
-    "items": ["tooltip", "popover", "dropdown", "backdrop-modal", "drawer", "bottom-sheet", "toast", "command-palette"] },
-  { "id": "feedback", "name": "交互状态与反馈", "intro": "同一个元素在不同时刻要长得不一样。AI 常常只做“正常状态”，其他状态要你点名。",
-    "items": ["hover-state", "active-pressed", "focus-ring", "disabled-state", "selected-state", "empty-state", "error-state", "skeleton-screen", "optimistic-ui", "ripple-effect", "loading-button", "hold-to-confirm"] },
-  { "id": "motion", "name": "动效与节奏", "intro": "“动画很生硬”“很廉价”，多半是时长和缓动的问题。",
-    "items": ["duration", "easing", "ease-in-out", "spring", "stagger", "fade-slide-scale", "micro-interaction", "scroll-triggered", "parallax", "page-transition", "reduced-motion", "underline-slide"] },
-  { "id": "responsive", "name": "响应式与适配", "intro": "“手机上乱了”的时候，用这些词告诉 AI 怎么改。",
-    "items": ["responsive-design", "breakpoint", "mobile-first", "fluid-typography", "safe-area", "touch-target", "hamburger-menu"] },
-  { "id": "ux", "name": "体验与可用性", "intro": "不只是好看，还要好用。这些词能让 AI 照顾到细节体验。",
-    "items": ["call-to-action", "progressive-disclosure", "onboarding", "inline-validation", "undo", "accessibility", "consistency"] }
+  {
+    "id": "layout",
+    "name": "布局与留白",
+    "intro": "页面东西怎么摆。说清楚布局，AI 才不会把所有东西堆成一列。",
+    "items": [
+      "whitespace",
+      "grid-system",
+      "bento-grid",
+      "hero-section",
+      "above-the-fold",
+      "split-screen",
+      "card-layout",
+      "sticky-header",
+      "z-pattern",
+      "visual-hierarchy",
+      "masonry",
+      "holy-grail",
+      "asymmetrical-grid"
+    ]
+  },
+  {
+    "id": "type",
+    "name": "字体与文字",
+    "intro": "文字占了界面的大部分。“字不好看”往往是这几个参数没调好。",
+    "items": [
+      "type-scale",
+      "font-weight",
+      "line-height",
+      "letter-spacing",
+      "measure",
+      "serif-sans",
+      "display-font",
+      "truncation"
+    ]
+  },
+  {
+    "id": "color",
+    "name": "色彩",
+    "intro": "配色难看，通常不是颜色选错，而是颜色太多、没有主次。",
+    "items": [
+      "accent-color",
+      "neutral-palette",
+      "60-30-10-rule",
+      "contrast",
+      "gradient",
+      "mesh-gradient",
+      "semantic-color",
+      "dark-mode",
+      "monochrome"
+    ]
+  },
+  {
+    "id": "style",
+    "name": "视觉风格流派",
+    "intro": "一个风格名就能让 AI 把整套界面的感觉对上。想要“某种感觉”时先查这里。",
+    "items": [
+      "minimalism",
+      "flat-design",
+      "material-design",
+      "skeuomorphism",
+      "neumorphism",
+      "glassmorphism",
+      "neo-brutalism",
+      "claymorphism",
+      "swiss-style",
+      "y2k",
+      "aurora-background",
+      "bento-dark-mode"
+    ]
+  },
+  {
+    "id": "texture",
+    "name": "质感与细节",
+    "intro": "“高级感”大多藏在这些细节里。",
+    "items": [
+      "layered-elevation",
+      "border-radius",
+      "hairline-border",
+      "inner-shadow",
+      "noise-texture",
+      "spotlight-border",
+      "backdrop-blur",
+      "iconography"
+    ]
+  },
+  {
+    "id": "components",
+    "name": "常见组件",
+    "intro": "很多人知道长什么样，但叫不出名字。说出名字，AI 就能直接做对。",
+    "items": [
+      "navbar",
+      "breadcrumb",
+      "tabs",
+      "segmented-control",
+      "accordion",
+      "carousel",
+      "badge",
+      "chip",
+      "avatar",
+      "pagination",
+      "infinite-scroll",
+      "fab",
+      "toggle-switch",
+      "stepper-progress"
+    ]
+  },
+  {
+    "id": "overlay",
+    "name": "弹窗与浮层",
+    "intro": "盖在页面上面的东西。重要程度不同，该用的浮层也不同。",
+    "items": [
+      "tooltip",
+      "popover",
+      "dropdown",
+      "backdrop-modal",
+      "drawer",
+      "bottom-sheet",
+      "toast",
+      "command-palette"
+    ]
+  },
+  {
+    "id": "hover",
+    "name": "悬停微交互",
+    "intro": "鼠标移上去的那一下，决定了网站“高级不高级”。这些词能让 AI 做出有手感的悬停效果。",
+    "items": [
+      "magnetic-button",
+      "3d-tilt",
+      "morphing",
+      "image-zoom",
+      "underline-slide"
+    ]
+  },
+  {
+    "id": "feedback",
+    "name": "交互状态与反馈",
+    "intro": "同一个元素在不同时刻要长得不一样。AI 常常只做“正常状态”，其他状态要你点名。",
+    "items": [
+      "hover-state",
+      "active-pressed",
+      "focus-ring",
+      "disabled-state",
+      "selected-state",
+      "empty-state",
+      "error-state",
+      "skeleton-screen",
+      "optimistic-ui",
+      "ripple-effect",
+      "loading-button",
+      "hold-to-confirm",
+      "particle-burst",
+      "shimmer-effect",
+      "progressive-blur",
+      "pull-to-refresh"
+    ]
+  },
+  {
+    "id": "motion",
+    "name": "动效与节奏",
+    "intro": "“动画很生硬”“很廉价”，多半是时长和缓动的问题。",
+    "items": [
+      "duration",
+      "easing",
+      "ease-in-out",
+      "spring",
+      "stagger",
+      "fade-slide-scale",
+      "micro-interaction",
+      "scroll-triggered",
+      "parallax",
+      "page-transition",
+      "reduced-motion",
+      "scroll-linked",
+      "scroll-snap",
+      "horizontal-scroll",
+      "anticipation",
+      "squash-stretch",
+      "motion-path"
+    ]
+  },
+  {
+    "id": "responsive",
+    "name": "响应式与适配",
+    "intro": "“手机上乱了”的时候，用这些词告诉 AI 怎么改。",
+    "items": [
+      "responsive-design",
+      "breakpoint",
+      "mobile-first",
+      "fluid-typography",
+      "safe-area",
+      "touch-target",
+      "hamburger-menu"
+    ]
+  },
+  {
+    "id": "ux",
+    "name": "体验与可用性",
+    "intro": "不只是好看，还要好用。这些词能让 AI 照顾到细节体验。",
+    "items": [
+      "call-to-action",
+      "progressive-disclosure",
+      "onboarding",
+      "inline-validation",
+      "undo",
+      "accessibility",
+      "consistency"
+    ]
+  }
 ]

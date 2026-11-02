@@ -9,25 +9,42 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <div class="brand"><span class="logo"></span>江月AI设计</div>
-    <h1>给 AI 描述 UI，<em>说对一个词</em>就够了</h1>
-    <p class="lead">界面与动效的专业术语图鉴。每个词都配一段实时动画，看一眼就懂；再附一段提示词，复制给 Cursor、Trae、豆包等 AI 编程工具就能用。</p>
-    <div class="stats" id="stats"></div>
-    <a class="kit-link" href="ui/"><span class="kit-moon" aria-hidden="true"></span><span><b>江月 UI 词典</b>106 个界面术语，每个都有实时效果、代码和感觉翻译器</span><i>进入 →</i></a>
+<header class="topnav">
+  <div class="wrap topnav-inner">
+    <a class="nav-brand" href="./"><span class="nav-mark" aria-hidden="true"></span>江月 <b>UI</b> 设计</a>
+    <nav class="nav-links" aria-label="站点导航">
+      <a href="./" aria-current="page">提示词图鉴</a>
+      <a href="ui/">江月 UI 词典</a>
+      <a href="https://github.com/MoonFlower-King/-UI-">GitHub</a>
+    </nav>
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="搜索：吸顶、Bento、hover…" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
   </div>
 </header>
 
-<nav class="toolbar" aria-label="筛选">
-  <div class="wrap toolbar-inner">
-    <label class="search">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="搜索术语：吸顶、Bento、hover、加载……" autocomplete="off">
-      <kbd>/</kbd>
-    </label>
-    <div class="chips" id="chips" role="tablist"></div>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">短视频系列「给AI描述UI的6个词」配套图鉴</p>
+      <h1>给 AI 描述 UI，<em>说对一个词</em>就够了</h1>
+      <p class="lead">每个词都配一段实时动画，看一眼就懂；点「看代码」拿到能直接用的实现，复制进项目就能跑；再附一段提示词，发给 Cursor、Trae、豆包等 AI 工具。</p>
+      <div class="stats" id="stats"></div>
+    </div>
+    <a class="kit-card" href="ui/">
+      <span class="kit-moon" aria-hidden="true"></span>
+      <b>江月 UI 词典</b>
+      <span id="kit-count">更多界面术语，每个都有实时效果和代码</span>
+      <span class="kit-feats"><i>感觉翻译器</i><i>提示词篮子</i><i>明暗主题</i></span>
+      <em>进入词典 →</em>
+    </a>
   </div>
+</header>
+
+<nav class="toolbar" aria-label="按期筛选">
+  <div class="wrap"><div class="chips" id="chips" role="tablist"></div></div>
 </nav>
 
 <main class="wrap" id="list"></main>
@@ -35,10 +52,33 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>每期 6 个词，持续更新中。动画均为纯 HTML + CSS，没有任何外部依赖，可以直接复制到你的项目里参考。</p>
-    <p>内容来自短视频系列「给AI描述UI的6个词」· 江月AI设计 · <a href="https://github.com/" id="repo">GitHub</a></p>
+    <p>每期 6 个词，持续更新中。所有动画和组件代码都是纯 HTML + CSS + 少量原生 JS，零依赖，MIT 开源，可以直接复制到你的项目里使用。</p>
+    <p>内容来自短视频系列「给AI描述UI的6个词」· 江月 UI 设计 · <a href="https://github.com/MoonFlower-King/-UI-">GitHub</a></p>
   </div>
 </footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <header class="sheet-head">
+      <div><div class="en" id="m-en"></div><h2 id="m-title"></h2></div>
+      <button class="x" id="m-close" aria-label="关闭">✕</button>
+    </header>
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="preview" aria-selected="true">效果</button>
+      <button role="tab" data-tab="code" aria-selected="false">代码</button>
+      <button role="tab" data-tab="prompt" aria-selected="false">提示词</button>
+    </div>
+    <div class="pane" data-pane="preview"><iframe id="m-frame" title="组件实时效果"></iframe></div>
+    <pre class="pane code" data-pane="code" id="m-code" hidden></pre>
+    <p class="pane m-prompt" data-pane="prompt" id="m-prompt" hidden></p>
+    <footer class="sheet-foot">
+      <span class="hint">复制代码，保存成 .html 文件打开就能看到效果；也可以直接粘进你的页面。</span>
+      <a class="btn" id="m-kit" href="ui/">在江月 UI 打开</a>
+      <button class="btn" id="m-copy-prompt">复制提示词</button>
+      <button class="btn primary" id="m-copy-code">复制代码</button>
+    </footer>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

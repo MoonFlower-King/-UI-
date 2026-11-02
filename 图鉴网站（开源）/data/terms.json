@@ -170,7 +170,9 @@
       "say": "滚到那儿才出现",
       "example": "比如官网卡片依次浮现",
       "prompt": "给下方的三张特性卡片加 Scroll-triggered 入场动画：当卡片进入视口 20% 时，从下方 24px 处向上淡入，时长 0.6s、ease-out，三张卡片依次间隔 0.12s 出现，只触发一次。",
-      "demo": "demos/EP01-1.html"
+      "demo": "demos/EP01-1.html",
+      "kit": "scroll-triggered",
+      "code": "<div class=\"st\">\n  <p>往下滚动 ↓</p>\n  <div class=\"blk\"></div><div class=\"blk\"></div><div class=\"blk\"></div><div class=\"blk\"></div>\n</div>\n\n<style>\n.st { width: min(280px, 88vw); height: 240px; overflow-y: auto; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 14px; display: grid; gap: 14px; }\n.st p { margin: 0 0 120px; font-size: 13px; color: #A1A1AA; text-align: center; }\n.blk { height: 80px; border-radius: 12px; background: linear-gradient(135deg, #FFE7BA, #FFB86B); opacity: 0; transform: translateY(24px); transition: .6s cubic-bezier(.2,.8,.2,1); }\n.blk.in { opacity: 1; transform: none; }\n</style>\n<script>\nconst box = document.querySelector(\".st\");\nconst io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add(\"in\"); io.unobserve(e.target); } }), { root: box, threshold: .2 });\ndocument.querySelectorAll(\".blk\").forEach(b => io.observe(b));\nlet t = 0; const auto = setInterval(() => { box.scrollTop += 3; if (++t > 120) clearInterval(auto); }, 16);\n</script>\n"
     },
     {
       "id": "EP01-2",
@@ -180,7 +182,9 @@
       "say": "滚多少动多少",
       "example": "比如文章顶部阅读进度条",
       "prompt": "在页面顶部加一条 4px 高的 Scroll-linked 阅读进度条，宽度与页面滚动百分比 1:1 实时同步（用 scaleX，transform-origin 左侧），不要加过渡延迟。",
-      "demo": "demos/EP01-2.html"
+      "demo": "demos/EP01-2.html",
+      "kit": "scroll-linked",
+      "code": "<div class=\"article\">\n  <div class=\"progress\"></div>\n  <h3>如何给 AI 描述界面</h3>\n  <p></p><p></p><p class=\"short\"></p><p></p><p></p><p class=\"short\"></p><p></p><p></p><p></p><p class=\"short\"></p>\n</div>\n\n<style>\n.article { position: relative; width: min(300px, 90vw); height: 240px; overflow-y: auto; padding: 20px 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; box-sizing: border-box; }\n.progress { position: sticky; top: -20px; margin: -20px -18px 14px; height: 3px; width: 0; background: #FA8C16; }\n.article h3 { margin: 0 0 12px; font-size: 16px; }\n.article p { margin: 0 0 10px; height: 8px; border-radius: 4px; background: #F4F4F5; } .article p.short { width: 60%; }\n</style>\n<script>\nconst art = document.querySelector(\".article\"), bar = document.querySelector(\".progress\");\nart.addEventListener(\"scroll\", () => { bar.style.width = art.scrollTop / (art.scrollHeight - art.clientHeight) * 100 + \"%\"; });\nlet t = 0; const auto = setInterval(() => { art.scrollTop = 80 * (1 - Math.cos(t += .04)); if (t > 6.3) clearInterval(auto); }, 30);\n</script>\n"
     },
     {
       "id": "EP01-3",
@@ -190,7 +194,9 @@
       "say": "前景快背景慢，画面有纵深感",
       "example": "",
       "prompt": "给 Hero 区做 Parallax 视差：背景山峰图层的滚动速度为前景的 0.2 倍，前景卡片正常速度，形成前快后慢的纵深感，移动端关闭视差。",
-      "demo": "demos/EP01-3.html"
+      "demo": "demos/EP01-3.html",
+      "kit": "parallax",
+      "code": "<div class=\"px\">\n  <div class=\"layer far\"></div><div class=\"layer mid\"></div>\n  <h2 class=\"layer\">远山</h2>\n  <div class=\"spacer\"></div>\n</div>\n\n<style>\n.px { position: relative; width: min(320px, 90vw); height: 220px; overflow-y: auto; border-radius: 16px; background: linear-gradient(#FFD9B0, #FFF3E3); }\n.layer { position: absolute; left: 0; right: 0; will-change: transform; }\n.far { top: 90px; height: 160px; background: #F7B27A; clip-path: polygon(0 60%, 20% 20%, 40% 50%, 65% 10%, 85% 45%, 100% 25%, 100% 100%, 0 100%); }\n.mid { top: 140px; height: 160px; background: #D46B08; clip-path: polygon(0 50%, 25% 20%, 50% 55%, 75% 15%, 100% 50%, 100% 100%, 0 100%); }\n.px h2 { top: 40px; margin: 0; text-align: center; font-size: 30px; color: #7A3A00; }\n.spacer { height: 600px; }\n</style>\n<script>\nconst px = document.querySelector(\".px\"), far = px.querySelector(\".far\"), mid = px.querySelector(\".mid\"), h = px.querySelector(\"h2\");\npx.addEventListener(\"scroll\", () => { const y = px.scrollTop; far.style.transform = `translateY(${y * .7}px)`; mid.style.transform = `translateY(${y * .4}px)`; h.style.transform = `translateY(${y * .9}px)`; });\nlet t = 0; const auto = setInterval(() => { px.scrollTop = 90 * (1 - Math.cos(t += .04)); if (t > 6.3) clearInterval(auto); }, 30);\n</script>\n"
     },
     {
       "id": "EP01-4",
@@ -200,7 +206,9 @@
       "say": "滚到顶就钉住",
       "example": "比如通讯录的字母标题",
       "prompt": "把联系人列表做成通讯录式 Sticky 分组标题：每组字母标题 position: sticky; top: 0，滚动时当前组标题钉在顶部，下一组标题滚上来时把上一个顶走并接替吸顶。",
-      "demo": "demos/EP01-4.html"
+      "demo": "demos/EP01-4.html",
+      "kit": "sticky-header",
+      "code": "<div class=\"win\">\n  <header class=\"bar\">Logo<span>产品　价格　登录</span></header>\n  <main><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p></main>\n</div>\n\n<style>\n.win { width: min(360px, 92vw); height: 240px; overflow-y: auto; border-radius: 14px; border: 1px solid #E4E4E7;\n  background: linear-gradient(#FFE7BA, #DCEBFF); }\n.bar { position: sticky; top: 0; display: flex; justify-content: space-between; padding: 12px 16px; font-weight: 700; font-size: 14px; transition: .25s; }\n.bar span { font-weight: 400; font-size: 12px; color: #3F3F46; }\n.bar.scrolled { background: rgba(255,255,255,.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.06); }\nmain { padding: 16px; display: grid; gap: 10px; }\nmain p { margin: 0; height: 46px; border-radius: 10px; background: rgba(255,255,255,.7); }\n</style>\n<script>\nconst win = document.querySelector(\".win\"), bar = document.querySelector(\".bar\");\nwin.addEventListener(\"scroll\", () => bar.classList.toggle(\"scrolled\", win.scrollTop > 10));\n// 预览时自动来回滚动一次\nlet t = 0; const auto = setInterval(() => { win.scrollTop = 80 * (1 - Math.cos(t += .05)); if (t > 6.3) clearInterval(auto); }, 30);\n</script>\n"
     },
     {
       "id": "EP01-5",
@@ -210,7 +218,9 @@
       "say": "松手自动对齐，一次停一整屏",
       "example": "",
       "prompt": "把这组全屏卡片做成纵向 Scroll Snap：容器 scroll-snap-type: y mandatory，每张卡片 scroll-snap-align: center，用户松手后自动吸附到最近一张并居中锁定。",
-      "demo": "demos/EP01-5.html"
+      "demo": "demos/EP01-5.html",
+      "kit": "scroll-snap",
+      "code": "<div class=\"snap\"><div>1</div><div>2</div><div>3</div><div>4</div></div>\n\n<style>\n.snap { display: flex; gap: 12px; width: min(300px, 90vw); overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 10%; box-sizing: border-box; scrollbar-width: none; }\n.snap::-webkit-scrollbar { display: none; }\n.snap div { flex: 0 0 80%; height: 150px; scroll-snap-align: center; border-radius: 16px; display: grid; place-items: center; font-size: 40px; font-weight: 800; color: #fff; }\n.snap div:nth-child(1) { background: #FA8C16; } .snap div:nth-child(2) { background: #007AFF; } .snap div:nth-child(3) { background: #34C759; } .snap div:nth-child(4) { background: #AF52DE; }\n</style>\n<script>\nconst s = document.querySelector(\".snap\"); let i = 0;\nsetInterval(() => { i = (i + 1) % 4; s.children[i].scrollIntoView({ behavior: \"smooth\", inline: \"center\", block: \"nearest\" }); }, 1500);\n</script>\n"
     },
     {
       "id": "EP01-6",
@@ -220,7 +230,9 @@
       "say": "往下滚内容却横着走",
       "example": "",
       "prompt": "做一个 Horizontal Scroll 区块：该区块滚动到顶部时固定住，用户继续纵向滚动时，下方卡片列表从右向左水平滑过，全部滑完后再释放、继续正常纵向滚动。",
-      "demo": "demos/EP01-6.html"
+      "demo": "demos/EP01-6.html",
+      "kit": "horizontal-scroll",
+      "code": "<div class=\"hs-outer\">\n  <div class=\"hs-sticky\"><div class=\"hs-track\"><div>2019</div><div>2021</div><div>2023</div><div>2025</div><div>2026</div></div></div>\n</div>\n\n<style>\n.hs-outer { width: min(320px, 90vw); height: 220px; overflow-y: auto; border-radius: 14px; background: #18181B; }\n.hs-sticky { position: sticky; top: 0; height: 220px; overflow: hidden; display: flex; align-items: center; }\n.hs-track { display: flex; gap: 12px; padding: 0 20px; will-change: transform; }\n.hs-track div { flex: 0 0 140px; height: 140px; border-radius: 14px; background: linear-gradient(135deg, #FFB86B, #FA8C16); color: #fff; font-size: 22px; font-weight: 800; display: grid; place-items: center; }\n.hs-outer::after { content: \"\"; display: block; height: 500px; }\n</style>\n<script>\nconst outer = document.querySelector(\".hs-outer\"), track = document.querySelector(\".hs-track\");\nouter.addEventListener(\"scroll\", () => {\n  const p = outer.scrollTop / (outer.scrollHeight - outer.clientHeight);\n  track.style.transform = `translateX(${-p * (track.scrollWidth - outer.clientWidth)}px)`;\n});\nlet t = 0; const auto = setInterval(() => { outer.scrollTop = 250 * (1 - Math.cos(t += .03)); if (t > 6.3) clearInterval(auto); }, 30);\n</script>\n"
     },
     {
       "id": "EP02-1",
@@ -230,7 +242,9 @@
       "say": "鼠标靠近按钮被吸过来",
       "example": "比如设计师作品集网站",
       "prompt": "把主 CTA 按钮做成 Magnetic Button：鼠标进入按钮周围 80px 范围时，按钮整体向鼠标方向偏移，偏移量为鼠标与按钮中心距离的 0.3 倍（最大 12px），离开后用弹簧缓动回原位。",
-      "demo": "demos/EP02-1.html"
+      "demo": "demos/EP02-1.html",
+      "kit": "magnetic-button",
+      "code": "<div class=\"mag-area\"><button class=\"mag\"><span>联系我</span></button></div>\n\n<style>\n.mag-area { padding: 60px; }\n.mag { width: 120px; height: 120px; border-radius: 50%; border: 0; background: #18181B; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer;\n  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }\n.mag span { display: inline-block; transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }\n.mag.near, .mag.near span { transition: transform .1s linear; }\n</style>\n<script>\nconst area = document.querySelector(\".mag-area\"), btn = document.querySelector(\".mag\"), label = btn.querySelector(\"span\");\narea.addEventListener(\"pointermove\", e => {\n  const r = btn.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;\n  btn.classList.add(\"near\");\n  btn.style.transform = `translate(${x * .3}px, ${y * .3}px)`; label.style.transform = `translate(${x * .1}px, ${y * .1}px)`;\n});\narea.addEventListener(\"pointerleave\", () => { btn.classList.remove(\"near\"); btn.style.transform = label.style.transform = \"\"; });\n</script>\n"
     },
     {
       "id": "EP02-2",
@@ -240,7 +254,9 @@
       "say": "光跟着鼠标走",
       "example": "比如 Linear 官网卡片",
       "prompt": "给这组深色卡片加 Spotlight Border：鼠标在卡片上移动时，用 radial-gradient 跟随鼠标坐标，在 1px 边框和卡片背景上分别泛起局部高光（边框亮、背景淡），鼠标离开后高光淡出。",
-      "demo": "demos/EP02-2.html"
+      "demo": "demos/EP02-2.html",
+      "kit": "spotlight-border",
+      "code": "<div class=\"spot-scene\">\n  <div class=\"spot\"><h3>实时协作</h3><p>多人同时编辑，光标位置实时同步。</p></div>\n</div>\n\n<style>\n.spot-scene { position: fixed; inset: 0; display: grid; place-items: center; background: #0F0F11; }\n.spot { --x: 50%; --y: 50%; --glow: 0; position: relative; width: min(300px, 88vw); padding: 24px; border-radius: 16px;\n  background: #18181B; color: #FAFAFA; }\n.spot::before { content: \"\"; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; pointer-events: none;\n  background: #2E2E33; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);\n  -webkit-mask-composite: xor; mask-composite: exclude; }\n.spot::after { content: \"\"; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit; pointer-events: none;\n  background: radial-gradient(160px circle at var(--x) var(--y), #FA8C16, transparent 70%); opacity: var(--glow); transition: opacity .3s;\n  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }\n.spot h3 { margin: 0 0 6px; font-size: 18px; }\n.spot p { margin: 0; color: #A1A1AA; font-size: 14px; }\n</style>\n\n<script>\ndocument.querySelectorAll(\".spot\").forEach(card => {\n  card.addEventListener(\"pointermove\", e => {\n    const r = card.getBoundingClientRect();\n    card.style.setProperty(\"--x\", e.clientX - r.left + \"px\");\n    card.style.setProperty(\"--y\", e.clientY - r.top + \"px\");\n    card.style.setProperty(\"--glow\", 1);\n  });\n  card.addEventListener(\"pointerleave\", () => card.style.setProperty(\"--glow\", 0));\n});\n</script>\n"
     },
     {
       "id": "EP02-3",
@@ -250,7 +266,9 @@
       "say": "鼠标移到哪个角，卡片往哪边歪",
       "example": "",
       "prompt": "给产品卡片加 3D Tilt：父容器 perspective: 800px，根据鼠标在卡片内的位置计算 rotateX/rotateY（最大 15°），同时让一层白色高光渐变向鼠标方向偏移，离开时 0.4s 复位。",
-      "demo": "demos/EP02-3.html"
+      "demo": "demos/EP02-3.html",
+      "kit": "3d-tilt",
+      "code": "<div class=\"tilt\"><div class=\"shine\"></div><b>限量款</b><small>江月 · 2026</small></div>\n\n<style>\n.tilt { position: relative; width: 200px; height: 260px; border-radius: 20px; padding: 20px; box-sizing: border-box; color: #fff; display: flex; flex-direction: column; justify-content: flex-end;\n  background: linear-gradient(145deg, #2B3A67, #121A33); box-shadow: 0 20px 40px rgba(18,26,51,.35); transform: perspective(800px); transition: transform .5s ease-out; overflow: hidden; }\n.tilt b { font-size: 22px; } .tilt small { opacity: .7; }\n.shine { position: absolute; inset: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.35), transparent 50%); opacity: 0; transition: opacity .3s; }\n.tilt:hover .shine { opacity: 1; } .tilt.moving { transition: transform .08s linear; }\n</style>\n<script>\nconst card = document.querySelector(\".tilt\");\ncard.addEventListener(\"pointermove\", e => {\n  const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;\n  card.classList.add(\"moving\");\n  card.style.transform = `perspective(800px) rotateY(${(px - .5) * 24}deg) rotateX(${(.5 - py) * 24}deg)`;\n  card.style.setProperty(\"--x\", px * 100 + \"%\"); card.style.setProperty(\"--y\", py * 100 + \"%\");\n});\ncard.addEventListener(\"pointerleave\", () => { card.classList.remove(\"moving\"); card.style.transform = \"perspective(800px)\"; });\n</script>\n"
     },
     {
       "id": "EP02-4",
@@ -260,7 +278,9 @@
       "say": "小按钮变形展开成菜单",
       "example": "比如灵动岛",
       "prompt": "做一个 Morphing 按钮：默认是 52px 的圆角方块加号按钮，悬停时宽度平滑扩展为 260px 的胶囊容器，圆角变为全圆，加号旋转 45° 变叉号，3 个操作项依次淡入（间隔 60ms）。",
-      "demo": "demos/EP02-4.html"
+      "demo": "demos/EP02-4.html",
+      "kit": "morphing",
+      "code": "<div class=\"morph\"><span>⌕</span><input placeholder=\"搜索组件…\"></div>\n\n<style>\n.morph { display: flex; align-items: center; width: 48px; height: 48px; border-radius: 24px; background: #18181B; color: #fff; overflow: hidden; cursor: pointer;\n  transition: width .4s cubic-bezier(.65,0,.35,1), background .4s; }\n.morph span { flex: 0 0 48px; text-align: center; font-size: 20px; }\n.morph input { border: 0; outline: 0; background: none; color: #18181B; font-size: 14px; width: 180px; opacity: 0; transition: opacity .2s; }\n.morph.open { width: 240px; background: #fff; color: #18181B; box-shadow: 0 0 0 1px #E4E4E7, 0 8px 20px rgba(0,0,0,.08); cursor: default; }\n.morph.open input { opacity: 1; transition-delay: .2s; }\n</style>\n<script>\nconst m = document.querySelector(\".morph\");\nm.addEventListener(\"click\", e => { e.stopPropagation(); m.classList.add(\"open\"); m.querySelector(\"input\").focus(); });\ndocument.addEventListener(\"click\", () => m.classList.remove(\"open\"));\nsetInterval(() => m.classList.toggle(\"open\"), 1800);\n</script>\n"
     },
     {
       "id": "EP02-5",
@@ -270,7 +290,9 @@
       "say": "悬停时下划线从左滑到右",
       "example": "",
       "prompt": "给顶部导航加 Underline Slide：悬停某一项时，文字下方 3px 粗的下划线从左向右 scaleX(0→1) 展开铺满该项宽度，0.3s ease-out，移开时收回。",
-      "demo": "demos/EP02-5.html"
+      "demo": "demos/EP02-5.html",
+      "kit": "underline-slide",
+      "code": "<nav class=\"links\">\n  <a href=\"#\">产品</a><a href=\"#\">价格</a><a href=\"#\">案例</a><a href=\"#\">博客</a>\n</nav>\n\n<style>\n.links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }\n.links a { position: relative; padding: 4px 0; color: #71717A; text-decoration: none; font-size: 17px; font-weight: 500; transition: color .25s; }\n.links a::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 1px; background: #FA8C16;\n  transform: scaleX(0); transform-origin: right; transition: transform .25s ease-out; }\n.links a:hover, .links a:focus-visible { color: #18181B; outline: none; }\n.links a:hover::after, .links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }\n</style>\n"
     },
     {
       "id": "EP02-6",
@@ -280,7 +302,9 @@
       "say": "外框不动，里面的图慢慢放大",
       "example": "",
       "prompt": "给图片卡片加 Image Zoom：外层卡片圆角和边框保持不动（overflow: hidden），悬停时内部图片 scale(1.15)，0.5s ease-out，离开时平滑还原。",
-      "demo": "demos/EP02-6.html"
+      "demo": "demos/EP02-6.html",
+      "kit": "image-zoom",
+      "code": "<a class=\"zoom\"><div class=\"img\"></div><div class=\"cap\"><b>秋季新品</b><small>查看详情 →</small></div></a>\n\n<style>\n.zoom { position: relative; display: block; width: 240px; height: 180px; border-radius: 18px; overflow: hidden; cursor: pointer; }\n.img { position: absolute; inset: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1);\n  background: radial-gradient(circle at 70% 30%, #FFD58A 0 14%, transparent 15%), linear-gradient(160deg, #FF9A62, #FF4D8D 55%, #7A5CFF); }\n.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 14px; color: #fff; display: grid; background: linear-gradient(transparent, rgba(0,0,0,.45)); transition: transform .4s; }\n.cap small { opacity: .8; }\n.zoom:hover .img { transform: scale(1.08); } .zoom:hover .cap { transform: translateY(-6px); }\n</style>\n"
     },
     {
       "id": "EP11-1",
@@ -290,7 +314,9 @@
       "say": "点哪儿就从哪儿荡开波纹",
       "example": "比如安卓 App 按钮",
       "prompt": "给所有主按钮加 Material 风格的 Ripple Effect：以鼠标点击坐标为圆心，生成一个半透明白色圆形，0.5s 内从 0 放大到覆盖整个按钮后淡出，按钮 overflow: hidden 裁切波纹。",
-      "demo": "demos/EP11-1.html"
+      "demo": "demos/EP11-1.html",
+      "kit": "ripple-effect",
+      "code": "<button class=\"ripple-btn\">立即开始</button>\n\n<style>\n.ripple-btn { position: relative; overflow: hidden; border: 0; padding: 14px 32px;\n  border-radius: 12px; background: #FA8C16; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }\n.ripple-btn .wave { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, .35);\n  transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events: none; }\n@keyframes ripple { to { transform: scale(1); opacity: 0; } }\n</style>\n\n<script>\ndocument.querySelectorAll(\".ripple-btn\").forEach(btn => btn.addEventListener(\"click\", e => {\n  const r = btn.getBoundingClientRect();\n  const size = Math.hypot(r.width, r.height) * 2;\n  const wave = document.createElement(\"span\");\n  wave.className = \"wave\";\n  wave.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;\n  btn.appendChild(wave);\n  wave.addEventListener(\"animationend\", () => wave.remove());\n}));\n</script>\n"
     },
     {
       "id": "EP11-2",
@@ -300,7 +326,9 @@
       "say": "点一下滑块换边",
       "example": "比如手机设置里的开关",
       "prompt": "把这个复选框改成 iOS 风格的 Toggle Switch：轨道 52×32 胶囊形，关闭为浅灰、开启为绿色；点击时圆形滑块先横向拉长再滑到另一端，0.25s ease-out。",
-      "demo": "demos/EP11-2.html"
+      "demo": "demos/EP11-2.html",
+      "kit": "toggle-switch",
+      "code": "<label class=\"switch\"><input type=\"checkbox\" checked><span></span></label>\n\n<style>\n.switch { position: relative; display: inline-block; width: 52px; height: 32px; }\n.switch input { position: absolute; opacity: 0; }\n.switch span { position: absolute; inset: 0; border-radius: 999px; background: #E4E4E7; cursor: pointer; transition: background .25s; }\n.switch span::after { content: \"\"; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%;\n  background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .18); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1), width .15s; }\n.switch input:checked + span { background: #34C759; }\n.switch input:checked + span::after { transform: translateX(20px); }\n.switch span:active::after { width: 30px; }\n.switch input:checked + span:active::after { transform: translateX(16px); }\n.switch input:focus-visible + span { outline: 2px solid #007AFF; outline-offset: 2px; }\n</style>\n"
     },
     {
       "id": "EP11-3",
@@ -310,7 +338,9 @@
       "say": "点赞时炸开一圈小粒子",
       "example": "",
       "prompt": "给点赞按钮加 Particle Burst：点击后爱心先缩小到 0.8 再弹到 1.25 并填充红色，同时以爱心为中心向 8 个方向炸开彩色小圆点粒子并淡出，外加一圈扩散消失的细圆环。",
-      "demo": "demos/EP11-3.html"
+      "demo": "demos/EP11-3.html",
+      "kit": "particle-burst",
+      "code": "<button class=\"burst\" aria-label=\"点赞\">♥</button>\n\n<style>\n.burst { position: relative; width: 64px; height: 64px; border-radius: 50%; border: 0; background: #F4F4F5; color: #A1A1AA; font-size: 28px; cursor: pointer; }\n.burst.on { color: #FF2D55; animation: pop .45s cubic-bezier(.34,1.8,.64,1); }\n.burst i { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; pointer-events: none; animation: fly .5s ease-out forwards; }\n@keyframes fly { to { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; } }\n@keyframes pop { 40% { transform: scale(1.3); } }\n</style>\n<script>\nconst btn = document.querySelector(\".burst\"), colors = [\"#FF2D55\", \"#FA8C16\", \"#FFCC00\", \"#34C759\", \"#007AFF\", \"#AF52DE\"];\nbtn.addEventListener(\"click\", () => {\n  btn.classList.toggle(\"on\");\n  if (!btn.classList.contains(\"on\")) return;\n  for (let k = 0; k < 12; k++) {\n    const a = k / 12 * Math.PI * 2, dot = document.createElement(\"i\");\n    dot.style.background = colors[k % colors.length];\n    dot.style.setProperty(\"--x\", Math.cos(a) * 44 + \"px\"); dot.style.setProperty(\"--y\", Math.sin(a) * 44 + \"px\");\n    btn.appendChild(dot); dot.addEventListener(\"animationend\", () => dot.remove());\n  }\n});\nsetInterval(() => btn.click(), 1400);\n</script>\n"
     },
     {
       "id": "EP11-4",
@@ -320,7 +350,9 @@
       "say": "按住进度走满才生效",
       "example": "比如删除前的长按确认",
       "prompt": "把“删除账号”按钮做成 Hold to Confirm：用户必须按住 1.5s，按住期间进度从左到右填满按钮，中途松手进度回退清零；填满后显示对勾并执行操作。",
-      "demo": "demos/EP11-4.html"
+      "demo": "demos/EP11-4.html",
+      "kit": "hold-to-confirm",
+      "code": "<button class=\"hold-btn\"><span class=\"fill\"></span><span class=\"text\">按住删除</span></button>\n\n<style>\n.hold-btn { position: relative; overflow: hidden; width: 180px; height: 48px; border: 1.5px solid #FF3B30; border-radius: 12px;\n  background: #FFF2F1; color: #D70015; font-size: 15px; font-weight: 600; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none; }\n.hold-btn .fill { position: absolute; inset: 0; background: #FF3B30; transform: scaleX(0); transform-origin: left; transition: transform .2s ease-out; }\n.hold-btn.holding .fill { transform: scaleX(1); transition: transform 1.2s linear; }\n.hold-btn .text { position: relative; }\n.hold-btn.holding .text, .hold-btn.done .text { color: #fff; }\n.hold-btn.done .fill { transform: scaleX(1); }\n.hold-btn.done { animation: pop .3s cubic-bezier(.34, 1.56, .64, 1); }\n@keyframes pop { 40% { transform: scale(.96); } }\n</style>\n\n<script>\ndocument.querySelectorAll(\".hold-btn\").forEach(btn => {\n  let timer;\n  const text = btn.querySelector(\".text\");\n  const start = () => {\n    if (btn.classList.contains(\"done\")) return;\n    btn.classList.add(\"holding\");\n    timer = setTimeout(() => {\n      btn.classList.replace(\"holding\", \"done\");\n      text.textContent = \"已删除\";\n      setTimeout(() => { btn.classList.remove(\"done\"); text.textContent = \"按住删除\"; }, 1800);\n    }, 1200);\n  };\n  const cancel = () => { clearTimeout(timer); btn.classList.remove(\"holding\"); };\n  btn.addEventListener(\"pointerdown\", start);\n  [\"pointerup\", \"pointerleave\", \"pointercancel\"].forEach(ev => btn.addEventListener(ev, cancel));\n});\n</script>\n"
     },
     {
       "id": "EP11-5",
@@ -330,7 +362,9 @@
       "say": "按钮自己变圈转圈，不用弹窗",
       "example": "",
       "prompt": "给提交按钮加 Loading Button 状态：点击后按钮宽度平滑收缩成圆形，文字淡出、出现白色旋转圆环；请求成功后按钮变绿、圆环变为对勾，1s 后恢复原按钮。",
-      "demo": "demos/EP11-5.html"
+      "demo": "demos/EP11-5.html",
+      "kit": "loading-button",
+      "code": "<button class=\"load-btn\"><span class=\"label\">提交订单</span><span class=\"spin\"></span><span class=\"ok\">✓ 已提交</span></button>\n\n<style>\n.load-btn { position: relative; min-width: 160px; height: 48px; border: 0; border-radius: 12px; background: #18181B;\n  color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .3s; }\n.load-btn > span { position: absolute; inset: 0; display: grid; place-items: center; transition: opacity .2s; }\n.load-btn .spin, .load-btn .ok { opacity: 0; }\n.load-btn .spin::before { content: \"\"; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .3);\n  border-top-color: #fff; animation: spin .8s linear infinite; }\n.load-btn.loading { cursor: wait; }\n.load-btn.loading .label, .load-btn.done .label { opacity: 0; }\n.load-btn.loading .spin { opacity: 1; }\n.load-btn.done { background: #34C759; }\n.load-btn.done .ok { opacity: 1; }\n@keyframes spin { to { transform: rotate(360deg); } }\n</style>\n\n<script>\ndocument.querySelectorAll(\".load-btn\").forEach(btn => btn.addEventListener(\"click\", () => {\n  if (btn.disabled) return;\n  btn.disabled = true;\n  btn.classList.add(\"loading\");\n  // 这里换成你的真实请求\n  setTimeout(() => {\n    btn.classList.replace(\"loading\", \"done\");\n    setTimeout(() => { btn.classList.remove(\"done\"); btn.disabled = false; }, 1500);\n  }, 1600);\n}));\n</script>\n"
     },
     {
       "id": "EP11-6",
@@ -340,7 +374,9 @@
       "say": "三条杠一点就变成叉",
       "example": "",
       "prompt": "把移动端菜单按钮做成 Hamburger Toggle：点击后上下两条线先向中间合拢，再分别旋转 ±45° 组成叉号，中间那条线横向收缩消失，再次点击按相反顺序还原，总时长 0.4s。",
-      "demo": "demos/EP11-6.html"
+      "demo": "demos/EP11-6.html",
+      "kit": "hamburger-menu",
+      "code": "<div class=\"hm\">\n  <header><b>◆ Moon</b><button class=\"burger\" aria-label=\"菜单\"><i></i><i></i><i></i></button></header>\n  <nav><a>首页</a><a>产品</a><a>价格</a><a>联系我们</a></nav>\n</div>\n\n<style>\n.hm { width: 220px; height: 240px; border-radius: 22px; border: 6px solid #18181B; background: #fff; overflow: hidden; }\n.hm header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid #F4F4F5; position: relative; z-index: 1; background: #fff; }\n.burger { width: 28px; height: 28px; border: 0; background: none; position: relative; cursor: pointer; }\n.burger i { position: absolute; left: 4px; right: 4px; height: 2px; border-radius: 2px; background: #18181B; transition: .3s; }\n.burger i:nth-child(1) { top: 8px; } .burger i:nth-child(2) { top: 13px; } .burger i:nth-child(3) { top: 18px; }\n.hm.open .burger i:nth-child(1) { top: 13px; transform: rotate(45deg); } .hm.open .burger i:nth-child(2) { opacity: 0; } .hm.open .burger i:nth-child(3) { top: 13px; transform: rotate(-45deg); }\n.hm nav { display: grid; padding: 6px 14px; transform: translateY(-110%); transition: transform .3s cubic-bezier(.32,.72,0,1); }\n.hm nav a { padding: 10px 0; font-size: 15px; font-weight: 600; border-bottom: 1px solid #F4F4F5; opacity: 0; transition: opacity .3s; }\n.hm.open nav { transform: none; } .hm.open nav a { opacity: 1; }\n.hm.open nav a:nth-child(2) { transition-delay: .05s; } .hm.open nav a:nth-child(3) { transition-delay: .1s; } .hm.open nav a:nth-child(4) { transition-delay: .15s; }\n</style>\n<script>\nconst hm = document.querySelector(\".hm\"); hm.querySelector(\".burger\").onclick = () => hm.classList.toggle(\"open\");\nsetTimeout(() => hm.classList.add(\"open\"), 600);\n</script>\n"
     },
     {
       "id": "EP03-1",
@@ -350,7 +386,9 @@
       "say": "大小方块拼成整齐格子",
       "example": "比如苹果官网",
       "prompt": "把功能介绍区做成 Bento Grid：4 列 2 行网格，第一张大卡跨 2 列 2 行，其余卡片 1×1 或 2×1，间距 8px、圆角 16px，每张卡用不同的浅色背景加一个实色图标。",
-      "demo": "demos/EP03-1.html"
+      "demo": "demos/EP03-1.html",
+      "kit": "bento-grid",
+      "code": "<div class=\"bento\">\n  <div class=\"big\">AI 写作<small>一句话生成整篇文章</small></div>\n  <div>多人协作</div><div>版本历史</div>\n  <div class=\"wide\">50+ 模板</div>\n</div>\n\n<style>\n.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 72px; gap: 10px; width: min(420px, 92vw); }\n.bento > div { border-radius: 18px; background: #fff; border: 1px solid #E4E4E7; padding: 12px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; justify-content: flex-end; }\n.bento .big { grid-column: span 2; grid-row: span 2; background: #18181B; color: #fff; font-size: 18px; }\n.bento .big small { font-size: 12px; font-weight: 400; opacity: .7; margin-top: 4px; }\n.bento .wide { grid-column: span 2; background: #FFF3E3; }\n.bento > div:nth-child(2) { background: #F0F6FF; } .bento > div:nth-child(3) { background: #F0FAF2; }\n</style>\n"
     },
     {
       "id": "EP03-2",
@@ -360,7 +398,9 @@
       "say": "高低不一的卡片往上挤满",
       "example": "比如小红书首页",
       "prompt": "把图片列表做成 Masonry 瀑布流：3 列等宽，卡片高度随图片比例变化，每列自动向上紧凑排列不留空隙，移动端改为 2 列。",
-      "demo": "demos/EP03-2.html"
+      "demo": "demos/EP03-2.html",
+      "kit": "masonry",
+      "code": "<div class=\"masonry\">\n  <div style=\"height:90px;background:#FFE7BA\"></div><div style=\"height:140px;background:#DCEBFF\"></div><div style=\"height:70px;background:#DDF5E3\"></div>\n  <div style=\"height:120px;background:#F1E2F9\"></div><div style=\"height:80px;background:#FFE1DF\"></div><div style=\"height:110px;background:#DCF2F6\"></div>\n  <div style=\"height:60px;background:#FFF5CC\"></div><div style=\"height:100px;background:#E4E4F9\"></div>\n</div>\n\n<style>\n.masonry { columns: 3; column-gap: 10px; width: min(320px, 90vw); }\n.masonry div { break-inside: avoid; margin-bottom: 10px; border-radius: 12px; animation: in .5s backwards; }\n.masonry div:nth-child(2n) { animation-delay: .1s; } .masonry div:nth-child(3n) { animation-delay: .2s; }\n@keyframes in { from { opacity: 0; transform: translateY(12px); } }\n</style>\n"
     },
     {
       "id": "EP03-3",
@@ -370,7 +410,9 @@
       "say": "左边大图右边文字，一屏两半",
       "example": "",
       "prompt": "登录页用 Split Screen：左右各占 50%，左侧是全高的品牌插画或渐变大图，右侧垂直居中放标题、两个输入框和主按钮；窄屏时上下堆叠。",
-      "demo": "demos/EP03-3.html"
+      "demo": "demos/EP03-3.html",
+      "kit": "split-screen",
+      "code": "<div class=\"split\">\n  <div class=\"brand\"><b>欢迎回来</b><span>继续你的创作</span></div>\n  <form class=\"form\"><b>登录</b><input placeholder=\"手机号\"><input placeholder=\"密码\" type=\"password\"><button type=\"button\">登录</button></form>\n</div>\n\n<style>\n.split { display: flex; flex-wrap: wrap; width: min(440px, 94vw); border-radius: 16px; overflow: hidden; border: 1px solid #E4E4E7; background: #fff; }\n.split > * { flex: 1 1 160px; padding: 20px; }\n.brand { background: linear-gradient(135deg, #FA8C16, #FF2D55); color: #fff; display: grid; align-content: center; gap: 4px; min-height: 160px; }\n.brand b { font-size: 20px; } .brand span { font-size: 12px; opacity: .85; }\n.form { display: grid; gap: 8px; align-content: center; }\n.form input { border: 1px solid #E4E4E7; border-radius: 8px; padding: 8px; font-size: 12px; }\n.form button { border: 0; border-radius: 8px; background: #18181B; color: #fff; padding: 9px; font-size: 13px; }\n</style>\n"
     },
     {
       "id": "EP03-4",
@@ -380,7 +422,9 @@
       "say": "上头下脚中间三栏",
       "example": "比如后台管理系统",
       "prompt": "后台页面用 Holy Grail 布局：顶部固定 Header、底部 Footer，中间三栏——左侧导航 220px、右侧信息栏 280px、中间主内容自适应，用 CSS Grid 实现。",
-      "demo": "demos/EP03-4.html"
+      "demo": "demos/EP03-4.html",
+      "kit": "holy-grail",
+      "code": "<div class=\"grail\">\n  <header>页头 Header</header><nav>导航</nav><main>主内容 Main</main><aside>侧栏</aside><footer>页脚 Footer</footer>\n</div>\n\n<style>\n.grail { display: grid; width: min(380px, 92vw); height: 220px; gap: 6px; font-size: 12px;\n  grid-template: \"header header header\" 36px \"nav main aside\" 1fr \"footer footer footer\" 30px / 70px 1fr 70px; }\n.grail > * { border-radius: 8px; display: grid; place-items: center; color: #3F3F46; }\n.grail header { grid-area: header; background: #18181B; color: #fff; } .grail footer { grid-area: footer; background: #E4E4E7; }\n.grail nav { grid-area: nav; background: #FFE7BA; } .grail main { grid-area: main; background: #fff; border: 1px dashed #FA8C16; } .grail aside { grid-area: aside; background: #DCEBFF; }\n@media (max-width: 340px) { .grail { grid-template: \"header\" 30px \"nav\" 24px \"main\" 1fr \"aside\" 24px \"footer\" 24px / 1fr; } }\n</style>\n"
     },
     {
       "id": "EP03-5",
@@ -390,7 +434,9 @@
       "say": "故意不对齐，大块小块错着放",
       "example": "",
       "prompt": "Hero 区用 Asymmetrical Grid：左侧一个占 60% 宽的大色块，两张白色悬浮卡片错位压在色块右上角和下边缘，略微旋转 2–3°，带柔和阴影，制造视觉张力。",
-      "demo": "demos/EP03-5.html"
+      "demo": "demos/EP03-5.html",
+      "kit": "asymmetrical-grid",
+      "code": "<div class=\"asym\">\n  <div class=\"a\"><b>江月<br>夏季刊</b></div><div class=\"b\"></div><div class=\"c\"></div>\n</div>\n\n<style>\n.asym { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, 60px); gap: 10px; width: min(320px, 90vw); }\n.asym .a { grid-column: 1 / 5; grid-row: 1 / 4; border-radius: 4px; background: linear-gradient(160deg, #2B3A67, #121A33); color: #FFD58A; display: flex; align-items: flex-end; padding: 12px; font-size: 20px; line-height: 1.1; }\n.asym .b { grid-column: 5 / 7; grid-row: 1 / 3; border-radius: 4px; background: #FA8C16; margin-top: 20px; }\n.asym .c { grid-column: 5 / 7; grid-row: 3; border-radius: 4px; background: #FFE7BA; margin-right: -16px; }\n</style>\n"
     },
     {
       "id": "EP03-6",
@@ -400,7 +446,9 @@
       "say": "视线按 Z 字走，从左上看到右下",
       "example": "",
       "prompt": "首屏按 Z-Pattern 排布：左上 Logo、右上主按钮、左下大图、右下 CTA 按钮，让视线沿 Z 字走，最后落在高对比色的 CTA 上。",
-      "demo": "demos/EP03-6.html"
+      "demo": "demos/EP03-6.html",
+      "kit": "z-pattern",
+      "code": "<div class=\"z\">\n  <div class=\"row\"><div class=\"pic a\"></div><div class=\"txt\"><b>一键生成</b><span>输入一句话，得到完整页面</span></div></div>\n  <div class=\"row rev\"><div class=\"pic b\"></div><div class=\"txt\"><b>实时预览</b><span>改一处，马上看到效果</span></div></div>\n  <svg class=\"path\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"none\"><path d=\"M10 15 H90 L10 85 H90\" fill=\"none\" stroke=\"#FA8C16\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/></svg>\n</div>\n\n<style>\n.z { position: relative; display: grid; gap: 16px; width: min(380px, 92vw); }\n.row { display: flex; gap: 14px; align-items: center; } .rev { flex-direction: row-reverse; text-align: right; }\n.pic { width: 110px; aspect-ratio: 4 / 3; border-radius: 14px; flex-shrink: 0; } .a { background: #FFE7BA; } .b { background: #DCEBFF; }\n.txt { display: grid; gap: 2px; } .txt b { font-size: 15px; } .txt span { font-size: 12px; color: #71717A; }\n.path { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }\n</style>\n"
     },
     {
       "id": "EP04-1",
@@ -410,7 +458,9 @@
       "say": "侧边滑出一整条面板",
       "example": "比如 App 的侧边菜单",
       "prompt": "点击右上角菜单按钮时打开 Drawer：背景加 40% 黑色遮罩，右侧滑出一个占满全高、宽 320px 的白色面板，0.3s ease-out；点遮罩或按 Esc 关闭。",
-      "demo": "demos/EP04-1.html"
+      "demo": "demos/EP04-1.html",
+      "kit": "drawer",
+      "code": "<button class=\"open-drawer\">打开购物车</button>\n\n<div class=\"drawer-layer\">\n  <div class=\"drawer-mask\"></div>\n  <aside class=\"drawer\" aria-label=\"购物车\">\n    <header><h3>购物车 · 2 件</h3><button class=\"close\" aria-label=\"关闭\">✕</button></header>\n    <ul>\n      <li><span class=\"thumb\"></span><div><b>无线降噪耳机</b><small>¥899</small></div></li>\n      <li><span class=\"thumb\"></span><div><b>磁吸充电座</b><small>¥129</small></div></li>\n    </ul>\n    <footer><button class=\"checkout\">去结算 ¥1028</button></footer>\n  </aside>\n</div>\n\n<style>\n.open-drawer { border: 0; background: #18181B; color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; }\n.drawer-layer { position: fixed; inset: 0; pointer-events: none; }\n.drawer-mask { position: absolute; inset: 0; background: rgba(0, 0, 0, .3); opacity: 0; transition: opacity .3s; }\n.drawer { position: absolute; top: 0; right: 0; bottom: 0; width: min(360px, 85%); background: #fff; display: flex; flex-direction: column;\n  box-shadow: -12px 0 40px rgba(0, 0, 0, .12); transform: translateX(100%); transition: transform .3s cubic-bezier(.32, .72, 0, 1); }\n.drawer-layer.open { pointer-events: auto; }\n.drawer-layer.open .drawer-mask { opacity: 1; }\n.drawer-layer.open .drawer { transform: none; }\n.drawer header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid #F4F4F5; }\n.drawer h3 { margin: 0; font-size: 17px; }\n.drawer .close { border: 0; background: #F4F4F5; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }\n.drawer ul { flex: 1; overflow-y: auto; margin: 0; padding: 12px 20px; list-style: none; display: grid; gap: 12px; align-content: start; }\n.drawer li { display: flex; gap: 12px; align-items: center; }\n.drawer .thumb { width: 52px; height: 52px; border-radius: 10px; background: #F4F4F5; flex-shrink: 0; }\n.drawer li b { display: block; font-size: 14px; } .drawer li small { color: #71717A; }\n.drawer footer { padding: 16px 20px; border-top: 1px solid #F4F4F5; }\n.checkout { width: 100%; height: 46px; border: 0; border-radius: 12px; background: #FA8C16; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }\n</style>\n\n<script>\nconst layer = document.querySelector(\".drawer-layer\");\ndocument.querySelector(\".open-drawer\").addEventListener(\"click\", () => layer.classList.add(\"open\"));\nlayer.querySelector(\".drawer-mask\").addEventListener(\"click\", () => layer.classList.remove(\"open\"));\nlayer.querySelector(\".close\").addEventListener(\"click\", () => layer.classList.remove(\"open\"));\n</script>\n"
     },
     {
       "id": "EP04-2",
@@ -420,7 +470,9 @@
       "say": "从底部拉上来半屏",
       "example": "比如微信的分享面板",
       "prompt": "移动端分享按钮打开 Bottom Sheet：从屏幕底部滑出半屏高的圆角面板（顶部圆角 20px），顶部有一个 40×5 的灰色把手，可下拉关闭，背景轻微变暗。",
-      "demo": "demos/EP04-2.html"
+      "demo": "demos/EP04-2.html",
+      "kit": "bottom-sheet",
+      "code": "<div class=\"phone\">\n  <button class=\"open\">分享</button>\n  <div class=\"mask\"></div>\n  <div class=\"sheet\"><i class=\"grab\"></i><b>分享到</b><div class=\"apps\"><span>💬<small>微信</small></span><span>🌐<small>朋友圈</small></span><span>🔗<small>复制链接</small></span><span>⋯<small>更多</small></span></div></div>\n</div>\n\n<style>\n.phone { position: relative; width: 210px; height: 270px; border-radius: 24px; border: 6px solid #18181B; background: #F4F4F5; overflow: hidden; display: grid; place-items: center; }\n.open { border: 0; background: #18181B; color: #fff; padding: 8px 20px; border-radius: 99px; cursor: pointer; }\n.mask { position: absolute; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: .3s; }\n.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #fff; border-radius: 20px 20px 0 0; padding: 8px 14px 18px; display: grid; gap: 10px;\n  transform: translateY(100%); transition: transform .3s cubic-bezier(.32,.72,0,1); }\n.grab { width: 36px; height: 4px; border-radius: 2px; background: #D4D4D8; justify-self: center; }\n.sheet b { font-size: 14px; } .apps { display: flex; justify-content: space-between; }\n.apps span { display: grid; justify-items: center; gap: 4px; font-size: 22px; } .apps small { font-size: 10px; color: #71717A; }\n.phone.on .mask { opacity: 1; pointer-events: auto; } .phone.on .sheet { transform: none; }\n</style>\n<script>\nconst ph = document.querySelector(\".phone\");\nph.querySelector(\".open\").onclick = () => ph.classList.add(\"on\");\nph.querySelector(\".mask\").onclick = () => ph.classList.remove(\"on\");\nsetTimeout(() => ph.classList.add(\"on\"), 500);\n</script>\n"
     },
     {
       "id": "EP04-3",
@@ -430,7 +482,9 @@
       "say": "点一下旁边冒出小菜单",
       "example": "",
       "prompt": "卡片右上角的“更多”按钮点击后显示 Popover：紧贴按钮下方弹出带小三角箭头的菜单，包含编辑、复制、删除（删除为红色），从 0.9 倍缩放淡入，点击外部关闭。",
-      "demo": "demos/EP04-3.html"
+      "demo": "demos/EP04-3.html",
+      "kit": "popover",
+      "code": "<div class=\"po\">\n  <button class=\"me\">江</button>\n  <div class=\"card\" hidden><b>江月</b><small>jiangyue@example.com</small><hr><a>个人主页</a><a>设置</a><a class=\"out\">退出登录</a></div>\n</div>\n\n<style>\n.po { position: relative; height: 230px; padding-top: 10px; }\n.me { width: 40px; height: 40px; border-radius: 50%; border: 0; background: #FFE7BA; font-weight: 700; cursor: pointer; }\n.card { position: absolute; top: 58px; left: 0; width: 200px; background: #fff; border-radius: 14px; padding: 12px; display: grid; gap: 2px;\n  box-shadow: 0 12px 32px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04); transform-origin: 20px top; animation: pop .18s ease-out; }\n.card[hidden] { display: none; }\n.card small { font-size: 12px; color: #A1A1AA; } .card hr { border: 0; border-top: 1px solid #F4F4F5; margin: 8px 0; width: 100%; }\n.card a { font-size: 13px; padding: 7px 8px; border-radius: 8px; cursor: pointer; } .card a:hover { background: #F4F4F5; } .out { color: #FF3B30; }\n@keyframes pop { from { opacity: 0; transform: scale(.92); } }\n</style>\n<script>\nconst me = document.querySelector(\".me\"), card = document.querySelector(\".po .card\");\nme.onclick = e => { e.stopPropagation(); card.hidden = !card.hidden; };\ndocument.addEventListener(\"click\", e => { if (!card.contains(e.target)) card.hidden = true; });\nsetTimeout(() => card.hidden = false, 400); // 预览时自动打开一次\n</script>\n"
     },
     {
       "id": "EP04-4",
@@ -440,7 +494,9 @@
       "say": "一键唤出搜索指令框",
       "example": "比如 Mac 聚焦搜索",
       "prompt": "加一个 Command Palette：按 Cmd/Ctrl+K 或点顶部搜索框时，在页面正上方居中弹出带搜索框和指令列表的浮层，支持键盘上下选择，当前项高亮，背景轻微变暗。",
-      "demo": "demos/EP04-4.html"
+      "demo": "demos/EP04-4.html",
+      "kit": "command-palette",
+      "code": "<div class=\"cmd\">\n  <input placeholder=\"搜索或输入命令…\" autofocus>\n  <ul></ul>\n  <footer><kbd>↑↓</kbd> 选择 <kbd>↵</kbd> 执行 <kbd>esc</kbd> 关闭</footer>\n</div>\n\n<style>\n.cmd { width: min(340px, 92vw); background: #fff; border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.05); overflow: hidden; }\n.cmd input { width: 100%; border: 0; border-bottom: 1px solid #F4F4F5; padding: 16px; font-size: 15px; outline: none; box-sizing: border-box; }\n.cmd ul { list-style: none; margin: 0; padding: 6px; max-height: 170px; overflow-y: auto; }\n.cmd li { display: flex; justify-content: space-between; padding: 8px 10px; border-radius: 8px; font-size: 13px; cursor: pointer; }\n.cmd li.on { background: #FFF3E3; color: #D46B08; } .cmd li kbd, .cmd footer kbd { font: 11px ui-monospace, monospace; color: #A1A1AA; }\n.cmd footer { padding: 8px 14px; border-top: 1px solid #F4F4F5; font-size: 11px; color: #A1A1AA; }\n.cmd footer kbd { border: 1px solid #E4E4E7; border-radius: 4px; padding: 0 4px; }\n</style>\n<script>\nconst all = [[\"新建文档\", \"⌘N\"], [\"打开设置\", \"⌘,\"], [\"切换深色模式\", \"⌘D\"], [\"邀请成员\", \"\"], [\"导出 PDF\", \"⌘E\"], [\"查看快捷键\", \"?\"]];\nconst input = document.querySelector(\".cmd input\"), ul = document.querySelector(\".cmd ul\"); let sel = 0, shown = all;\nfunction render() {\n  shown = all.filter(([t]) => t.includes(input.value.trim()));\n  sel = Math.min(sel, Math.max(shown.length - 1, 0));\n  ul.innerHTML = shown.map(([t, k], i) => `<li class=\"${i === sel ? \"on\" : \"\"}\">${t}<kbd>${k}</kbd></li>`).join(\"\") || '<li>没有匹配的命令</li>';\n}\ninput.oninput = () => { sel = 0; render(); };\ninput.onkeydown = e => { if (e.key === \"ArrowDown\") sel = (sel + 1) % shown.length; if (e.key === \"ArrowUp\") sel = (sel - 1 + shown.length) % shown.length; render(); };\nrender();\n</script>\n"
     },
     {
       "id": "EP04-5",
@@ -450,7 +506,9 @@
       "say": "冒出来一下自己就消失",
       "example": "",
       "prompt": "保存成功后显示 Toast：右上角滑入一个深色胶囊通知，左侧绿色对勾图标，停留 2.5 秒后自动滑出，多个 Toast 依次向下堆叠。",
-      "demo": "demos/EP04-5.html"
+      "demo": "demos/EP04-5.html",
+      "kit": "toast",
+      "code": "<button class=\"save\">保存</button>\n<div class=\"toast-zone\" aria-live=\"polite\"></div>\n\n<style>\n.save { border: 1px solid #E4E4E7; background: #fff; padding: 10px 24px; border-radius: 10px; font-size: 15px; cursor: pointer; }\n.toast-zone { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; align-items: center; }\n.toast { display: flex; gap: 8px; align-items: center; background: #18181B; color: #fff; padding: 10px 18px; white-space: nowrap;\n  border-radius: 999px; font-size: 14px; animation: toast-in .25s ease-out, toast-out .25s ease-in 2.5s forwards; }\n.toast i { width: 18px; height: 18px; border-radius: 50%; background: #34C759; display: grid; place-items: center; font-style: normal; font-size: 11px; }\n@keyframes toast-in { from { opacity: 0; transform: translateY(16px); } }\n@keyframes toast-out { to { opacity: 0; transform: translateY(8px); } }\n</style>\n\n<script>\nfunction showToast(message) {\n  const t = document.createElement(\"div\");\n  t.className = \"toast\";\n  t.innerHTML = \"<i>✓</i>\";\n  t.append(message);\n  document.querySelector(\".toast-zone\").appendChild(t);\n  setTimeout(() => t.remove(), 2800);\n}\ndocument.querySelector(\".save\").addEventListener(\"click\", () => showToast(\"已保存\"));\n</script>\n"
     },
     {
       "id": "EP04-6",
@@ -460,7 +518,9 @@
       "say": "背景变暗，中间弹出确认框",
       "example": "",
       "prompt": "删除操作前弹出 Backdrop Modal：背景模糊 4px 并变暗，正中央的对话框从 0.9 倍放大淡入，包含警告图标、说明文字、“取消”和红色“确认删除”两个按钮。",
-      "demo": "demos/EP04-6.html"
+      "demo": "demos/EP04-6.html",
+      "kit": "backdrop-modal",
+      "code": "<button class=\"open-modal\">删除项目</button>\n\n<div class=\"backdrop\" hidden>\n  <div class=\"modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\">\n    <h3 id=\"modal-title\">确定删除这个项目？</h3>\n    <p>删除后 30 天内可以在回收站里恢复。</p>\n    <div class=\"modal-actions\">\n      <button class=\"cancel\">取消</button>\n      <button class=\"danger\">删除</button>\n    </div>\n  </div>\n</div>\n\n<style>\n.open-modal { border: 0; background: #FF3B30; color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; }\n.backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, .4);\n  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: fade .2s ease-out; }\n.backdrop[hidden] { display: none; }\n.modal { width: min(360px, 100%); background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 24px 60px rgba(0, 0, 0, .2);\n  animation: pop-in .25s cubic-bezier(.34, 1.56, .64, 1); }\n.modal h3 { margin: 0 0 6px; font-size: 18px; }\n.modal p { margin: 0; color: #71717A; font-size: 14px; line-height: 1.6; }\n.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }\n.modal-actions button { border: 1px solid #E4E4E7; background: #fff; padding: 9px 18px; border-radius: 10px; font-size: 14px; cursor: pointer; }\n.modal-actions .danger { background: #FF3B30; border-color: #FF3B30; color: #fff; }\n@keyframes fade { from { opacity: 0; } }\n@keyframes pop-in { from { opacity: 0; transform: scale(.95); } }\n</style>\n\n<script>\nconst backdrop = document.querySelector(\".backdrop\");\nconst openModal = () => { backdrop.hidden = false; backdrop.querySelector(\".cancel\").focus(); };\nconst closeModal = () => { backdrop.hidden = true; };\ndocument.querySelector(\".open-modal\").addEventListener(\"click\", openModal);\nbackdrop.addEventListener(\"click\", e => { if (e.target === backdrop) closeModal(); });\nbackdrop.querySelectorAll(\"button\").forEach(b => b.addEventListener(\"click\", closeModal));\ndocument.addEventListener(\"keydown\", e => { if (e.key === \"Escape\") closeModal(); });\n</script>\n"
     },
     {
       "id": "EP05-1",
@@ -470,7 +530,9 @@
       "say": "先用灰块占位再换内容",
       "example": "比如淘宝刚打开时",
       "prompt": "文章卡片加载时显示 Skeleton Screen：用浅灰圆角块画出头像、标题、图片和两行正文的轮廓，数据返回后 150ms 内淡入替换为真实内容，布局不跳动。",
-      "demo": "demos/EP05-1.html"
+      "demo": "demos/EP05-1.html",
+      "kit": "skeleton-screen",
+      "code": "<div class=\"sk-list\">\n  <div class=\"sk-card\"><div class=\"sk avatar\"></div><div class=\"lines\"><div class=\"sk l1\"></div><div class=\"sk l2\"></div></div></div>\n  <div class=\"sk-card\"><div class=\"sk avatar\"></div><div class=\"lines\"><div class=\"sk l1\"></div><div class=\"sk l2\"></div></div></div>\n  <div class=\"sk-card\"><div class=\"sk avatar\"></div><div class=\"lines\"><div class=\"sk l1\"></div><div class=\"sk l2\"></div></div></div>\n</div>\n\n<style>\n.sk-list { display: grid; gap: 12px; width: min(340px, 90vw); }\n.sk-card { display: flex; gap: 14px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }\n.lines { flex: 1; display: grid; gap: 10px; align-content: center; }\n.sk { background: linear-gradient(90deg, #F4F4F5 25%, #FAFAFA 50%, #F4F4F5 75%); background-size: 200% 100%;\n  animation: shimmer 1.4s linear infinite; border-radius: 6px; }\n.avatar { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; }\n.l1 { height: 12px; width: 70%; } .l2 { height: 12px; width: 45%; }\n@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }\n</style>\n"
     },
     {
       "id": "EP05-2",
@@ -480,7 +542,9 @@
       "say": "灰色占位上一道光扫过",
       "example": "比如 App 列表加载时",
       "prompt": "给骨架屏加 Shimmer Effect：一道斜向 105° 的白色半透明渐变光带从左到右匀速扫过所有灰色占位块，每 1.5s 循环一次。",
-      "demo": "demos/EP05-2.html"
+      "demo": "demos/EP05-2.html",
+      "kit": "shimmer-effect",
+      "code": "<button class=\"vip\">开通年度会员</button>\n\n<style>\n.vip { position: relative; overflow: hidden; border: 0; border-radius: 14px; padding: 16px 32px; font-size: 16px; font-weight: 700; color: #5A3A00; cursor: pointer;\n  background: linear-gradient(135deg, #FFE1A6, #F7B24A); box-shadow: 0 10px 24px rgba(247,178,74,.4); }\n.vip::after { content: \"\"; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; transform: skewX(-30deg);\n  background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent); animation: shine 2.5s ease-in-out infinite; }\n@keyframes shine { 0% { left: -60%; } 35%, 100% { left: 130%; } }\n</style>\n"
     },
     {
       "id": "EP05-3",
@@ -490,7 +554,9 @@
       "say": "图片先糊后清楚，慢慢变锐利",
       "example": "",
       "prompt": "图片用 Progressive Blur 加载：先显示 20px 宽的缩略图并 blur(20px) 放大铺满，原图加载完成后 0.4s 内从模糊过渡到清晰。",
-      "demo": "demos/EP05-3.html"
+      "demo": "demos/EP05-3.html",
+      "kit": "progressive-blur",
+      "code": "<div class=\"pb\"><div class=\"photo\"></div><small>加载中…</small></div>\n\n<style>\n.pb { position: relative; width: 260px; height: 180px; border-radius: 16px; overflow: hidden; }\n.photo { position: absolute; inset: 0; transform: scale(1.05); filter: blur(20px); transition: filter .6s ease, transform .6s ease;\n  background: radial-gradient(circle at 75% 25%, #FFF3D6 0 10%, transparent 11%), linear-gradient(transparent 60%, #2B3A67 61%), linear-gradient(#7AB3FF, #FFD9B0); }\n.pb.loaded .photo { filter: blur(0); transform: none; }\n.pb small { position: absolute; left: 12px; bottom: 10px; color: #fff; font-size: 12px; transition: opacity .3s; }\n.pb.loaded small { opacity: 0; }\n</style>\n<script>\n// 真实项目里，在高清图片的 onload 里加上 loaded；这里用定时器模拟\nconst pb = document.querySelector(\".pb\"); setInterval(() => pb.classList.toggle(\"loaded\"), 1800);\n</script>\n"
     },
     {
       "id": "EP05-4",
@@ -500,7 +566,9 @@
       "say": "一点就显示成功",
       "example": "比如朋友圈点赞",
       "prompt": "点赞和新增评论使用 Optimistic UI：点击后立即在界面上显示成功状态和新条目，不显示转圈；请求失败时回滚并用 Toast 提示。",
-      "demo": "demos/EP05-4.html"
+      "demo": "demos/EP05-4.html",
+      "kit": "optimistic-ui",
+      "code": "<div class=\"ou\">\n  <figure><button class=\"like slow\">♡ <span>128</span></button><figcaption>等服务器（1 秒后才变）</figcaption></figure>\n  <figure><button class=\"like fast\">♡ <span>128</span></button><figcaption>Optimistic UI（立刻变）</figcaption></figure>\n</div>\n\n<style>\n.ou { display: flex; gap: 16px; } .ou figure { margin: 0; display: grid; gap: 8px; justify-items: center; }\n.ou figcaption { font-size: 11px; color: #71717A; }\n.like { border: 1px solid #E4E4E7; background: #fff; border-radius: 99px; padding: 8px 16px; font-size: 15px; cursor: pointer; }\n.like.on { color: #FF2D55; border-color: #FFDFE6; background: #FFF1F4; }\n.like.pop { animation: pop .35s cubic-bezier(.34,1.8,.64,1); }\n.like.wait { opacity: .5; }\n@keyframes pop { 40% { transform: scale(1.15); } }\n</style>\n<script>\nconst fakeRequest = () => new Promise(r => setTimeout(r, 1000));\nfunction toggle(b) { const on = b.classList.toggle(\"on\"); const s = b.querySelector(\"span\"); s.textContent = +s.textContent + (on ? 1 : -1); b.firstChild.textContent = on ? \"♥ \" : \"♡ \"; }\ndocument.querySelector(\".slow\").onclick = async e => { const b = e.currentTarget; b.classList.add(\"wait\"); await fakeRequest(); b.classList.remove(\"wait\"); toggle(b); };\ndocument.querySelector(\".fast\").onclick = e => { const b = e.currentTarget; toggle(b); b.classList.remove(\"pop\"); b.offsetWidth; b.classList.add(\"pop\"); fakeRequest(); };\n</script>\n"
     },
     {
       "id": "EP05-5",
@@ -510,7 +578,9 @@
       "say": "1-2-3 步骤一格格点亮",
       "example": "",
       "prompt": "注册流程顶部放一个 Stepper Progress：3 个圆形节点（1、2、3）用水平线连接，完成的节点和连线变为主色，当前步骤高亮，下方内容随步骤横向滑动切换。",
-      "demo": "demos/EP05-5.html"
+      "demo": "demos/EP05-5.html",
+      "kit": "stepper-progress",
+      "code": "<div class=\"stepper-demo\">\n  <ol class=\"stepper\">\n    <li class=\"done\"><i>1</i><span>购物车</span></li>\n    <li class=\"current\"><i>2</i><span>地址</span></li>\n    <li><i>3</i><span>支付</span></li>\n    <li><i>4</i><span>完成</span></li>\n  </ol>\n  <div class=\"stepper-actions\"><button class=\"prev\">上一步</button><button class=\"next\">下一步</button></div>\n</div>\n\n<style>\n.stepper-demo { width: min(440px, 92vw); display: grid; gap: 28px; }\n.stepper { display: flex; margin: 0; padding: 0; list-style: none; }\n.stepper li { flex: 1; position: relative; display: grid; justify-items: center; gap: 8px; font-size: 13px; color: #A1A1AA; }\n.stepper li + li::before { content: \"\"; position: absolute; top: 13px; right: 50%; width: 100%; height: 2px; z-index: 0;\n  background: linear-gradient(#FA8C16, #FA8C16) left / 0 100% no-repeat, #E4E4E7; transition: background-size .4s ease-in-out; }\n.stepper li.done + li::before { background-size: 100% 100%; }\n.stepper i { position: relative; z-index: 1; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;\n  font-style: normal; font-weight: 600; background: #fff; border: 2px solid #E4E4E7; color: #A1A1AA; transition: .3s; }\n.stepper li.current { color: #18181B; font-weight: 600; }\n.stepper li.current i { border-color: #FA8C16; color: #FA8C16; box-shadow: 0 0 0 5px #FFE7BA; }\n.stepper li.done { color: #3F3F46; }\n.stepper li.done i { background: #FA8C16; border-color: #FA8C16; color: transparent; }\n.stepper li.done i::after { content: \"✓\"; position: absolute; color: #fff; font-size: 14px; }\n.stepper-actions { display: flex; justify-content: center; gap: 10px; }\n.stepper-actions button { border: 1px solid #E4E4E7; background: #fff; padding: 9px 20px; border-radius: 10px; font-size: 14px; cursor: pointer; }\n.stepper-actions .next { background: #18181B; border-color: #18181B; color: #fff; }\n</style>\n\n<script>\nconst steps = [...document.querySelectorAll(\".stepper li\")];\nlet current = 1;\nfunction render() {\n  steps.forEach((li, i) => {\n    li.classList.toggle(\"done\", i < current);\n    li.classList.toggle(\"current\", i === current);\n  });\n}\ndocument.querySelector(\".next\").addEventListener(\"click\", () => { current = Math.min(current + 1, steps.length - 1); render(); });\ndocument.querySelector(\".prev\").addEventListener(\"click\", () => { current = Math.max(current - 1, 0); render(); });\nrender();\n</script>\n"
     },
     {
       "id": "EP05-6",
@@ -520,7 +590,9 @@
       "say": "往下拉一下松手就刷新",
       "example": "",
       "prompt": "移动端列表支持 Pull to Refresh：下拉超过 60px 时顶部出现旋转的加载圆环，松手后刷新数据，完成后列表回弹，新内容短暂高亮。",
-      "demo": "demos/EP05-6.html"
+      "demo": "demos/EP05-6.html",
+      "kit": "pull-to-refresh",
+      "code": "<div class=\"ptr\">\n  <div class=\"hint\"><i>↓</i><span>下拉刷新</span></div>\n  <ul class=\"list\"><li>第 3 条消息</li><li>第 2 条消息</li><li>第 1 条消息</li></ul>\n</div>\n\n<style>\n.ptr { position: relative; width: 220px; height: 240px; border-radius: 22px; border: 6px solid #18181B; background: #F4F4F5; overflow: hidden; touch-action: none; user-select: none; }\n.hint { position: absolute; top: 14px; left: 0; right: 0; display: flex; gap: 6px; justify-content: center; font-size: 12px; color: #71717A; }\n.hint i { font-style: normal; transition: transform .2s; } .ptr.ready .hint i { transform: rotate(180deg); }\n.ptr.loading .hint i { animation: spin .7s linear infinite; }\n.list { list-style: none; margin: 0; padding: 10px; display: grid; gap: 8px; background: #F4F4F5; position: relative; transition: transform .3s cubic-bezier(.34,1.3,.64,1); }\n.list li { padding: 12px; border-radius: 10px; background: #fff; font-size: 13px; }\n@keyframes spin { to { transform: rotate(360deg); } }\n</style>\n<script>\nconst ptr = document.querySelector(\".ptr\"), list = ptr.querySelector(\".list\"), text = ptr.querySelector(\".hint span\");\nlet startY = null, dist = 0, n = 3;\nfunction release() {\n  if (dist > 60) {\n    ptr.classList.add(\"loading\"); text.textContent = \"刷新中\"; list.style.transform = \"translateY(50px)\";\n    setTimeout(() => { list.insertAdjacentHTML(\"afterbegin\", `<li>第 ${++n} 条消息</li>`); ptr.classList.remove(\"loading\", \"ready\"); text.textContent = \"下拉刷新\"; list.style.transform = \"\"; }, 1000);\n  } else list.style.transform = \"\";\n  startY = null; dist = 0;\n}\nptr.addEventListener(\"pointerdown\", e => { startY = e.clientY; list.style.transition = \"none\"; });\nptr.addEventListener(\"pointermove\", e => {\n  if (startY === null) return;\n  dist = Math.max(0, (e.clientY - startY) * .5); list.style.transform = `translateY(${dist}px)`;\n  ptr.classList.toggle(\"ready\", dist > 60); text.textContent = dist > 60 ? \"松开刷新\" : \"下拉刷新\";\n});\n[\"pointerup\", \"pointerleave\"].forEach(ev => ptr.addEventListener(ev, () => { if (startY === null) return; list.style.transition = \"\"; release(); }));\n// 预览时自动演示一次\nsetTimeout(() => { dist = 80; ptr.classList.add(\"ready\"); list.style.transform = \"translateY(40px)\"; setTimeout(release, 500); }, 600);\n</script>\n"
     },
     {
       "id": "EP06-1",
@@ -530,7 +602,9 @@
       "say": "半透明磨砂玻璃",
       "example": "比如苹果的控制中心",
       "prompt": "卡片用 Glassmorphism：背景 rgba(255,255,255,0.25)，backdrop-filter: blur(16px) saturate(140%)，1px 半透明白色描边，放在彩色渐变光球背景之上。",
-      "demo": "demos/EP06-1.html"
+      "demo": "demos/EP06-1.html",
+      "kit": "glassmorphism",
+      "code": "<div class=\"glass-scene\">\n  <div class=\"blob a\"></div><div class=\"blob b\"></div>\n  <div class=\"glass\"><h3>欢迎回来</h3><p>用手机号登录</p></div>\n</div>\n\n<style>\n.glass-scene { position: fixed; inset: 0; display: grid; place-items: center; background: #1E1B4B; overflow: hidden; }\n.blob { position: absolute; width: 260px; height: 260px; border-radius: 50%; filter: blur(30px); }\n.blob.a { background: #FF2D55; top: 10%; left: 18%; }\n.blob.b { background: #FA8C16; bottom: 8%; right: 16%; }\n.glass { position: relative; width: min(300px, 86vw); padding: 28px; border-radius: 20px; color: #fff;\n  background: rgba(255, 255, 255, .18); border: 1px solid rgba(255, 255, 255, .35);\n  backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);\n  box-shadow: 0 20px 50px rgba(0, 0, 0, .25); }\n.glass h3 { margin: 0 0 4px; font-size: 22px; }\n.glass p { margin: 0; opacity: .8; }\n</style>\n"
     },
     {
       "id": "EP06-2",
@@ -540,7 +614,9 @@
       "say": "同色背景上的软浮雕",
       "example": "比如智能家居面板",
       "prompt": "控制面板用 Neumorphism：卡片与背景同为 #E6E9EF，左上 -8px 白色高光、右下 8px 灰色阴影形成凸起；按钮按下时改为内阴影，呈凹陷感。",
-      "demo": "demos/EP06-2.html"
+      "demo": "demos/EP06-2.html",
+      "kit": "neumorphism",
+      "code": "<div class=\"neu\">\n  <button class=\"nb\">♥</button>\n  <div class=\"nslider\"><i></i></div>\n</div>\n\n<style>\n.neu { padding: 32px; border-radius: 24px; background: #E0E5EC; display: flex; gap: 28px; align-items: center; }\n.nb { width: 72px; height: 72px; border: 0; border-radius: 22px; background: #E0E5EC; color: #A3B1C6; font-size: 24px; cursor: pointer;\n  box-shadow: -6px -6px 12px #fff, 6px 6px 12px #A3B1C6; transition: .2s; }\n.nb.on { color: #FF6B8A; box-shadow: inset -5px -5px 10px #fff, inset 5px 5px 10px #A3B1C6; }\n.nslider { width: 120px; height: 18px; border-radius: 99px; background: #E0E5EC; box-shadow: inset -3px -3px 6px #fff, inset 3px 3px 6px #A3B1C6; padding: 3px; }\n.nslider i { display: block; width: 60%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #8EC5FC, #A78BFA); }\n</style>\n<script>\ndocument.querySelector(\".nb\").onclick = e => e.currentTarget.classList.toggle(\"on\");\n</script>\n"
     },
     {
       "id": "EP06-3",
@@ -550,7 +626,9 @@
       "say": "粗黑边加硬阴影，又土又酷",
       "example": "",
       "prompt": "整体用 Neo-Brutalism 风格：3px 纯黑描边、6px 6px 0 纯黑无模糊偏移阴影，高饱和的黄、粉、薄荷绿色块；按钮点击时向右下位移 4px、阴影归零。",
-      "demo": "demos/EP06-3.html"
+      "demo": "demos/EP06-3.html",
+      "kit": "neo-brutalism",
+      "code": "<div class=\"brut\">\n  <span class=\"sticker\">NEW!</span>\n  <h3>做点不一样的</h3>\n  <p>不完美，但很有态度。</p>\n  <button>马上开始</button>\n</div>\n\n<style>\n.brut { position: relative; width: 240px; padding: 20px; background: #FFE66D; border: 3px solid #000; box-shadow: 6px 6px 0 #000; font-family: \"Arial Black\", sans-serif; }\n.brut h3 { margin: 0 0 4px; font-size: 22px; } .brut p { margin: 0 0 14px; font-family: sans-serif; font-size: 13px; }\n.brut button { background: #FF6B9A; border: 3px solid #000; box-shadow: 4px 4px 0 #000; padding: 8px 16px; font-weight: 900; cursor: pointer; transition: .1s; }\n.brut button:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }\n.sticker { position: absolute; top: -14px; right: -12px; background: #4ECDC4; border: 3px solid #000; padding: 2px 8px; transform: rotate(8deg); font-size: 12px; }\n</style>\n"
     },
     {
       "id": "EP06-4",
@@ -560,7 +638,9 @@
       "say": "彩色光团慢慢流动",
       "example": "比如很多 AI 官网",
       "prompt": "首屏背景做 Aurora Background：3 个大尺寸、高模糊（blur 60px）的蓝、紫、粉色光团缓慢漂移交融，循环 12s，上方放一张极简白色半透明卡片。",
-      "demo": "demos/EP06-4.html"
+      "demo": "demos/EP06-4.html",
+      "kit": "aurora-background",
+      "code": "<div class=\"aurora\">\n  <i class=\"a1\"></i><i class=\"a2\"></i><i class=\"a3\"></i>\n  <h2>Build with AI</h2>\n</div>\n\n<style>\n.aurora { position: relative; width: min(400px, 94vw); height: 230px; border-radius: 20px; overflow: hidden; background: #0B0B1A; display: grid; place-items: center; }\n.aurora i { position: absolute; width: 220px; height: 220px; border-radius: 50%; filter: blur(50px); opacity: .7; }\n.a1 { background: #00D4FF; top: -60px; left: -40px; animation: f1 8s ease-in-out infinite alternate; }\n.a2 { background: #8B5CF6; bottom: -80px; left: 30%; animation: f2 10s ease-in-out infinite alternate; }\n.a3 { background: #FF4D9A; top: -40px; right: -60px; animation: f3 9s ease-in-out infinite alternate; }\n.aurora h2 { position: relative; margin: 0; color: #fff; font-size: 30px; font-weight: 800; letter-spacing: -1px; }\n@keyframes f1 { to { transform: translate(120px, 60px); } } @keyframes f2 { to { transform: translate(-100px, -50px); } } @keyframes f3 { to { transform: translate(-90px, 70px); } }\n</style>\n"
     },
     {
       "id": "EP06-5",
@@ -570,7 +650,9 @@
       "say": "黑底卡片带一圈微光",
       "example": "",
       "prompt": "功能区用 Bento Dark Mode：#0B0B0F 底色，卡片 #16161C、1px #24242C 描边，顶部 1px 微弱高光，卡片内左上角有对应主题色的柔和径向内发光。",
-      "demo": "demos/EP06-5.html"
+      "demo": "demos/EP06-5.html",
+      "kit": "bento-dark-mode",
+      "code": "<div class=\"bdm\">\n  <div class=\"big\"><strong>10×</strong><small>生成速度提升</small></div>\n  <div>端侧运行</div><div>隐私保护</div><div class=\"wide\">支持 30+ 种语言</div>\n</div>\n\n<style>\n.bdm { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 70px; gap: 8px; width: min(380px, 92vw); padding: 12px; background: #0A0A0A; border-radius: 22px; box-sizing: border-box; }\n.bdm > div { border-radius: 16px; background: #141414; border: 1px solid rgba(255,255,255,.08); color: #A1A1AA; font-size: 12px; padding: 10px; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color .3s; }\n.bdm > div:hover { border-color: rgba(255,255,255,.25); }\n.bdm .big { grid-column: span 2; grid-row: span 2; background: radial-gradient(circle at 30% 20%, rgba(250,140,22,.25), transparent 60%), #141414; }\n.bdm strong { font-size: 40px; line-height: 1; background: linear-gradient(135deg, #FFD58A, #FA8C16); -webkit-background-clip: text; background-clip: text; color: transparent; }\n.bdm .wide { grid-column: span 2; }\n</style>\n"
     },
     {
       "id": "EP06-6",
@@ -580,7 +662,9 @@
       "say": "层级越高，阴影越大越虚",
       "example": "",
       "prompt": "建立 3 级 Layered Elevation：卡片 level 1 阴影 0 1px 3px、level 2 阴影 0 8px 18px、level 3 阴影 0 22px 40px，层级越高 Y 偏移和模糊越大，悬停时升一级。",
-      "demo": "demos/EP06-6.html"
+      "demo": "demos/EP06-6.html",
+      "kit": "layered-elevation",
+      "code": "<div class=\"elev-row\">\n  <div class=\"elev e1\"><b>Level 1</b><small>列表、输入框</small></div>\n  <div class=\"elev e2\"><b>Level 2</b><small>卡片</small></div>\n  <div class=\"elev e3\"><b>Level 3</b><small>弹窗、浮层</small></div>\n</div>\n\n<style>\nbody { background: #F4F4F5 !important; }\n.elev-row { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; padding: 24px; }\n.elev { width: 140px; padding: 20px 16px; border-radius: 16px; background: #fff; display: grid; gap: 4px;\n  transition: transform .3s ease-out, box-shadow .3s ease-out; cursor: default; }\n.elev b { font-size: 15px; } .elev small { color: #71717A; font-size: 12px; }\n.e1 { box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 1px 3px rgba(0, 0, 0, .04); }\n.e2 { box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 4px 12px rgba(0, 0, 0, .06), 0 16px 32px rgba(0, 0, 0, .06); }\n.e3 { box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 12px 24px rgba(0, 0, 0, .08), 0 32px 64px rgba(0, 0, 0, .12); }\n.elev:hover { transform: translateY(-4px);\n  box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 12px 24px rgba(0, 0, 0, .08), 0 32px 64px rgba(0, 0, 0, .14); }\n</style>\n"
     },
     {
       "id": "EP12-1",
@@ -590,7 +674,9 @@
       "say": "慢起步、中间快、轻轻停",
       "example": "比如抽屉滑出",
       "prompt": "把侧边抽屉的展开/收起动画改成 Ease-in-out：时长 0.35s，缓动 cubic-bezier(0.42, 0, 0.58, 1)，起步和停下都要慢、中段快，不要用 linear 匀速。",
-      "demo": "demos/EP12-1.html"
+      "demo": "demos/EP12-1.html",
+      "kit": "ease-in-out",
+      "code": "<div class=\"eio\"><i></i></div>\n\n<style>\n.eio { position: relative; width: min(300px, 88vw); height: 120px; border-radius: 16px; background: #fff; border: 1px solid #E4E4E7; overflow: hidden; }\n.eio::before { content: \"\"; position: absolute; left: 30px; right: 30px; top: 50%; border-top: 2px dashed #E4E4E7; }\n.eio i { position: absolute; left: 14px; top: 38px; width: 44px; height: 44px; border-radius: 12px; background: #FA8C16; box-shadow: 0 6px 16px rgba(250,140,22,.4);\n  animation: move 1.6s cubic-bezier(.65, 0, .35, 1) infinite alternate; }\n@keyframes move { to { transform: translateX(calc(min(300px, 88vw) - 72px)) rotate(180deg); } }\n</style>\n"
     },
     {
       "id": "EP12-2",
@@ -600,7 +686,9 @@
       "say": "冲过头再弹回来停稳",
       "example": "比如 iOS 弹窗",
       "prompt": "给确认弹窗加 Spring 弹簧入场：从 0.3 倍缩放弹到 1，过程中先冲过头到 1.14，再回弹到 0.92、1.04，最后停在 1，总时长约 0.6s（可用 stiffness 300、damping 20 的弹簧参数）。",
-      "demo": "demos/EP12-2.html"
+      "demo": "demos/EP12-2.html",
+      "kit": "spring",
+      "code": "<div class=\"sp\">\n  <figure><i class=\"a\"></i><figcaption>普通 ease</figcaption></figure>\n  <figure><i class=\"b\"></i><figcaption>Spring</figcaption></figure>\n</div>\n\n<style>\n.sp { display: flex; gap: 40px; cursor: pointer; } .sp figure { margin: 0; display: grid; gap: 12px; justify-items: center; }\n.sp figcaption { font-size: 12px; color: #71717A; }\n.sp i { width: 70px; height: 70px; border-radius: 20px; transform: scale(.4); }\n.a { background: #A1A1AA; transition: transform .45s ease; } .b { background: #FA8C16; transition: transform .45s cubic-bezier(.34, 1.56, .64, 1); }\n.sp.on i { transform: scale(1); }\n</style>\n<script>\nconst sp = document.querySelector(\".sp\"); sp.onclick = () => sp.classList.toggle(\"on\");\nsetInterval(() => sp.classList.toggle(\"on\"), 1400);\n</script>\n"
     },
     {
       "id": "EP12-3",
@@ -610,7 +698,9 @@
       "say": "一个接一个依次出现",
       "example": "比如列表逐行加载",
       "prompt": "列表加载完成后用 Stagger 交错入场：每一行从右侧 40px 处滑入并淡入，单行时长 0.3s、ease-out，相邻两行间隔 0.08s 依次出现，最多 8 行，超出的直接显示。",
-      "demo": "demos/EP12-3.html"
+      "demo": "demos/EP12-3.html",
+      "kit": "stagger",
+      "code": "<ul class=\"stg\">\n  <li style=\"--i:0\"></li><li style=\"--i:1\"></li><li style=\"--i:2\"></li><li style=\"--i:3\"></li><li style=\"--i:4\"></li>\n</ul>\n\n<style>\n.stg { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; width: min(260px, 88vw); }\n.stg li { height: 34px; border-radius: 10px; background: #fff; border: 1px solid #E4E4E7; position: relative;\n  animation: in .4s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i) * 80ms); }\n.stg li::before { content: \"\"; position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; background: #FFE7BA; }\n.stg li::after { content: \"\"; position: absolute; left: 34px; top: 14px; width: 50%; height: 6px; border-radius: 3px; background: #E4E4E7; }\n@keyframes in { from { opacity: 0; transform: translateY(12px); } }\n</style>\n<script>\n// 每 2.5 秒重播一次\nconst ul = document.querySelector(\".stg\"); setInterval(() => { ul.style.display = \"none\"; ul.offsetWidth; ul.style.display = \"\"; }, 2500);\n</script>\n"
     },
     {
       "id": "EP12-4",
@@ -620,7 +710,9 @@
       "say": "动之前先往反方向蓄力",
       "example": "比如发送键",
       "prompt": "给聊天发送按钮加 Anticipation 预备动作：点击后纸飞机图标先向左下后缩 6px、缩小到 0.8 并逆时针转 18°，持续 0.15s 蓄力，再用 ease-in 在 0.15s 内向右上方飞出并淡出，随后消息气泡从下方 14px 弹入。",
-      "demo": "demos/EP12-4.html"
+      "demo": "demos/EP12-4.html",
+      "kit": "anticipation",
+      "code": "<div class=\"ant\">\n  <figure><i class=\"no\"></i><figcaption>直接出发</figcaption></figure>\n  <figure><i class=\"yes\"></i><figcaption>先蓄力再出发</figcaption></figure>\n</div>\n\n<style>\n.ant { display: flex; gap: 20px; } .ant figure { margin: 0; width: 140px; display: grid; gap: 8px; }\n.ant figcaption { font-size: 12px; color: #71717A; text-align: center; }\n.ant i { width: 36px; height: 36px; border-radius: 10px; background: #A1A1AA; animation: 1.8s infinite; }\n.ant .no { animation-name: go; } .ant .yes { background: #FA8C16; animation-name: wind; }\n@keyframes go { 0%, 20% { transform: none; } 50%, 100% { transform: translateX(100px); } }\n@keyframes wind { 0%, 10% { transform: none; } 25% { transform: translateX(-14px) scaleX(.85); } 50%, 100% { transform: translateX(100px); } }\n</style>\n"
     },
     {
       "id": "EP12-5",
@@ -630,7 +722,9 @@
       "say": "落地压扁、弹起拉长，有重量感",
       "example": "",
       "prompt": "给加载中的小球做 Squash & Stretch 弹跳：下落时纵向拉长到 1.18、横向收窄到 0.86，触地瞬间压扁成横 1.3、纵 0.7，再弹起恢复圆形；transform-origin 设为底部中心，地面阴影随高度缩放，每次弹跳 0.8s。",
-      "demo": "demos/EP12-5.html"
+      "demo": "demos/EP12-5.html",
+      "kit": "squash-stretch",
+      "code": "<div class=\"ss-box\"><i class=\"ball\"></i><span class=\"shadow\"></span></div>\n\n<style>\n.ss-box { position: relative; width: 120px; height: 200px; }\n.ball { position: absolute; left: 36px; bottom: 16px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFD58A, #FA8C16 70%);\n  transform-origin: 50% 100%; animation: bounce .9s cubic-bezier(.45,0,.55,1) infinite; }\n.shadow { position: absolute; left: 30px; bottom: 8px; width: 60px; height: 10px; border-radius: 50%; background: rgba(0,0,0,.12); animation: sh .9s cubic-bezier(.45,0,.55,1) infinite; }\n@keyframes bounce {\n  0%, 100% { transform: translateY(0) scale(1.3, .7); }\n  10% { transform: translateY(-10px) scale(.85, 1.15); }\n  50% { transform: translateY(-130px) scale(1, 1); }\n  90% { transform: translateY(-10px) scale(.9, 1.1); }\n}\n@keyframes sh { 50% { transform: scale(.5); opacity: .4; } }\n</style>\n"
     },
     {
       "id": "EP12-6",
@@ -640,7 +734,9 @@
       "say": "沿曲线路径飞过去",
       "example": "比如加入购物车",
       "prompt": "做加入购物车的 Motion Path 动画：点击“+”后生成一个 18px 的商品色小圆点，用 offset-path 沿二次贝塞尔抛物线从按钮飞到右上角购物车图标，时长 0.6s、ease-in-out；到达后购物车放大到 1.18 再弹回，角标数字 +1。",
-      "demo": "demos/EP12-6.html"
+      "demo": "demos/EP12-6.html",
+      "kit": "motion-path",
+      "code": "<div class=\"mp\">\n  <svg viewBox=\"0 0 280 160\"><path d=\"M10 140 C 80 140, 80 20, 140 80 S 220 20, 270 20\" fill=\"none\" stroke=\"#E4E4E7\" stroke-width=\"2\" stroke-dasharray=\"6 6\"/></svg>\n  <i class=\"plane\">✈</i>\n</div>\n\n<style>\n.mp { position: relative; width: 280px; height: 160px; }\n.mp svg { position: absolute; inset: 0; width: 100%; height: 100%; }\n.plane { position: absolute; left: 0; top: 0; font-style: normal; font-size: 22px; color: #FA8C16;\n  offset-path: path(\"M10 140 C 80 140, 80 20, 140 80 S 220 20, 270 20\"); offset-rotate: auto; animation: fly 3s ease-in-out infinite; }\n@keyframes fly { from { offset-distance: 0%; } to { offset-distance: 100%; } }\n</style>\n"
     }
   ]
 }

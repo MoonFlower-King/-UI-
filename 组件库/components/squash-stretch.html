@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Squash & Stretch",
+  "zh": "挤压与拉伸",
+  "lead": "物体落地时被压扁，弹起时被拉长，体积感和弹性一下就出来了。迪士尼动画十二原则的第一条。",
+  "prompt": "加载小球加 Squash & Stretch：下落到底部时 scaleX(1.3) scaleY(.7) 压扁，弹起瞬间 scaleX(.85) scaleY(1.15) 拉长，transform-origin 设在底部，900ms 循环。"
+}
+-->
+<div class="ss-box"><i class="ball"></i><span class="shadow"></span></div>
+
+<style>
+.ss-box { position: relative; width: 120px; height: 200px; }
+.ball { position: absolute; left: 36px; bottom: 16px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFD58A, #FA8C16 70%);
+  transform-origin: 50% 100%; animation: bounce .9s cubic-bezier(.45,0,.55,1) infinite; }
+.shadow { position: absolute; left: 30px; bottom: 8px; width: 60px; height: 10px; border-radius: 50%; background: rgba(0,0,0,.12); animation: sh .9s cubic-bezier(.45,0,.55,1) infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1.3, .7); }
+  10% { transform: translateY(-10px) scale(.85, 1.15); }
+  50% { transform: translateY(-130px) scale(1, 1); }
+  90% { transform: translateY(-10px) scale(.9, 1.1); }
+}
+@keyframes sh { 50% { transform: scale(.5); opacity: .4; } }
+</style>

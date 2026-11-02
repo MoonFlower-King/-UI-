@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Motion Path",
+  "zh": "路径动画",
+  "lead": "元素沿着一条指定的曲线运动，而不是直来直去。适合物流轨迹、引导动画、装饰效果。",
+  "prompt": "加 Motion Path 动画：小飞机沿一条 S 形贝塞尔曲线（offset-path: path(...)）从左下飞到右上，offset-rotate: auto 让机头始终朝向前进方向，3 秒循环，路径用虚线显示。"
+}
+-->
+<div class="mp">
+  <svg viewBox="0 0 280 160"><path d="M10 140 C 80 140, 80 20, 140 80 S 220 20, 270 20" fill="none" stroke="#E4E4E7" stroke-width="2" stroke-dasharray="6 6"/></svg>
+  <i class="plane">✈</i>
+</div>
+
+<style>
+.mp { position: relative; width: 280px; height: 160px; }
+.mp svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.plane { position: absolute; left: 0; top: 0; font-style: normal; font-size: 22px; color: #FA8C16;
+  offset-path: path("M10 140 C 80 140, 80 20, 140 80 S 220 20, 270 20"); offset-rotate: auto; animation: fly 3s ease-in-out infinite; }
+@keyframes fly { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+</style>

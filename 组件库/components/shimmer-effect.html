@@ -1,0 +1,17 @@
+<!--
+{
+  "en": "Shimmer Effect",
+  "zh": "扫光",
+  "lead": "一道斜着的高光从左往右扫过，像灯光掠过表面。用在骨架屏上表示“正在加载”，用在按钮上显得高级。",
+  "prompt": "会员按钮加 Shimmer Effect：一道 30 度倾斜、宽 40% 的白色半透明渐变高光，每 2.5 秒从左到右扫过一次（800ms），按钮 overflow: hidden。"
+}
+-->
+<button class="vip">开通年度会员</button>
+
+<style>
+.vip { position: relative; overflow: hidden; border: 0; border-radius: 14px; padding: 16px 32px; font-size: 16px; font-weight: 700; color: #5A3A00; cursor: pointer;
+  background: linear-gradient(135deg, #FFE1A6, #F7B24A); box-shadow: 0 10px 24px rgba(247,178,74,.4); }
+.vip::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; transform: skewX(-30deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent); animation: shine 2.5s ease-in-out infinite; }
+@keyframes shine { 0% { left: -60%; } 35%, 100% { left: 130%; } }
+</style>

@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Image Zoom",
+  "zh": "图片悬停放大",
+  "lead": "鼠标悬停时，图片在框里慢慢放大，框本身大小不变，下方文字同时上浮。电商、作品集最常用。",
+  "prompt": "商品图片加 Image Zoom：容器 overflow: hidden，悬停时图片 scale(1.08)，600ms cubic-bezier(.2,.8,.2,1)，同时底部渐变遮罩和标题上浮 6px。"
+}
+-->
+<a class="zoom"><div class="img"></div><div class="cap"><b>秋季新品</b><small>查看详情 →</small></div></a>
+
+<style>
+.zoom { position: relative; display: block; width: 240px; height: 180px; border-radius: 18px; overflow: hidden; cursor: pointer; }
+.img { position: absolute; inset: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1);
+  background: radial-gradient(circle at 70% 30%, #FFD58A 0 14%, transparent 15%), linear-gradient(160deg, #FF9A62, #FF4D8D 55%, #7A5CFF); }
+.cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 14px; color: #fff; display: grid; background: linear-gradient(transparent, rgba(0,0,0,.45)); transition: transform .4s; }
+.cap small { opacity: .8; }
+.zoom:hover .img { transform: scale(1.08); } .zoom:hover .cap { transform: translateY(-6px); }
+</style>
