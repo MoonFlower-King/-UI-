@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Color Harmony", "zh": "配色关系",
+  "lead": "在色轮上按固定角度取色，配出来的颜色天然和谐：邻近色（相差 30°）温和统一，互补色（对面 180°）对比强烈，三角色（各差 120°）活泼。选一个主色，转一转就有整套配色。",
+  "vague": ["配色不和谐", "主色定了，其它颜色怎么选"],
+  "terms": ["Color Wheel 色轮", "Complementary 互补色", "Analogous 邻近色", "Triadic 三角色"],
+  "prompt": "以品牌色 #FA8C16（色相 30°）为基准，用 Analogous 邻近色方案（色相 0°、30°、60°）做主视觉渐变，用 Complementary 互补色（210° 深蓝 #1E3A5F）做背景和强对比按钮；同一页面只用一种配色关系，饱和度和明度保持一致。"
+}
+-->
+<div class="ch">
+  <div class="wheel"><i class="d"></i><i class="d"></i><i class="d"></i></div>
+  <div class="side">
+    <div class="tabs"><button class="on" data-m="0,30,-30">邻近色</button><button data-m="0,180">互补色</button><button data-m="0,120,240">三角色</button></div>
+    <div class="sw"></div>
+    <input type="range" min="0" max="359" value="30" aria-label="主色色相">
+  </div>
+</div>
+
+<style>
+.ch { display: flex; gap: 20px; align-items: center; }
+.wheel { position: relative; width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(from 90deg, hsl(0 85% 55%), hsl(60 85% 55%), hsl(120 85% 55%), hsl(180 85% 55%), hsl(240 85% 55%), hsl(300 85% 55%), hsl(360 85% 55%)); -webkit-mask: radial-gradient(circle, transparent 34%, #000 35%); mask: radial-gradient(circle, transparent 34%, #000 35%); }
+.d { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+.side { display: grid; gap: 10px; width: 170px; }
+.tabs { display: flex; background: #F4F4F5; border-radius: 9px; padding: 2px; } .tabs button { flex: 1; border: 0; background: none; font-size: 11px; padding: 5px 0; border-radius: 7px; cursor: pointer; color: #71717A; }
+.tabs .on { background: #fff; color: #18181B; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+.sw { display: flex; height: 52px; border-radius: 10px; overflow: hidden; } .sw i { flex: 1; transition: background .3s; display: grid; align-items: end; font: normal 9px/1.8 ui-monospace, monospace; color: rgba(255,255,255,.9); text-align: center; }
+input { accent-color: #FA8C16; width: 100%; }
+</style>
+<script>
+const range = document.querySelector("input"), dots = document.querySelectorAll(".d"), sw = document.querySelector(".sw"), tabs = document.querySelectorAll(".tabs button");
+let mode = [0, 30, -30];
+const paint = () => {
+  const h = +range.value;
+  dots.forEach((d, i) => { const a = mode[i]; d.style.opacity = a === undefined ? 0 : 1; const deg = (h + (a || 0)) * Math.PI / 180; d.style.transform = `translate(${Math.cos(deg) * 52}px,${Math.sin(deg) * 52}px)`; d.style.background = `hsl(${h + (a || 0)} 85% 55%)`; });
+  sw.innerHTML = mode.map((a) => `<i style="background:hsl(${h + a} 85% 55%)">${(h + a + 360) % 360}°</i>`).join("");
+};
+range.addEventListener("input", paint);
+tabs.forEach((b) => b.addEventListener("click", () => { tabs.forEach((x) => x.classList.toggle("on", x === b)); mode = b.dataset.m.split(",").map(Number); paint(); }));
+paint();
+</script>

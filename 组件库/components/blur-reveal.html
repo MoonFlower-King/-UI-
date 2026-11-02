@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Blur Reveal", "zh": "模糊渐显",
+  "lead": "文字从一片模糊里慢慢“对焦”变清晰，同时轻轻上浮。按词或按字依次出现，比单纯淡入更有电影感，是近几年高端官网标题的常见出场方式。",
+  "vague": ["标题出场高级一点", "文字从模糊变清楚"],
+  "terms": ["Blur Reveal", "Blur In", "Focus Pull 对焦", "Stagger"],
+  "prompt": "标题用 Blur Reveal 出场：按字拆开，每个字从 filter: blur(12px)、opacity 0、translateY(12px) 过渡到清晰原位，单字 700ms cubic-bezier(.2,.8,.2,1)，字与字间隔 50ms；副标题在标题结束后整体模糊渐显；进入视口时触发一次。"
+}
+-->
+<div class="br">
+  <h1>说对一个词，AI 就懂你</h1>
+  <p>江月 UI · 给 AI 描述界面的词典</p>
+  <button>再看一遍</button>
+</div>
+
+<style>
+.br { text-align: center; display: grid; gap: 10px; justify-items: center; }
+h1 { margin: 0; font: 600 28px "Songti SC", Georgia, serif; letter-spacing: .02em; }
+h1 span, p { display: inline-block; animation: blurin .7s cubic-bezier(.2,.8,.2,1) backwards; }
+p { margin: 0; color: #71717A; font-size: 14px; }
+@keyframes blurin { from { filter: blur(12px); opacity: 0; transform: translateY(12px); } }
+button { margin-top: 8px; border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+const h = document.querySelector("h1"), p = document.querySelector("p"), text = h.textContent;
+const play = () => {
+  h.innerHTML = [...text].map((ch, i) => `<span style="animation-delay:${i * 50}ms">${ch === " " ? "&nbsp;" : ch}</span>`).join("");
+  p.style.animation = "none"; p.offsetWidth; p.style.animation = ""; p.style.animationDelay = text.length * 50 + 200 + "ms";
+};
+document.querySelector("button").addEventListener("click", play); play();
+</script>

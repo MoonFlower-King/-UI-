@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Hover Card", "zh": "悬停名片",
+  "lead": "鼠标停在一个人名或链接上一会儿，弹出一张小卡片预览详情（头像、简介、关注按钮），不用点进去。比 Tooltip 大、能放可交互内容，延迟出现避免误触。",
+  "vague": ["鼠标放上去显示资料", "预览卡片"],
+  "terms": ["Hover Card", "Preview Card 预览卡", "Hover Intent 悬停延迟", "Popover"],
+  "prompt": "给 @用户名 加 Hover Card：鼠标悬停 300ms 后在下方弹出 260px 卡片（白底圆角 14px、Layered Elevation、从上方 6px 淡入 150ms）；内容为 40px 头像、名字、@账号、两行简介、关注/粉丝数和一个小号关注按钮；鼠标移入卡片时保持显示，离开 200ms 后再关闭。"
+}
+-->
+<p class="txt">这套配色来自 <a class="mention">@江小月</a> 的作品，夜色江面加一点月光暖金。<span class="card open"><span class="hd"><i>江</i><b>江小月<small>@jiangyue</small></b><button>关注</button></span><span class="bio">界面设计师，做「给 AI 描述 UI」系列视频。</span><span class="st"><b>128</b> 关注　<b>3.4k</b> 粉丝</span></span></p>
+
+<style>
+.txt { position: relative; width: 300px; height: 220px; margin: 0; font-size: 14px; line-height: 1.8; color: #3F3F46; }
+.mention { color: #FA8C16; font-weight: 600; cursor: pointer; text-decoration: none; border-bottom: 1px dashed #FDBA74; }
+.card { position: absolute; left: 30px; top: 34px; width: 250px; padding: 14px; background: #fff; border-radius: 14px; box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.12); display: grid; gap: 8px; line-height: 1.5; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: all .15s ease-out; }
+.card.open { opacity: 1; transform: none; pointer-events: auto; }
+.hd { display: flex; align-items: center; gap: 10px; }
+.hd i { width: 40px; height: 40px; border-radius: 50%; background: #1E293B; color: #FDE68A; display: grid; place-items: center; font: normal 600 16px serif; }
+.hd b { flex: 1; font-size: 14px; color: #18181B; } .hd small { display: block; font-weight: 400; color: #A1A1AA; font-size: 11px; }
+.hd button { border: 0; background: #18181B; color: #fff; font-size: 12px; padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+.bio { font-size: 12px; color: #52525B; } .st { font-size: 11px; color: #A1A1AA; } .st b { color: #18181B; }
+</style>
+<script>
+const m = document.querySelector(".mention"), card = document.querySelector(".card"); let t;
+const show = () => { clearTimeout(t); t = setTimeout(() => card.classList.add("open"), 300); };
+const hide = () => { clearTimeout(t); t = setTimeout(() => card.classList.remove("open"), 200); };
+[m, card].forEach((el) => { el.addEventListener("mouseenter", show); el.addEventListener("mouseleave", hide); });
+document.querySelector(".hd button").addEventListener("click", (e) => { e.target.textContent = e.target.textContent === "关注" ? "已关注" : "关注"; });
+</script>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Gradient Border", "zh": "渐变边框",
+  "lead": "边框不是单色，而是一圈流动的渐变色，常用来突出“推荐”“会员”“AI 功能”。做法是外层放渐变、里层盖一块底色，留出 1–2px 的缝。可以让渐变慢慢转起来。",
+  "vague": ["边框好看一点", "高亮某张卡片"],
+  "terms": ["Gradient Border", "Animated Border 流动边框", "conic-gradient 锥形渐变", "Highlight Card"],
+  "prompt": "给推荐卡片加 Gradient Border：1.5px 宽，用 conic-gradient（江月橘 → 暖金 #FDE68A → 品红 #EC4899 → 江月橘）通过 @property 定义的角度变量 4s 线性旋转一圈；内层白底圆角比外层小 1.5px；外层同色 20px 模糊光晕，悬停时光晕加强。"
+}
+-->
+<div class="gb">
+  <div class="card"><small>✦ AI 功能</small><b>智能配色</b><p>输入一个品牌色，自动生成整套色阶和配色关系。</p></div>
+</div>
+
+<style>
+@property --a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.gb { padding: 20px; }
+.card { position: relative; width: 240px; padding: 18px; border-radius: 16px; background: linear-gradient(#fff, #fff) padding-box, conic-gradient(from var(--a), #FA8C16, #FDE68A, #EC4899, #FA8C16) border-box; border: 1.5px solid transparent; display: grid; gap: 6px; animation: spin 4s linear infinite; cursor: pointer; }
+.card::before { content: ""; position: absolute; inset: -1.5px; z-index: -1; border-radius: inherit; background: conic-gradient(from var(--a), #FA8C16, #FDE68A, #EC4899, #FA8C16); filter: blur(20px); opacity: .3; transition: opacity .3s; animation: spin 4s linear infinite; }
+.card:hover::before { opacity: .6; }
+@keyframes spin { to { --a: 360deg; } }
+small { font-size: 11px; font-weight: 600; background: linear-gradient(90deg, #FA8C16, #EC4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+b { font-size: 17px; } p { margin: 0; font-size: 12px; line-height: 1.6; color: #71717A; }
+</style>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Hover Reveal", "zh": "悬停显露",
+  "lead": "平时只露出图片和标题，鼠标移上去时底部遮罩升起、显出简介和按钮。信息分层出现，卡片平时很干净。注意手机上没有悬停，要让关键信息默认可见。",
+  "vague": ["鼠标放上去显示更多信息", "作品集卡片"],
+  "terms": ["Hover Reveal", "Overlay 遮罩", "Progressive Disclosure", "Caption 说明文字"],
+  "prompt": "作品卡用 Hover Reveal：默认只显示封面图和底部白色标题；悬停时底部从透明到 80% 黑的渐变遮罩上移出现，标题上移 8px，简介和“查看 →”按钮依次淡入上浮（间隔 60ms，300ms ease-out）；封面同时 scale(1.04)；触屏设备上简介默认显示。"
+}
+-->
+<div class="works">
+  <article class="w" style="--bg:linear-gradient(160deg,#1E3A5F,#0B1426 60%,#FA8C16)"><div class="cv"></div><div class="info"><h4>夜航</h4><p>深色主题落地页，江面倒影动效。</p><a href="#">查看 →</a></div></article>
+  <article class="w" style="--bg:linear-gradient(160deg,#FDE68A,#FA8C16)"><div class="cv"></div><div class="info"><h4>暖金</h4><p>电商活动页，Bento 布局。</p><a href="#">查看 →</a></div></article>
+</div>
+
+<style>
+.works { display: grid; grid-template-columns: repeat(2, 150px); gap: 12px; }
+.w { position: relative; height: 200px; border-radius: 16px; overflow: hidden; }
+.cv { position: absolute; inset: 0; background: var(--bg); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.w:hover .cv { transform: scale(1.04); }
+.info { position: absolute; inset: auto 0 0; padding: 40px 14px 14px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0)); transition: background .3s; }
+.w:hover .info { background: linear-gradient(transparent, rgba(0,0,0,.8)); }
+h4 { margin: 0; font: 600 17px "Songti SC", Georgia, serif; transition: transform .3s; transform: translateY(46px); }
+.w:hover h4 { transform: none; }
+p, .info a { opacity: 0; transform: translateY(8px); transition: all .3s ease-out; }
+p { margin: 6px 0 8px; font-size: 11px; line-height: 1.5; color: #E4E4E7; } .info a { display: inline-block; font-size: 12px; color: #FDBA74; text-decoration: none; }
+.w:hover p { opacity: 1; transform: none; transition-delay: .06s; } .w:hover .info a { opacity: 1; transform: none; transition-delay: .12s; }
+@media (hover: none) { h4 { transform: none; } p, .info a { opacity: 1; transform: none; } .info { background: linear-gradient(transparent, rgba(0,0,0,.8)); } }
+</style>

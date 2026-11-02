@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Microcopy", "zh": "微文案",
+  "lead": "按钮、提示、报错里的那几个字。“提交”改成“免费创建账号”，“错误”改成“密码少了一位数字”，转化率和好感度都会明显变化。点一下看看改前改后。",
+  "vague": ["按钮文字怎么写", "提示语太生硬"],
+  "terms": ["Microcopy", "UX Writing", "Actionable Error 可操作的报错", "Button Label 按钮文案"],
+  "prompt": "按 Microcopy 规范改写界面文字：按钮用“动词 + 结果”（“免费创建账号”而不是“提交”）；报错说清原因和怎么改（“密码需要至少 1 个数字”而不是“格式错误”）；空状态给下一步行动；语气友好简短，不用“您的操作失败”这类官腔。"
+}
+-->
+<div class="mc">
+  <div class="tabs"><button class="on">改前</button><button>改后</button></div>
+  <div class="form" data-v="0">
+    <label>密码<span class="inp">moonlight</span></label>
+    <p class="err"><span class="a">错误：格式不正确</span><span class="b">密码还差 1 个数字，比如 moonlight7</span></p>
+    <button class="go"><span class="a">提交</span><span class="b">免费创建账号</span></button>
+    <p class="hint"><span class="a">您已同意相关条款</span><span class="b">30 秒完成，随时可以注销</span></p>
+  </div>
+</div>
+
+<style>
+.mc { width: 260px; display: grid; gap: 12px; justify-items: center; }
+.tabs { display: flex; background: #F4F4F5; padding: 3px; border-radius: 10px; } .tabs button { border: 0; background: none; padding: 5px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; color: #71717A; }
+.tabs .on { background: #fff; color: #18181B; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+.form { width: 100%; background: #fff; padding: 16px; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.06); display: grid; gap: 8px; box-sizing: border-box; }
+label { display: grid; gap: 6px; font-size: 12px; color: #52525B; }
+.inp { height: 38px; line-height: 38px; border: 1px solid #FCA5A5; border-radius: 9px; padding: 0 10px; font-size: 13px; color: #18181B; }
+.err { margin: 0; font-size: 12px; color: #DC2626; min-height: 18px; }
+.go { height: 40px; border: 0; border-radius: 10px; background: #FA8C16; color: #fff; font-weight: 600; cursor: pointer; }
+.hint { margin: 0; text-align: center; font-size: 11px; color: #A1A1AA; }
+.b { display: none; } [data-v="1"] .a { display: none; } [data-v="1"] .b { display: inline; animation: in .3s ease-out; }
+[data-v="1"] .b { background: linear-gradient(transparent 60%, rgba(250,140,22,.18) 60%); }
+.go .b { background: none !important; }
+@keyframes in { from { opacity: 0; transform: translateY(4px); } }
+</style>
+<script>
+const form = document.querySelector(".form"), tabs = document.querySelectorAll(".tabs button");
+tabs.forEach((b, i) => b.addEventListener("click", () => { tabs.forEach((x) => x.classList.toggle("on", x === b)); form.dataset.v = i; }));
+</script>

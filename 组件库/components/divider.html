@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Divider", "zh": "分隔线",
+  "lead": "把内容分组的那条线。别到处画粗黑线：大多数时候留白就够了，需要时用 1px 很淡的线；中间可以嵌文字（“或”“今天”），也可以是两端渐隐的渐变线，更柔和。",
+  "vague": ["内容分不开", "线太多太乱"],
+  "terms": ["Divider", "Separator", "Labeled Divider 带文字分隔线", "Fade Divider 渐隐分隔线"],
+  "prompt": "统一 Divider 规范：默认 1px #F0F0F2；列表内的分隔线从文字处开始（左侧缩进 16px）；“或”这类带文字的分隔线文字 12px 灰色居中、两侧线条等长；区块之间用两端渐隐的渐变线（transparent → #E4E4E7 → transparent）；能用 24px 留白分组时就不画线。"
+}
+-->
+<div class="dv">
+  <small>普通</small><hr>
+  <small>带文字</small><div class="lab"><span>或</span></div>
+  <small>渐隐</small><hr class="fade">
+  <small>列表内缩进</small>
+  <ul><li>留白</li><li>层次阴影</li><li>毛玻璃</li></ul>
+</div>
+
+<style>
+.dv { width: 260px; display: grid; gap: 8px; }
+small { font-size: 10px; color: #A1A1AA; margin-top: 6px; }
+hr { width: 100%; border: 0; height: 1px; background: #E4E4E7; margin: 0; }
+.fade { background: linear-gradient(90deg, transparent, #D4D4D8, transparent); }
+.lab { display: flex; align-items: center; gap: 12px; font-size: 12px; color: #A1A1AA; } .lab::before, .lab::after { content: ""; flex: 1; height: 1px; background: #E4E4E7; }
+ul { margin: 0; padding: 0; list-style: none; background: #fff; border-radius: 12px; border: 1px solid #F0F0F2; }
+li { position: relative; padding: 10px 16px; font-size: 13px; } li + li::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; height: 1px; background: #F0F0F2; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Tonal Palette", "zh": "色阶",
+  "lead": "一个品牌色不够用：按钮底、悬停、浅色背景、文字都需要同一色相的不同深浅。把它从 50 到 900 排成 10 级，用的时候说“橘色 100 当背景、600 当文字”，AI 就不会乱配。",
+  "vague": ["同一个颜色要深一点浅一点", "颜色怎么搭配深浅"],
+  "terms": ["Tonal Palette", "Color Scale 色阶 50–900", "Shade / Tint 深色 / 浅色", "Design Token"],
+  "prompt": "以 #FA8C16 为 500 生成 Tonal Palette（50/100/200…900 共 10 级），存成 CSS 变量 --orange-50 到 --orange-900；用法：50 做页面高亮背景、100 做标签底、500 做主按钮、600 做悬停、700 做浅底上的文字；保证 700 以上在白底上对比度 ≥ 4.5:1。"
+}
+-->
+<div class="tp">
+  <div class="row"></div>
+  <p class="info">点一格复制色值</p>
+  <div class="demo"><span class="tag">标签 100/700</span><button>主按钮 500</button></div>
+</div>
+
+<style>
+.tp { width: 340px; display: grid; gap: 12px; }
+.row { display: grid; grid-template-columns: repeat(10, 1fr); border-radius: 12px; overflow: hidden; }
+.row button { height: 64px; border: 0; cursor: pointer; display: grid; align-content: end; padding: 0 0 6px; font: 600 9px ui-monospace, monospace; transition: transform .2s; position: relative; }
+.row button:hover { transform: translateY(-6px); z-index: 1; border-radius: 6px; box-shadow: 0 6px 14px rgba(0,0,0,.15); }
+.info { margin: 0; font-size: 12px; color: #71717A; text-align: center; font-variant-numeric: tabular-nums; min-height: 18px; }
+.demo { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 14px; background: #FFF7ED; border-radius: 12px; }
+.tag { background: #FFEDD5; color: #C2410C; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+.demo button { border: 0; background: #FA8C16; color: #fff; padding: 8px 14px; border-radius: 9px; font-size: 13px; cursor: pointer; } .demo button:hover { background: #EA7A0B; }
+</style>
+<script>
+const steps = [["50", "#FFF7ED"], ["100", "#FFEDD5"], ["200", "#FED7AA"], ["300", "#FDBA74"], ["400", "#FBA145"], ["500", "#FA8C16"], ["600", "#EA7A0B"], ["700", "#C2410C"], ["800", "#9A3412"], ["900", "#6C2710"]];
+const row = document.querySelector(".row"), info = document.querySelector(".info");
+steps.forEach(([k, c], i) => { const b = document.createElement("button"); b.style.background = c; b.style.color = i > 4 ? "#fff" : "#9A3412"; b.textContent = k;
+  b.addEventListener("mouseenter", () => info.textContent = `--orange-${k}: ${c}`);
+  b.addEventListener("click", () => { navigator.clipboard?.writeText(c).catch(() => {}); info.textContent = `已复制 ${c}`; }); row.append(b); });
+</script>

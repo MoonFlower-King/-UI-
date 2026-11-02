@@ -44,7 +44,11 @@
       "gradient-text",
       "split-text",
       "highlight-marker",
-      "marquee"
+      "marquee",
+      "blur-reveal",
+      "rotating-words",
+      "outline-text",
+      "glow-text"
     ]
   },
   {
@@ -60,7 +64,10 @@
       "mesh-gradient",
       "semantic-color",
       "dark-mode",
-      "monochrome"
+      "monochrome",
+      "tonal-palette",
+      "complementary-color",
+      "duotone"
     ]
   },
   {
@@ -79,7 +86,10 @@
       "swiss-style",
       "y2k",
       "aurora-background",
-      "bento-dark-mode"
+      "bento-dark-mode",
+      "cyberpunk",
+      "pixel-art",
+      "editorial"
     ]
   },
   {
@@ -94,7 +104,10 @@
       "noise-texture",
       "spotlight-border",
       "backdrop-blur",
-      "iconography"
+      "iconography",
+      "gradient-border",
+      "dot-grid-background",
+      "divider"
     ]
   },
   {
@@ -178,7 +191,11 @@
       "drawer",
       "bottom-sheet",
       "toast",
-      "command-palette"
+      "command-palette",
+      "context-menu",
+      "alert-dialog",
+      "lightbox",
+      "hover-card"
     ]
   },
   {
@@ -190,7 +207,11 @@
       "3d-tilt",
       "morphing",
       "image-zoom",
-      "underline-slide"
+      "underline-slide",
+      "card-lift",
+      "hover-reveal",
+      "hover-expand",
+      "custom-cursor"
     ]
   },
   {
@@ -202,7 +223,10 @@
       "swipe-to-delete",
       "before-after",
       "resizable-panel",
-      "swipe-cards"
+      "swipe-cards",
+      "long-press",
+      "double-tap-like",
+      "pinch-zoom"
     ]
   },
   {
@@ -249,7 +273,9 @@
       "horizontal-scroll",
       "anticipation",
       "squash-stretch",
-      "motion-path"
+      "motion-path",
+      "shared-element",
+      "icon-morph"
     ]
   },
   {
@@ -263,7 +289,9 @@
       "fluid-typography",
       "safe-area",
       "touch-target",
-      "hamburger-menu"
+      "hamburger-menu",
+      "container-query",
+      "aspect-ratio"
     ]
   },
   {
@@ -277,7 +305,10 @@
       "inline-validation",
       "undo",
       "accessibility",
-      "consistency"
+      "consistency",
+      "microcopy",
+      "fitts-law",
+      "gestalt-proximity"
     ]
   },
   {

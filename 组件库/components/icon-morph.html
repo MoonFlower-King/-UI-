@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Icon Morph", "zh": "图标变形",
+  "lead": "一个图标平滑地变成另一个：汉堡菜单 ☰ 变成关闭 ×、播放 ▶ 变成暂停 ❚❚、加号 + 转成 ×。比直接替换图标更有“状态在切换”的感觉。",
+  "vague": ["菜单按钮变叉叉", "图标切换要有动画"],
+  "terms": ["Icon Morph", "Icon Transition 图标过渡", "Hamburger to Close", "State Change 状态切换"],
+  "prompt": "菜单按钮做 Icon Morph：三条 2px 横线，打开时中间线缩为 0 并淡出，上下两条移到中间并分别旋转 45° / -45° 变成 ×，300ms cubic-bezier(.65,0,.35,1)；关闭时反向；加号按钮打开时整体旋转 45° 变成 ×；播放按钮用 clip-path 在三角形和两条竖线之间变形。"
+}
+-->
+<div class="im">
+  <button class="ham" aria-label="菜单"><i></i><i></i><i></i></button>
+  <button class="plus" aria-label="添加"><i></i><i></i></button>
+  <button class="play" aria-label="播放"><i></i><i></i></button>
+</div>
+
+<style>
+.im { display: flex; gap: 18px; }
+.im button { position: relative; width: 60px; height: 60px; border-radius: 16px; border: 0; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08); cursor: pointer; }
+.im button.on { background: #18181B; } .im button.on i { background: #fff; }
+.im i { position: absolute; left: 50%; top: 50%; background: #18181B; transition: all .3s cubic-bezier(.65,0,.35,1); }
+.ham i { width: 24px; height: 2px; margin-left: -12px; border-radius: 2px; } .ham i:nth-child(1) { margin-top: -8px; } .ham i:nth-child(2) { margin-top: -1px; } .ham i:nth-child(3) { margin-top: 6px; }
+.ham.on i:nth-child(1) { margin-top: -1px; transform: rotate(45deg); } .ham.on i:nth-child(2) { opacity: 0; transform: scaleX(0); } .ham.on i:nth-child(3) { margin-top: -1px; transform: rotate(-45deg); }
+.plus i { width: 22px; height: 2px; margin: -1px 0 0 -11px; border-radius: 2px; } .plus i:nth-child(2) { transform: rotate(90deg); }
+.plus { transition: transform .3s cubic-bezier(.65,0,.35,1), background .3s; } .plus.on { transform: rotate(135deg); }
+.play i { width: 9px; height: 20px; margin: -10px 0 0 -8px; background: #FA8C16 !important; clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%); }
+.play i:nth-child(2) { margin-left: 1px; clip-path: polygon(0 25%, 100% 50%, 100% 50%, 0 75%); }
+.play.on i:nth-child(1), .play.on i:nth-child(2) { width: 6px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+.play.on i:nth-child(1) { margin-left: -8px; } .play.on i:nth-child(2) { margin-left: 2px; }
+</style>
+<script>
+document.querySelectorAll(".im button").forEach((b) => b.addEventListener("click", () => b.classList.toggle("on")));
+</script>

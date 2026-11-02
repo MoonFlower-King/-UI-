@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Aspect Ratio", "zh": "宽高比",
+  "lead": "图片和视频框按固定比例显示：16:9 横屏视频、4:3 照片、1:1 头像和商品、9:16 竖屏短视频。定好比例，宽度怎么变都不会被压扁，图片加载前也不会让页面跳动。",
+  "vague": ["图片被拉伸变形", "图片加载时页面会跳"],
+  "terms": ["Aspect Ratio", "object-fit: cover 裁切填充", "Layout Shift 布局偏移", "16:9 / 1:1 / 9:16"],
+  "prompt": "所有媒体容器写死 Aspect Ratio：视频 16:9、商品图 1:1、短视频封面 9:16，用 CSS aspect-ratio 属性；图片 object-fit: cover 居中裁切不变形；图片加载前显示同比例的浅灰占位块，避免 Layout Shift。"
+}
+-->
+<div class="ar">
+  <div class="tabs"><button class="on" data-r="16 / 9">16:9</button><button data-r="4 / 3">4:3</button><button data-r="1 / 1">1:1</button><button data-r="9 / 16">9:16</button></div>
+  <div class="stage"><div class="frame"><i class="moon"></i><span>16:9</span></div></div>
+</div>
+
+<style>
+.ar { display: grid; gap: 12px; justify-items: center; }
+.tabs { display: flex; background: #F4F4F5; padding: 3px; border-radius: 10px; } .tabs button { border: 0; background: none; padding: 5px 12px; border-radius: 8px; font: 12px ui-monospace, monospace; cursor: pointer; color: #71717A; }
+.tabs .on { background: #fff; color: #18181B; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+.stage { width: 300px; height: 190px; display: grid; place-items: center; }
+.frame { position: relative; height: 100%; max-width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: linear-gradient(transparent 62%, #13243D 62%), linear-gradient(#0B1426, #1E3A5F); transition: aspect-ratio .4s; }
+.moon { position: absolute; left: 60%; top: 18%; width: 28px; height: 28px; border-radius: 50%; background: #FFF6D5; box-shadow: 0 0 24px #FDE68A; }
+.frame span { position: absolute; left: 8px; bottom: 8px; font: 11px ui-monospace, monospace; color: #fff; background: rgba(0,0,0,.4); padding: 2px 6px; border-radius: 6px; }
+</style>
+<script>
+const frame = document.querySelector(".frame"), label = frame.querySelector("span"), tabs = document.querySelectorAll(".tabs button");
+tabs.forEach((b) => b.addEventListener("click", () => { tabs.forEach((x) => x.classList.toggle("on", x === b)); frame.style.aspectRatio = b.dataset.r; label.textContent = b.textContent; }));
+</script>
