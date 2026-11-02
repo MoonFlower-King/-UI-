@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Gallery White Cube",
+  "zh": "美术馆白盒",
+  "alias": [
+    "美术馆风",
+    "White Cube"
+  ],
+  "lead": "像当代美术馆：纯白墙、作品居中挂着、旁边一张小小的展签，其他什么都没有。克制、安静、把注意力全给作品，适合画廊、艺术家、设计品牌、作品集。",
+  "prompt": "美术馆白盒风格：纯白背景，作品图片以适中尺寸居中展示、四周大量留白，旁边配小号展签（作品名、年份、材质），全站只用黑色细小的无衬线字，导航极简，没有装饰、没有强调色",
+  "promptEn": "gallery white cube style: pure white background, artwork images shown at a moderate size and centered with vast empty space around, small wall labels beside them (title, year, medium), only small black sans-serif type across the site, minimal navigation, no ornament and no accent color",
+  "avoid": "留白就是设计，忍住别加装饰和颜色。展签字要小但清楚，层级靠字重和间距，不靠颜色。",
+  "neg": [
+    "装饰元素、彩色强调",
+    "decorative elements, colorful accents"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #fff; color: #111; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { font-size: 11px; } .logo { font-size: 12px; font-weight: 600; } .logo i { display: none; } .cta { background: none; color: #111; text-decoration: underline; padding: 0; }
+.hero { grid-template-columns: 1fr; padding: 30px 26px 40px; } .copy { order: 2; display: grid; grid-template-columns: 200px 1fr; gap: 6px 20px; margin-top: 16px; }
+.kicker { grid-column: 1; color: #777; font-size: 10px; } .hero h1 { grid-column: 1; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.sub { grid-column: 2; grid-row: 1 / 3; margin: 0; font-size: 10.5px; color: #555; opacity: 1; } .acts { grid-column: 2; margin: 0; }
+.b1 { padding: 0; background: none; color: #111; text-decoration: underline; } .b2 { color: #777; }
+.art { order: 1; width: 170px; height: 130px; min-height: 0; margin: 0 auto; background: linear-gradient(135deg, #2D3A4A, #8F6E54 60%, #D9B98F); box-shadow: 0 10px 20px -12px rgba(0, 0, 0, .35); }
+.feats h3 { font-size: 13px; font-weight: 600; } .feats b { color: #777; font-weight: 400; } .stats b { font-size: 18px; font-weight: 500; }
+</style>

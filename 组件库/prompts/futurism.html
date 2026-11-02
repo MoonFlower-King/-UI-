@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Futurism",
+  "zh": "未来主义",
+  "alias": [
+    "意大利未来主义",
+    "Futurismo"
+  ],
+  "lead": "二十世纪初的速度崇拜：斜线、放射、重复的残影和冲出画面的大字。动感、激进，适合赛车、运动、科技发布、音乐和展览。",
+  "prompt": "未来主义风格：米白或浅灰背景，黑色加大红和钴蓝，版面由强烈的对角线和放射线驱动，图形重复错位表现速度残影，粗无衬线大标题沿斜线排列，色块切成锐利的楔形，整体有冲刺感",
+  "promptEn": "Futurism style: off-white or light gray background, black plus bold red and cobalt, layout driven by strong diagonals and radiating lines, repeated offset shapes suggesting speed blur, chunky sans headlines set along a diagonal, color blocks cut into sharp wedges, a sense of forward rush",
+  "avoid": "对角线只用一个主方向，几个方向乱飞会失去「速度感」。斜排的只有大标题，正文和按钮要水平。",
+  "neg": [
+    "多方向乱斜、正文倾斜",
+    "diagonals in every direction, tilted body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D7261E; --a2: #1C3FAA; --on: #fff; background: #F2EFE9; color: #111; font-family: "Futura", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { position: relative; overflow: hidden; } .hero h1 { font-size: 34px; font-weight: 900; transform: skewX(-12deg); }
+.kicker { color: #D7261E; font-weight: 700; letter-spacing: 2px; }
+.art { overflow: hidden; background: conic-gradient(from 0deg at 0 100%, #F2EFE9 0 14deg, #1C3FAA 0 28deg, #F2EFE9 0 36deg, #D7261E 0 52deg, #F2EFE9 0 60deg, #111 0 68deg, #F2EFE9 0); }
+.art .m { position: absolute; left: 30px; top: 40px; width: 70px; height: 36px; background: #111; clip-path: polygon(0 0, 100% 50%, 0 100%); box-shadow: none;
+  filter: drop-shadow(-16px 0 0 rgba(17, 17, 17, .35)) drop-shadow(-16px 0 0 rgba(17, 17, 17, .2)); }
+.feats article { padding: 10px; border-left: 6px solid #D7261E; transform: skewX(-8deg); } .feats article > * { transform: skewX(8deg); }
+.stats { background: #111; color: #fff; clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%); padding-top: 26px; } .stats b { color: #D7261E; font-weight: 900; }
+</style>

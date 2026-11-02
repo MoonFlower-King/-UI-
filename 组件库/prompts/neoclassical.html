@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Neoclassical",
+  "zh": "新古典",
+  "alias": [
+    "古典主义",
+    "Classical"
+  ],
+  "lead": "希腊罗马式的柱子、大理石白、对称的版面和刻字般的大写衬线。庄重、权威、永恒，适合博物馆、律所、大学、高端酒店和珠宝。",
+  "prompt": "新古典风格：大理石白或浅石灰背景，墨黑和石灰灰为主，少量古铜金，主视觉为简化的立柱和三角山花线稿，大标题为刻字般字距宽的古典衬线，严格的中轴对称，细线分隔",
+  "promptEn": "neoclassical style: marble white or pale limestone background, ink black and stone gray with a little bronze gold, simplified columns and a triangular pediment line drawing as the hero, inscriptional widely tracked classical serif headlines, strict central symmetry, hairline dividers",
+  "avoid": "对称和比例是灵魂，元素少一点没关系，但要居中对齐。立柱用线稿或剪影，写实雕像图片很容易变成老旧的官网。",
+  "neg": [
+    "写实雕像图、排版不对称",
+    "realistic statue photos, asymmetric layout"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #22252A; --a2: #9A7B4F; --on: #F7F5F0; background: #F7F5F0; color: #22252A; font-family: "Trajan Pro", "Optima", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #22252A; letter-spacing: 3px; } .logo i { background: none; border: 1.5px solid #22252A; }
+.hero { grid-template-columns: 1fr; text-align: center; padding: 18px 40px 26px; } .acts { justify-content: center; } .hero h1 { font-weight: 500; letter-spacing: 6px; }
+.art { order: -1; height: 96px; min-height: 0; margin: 0 auto 10px; width: 180px; }
+.art .m { position: absolute; left: 6px; right: 6px; top: 0; height: 28px; background: #22252A; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.art .m::after { content: ""; position: absolute; inset: 0; background: #F7F5F0; clip-path: polygon(50% 14%, 88% 86%, 12% 86%); }
+.art .h { position: absolute; left: 14px; right: 14px; top: 30px; bottom: 0; border-top: 4px solid #22252A; border-bottom: 5px solid #22252A;
+  background: repeating-linear-gradient(90deg, transparent 0 8px, #22252A 8px 16px, transparent 16px 34px) 2px 0 / 100% 100%; }
+.cta { background: none; color: #22252A; border: 1px solid #22252A; } .kicker { color: #9A7B4F; letter-spacing: 4px; }
+.feats article { padding-top: 10px; text-align: center; border-top: 1px solid #22252A; } .feats b { color: #9A7B4F; }
+.stats { margin: 0 26px; border-top: 1px solid #22252A; border-bottom: 1px solid #22252A; } .stats b { font-weight: 400; letter-spacing: 2px; }
+</style>

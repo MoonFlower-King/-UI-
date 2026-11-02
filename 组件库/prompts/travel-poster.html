@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Vintage Travel Poster",
+  "zh": "复古旅行海报",
+  "alias": [
+    "旅行海报",
+    "Travel Poster"
+  ],
+  "lead": "老式旅行海报的平涂风景：几层色块叠出山海、大大的地名标题、温暖的夕阳色。浪漫、怀旧、让人想出发，适合文旅、航空、户外、城市宣传。",
+  "prompt": "复古旅行海报风格：主视觉为三到五层平涂色块叠出的远山、海面和夕阳，颜色为暖橙、玫瑰粉、深青、奶油黄，有轻微颗粒和做旧边，大号粗衬线或几何无衬线地名标题，排版像竖版海报，底部一行小字",
+  "promptEn": "vintage travel poster style: a hero of three to five flat color layers forming distant mountains, sea and a setting sun, warm orange, rose, deep teal and cream, slight grain and aged edges, a large bold serif or geometric sans place-name headline, poster-like vertical composition, one line of small text at the bottom",
+  "avoid": "风景要「平涂分层」，写实照片就没有海报味了。层数别太多，三到五层最好看。",
+  "neg": [
+    "写实照片、层次太碎",
+    "realistic photos, too many layers"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F5F63; --a2: #C4532F; --on: #FFF4DF; background: #FBEBD0; color: #23383A; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 250px; padding: 0; overflow: hidden; }
+.art { position: absolute; inset: 0; min-height: 0; background: linear-gradient(#F6C27A, #F39A6B 55%, #E5735E); }
+.art .m { position: absolute; left: 60%; top: 36%; width: 76px; height: 76px; border-radius: 50%; background: #FFE3A3; }
+.art .h { position: absolute; left: 0; right: 0; bottom: 0; height: 60%;
+  background: linear-gradient(#1F5F63, #1F5F63) 0 100% / 100% 34% no-repeat, radial-gradient(ellipse 60% 100% at 20% 100%, #C4532F 98%, transparent) 0 0 / 100% 100%, radial-gradient(ellipse 50% 80% at 80% 100%, #9C3E2A 98%, transparent); }
+.copy { position: relative; z-index: 1; padding: 26px; } .hero h1 { font-size: 34px; font-weight: 900; color: #1F3B3E; }
+.kicker { color: #1F5F63; letter-spacing: 3px; font-weight: 700; } .sub { color: #2A2120; max-width: 260px; } .b1 { background: #C4532F; } .b2 { color: #FFF4DF; }
+.feats { margin-top: 18px; } .feats article { padding: 12px; background: #FFF4DF; border-bottom: 4px solid #C4532F; } .feats b { color: #C4532F; }
+.stats { background: #1F5F63; color: #FFF4DF; } .stats b { color: #FFE3A3; }
+</style>

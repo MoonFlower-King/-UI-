@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Polaroid Snapshots",
+  "zh": "拍立得相册",
+  "alias": [
+    "拍立得",
+    "相片墙"
+  ],
+  "lead": "白边方形相片随意斜贴、底下手写一行字，像一面照片墙。亲切、真实、有回忆感，适合旅行日记、个人博客、婚礼、小店和社群活动。",
+  "prompt": "拍立得相册风格：浅木色或软木板背景，图片为带厚白边（底边更宽）的方形相片，轻微倾斜错落、带柔和投影，相片底部白边写一行手写感说明，标题用清楚的衬线或手写感字体，正文放在纯色卡片上",
+  "promptEn": "polaroid snapshot style: light wood or cork board background, images as square photos with thick white borders (wider at the bottom), slightly tilted and overlapping with soft shadows, a hand-written caption on each bottom border, clear serif or hand-lettered headings, body text on solid cards",
+  "avoid": "倾斜角度要小（正负三度以内），歪太多会显得乱。相片别超过三四张，太多就成了杂乱的拼贴。",
+  "neg": [
+    "角度歪太多、照片堆满",
+    "extreme tilts, piles of photos"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3D3129; --a2: #B5523B; --on: #FAF6EE; background: radial-gradient(rgba(120, 80, 40, .12) 1px, transparent 1.5px) 0 0 / 6px 6px, #D8BF9A; color: #2E241D; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 4px; } .hero h1 { font-weight: 600; } .sub { opacity: 1; }
+.art { min-height: 176px; }
+.art .m { position: absolute; left: 4px; top: 6px; width: 116px; height: 136px; background: #fff; box-shadow: 0 6px 14px rgba(0, 0, 0, .2); transform: rotate(-4deg); }
+.art .m::before { content: ""; position: absolute; left: 8px; right: 8px; top: 8px; height: 100px; background: linear-gradient(#8EC0D6, #F2C48D 70%, #C98B5B); }
+.art .m::after { content: "江边 · 九月"; position: absolute; left: 10px; bottom: 7px; font: 12px "Kaiti SC", "STKaiti", "KaiTi", cursive; color: #555; }
+.art .h { position: absolute; right: 0; top: 40px; width: 96px; height: 112px; background: #fff; box-shadow: 0 6px 14px rgba(0, 0, 0, .2); transform: rotate(5deg); }
+.art .h::before { content: ""; position: absolute; left: 7px; right: 7px; top: 7px; height: 82px; background: linear-gradient(#3B4B3A, #8A9E6A); }
+.feats article { padding: 12px; background: #FAF6EE; box-shadow: 0 3px 8px rgba(0, 0, 0, .12); } .feats b { color: #B5523B; }
+.stats { background: #FAF6EE; margin: 0 26px; } .stats b { color: #B5523B; }
+</style>

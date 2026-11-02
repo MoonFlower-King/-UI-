@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Asymmetric Layout",
+  "zh": "不对称构图",
+  "alias": [
+    "错位排版",
+    "Off-grid"
+  ],
+  "lead": "刻意不居中：大片留白在一边，内容偏到一角，元素错落叠放，但重量是平衡的。有张力、高级、有设计感，适合建筑事务所、画廊、设计品牌。",
+  "prompt": "不对称构图风格：浅色背景，主要内容偏向左下或右上，另一侧留出大面积空白，图片与文字块错位叠压，模块大小悬殊但视觉重量平衡，严格对齐到隐形网格，一种强调色，无衬线或衬线标题",
+  "promptEn": "asymmetric layout style: light background, main content pushed toward one corner with a large empty field on the other side, images and text blocks overlapping at offsets, modules of very different sizes balanced in visual weight, everything still snapped to an invisible grid, one accent color, sans or serif headings",
+  "avoid": "不对称不是随便放：每个元素仍然对齐某条网格线，大小块之间要平衡。整页都错位会像排版出错。",
+  "neg": [
+    "元素随意乱放、没有对齐线",
+    "elements placed randomly, no alignment"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2E4BFF; --a2: #2E4BFF; --on: #fff; background: #F4F3EF; color: #141414; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { position: relative; display: block; min-height: 250px; padding: 0; }
+.art { position: absolute; right: 26px; top: 0; width: 230px; min-height: 0; height: 150px; background: #CFCBC0; }
+.art .m { position: absolute; left: -40px; bottom: -40px; width: 110px; height: 110px; background: #2E4BFF; }
+.copy { position: absolute; left: 26px; top: 110px; width: 270px; z-index: 1; padding: 16px; background: #F4F3EF; } .hero h1 { font-size: 30px; font-weight: 800; }
+.feats { grid-template-columns: 2fr 1fr 1fr; margin-top: 46px; } .feats article:first-child { padding-right: 40px; } .feats article:nth-child(3) { margin-top: 40px; } .feats b { color: #2E4BFF; }
+.stats { justify-content: flex-end; gap: 40px; } .stats b { font-size: 28px; }
+</style>

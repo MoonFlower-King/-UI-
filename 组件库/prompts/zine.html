@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "DIY Zine",
+  "zh": "独立小志",
+  "alias": [
+    "Zine",
+    "自制刊物"
+  ],
+  "lead": "自己复印、剪贴、装订的小册子：黑白复印、剪下来的字、手写箭头和订书钉。真诚、亲切、有地下感，适合独立出版、社群活动、学生项目、小众音乐。",
+  "prompt": "独立小志风格：白纸背景，黑白为主加一种荧光色（荧光粉或荧光绿）做手绘标记，标题用剪下来拼贴的不同字体字块，手写箭头和圈注，图片做高对比黑白复印效果，版面像对折小册子的内页",
+  "promptEn": "DIY zine style: white paper background, mostly black and white plus one fluorescent marker color (pink or green) for hand-drawn marks, headlines made of cut-out letter blocks in mixed fonts, hand-drawn arrows and circled notes, images as high-contrast black-and-white photocopies, layout like the inside spread of a folded booklet",
+  "avoid": "拼贴字只用在标题，最多两三处，整段都拼就没法读。荧光色只做标记，别铺成底色。",
+  "neg": [
+    "拼贴字整段、荧光色铺底",
+    "cut-out letters for whole paragraphs, fluorescent backgrounds"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #FBFBF8; color: #111; font-family: "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.hero h1 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 30px; font-weight: 900; line-height: 1.35; }
+.hero h1 { background: linear-gradient(#FF4FA3, #FF4FA3) 0 92% / 150px 9px no-repeat; }
+.kicker { color: #111; } .kicker::after { content: " ←"; color: #FF4FA3; font-weight: 700; }
+.art { background: radial-gradient(circle, #111 0 1.4px, transparent 1.8px) 0 0 / 5px 5px, #D6D6D2; filter: contrast(1.4); border: 2px solid #111; transform: rotate(2deg); }
+.art .m { position: absolute; left: 28%; top: 20%; width: 70px; height: 70px; border-radius: 50%; background: #111; }
+.art::after { content: ""; position: absolute; left: -16px; bottom: 14px; width: 64px; height: 30px; border: 3px solid #FF4FA3; border-radius: 50%; transform: rotate(-12deg); }
+.b1 { border: 2px solid #111; } .b2 { color: #111; background: #FF4FA3; padding: 0 4px; }
+.feats article { padding: 10px; border: 2px dashed #111; } .feats article:nth-child(2) { transform: rotate(-1.5deg); }
+.stats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; } .stats div:nth-child(2) b { background: #FF4FA3; padding: 0 6px; }
+</style>
