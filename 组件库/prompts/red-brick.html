@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Red Brick",
+  "zh": "红砖墙",
+  "alias": [
+    "清水砖墙",
+    "工业红砖"
+  ],
+  "lead": "老厂房的红砖墙，砖缝灰白、砖色深浅不一，配铁黑窗框和白色模板字。踏实、有年代、有城市更新的味道，适合文创园区、精酿酒馆、餐厅和联合办公。",
+  "prompt": "红砖墙风格：主视觉和页头为红砖墙纹理（错缝砌法、浅灰砖缝、砖块色深浅略有变化），内容区为水泥灰白底，铁黑色（#222）按钮和细框，标题为白色或黑色粗体模板字或无衬线，点缀一抹铜绿",
+  "promptEn": "red brick style: hero and header with a red brick wall texture (running bond, light gray mortar, slight color variation per brick), content area on a concrete off-white base, iron black (#222) buttons and thin frames, headings in bold white or black stencil or sans-serif, a touch of verdigris accent",
+  "avoid": "砖墙只放在页头或图形区，正文落在水泥底上；砖缝要错缝，横平竖直对齐就成了瓷砖。",
+  "neg": [
+    "整页砖墙、砖缝对齐成网格",
+    "brick over the whole page, mortar aligned into a grid"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #222; --a2: #3E8A7E; --on: #F2EFEA; background: #E9E6E1; color: #222; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: #222; color: #F2EFEA; } .logo i { background: #B5482F; } .cta { background: #B5482F; }
+.hero { background: linear-gradient(#CFCAC2 2px, transparent 2px) 0 0 / 100% 14px,
+    linear-gradient(90deg, #CFCAC2 2px, transparent 2px) 0 0 / 36px 28px,
+    linear-gradient(90deg, #CFCAC2 2px, transparent 2px) 18px 14px / 36px 28px,
+    linear-gradient(90deg, rgba(0,0,0,.08) 50%, transparent 50%) 0 0 / 72px 14px, #A9442D; color: #fff; }
+.hero .copy { background: rgba(34, 34, 34, .82); padding: 16px 18px; margin: -6px 0; }
+.kicker { color: #8FD0C4; letter-spacing: 3px; } .hero h1 { font-weight: 900; letter-spacing: 2px; text-transform: uppercase; } .b1 { background: #F2EFEA; color: #222; } .b2 { color: #8FD0C4; }
+.art .m { position: absolute; left: 30px; right: 30px; top: 18px; bottom: 18px; border: 6px solid #222; background: linear-gradient(90deg, transparent 47%, #222 47% 53%, transparent 53%), linear-gradient(transparent 47%, #222 47% 53%, transparent 53%), #6D8A8C; }
+.feats { padding-top: 18px; } .feats article { border-top: 3px solid #222; padding-top: 8px; } .feats b { color: #A9442D; font-weight: 700; }
+.stats { background: #222; color: #F2EFEA; } .stats b { color: #E1806A; }
+</style>

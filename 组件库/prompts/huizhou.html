@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Huizhou Architecture",
+  "zh": "徽派建筑",
+  "alias": [
+    "徽派",
+    "马头墙"
+  ],
+  "lead": "白墙黛瓦和层层叠起的马头墙，倒映在水里，像一幅淡墨画。素净、有节奏、有书卷气，适合古镇文旅、茶叶、文房、书院和民宿。",
+  "prompt": "徽派建筑风格：白墙般的米白背景，黛瓦深灰为主色，主视觉为阶梯状层叠的马头墙剪影与倒影，墙面极淡的水渍晕染，衬线标题字距宽，大面积留白，只有一点竹青或朱红点缀",
+  "promptEn": "Huizhou architecture style: whitewashed off-white background, dark tile gray as the main color, a hero of stepped horse-head gable wall silhouettes with a faint reflection, very light water-stain washes on walls, widely tracked serif headings, vast white space, only a hint of bamboo green or vermilion",
+  "avoid": "马头墙的阶梯是辨识点，画两三层就够。墙面的水渍要非常淡，太重会脏；别再叠加水墨山水，会抢戏。",
+  "neg": [
+    "浓重水渍、再叠山水画",
+    "heavy stains, extra ink landscapes"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3B3F44; --a2: #9C3B2E; --on: #FAFAF6; background: #F7F6F1; color: #2E3135; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta { background: none; color: #3B3F44; border: 1px solid #3B3F44; } .hero h1 { font-weight: 500; letter-spacing: 5px; } .b1 { border-radius: 0; }
+.art { overflow: hidden; background: linear-gradient(transparent 112px, rgba(59, 63, 68, .05) 112px); }
+.art .h { position: absolute; left: 6px; right: 6px; top: 20px; height: 92px; background: #3B3F44; clip-path: polygon(0 100%, 0 30%, 20% 30%, 20% 10%, 40% 10%, 40% 0, 60% 0, 60% 10%, 80% 10%, 80% 30%, 100% 30%, 100% 100%); }
+.art .m { position: absolute; left: 6px; right: 6px; top: 25px; height: 87px; background: #FFFEFB; z-index: 1; clip-path: polygon(0 100%, 0 30%, 20% 30%, 20% 10%, 40% 10%, 40% 0, 60% 0, 60% 10%, 80% 10%, 80% 30%, 100% 30%, 100% 100%); }
+.art::before { content: ""; position: absolute; left: 6px; right: 6px; top: 113px; height: 40px; background: linear-gradient(rgba(59, 63, 68, .16), transparent); clip-path: polygon(0 0, 0 70%, 20% 70%, 20% 90%, 40% 90%, 40% 100%, 60% 100%, 60% 90%, 80% 90%, 80% 70%, 100% 70%, 100% 0); }
+.art::after { content: ""; position: absolute; left: 34%; top: 70px; z-index: 2; width: 14px; height: 20px; background: #3B3F44; box-shadow: 36px 0 0 #3B3F44; }
+.feats article { padding-top: 10px; border-top: 1px solid #CFCCC3; } .feats h3 { font-weight: 500; letter-spacing: 4px; } .feats b { color: #9C3B2E; } .stats b { font-weight: 400; }
+</style>

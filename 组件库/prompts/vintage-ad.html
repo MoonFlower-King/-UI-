@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Vintage Print Ad",
+  "zh": "老式报刊广告",
+  "alias": [
+    "复古广告",
+    "杂志广告页"
+  ],
+  "lead": "上世纪中叶杂志里的整版广告：大标题许下承诺，插画占一半，下面是密密的说明文字和一个剪角优惠券。真诚、啰嗦得可爱、充满推销的热情，适合复古产品、怀旧营销和创意活动页。",
+  "prompt": "老式报刊广告风格：泛黄纸色背景，双色印刷（深墨蓝加一种暖红），大号粗衬线承诺式标题，插画区为单色网点或线描，正文为两栏小号衬线，带虚线剪角的优惠券框，手写体小字点缀",
+  "promptEn": "vintage print ad style: yellowed paper background, two-color print (deep ink blue plus one warm red), big bold serif promise-style headline, illustration area in single-color halftone or line art, body in two columns of small serif, a coupon box with dashed cut-out border, small script accents",
+  "avoid": "只用两种油墨色才像老印刷；文案可以热情但版面要整齐，别加现代渐变和阴影卡片。",
+  "neg": [
+    "多色渐变、现代卡片阴影",
+    "multicolor gradients, modern card shadows"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C8452F; --a2: #233A5E; --on: #F6EDD6; background: #F1E6C8; color: #233A5E; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 3px double #233A5E; } .logo { font-style: italic; } .cta { border-radius: 0; }
+.kicker { font-style: italic; letter-spacing: 0; font-size: 12px; } .hero h1 { font-weight: 900; font-size: 30px; line-height: 1.05; letter-spacing: -.5px; }
+.sub { columns: 2; column-gap: 14px; font-size: 10.5px; text-align: justify; } .b1 { border-radius: 0; }
+.b2 { border: 1.5px dashed #233A5E; padding: 6px 10px; color: #233A5E; }
+.art { background: radial-gradient(circle, #233A5E 1.2px, transparent 1.5px) 0 0 / 6px 6px; border: 2px solid #233A5E; }
+.art .m { position: absolute; left: 40px; top: 24px; width: 90px; height: 90px; border-radius: 50%; background: #F1E6C8; border: 2px solid #233A5E; }
+.art .h { position: absolute; left: 62px; top: 46px; width: 46px; height: 46px; border-radius: 50%; background: #C8452F; }
+.art::after { content: "NEW!"; position: absolute; right: -10px; top: -10px; width: 44px; height: 44px; border-radius: 50%; background: #C8452F; color: #F6EDD6; display: grid; place-items: center; font: 900 12px -apple-system, "Inter", "PingFang SC", sans-serif; transform: rotate(12deg); }
+.feats article { border-top: 2px solid #233A5E; padding-top: 6px; } .feats b { color: #C8452F; font-style: italic; } .feats h3 { font-weight: 900; }
+.stats { margin: 0 26px; border: 2px dashed #233A5E; } .stats b { color: #C8452F; font-weight: 900; }
+</style>

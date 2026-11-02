@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Visible Grid",
+  "zh": "露骨网格",
+  "alias": [
+    "显性网格",
+    "格线排版"
+  ],
+  "lead": "把排版用的网格线直接画出来：细线分栏、格子编号、内容老老实实落在格里。理性、透明、像一份设计图纸，适合设计工作室、建筑事务所、开发者工具和研究机构。",
+  "prompt": "露骨网格风格：纯白背景，黑色细线（1px）把页面切成清晰的列和行，格线完整可见，角落有小号等宽编号，所有内容严格贴格对齐，无衬线标题，只用一个强调色（如江月橘）标注当前格",
+  "promptEn": "visible grid style: pure white background, thin black 1px lines dividing the page into clear columns and rows, grid lines fully visible, tiny monospaced index numbers in corners, all content snapped strictly to cells, sans-serif headings, only one accent color (like orange) marking the active cell",
+  "avoid": "格线要细且统一，粗细一乱就像表格软件；内容必须真的贴格，偏一点就露馅。强调色只给一个格子。",
+  "neg": [
+    "粗细不一的线、内容不贴格",
+    "mixed line weights, content off-grid"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #FA8C16; --on: #fff; background: #fff; color: #111; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 1px solid #111; } .logo i { background: #FA8C16; } .cta { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+.hero { padding: 0; gap: 0; border-bottom: 1px solid #111; } .copy { padding: 22px 26px; position: relative; }
+.copy::before { content: "01"; position: absolute; left: 6px; top: 4px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; opacity: .6; }
+.hero h1 { font-weight: 600; letter-spacing: -.5px; } .b1 { border-radius: 0; } .b2 { color: #111; text-decoration: underline; }
+.art { border-left: 1px solid #111; background: #FA8C16; }
+.art::before { content: "02"; position: absolute; left: 6px; top: 4px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #111; }
+.art .m { position: absolute; inset: 30px 26px; border: 1px solid #111; background: linear-gradient(45deg, transparent 49.5%, #111 49.5% 50.5%, transparent 50.5%), linear-gradient(-45deg, transparent 49.5%, #111 49.5% 50.5%, transparent 50.5%); }
+.feats { gap: 0; padding: 0; border-bottom: 1px solid #111; } .feats article { padding: 14px 16px; border-right: 1px solid #111; } .feats article:last-child { border-right: 0; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #111; opacity: .6; } .feats h3 { font-weight: 600; }
+.stats { justify-content: stretch; padding: 0; border-bottom: 1px solid #111; } .stats div { flex: 1; padding: 14px 16px; border-right: 1px solid #111; } .stats div:last-child { border-right: 0; }
+.stats b { font-weight: 500; } .ft { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

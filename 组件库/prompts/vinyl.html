@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Vinyl Record",
+  "zh": "黑胶唱片",
+  "alias": [
+    "唱片封套",
+    "黑胶"
+  ],
+  "lead": "一张黑胶从方形封套里滑出半张，纹路细密，中间是彩色圆标。温暖、有质感、带着老唱片店的味道，适合音乐人、独立厂牌、咖啡馆、播客和演出票务。",
+  "prompt": "黑胶唱片风格：深暖黑背景，主视觉为方形唱片封套和从中滑出一半的黑胶（细密同心纹路、一道柔和高光、彩色中心圆标），奶白文字，粗衬线或复古无衬线标题，单一暖色点缀（芥末黄或砖橙）",
+  "promptEn": "vinyl record style: deep warm black background, a hero of a square album sleeve with a vinyl record sliding halfway out (fine concentric grooves, one soft highlight, a colored center label), cream text, heavy serif or retro sans headings, a single warm accent (mustard or brick orange)",
+  "avoid": "唱片纹路要细、高光要柔，粗条纹就成了靶子；封套用纯色或简单几何，别仿真实专辑封面。",
+  "neg": [
+    "粗条纹靶心、仿真实专辑封面",
+    "thick bullseye stripes, imitating real album covers"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E0A43A; --a2: #E0A43A; --on: #1A1714; background: #1A1714; color: #F2EADB; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 999px; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; } .hero h1 { font-weight: 800; letter-spacing: -.3px; } .kicker { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 3px; text-transform: uppercase; }
+.art .h { position: absolute; left: 46px; top: 14px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, #1A1714 0 3px, #E0A43A 3.5px 20px, #111 20.5px 22px, transparent 22.5px), conic-gradient(from 30deg, transparent 0 10%, rgba(255,255,255,.12) 14%, transparent 20% 60%, rgba(255,255,255,.08) 64%, transparent 70%), repeating-radial-gradient(circle, #0E0D0C 0 1.5px, #222 1.5px 2.5px); }
+.art .m { position: absolute; left: 0; top: 18px; width: 106px; height: 106px; background: linear-gradient(135deg, #B9512E 0 50%, #E8DCC5 50%); z-index: 1; box-shadow: 4px 4px 14px rgba(0,0,0,.5); }
+.art .m::after { content: "SIDE A"; position: absolute; left: 10px; bottom: 10px; font: 800 13px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 3px; color: #1A1714; }
+.feats article { padding-top: 10px; border-top: 1px solid rgba(242,234,219,.2); } .feats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 1px; }
+.stats { border-top: 1px solid rgba(242,234,219,.15); border-bottom: 1px solid rgba(242,234,219,.15); } .stats b { color: #E0A43A; }
+</style>

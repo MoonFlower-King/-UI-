@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Trading Card",
+  "zh": "集换卡牌",
+  "alias": [
+    "卡牌风",
+    "收藏卡"
+  ],
+  "lead": "一张张竖版收藏卡：圆角、厚边框、上方插画、下方属性数值，稀有度用角标标出。好玩、有收集欲、像在翻卡册，适合游戏官网、团队成员介绍、产品功能对比和活动抽卡页。",
+  "prompt": "集换卡牌风格：深靛蓝背景，内容卡为竖版圆角卡牌（金色或银色厚边框、上半插画窗、下半属性条与数值、角落稀有度星标），标题为粗体无衬线，卡面用一种主色加金边，背景有极淡的菱形纹",
+  "promptEn": "trading card style: deep indigo background, content cards as vertical rounded collectible cards (thick gold or silver frame, illustration window on top, stat bars and numbers below, rarity star badge in the corner), bold sans-serif headings, card faces in one main color with gold trim, very faint diamond pattern behind",
+  "avoid": "卡框要厚、信息分区要清楚（图、名、属性）才像卡牌；不要模仿已有卡牌游戏的版式和元素图标。闪卡效果最多一张。",
+  "neg": [
+    "照抄知名卡牌版式、每张都闪",
+    "copying known card game layouts, holo on every card"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E5B649; --a2: #E5B649; --on: #1C1F3A; background: #1C1F3A; color: #EEF0FA; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { background: linear-gradient(45deg, rgba(255,255,255,.025) 25%, transparent 25% 75%, rgba(255,255,255,.025) 75%) 0 0 / 18px 18px; }
+.cta, .b1 { border-radius: 8px; font-weight: 800; } .hero h1 { font-weight: 900; } .kicker { letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+.art .m { position: absolute; left: 30px; top: -6px; width: 112px; height: 156px; border-radius: 10px; background: #2E3E8C; border: 5px solid #E5B649; box-shadow: 0 8px 18px rgba(0,0,0,.4); transform: rotate(4deg); }
+.art .m::before { content: ""; position: absolute; left: 6px; right: 6px; top: 20px; height: 64px; border-radius: 4px; background: linear-gradient(135deg, #8FB3F0, #3E5BC0 60%, #F0C66B); }
+.art .m::after { content: "ATK 72\A DEF 58"; white-space: pre; position: absolute; left: 8px; bottom: 8px; font: 800 10px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #EEF0FA; }
+.art .h { position: absolute; left: 112px; top: 0; width: 20px; height: 20px; z-index: 1; background: #E5B649; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); transform: rotate(4deg); }
+.feats article { padding: 10px; border-radius: 10px; background: #2A2F5A; border: 3px solid #E5B649; }
+.feats article::after { content: ""; display: block; height: 5px; margin-top: 8px; border-radius: 3px; background: linear-gradient(90deg, #E5B649 70%, rgba(255,255,255,.15) 70%); }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .feats h3 { font-weight: 800; }
+.stats b { color: #E5B649; font-weight: 900; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Friendly Illustration",
+  "zh": "亲和插画风",
+  "alias": [
+    "友好插画",
+    "扁平人物插画"
+  ],
+  "lead": "圆润的扁平小人、柔和的大色块、轻微不规则的形状，像产品在对你笑。亲切、易懂、降低距离感，适合 SaaS 官网、教育平台、公益组织和社区产品。",
+  "prompt": "亲和插画风格：奶白背景，柔和的蜜桃、鼠尾草绿、雾蓝色块，主视觉为圆润扁平的抽象人物或物件（简化肢体、无五官或极简五官），有机不规则的底色形状，圆角按钮，圆体无衬线字",
+  "promptEn": "friendly illustration style: cream background, soft peach, sage green and dusty blue color blobs, a hero of rounded flat abstract figures or objects (simplified limbs, no or minimal faces), organic irregular backdrop shapes, rounded buttons, rounded sans-serif type",
+  "avoid": "颜色压低饱和度才显温和；人物别画夸张大长腿和紫色皮肤这类泛滥套路，保持简单几何。插画是点缀，留够空白。",
+  "neg": [
+    "高饱和撞色、千篇一律的大长腿小人",
+    "high-saturation clashing colors, cliché long-limbed figures"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E9825E; --a2: #4F7A6A; --on: #fff; background: #FBF6EE; color: #33302C; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 40% 60% 55% 45%; } .cta, .b1 { border-radius: 999px; }
+.hero h1 { font-weight: 800; letter-spacing: -.3px; }
+.art .m { position: absolute; left: 10px; top: 14px; width: 150px; height: 120px; background: #DCE7DF; border-radius: 58% 42% 50% 50% / 48% 56% 44% 52%; }
+.art .h { position: absolute; left: 68px; top: 40px; width: 26px; height: 26px; border-radius: 50%; background: #F2B8A0; z-index: 1;
+  box-shadow: -2px 30px 0 8px #E9825E; }
+.art::before { content: ""; position: absolute; left: 104px; top: 56px; width: 40px; height: 52px; background: #9FB6CF; border-radius: 10px 10px 4px 4px; z-index: 1; transform: rotate(8deg); }
+.art::after { content: ""; position: absolute; left: 30px; top: 104px; width: 110px; height: 8px; border-radius: 4px; background: #4F7A6A; opacity: .5; }
+.feats article { padding: 14px; border-radius: 18px; background: #fff; box-shadow: 0 2px 0 #EFE6D8; }
+.feats article:nth-child(1) b { color: #E9825E; } .feats article:nth-child(3) b { color: #6E8FB5; } .feats b { font-weight: 700; }
+.stats { margin: 0 26px; border-radius: 18px; background: #DCE7DF; } .stats b { color: #3E6656; }
+</style>

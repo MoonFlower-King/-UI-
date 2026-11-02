@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Long Shadow",
+  "zh": "长投影",
+  "alias": [
+    "长阴影",
+    "扁平长影"
+  ],
+  "lead": "扁平图标拖出一道 45 度斜长的影子，一直延伸到画面边缘。轻快、有点复古的扁平时代味道，适合应用推荐、工具官网、教育产品和活动海报。",
+  "prompt": "长投影风格：饱和但不刺眼的纯色背景（如青绿或砖红），白色扁平图形和标题，每个图形向右下拖出一道 45 度、半透明深色的长投影直到边缘，无渐变、无描边，卡片为浅色圆角块",
+  "promptEn": "long shadow style: saturated but calm solid background (teal or brick red), white flat shapes and headings, each shape casting a 45-degree semi-transparent dark long shadow to the bottom-right edge, no gradients, no outlines, cards as light rounded blocks",
+  "avoid": "影子统一 45 度、统一方向，角度一乱就假；影子用半透明深色叠在底色上，别用纯黑。只给主图形和标题加，正文不要。",
+  "neg": [
+    "多方向阴影、纯黑影子、正文也加影子",
+    "shadows in many directions, pure black shadows, shadows on body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #fff; --a2: #FFE2B8; --on: #1F7A74; background: #2A8C85; color: #fff; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; overflow: hidden; }
+.logo i { border-radius: 50%; } .cta { border-radius: 4px; font-weight: 700; }
+.hero h1 { text-shadow: 1px 1px 0 #237670, 2px 2px 0 #237670, 3px 3px 0 #237670, 4px 4px 0 #237670, 5px 5px 0 #237670, 6px 6px 0 #237670, 7px 7px 0 #237670, 8px 8px 0 #237670; }
+.b1 { border-radius: 4px; font-weight: 700; }
+.art { overflow: hidden; }
+.art .m { position: absolute; left: 50px; top: 30px; width: 70px; height: 70px; border-radius: 50%; background: #fff; z-index: 1; }
+.art::before { content: ""; position: absolute; left: 50px; top: 30px; width: 70px; height: 70px; background: rgba(0, 40, 38, .22); transform-origin: 0 0;
+  clip-path: polygon(50% 0, 100% 50%, 100% 100%, 50% 100%, 0 50%, 0 50%); }
+.art::after { content: ""; position: absolute; left: 60px; top: 40px; width: 200px; height: 200px; background: rgba(0, 40, 38, .22); clip-path: polygon(30% 0, 0 30%, 70% 100%, 100% 70%); }
+.art .h { position: absolute; left: 74px; top: 52px; width: 22px; height: 26px; border: 4px solid #2A8C85; border-radius: 3px; z-index: 2; }
+.feats article { padding: 14px; border-radius: 8px; background: #F4FBFA; color: #1E4E4A; } .feats b { color: #2A8C85; font-weight: 700; }
+.stats { background: #237670; } .stats b { color: #FFE2B8; }
+</style>

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Sticky Note Wall",
+  "zh": "便利贴墙",
+  "alias": [
+    "便签墙",
+    "头脑风暴墙"
+  ],
+  "lead": "白板上贴满彩色便利贴，手写字、箭头和磁铁，像一场正在进行的讨论。活泼、协作、想法正在冒出来，适合协作工具、工作坊、创业活动和教育课程。",
+  "prompt": "便利贴墙风格：白板浅灰背景，内容卡片为方形便利贴（柠檬黄、薄荷绿、浅粉、天蓝），每张轻微旋转、顶部有一道粘胶阴影，手写感标题配干净无衬线正文，偶尔一条手绘箭头或圆形磁铁",
+  "promptEn": "sticky note wall style: whiteboard light gray background, content cards as square sticky notes (lemon yellow, mint green, light pink, sky blue), each slightly rotated with an adhesive shadow at the top, handwritten-feel headings with clean sans-serif body, an occasional hand-drawn arrow or round magnet",
+  "avoid": "便利贴颜色压一点饱和度，荧光色会刺眼；手写字只用于便签标题，正文仍要规整易读。旋转别超过 3 度。",
+  "neg": [
+    "荧光色便签、全文手写字",
+    "fluorescent notes, handwriting for all text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2B2B; --a2: #3A6FB0; --on: #fff; background: #EEF0F1; color: #2B2B2B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: #D9534F; box-shadow: inset -2px -2px 0 rgba(0,0,0,.2); } .cta, .b1 { border-radius: 6px; }
+.hero h1 { font-weight: 800; } .b2 { color: #3A6FB0; }
+.art .m { position: absolute; left: 6px; top: 6px; width: 86px; height: 86px; background: #FCEB8C; transform: rotate(-3deg); box-shadow: 0 6px 8px -4px rgba(0,0,0,.25); }
+.art .m::before { content: "想法 #1"; position: absolute; left: 10px; top: 12px; font: 700 13px -apple-system, "Inter", "PingFang SC", sans-serif; transform: rotate(-1deg); }
+.art .h { position: absolute; left: 80px; top: 58px; width: 86px; height: 86px; background: #BFE6CF; transform: rotate(3deg); box-shadow: 0 6px 8px -4px rgba(0,0,0,.25); }
+.art .h::before { content: ""; position: absolute; left: 36px; top: -6px; width: 14px; height: 14px; border-radius: 50%; background: #3A6FB0; box-shadow: inset -2px -2px 0 rgba(0,0,0,.25); }
+.art::after { content: "↘"; position: absolute; left: 60px; top: 74px; font-size: 26px; color: #D9534F; }
+.feats article { padding: 14px 12px; box-shadow: 0 6px 8px -5px rgba(0,0,0,.25); background: linear-gradient(rgba(0,0,0,.05), transparent 10px), #FCEB8C; }
+.feats article:nth-child(1) { transform: rotate(-1.5deg); } .feats article:nth-child(2) { background-color: #F9CFD6; transform: rotate(1deg); } .feats article:nth-child(3) { background-color: #CFE3F5; transform: rotate(-.5deg); }
+.feats b { color: #2B2B2B; opacity: .7; font-weight: 700; }
+.stats { margin: 0 26px; background: #fff; border-radius: 8px; } .stats b { color: #3A6FB0; }
+</style>
