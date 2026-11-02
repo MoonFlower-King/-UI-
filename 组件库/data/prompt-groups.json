@@ -1,0 +1,30 @@
+{
+  "kinds": [
+    { "id": "video", "name": "视频", "en": "Video", "intro": "运镜和景别。预览是分层的江边场景，右上角的俯视图告诉你摄影机怎么走。",
+      "subject": "画面里拍什么", "subjectEg": "雨夜江边，一个提灯的人站在石头上", "subjectEgEn": "a person holding a lantern on a riverside rock at night",
+      "head": "生成一段视频", "headEn": "Generate a video" },
+    { "id": "image", "name": "图片", "en": "Image", "intro": "光线和构图。预览先给你看「没加这个词」的平淡样子，再看加上之后。",
+      "subject": "画面里是什么", "subjectEg": "一位穿浅色毛衣的年轻人半身像", "subjectEgEn": "a half-length portrait of a young person in a light sweater",
+      "head": "生成一张图片", "headEn": "Generate an image" },
+    { "id": "web", "name": "网站风格", "en": "Web style", "intro": "同一个示例网站换上不同风格，一眼看出差别。",
+      "subject": "做什么网站", "subjectEg": "一家城市小书房的官网首页", "subjectEgEn": "the homepage of a small city bookshop",
+      "head": "设计一个网页", "headEn": "Design a web page" }
+  ],
+  "groups": [
+    { "id": "camera-move", "kind": "video", "name": "运镜", "en": "Camera movement", "pick": "many", "stage": "scene",
+      "intro": "摄影机自己怎么动。可以选一两个组合，比如「推 + 升降」。",
+      "items": ["dolly-in", "dolly-out", "truck", "crane", "orbit", "dolly-zoom"] },
+    { "id": "shot-size", "kind": "video", "name": "景别", "en": "Shot size", "pick": "one", "stage": "scene",
+      "intro": "人在画面里占多大。一个镜头只选一个。",
+      "items": ["extreme-long-shot", "full-shot", "medium-shot", "close-up"] },
+    { "id": "lighting", "kind": "image", "name": "光线", "en": "Lighting", "pick": "one", "stage": "portrait",
+      "intro": "光从哪来、多硬多软，决定了画面的情绪。选一种主光就够。",
+      "items": ["side-light", "rim-light", "rembrandt-light", "window-light"] },
+    { "id": "composition", "kind": "image", "name": "构图", "en": "Composition", "pick": "one", "stage": "photo",
+      "intro": "主体放在哪、留多少空。",
+      "items": ["rule-of-thirds", "symmetry", "negative-space"] },
+    { "id": "web-style", "kind": "web", "name": "整体风格", "en": "Overall style", "pick": "one", "stage": "site",
+      "intro": "一个网站一种主风格，别混搭。",
+      "items": ["swiss-style", "editorial", "oriental", "bento-style", "dark-tech"] }
+  ]
+}

@@ -1,0 +1,17 @@
+<!--
+{
+  "en": "Side Light", "zh": "侧光", "alias": ["Split Light", "阴阳脸"],
+  "lead": "光从正侧面打过来，脸一半亮一半暗，明暗交界线就在鼻梁附近。立体感最强，情绪偏冷峻、有戏剧性。",
+  "prompt": "强烈的侧光从画面左侧水平照射，人物脸部一半明亮一半隐入阴影，明暗交界清晰，背景偏暗",
+  "promptEn": "strong side light from the left at head height, half of the face brightly lit and half falling into shadow, a clear light-to-shadow transition, darker background",
+  "avoid": "侧光会放大皮肤纹理和脸型缺点，做温柔、亲和的人像不合适。也别和「明亮」「高调」写在一起，两者互相打架，AI 会给出一张哪边都不像的平光图。",
+  "neg": ["平光、正面打光", "flat frontal lighting"]
+}
+-->
+<style>
+.pt { --la: -90; }
+.wall-fx { background: radial-gradient(70% 100% at 0% 40%, rgba(255, 240, 215, .32), transparent 60%), linear-gradient(90deg, transparent 25%, rgba(18, 14, 10, .6) 85%); }
+.h-fx { background: linear-gradient(90deg, rgba(255, 245, 225, .22) 0 40%, rgba(26, 14, 8, .84) 54%); }
+.n-fx { background: linear-gradient(90deg, rgba(255, 245, 225, .15) 0 30%, rgba(26, 14, 8, .85) 60%); }
+.b-fx { background: linear-gradient(90deg, rgba(255, 245, 225, .2) 0 30%, rgba(26, 18, 12, .7) 58%); }
+</style>

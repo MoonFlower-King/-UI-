@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Window Light", "zh": "窗边柔光", "alias": ["自然窗光", "Soft Window Light"],
+  "lead": "从一扇大窗户照进来的天光：光源大、阴影边缘很柔，明暗过渡像水墨晕开。干净、安静、有生活气，人像和产品图都好用。",
+  "prompt": "柔和的自然窗光从画面左侧大窗户照入，光线均匀细腻，明暗过渡平缓，阴影边缘柔和，色调清淡偏冷",
+  "promptEn": "soft natural window light from a large window on the left, even and delicate light, gentle gradient from light to shadow, soft-edged shadows, pale slightly cool tones",
+  "avoid": "「柔光」不等于「没有阴影」。完全没有明暗的柔光会变回平光，失去立体感。保留一侧的轻微阴影，画面才有呼吸感。",
+  "neg": ["硬朗阴影、强烈对比", "hard shadows, harsh contrast"]
+}
+-->
+<style>
+.pt { --la: -100; --lw: 3; }
+.wall-fx { filter: blur(6px);
+  background: linear-gradient(rgba(240, 246, 255, .5), rgba(240, 246, 255, .5)) 34px 40px / 56px 76px no-repeat,
+    linear-gradient(rgba(240, 246, 255, .5), rgba(240, 246, 255, .5)) 96px 40px / 56px 76px no-repeat,
+    linear-gradient(rgba(240, 246, 255, .5), rgba(240, 246, 255, .5)) 34px 122px / 56px 76px no-repeat,
+    linear-gradient(rgba(240, 246, 255, .5), rgba(240, 246, 255, .5)) 96px 122px / 56px 76px no-repeat,
+    linear-gradient(90deg, rgba(220, 232, 245, .25), transparent 55%, rgba(40, 36, 34, .25)); }
+.h-fx { background: linear-gradient(90deg, rgba(244, 248, 255, .24), transparent 40%, rgba(46, 34, 28, .42)); }
+.n-fx { background: linear-gradient(90deg, rgba(244, 248, 255, .15), rgba(46, 34, 28, .45)); }
+.b-fx { background: linear-gradient(90deg, rgba(244, 248, 255, .25), transparent 45%, rgba(46, 34, 28, .3)); }
+</style>

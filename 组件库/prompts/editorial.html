@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Editorial Layout", "zh": "杂志编辑排版", "alias": ["杂志风", "Magazine Layout"],
+  "lead": "像翻一本印刷精良的杂志：衬线大标题、报头式的双线、多栏正文、首字下沉、图片配说明文字。适合内容型网站、品牌故事、长文。",
+  "prompt": "杂志编辑排版风格：顶部报头式标志配双细线，衬线体大标题，正文分两栏并使用首字下沉，大图配小号图注，米白纸色背景，文字为深墨色，层级靠字号和字重区分",
+  "promptEn": "editorial magazine layout: masthead-style logo with double hairlines, large serif headline, two-column body text with a drop cap, large image with a small caption, off-white paper background, deep ink text, hierarchy built from type size and weight",
+  "avoid": "杂志风的难点是正文排版：行宽、行高、段间距。只换个衬线字体不叫杂志风。内容很少的页面（比如工具类应用）硬套也不合适，会显得空洞做作。",
+  "neg": ["卡片堆叠、按钮满屏", "stacked cards, buttons everywhere"]
+}
+-->
+<style>
+.site { background: #F5F0E6; color: #221E1A; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", serif; }
+.nav { flex-direction: column; gap: 6px; padding: 18px 28px 8px; text-align: center; }
+.logo { font-size: 28px; letter-spacing: 6px; font-weight: 700; padding: 0 0 8px; border-bottom: 3px double #221E1A; width: 100%; } .logo i { display: none; }
+.nav nav { gap: 24px; font-size: 11px; letter-spacing: 2px; color: #6B6258; } .cta { display: none; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding: 18px 28px 22px; border-bottom: 1px solid #CFC5B5; }
+.copy { display: contents; }
+.kicker { grid-column: 1 / -1; font-size: 11px; letter-spacing: 3px; color: #9A4A2E; text-align: center; }
+.hero h1 { grid-column: 1 / -1; font-size: 40px; line-height: 1.15; text-align: center; font-weight: 700; }
+.hero h1 br { display: none; }
+.sub { grid-column: 1; font-size: 12px; line-height: 1.75; column-count: 1; text-align: justify; }
+.sub::first-letter { float: left; font-size: 46px; line-height: .9; margin: 4px 6px 0 0; font-weight: 700; color: #9A4A2E; }
+.acts { grid-column: 1; gap: 14px; font-size: 12px; font-style: italic; } .b1 { border-bottom: 1px solid #221E1A; }
+.art { grid-column: 2; grid-row: 3 / 5; position: relative; min-height: 150px; background: linear-gradient(#3B4250, #6E6A66 60%, #B9A88E); }
+.art::after { content: "图：江边路的夜，书房的窗。"; position: absolute; left: 0; bottom: -18px; font-size: 10px; font-style: italic; color: #6B6258; }
+.art .m { position: absolute; right: 26px; top: 22px; width: 26px; height: 26px; border-radius: 50%; background: #F3E3C2; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 24px 28px; }
+.feats article { border-top: 1px solid #221E1A; padding-top: 8px; } .feats b { font-size: 11px; color: #9A4A2E; letter-spacing: 2px; }
+.feats h3 { font-size: 18px; font-weight: 700; } .feats p { font-size: 11.5px; line-height: 1.6; color: #4A433B; }
+.stats { justify-content: space-around; margin: 0 28px; padding: 16px 0; border-top: 3px double #221E1A; border-bottom: 1px solid #CFC5B5; text-align: center; }
+.stats b { display: block; font-size: 26px; font-style: italic; } .stats span { font-size: 10px; letter-spacing: 2px; color: #6B6258; }
+.ft { padding: 16px 28px 22px; text-align: center; font-size: 10px; letter-spacing: 2px; color: #6B6258; }
+</style>

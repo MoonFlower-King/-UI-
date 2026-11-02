@@ -1,0 +1,14 @@
+<!--
+{
+  "en": "Orbit Shot", "zh": "环绕镜头", "alias": ["环绕", "Arc Shot", "360 环绕"],
+  "lead": "摄影机绕着人物走一段弧线，人始终在中间，背景在身后转过去。适合高光时刻、人物下定决心，或者展示一件产品。",
+  "prompt": "镜头以人物为中心缓慢环绕约 30 度，人物始终保持在画面中央，背景在其身后平稳转动",
+  "promptEn": "slow orbit around the subject of about 30 degrees, the subject stays in the center of the frame while the background rotates smoothly behind",
+  "avoid": "环绕最容易写过头。「360 度快速旋转」又晕又廉价，AI 也做不稳，人物脸会变形。写清楚角度（30 到 90 度）和「缓慢」，效果反而高级。",
+  "neg": ["快速旋转、人物变形", "fast spinning, distorted subject"]
+}
+-->
+<style>
+.scene { animation: orbit 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+@keyframes orbit { 0%, 10% { --orb: -16; } 80%, 100% { --orb: 16; } }
+</style>

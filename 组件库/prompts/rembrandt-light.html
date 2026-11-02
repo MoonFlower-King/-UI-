@@ -1,0 +1,19 @@
+<!--
+{
+  "en": "Rembrandt Lighting", "zh": "伦勃朗光", "alias": ["三角光"],
+  "lead": "主光放在人物侧前方偏高的位置，暗的那半边脸上，颧骨处会留下一小块三角形的亮斑。经典肖像光，沉稳、有故事感。",
+  "prompt": "伦勃朗光：主光从人物左前方约 45 度、略高于头部的位置照下，右侧脸颊阴影中出现一块清晰的倒三角形亮斑，背景深沉",
+  "promptEn": "Rembrandt lighting: key light from about 45 degrees front-left, slightly above head height, a distinct inverted triangle of light on the shadowed right cheek, deep dark background",
+  "avoid": "很多人把伦勃朗光理解成「暗调油画风」，其实它特指那块三角亮斑。只写 Rembrandt 有时会被当成画家风格，生成油画质感；写清楚光的位置和三角亮斑更可靠。",
+  "neg": ["油画笔触", "oil painting brushstrokes"],
+  "tip": "三角亮斑不出现时，把「45 度」「略高于头部」写得更明确，或补一句 triangle of light under the eye。"
+}
+-->
+<style>
+.pt { --la: -135; }
+.wall-fx { background: radial-gradient(60% 80% at 15% 20%, rgba(255, 236, 205, .28), transparent 60%), linear-gradient(100deg, rgba(20, 16, 12, .25), rgba(20, 16, 12, .7)); }
+.h-fx { background: linear-gradient(100deg, rgba(255, 240, 220, .2) 0 44%, rgba(28, 16, 10, .8) 58%); }
+.patch { background: #E6C3A5; clip-path: polygon(59% 57%, 76% 57%, 62% 73%); filter: blur(1.6px); }
+.n-fx { background: rgba(28, 16, 10, .62); }
+.b-fx { background: linear-gradient(105deg, rgba(255, 240, 220, .15) 0 30%, rgba(26, 18, 12, .62) 60%); }
+</style>

@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Rule of Thirds", "zh": "三分法构图", "alias": ["九宫格构图"],
+  "lead": "用两横两竖把画面分成九格，地平线放在一条横线上，主体放在交叉点附近。比放正中间更自然、更有呼吸感。",
+  "prompt": "三分法构图，地平线位于画面下方三分之一处，主体灯塔位于右侧三分线与上方三分线的交点附近，左侧留出天空",
+  "promptEn": "rule of thirds composition, horizon on the lower third line, the lighthouse placed near the intersection of the right and upper third lines, open sky on the left",
+  "avoid": "三分法是起点不是规矩。产品主图、证件感的正面人像放正中间反而更好。另外只写 rule of thirds 太泛，写明主体在哪条线上、地平线在哪，AI 才会照做。",
+  "neg": ["主体居中、地平线居中", "centered subject, horizon in the middle"]
+}
+-->
+<div class="rt">
+  <div class="sky"></div><div class="sun"></div>
+  <div class="sea"></div>
+  <div class="land"><svg width="120" height="140" viewBox="-60 -128 120 140">
+    <path d="M-56 4 C-40 -10 -22 -14 0 -12 C24 -10 42 -8 58 4 Z" fill="#232C3D"/>
+    <path d="M-7 -12 L-5 -88 L5 -88 L7 -12 Z" fill="#EDE6D8"/><rect x="-6" y="-60" width="12" height="7" fill="#B8432F"/><rect x="-5.5" y="-36" width="11" height="7" fill="#B8432F"/>
+    <rect x="-8" y="-98" width="16" height="10" rx="2" fill="#2B3446"/><circle cx="0" cy="-93" r="3.2" fill="#FFD58A"/><path d="M-10 -100 L0 -110 L10 -100Z" fill="#2B3446"/>
+    <path class="beam" d="M3 -93 L60 -108 L60 -78Z" fill="#FFE6B0" opacity=".35"/>
+  </svg></div>
+  <div class="grid3"><i></i><i></i><i></i><i></i><b></b></div>
+</div>
+<style>
+.rt { position: absolute; inset: 0; overflow: hidden; }
+.sky { position: absolute; inset: 0; background: linear-gradient(#34445F 0%, #7D7C8C 45%, #E2B48E 72%, #F2CFA2 100%); }
+.sun { position: absolute; left: 110px; top: 190px; width: 46px; height: 46px; border-radius: 50%; background: #FFE9C4; box-shadow: 0 0 40px 14px rgba(255, 220, 170, .5); }
+.sea { position: absolute; left: 0; right: 0; top: 175px; height: 260px; background: linear-gradient(#5A6680, #2B364B 60%); animation: rt-sea 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+.sea::before { content: ""; position: absolute; left: 96px; top: 6px; width: 74px; height: 40px; background: repeating-linear-gradient(#FFE2B0 0 2px, transparent 2px 8px); opacity: .45; }
+.land { position: absolute; left: 220px; top: 47px; animation: rt-land 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+.land svg { display: block; }
+.beam { animation: beam 2.4s ease-in-out infinite alternate; }
+@keyframes beam { to { opacity: .1; } }
+@keyframes rt-sea { 0%, 18% { transform: none; } 30%, 88% { transform: translateY(58px); } 100% { transform: none; } }
+@keyframes rt-land { 0%, 18% { transform: none; } 30%, 88% { transform: translate(93px, 58px); } 100% { transform: none; } }
+.grid3 { position: absolute; inset: 0; animation: rt-grid 7s ease-in-out infinite; }
+.grid3 i { position: absolute; background: rgba(255, 255, 255, .55); }
+.grid3 i:nth-child(1) { left: 186px; top: 0; bottom: 0; width: 1px; } .grid3 i:nth-child(2) { left: 373px; top: 0; bottom: 0; width: 1px; }
+.grid3 i:nth-child(3) { top: 116px; left: 0; right: 0; height: 1px; } .grid3 i:nth-child(4) { top: 233px; left: 0; right: 0; height: 1px; }
+.grid3 b { position: absolute; left: 366px; top: 109px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #FA8C16; }
+@keyframes rt-grid { 0%, 22% { opacity: 0; } 34%, 86% { opacity: 1; } 96%, 100% { opacity: 0; } }
+</style>

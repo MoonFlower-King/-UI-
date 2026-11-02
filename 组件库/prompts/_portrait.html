@@ -1,0 +1,55 @@
+<!--
+  光线词条共用的舞台：一面墙前的半身像，560×350。
+  不加任何光线时是平淡的「平光」；词条只给 .fx 这几层写样式（墙上的光、头/脖子/身体上的明暗、伦勃朗三角光 .patch、轮廓光 .rim），
+  舞台会让它们循环淡入淡出，先看平光、再看加上这个词以后的样子。
+  右上角俯视布光图：橘色是光源，--la 是光源角度（0 在人背后，-90 在左边，180 在镜头这边），--lw 是光源宽度（窗户这类大光源写 3 左右）。
+-->
+<div class="pt">
+  <div class="wall"></div>
+  <div class="fx wall-fx"></div>
+  <div class="ear l"></div><div class="ear r"></div>
+  <div class="body"><div class="fx b-fx"></div></div>
+  <div class="neck"><div class="fx n-fx"></div></div>
+  <div class="head">
+    <i class="eye l"></i><i class="eye r"></i><i class="nose"></i><i class="mouth"></i>
+    <div class="hair"></div>
+    <div class="fx h-fx"></div>
+    <div class="fx patch"></div>
+    <div class="fx rim"></div>
+  </div>
+  <div class="tag"><span class="a">平光 · 没写光线</span><span class="b">加上这个词</span></div>
+  <div class="map"><span>俯视布光</span><svg viewBox="0 0 120 84">
+    <rect x="55" y="72" width="10" height="7" rx="1.6" fill="#A7AEC2"/><text x="69" y="79">镜头</text>
+    <g class="lamp"><path d="M53 13 L67 13 L64 32 L56 32Z" fill="#FFD58A" opacity=".28"/><rect class="src" x="53" y="6" width="14" height="6" rx="2" fill="#FA8C16"/></g>
+    <circle cx="60" cy="40" r="6" fill="#E0BFA3"/><path d="M54 38 A6 6 0 0 1 66 38" fill="#2E2622"/>
+  </svg></div>
+</div>
+
+<style>
+.pt { position: absolute; inset: 0; overflow: hidden; }
+.wall { position: absolute; inset: 0; background: #ADA79D; }
+.fx { position: absolute; inset: 0; pointer-events: none; opacity: 0; animation: lit 6s ease-in-out infinite; }
+@keyframes lit { 0%, 16% { opacity: 0; } 32%, 90% { opacity: 1; } 100% { opacity: 0; } }
+.ear { position: absolute; top: 112px; width: 16px; height: 30px; border-radius: 50%; background: #D9B597; }
+.ear.l { left: 221px; } .ear.r { left: 323px; }
+.body { position: absolute; left: 112px; top: 222px; width: 336px; height: 200px; border-radius: 168px 168px 0 0 / 96px 96px 0 0; background: #CFC6B8; overflow: hidden; }
+.neck { position: absolute; left: 257px; top: 176px; width: 46px; height: 60px; border-radius: 0 0 22px 22px; background: #D6B396; overflow: hidden; }
+.head { position: absolute; left: 228px; top: 58px; width: 104px; height: 136px; border-radius: 50% 50% 46% 46% / 42% 42% 58% 58%; background: #E0BFA3; overflow: hidden; }
+.head .fx { border-radius: inherit; }
+.eye { position: absolute; top: 70px; width: 17px; height: 6px; border-bottom: 2px solid #6B4C3E; border-radius: 0 0 50% 50% / 0 0 100% 100%; }
+.eye.l { left: 23px; } .eye.r { left: 63px; }
+.nose { position: absolute; left: 45px; top: 98px; width: 14px; height: 5px; border-bottom: 2px solid rgba(120, 78, 58, .45); border-radius: 0 0 50% 50%; }
+.mouth { position: absolute; left: 41px; top: 114px; width: 22px; height: 5px; border-bottom: 2.5px solid #A86558; border-radius: 0 0 50% 50% / 0 0 100% 100%; }
+.hair { position: absolute; left: -8px; right: -8px; top: -14px; height: 60px; border-radius: 50% 50% 38% 38% / 80% 80% 20% 20%; background: #2E2622; }
+.tag { position: absolute; left: 14px; bottom: 14px; font: 600 14px/1 -apple-system, "PingFang SC", sans-serif; }
+.tag span { position: absolute; left: 0; bottom: 0; white-space: nowrap; padding: 6px 10px; border-radius: 99px; background: rgba(18, 23, 34, .72); color: #F4EFE6; }
+.tag .a { animation: unlit 6s ease-in-out infinite; }
+.tag .b { background: #FA8C16; color: #231405; animation: lit 6s ease-in-out infinite; }
+@keyframes unlit { 0%, 16% { opacity: 1; } 32%, 90% { opacity: 0; } 100% { opacity: 1; } }
+.map { position: absolute; right: 12px; top: 12px; width: 150px; padding: 6px 6px 2px; border-radius: 10px; background: rgba(18, 23, 34, .78); }
+.map span { display: block; margin: 0 0 2px 4px; font: 600 13px/1.4 -apple-system, "PingFang SC", sans-serif; color: rgba(244, 239, 230, .8); }
+.map svg { display: block; width: 100%; height: auto; }
+.map text { font: 9px -apple-system, "PingFang SC", sans-serif; fill: #A7AEC2; }
+.lamp { transform-origin: 60px 40px; transform: rotate(calc(var(--la, -90) * 1deg)); }
+.src { transform-origin: 60px 9px; transform: scaleX(var(--lw, 1)); }
+</style>

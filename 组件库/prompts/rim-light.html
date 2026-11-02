@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Rim Light", "zh": "逆光轮廓光", "alias": ["背光", "Back Light", "轮廓光"],
+  "lead": "光从人物身后打过来，头发和肩膀边缘亮起一圈光边，人和背景一下就分开了。氛围感、电影感最常用的一招。",
+  "prompt": "逆光拍摄，光源在人物正后方，头发和肩膀边缘被勾勒出明亮的金色轮廓光，脸部处在柔和的阴影中，背景有温暖的光晕",
+  "promptEn": "backlit, light source directly behind the subject, a bright golden rim light outlining the hair and shoulders, the face in soft shadow, warm glow in the background",
+  "avoid": "纯逆光会让脸黑成一团。如果还需要看清表情，加一句「正面有微弱补光」。另外逆光常带出镜头光晕，适量很好看，写太多会糊成一片。",
+  "neg": ["脸部全黑、光晕过曝", "face completely black, blown-out flare"]
+}
+-->
+<style>
+.pt { --la: 0; }
+.wall-fx { background: radial-gradient(40% 58% at 50% 36%, rgba(255, 238, 204, .98), rgba(255, 214, 160, .55) 42%, transparent 72%), linear-gradient(rgba(22, 18, 14, .62), rgba(22, 18, 14, .62)); }
+.h-fx { background: rgba(26, 16, 10, .66); }
+.n-fx { background: rgba(26, 16, 10, .72); }
+.b-fx { background: rgba(26, 18, 12, .6); box-shadow: inset 0 5px 6px -2px rgba(255, 232, 196, .85); }
+.rim { box-shadow: inset 5px 0 5px -2px rgba(255, 236, 200, .95), inset -5px 0 5px -2px rgba(255, 236, 200, .95), inset 0 7px 7px -3px rgba(255, 236, 200, .9); }
+</style>

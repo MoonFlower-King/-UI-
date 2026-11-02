@@ -1,0 +1,15 @@
+<!--
+{
+  "en": "Dolly In", "zh": "推镜头", "alias": ["推", "Push In"],
+  "lead": "摄影机朝人物慢慢往前走，前景从两边让开，观众的注意力被一点点收紧到人物身上。适合情绪升起、发现关键线索的时刻。",
+  "prompt": "镜头从中景缓慢向前推进到人物，速度均匀，前景从两侧滑出画面，主体始终保持在画面中心",
+  "promptEn": "slow dolly in toward the subject at a steady pace, foreground slides out of frame on both sides, subject stays centered",
+  "avoid": "推不等于变焦：推是摄影机真的往前走，近处和远处的东西放大速度不一样，有空间感；只写 zoom in 会变成平面放大。另外别推得太快，几秒内推到大特写会显得慌张。",
+  "neg": ["画面抖动、突然加速", "shaky camera, sudden speed change"],
+  "tip": "想要更强的压迫感，可以叠加浅景深，让背景在推近时越来越虚。"
+}
+-->
+<style>
+.scene { animation: dolly-in 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+@keyframes dolly-in { 0%, 10% { --z: -1.5; } 80%, 100% { --z: 2.8; } }
+</style>

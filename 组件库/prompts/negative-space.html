@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Negative Space", "zh": "负空间留白", "alias": ["留白", "Minimalist Composition"],
+  "lead": "让大片空白（天空、水面、雾）占据画面，主体只是很小的一点。空白本身也在「说话」：安静、孤独、高级。东方审美里最常用的手法。",
+  "prompt": "大面积留白的极简构图，画面约八成是朦胧的水面与天空，一叶小舟位于右下方三分点附近，体量很小，色调淡雅",
+  "promptEn": "minimalist composition with vast negative space, about eighty percent of the frame is misty water and sky, a tiny lone boat near the lower-right third, muted pale tones",
+  "avoid": "留白不是「空」。空白区域要有细微的层次（雾的浓淡、水面的纹理），否则像没加载完的图。主体也要足够清晰，小而不糊。",
+  "neg": ["画面杂乱、元素堆满", "cluttered frame, crowded elements"]
+}
+-->
+<div class="ns">
+  <div class="mist"></div>
+  <svg class="hill" width="560" height="350" viewBox="0 0 560 350"><path d="M0 214 C60 196 110 186 170 200 C210 208 240 204 280 214 L0 214Z" fill="#C9C3B6"/></svg>
+  <div class="clutter">
+    <svg width="560" height="350" viewBox="0 0 560 350">
+      <g class="c1"><path d="M0 350 L0 230 C30 200 70 196 96 214 C120 230 130 270 140 350Z" fill="#6E6A62"/><path d="M40 210 L46 150 M46 150 C30 150 24 160 22 170 M46 150 C64 148 72 158 76 168 M46 162 C34 166 30 176 30 182" stroke="#4E4A44" stroke-width="3" fill="none"/></g>
+      <g class="c2" fill="#5D5952"><path d="M150 240 Q176 248 204 240 L198 246 Q176 252 156 246Z"/><path d="M220 262 Q250 270 282 262 L276 268 Q250 274 226 268Z"/><path d="M300 236 Q322 242 346 236 L341 241 Q322 246 305 241Z"/></g>
+      <g class="c3" stroke="#5D5952" stroke-width="2" fill="none"><path d="M300 90 q8 -8 16 0 q8 -8 16 0"/><path d="M340 70 q6 -6 12 0 q6 -6 12 0"/><path d="M270 110 q6 -6 12 0 q6 -6 12 0"/><path d="M380 100 q7 -7 14 0 q7 -7 14 0"/></g>
+      <g class="c4"><rect x="480" y="150" width="4" height="60" fill="#5D5952"/><rect x="510" y="150" width="4" height="60" fill="#5D5952"/><path d="M466 152 L497 132 L528 152Z" fill="#5D5952"/><path d="M440 350 L450 210 L560 206 L560 350Z" fill="#7A766D"/></g>
+    </svg>
+  </div>
+  <div class="boat"><svg width="40" height="24" viewBox="0 0 40 24"><path d="M2 16 Q20 22 38 16 L34 20 Q20 25 6 20Z" fill="#2E2B27"/><path d="M19 16 L19 6" stroke="#2E2B27" stroke-width="1.5"/><circle cx="19" cy="5" r="2.6" fill="#2E2B27"/><path d="M15 10 Q19 7 23 10 L22 16 L16 16Z" fill="#2E2B27"/></svg></div>
+</div>
+<style>
+.ns { position: absolute; inset: 0; overflow: hidden; }
+.mist { position: absolute; inset: 0; background: linear-gradient(#EFEBE3 0%, #E4DFD5 58%, #D9D4C9 61%, #E6E1D8 100%); }
+.mist::after { content: ""; position: absolute; left: 0; right: 0; top: 214px; height: 1px; background: rgba(120, 114, 104, .25); }
+.hill, .clutter svg { position: absolute; left: 0; top: 0; }
+.clutter g { animation: ns-out 7s ease-in-out infinite; }
+.clutter .c2 { animation-delay: .15s; } .clutter .c3 { animation-delay: .3s; } .clutter .c4 { animation-delay: .45s; }
+@keyframes ns-out { 0%, 16% { opacity: 1; } 30%, 88% { opacity: 0; } 100% { opacity: 1; } }
+.boat { position: absolute; left: 250px; top: 250px; animation: ns-boat 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+.boat svg { display: block; }
+@keyframes ns-boat { 0%, 18% { transform: scale(1.5); } 30%, 88% { transform: translate(115px, -22px) scale(.9); } 100% { transform: scale(1.5); } }
+</style>

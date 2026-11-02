@@ -1,0 +1,15 @@
+<!--
+{
+  "en": "Dolly Out", "zh": "拉镜头", "alias": ["拉", "Pull Back"],
+  "lead": "摄影机从人物身边往后退，环境一点点露出来，人显得越来越小。适合结尾、孤独感，或者揭示「原来他在这样的地方」。",
+  "prompt": "镜头从人物近景缓慢向后拉远，周围环境逐渐显露，人物在画面中越来越小，节奏舒缓",
+  "promptEn": "slow dolly out from a close shot of the subject, the surroundings are gradually revealed, the subject becomes smaller in frame, calm pacing",
+  "avoid": "拉镜头的价值在于「露出来的东西」。如果背景什么都没有，拉远只会让画面变空。写提示词时把要揭示的环境一起写上，比如「露出整条江和远山」。",
+  "neg": ["背景空无一物", "empty featureless background"],
+  "tip": "想要更强的「被世界吞没」感，可以和「升降」组合：边拉边升。"
+}
+-->
+<style>
+.scene { animation: dolly-out 7s cubic-bezier(.45, .05, .35, 1) infinite; }
+@keyframes dolly-out { 0%, 10% { --z: 3; } 80%, 100% { --z: -5; } }
+</style>
