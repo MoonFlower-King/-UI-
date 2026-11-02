@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Letter Board",
+  "zh": "插字留言板",
+  "alias": [
+    "毛毡字板",
+    "插字招牌"
+  ],
+  "lead": "咖啡馆门口那块黑色毛毡插字板：一条条细槽、白色塑料小字母插在上面，偶尔一两个字母歪着。亲切、随手、带点幽默，适合咖啡馆、面包店、社区店和每日菜单。",
+  "prompt": "插字留言板风格：深炭黑毛毡板为首屏主视觉（密集的水平细槽纹理、木质外框），白色等宽塑料字母插出标题文字，个别字母微微歪斜，页面其余部分为浅木色或米白，简洁无衬线正文，温暖随意",
+  "promptEn": "letter board style: a dark charcoal felt letter board as the hero (dense horizontal groove texture, wooden frame), the headline spelled in white monospaced plastic letters, an occasional letter slightly crooked, the rest of the page in light wood or off-white, simple sans-serif body, warm and casual",
+  "avoid": "字母要插在“槽”里，大小一致、白色塑料感；歪一两个字就够。别用手写字或彩色字母。",
+  "neg": [
+    "手写字、彩色字母",
+    "handwritten text, colored letters"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #26241F; --a2: #A8743E; --on: #F4EEE2; background: #F4EEE2; color: #26241F; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; }
+.art .m { position: absolute; left: 4px; top: 4px; width: 158px; height: 120px; border: 7px solid #C49A68; border-radius: 3px; box-shadow: 0 6px 14px rgba(38,36,31,.2);
+  background: repeating-linear-gradient(#26241F 0 3px, #1A1916 3px 4px); color: #F4EEE2; font: 700 13px/18px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 3px; text-align: center; padding-top: 18px; white-space: pre; }
+.art .m::before { content: "OPEN\A FRESH BREAD\A & COFFEE"; }
+.feats article { background: #fff; border-radius: 6px; padding: 12px; box-shadow: 0 1px 3px rgba(38,36,31,.1); } .feats b { color: #A8743E; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

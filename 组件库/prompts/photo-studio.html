@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Photo Studio",
+  "zh": "摄影棚",
+  "alias": [
+    "影棚",
+    "人像摄影工作室"
+  ],
+  "lead": "摄影工作室的官网：中性灰的无缝背景纸、一盏柔光箱打下来的光、取景框四角的对焦标记，作品大图主导。专业、干净、聚焦作品，适合摄影师、影棚租赁、证件照和婚纱摄影。",
+  "prompt": "摄影棚风格：中性浅灰背景，主视觉为一块弧形无缝背景纸（从墙面平滑弯到地面，顶部亮下部暗的柔光渐变），一侧有柔光箱的光斑，取景框四角对焦标记和小号参数文字（光圈、快门、ISO），细无衬线标题，黑白灰为主",
+  "promptEn": "photo studio style: neutral light gray background, a hero of a curved seamless paper backdrop (sweeping smoothly from wall to floor, soft light gradient from bright top to darker bottom), a softbox glow on one side, viewfinder corner focus marks and small exposure readouts (aperture, shutter, ISO), thin sans-serif headings, mostly black, white and gray",
+  "avoid": "要留给作品，界面本身只用黑白灰；取景框四角是点睛。别加滤镜色调或花哨边框抢作品的戏。",
+  "neg": [
+    "彩色滤镜、花哨边框",
+    "colored filters, fancy borders"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1A1A; --a2: #6A6A6A; --on: #F2F2F0; background: #ECECEA; color: #1A1A1A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 300; letter-spacing: -.5px; } .kicker, .stats span { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-transform: uppercase; }
+.art .m { position: absolute; left: 6px; top: 4px; width: 156px; height: 130px; background: radial-gradient(ellipse 60px 50px at 30% 30%, rgba(255,255,255,.9), transparent), linear-gradient(#F4F4F2, #C8C8C4 62%, #B4B4B0 64%, #D6D6D2); }
+.art .m::before { content: ""; position: absolute; inset: 10px; background: linear-gradient(#1A1A1A, #1A1A1A) 0 0 / 12px 1.5px, linear-gradient(#1A1A1A, #1A1A1A) 0 0 / 1.5px 12px, linear-gradient(#1A1A1A, #1A1A1A) 100% 0 / 12px 1.5px, linear-gradient(#1A1A1A, #1A1A1A) 100% 0 / 1.5px 12px, linear-gradient(#1A1A1A, #1A1A1A) 0 100% / 12px 1.5px, linear-gradient(#1A1A1A, #1A1A1A) 0 100% / 1.5px 12px, linear-gradient(#1A1A1A, #1A1A1A) 100% 100% / 12px 1.5px, linear-gradient(#1A1A1A, #1A1A1A) 100% 100% / 1.5px 12px; background-repeat: no-repeat; }
+.art .h { position: absolute; left: 6px; top: 140px; font: 9.5px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 1px; color: #555; } .art .h::before { content: "f/2.8   1/125   ISO 100"; white-space: pre; }
+.feats article { border-top: 1px solid #1A1A1A; padding-top: 10px; } .feats h3 { font-weight: 400; }
+.stats b { font-weight: 300; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Vertical Typesetting",
+  "zh": "竖排版式",
+  "alias": [
+    "直排",
+    "竖版文字"
+  ],
+  "lead": "把中文竖着排：标题从上往下、从右往左读，配一条竖向细线和几枚小标点，横向内容退居其次。书卷气、东方、版式感强，适合文学刊物、书店、诗词、茶与香的品牌页。",
+  "prompt": "竖排版式风格：素白或浅米背景，首屏大标题采用中文竖排（从上到下、从右到左），宋体类细衬线，配竖向细分隔线和小号竖排注释，英文小字旋转90度贴边，正文仍横排，单一墨黑加一点朱红，留白充足",
+  "promptEn": "vertical typesetting style: plain white or pale beige background, the main Chinese headline set vertically (top to bottom, right to left) in a fine Song-style serif, vertical hairline dividers and small vertical annotations, small English text rotated 90° along the edge, body text still horizontal, ink black with a touch of vermilion, generous white space",
+  "avoid": "竖排只用在标题和短句，长正文还是横排更好读；标点要用竖排标点。别把英文也硬竖着一个字母一个字母排。",
+  "neg": [
+    "长段落竖排、英文逐字母竖排",
+    "long paragraphs set vertically, English stacked letter by letter"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1E1E; --a2: #B23A2E; --on: #F6F3EC; background: #F6F3EC; color: #1E1E1E; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .logo { font-weight: 400; letter-spacing: 3px; } .logo i { background: #B23A2E; width: 10px; height: 10px; }
+.hero { grid-template-columns: 1fr 150px; } .hero h1 { font-weight: 400; letter-spacing: 3px; }
+.art .m { position: absolute; right: 4px; top: 0; writing-mode: vertical-rl; font-size: 28px; letter-spacing: 6px; white-space: nowrap; padding-left: 12px; border-left: 1px solid rgba(30,30,30,.3); }
+.art .m::before { content: "江上月明时"; }
+.art .h { position: absolute; left: 6px; top: 2px; writing-mode: vertical-rl; font-size: 12px; letter-spacing: 5px; white-space: nowrap; color: #B23A2E; }
+.art .h::before { content: "一卷清风"; }
+.feats h3 { font-weight: 400; letter-spacing: 2px; } .feats b { color: #B23A2E; }
+.stats b { font-weight: 400; }
+</style>

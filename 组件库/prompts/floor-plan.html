@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Floor Plan",
+  "zh": "户型平面图",
+  "alias": [
+    "平面布置图",
+    "建筑平面"
+  ],
+  "lead": "把页面画成一张房屋平面图：粗黑墙线、门的开启弧线、家具的简笔轮廓和房间名标注，旁边有尺寸线。清晰、专业、有空间感，适合室内设计、家装、民宿、联合办公和地产项目。",
+  "prompt": "户型平面图风格：白或极浅灰背景，主视觉为一张简洁平面图（粗黑墙体、门的四分之一圆弧、窗为细双线、家具简笔轮廓、房间名小字），外侧有带端点的尺寸标注线，等宽或几何无衬线字体，单一点缀色标示重点区域",
+  "promptEn": "floor plan style: white or very light gray background, a hero of a clean floor plan (thick black walls, quarter-circle door swings, thin double lines for windows, simple furniture outlines, small room labels), dimension lines with end ticks around it, monospaced or geometric sans type, a single accent color highlighting a key area",
+  "avoid": "墙线粗、家具线细，层级要分明；门弧是辨识点。别画成透视效果图或三维户型。",
+  "neg": [
+    "三维效果图、线条无粗细",
+    "3D renderings, uniform line weight"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1C1C1C; --a2: #D9663A; --on: #FFFFFF; background: #FAFAF8; color: #1C1C1C; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; } .kicker, .feats b, .stats span { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art .m { position: absolute; left: 10px; top: 10px; width: 146px; height: 112px; border: 4px solid #1C1C1C;
+  background: linear-gradient(#1C1C1C, #1C1C1C) 88px 0 / 4px 60px no-repeat, linear-gradient(#1C1C1C, #1C1C1C) 0 56px / 50px 4px no-repeat, linear-gradient(rgba(217,102,58,.18), rgba(217,102,58,.18)) 92px 0 / 50px 104px no-repeat,
+   radial-gradient(circle at 0 100%, transparent 21px, #1C1C1C 21px 22px, transparent 22px) 50px 34px / 24px 24px no-repeat, linear-gradient(transparent 6px, #888 6px 7px, transparent 7px 13px, #888 13px 14px, transparent 14px) 14px 102px / 50px 20px no-repeat; }
+.art .m::after { content: "LIVING     BED"; position: absolute; left: 14px; top: 14px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 1px; white-space: pre; color: #555; }
+.art .h { position: absolute; left: 10px; width: 154px; top: 132px; border-top: 1px solid #888; }
+.art .h::before, .art .h::after { content: ""; position: absolute; top: -5px; height: 9px; border-left: 1px solid #888; } .art .h::before { left: 0; } .art .h::after { right: 0; }
+.feats article { border-left: 2px solid #1C1C1C; padding-left: 10px; }
+.stats b { font-weight: 500; }
+</style>

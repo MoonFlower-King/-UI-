@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Tear-off Calendar",
+  "zh": "撕页日历",
+  "alias": [
+    "老黄历",
+    "手撕日历"
+  ],
+  "lead": "墙上一本手撕日历：顶部是装订条，大大的红色日期数字占满一页，下面一行小字写着星期、农历和宜忌，背后露出被撕过的毛边。生活气、亲切、有时间感，适合每日一签、打卡应用、节日活动和本地生活。",
+  "prompt": "撕页日历风格：浅米黄背景，主视觉为一本手撕日历（顶部深色装订条，页面中央超大红色或黑色日期数字，下方小字星期、农历与宜忌，页面下方叠着几层纸边，顶部残留撕页毛边），粗壮衬线数字，宋体小字，红黑两色",
+  "promptEn": "tear-off calendar style: pale cream background, a hero of a tear-off wall calendar (dark binding strip at top, a huge red or black date numeral in the center, small lines below for weekday, lunar date and auspicious notes, a few stacked page edges below, torn remnants along the top), heavy serif numerals, small Song-style text, red and black only",
+  "avoid": "数字要“超大”占满页面，红黑两色就够；底部叠几层纸边才有厚度。别做成电子日历的月视图网格。",
+  "neg": [
+    "月视图网格、多色彩",
+    "month-grid view, many colors"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C0272D; --a2: #C0272D; --on: #FFF8EC; background: #F4ECDA; color: #1E1A16; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; }
+.art .m { position: absolute; left: 22px; top: 4px; width: 126px; height: 134px; background: #FFFBF2; box-shadow: 0 3px 0 -1px #F1E9D8, 0 3px 0 0 #D8CDB6, 0 6px 0 -1px #F1E9D8, 0 6px 0 0 #D8CDB6, 0 10px 14px rgba(0,0,0,.12);
+  border-top: 14px solid #2E2A26; text-align: center; color: #C0272D; font: 900 72px/1.25 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.art .m::before { content: "15"; }
+.art .m::after { content: "星期五 · 九月廿四\A 宜 读书 会友"; white-space: pre; position: absolute; left: 0; right: 0; bottom: 10px; font: 400 10px/1.6 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #1E1A16; }
+.art .h { position: absolute; left: 22px; top: 18px; width: 126px; height: 5px; background: radial-gradient(circle at 50% 0, transparent 2px, #FFFBF2 2.5px) 0 0 / 6px 5px; }
+.feats b { color: #C0272D; } .feats article { border-top: 3px solid #1E1A16; padding-top: 10px; }
+.stats b { color: #C0272D; font-weight: 900; }
+</style>
