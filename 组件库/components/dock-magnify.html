@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Dock Magnification", "zh": "程序坞放大",
+  "lead": "一排图标，鼠标靠近时最近的那个放大最多、旁边的依次放大少一点，像一道波浪跟着鼠标走。直观又好玩，适合快捷入口、作品集导航。",
+  "vague": ["图标靠近会变大", "底部那排会鼓起来的图标"],
+  "terms": ["Dock Magnification", "Proximity Scaling 距离缩放", "Fisheye 鱼眼"],
+  "prompt": "底部快捷入口做 Dock Magnification：一排 44px 图标，按鼠标与每个图标中心的水平距离计算放大倍数（距离 0 时 1.6 倍，120px 以外为 1，用余弦平滑过渡），以底部为基准放大；鼠标离开后全部 200ms 回到原大小；悬停图标上方显示名称。"
+}
+-->
+<div class="dock"></div>
+
+<style>
+.dock { display: flex; align-items: flex-end; gap: 8px; height: 64px; padding: 8px 12px; border-radius: 20px; background: rgba(255,255,255,.75); border: 1px solid #E4E4E7; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.ic { position: relative; width: 44px; height: 44px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 20px; color: #fff; transform-origin: bottom center; transform: scale(var(--s, 1)); margin: 0 calc((var(--s, 1) - 1) * 18px); transition: transform .08s, margin .08s; cursor: pointer; }
+.dock:not(:hover) .ic { transition: transform .2s, margin .2s; }
+.ic::after { content: attr(data-n); position: absolute; bottom: calc(100% + 8px); padding: 2px 8px; border-radius: 6px; background: #18181B; font-size: 11px; white-space: nowrap; opacity: 0; transform: scale(calc(1 / var(--s, 1))); transform-origin: bottom; transition: opacity .15s; }
+.ic:hover::after { opacity: 1; }
+</style>
+
+<script>
+const apps = [["组件", "◐", "#FA8C16"], ["调配台", "✦", "#8B5CF6"], ["图鉴", "▤", "#2563EB"], ["篮子", "◍", "#16A34A"], ["设置", "⚙", "#52525B"], ["夜间", "☾", "#121722"]];
+const dock = document.querySelector(".dock");
+dock.innerHTML = apps.map(([n, i, c]) => `<span class="ic" data-n="${n}" style="background:${c}">${i}</span>`).join("");
+const icons = [...dock.children];
+dock.addEventListener("mousemove", (e) => icons.forEach((ic) => {
+  const r = ic.getBoundingClientRect(), d = Math.abs(e.clientX - (r.left + r.width / 2));
+  ic.style.setProperty("--s", d > 120 ? 1 : 1 + 0.6 * (Math.cos((d / 120) * Math.PI) + 1) / 2);
+}));
+dock.addEventListener("mouseleave", () => icons.forEach((ic) => ic.style.setProperty("--s", 1)));
+</script>

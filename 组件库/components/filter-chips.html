@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Filter Chips", "zh": "筛选标签",
+  "lead": "一排可以点亮/取消的小胶囊，每个代表一个筛选条件，点亮的会带对勾和底色，下方结果立刻跟着变。比打开下拉框再勾选快得多。",
+  "vague": ["筛选条件太藏了", "想一键过滤"],
+  "terms": ["Filter Chips", "Toggle Chip", "Faceted Filter 分面筛选"],
+  "prompt": "作品列表上方加 Filter Chips：一行可横向滚动的胶囊（高 32px、1px #E4E4E7 描边），选中后变江月橘浅底 #FFF4E6 + 橘色描边 + 左侧对勾滑入（宽度过渡 200ms）；可多选，末尾出现“清除”；结果列表随筛选即时更新并显示“共 N 个”。"
+}
+-->
+<div class="fc">
+  <div class="chips"></div>
+  <p class="count"></p>
+  <ul class="res"></ul>
+</div>
+
+<style>
+.fc { width: 320px; }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chip { flex: none; display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 999px; background: #fff; font-size: 13px; color: #3F3F46; cursor: pointer; transition: .2s; }
+.chip::before { content: "✓"; width: 0; overflow: hidden; color: #FA8C16; font-weight: 700; transition: width .2s, margin .2s; }
+.chip[aria-pressed="true"] { background: #FFF4E6; border-color: #FA8C16; color: #C2410C; } .chip[aria-pressed="true"]::before { width: 12px; margin-right: 4px; }
+.clear { flex: none; border: 0; background: none; font-size: 12px; color: #A1A1AA; cursor: pointer; }
+.count { margin: 10px 0 6px; font-size: 12px; color: #A1A1AA; }
+.res { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.res li { padding: 8px 10px; border-radius: 8px; background: #fff; border: 1px solid #F0F0F2; font-size: 12px; animation: in .2s; } .res small { display: block; color: #A1A1AA; font-size: 10px; }
+@keyframes in { from { opacity: 0; transform: translateY(4px); } }
+</style>
+
+<script>
+const tags = ["布局", "配色", "动效", "表单"], data = [["网格系统", "布局"], ["江月橘", "配色"], ["弹性缓动", "动效"], ["浮动标签", "表单"], ["卡片布局", "布局"], ["暗色模式", "配色"]];
+const on = new Set(), chips = document.querySelector(".chips");
+function render() {
+  chips.innerHTML = tags.map((t) => `<button class="chip" aria-pressed="${on.has(t)}">${t}</button>`).join("") + (on.size ? '<button class="clear">清除</button>' : "");
+  const list = data.filter(([, t]) => !on.size || on.has(t));
+  document.querySelector(".count").textContent = `共 ${list.length} 个`;
+  document.querySelector(".res").innerHTML = list.map(([n, t]) => `<li>${n}<small>${t}</small></li>`).join("");
+}
+chips.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; if (b.classList.contains("clear")) on.clear(); else on.has(b.textContent.trim()) ? on.delete(b.textContent.trim()) : on.add(b.textContent.trim()); render(); });
+render();
+</script>

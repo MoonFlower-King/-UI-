@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Grid Ripple", "zh": "网格波纹",
+  "lead": "一片方格里点一下某一格，动画从这格向四周一圈圈扩散出去，像石子落进水里。用在网格入场、点击反馈、加载背景上，非常抓眼。",
+  "vague": ["一片格子依次动起来", "从中间往外扩散的动画"],
+  "terms": ["Grid Ripple", "Distance-based Stagger 按距离错峰", "Wave Animation"],
+  "prompt": "做一个 Grid Ripple：10×6 的小方块网格（8px 圆角、浅灰），点击任一格，按每格到点击位置的距离计算延迟（距离 × 40ms），依次放大到 1.25、变为江月橘再恢复（400ms）；页面加载时从中心自动扩散一次；用 Web Animations API 实现，避免逐帧计算。"
+}
+-->
+<div class="grid"></div>
+
+<style>
+.grid { display: grid; grid-template-columns: repeat(10, 24px); gap: 6px; }
+.grid i { width: 24px; height: 24px; border-radius: 7px; background: #E4E4E7; cursor: pointer; }
+</style>
+
+<script>
+const C = 10, R = 6, grid = document.querySelector(".grid");
+grid.innerHTML = "<i></i>".repeat(C * R);
+const cells = [...grid.children];
+function ripple(ci) {
+  const cx = ci % C, cy = Math.floor(ci / C);
+  cells.forEach((el, i) => {
+    const d = Math.hypot((i % C) - cx, Math.floor(i / C) - cy);
+    el.animate([{ transform: "scale(1)", background: "#E4E4E7" }, { transform: "scale(1.25)", background: "#FA8C16", offset: .4 }, { transform: "scale(1)", background: "#E4E4E7" }],
+      { duration: 400, delay: d * 40, easing: "ease-out" });
+  });
+}
+grid.addEventListener("click", (e) => { const i = cells.indexOf(e.target); if (i >= 0) ripple(i); });
+ripple(Math.floor(R / 2) * C + Math.floor(C / 2));
+</script>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Grayscale to Color", "zh": "悬停恢复彩色",
+  "lead": "一排图片平时是灰色的，鼠标放上去的那张慢慢变回彩色、微微放大。常用于合作伙伴 Logo 墙、团队成员照片，平时整齐低调，悬停才突出。",
+  "vague": ["Logo 墙太花", "图片悬停变彩色"],
+  "terms": ["Grayscale Hover", "filter: grayscale", "Desaturate 去饱和"],
+  "prompt": "团队照片墙用 Grayscale to Color：图片默认 filter: grayscale(1) 并降到 70% 透明度，悬停时 400ms 过渡到彩色、100% 不透明、scale(1.04)；其余图片保持灰色；手机上（无悬停）直接显示彩色。"
+}
+-->
+<div class="wall"></div>
+
+<style>
+.wall { display: grid; grid-template-columns: repeat(4, 76px); gap: 10px; }
+.p { aspect-ratio: 1; border-radius: 14px; display: grid; place-items: end start; padding: 8px; box-sizing: border-box; color: #fff; font-size: 11px; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.3); cursor: pointer;
+  filter: grayscale(1); opacity: .7; transition: filter .4s, opacity .4s, transform .4s; }
+.p:hover { filter: none; opacity: 1; transform: scale(1.04); }
+@media (hover: none) { .p { filter: none; opacity: 1; } }
+</style>
+
+<script>
+const ppl = [["江小月", "#FA8C16,#FDE68A"], ["白露", "#1E3A5F,#60A5FA"], ["听潮", "#0EA5E9,#A7F3D0"], ["秋水", "#8B5CF6,#F9A8D4"], ["渔火", "#DC2626,#FDBA74"], ["清风", "#16A34A,#BEF264"], ["晚舟", "#0F766E,#5EEAD4"], ["星河", "#312E81,#C4B5FD"]];
+document.querySelector(".wall").innerHTML = ppl.map(([n, c]) => `<div class="p" style="background:linear-gradient(135deg,${c})">${n}</div>`).join("");
+</script>

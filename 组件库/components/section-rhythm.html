@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Vertical Rhythm", "zh": "纵向节奏",
+  "lead": "页面从上到下的间距有规律：区块之间大间距、区块内部中间距、元素之间小间距，全部取自同一套倍数。看起来井井有条，像音乐有节拍。",
+  "vague": ["页面间距乱七八糟", "上下空隙忽大忽小"],
+  "terms": ["Vertical Rhythm", "Spacing Scale 间距体系", "8pt Grid"],
+  "prompt": "统一纵向节奏：间距只用 8 的倍数（8/16/24/48/96），段落之间 16px，标题与下方内容 8px、与上方内容 24px（标题靠近它管的内容），区块之间 96px（手机 48px）；行高取 8 的倍数（如 16px 字配 24px 行高）。"
+}
+-->
+<div class="wrap">
+  <div class="page"><h4>标题</h4><p></p><p class="s"></p><h4>小节</h4><p></p><p></p></div>
+  <label><input type="checkbox" checked> 显示 8px 基线</label>
+</div>
+
+<style>
+.wrap { display: grid; gap: 8px; justify-items: center; }
+.page { position: relative; width: 240px; padding: 24px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+.page:has(+ label input:checked) { background-image: repeating-linear-gradient(transparent 0 7px, rgba(250,140,22,.18) 7px 8px); }
+h4 { margin: 24px 0 8px; height: 24px; line-height: 24px; font-size: 16px; color: #18181B; } h4:first-child { margin-top: 0; }
+p { height: 8px; margin: 0 0 16px; border-radius: 4px; background: #D4D4D8; } .s { width: 60%; }
+p:last-child { margin-bottom: 0; }
+label { font-size: 12px; color: #71717A; display: flex; gap: 6px; align-items: center; } input { accent-color: #FA8C16; }
+</style>

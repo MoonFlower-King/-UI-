@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Font Pairing", "zh": "字体搭配",
+  "lead": "标题和正文用两种不同但合拍的字体，比如标题用有性格的衬线，正文用干净的无衬线。一种字体负责“气质”，另一种负责“好读”。别超过两三种。",
+  "vague": ["字体看着很普通", "标题和正文用什么字"],
+  "terms": ["Font Pairing", "Serif + Sans", "Typeface Contrast 字体对比"],
+  "prompt": "全站字体搭配：标题用宋体类衬线（Noto Serif SC / Songti SC，粗体），正文和界面文字用系统无衬线（-apple-system / PingFang SC），代码用等宽；整站最多这三种；标题衬线负责气质，正文无衬线负责可读性，不要两种风格相近的字混用。"
+}
+-->
+<div class="wrap">
+  <div class="card"><small class="tag">衬线 + 无衬线</small><h3 class="serif">江上明月</h3><p class="sans">标题用衬线字体负责气质，正文用无衬线负责好读，两者一张一弛。</p></div>
+  <div class="ctrl"><button class="on" data-h="serif">衬线标题</button><button data-h="sans">无衬线标题</button></div>
+</div>
+
+<style>
+.wrap { display: grid; gap: 12px; justify-items: center; }
+.card { width: 280px; padding: 20px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.tag { font-size: 11px; color: #FA8C16; font-weight: 600; }
+h3 { margin: 6px 0 8px; font-size: 30px; color: #18181B; transition: font-family .2s; }
+.serif { font-family: "Songti SC", "Noto Serif SC", "STSong", Georgia, serif; font-weight: 800; }
+.sans { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+h3.sans { font-weight: 700; }
+p { margin: 0; font-size: 13px; line-height: 1.75; color: #52525B; }
+.ctrl { display: inline-flex; padding: 3px; border-radius: 9px; background: #F4F4F5; }
+.ctrl button { border: 0; background: none; padding: 4px 12px; border-radius: 7px; font-size: 12px; cursor: pointer; color: #71717A; }
+.ctrl .on { background: #fff; color: #18181B; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+</style>
+
+<script>
+const h = document.querySelector("h3"), tag = document.querySelector(".tag"), bs = document.querySelectorAll(".ctrl button");
+bs.forEach((b) => b.addEventListener("click", () => { h.className = b.dataset.h; tag.textContent = b.dataset.h === "serif" ? "衬线 + 无衬线" : "无衬线 + 无衬线"; bs.forEach((x) => x.classList.toggle("on", x === b)); }));
+</script>

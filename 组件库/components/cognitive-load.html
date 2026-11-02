@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Cognitive Load", "zh": "认知负荷",
+  "lead": "用户每看一个界面，大脑都要花力气理解。信息越多、越乱、越要记东西，就越累，越容易放弃。好设计会把一次要处理的东西减到最少：分步、分组、给默认值。",
+  "vague": ["表单太长用户不想填", "页面信息量太大"],
+  "terms": ["Cognitive Load", "Chunking 分块", "Progressive Disclosure 渐进展示"],
+  "prompt": "降低 Cognitive Load：长表单拆成 3 步，每步不超过 4 个字段；相关字段分组并加小标题；能推断的（城市、货币）给默认值；可选项折叠在“更多选项”里；去掉装饰性元素和重复说明，只保留完成当前任务需要的信息。"
+}
+-->
+<div class="cmp">
+  <div class="col bad"><small>✗ 一次填 10 项</small><div class="many"></div></div>
+  <div class="col good"><small>✓ 分步，每步 3 项</small><div class="steps"><i class="on"></i><i></i><i></i></div><b>1. 基本信息</b><span class="f"></span><span class="f"></span><span class="f"></span><button>下一步</button></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 360px; align-items: start; }
+.col { padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 6px; }
+small { font-size: 11px; font-weight: 600; } .bad small { color: #EF4444; } .good small { color: #16A34A; }
+.many { display: grid; gap: 4px; } .many span { height: 14px; border-radius: 4px; border: 1px solid #E4E4E7; }
+.steps { display: flex; gap: 4px; } .steps i { flex: 1; height: 3px; border-radius: 2px; background: #E4E4E7; } .steps .on { background: #FA8C16; }
+b { font-size: 12px; } .f { height: 24px; border-radius: 6px; border: 1px solid #E4E4E7; }
+button { height: 26px; border: 0; border-radius: 7px; background: #FA8C16; color: #fff; font-size: 11px; font-weight: 600; }
+</style>
+
+<script>
+document.querySelector(".many").innerHTML = "<span></span>".repeat(10);
+</script>

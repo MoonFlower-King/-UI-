@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Line Art Style", "zh": "单线插画风",
+  "lead": "插画和图标只用一种粗细的线条勾勒，不填色或只点缀少量色块，像钢笔速写。整体干净、轻盈、有呼吸感，适合 SaaS 产品、空状态和说明插图。",
+  "vague": ["插图想简洁一点", "那种线条画的插画"],
+  "terms": ["Line Art", "Monoline 单线", "Spot Color 点缀色"],
+  "prompt": "空状态和功能插图统一用 Line Art 风格：所有线条 1.5px、圆头圆角、颜色 #18181B，不用渐变和阴影；只在 1–2 处用江月橘 #FA8C16 小色块点缀；出场时线条用 stroke-dashoffset 依次画出（1.2s）。"
+}
+-->
+<svg viewBox="0 0 220 150" class="art">
+  <g class="ln"><path d="M20 120 H200"/><path d="M40 120 V70 h50 v50"/><path d="M50 70 l20 -22 l20 22"/><path d="M58 120 v-20 h14 v20"/>
+    <path d="M120 120 v-40 a20 20 0 0 1 40 0 v40"/><path d="M140 60 v-12"/><path d="M175 120 c0 -18 6 -30 14 -36 c-2 12 4 22 -4 36"/></g>
+  <circle cx="176" cy="34" r="12" class="spot"/><path class="ln" d="M100 30 q6 -6 12 0 q6 -6 12 0"/>
+</svg>
+
+<style>
+.art { width: 300px; }
+.ln, .ln path { fill: none; stroke: #18181B; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ln path, path.ln { stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw 1.2s ease-out forwards; }
+.ln path:nth-child(n+3) { animation-delay: .2s; } .ln path:nth-child(n+5) { animation-delay: .4s; }
+.spot { fill: #FA8C16; transform-box: fill-box; transform-origin: center; animation: pop .4s 1s cubic-bezier(.34, 1.56, .64, 1) both; }
+@keyframes draw { to { stroke-dashoffset: 0; } } @keyframes pop { from { transform: scale(0); } }
+</style>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Jakob's Law", "zh": "雅各布定律",
+  "lead": "用户大部分时间都在用别人的网站和 App，所以他们希望你的也按“大家习惯的方式”工作：Logo 在左上角、购物车在右上角、搜索框长那个样。别为了创新改掉这些约定。",
+  "vague": ["用户找不到东西", "设计得太另类没人会用"],
+  "terms": ["Jakob's Law", "Mental Model 心智模型", "Convention 惯例"],
+  "prompt": "按 Jakob's Law 调整导航：Logo 放左上角并可点击回首页，主导航水平排在顶部，搜索在右上，购物车/头像在最右；链接带下划线或明显颜色，表单提交按钮在右下；创新放在内容和视觉上，不要改用户熟悉的交互位置。"
+}
+-->
+<div class="cmp">
+  <div class="col bad"><small>✗ 位置反常</small><div class="bar"><span class="ic">🛒</span><span class="l">导航</span><b>江月</b></div><div class="ph">?</div></div>
+  <div class="col good"><small>✓ 符合习惯</small><div class="bar"><b>江月</b><span class="l">导航</span><span class="ic">🔍</span><span class="ic">🛒</span></div><div class="ph">一看就会</div></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 380px; }
+.col { padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 8px; }
+small { font-size: 11px; font-weight: 600; } .bad small { color: #EF4444; } .good small { color: #16A34A; }
+.bar { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-radius: 8px; background: #FAFAFA; font-size: 11px; }
+.bar b { font: 700 12px "Songti SC", serif; } .good .bar b { margin-right: auto; } .bad .bar b { margin-left: auto; }
+.l { color: #71717A; } .ic { font-size: 12px; }
+.ph { height: 60px; border-radius: 8px; background: #F4F4F5; display: grid; place-items: center; font-size: 12px; color: #A1A1AA; }
+</style>

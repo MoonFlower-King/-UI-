@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Text on Path", "zh": "路径文字",
+  "lead": "让一行字沿着弧线、圆圈或波浪排列，而不是一条直线。常见于徽章、印章、旋转的“滚动查看”标签，给页面添一点手作和趣味。",
+  "vague": ["字绕着圆圈转", "弯弯的文字"],
+  "terms": ["Text on Path", "SVG textPath", "Circular Text 环形文字"],
+  "prompt": "首屏右下角加一个环形 Text on Path 徽章：SVG 圆形路径半径 44px，文字“江月 UI · 说对一个词 · ”沿路径排列、字距 0.2em、12px 大写，整圈缓慢旋转（20s 线性无限）；中心放一个江月橘向下箭头；悬停时旋转加速。"
+}
+-->
+<a class="badge" href="#">
+  <svg viewBox="0 0 120 120"><defs><path id="c" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+    <text><textPath href="#c">江月 UI · 说对一个词 · AI 就懂你 · </textPath></text></svg>
+  <span>↓</span>
+</a>
+
+<style>
+.badge { position: relative; display: grid; place-items: center; width: 150px; height: 150px; text-decoration: none; }
+svg { position: absolute; inset: 0; animation: spin 20s linear infinite; }
+.badge:hover svg { animation-duration: 6s; }
+text { font-size: 11.5px; letter-spacing: .2em; fill: #18181B; font-weight: 600; }
+span { width: 54px; height: 54px; border-radius: 50%; background: #FA8C16; color: #fff; display: grid; place-items: center; font-size: 22px; box-shadow: 0 8px 20px -6px rgba(250,140,22,.6); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { svg { animation: none; } }
+</style>

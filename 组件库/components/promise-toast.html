@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Promise Toast", "zh": "进度轻提示",
+  "lead": "一条轻提示陪完整个过程：先显示“正在保存…”带转圈，成功后同一条变成绿色对勾“已保存”，失败就变红并给“重试”。不用弹好几次，状态一目了然。",
+  "vague": ["保存时不知道成没成功", "提示一会儿一个"],
+  "terms": ["Promise Toast", "Loading → Success", "Async Feedback 异步反馈"],
+  "prompt": "异步操作用 Promise Toast：同一条胶囊提示先显示 14px 转圈 + “正在发布…”，成功后图标交叉淡入为绿色对勾、文字变“发布成功”并在 2 秒后滑出；失败时变红色 ✕ +“发布失败”+ 一个“重试”按钮，不自动消失；整条宽度用 transition 平滑变化。"
+}
+-->
+<div class="wrap">
+  <div class="row"><button data-ok="1">发布（成功）</button><button data-ok="0">发布（失败）</button></div>
+  <div class="zone" aria-live="polite"></div>
+</div>
+
+<style>
+.wrap { display: grid; gap: 16px; justify-items: center; }
+.row { display: flex; gap: 8px; } .row button { border: 1px solid #E4E4E7; background: #fff; border-radius: 9px; padding: 7px 14px; font-size: 13px; cursor: pointer; }
+.zone { min-height: 40px; }
+.t { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 999px; background: #18181B; color: #fff; font-size: 13px; animation: in .25s ease-out; transition: background .3s; }
+.t.bye { animation: out .25s ease-in forwards; }
+@keyframes in { from { opacity: 0; transform: translateY(10px); } } @keyframes out { to { opacity: 0; transform: translateY(10px); } }
+.ic { width: 16px; height: 16px; display: grid; place-items: center; }
+.spin { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: sp .7s linear infinite; } @keyframes sp { to { transform: rotate(360deg); } }
+.okic, .errc { width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-weight: 800; animation: pop .25s cubic-bezier(.34, 1.56, .64, 1); }
+.okic { background: #22C55E; } .errc { background: #EF4444; } @keyframes pop { from { transform: scale(0); } }
+.t button { margin-left: 4px; border: 0; border-radius: 999px; padding: 3px 10px; background: rgba(255,255,255,.15); color: #fff; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+const zone = document.querySelector(".zone");
+function run(ok) {
+  zone.innerHTML = '<div class="t"><span class="ic"><i class="spin"></i></span><span class="tx">正在发布…</span></div>';
+  const t = zone.firstChild, ic = t.querySelector(".ic"), tx = t.querySelector(".tx");
+  setTimeout(() => {
+    if (ok) { ic.innerHTML = '<i class="okic">✓</i>'; tx.textContent = "发布成功"; setTimeout(() => t.classList.add("bye"), 2000); }
+    else { ic.innerHTML = '<i class="errc">✕</i>'; tx.textContent = "发布失败"; t.insertAdjacentHTML("beforeend", "<button>重试</button>"); t.querySelector("button").onclick = () => run(true); }
+  }, 1400);
+}
+document.querySelectorAll(".row button").forEach((b) => b.addEventListener("click", () => run(b.dataset.ok === "1")));
+run(true);
+</script>

@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Onboarding Modal", "zh": "新手引导弹窗",
+  "lead": "第一次打开产品时弹出的几页小卡片，每页一张插图 + 一句话讲一个核心功能，底部小圆点表示第几页，可以跳过。三四页讲完就进入正题。",
+  "vague": ["第一次用不知道怎么开始", "欢迎页怎么做"],
+  "terms": ["Onboarding", "Carousel Modal", "Pagination Dots 分页点"],
+  "prompt": "首次登录显示 Onboarding Modal：居中白卡 320px、圆角 20px，上半部分插图区（每页不同柔和底色）、下半部分标题 18px + 一句说明；底部左侧分页点（当前页拉长成胶囊并变江月橘），右侧“下一步”按钮，最后一页变“开始使用”；页面切换横向滑动 300ms；右上角“跳过”。"
+}
+-->
+<div class="ob" role="dialog" aria-label="新手引导">
+  <button class="skip">跳过</button>
+  <div class="viewport"><div class="track"></div></div>
+  <footer><span class="dots"></span><button class="next">下一步</button></footer>
+</div>
+
+<style>
+.ob { position: relative; width: 280px; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+.skip { position: absolute; top: 10px; right: 12px; z-index: 1; border: 0; background: rgba(255,255,255,.7); border-radius: 999px; padding: 3px 10px; font-size: 11px; color: #52525B; cursor: pointer; }
+.viewport { overflow: hidden; } .track { display: flex; transition: transform .3s cubic-bezier(.4, 0, .2, 1); }
+.page { flex: 0 0 100%; }
+.art { height: 130px; display: grid; place-items: center; font-size: 46px; }
+.page h4 { margin: 14px 18px 4px; font-size: 17px; color: #18181B; } .page p { margin: 0 18px; font-size: 12px; line-height: 1.6; color: #71717A; min-height: 38px; }
+footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px 16px; }
+.dots { display: flex; gap: 5px; } .dots i { width: 6px; height: 6px; border-radius: 3px; background: #E4E4E7; transition: width .3s, background .3s; } .dots i.on { width: 18px; background: #FA8C16; }
+.next { border: 0; border-radius: 10px; padding: 8px 16px; background: #18181B; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+</style>
+
+<script>
+const P = [["💬", "#FFF4E6", "说出你的感觉", "输入“不高级”“太乱”，我们帮你换成专业词。"], ["🧺", "#EEF2FF", "放进篮子", "挑几个词放进篮子，拼成一整段提示词。"], ["🚀", "#ECFDF5", "发给 AI", "复制粘贴给常用的 AI，它就会照着改。"]];
+const track = document.querySelector(".track"), dots = document.querySelector(".dots"), next = document.querySelector(".next");
+track.innerHTML = P.map(([e, bg, h, p]) => `<div class="page"><div class="art" style="background:${bg}">${e}</div><h4>${h}</h4><p>${p}</p></div>`).join("");
+let i = 0;
+const go = (n) => { i = n; track.style.transform = `translateX(${-100 * i}%)`; dots.innerHTML = P.map((_, k) => `<i class="${k === i ? "on" : ""}"></i>`).join(""); next.textContent = i === P.length - 1 ? "开始使用" : "下一步"; };
+next.addEventListener("click", () => go((i + 1) % P.length));
+document.querySelector(".skip").addEventListener("click", () => go(P.length - 1));
+go(0);
+</script>

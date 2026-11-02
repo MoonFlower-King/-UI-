@@ -1,0 +1,46 @@
+<!--
+{
+  "en": "Rotary Knob", "zh": "旋钮",
+  "lead": "像音响上的旋钮，按住上下拖动或转动来调数值，外圈一道弧线显示当前大小。占地小、有实体感，适合音量、温度、强度这类连续调节。",
+  "vague": ["想要像真的旋钮那样调", "调音量的圆形控件"],
+  "terms": ["Rotary Knob", "Dial", "Arc Indicator 弧形指示"],
+  "prompt": "做一个 Rotary Knob：64px 圆形旋钮（浅色渐变 + 内阴影模拟立体），上面一条指示短线；外圈 270° 轨道，当前值用江月橘弧线填充；按住上下拖动改变数值（每 2px 变 1），滚轮也能调，键盘方向键 ±1；中心下方显示数值和单位；用 role=slider 和 aria-valuenow。"
+}
+-->
+<div class="kb">
+  <div class="knob" role="slider" tabindex="0" aria-label="音量" aria-valuemin="0" aria-valuemax="100">
+    <svg viewBox="0 0 100 100"><path class="trk"/><path class="val"/></svg>
+    <span class="cap"><i></i></span>
+  </div>
+  <p><b class="n">60</b>% 音量</p>
+</div>
+
+<style>
+.kb { display: grid; gap: 8px; justify-items: center; user-select: none; }
+.knob { position: relative; width: 110px; height: 110px; cursor: ns-resize; outline: 0; touch-action: none; }
+.knob:focus-visible .cap { box-shadow: 0 0 0 3px rgba(250,140,22,.4), 0 6px 14px rgba(0,0,0,.15); }
+svg { position: absolute; inset: 0; } svg path { fill: none; stroke-width: 6; stroke-linecap: round; } .trk { stroke: #F0F0F2; } .val { stroke: #FA8C16; }
+.cap { position: absolute; inset: 22px; border-radius: 50%; background: linear-gradient(145deg, #FFFFFF, #E4E4E7); box-shadow: inset 0 1px 0 #fff, 0 6px 14px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.1); transform: rotate(var(--a)); }
+.cap i { position: absolute; left: 50%; top: 8px; width: 3px; height: 12px; margin-left: -1.5px; border-radius: 2px; background: #18181B; }
+p { margin: 0; font-size: 12px; color: #71717A; } .n { font-size: 18px; color: #18181B; font-variant-numeric: tabular-nums; }
+</style>
+
+<script>
+const knob = document.querySelector(".knob"), n = document.querySelector(".n");
+const pt = (deg) => { const a = ((deg - 90) * Math.PI) / 180; return `${50 + 44 * Math.cos(a)} ${50 + 44 * Math.sin(a)}`; };
+const arc = (a, b) => `M${pt(a)} A44 44 0 ${b - a > 180 ? 1 : 0} 1 ${pt(b)}`;
+document.querySelector(".trk").setAttribute("d", arc(-135, 135));
+let v = 60, y0 = null, v0 = 0;
+function set(nv) {
+  v = Math.max(0, Math.min(100, Math.round(nv)));
+  const ang = -135 + (270 * v) / 100;
+  document.querySelector(".val").setAttribute("d", v ? arc(-135, ang) : ""); knob.style.setProperty("--a", ang + "deg");
+  n.textContent = v; knob.setAttribute("aria-valuenow", v);
+}
+knob.addEventListener("pointerdown", (e) => { y0 = e.clientY; v0 = v; knob.setPointerCapture(e.pointerId); knob.focus(); });
+knob.addEventListener("pointermove", (e) => { if (y0 !== null) set(v0 + (y0 - e.clientY) / 2); });
+knob.addEventListener("pointerup", () => (y0 = null));
+knob.addEventListener("wheel", (e) => { e.preventDefault(); set(v - Math.sign(e.deltaY) * 2); }, { passive: false });
+knob.addEventListener("keydown", (e) => { const d = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); set(v + d); } });
+set(60);
+</script>

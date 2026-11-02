@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Range Slider (Dual Thumb)", "zh": "双滑块区间",
+  "lead": "一根滑轨上两个把手，拖出一个范围，比如价格 ¥50 到 ¥300。中间被选中的那段高亮，上面实时显示数值。筛选商品、选时间段都很顺手。",
+  "vague": ["选价格区间", "两头都能拖的滑块"],
+  "terms": ["Range Slider", "Dual Thumb 双把手", "Min / Max 区间"],
+  "prompt": "价格筛选用 Dual Range Slider：轨道 4px 浅灰，两个把手之间的区段江月橘 #FA8C16；把手 20px 白色圆形带阴影，拖动时放大到 1.15 并在上方显示数值气泡；两个把手不能交叉，最小间隔 ¥20；下方两个输入框与滑块双向同步；支持键盘方向键。"
+}
+-->
+<div class="rs">
+  <p>价格区间 <b class="out"></b></p>
+  <div class="track"><i class="fill"></i><input type="range" min="0" max="500" step="10" value="80" aria-label="最低价"><input type="range" min="0" max="500" step="10" value="320" aria-label="最高价"></div>
+  <div class="scale"><span>¥0</span><span>¥500</span></div>
+</div>
+
+<style>
+.rs { width: 280px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+p { margin: 0 0 16px; font-size: 13px; color: #71717A; } .out { color: #18181B; font-variant-numeric: tabular-nums; }
+.track { position: relative; height: 20px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 4px; border-radius: 4px; background: #F0F0F2; }
+.fill { position: absolute; top: 8px; height: 4px; border-radius: 4px; background: #FA8C16; }
+input { position: absolute; inset: 0; width: 100%; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; }
+input::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 0; box-shadow: 0 1px 4px rgba(0,0,0,.25), 0 0 0 1px rgba(0,0,0,.04); cursor: grab; transition: transform .15s; }
+input::-moz-range-thumb { pointer-events: auto; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 0; box-shadow: 0 1px 4px rgba(0,0,0,.25); cursor: grab; }
+input:active::-webkit-slider-thumb { transform: scale(1.15); cursor: grabbing; }
+input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(250,140,22,.3); }
+.scale { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #A1A1AA; }
+</style>
+
+<script>
+const [lo, hi] = document.querySelectorAll("input"), fill = document.querySelector(".fill"), out = document.querySelector(".out"), GAP = 20, MAX = 500;
+function sync(e) {
+  if (+hi.value - +lo.value < GAP) { if (e?.target === lo) lo.value = +hi.value - GAP; else hi.value = +lo.value + GAP; }
+  const a = (lo.value / MAX) * 100, b = (hi.value / MAX) * 100;
+  fill.style.left = `calc(${a}% + ${10 - a * 0.2}px)`; fill.style.width = `calc(${b - a}% - ${(b - a) * 0.2}px)`;
+  out.textContent = `¥${lo.value} – ¥${hi.value}`;
+}
+[lo, hi].forEach((i) => i.addEventListener("input", sync)); sync();
+</script>

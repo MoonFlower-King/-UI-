@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Gantt Chart", "zh": "甘特图",
+  "lead": "横轴是时间，每个任务一根横条，条有多长就做多久，条的位置表示什么时候开始。项目排期一目了然：谁先谁后、哪里重叠、今天做到哪了。",
+  "vague": ["项目排期怎么展示", "任务时间线"],
+  "terms": ["Gantt Chart", "Timeline 时间轴", "Milestone 里程碑"],
+  "prompt": "项目排期用 Gantt Chart：左列任务名，右侧按天的网格（周末浅灰底），每个任务一根圆角 6px 的横条，按负责人着色，条内显示完成度（深色部分）；一条竖向江月橘虚线标出“今天”；里程碑用菱形标记；横条从左向右依次长出（每条延迟 80ms）。"
+}
+-->
+<div class="gt">
+  <div class="head"><span></span><div class="dates"></div></div>
+  <div class="rows"></div>
+</div>
+
+<style>
+.gt { width: 400px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 11px; --cols: 14; }
+.head, .row { display: grid; grid-template-columns: 70px 1fr; align-items: center; }
+.dates, .lane { display: grid; grid-template-columns: repeat(var(--cols), 1fr); }
+.dates span { text-align: center; color: #A1A1AA; padding-bottom: 6px; } .dates .we { color: #D4D4D8; }
+.row { height: 30px; border-top: 1px solid #F4F4F5; } .row > span { color: #3F3F46; }
+.lane { position: relative; height: 100%; }
+.bar { position: absolute; top: 7px; height: 16px; border-radius: 6px; background: color-mix(in srgb, var(--c) 30%, white); transform-origin: left; animation: grow .5s ease-out both; animation-delay: var(--d); }
+.bar i { position: absolute; inset: 0; width: var(--p); border-radius: 6px; background: var(--c); }
+.ms { position: absolute; top: 9px; width: 11px; height: 11px; background: #18181B; transform: rotate(45deg); margin-left: -5px; }
+.today { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px dashed #FA8C16; }
+@keyframes grow { from { transform: scaleX(0); } }
+</style>
+
+<script>
+const T = [["调研", 0, 3, 1, "#8B5CF6"], ["设计稿", 2, 5, .8, "#FA8C16"], ["组件开发", 5, 6, .4, "#2563EB"], ["测试", 9, 3, 0, "#16A34A"], ["上线", 12, 0, 0, "ms"]], TODAY = 6.5;
+document.querySelector(".dates").innerHTML = Array.from({ length: 14 }, (_, i) => `<span class="${[5, 6, 12, 13].includes(i) ? "we" : ""}">${i + 1}</span>`).join("");
+document.querySelector(".rows").innerHTML = T.map(([n, s, len, p, c], i) => `<div class="row"><span>${n}</span><div class="lane">${c === "ms" ? `<i class="ms" style="left:${(s / 14) * 100}%"></i>` : `<i class="bar" style="left:${(s / 14) * 100}%;width:${(len / 14) * 100}%;--c:${c};--p:${p * 100}%;--d:${i * 80}ms"><i></i></i>`}${`<i class="today" style="left:${(TODAY / 14) * 100}%"></i>`}</div></div>`).join("");
+</script>

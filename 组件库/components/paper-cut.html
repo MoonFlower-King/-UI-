@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Paper Cut Style", "zh": "剪纸层叠风",
+  "lead": "画面像一层层剪好的彩纸叠起来，每层边缘有柔和的投影，形成前后空间感。适合节日、儿童、文旅插画和活动页，温暖有手作感。",
+  "vague": ["想要剪纸的感觉", "层层叠叠的插画"],
+  "terms": ["Paper Cut", "Layered Illustration 分层插画", "Depth 层次"],
+  "prompt": "活动页 Banner 用 Paper Cut 风格：4–5 层波浪形山丘/云朵，颜色由远到近从浅到深（同一色相），每层加 0 -4px 12px rgba(0,0,0,.15) 向上的投影制造纸片厚度；鼠标移动时各层按不同速度轻微视差位移；顶部一轮纸片月亮。"
+}
+-->
+<div class="pc">
+  <span class="moon"></span>
+  <i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i>
+</div>
+
+<style>
+.pc { position: relative; width: 340px; height: 210px; border-radius: 14px; overflow: hidden; background: #FDF1E3; }
+.moon { position: absolute; left: 62%; top: 22px; width: 46px; height: 46px; border-radius: 50%; background: #FFFBF2; box-shadow: 0 4px 10px rgba(180,100,30,.2); }
+.pc i { position: absolute; left: -10%; width: 120%; height: 140px; border-radius: 50% 50% 0 0 / 30px 30px 0 0; box-shadow: 0 -4px 12px rgba(120,50,0,.18); transition: transform .3s ease-out; }
+.l1 { bottom: -10px; background: #FDD9B0; height: 150px; border-radius: 40% 60% 0 0 / 40px 50px 0 0; }
+.l2 { bottom: -30px; background: #FBB979; border-radius: 60% 40% 0 0 / 50px 30px 0 0; }
+.l3 { bottom: -60px; background: #F59446; border-radius: 45% 55% 0 0 / 40px 50px 0 0; }
+.l4 { bottom: -90px; background: #D9681B; border-radius: 55% 45% 0 0 / 50px 40px 0 0; }
+</style>
+
+<script>
+const pc = document.querySelector(".pc"), layers = [...pc.querySelectorAll("i")];
+pc.addEventListener("mousemove", (e) => {
+  const r = pc.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5;
+  layers.forEach((l, i) => (l.style.transform = `translateX(${x * (i + 1) * -8}px)`));
+});
+pc.addEventListener("mouseleave", () => layers.forEach((l) => (l.style.transform = "")));
+</script>

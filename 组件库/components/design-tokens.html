@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Design Tokens", "zh": "设计令牌",
+  "lead": "把颜色、圆角、间距、字号这些“设计决定”起好名字存成变量，比如 --color-primary、--radius-md。全站都引用名字而不是写死数值，改一处就全站生效。",
+  "vague": ["改个主色要改几十个地方", "风格不统一"],
+  "terms": ["Design Tokens", "CSS Variables 变量", "Theming 主题"],
+  "prompt": "用 Design Tokens 重构样式：在 :root 定义 --color-primary、--color-bg、--color-text、--radius-sm/md/lg、--space-1~8、--font-size-sm/md/lg 等 CSS 变量，组件里只引用变量不写死数值；暗色模式和品牌换肤只需覆盖这组变量。"
+}
+-->
+<div class="wrap">
+  <div class="card"><b>月光会员</b><p>改一处令牌，全部跟着变。</p><button>立即开通</button></div>
+  <div class="tokens">
+    <label>--primary<input type="color" value="#FA8C16" data-t="--primary"></label>
+    <label>--radius<input type="range" min="0" max="24" value="12" data-t="--radius" data-u="px"></label>
+  </div>
+</div>
+
+<style>
+.wrap { --primary: #FA8C16; --radius: 12px; display: flex; gap: 18px; align-items: center; }
+.card { width: 170px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: var(--radius); display: grid; gap: 6px; }
+.card b { font-size: 15px; color: var(--primary); } .card p { margin: 0; font-size: 12px; color: #71717A; }
+.card button { margin-top: 6px; height: 34px; border: 0; border-radius: calc(var(--radius) * .7); background: var(--primary); color: #fff; font-weight: 600; font-size: 13px; }
+.tokens { display: grid; gap: 10px; padding: 12px; border-radius: 10px; background: #18181B; }
+.tokens label { display: grid; gap: 4px; font: 11px ui-monospace, Menlo, monospace; color: #FDE68A; }
+.tokens input[type=color] { width: 100%; height: 26px; border: 0; padding: 0; background: none; }
+.tokens input[type=range] { accent-color: #FA8C16; width: 110px; }
+</style>
+
+<script>
+const wrap = document.querySelector(".wrap");
+document.querySelectorAll("[data-t]").forEach((i) => i.addEventListener("input", () => wrap.style.setProperty(i.dataset.t, i.value + (i.dataset.u || ""))));
+</script>

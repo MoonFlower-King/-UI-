@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Single-column Layout", "zh": "单栏布局",
+  "lead": "所有内容从上到下排成一列，没有侧栏。读者只需要往下滚，注意力最集中。注册流程、文章、手机页面都适合用单栏。",
+  "vague": ["页面东西太散", "想让人专心看"],
+  "terms": ["Single Column", "Linear Flow 线性流程", "Focus 专注"],
+  "prompt": "注册流程改成 Single-column Layout：内容区居中、最大宽度 440px，所有表单项、说明、按钮上下排成一列，左对齐，区块间距 24px；去掉侧栏和多余导航，只保留 Logo 和一个返回链接；手机和桌面保持同一结构。"
+}
+-->
+<div class="cmp">
+  <div class="multi"><small>✗ 多栏分散</small><div class="g"><i></i><i class="t"></i><i></i><i></i><i class="t"></i><i></i></div></div>
+  <div class="single"><small>✓ 单栏专注</small><b>创建账号</b><i></i><i></i><i class="s"></i><button>下一步</button></div>
+</div>
+
+<style>
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 360px; }
+.cmp > div { padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 8px; align-content: start; }
+small { font-size: 11px; font-weight: 600; } .multi small { color: #EF4444; } .single small { color: #16A34A; }
+.g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; } .g i { height: 36px; border-radius: 6px; background: #F4F4F5; } .g .t { height: 52px; }
+.single { justify-items: stretch; } .single b { font-size: 14px; } .single i { height: 28px; border-radius: 7px; border: 1px solid #E4E4E7; } .single .s { width: 60%; }
+.single button { height: 30px; border: 0; border-radius: 8px; background: #FA8C16; color: #fff; font-size: 12px; font-weight: 600; }
+</style>

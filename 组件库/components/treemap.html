@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Treemap", "zh": "矩形树图",
+  "lead": "用一块大矩形切成许多小矩形，每块的面积代表数值大小。一眼看出“谁占大头”，适合展示存储空间、预算分配、市场份额这种“整体由哪些部分组成”的数据。",
+  "vague": ["哪部分占得最多", "空间都被什么占了"],
+  "terms": ["Treemap", "Part-to-whole 部分与整体", "Squarified Layout"],
+  "prompt": "存储空间用 Treemap 展示：整块 320×200，按大小切分成矩形（尽量接近正方形），面积 = 占用大小；同一类别同色系（照片橘、视频蓝、文档绿、其他灰），块间 2px 白缝、圆角 6px；块内左上角写名称和大小，太小的块只显示颜色；悬停块变亮并显示百分比。"
+}
+-->
+<div class="tm"></div>
+
+<style>
+.tm { position: relative; width: 340px; height: 210px; border-radius: 12px; overflow: hidden; background: #fff; }
+.tm div { position: absolute; box-sizing: border-box; border: 2px solid #fff; border-radius: 8px; padding: 6px 8px; color: #fff; font-size: 11px; line-height: 1.3; overflow: hidden; cursor: default; transition: filter .15s; animation: in .4s ease-out both; }
+.tm div:hover { filter: brightness(1.1); }
+.tm b { display: block; font-size: 12px; } .tm small { opacity: .85; }
+@keyframes in { from { opacity: 0; transform: scale(.94); } }
+</style>
+
+<script>
+const D = [["照片", 48, "#FA8C16"], ["视频", 32, "#2563EB"], ["应用", 18, "#8B5CF6"], ["文档", 9, "#16A34A"], ["音乐", 6, "#0EA5E9"], ["其他", 4, "#A1A1AA"]];
+const total = D.reduce((a, d) => a + d[1], 0), box = document.querySelector(".tm"), W = 340, H = 210;
+// 简单的“切片-切块”布局：每次沿较长边切下一块，面积按比例
+function layout(items, x, y, w, h) {
+  if (!items.length) return;
+  const [first, ...rest] = items, sum = items.reduce((a, d) => a + d[1], 0), k = first[1] / sum;
+  const r = w >= h ? [x, y, w * k, h] : [x, y, w, h * k];
+  const [n, v, c] = first, small = r[2] < 60 || r[3] < 34;
+  box.insertAdjacentHTML("beforeend", `<div style="left:${r[0]}px;top:${r[1]}px;width:${r[2]}px;height:${r[3]}px;background:${c};animation-delay:${box.children.length * 60}ms" title="${n} ${v}GB">${small ? "" : `<b>${n}</b><small>${v} GB · ${Math.round((v / total) * 100)}%</small>`}</div>`);
+  w >= h ? layout(rest, x + r[2], y, w - r[2], h) : layout(rest, x, y + r[3], w, h - r[3]);
+}
+layout(D, 0, 0, W, H);
+</script>

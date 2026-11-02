@@ -1,0 +1,45 @@
+<!--
+{
+  "en": "Search Results Page", "zh": "搜索结果页",
+  "lead": "搜完之后的页面：顶部保留搜索框和结果数，左边或上方是筛选，每条结果有标题、高亮的关键词、摘要和标签，找不到时给出建议。组合了搜索框、筛选标签、高亮和空状态。",
+  "vague": ["搜索结果页好乱", "搜不到东西时怎么办"],
+  "terms": ["Search Results", "Keyword Highlight 关键词高亮", "Filter Chips", "Empty State"],
+  "prompt": "做一个 Search Results 页：顶部搜索框保留关键词 + “找到 12 条结果（0.02 秒）”；下方一行筛选标签（全部 / 组件 / 文章 / 视频）；每条结果 = 类型小图标 + 标题（关键词用江月橘高亮）+ 两行摘要 + 底部标签；无结果时显示空状态插图、“试试这些词”建议列表。"
+}
+-->
+<div class="sr">
+  <label class="q"><span>🔍</span><input value="按钮" aria-label="搜索"></label>
+  <p class="meta"></p>
+  <div class="tabs"><button class="on" data-t="">全部</button><button data-t="组件">组件</button><button data-t="文章">文章</button></div>
+  <ul class="res"></ul>
+</div>
+
+<style>
+.sr { width: 340px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.q { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 13px; }
+.q:focus-within { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.q input { flex: 1; border: 0; outline: 0; font-size: 14px; }
+.meta { margin: 8px 0; font-size: 11px; color: #A1A1AA; }
+.tabs { display: flex; gap: 6px; margin-bottom: 8px; } .tabs button { border: 1px solid #E4E4E7; background: #fff; border-radius: 999px; padding: 3px 10px; font-size: 12px; cursor: pointer; color: #52525B; } .tabs .on { background: #18181B; color: #fff; border-color: #18181B; }
+.res { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.res li { padding: 8px; border-radius: 8px; cursor: pointer; } .res li:hover { background: #FAFAFA; }
+.res b { font-size: 13px; color: #18181B; } .res p { margin: 2px 0 0; font-size: 11px; color: #71717A; } .res small { font-size: 10px; color: #A1A1AA; }
+mark { background: #FFF4E6; color: #C2410C; border-radius: 2px; padding: 0 1px; }
+.empty { text-align: center; padding: 16px 0; font-size: 12px; color: #A1A1AA; } .empty button { border: 0; background: #F4F4F5; border-radius: 999px; padding: 3px 10px; margin: 6px 2px 0; font-size: 12px; cursor: pointer; }
+</style>
+
+<script>
+const DB = [["组件", "按钮层级", "主按钮、次按钮、文字按钮怎么分主次"], ["组件", "加载按钮", "点击后按钮内转圈，防止重复提交"], ["文章", "按钮的五种状态", "默认、悬停、按下、禁用、加载"], ["组件", "拆分按钮", "主动作 + 下拉更多动作"], ["文章", "卡片阴影怎么调", "阴影的层级与颜色"]];
+const input = document.querySelector("input"), res = document.querySelector(".res"), meta = document.querySelector(".meta"); let type = "";
+const hl = (s, q) => (q ? s.split(q).join(`<mark>${q}</mark>`) : s);
+function render() {
+  const q = input.value.trim(), list = DB.filter(([t, h, p]) => (!type || t === type) && (!q || h.includes(q) || p.includes(q)));
+  meta.textContent = `找到 ${list.length} 条结果`;
+  res.innerHTML = list.length ? list.map(([t, h, p]) => `<li><small>${t}</small><br><b>${hl(h, q)}</b><p>${hl(p, q)}</p></li>`).join("")
+    : `<li class="empty">没找到“${q}”，试试这些词：<br>${["按钮", "阴影", "卡片"].map((w) => `<button>${w}</button>`).join("")}</li>`;
+}
+input.addEventListener("input", render);
+res.addEventListener("click", (e) => { if (e.target.tagName === "BUTTON") { input.value = e.target.textContent; render(); } });
+document.querySelector(".tabs").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; type = b.dataset.t; document.querySelectorAll(".tabs button").forEach((x) => x.classList.toggle("on", x === b)); render(); });
+render();
+</script>

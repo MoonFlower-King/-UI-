@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Status Pill", "zh": "状态标签",
+  "lead": "一个小胶囊，前面一个彩色圆点，后面写状态：进行中、已完成、已暂停、失败。列表和表格里最常用，扫一眼就知道每项是什么情况。",
+  "vague": ["状态怎么显示", "一堆项目分不清进度"],
+  "terms": ["Status Pill", "Status Badge", "Semantic Color 语义色"],
+  "prompt": "任务列表的状态用 Status Pill：高 22px 圆角 999px，浅色底 + 同色系深色文字 + 左侧 6px 圆点（进行中蓝 #2563EB 圆点带脉冲、已完成绿、已暂停灰、失败红）；文字 12px 中粗；颜色之外文字本身写清状态，色盲也能读懂。"
+}
+-->
+<ul class="list">
+  <li><span>首页改版</span><em class="st run">进行中</em></li>
+  <li><span>配色规范</span><em class="st done">已完成</em></li>
+  <li><span>动效文档</span><em class="st pause">已暂停</em></li>
+  <li><span>图标导出</span><em class="st fail">失败</em></li>
+</ul>
+
+<style>
+.list { width: 280px; margin: 0; padding: 6px 14px; list-style: none; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 13px; color: #18181B; }
+li + li { border-top: 1px solid #F4F4F5; }
+.st { --c: #71717A; --bg: #F4F4F5; --tx: #52525B; display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 999px; background: var(--bg); color: var(--tx); font: normal 600 12px sans-serif; }
+.st::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+.run { --c: #2563EB; --bg: #EFF6FF; --tx: #1D4ED8; } .run::before { animation: pulse 1.6s infinite; box-shadow: 0 0 0 0 rgba(37,99,235,.5); }
+.done { --c: #16A34A; --bg: #F0FDF4; --tx: #15803D; } .fail { --c: #DC2626; --bg: #FEF2F2; --tx: #B91C1C; }
+@keyframes pulse { to { box-shadow: 0 0 0 5px rgba(37,99,235,0); } }
+</style>
