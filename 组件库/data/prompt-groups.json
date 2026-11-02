@@ -79,7 +79,10 @@
         "lantern",
         "rubbing",
         "gongbi",
-        "kite"
+        "kite",
+        "handscroll",
+        "lattice-window",
+        "ru-celadon"
       ]
     },
     {
@@ -119,7 +122,10 @@
         "subway-tile",
         "rosemaling",
         "black-figure",
-        "iznik"
+        "iznik",
+        "dutch-still-life",
+        "tapa",
+        "tuscan"
       ]
     },
     {
@@ -174,7 +180,10 @@
         "orphism",
         "fauvism",
         "impressionism",
-        "hard-edge"
+        "hard-edge",
+        "metaphysical",
+        "abstract-expressionism",
+        "neo-geo"
       ]
     },
     {
@@ -231,7 +240,11 @@
         "spec-sheet",
         "marquee",
         "sidebar-portfolio",
-        "wireframe"
+        "wireframe",
+        "serif-revival",
+        "frame-border",
+        "warm-mesh",
+        "vertical-text"
       ]
     },
     {
@@ -279,7 +292,10 @@
         "crumpled-paper",
         "terracotta",
         "brushed-steel",
-        "washi"
+        "washi",
+        "beeswax",
+        "smoke",
+        "mother-of-pearl"
       ]
     },
     {
@@ -323,7 +339,10 @@
         "stencil",
         "embroidered-patch",
         "quilling",
-        "string-art"
+        "string-art",
+        "tapestry",
+        "scratchboard",
+        "beadwork"
       ]
     },
     {
@@ -374,7 +393,11 @@
         "punch-card",
         "fax",
         "jukebox",
-        "drive-in"
+        "drive-in",
+        "dial-phone",
+        "mimeograph",
+        "letter-board",
+        "cinema-marquee"
       ]
     },
     {
@@ -426,7 +449,11 @@
         "nutrition-label",
         "laundry-tag",
         "crossword",
-        "safety-sign"
+        "safety-sign",
+        "floor-plan",
+        "price-tag",
+        "bookmark",
+        "calendar-tear"
       ]
     },
     {
@@ -478,7 +505,10 @@
         "music-festival",
         "boutique-hotel",
         "farm",
-        "nonprofit"
+        "nonprofit",
+        "tattoo-studio",
+        "skate-shop",
+        "photo-studio"
       ]
     },
     {

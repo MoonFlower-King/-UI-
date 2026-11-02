@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Abstract Expressionism",
+  "zh": "抽象表现主义",
+  "alias": [
+    "滴画",
+    "色域与笔触"
+  ],
+  "lead": "巨大的画布上泼洒、滴流、刷出的颜料：粗犷的笔触、四溅的墨点、几块大面积色域，充满能量和情绪。自由、强烈、原始，适合当代艺术展、独立音乐、设计学院和潮流品牌。",
+  "prompt": "抽象表现主义风格：粗麻画布米白背景，主视觉为大幅泼洒与滴流的颜料（黑色细长滴线交错、几块红黄蓝大笔刷色块、四溅的小墨点），笔触边缘不规则，粗无衬线标题，正文区保持干净，配色三四色",
+  "promptEn": "abstract expressionism style: raw canvas off-white background, a hero of large splattered and dripped paint (crossing thin black drip lines, a few big brushed patches of red, yellow and blue, scattered small ink specks), irregular stroke edges, bold sans headings, clean body area, three or four colors",
+  "avoid": "泼洒集中在主视觉，正文区必须干净；颜色三四种就够。别模仿某位画家的标志性画面。",
+  "neg": [
+    "泼洒到正文、模仿具体画家",
+    "splatter over body text, imitating a specific painter"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #161616; --a2: #D2382E; --on: #F3EEE3; background: #F1ECE0; color: #161616; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; font-weight: 900; } .hero h1 { font-weight: 900; letter-spacing: -.5px; }
+.art { overflow: hidden; height: 150px; background: radial-gradient(circle, #161616 0 1.5px, transparent 2px) 7px 9px / 23px 19px, radial-gradient(circle, #D2382E 0 1.2px, transparent 1.6px) 3px 4px / 31px 27px, #EDE6D6; }
+.art .m { position: absolute; left: 10px; top: 20px; width: 90px; height: 40px; background: #D2382E; border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; transform: rotate(-12deg); filter: blur(.4px); }
+.art .h { position: absolute; left: 70px; top: 70px; width: 80px; height: 36px; background: #F2C230; border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; transform: rotate(8deg); }
+.art::before { content: ""; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 170 150'%3E%3Cpath d='M0 40 C40 10 60 90 100 50 S150 120 170 70 M10 130 C50 80 90 140 130 90 S160 30 170 20 M30 0 C40 50 80 30 70 90 S110 150 120 150' fill='none' stroke='%23161616' stroke-width='1.6'/%3E%3C/svg%3E"); }
+.art::after { content: ""; position: absolute; left: 110px; top: 10px; width: 46px; height: 26px; background: #1E4AA8; border-radius: 50% 40% 60% 30%; transform: rotate(20deg); }
+.feats b { color: #D2382E; font-weight: 900; } .feats article { border-top: 3px solid #161616; padding-top: 8px; }
+.stats { background: #161616; color: #F3EEE3; } .stats b { font-weight: 900; }
+</style>

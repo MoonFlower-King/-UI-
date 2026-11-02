@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Serif Revival",
+  "zh": "衬线复兴",
+  "alias": [
+    "新衬线",
+    "编辑感衬线"
+  ],
+  "lead": "近几年回潮的“大衬线”网页：超大号、字距收紧的现代衬线标题压住整屏，配一点斜体和极简的无衬线小字，几乎没有装饰。自信、有文化感、像高级杂志，适合品牌官网、创意工作室、出版和独立刊物。",
+  "prompt": "衬线复兴风格：暖白背景，超大号现代衬线标题（字重偏细到中、字距收紧、局部斜体强调），黑色正文配小号无衬线说明文字，细线分隔，几乎不用图形，单一点缀色，排版留白充足、对齐严格",
+  "promptEn": "serif revival style: warm white background, oversized modern serif headlines (light to regular weight, tight tracking, italic emphasis on key words), black body text with small sans-serif captions, hairline dividers, almost no graphics, a single accent color, generous white space and strict alignment",
+  "avoid": "主角是字本身，标题要够大、字距要紧；斜体只点一两个词。别再叠插画、渐变或阴影去“补”画面。",
+  "neg": [
+    "标题字号太小、加插画渐变",
+    "small headline, added illustrations and gradients"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1B18; --a2: #B4532A; --on: #F7F3EC; background: #F7F3EC; color: #1E1B18; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-style: italic; font-weight: 400; font-size: 16px; } .logo i { display: none; }
+.cta { background: none; color: #1E1B18; border-bottom: 1px solid; padding: 3px 0; }
+.hero { grid-template-columns: 1fr 120px; } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.02; letter-spacing: -1.5px; }
+.b1 { border-radius: 99px; }
+.art .m { position: absolute; right: 0; top: 4px; font: italic 400 120px/1 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #B4532A; }
+.art .m::before { content: "&"; }
+.art .h { position: absolute; left: 0; right: 0; bottom: 10px; border-top: 1px solid #1E1B18; }
+.feats article { border-top: 1px solid rgba(30,27,24,.3); padding-top: 10px; } .feats h3 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; font-size: 18px; }
+.stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; font-size: 30px; }
+</style>

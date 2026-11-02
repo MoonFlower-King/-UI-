@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Price Tag",
+  "zh": "吊牌价签",
+  "alias": [
+    "商品吊牌",
+    "牛皮纸价签"
+  ],
+  "lead": "挂在商品上的小吊牌：一端打孔穿着麻绳，牛皮纸或白卡上印着品名、货号和价格，边角是剪掉的斜角。随手、可爱、有市集感，适合买手店、手作市集、二手店和促销活动页。",
+  "prompt": "吊牌价签风格：浅米白背景，主视觉为一枚斜挂的牛皮纸吊牌（一端剪成斜角、有圆孔穿着麻绳，上面印着品名、条码和价格），黑色无衬线或打字机字体，印章感的折扣数字，卡片做成小吊牌形状，轻微投影",
+  "promptEn": "price tag style: light off-white background, a hero of a kraft paper hang tag hanging at an angle (one end clipped into a point with a punched hole and twine, printed with item name, barcode and price), black sans-serif or typewriter type, stamp-like discount numbers, cards shaped like small tags, light drop shadows",
+  "avoid": "吊牌形状（斜角加圆孔）和穿绳是辨识点；价格要醒目。别做成电商红色爆炸贴。",
+  "neg": [
+    "电商爆炸贴、满屏红色促销",
+    "e-commerce starburst stickers, red promo overload"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #222; --a2: #B85A2E; --on: #F6F0E6; background: #F6F0E6; color: #222; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.art .m { position: absolute; left: 30px; top: 18px; width: 104px; height: 128px; transform: rotate(-8deg); background: #C9A272; clip-path: polygon(50% 0, 100% 18%, 100% 100%, 0 100%, 0 18%); filter: drop-shadow(0 4px 6px rgba(0,0,0,.15)); }
+.art .m::before { content: ""; position: absolute; left: 44px; top: 10px; width: 14px; height: 14px; border-radius: 50%; background: #F6F0E6; box-shadow: inset 0 0 0 2px #A47E50; }
+.art .m::after { content: "No.042\A ¥ 128"; white-space: pre; position: absolute; left: 12px; right: 12px; top: 40px; padding-top: 44px; font: 700 15px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #222;
+  background: repeating-linear-gradient(90deg, #222 0 2px, transparent 2px 4px, #222 4px 5px, transparent 5px 8px) 0 0 / 100% 34px no-repeat; }
+.art .h { position: absolute; left: 86px; top: 0; width: 2px; height: 30px; background: #A47E50; transform: rotate(18deg); }
+.feats article { background: #fff; padding: 12px; clip-path: polygon(0 0, 90% 0, 100% 14px, 100% 100%, 0 100%); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #B85A2E; }
+</style>

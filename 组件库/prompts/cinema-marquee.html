@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Cinema Marquee",
+  "zh": "灯泡招牌",
+  "alias": [
+    "影院门头",
+    "灯泡字招牌"
+  ],
+  "lead": "老电影院门口的大招牌：一圈暖黄色小灯泡围着片名，白底黑字的活字片名条，夜色里一闪一闪。热闹、复古、有好莱坞黄金年代的味道，适合影院、剧场、演出和复古主题活动。",
+  "prompt": "灯泡招牌风格：深夜酒红或墨黑背景，主视觉为一块被暖黄小灯泡环绕的招牌（灯泡均匀排列、有柔和光晕），招牌内是白底黑字的大写片名条，复古粗衬线或窄体标题，暖金点缀，整体暗调中透出暖光",
+  "promptEn": "cinema marquee style: late-night wine-red or ink-black background, a hero sign framed by warm yellow light bulbs (evenly spaced with soft glow), white letter strips with black uppercase titles inside, retro bold serif or condensed headings, warm gold accents, a dark scene glowing with warm light",
+  "avoid": "灯泡是暖黄的、排列整齐、有光晕；片名条是白底黑字。别做成霓虹灯管，那是另一种风格，也和“不要霓虹”的要求冲突。",
+  "neg": [
+    "霓虹灯管、冷色光",
+    "neon tubes, cold-colored light"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F2C14E; --a2: #F2C14E; --on: #2A0E10; background: #2A0E10; color: #F4E6CC; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+.logo i { border-radius: 50%; box-shadow: 0 0 8px #F2C14E; }
+.art .m { position: absolute; left: 4px; top: 10px; width: 160px; height: 104px; background: #5A1A1E; border-radius: 6px;
+  box-shadow: inset 0 0 0 12px #5A1A1E, inset 0 0 0 13px rgba(242,193,78,.3); }
+.art .m::before { content: ""; position: absolute; inset: 3px; border-radius: 4px; background: radial-gradient(circle, #FFE9A8 0 2.5px, rgba(242,193,78,.35) 3.5px, transparent 5px) 0 0 / 11px 11px;
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% 7px no-repeat, linear-gradient(#000 0 0) bottom / 100% 7px no-repeat, linear-gradient(#000 0 0) left / 7px 100% no-repeat, linear-gradient(#000 0 0) right / 7px 100% no-repeat;
+  mask: linear-gradient(#000 0 0) top / 100% 7px no-repeat, linear-gradient(#000 0 0) bottom / 100% 7px no-repeat, linear-gradient(#000 0 0) left / 7px 100% no-repeat, linear-gradient(#000 0 0) right / 7px 100% no-repeat; }
+.art .m::after { content: "NOW SHOWING\A MOONLIGHT"; white-space: pre; position: absolute; left: 20px; right: 20px; top: 24px; padding: 6px 0; background: #F7F1E4; color: #1A1A1A; font: 800 12px/1.6 -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 2px; text-align: center; }
+.feats h3 { color: #F2C14E; } .feats article { border-top: 2px solid rgba(242,193,78,.4); padding-top: 10px; }
+.stats b { color: #F2C14E; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+</style>

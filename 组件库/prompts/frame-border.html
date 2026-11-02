@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Framed Page",
+  "zh": "画框边界",
+  "alias": [
+    "外框版式",
+    "边框网页"
+  ],
+  "lead": "整个网页被一圈粗边框“框”起来：四周留一道纯色边，像把内容装进一幅画框或一张卡片里，内部再用细线分区。利落、有收束感、辨识度高，适合作品集、画廊、独立品牌和活动页。",
+  "prompt": "画框边界风格：网页四周有一道10到16像素的纯色粗边框（深墨绿或砖红），边框内为米白页面，内部用1像素细线切分导航、首屏和内容区，衬线大标题，无衬线正文，小号大写标签，排版规整",
+  "promptEn": "framed page style: a solid 10–16px thick border around the whole viewport (deep ink green or brick red), an off-white page inside the frame, 1px hairlines dividing nav, hero and content, large serif headings, sans-serif body, small uppercase labels, orderly layout",
+  "avoid": "框要在“整个视口”外圈，粗细统一；内部只用细线分区。别让每个卡片都加粗框，那就变成粗野主义了。",
+  "neg": [
+    "每个模块都加粗框、框线粗细不一",
+    "thick borders on every block, inconsistent frame widths"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #23443A; --a2: #23443A; --on: #F4F0E6; background: #F4F0E6; color: #1F2A26; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; box-shadow: inset 0 0 0 12px #23443A; padding: 12px; }
+.nav { border-bottom: 1px solid rgba(35,68,58,.4); text-transform: uppercase; letter-spacing: 1.5px; font-size: 10.5px; }
+.logo { letter-spacing: 2px; } .logo i { border-radius: 50%; }
+.hero { border-bottom: 1px solid rgba(35,68,58,.4); } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; font-size: 34px; }
+.kicker { text-transform: uppercase; letter-spacing: 2px; }
+.art { border-left: 1px solid rgba(35,68,58,.4); margin: -26px -26px -26px 0; }
+.art .m { position: absolute; inset: 22px; border: 6px solid #23443A; background: linear-gradient(160deg, #D9C9A6, #B7956A); }
+.art .h { position: absolute; inset: 40px; border: 1px solid rgba(255,255,255,.6); }
+.feats { padding-top: 18px; } .feats article + article { border-left: 1px solid rgba(35,68,58,.3); padding-left: 14px; } .feats h3 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; }
+.stats { border-top: 1px solid rgba(35,68,58,.4); } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; }
+</style>
