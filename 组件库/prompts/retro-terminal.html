@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Retro Terminal", "zh": "复古终端", "alias": ["CRT 风", "命令行风"],
+  "lead": "黑底、琥珀色或绿色的等宽字、淡淡的扫描线，像上世纪的电脑屏幕。极客、怀旧、有趣，适合开发者工具的彩蛋页、技术博客、活动页的一个小区块。",
+  "prompt": "复古终端风格：纯黑背景，全部使用琥珀色等宽字体，带轻微发光和细密的水平扫描线，元素用方括号和 ASCII 线框表示，按钮写成命令形式（如 > 预约），光标闪烁，整体像一台老式 CRT 显示器",
+  "promptEn": "retro terminal style: pure black background, all text in amber monospace with a faint glow and fine horizontal scanlines, elements drawn with brackets and ASCII box lines, buttons written as commands (e.g. > book), blinking cursor, like an old CRT monitor",
+  "avoid": "这种风格只适合做点缀或者整站很小的页面。大段正文用扫描线加发光会很累眼，阅读区要关掉特效。另外不要和现代的圆角卡片、渐变混用，会出戏。",
+  "neg": ["圆角卡片、彩色渐变", "rounded cards, colorful gradients"]
+}
+-->
+<style>
+.site { background: #0A0805; color: #FFB547; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-shadow: 0 0 6px rgba(255, 181, 71, .45); }
+.site::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px); }
+.nav { justify-content: space-between; padding: 14px 22px; font-size: 11.5px; } .nav::after { content: ""; }
+.logo { font-size: 13px; } .logo::before { content: "["; } .logo::after { content: "]"; } .logo i { display: none; }
+.nav nav { gap: 16px; } .nav nav a::before { content: "/"; opacity: .6; } .cta::before { content: "> "; }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 18px; padding: 10px 22px 22px; border-top: 1px dashed rgba(255, 181, 71, .5); border-bottom: 1px dashed rgba(255, 181, 71, .5); margin: 0 22px; padding-left: 0; padding-right: 0; }
+.kicker { font-size: 11px; opacity: .75; } .kicker::before { content: "$ cat "; }
+.hero h1 { margin-top: 12px; font-size: 26px; line-height: 1.35; } .hero h1::after { content: "_"; animation: blink 1s steps(2, jump-none) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.sub { margin-top: 10px; font-size: 11.5px; line-height: 1.7; opacity: .85; }
+.acts { gap: 16px; margin-top: 14px; font-size: 12px; } .b1 { padding: 4px 8px; background: #FFB547; color: #0A0805; text-shadow: none; } .b1::before { content: "> "; } .b2::before { content: "[ "; } .b2::after { content: " ]"; }
+.art { border: 1px solid rgba(255, 181, 71, .6); padding: 10px; margin-top: 14px; font-size: 11px; }
+.art::before { content: "SEATS ......... 08/12\A OPEN .......... 19:00\A STATUS ........ OK"; white-space: pre; line-height: 1.9; }
+.art .m, .art .h { display: none; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 18px 22px; }
+.feats article { padding: 0 10px 0 0; } .feats b::before { content: "0x"; } .feats b { font-size: 11px; opacity: .6; } .feats h3 { font-size: 14px; } .feats p { font-size: 11px; opacity: .8; }
+.stats { justify-content: space-between; margin: 0 22px; padding: 12px 0; border-top: 1px dashed rgba(255, 181, 71, .5); } .stats b { display: block; font-size: 22px; font-weight: 400; } .stats span { font-size: 10.5px; opacity: .7; }
+.ft { padding: 14px 22px 22px; font-size: 10.5px; opacity: .6; } .ft::before { content: "-- "; }
+</style>

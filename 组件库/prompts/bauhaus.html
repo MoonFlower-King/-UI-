@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Bauhaus", "zh": "包豪斯几何", "alias": ["构成主义", "Geometric Modernism"],
+  "lead": "红黄蓝三原色加黑白，圆形、方形、三角形当主视觉，构图像一张现代主义海报。大胆、有秩序感，适合艺术、设计、教育、展览类网站。",
+  "prompt": "包豪斯几何风格：只用红、黄、蓝三原色加黑白，以大块的圆形、正方形、三角形和粗直线构成主视觉，几何无衬线字体，标题粗体，网格清晰，色块平涂、没有渐变和阴影，整体像一张现代主义海报",
+  "promptEn": "Bauhaus geometric style: only primary red, yellow and blue plus black and white, large circles, squares, triangles and thick bars form the hero visual, geometric sans-serif type with bold headlines, clear grid, flat color fills with no gradients or shadows, like a modernist poster",
+  "avoid": "几何图形要「构成」而不是「撒」：大小、位置要有主次和对齐关系，随便摆几个圆和三角会像儿童玩具。三原色用纯色可以，但大面积平铺很刺眼，留足白底。",
+  "neg": ["渐变、阴影、写实插画", "gradients, shadows, realistic illustration"]
+}
+-->
+<style>
+.site { background: #F2EEE4; color: #141414; font-family: "Futura", "Avenir Next", -apple-system, "PingFang SC", sans-serif; }
+.nav { justify-content: space-between; padding: 14px 24px; border-bottom: 6px solid #141414; font-size: 12px; font-weight: 700; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; } .logo i { width: 14px; height: 14px; background: #D7262A; box-shadow: 16px 0 0 #1E4FA3, 32px 0 0 #F2B705; margin-right: 34px; }
+.nav nav { gap: 18px; } .cta { padding: 5px 10px; background: #141414; color: #F2EEE4; }
+.hero { display: grid; grid-template-columns: 1fr 200px; min-height: 250px; }
+.copy { padding: 22px 24px; } .kicker { font-size: 11px; font-weight: 700; color: #1E4FA3; letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 34px; line-height: 1.1; font-weight: 800; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.6; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 700; } .b1 { padding: 8px 14px; background: #D7262A; color: #fff; } .b2 { border-bottom: 3px solid #F2B705; }
+.art { position: relative; background: #1E4FA3; overflow: hidden; }
+.art .m { position: absolute; left: 30px; top: 30px; width: 120px; height: 120px; border-radius: 50%; background: #F2B705; }
+.art .h { position: absolute; right: 0; bottom: 0; width: 0; height: 0; border-left: 110px solid transparent; border-bottom: 110px solid #D7262A; }
+.art::after { content: ""; position: absolute; left: 0; top: 150px; width: 140px; height: 10px; background: #141414; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 6px solid #141414; }
+.feats article { padding: 16px 18px; } .feats article:nth-child(1) { background: #F2B705; } .feats article:nth-child(3) { background: #141414; color: #F2EEE4; }
+.feats b { font-size: 22px; font-weight: 800; } .feats h3 { font-size: 15px; font-weight: 800; } .feats p { font-size: 11px; }
+.stats { justify-content: space-around; padding: 20px; } .stats b { display: block; font-size: 28px; font-weight: 800; } .stats div:nth-child(2) b { color: #D7262A; } .stats span { font-size: 11px; }
+.ft { padding: 12px 24px 18px; border-top: 6px solid #141414; font-size: 11px; font-weight: 700; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Paper & Print", "zh": "纸感印刷", "alias": ["Risograph 印刷风", "复古印刷"],
+  "lead": "像一张印出来的传单：米色纸底带细颗粒，油墨色有点不均匀、套色略微错位，配手写感的小标记。温暖、有手作气息，适合独立书店、咖啡馆、手作品牌。",
+  "prompt": "纸感印刷风格：米黄色纸张背景带细微颗粒噪点，只用两种油墨色（深蓝和橙红）叠印，图形有轻微的套色错位和网点质感，衬线或打字机字体，元素像贴纸、印章、手写标注，整体像一张独立印刷的传单",
+  "promptEn": "paper-and-print style: cream paper background with subtle grain, only two ink colors (deep blue and orange-red) overprinted, slight misregistration and halftone texture on graphics, serif or typewriter type, elements like stickers, stamps and handwritten notes, like an independently printed flyer",
+  "avoid": "纸纹和颗粒是调料不是主菜，噪点太重会让文字发虚、看着脏。套色错位只放在插图和装饰上，正文必须清楚锐利。",
+  "neg": ["数码渐变、玻璃质感", "digital gradients, glossy glass effects"]
+}
+-->
+<style>
+.site { background-color: #F1E8D6; color: #23325A; font-family: "Courier New", "Songti SC", "STSong", serif;
+  background-image: radial-gradient(rgba(35, 50, 90, .08) .7px, transparent .8px), radial-gradient(rgba(180, 90, 50, .06) .7px, transparent .8px); background-size: 5px 5px, 7px 7px; background-position: 0 0, 2px 3px; }
+.nav { justify-content: space-between; padding: 16px 26px; border-bottom: 1.5px dashed #23325A; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; } .logo i { width: 16px; height: 16px; border-radius: 50%; background: #E2552D; mix-blend-mode: multiply; box-shadow: 4px 2px 0 rgba(35, 50, 90, .8); }
+.nav nav { gap: 18px; } .cta { padding: 4px 10px; border: 1.5px solid #E2552D; color: #E2552D; transform: rotate(-3deg); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 18px; padding: 26px; }
+.kicker { display: inline-block; padding: 2px 8px; background: #E2552D; color: #F1E8D6; font-size: 11px; transform: rotate(-2deg); }
+.hero h1 { margin-top: 14px; font-size: 34px; line-height: 1.2; font-weight: 700; text-shadow: 2px 1px 0 rgba(226, 85, 45, .55); }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.75; }
+.acts { gap: 16px; margin-top: 16px; font-size: 12px; } .b1 { padding: 7px 14px; background: #23325A; color: #F1E8D6; box-shadow: 3px 3px 0 #E2552D; } .b2 { border-bottom: 1.5px solid #E2552D; }
+.art { position: relative; } .art .m { position: absolute; left: 20px; top: 6px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(#E2552D 40%, transparent 42%) 0 0 / 6px 6px; opacity: .9; }
+.art .h { position: absolute; left: 36px; top: 26px; width: 120px; height: 120px; border-radius: 50%; background: rgba(35, 50, 90, .75); mix-blend-mode: multiply; }
+.art::after { content: "今晚有位！"; position: absolute; right: 0; bottom: 6px; padding: 3px 8px; border: 1.5px solid #23325A; background: #F1E8D6; font-size: 11px; transform: rotate(4deg); }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats article { padding: 12px; border: 1.5px solid #23325A; background: rgba(255, 255, 255, .35); } .feats article:nth-child(2) { transform: rotate(1.2deg); }
+.feats b { font-size: 11px; color: #E2552D; } .feats h3 { font-size: 16px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; }
+.stats { justify-content: space-around; margin: 0 26px; padding: 16px 0; border-top: 1.5px dashed #23325A; border-bottom: 1.5px dashed #23325A; } .stats b { display: block; font-size: 26px; color: #E2552D; } .stats span { font-size: 11px; }
+.ft { padding: 16px 26px 22px; font-size: 10.5px; }
+</style>
