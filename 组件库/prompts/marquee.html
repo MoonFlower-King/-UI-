@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Marquee Ticker",
+  "zh": "跑马灯字条",
+  "alias": [
+    "滚动字条",
+    "横幅滚动"
+  ],
+  "lead": "页面上横着几条不停滚动的大字条，像车站的走字屏或演唱会舞台的横幅，信息一遍遍流过。动感、热闹、有现场感，适合活动发布、潮牌上新、音乐节和新闻快讯。",
+  "prompt": "跑马灯字条风格：深色或亮色纯底，页面横向贯穿两三条粗字条带（高对比色带上的超大压缩无衬线大写字，用星号或圆点分隔，缓慢横向滚动，相邻两条方向相反、略微倾斜），其余内容极简，配色两色撞色",
+  "promptEn": "marquee ticker style: solid dark or bright background, two or three thick type bands spanning the page (huge condensed uppercase sans on high-contrast color strips, separated by stars or dots, slowly scrolling sideways, adjacent bands moving in opposite directions and slightly tilted), the rest minimal, a two-color contrast palette",
+  "avoid": "滚动要慢、条带两三条就够，太多会晕；重要信息不能只放在滚动条里，静态区也要有。尊重“减少动态效果”设置。",
+  "neg": [
+    "滚动太快、关键信息只在滚动里",
+    "scrolling too fast, key info only in the ticker"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D7F04A; --a2: #D7F04A; --on: #141414; background: #141414; color: #F2F2F2; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; overflow: hidden; }
+.cta, .b1 { border-radius: 0; font-weight: 900; } .hero h1 { font-weight: 900; text-transform: uppercase; letter-spacing: -.5px; }
+.hero { position: relative; }
+.art { overflow: hidden; border-radius: 4px; background: #1E1E1E; }
+.art .m { position: absolute; left: -30px; right: -30px; top: 40px; height: 34px; background: #D7F04A; transform: rotate(-5deg); overflow: hidden; }
+.art .m::after { content: "夜读 ✦ 借阅 ✦ 茶席 ✦ 夜读 ✦ 借阅 ✦ 茶席 ✦ 夜读 ✦ 借阅 ✦ 茶席 ✦"; position: absolute; left: 0; top: 4px; white-space: nowrap; font: 900 22px -apple-system, "Inter", "PingFang SC", sans-serif; color: #141414; animation: mq 12s linear infinite; }
+.art .h { position: absolute; left: -30px; right: -30px; top: 90px; height: 30px; background: #F2F2F2; transform: rotate(3deg); overflow: hidden; }
+.art .h::after { content: "SHAN YUE ● OPEN 18—24 ● SHAN YUE ● OPEN 18—24 ● SHAN YUE ●"; position: absolute; right: 0; top: 5px; white-space: nowrap; font: 900 18px -apple-system, "Inter", "PingFang SC", sans-serif; color: #141414; animation: mq 14s linear infinite reverse; }
+@keyframes mq { to { transform: translateX(-30%); } }
+.feats article { border-top: 1px solid #333; padding-top: 10px; } .feats b { color: #D7F04A; font-weight: 900; }
+.stats { background: #D7F04A; color: #141414; } .stats b { font-weight: 900; }
+</style>

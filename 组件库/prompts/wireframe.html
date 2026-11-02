@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Wireframe Sketch",
+  "zh": "线框稿风",
+  "alias": [
+    "原型线框",
+    "低保真"
+  ],
+  "lead": "把成品做成线框稿的样子：灰色细线框、打叉的图片占位、波浪线代替文字，偶尔一个蓝色批注。坦率、俏皮、像产品还在讨论中，适合原型工具、设计课程、产品团队和创业路演。",
+  "prompt": "线框稿风格：浅灰白背景，所有区块为灰色细线框，图片位为带对角叉线的方框，次要文字用灰色圆角长条代替，标题和按钮保留真实文字（深灰），一两处蓝色手写批注与箭头，等宽或无衬线字，无任何填充色",
+  "promptEn": "wireframe sketch style: light gray-white background, every block as a thin gray outline box, image placeholders as boxes with diagonal crosses, secondary text replaced by gray rounded bars, headings and buttons keeping real text (dark gray), one or two blue handwritten annotations with arrows, monospaced or sans type, no fill colors at all",
+  "avoid": "标题和按钮必须是真字，否则用户什么都读不到；批注一两处就够。整体保持灰，别偷偷上色。",
+  "neg": [
+    "全部用占位条、批注太多",
+    "placeholders everywhere, too many annotations"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #4A4E55; --a2: #2E6BE6; --on: #fff; background: #F7F7F5; color: #3A3D42; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.logo i { background: none; border: 1.5px solid #4A4E55; } .cta, .b1 { background: none; color: #3A3D42; border: 1.5px solid #4A4E55; border-radius: 4px; } .b2 { color: #4A4E55; }
+.hero h1 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; } .kicker { color: #8A8E95; }
+.sub { color: transparent; background: linear-gradient(#D5D7DA 0 0) 0 4px / 95% 7px no-repeat, linear-gradient(#D5D7DA 0 0) 0 21px / 70% 7px no-repeat; border-radius: 4px; }
+.art { border: 1.5px solid #8A8E95; border-radius: 4px; background: linear-gradient(to top right, transparent calc(50% - 1px), #B9BCC0 50%, transparent calc(50% + 1px)), linear-gradient(to bottom right, transparent calc(50% - 1px), #B9BCC0 50%, transparent calc(50% + 1px)); }
+.art::after { content: "← 这里放书房照片"; position: absolute; right: -6px; bottom: -18px; font: italic 11px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #2E6BE6; transform: rotate(-3deg); }
+.feats article { padding: 10px; border: 1.5px solid #B9BCC0; border-radius: 4px; } .feats p { color: transparent; background: linear-gradient(#E2E3E5 0 0) 0 3px / 90% 6px no-repeat, linear-gradient(#E2E3E5 0 0) 0 17px / 60% 6px no-repeat; }
+.feats b { color: #8A8E95; } .stats { border: 1.5px dashed #B9BCC0; margin: 0 26px; border-radius: 4px; }
+</style>

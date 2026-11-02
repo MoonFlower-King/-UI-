@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Safety Signage",
+  "zh": "安全标识",
+  "alias": [
+    "警示牌",
+    "工业标识"
+  ],
+  "lead": "工厂和工地的安全标识：黄黑斜纹警示带、白色圆角牌子上的粗体大字、简单的三角和圆形图形符号。醒目、直接、不容置疑，适合工业品牌、户外装备、施工主题活动和带点幽默的提醒页面。",
+  "prompt": "安全标识风格：浅灰白背景，页头或分隔为黄黑斜纹警示带，主视觉为一块圆角标识牌（黄底黑三角图形或白底红圈图形、下方粗黑大写字），粗压缩无衬线标题，配色严格只用安全黄、黑、白与一点信号红，正文规整",
+  "promptEn": "safety signage style: light gray-white background, yellow-and-black diagonal hazard tape for the header or dividers, a hero of a rounded sign plate (black triangle symbol on yellow, or red circle symbol on white, with bold black uppercase text below), bold condensed sans headings, palette strictly safety yellow, black, white and a touch of signal red, tidy body text",
+  "avoid": "警示带只用一两条，满屏斜纹会让人焦虑；配色严格限四色。别用真实法规标志编号，用自创的简单图形。",
+  "neg": [
+    "满屏警示斜纹、真实法规编号",
+    "hazard stripes everywhere, real regulation codes"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #161616; --a2: #D92E2E; --on: #F5C518; background: #F2F2EE; color: #161616; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 12px solid; border-image: repeating-linear-gradient(-45deg, #F5C518 0 10px, #161616 10px 20px) 12; }
+.cta, .b1 { border-radius: 4px; background: #161616; color: #F5C518; font-weight: 900; text-transform: uppercase; } .hero h1 { font-weight: 900; text-transform: uppercase; letter-spacing: -.5px; } .kicker { color: #D92E2E; font-weight: 900; letter-spacing: 2px; }
+.art .m { position: absolute; left: 20px; top: 0; width: 130px; height: 150px; border-radius: 12px; background: #F5C518; box-shadow: inset 0 0 0 4px #161616, inset 0 0 0 8px #F5C518; }
+.art .h { position: absolute; left: 50px; top: 18px; width: 70px; height: 62px; background: #161616; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.art .h::after { content: "!"; position: absolute; left: 0; right: 0; top: 18px; text-align: center; font: 900 32px -apple-system, "Inter", "PingFang SC", sans-serif; color: #F5C518; }
+.art::after { content: "安静区域"; position: absolute; left: 20px; width: 130px; top: 96px; text-align: center; font: 900 18px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 2px; }
+.feats article { padding: 12px; border: 3px solid #161616; border-radius: 8px; background: #fff; } .feats b { color: #D92E2E; font-weight: 900; }
+.stats { background: #161616; color: #F5C518; } .stats b { font-weight: 900; }
+</style>

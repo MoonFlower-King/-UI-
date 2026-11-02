@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Paper Quilling",
+  "zh": "衍纸",
+  "alias": [
+    "卷纸艺术",
+    "纸条卷绕"
+  ],
+  "lead": "把细长的彩色纸条卷成螺旋、水滴和叶子，再拼成花朵：每一卷都看得到纸条的侧边和层层圈纹。精巧、可爱、有手作的耐心，适合手工课程、节日贺卡、儿童美育和礼品品牌。",
+  "prompt": "衍纸风格：浅奶白背景，主视觉为由螺旋卷纸组成的花朵（每片花瓣是一个紧卷的水滴形，能看到同心细圈纹路，三四种柔和纸色：珊瑚、薄荷、柠檬、淡紫），花茎为一条立着的细纸条，柔和投影，圆润衬线标题，卡片带一个小卷纸角标",
+  "promptEn": "paper quilling style: light cream background, a hero of a flower made from coiled paper strips (each petal a tight teardrop coil with visible concentric thin rings, three or four soft paper colors: coral, mint, lemon, pale lilac), the stem as a single upright paper strip, soft shadows, rounded serif headings, cards with a small quilled corner badge",
+  "avoid": "同心细圈是衍纸的辨识点，要看得出是“卷”出来的；颜色柔和三四种。主视觉一朵花就够，别铺满。",
+  "neg": [
+    "平涂没有卷纹、铺满页面",
+    "flat fills without coils, covering the page"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D9705A; --a2: #5E9A86; --on: #fff; background: #FBF7EF; color: #3A2E2A; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 999px; } .hero h1 { font-weight: 600; }
+.art .m { position: absolute; left: 60px; top: 20px; width: 50px; height: 50px; border-radius: 50%;
+  background: repeating-radial-gradient(circle at 50% 50%, #E58C76 0 2px, #C9604A 2px 2.6px); box-shadow: 0 3px 5px rgba(0,0,0,.15), 40px 26px 0 -6px #EBD06A, -40px 26px 0 -6px #B8A8D8, 0 52px 0 -6px #9CCDBA; }
+.art .h { position: absolute; left: 84px; top: 78px; width: 3px; height: 70px; background: #5E9A86; box-shadow: 1px 0 0 #4A806E; }
+.art::before { content: ""; position: absolute; left: 88px; top: 104px; width: 26px; height: 14px; border-radius: 100% 0; background: repeating-radial-gradient(ellipse at 30% 70%, #9CCDBA 0 2px, #5E9A86 2px 2.6px); transform: rotate(-20deg); box-shadow: 0 2px 3px rgba(0,0,0,.12); }
+.feats article { padding: 12px 12px 12px 36px; position: relative; background: #fff; border-radius: 12px; } .feats article::before { content: ""; position: absolute; left: 12px; top: 14px; width: 16px; height: 16px; border-radius: 50%; background: repeating-radial-gradient(circle, #E58C76 0 1.5px, #C9604A 1.5px 2px); }
+.feats b { color: #D9705A; } .stats b { color: #5E9A86; }
+</style>

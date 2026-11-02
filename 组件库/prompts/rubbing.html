@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Stone Rubbing",
+  "zh": "碑拓",
+  "alias": [
+    "拓片",
+    "金石拓本"
+  ],
+  "lead": "从石碑上拓下来的纸：墨黑的底子上留出白色的字口和纹饰，墨色有轻重斑驳，边上盖着收藏印。古朴、厚重、有金石气，适合博物馆、书法篆刻、古籍出版和高端文房。",
+  "prompt": "碑拓风格：宣纸米白背景，主视觉为一块墨拓区域（深墨底、斑驳轻重的墨色、白色阴刻字口或纹样露出纸色），边缘不规整，旁边一两枚朱红收藏印，正文为端正宋体，大量留白，无其他颜色",
+  "promptEn": "stone rubbing style: rice-paper off-white background, a hero of an ink rubbing area (deep ink ground with mottled heavy and light tones, white incised characters or patterns showing the paper), irregular edges, one or two vermilion collector seals beside it, upright Song serif body text, vast white space, no other colors",
+  "avoid": "拓片的字是“白字黑底”，和书法正好相反；墨色要斑驳有轻重，平涂纯黑就像印刷品。",
+  "neg": [
+    "平涂纯黑、黑字白底",
+    "flat pure black, black text on white"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1C1A; --a2: #B03A2E; --on: #F5F0E4; background: #F5F0E4; color: #1E1C1A; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta { background: none; color: #1E1C1A; border: 1px solid; } .b1 { border-radius: 0; } .hero h1 { font-weight: 500; letter-spacing: 4px; }
+.art .m { position: absolute; left: 20px; top: 0; width: 110px; height: 150px;
+  background: radial-gradient(ellipse 30% 20% at 30% 30%, rgba(80,76,70,.6), transparent), radial-gradient(ellipse 30% 25% at 70% 70%, rgba(90,86,80,.5), transparent), radial-gradient(circle, rgba(255,255,255,.08) .8px, transparent 1.2px) 0 0 / 4px 4px, #1E1C1A;
+  clip-path: polygon(2% 1%, 30% 0, 60% 2%, 98% 0, 100% 30%, 97% 62%, 100% 98%, 64% 100%, 30% 98%, 0 100%, 2% 66%, 0 32%); }
+.art .m::after { content: "山\A 月"; white-space: pre; position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font: 500 44px/1.15 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #EFE9DB; opacity: .9; text-shadow: 0 0 1px #EFE9DB; }
+.art .h { position: absolute; left: 140px; top: 100px; width: 22px; height: 22px; border: 2px solid #B03A2E; background: rgba(176,58,46,.15); }
+.art .h::after { content: "印"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; color: #B03A2E; }
+.feats h3 { font-weight: 500; letter-spacing: 3px; } .feats b { color: #B03A2E; }
+.stats { border-top: 1px solid rgba(30,28,26,.25); margin: 0 26px; } .stats b { font-weight: 400; }
+</style>

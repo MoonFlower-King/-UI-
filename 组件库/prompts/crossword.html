@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Crossword",
+  "zh": "填字游戏",
+  "alias": [
+    "纵横字谜",
+    "格子谜题"
+  ],
+  "lead": "报纸上的填字游戏：黑白方格交错，格子左上角有小编号，几个格子已经填上了字，旁边列着横向和纵向的提示。聪明、好玩、需要动脑，适合出版、教育、语言学习和品牌互动活动。",
+  "prompt": "填字游戏风格：纸白背景，主视觉为一块黑白方格网（黑格实心、白格左上角小号编号、部分白格填有粗体大字），旁边两栏提示（横向、纵向编号与短句），衬线小标题与无衬线填字，只用黑白，可用一个淡黄色高亮当前词",
+  "promptEn": "crossword style: paper white background, a hero of a black-and-white square grid (solid black squares, white squares with tiny numbers in the top-left corner, some filled with bold large characters), two columns of clues beside it (across and down numbers with short phrases), serif subheads and sans fill letters, black and white only, optionally one pale yellow highlight on the current word",
+  "avoid": "格子要严格对齐、编号要小；高亮只给当前一个词。网格五乘五左右就够，太大反而难看清。",
+  "neg": [
+    "格子不齐、到处高亮",
+    "misaligned grid, highlights everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #FBFAF6; color: #111; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 700; } .kicker { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 2px; color: #111; opacity: .7; }
+.art { width: 150px; height: 150px; border: 2px solid #111; margin-left: 10px;
+  background: linear-gradient(#111 0 0) 30px 0 / 30px 30px no-repeat, linear-gradient(#111 0 0) 90px 30px / 30px 30px no-repeat, linear-gradient(#111 0 0) 0 90px / 30px 30px no-repeat, linear-gradient(#111 0 0) 120px 120px / 30px 30px no-repeat, linear-gradient(#111 0 0) 60px 120px / 30px 30px no-repeat,
+    linear-gradient(#FFF1A8 0 0) 0 60px / 150px 30px no-repeat, linear-gradient(90deg, #111 1px, transparent 1px) 0 0 / 30px 30px, linear-gradient(#111 1px, transparent 1px) 0 0 / 30px 30px, #fff; }
+.art::before { content: "山月书房"; position: absolute; left: 0; top: 60px; width: 150px; white-space: nowrap; font: 700 16px/30px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 14px; padding-left: 7px; }
+.art::after { content: "1"; position: absolute; left: 2px; top: 60px; font: 7px -apple-system, "Inter", "PingFang SC", sans-serif; }
+.feats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .feats article { border-top: 1px solid #111; padding-top: 8px; }
+.stats { border-top: 2px solid #111; border-bottom: 2px solid #111; margin: 0 26px; } .stats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+</style>

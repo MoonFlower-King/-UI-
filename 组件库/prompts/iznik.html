@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Iznik Tulip",
+  "zh": "伊兹尼克郁金香",
+  "alias": [
+    "奥斯曼花砖",
+    "土耳其花纹"
+  ],
+  "lead": "奥斯曼宫殿墙上的伊兹尼克花砖：白底上钴蓝、青绿和一抹珊瑚红，画着郁金香、康乃馨和弯曲的锯齿叶，线条流畅。华美、明亮、细腻，适合中东餐厅、香料茶饮、陶瓷器物和文化旅游。",
+  "prompt": "伊兹尼克郁金香风格：白釉背景，主视觉为对称的郁金香与锯齿长叶纹样（钴蓝为主、青绿为辅、珊瑚红点睛，深蓝细勾边），纹样只铺在主视觉方框与页头饰带，衬线标题为钴蓝，正文深灰蓝，卡片为白底细蓝边",
+  "promptEn": "Iznik tulip style: white glaze background, a hero of symmetrical tulip and serrated long-leaf motifs (mainly cobalt, turquoise as secondary, coral red as the accent, thin dark blue outlines), patterns only on the hero panel and header band, cobalt serif headings, deep gray-blue body text, white cards with thin blue borders",
+  "avoid": "珊瑚红是点睛，只一两处；郁金香和锯齿叶是辨识点。和葡萄牙花砖区分：伊兹尼克是写意花卉，花砖是几何四方连续。",
+  "neg": [
+    "红色用太多、几何化",
+    "too much red, over-geometric"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E4A9A; --a2: #D9533F; --on: #fff; background: #FCFBF7; color: #1F2B44; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 10px solid; border-image: repeating-linear-gradient(90deg, #1E4A9A 0 10px, #2E9A94 10px 14px, #FCFBF7 14px 18px) 1; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; color: #1E4A9A; }
+.art { border: 2px solid #1E4A9A; background: #fff; height: 150px; }
+.art .m { position: absolute; left: 66px; top: 20px; width: 36px; height: 44px; background: #D9533F; border-radius: 50% 50% 40% 40%; clip-path: polygon(0 20%, 20% 0, 35% 25%, 50% 0, 65% 25%, 80% 0, 100% 20%, 95% 70%, 50% 100%, 5% 70%); }
+.art .h { position: absolute; left: 82px; top: 60px; width: 4px; height: 80px; background: #2E9A94; }
+.art::before { content: ""; position: absolute; left: 30px; top: 70px; width: 54px; height: 18px; background: #1E4A9A; border-radius: 100% 0; transform: rotate(-30deg); clip-path: polygon(0 50%, 10% 30%, 20% 50%, 30% 30%, 40% 50%, 50% 20%, 60% 50%, 70% 20%, 100% 0, 80% 70%, 0 100%); }
+.art::after { content: ""; position: absolute; left: 86px; top: 76px; width: 54px; height: 18px; background: #1E4A9A; border-radius: 0 100%; transform: rotate(30deg); }
+.feats article { padding: 12px; border: 1px solid #C9D6EE; } .feats b { color: #D9533F; }
+.stats { background: #1E4A9A; color: #fff; } .stats b { font-weight: 500; }
+</style>

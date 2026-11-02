@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "String Art",
+  "zh": "钉线画",
+  "alias": [
+    "绕线画",
+    "钉线艺术"
+  ],
+  "lead": "木板上钉一圈小钉，用彩线在钉子之间来回绕，直线交织出弧形和花样。理性又浪漫、有数学的美感，适合数学教育、手作工坊、科技品牌和创意活动。",
+  "prompt": "钉线画风格：深炭灰或原木色背景，主视觉为一圈或两条边上的小钉点，钉与钉之间用细彩线（一两种颜色，如珊瑚与青绿）连成直线，大量直线交织出曲线包络（抛物线或圆），几何无衬线标题，正文简洁",
+  "promptEn": "string art style: deep charcoal or natural wood background, a hero of small nail dots along a circle or two edges, thin colored threads (one or two colors such as coral and teal) stretched in straight lines between nails, many straight lines weaving a curved envelope (parabola or circle), geometric sans headings, simple body text",
+  "avoid": "全是直线，交织出来的才是曲线，这是钉线画的妙处；线要细、颜色一两种。",
+  "neg": [
+    "直接画曲线、线太粗太多色",
+    "drawing curves directly, thick multicolor lines"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F08A6E; --a2: #4FB8A8; --on: #23262A; background: #23262A; color: #ECE8E1; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 4px; font-weight: 700; } .hero h1 { font-weight: 800; }
+.art .m { position: absolute; left: 10px; top: 0; width: 150px; height: 150px; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(240,138,110,.9) 0 .5deg, transparent .5deg 7.5deg); -webkit-mask: radial-gradient(circle, transparent 30px, #000 31px 74px, transparent 75px); mask: radial-gradient(circle, transparent 30px, #000 31px 74px, transparent 75px); }
+.art .h { position: absolute; left: 10px; top: 0; width: 150px; height: 150px; border-radius: 50%; background: repeating-conic-gradient(from 3.75deg, rgba(79,184,168,.85) 0 .4deg, transparent .4deg 7.5deg); -webkit-mask: radial-gradient(circle, transparent 46px, #000 47px 74px, transparent 75px); mask: radial-gradient(circle, transparent 46px, #000 47px 74px, transparent 75px); transform: rotate(10deg); }
+.art::after { content: ""; position: absolute; left: 8px; top: -2px; width: 150px; height: 150px; border-radius: 50%; border: 2px dotted #ECE8E1; }
+.feats article { border-top: 1px solid #3A3E44; padding-top: 10px; } .feats b { color: #4FB8A8; }
+.stats b { color: #F08A6E; }
+</style>

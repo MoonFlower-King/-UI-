@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Fauvism",
+  "zh": "野兽派",
+  "alias": [
+    "野兽主义",
+    "狂野色彩"
+  ],
+  "lead": "颜色不按真实来：天空是橙的、树是紫红的、脸上一笔绿，大块平涂的笔触自由奔放。热烈、大胆、充满情绪，适合艺术展、潮流服饰、音乐专辑和创意工作室。",
+  "prompt": "野兽派风格：奶白背景，主视觉为几块非写实的大胆色块组成的抽象风景（橙色天空、玫红山丘、翠绿树影、钴蓝水面），色块边缘带粗犷笔触感，衬线或粗无衬线标题，正文区保持干净，卡片各取一块主视觉的颜色作顶边",
+  "promptEn": "Fauvism style: cream background, a hero of an abstract landscape built from bold non-naturalistic color patches (orange sky, magenta hills, emerald tree shadows, cobalt water), patch edges with rough brushy feel, serif or bold sans headings, clean body area, each card topped with one color taken from the hero",
+  "avoid": "颜色可以“不对”但要互相呼应，四五色以内；色块大而简，别画细节。正文区别也涂满色。",
+  "neg": [
+    "颜色杂乱无呼应、正文区也涂满",
+    "clashing unrelated colors, color under body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E3E9C; --a2: #E2502E; --on: #fff; background: #FBF5EA; color: #221E1C; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 4px; } .hero h1 { font-weight: 800; }
+.art { overflow: hidden; border-radius: 4px; height: 150px; background: #F29A3C; }
+.art .m { position: absolute; left: -20px; right: -20px; top: 60px; height: 70px; background: #C83A6E; border-radius: 60% 40% 0 0 / 80% 60% 0 0; }
+.art .h { position: absolute; left: -10px; right: -10px; top: 110px; height: 50px; background: #1E3E9C; border-radius: 40% 60% 0 0 / 30% 40% 0 0; }
+.art::before { content: ""; position: absolute; left: 100px; top: 30px; width: 40px; height: 80px; background: #2E9A5A; border-radius: 50% 50% 20% 20%; }
+.art::after { content: ""; position: absolute; left: 30px; top: 16px; width: 28px; height: 28px; border-radius: 50%; background: #F7E04A; }
+.feats article { padding-top: 8px; border-top: 6px solid #E2502E; } .feats article:nth-child(2) { border-color: #C83A6E; } .feats article:nth-child(3) { border-color: #2E9A5A; } .feats b { font-weight: 700; }
+.stats b { color: #1E3E9C; font-weight: 800; }
+</style>

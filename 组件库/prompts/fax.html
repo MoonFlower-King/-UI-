@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Fax Printout",
+  "zh": "传真纸",
+  "alias": [
+    "热敏传真",
+    "老传真"
+  ],
+  "lead": "一张刚吐出来的热敏传真纸：微微泛灰、字迹有点糊，顶上一行发送时间和号码，偶尔一道横向的扫描纹。办公室怀旧、带点黑色幽默，适合复古品牌、创意代理、设计工作室和发布会邀请。",
+  "prompt": "传真纸风格：浅暖灰白背景，内容像热敏传真打印（文字略微模糊发虚、一两道淡灰横向扫描纹、顶部一行小号等宽页眉写时间与号码），手写签名与潦草箭头点缀，等宽与打字机字为主，只用黑灰两色",
+  "promptEn": "fax printout style: light warm gray-white background, content like a thermal fax printout (text slightly blurred, one or two faint gray horizontal scan streaks, a small monospaced header line with time and number), handwritten signature and scribbled arrow accents, mainly monospaced and typewriter fonts, only black and gray",
+  "avoid": "模糊要轻，正文仍要读得清；只用黑灰两色。扫描纹一两道就够，满屏就成了故障风。",
+  "neg": [
+    "模糊到读不清、满屏故障纹",
+    "blur too strong to read, glitch lines everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1E1E; --a2: #1E1E1E; --on: #F2F1EC; background: #ECEBE5; color: #1E1E1E; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.pg { background: linear-gradient(transparent 38%, rgba(0,0,0,.05) 38% 39.5%, transparent 39.5% 72%, rgba(0,0,0,.04) 72% 72.8%, transparent 72.8%); }
+.nav { font-size: 10px; border-bottom: 1px solid #1E1E1E; } .nav::before { content: "11/02 23:10  FROM 0571-SHANYUE  P.1/1"; position: absolute; left: 26px; top: 2px; font-size: 8px; opacity: .6; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 700; text-shadow: .5px 0 .6px rgba(30,30,30,.6); letter-spacing: 1px; } .kicker { color: #1E1E1E; opacity: .7; }
+.sub { text-shadow: 0 0 .5px rgba(30,30,30,.6); }
+.art::before { content: "请于今晚\A 18:00 前回复\A — 山月"; white-space: pre; position: absolute; left: 10px; top: 20px; font: italic 16px/1.6 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; transform: rotate(-4deg); }
+.art::after { content: "↙"; position: absolute; left: 20px; bottom: 6px; font-size: 32px; transform: rotate(10deg); }
+.feats article { border-top: 1px dashed #1E1E1E; padding-top: 8px; } .feats b { opacity: .7; color: #1E1E1E; }
+.stats { border-top: 1px solid #1E1E1E; border-bottom: 1px solid #1E1E1E; margin: 0 26px; }
+</style>

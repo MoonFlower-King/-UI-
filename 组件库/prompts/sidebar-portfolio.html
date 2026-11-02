@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Sidebar Portfolio",
+  "zh": "侧栏作品集",
+  "alias": [
+    "固定侧栏",
+    "作品集布局"
+  ],
+  "lead": "左边一条窄窄的固定侧栏放名字、简介和导航，右边是一大片作品图网格，安静地等你浏览。简洁、专业、作品优先，适合设计师、插画师、摄影师和小型工作室。",
+  "prompt": "侧栏作品集风格：白色背景，左侧窄固定侧栏（名字、一行简介、竖排导航、联系方式，细竖线与内容区分隔），右侧为作品缩略图网格（统一圆角或直角、留白一致、悬停显示标题），无衬线小字，几乎无装饰，色彩全部来自作品本身",
+  "promptEn": "sidebar portfolio style: white background, a narrow fixed left sidebar (name, one-line bio, vertical navigation, contact, separated from content by a thin vertical line), a grid of work thumbnails on the right (consistent corners and gutters, titles on hover), small sans-serif type, almost no decoration, all color coming from the work itself",
+  "avoid": "侧栏要窄、信息要少，作品才是主角；网格间距统一。别给侧栏加大头像和技能进度条。",
+  "neg": [
+    "技能进度条、侧栏信息过多",
+    "skill progress bars, overloaded sidebar"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #161616; --a2: #161616; --on: #fff; background: #fff; color: #161616; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 1px solid #ECECEC; } .cta { background: none; color: #161616; padding: 0; border-bottom: 1px solid; } .b1 { border-radius: 0; }
+.hero { grid-template-columns: 150px 1fr; padding: 0; gap: 0; } .copy { padding: 18px 16px; border-right: 1px solid #ECECEC; }
+.hero h1 { font-size: 16px; font-weight: 600; } .sub { font-size: 10.5px; } .acts { flex-direction: column; align-items: flex-start; gap: 6px; } .kicker { opacity: .6; color: #161616; }
+.art { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 16px; min-height: 200px; }
+.art::before, .art::after, .art .m, .art .h { content: ""; display: block; position: static; border-radius: 3px; }
+.art::before { background: linear-gradient(160deg, #E9C9A8, #C9825A); } .art .m { background: linear-gradient(#9DB8C9, #3E5E78); } .art .h { background: #E8E2D6; } .art::after { background: linear-gradient(200deg, #2E3A2E, #7E9A6A); grid-column: span 2; }
+.feats b { opacity: .5; color: #161616; } .feats h3 { font-weight: 600; font-size: 13px; }
+.stats b { font-weight: 500; font-size: 18px; }
+</style>
