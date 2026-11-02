@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Skeleton Screen", "zh": "骨架屏", "group": "加载与状态反馈", "episode": "EP05",
+  "lead": "内容还没加载完时，先用灰色块画出页面的轮廓，再配一道扫光。用户会觉得“快好了”，而不是盯着转圈。",
+  "vague": ["加载的时候好丑", "白屏太久"],
+  "terms": ["Skeleton Screen", "Shimmer Effect 扫光", "Perceived Performance 感知速度"],
+  "prompt": "列表加载时显示 Skeleton Screen：保留真实布局（48px 圆形头像 + 两行文字条），灰色 #F4F4F5，圆角 6px；加一道从左到右的 Shimmer 扫光，1.4 秒循环，渐变中间亮度提高一档。"
+}
+-->
+<div class="sk-list">
+  <div class="sk-card"><div class="sk avatar"></div><div class="lines"><div class="sk l1"></div><div class="sk l2"></div></div></div>
+  <div class="sk-card"><div class="sk avatar"></div><div class="lines"><div class="sk l1"></div><div class="sk l2"></div></div></div>
+  <div class="sk-card"><div class="sk avatar"></div><div class="lines"><div class="sk l1"></div><div class="sk l2"></div></div></div>
+</div>
+
+<style>
+.sk-list { display: grid; gap: 12px; width: min(340px, 90vw); }
+.sk-card { display: flex; gap: 14px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.lines { flex: 1; display: grid; gap: 10px; align-content: center; }
+.sk { background: linear-gradient(90deg, #F4F4F5 25%, #FAFAFA 50%, #F4F4F5 75%); background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite; border-radius: 6px; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; }
+.l1 { height: 12px; width: 70%; } .l2 { height: 12px; width: 45%; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+</style>

@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Backdrop Modal", "zh": "遮罩弹窗", "group": "弹窗与浮层", "episode": "EP04",
+  "lead": "弹窗出现时，背后的页面被一层半透明遮罩盖住并模糊，用户只能先处理弹窗。适合必须做决定的时刻。",
+  "vague": ["弹窗太突兀", "弹出来很生硬"],
+  "terms": ["Backdrop Modal", "Overlay 遮罩", "Scale-in 缩放进入"],
+  "prompt": "做一个 Backdrop Modal：遮罩黑色 40% 透明度 + backdrop-filter: blur(4px)，200ms 淡入；弹窗白色圆角 20px，从 scale(0.95) 放大到 1 并淡入（250ms 带轻微回弹）；点遮罩或按 Esc 关闭。"
+}
+-->
+<button class="open-modal">删除项目</button>
+
+<div class="backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <h3 id="modal-title">确定删除这个项目？</h3>
+    <p>删除后 30 天内可以在回收站里恢复。</p>
+    <div class="modal-actions">
+      <button class="cancel">取消</button>
+      <button class="danger">删除</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.open-modal { border: 0; background: #FF3B30; color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; }
+.backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, .4);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: fade .2s ease-out; }
+.backdrop[hidden] { display: none; }
+.modal { width: min(360px, 100%); background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 24px 60px rgba(0, 0, 0, .2);
+  animation: pop-in .25s cubic-bezier(.34, 1.56, .64, 1); }
+.modal h3 { margin: 0 0 6px; font-size: 18px; }
+.modal p { margin: 0; color: #71717A; font-size: 14px; line-height: 1.6; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+.modal-actions button { border: 1px solid #E4E4E7; background: #fff; padding: 9px 18px; border-radius: 10px; font-size: 14px; cursor: pointer; }
+.modal-actions .danger { background: #FF3B30; border-color: #FF3B30; color: #fff; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop-in { from { opacity: 0; transform: scale(.95); } }
+</style>
+
+<script>
+const backdrop = document.querySelector(".backdrop");
+const openModal = () => { backdrop.hidden = false; backdrop.querySelector(".cancel").focus(); };
+const closeModal = () => { backdrop.hidden = true; };
+document.querySelector(".open-modal").addEventListener("click", openModal);
+backdrop.addEventListener("click", e => { if (e.target === backdrop) closeModal(); });
+backdrop.querySelectorAll("button").forEach(b => b.addEventListener("click", closeModal));
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+</script>

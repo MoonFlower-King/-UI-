@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Underline Slide", "zh": "下划线滑入", "group": "鼠标悬停微交互", "episode": "EP02",
+  "lead": "鼠标移到链接上时，一条下划线从左往右“画”出来，移开时再收回去。比直接出现下划线精致很多。",
+  "vague": ["导航太素了", "链接没有感觉"],
+  "terms": ["Underline Slide", "Hover State 悬停态", "Transform Origin 变换原点"],
+  "prompt": "导航链接加 Underline Slide：悬停时 2px 橙色下划线从左往右展开（scaleX 0→1，250ms ease-out），移开时从左往右收回（transform-origin 切到 right）；文字颜色同时从灰色变成深色。"
+}
+-->
+<nav class="links">
+  <a href="#">产品</a><a href="#">价格</a><a href="#">案例</a><a href="#">博客</a>
+</nav>
+
+<style>
+.links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+.links a { position: relative; padding: 4px 0; color: #71717A; text-decoration: none; font-size: 17px; font-weight: 500; transition: color .25s; }
+.links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 1px; background: #FA8C16;
+  transform: scaleX(0); transform-origin: right; transition: transform .25s ease-out; }
+.links a:hover, .links a:focus-visible { color: #18181B; outline: none; }
+.links a:hover::after, .links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+</style>

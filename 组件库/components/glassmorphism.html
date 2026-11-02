@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Glassmorphism", "zh": "毛玻璃", "group": "视觉质感风格", "episode": "EP06",
+  "lead": "半透明的卡片叠在彩色背景上，背后的内容被模糊，像隔着一块磨砂玻璃。苹果 macOS 和 iOS 大量使用。",
+  "vague": ["要有质感", "通透一点", "像苹果那样"],
+  "terms": ["Glassmorphism", "Backdrop Blur 背景模糊", "Frosted Glass 磨砂玻璃"],
+  "prompt": "把登录卡片做成 Glassmorphism：背景是两个大的彩色模糊圆斑，卡片白色 18% 透明度 + backdrop-filter: blur(20px) saturate(160%)，1px 白色 35% 透明描边，圆角 20px，柔和大投影。"
+}
+-->
+<div class="glass-scene">
+  <div class="blob a"></div><div class="blob b"></div>
+  <div class="glass"><h3>欢迎回来</h3><p>用手机号登录</p></div>
+</div>
+
+<style>
+.glass-scene { position: fixed; inset: 0; display: grid; place-items: center; background: #1E1B4B; overflow: hidden; }
+.blob { position: absolute; width: 260px; height: 260px; border-radius: 50%; filter: blur(30px); }
+.blob.a { background: #FF2D55; top: 10%; left: 18%; }
+.blob.b { background: #FA8C16; bottom: 8%; right: 16%; }
+.glass { position: relative; width: min(300px, 86vw); padding: 28px; border-radius: 20px; color: #fff;
+  background: rgba(255, 255, 255, .18); border: 1px solid rgba(255, 255, 255, .35);
+  backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .25); }
+.glass h3 { margin: 0 0 4px; font-size: 22px; }
+.glass p { margin: 0; opacity: .8; }
+</style>
