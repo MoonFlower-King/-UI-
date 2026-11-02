@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "British Heritage",
+  "zh": "英伦老牌",
+  "alias": [
+    "英式传统",
+    "Heritage"
+  ],
+  "lead": "赛车绿、深海军蓝、黄铜和奶油色，衬线大写字和细线徽章，像一家百年老店。稳重、讲究、有传承感，适合茶叶、西装定制、雨伞皮具、威士忌和老字号。",
+  "prompt": "英伦老牌风格：奶油色背景，赛车墨绿和深海军蓝为主色，黄铜色细线点缀，徽章式标志带「自某年起」的小字，传统衬线标题，正文为舒适的衬线体，卡片有细线边框，整体对称规整",
+  "promptEn": "British heritage style: cream background, racing green and deep navy as main colors with fine brass accents, a crest-like logo with a small \"established\" line, traditional serif headings and comfortable serif body text, cards with fine rule borders, symmetrical and orderly overall",
+  "avoid": "徽章和「Est. 年份」用一处就够，到处是徽章会像山寨。别用国旗图案，传统感靠颜色和字体就够了。",
+  "neg": [
+    "徽章堆砌、国旗图案",
+    "piled-up crests, flag graphics"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E4434; --a2: #A9833F; --on: #F6F0E2; background: #F6F0E2; color: #1C2733; font-family: "Baskerville", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #1E4434; box-shadow: 0 3px 0 -1px #F6F0E2, 0 4px 0 -1px #1E4434; } .logo i { border-radius: 50% 50% 46% 46%; background: #1E4434; box-shadow: 0 0 0 2px #A9833F; }
+.cta { background: none; color: #1E4434; border: 1px solid #1E4434; } .hero h1 { font-weight: 600; } .kicker { color: #A9833F; letter-spacing: 3px; }
+.art { border: 1px solid #1E4434; outline: 1px solid #A9833F; outline-offset: 4px; background: #1E4434; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 90px; height: 100px; margin: -50px -45px; border-radius: 6px 6px 45px 45px; border: 2px solid #A9833F; }
+.art .m::after { content: "EST. 1926"; position: absolute; left: 0; right: 0; top: 40px; text-align: center; font-size: 10px; letter-spacing: 2px; color: #E7D3A6; }
+.feats article { padding: 12px; border: 1px solid rgba(30, 68, 52, .35); } .feats b { color: #A9833F; } .stats { background: #1C2733; color: #F6F0E2; } .stats b { color: #E7D3A6; }
+</style>

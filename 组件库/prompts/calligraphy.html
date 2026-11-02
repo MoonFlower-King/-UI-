@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Calligraphy",
+  "zh": "书法",
+  "alias": [
+    "毛笔字",
+    "书道"
+  ],
+  "lead": "一个饱满的毛笔大字压住整页，飞白、顿笔都看得见，其余全是素净的留白和小字。有力、有气韵、有文人气，适合茶、酒、文化活动、书院和高端餐饮。",
+  "prompt": "书法风格：宣纸米白背景，主视觉为一个占据大面积的浓墨毛笔字或一笔粗重笔触（有飞白和顿笔），正文为小号宋体，竖排或横排小字点缀，一枚朱红印章，大面积留白，无其他装饰",
+  "promptEn": "calligraphy style: rice-paper off-white background, a hero of one large bold ink brush character or a single heavy brushstroke (with dry-brush streaks and pressed ends), small Song serif body text, accents of small vertical or horizontal text, one vermilion seal, vast white space, no other ornament",
+  "avoid": "全页只要一处大字，别每个标题都用书法字体；笔触要有飞白和粗细变化，均匀的粗线就成了马克笔。",
+  "neg": [
+    "到处都是书法字、笔触粗细均匀",
+    "calligraphy fonts everywhere, uniform brush width"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1C1A17; --a2: #B23A2B; --on: #F6F1E6; background: #F6F1E6; color: #1C1A17; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta { background: none; color: #1C1A17; border: 1px solid; } .b1 { border-radius: 0; } .hero h1 { font-weight: 500; letter-spacing: 4px; }
+.art { overflow: hidden; }
+.art .m { position: absolute; left: 20px; top: 8px; width: 34px; height: 130px; border-radius: 40% 60% 30% 70% / 8% 10% 90% 92%; background: #1C1A17; transform: rotate(-6deg);
+  -webkit-mask: repeating-linear-gradient(0deg, #000 0 6px, rgba(0,0,0,.65) 6px 8px, #000 8px 13px, rgba(0,0,0,.3) 13px 14px); mask: repeating-linear-gradient(0deg, #000 0 6px, rgba(0,0,0,.65) 6px 8px, #000 8px 13px, rgba(0,0,0,.3) 13px 14px); }
+.art .h { position: absolute; left: 40px; top: 52px; width: 120px; height: 22px; border-radius: 50% 30% 60% 40% / 60% 40% 60% 40%; background: #1C1A17; transform: rotate(-10deg);
+  -webkit-mask: linear-gradient(90deg, #000 70%, rgba(0,0,0,.4) 82%, transparent), repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 6px); mask: linear-gradient(90deg, #000 70%, rgba(0,0,0,.4) 82%, transparent); }
+.art::after { content: "山月"; position: absolute; right: 12px; bottom: 10px; width: 24px; height: 40px; display: grid; place-items: center; background: #B23A2B; color: #F6F1E6; font-size: 11px; line-height: 1.2; text-align: center; writing-mode: vertical-rl; border-radius: 2px; }
+.feats h3 { font-weight: 500; letter-spacing: 3px; } .feats b { color: #B23A2B; }
+.stats { border-top: 1px solid rgba(28,26,23,.25); margin: 0 26px; } .stats b { font-weight: 400; }
+</style>

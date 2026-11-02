@@ -64,7 +64,10 @@
         "old-shanghai",
         "tang-splendor",
         "lacquerware",
-        "zen-garden"
+        "zen-garden",
+        "huizhou",
+        "dancheong",
+        "lingnan"
       ]
     },
     {
@@ -89,7 +92,10 @@
         "parisian",
         "alpine-lodge",
         "havana",
-        "mudcloth"
+        "mudcloth",
+        "british-heritage",
+        "copacabana",
+        "surf"
       ]
     },
     {
@@ -129,7 +135,10 @@
         "dada",
         "postmodern",
         "cubism",
-        "pointillism"
+        "pointillism",
+        "atomic-age",
+        "space-age",
+        "polish-poster"
       ]
     },
     {
@@ -166,7 +175,11 @@
         "product-launch",
         "outline-type",
         "masonry",
-        "mono-type"
+        "mono-type",
+        "visible-grid",
+        "long-shadow",
+        "micro-type",
+        "friendly-illustration"
       ]
     },
     {
@@ -199,7 +212,10 @@
         "felt",
         "corten",
         "denim",
-        "embossed"
+        "embossed",
+        "rattan",
+        "red-brick",
+        "jade"
       ]
     },
     {
@@ -228,7 +244,10 @@
         "gouache",
         "quilt",
         "pencil-sketch",
-        "crayon"
+        "crayon",
+        "calligraphy",
+        "rubber-stamp",
+        "origami"
       ]
     },
     {
@@ -259,7 +278,11 @@
         "apothecary",
         "frutiger-aero",
         "vhs",
-        "city-pop"
+        "city-pop",
+        "circus",
+        "vintage-ad",
+        "retro-airline",
+        "matchbox"
       ]
     },
     {
@@ -291,7 +314,11 @@
         "bookshelf",
         "receipt",
         "metro-map",
-        "rpg-dialog"
+        "rpg-dialog",
+        "passport",
+        "vinyl",
+        "sticky-wall",
+        "trading-card"
       ]
     },
     {
@@ -328,7 +355,10 @@
         "wellness",
         "gov-formal",
         "pet-friendly",
-        "esports"
+        "esports",
+        "wedding",
+        "eco-green",
+        "craft-beer"
       ]
     },
     {

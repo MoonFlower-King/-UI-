@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Micro Typography",
+  "zh": "微型字排版",
+  "alias": [
+    "小字排版",
+    "迷你字号"
+  ],
+  "lead": "整页几乎全是小字号，靠精确的间距、对齐和一两处大号数字撑起层次。安静、克制、有编辑部的讲究，适合摄影师作品集、建筑事务所、精品酒店和独立出版。",
+  "prompt": "微型字排版风格：暖白背景，近黑文字，正文和导航都用很小的字号（10-11px）和宽松行距，大量留白，层次只靠字重、大写字距和一处超大细体数字，元素间距精确统一，无图标、无色块",
+  "promptEn": "micro typography style: warm white background, near-black text, body and navigation set in very small sizes (10-11px) with generous leading, vast white space, hierarchy only from weight, tracked uppercase and one oversized thin numeral, precise uniform spacing, no icons, no color blocks",
+  "avoid": "小字要配大留白和宽行距，否则就是“看不清”；正文仍要保证对比度，别用浅灰。全页最多一处大号元素。",
+  "neg": [
+    "小字配浅灰、页面塞满",
+    "tiny text in light gray, crowded layout"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1A1A; --a2: #1A1A1A; --on: #FAF8F4; background: #FAF8F4; color: #1A1A1A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 18px 26px; } .logo { font-size: 10px; letter-spacing: 2px; font-weight: 600; } .logo i { width: 6px; height: 6px; border-radius: 50%; }
+.cta { background: none; color: #1A1A1A; padding: 0; border-bottom: 1px solid #1A1A1A; font-size: 10px; }
+.hero { grid-template-columns: 1fr 190px; padding: 30px 26px 26px; }
+.kicker { font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; color: #1A1A1A; opacity: .7; }
+.hero h1 { font-size: 15px; font-weight: 600; line-height: 1.6; letter-spacing: .3px; max-width: 220px; }
+.sub { font-size: 10.5px; line-height: 1.9; max-width: 240px; } .acts { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+.b1 { background: none; color: #1A1A1A; padding: 0 0 2px; border-bottom: 1px solid; } .b2 { color: #1A1A1A; opacity: .6; }
+.art::before { content: "17"; position: absolute; right: 0; top: -10px; font: 200 120px/1 -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: -6px; color: #1A1A1A; }
+.art::after { content: "No. — Spring Issue"; position: absolute; right: 2px; bottom: 6px; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
+.feats { gap: 26px; } .feats b { font-size: 9px; letter-spacing: 2px; color: #1A1A1A; opacity: .6; } .feats h3 { font-size: 11px; font-weight: 600; letter-spacing: .5px; margin: 4px 0; } .feats p { font-size: 10px; line-height: 1.8; }
+.stats { border-top: 1px solid #1A1A1A; margin: 0 26px; padding: 14px 0; justify-content: space-between; } .stats b { font-size: 16px; font-weight: 400; } .stats span { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
+.ft { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
+</style>

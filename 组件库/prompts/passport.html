@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Passport Stamps",
+  "zh": "护照签章",
+  "alias": [
+    "护照风",
+    "出入境章"
+  ],
+  "lead": "翻开护照的内页：底纹细密的防伪花纹、盖得歪歪扭扭的出入境章、手写日期。冒险、收集、到过的地方都留了印，适合旅行博客、签证服务、游学项目和城市探索活动。",
+  "prompt": "护照签章风格：淡青或淡米色背景铺极细的扭索防伪底纹，内容区像护照内页（细线框、等宽小字编号），装饰为多枚不同形状的单色签章（圆、方、椭圆，墨蓝、墨绿、紫红），轻微旋转与半透明叠印",
+  "promptEn": "passport stamp style: pale teal or pale beige background with very fine guilloche security pattern, content area like a passport page (thin line frames, small monospaced serial numbers), decoration of several single-color entry stamps in varied shapes (round, square, oval; ink blue, ink green, plum) slightly rotated and semi-transparently overprinted",
+  "avoid": "防伪底纹要极淡，否则字压不住；签章三四枚就够，用半透明叠出真实感。不要仿真实国家国徽和证件版式。",
+  "neg": [
+    "底纹太重、仿真实证件",
+    "heavy background pattern, imitating real documents"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #24476B; --a2: #7A3558; --on: #F3F6F2; background: #E8EFEA; color: #1E2F3E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { background: repeating-radial-gradient(circle at 0 0, transparent 0 7px, rgba(36,71,107,.07) 7px 8px), repeating-radial-gradient(circle at 100% 0, transparent 0 7px, rgba(36,71,107,.06) 7px 8px); }
+.nav { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .cta { border-radius: 2px; }
+.copy { border: 1px solid rgba(36,71,107,.35); padding: 14px 16px; background: rgba(243,246,242,.85); }
+.kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 2px; } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; } .b1 { border-radius: 2px; }
+.art .m { position: absolute; left: 6px; top: 6px; width: 92px; height: 92px; border-radius: 50%; border: 3px solid rgba(36,71,107,.75); transform: rotate(-12deg); }
+.art .m::after { content: "ARRIVED 03 MAY"; position: absolute; inset: 0; display: grid; place-items: center; font: 700 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: rgba(36,71,107,.85); text-align: center; padding: 18px; }
+.art .h { position: absolute; left: 70px; top: 64px; width: 96px; height: 54px; border: 3px double rgba(122,53,88,.75); border-radius: 6px; transform: rotate(8deg); }
+.art .h::after { content: "山月 · ENTRY"; position: absolute; inset: 0; display: grid; place-items: center; font: 700 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: rgba(122,53,88,.85); }
+.art::after { content: ""; position: absolute; left: 20px; top: 110px; width: 70px; height: 34px; border-radius: 50%; border: 2px solid rgba(46,110,80,.7); transform: rotate(-4deg); }
+.feats article { padding: 10px 12px; border: 1px solid rgba(36,71,107,.25); background: rgba(243,246,242,.8); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.stats { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .stats b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; color: #24476B; } .ft { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

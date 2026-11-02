@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Polish Poster School",
+  "zh": "波兰海报派",
+  "alias": [
+    "绘画海报",
+    "Painted Poster"
+  ],
+  "lead": "手绘感强烈的海报：粗犷的笔刷色块、超现实的隐喻图形、手写大字和大胆的配色。有思想、有艺术张力，适合电影节、剧场、展览和文化机构。",
+  "prompt": "波兰海报派风格：主视觉为手绘笔刷感的大色块插画，用一个超现实的视觉隐喻（比如一本书变成一轮月亮），配色大胆（朱红、深蓝、黄、黑），标题为手写或刷字感的大字并融入画面，留白少但构图集中",
+  "promptEn": "Polish poster school style: a hero of brushy hand-painted color masses using one surreal visual metaphor (such as a book turning into a moon), bold colors (vermilion, deep blue, yellow, black), headline in hand-lettered or brush-like type woven into the image, little white space but focused composition",
+  "avoid": "关键是「一个好点子」，画面元素越少越有力。手写标题只用于海报主标，正文和导航还要清楚规矩。",
+  "neg": [
+    "堆很多元素、正文也手写",
+    "too many elements, hand-lettered body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #D7342A; --on: #fff; background: #F0EBDF; color: #111; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.hero { position: relative; grid-template-columns: 1fr 200px; } .hero h1 { font-family: "Brush Script MT", "Kaiti SC", cursive; font-size: 38px; font-weight: 700; color: #D7342A; line-height: 1.1; }
+.art { min-height: 200px; background: #1F3A7A; border-radius: 2px; overflow: hidden; }
+.art .m { position: absolute; left: 30px; top: 30px; width: 120px; height: 120px; border-radius: 50%; background: #F2C230; box-shadow: inset -26px -10px 0 #1F3A7A; filter: blur(.4px); }
+.art .h { position: absolute; left: 40px; bottom: 20px; width: 90px; height: 50px; background: #F0EBDF; clip-path: polygon(0 20%, 50% 40%, 100% 20%, 100% 100%, 50% 80%, 0 100%); }
+.art::after { content: ""; position: absolute; left: 84px; bottom: 20px; width: 2px; height: 40px; background: #111; transform: skewY(-8deg); }
+.feats article { padding-top: 8px; border-top: 4px solid #111; } .feats b { color: #D7342A; } .stats b { color: #1F3A7A; }
+</style>

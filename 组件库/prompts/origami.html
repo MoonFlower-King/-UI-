@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Origami",
+  "zh": "折纸",
+  "alias": [
+    "纸艺",
+    "折纸几何"
+  ],
+  "lead": "纸张对折出的棱面：同一个颜色分出亮面和暗面，硬朗的折痕，像一只纸鹤停在页面上。轻巧、精致、有巧思，适合儿童教育、设计工作坊、礼品包装和文创品牌。",
+  "prompt": "折纸风格：浅灰白背景，主视觉为由三角面拼成的折纸形状（纸鹤、纸飞机或几何体），每个面用同一色相的亮暗两三阶表示折痕，无描边，柔和投影，干净无衬线字，强调色取纸的颜色",
+  "promptEn": "origami style: light gray-white background, a hero of a folded paper shape built from triangular facets (crane, paper plane or polyhedron), each facet in two or three light/dark steps of one hue to show folds, no outlines, soft drop shadow, clean sans-serif type, accent color taken from the paper",
+  "avoid": "每个面只差一两阶明度才像同一张纸；颜色别超过两种纸色。折痕是直线，不要圆角。",
+  "neg": [
+    "面面不同色、圆角折痕",
+    "each facet a different color, rounded folds"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D9572B; --a2: #2E6E8E; --on: #fff; background: #F2F1EE; color: #2A2A2A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(90deg, #D9572B 50%, #B5441E 50%); } .cta, .b1 { border-radius: 2px; }
+.hero h1 { font-weight: 700; letter-spacing: -.3px; }
+.art { filter: drop-shadow(0 12px 8px rgba(0,0,0,.12)); }
+.art .m { position: absolute; left: 10px; top: 30px; width: 150px; height: 90px; background: linear-gradient(135deg, #F07A4E 50%, #D9572B 50%); clip-path: polygon(0 60%, 55% 0, 70% 55%); }
+.art .h { position: absolute; left: 10px; top: 30px; width: 150px; height: 90px; background: #B5441E; clip-path: polygon(0 60%, 70% 55%, 45% 100%); }
+.art::before { content: ""; position: absolute; left: 10px; top: 30px; width: 150px; height: 90px; background: linear-gradient(#E8693B, #C94C22); clip-path: polygon(55% 0, 100% 15%, 70% 55%); }
+.art::after { content: ""; position: absolute; left: 10px; top: 30px; width: 150px; height: 90px; background: #9C3818; clip-path: polygon(70% 55%, 100% 15%, 85% 70%); }
+.feats article { padding: 14px; background: #fff; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); }
+.feats article:nth-child(2) b { color: #D9572B; } .feats b { font-weight: 700; }
+.stats { background: linear-gradient(170deg, #2E6E8E 50%, #285F7B 50%); color: #fff; }
+</style>

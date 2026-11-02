@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Rubber Stamp",
+  "zh": "橡皮印章",
+  "alias": [
+    "印章风",
+    "盖章质感"
+  ],
+  "lead": "像用橡皮章盖上去的：墨色不匀、边缘有缺口、偶尔有点歪。手作、俏皮、带着手账和小店的温度，适合文具店、手作市集、独立咖啡和儿童教育。",
+  "prompt": "橡皮印章风格：牛皮纸或米白背景，元素为单色印泥色（靛蓝、朱红、墨绿任选一两色），图形和标题带不均匀的墨色和斑驳缺口，略微旋转错位，圆形或方形印章框，粗无衬线或打字机字体",
+  "promptEn": "rubber stamp style: kraft paper or off-white background, elements in single ink-pad colors (pick one or two of indigo, vermilion, dark green), shapes and headings with uneven ink and patchy gaps, slightly rotated and misregistered, round or square stamp frames, bold sans-serif or typewriter type",
+  "avoid": "斑驳只给图形和大标题，正文必须干净可读；旋转角度要小（2-4 度），转太多就乱。",
+  "neg": [
+    "正文也斑驳、元素大角度乱转",
+    "distressed body text, elements rotated wildly"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2F4E8C; --a2: #C2412D; --on: #F3EBDD; background: #EADFCB; color: #2A2620; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.logo i { border-radius: 50%; background: none; border: 2px solid #C2412D; } .cta { transform: rotate(-2deg); }
+.hero h1 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; color: #2F4E8C; transform: rotate(-1.5deg); transform-origin: left;
+  -webkit-mask: radial-gradient(circle at 20% 30%, transparent 1px, #000 1.3px) 0 0 / 9px 7px; mask: radial-gradient(circle at 20% 30%, transparent 1px, #000 1.3px) 0 0 / 9px 7px; }
+.b1 { transform: rotate(1.5deg); } .b2 { color: #C2412D; }
+.art .m { position: absolute; left: 18px; top: 12px; width: 124px; height: 124px; border-radius: 50%; border: 4px double #C2412D; transform: rotate(-8deg);
+  -webkit-mask: radial-gradient(circle at 30% 40%, transparent 1.6px, #000 2px) 0 0 / 11px 9px; mask: radial-gradient(circle at 30% 40%, transparent 1.6px, #000 2px) 0 0 / 11px 9px; }
+.art .h { position: absolute; left: 34px; top: 58px; width: 92px; height: 32px; border: 3px solid #C2412D; color: #C2412D; transform: rotate(-8deg); }
+.art .h::after { content: "APPROVED"; position: absolute; inset: 0; display: grid; place-items: center; font: 900 14px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 2px; }
+.feats article { padding: 12px; border: 2px dashed rgba(47, 78, 140, .55); } .feats article:nth-child(2) { transform: rotate(.8deg); } .feats b { font-weight: 700; } .feats h3 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; color: #2F4E8C; }
+.stats b { color: #C2412D; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; }
+</style>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Dancheong",
+  "zh": "丹青彩绘",
+  "alias": [
+    "韩式丹青",
+    "宫殿彩画"
+  ],
+  "lead": "宫殿屋檐下的彩绘：石绿、朱红、明黄、群青层层勾边，莲花和几何纹交替。鲜明、庄重、有节庆感，适合传统文化、国际文旅、节日活动和设计展。",
+  "prompt": "丹青彩绘风格：深石绿或米白背景，朱红、明黄、群青、白为主色，装饰为层层套色勾边的条带纹样（莲瓣、几何回纹），只用于顶部和分隔的横条，衬线标题，内容区为干净纯色卡片",
+  "promptEn": "dancheong painted-eave style: deep malachite green or off-white background, vermilion, bright yellow, ultramarine and white as main colors, ornament as banded patterns with layered color outlines (lotus petals, geometric frets) used only on top bands and dividers, serif headings, content on clean solid cards",
+  "avoid": "彩绘纹样很满很亮，只能用作横条，正文区必须纯色。几种颜色要按固定顺序套色，乱排会像彩虹。",
+  "neg": [
+    "纹样铺满、颜色顺序混乱",
+    "patterns everywhere, random color order"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C0392B; --a2: #1F5E4E; --on: #FFF8EC; background: #F6F1E6; color: #1E2B26; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg::before { content: ""; display: block; height: 22px; background: radial-gradient(circle 7px at 50% 100%, #F6F1E6 96%, transparent) 0 0 / 22px 22px repeat-x,
+  linear-gradient(#1F5E4E 0 5px, #F2C14E 5px 9px, #C0392B 9px 13px, #2F4FA0 13px 17px, #FFF8EC 17px 19px, #1F5E4E 19px); }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 700; }
+.art { aspect-ratio: 1; min-height: 0; border-radius: 50%; background: radial-gradient(circle, #F2C14E 0 14%, #C0392B 15% 26%, #FFF8EC 27% 30%, #2F4FA0 31% 44%, #FFF8EC 45% 48%, #1F5E4E 49% 70%, transparent 71%); }
+.art .m { position: absolute; inset: 0; border-radius: 50%; background: repeating-conic-gradient(rgba(255, 248, 236, .85) 0 3deg, transparent 3deg 30deg); -webkit-mask: radial-gradient(circle, transparent 48%, #000 49% 70%, transparent 71%); mask: radial-gradient(circle, transparent 48%, #000 49% 70%, transparent 71%); }
+.feats article { padding: 12px; background: #fff; border-top: 4px solid #1F5E4E; } .feats b { color: #C0392B; } .stats { background: #1F5E4E; color: #FFF8EC; } .stats b { color: #F2C14E; }
+</style>

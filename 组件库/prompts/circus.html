@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Vintage Circus",
+  "zh": "复古马戏团",
+  "alias": [
+    "马戏海报",
+    "大篷帐篷"
+  ],
+  "lead": "红白条纹大帐篷、金色描边的花体大字、星星和彩旗，像老式马戏团的开场海报。热闹、复古、有节日的戏剧感，适合活动票务、游乐园、儿童剧和节庆营销。",
+  "prompt": "复古马戏团风格：奶油色背景，正红与奶白宽竖条纹作为页头和帐篷图形，深海军蓝文字，标题为粗衬线或马戏木活字风格并带金色双描边，星星与三角彩旗点缀，旧纸做旧感极轻",
+  "promptEn": "vintage circus style: cream background, bold red and cream vertical stripes for the header and big-top tent shapes, deep navy text, headings in heavy serif or circus wood-type style with a gold double outline, star and pennant bunting accents, very light aged-paper feel",
+  "avoid": "红白条纹集中在页头和帐篷，全页铺满会晕；花体大字一处就够，正文用干净衬线。别画小丑形象，容易让人不适。",
+  "neg": [
+    "满屏条纹、小丑形象",
+    "stripes everywhere, clown imagery"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C4302B; --a2: #1F2E4F; --on: #FFF6E5; background: #FBF1DE; color: #1F2E4F; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { background: repeating-linear-gradient(90deg, #C4302B 0 22px, #FFF6E5 22px 44px); color: #1F2E4F; }
+.nav .logo, .nav nav { background: #FBF1DE; padding: 3px 8px; } .cta { background: #1F2E4F; }
+.hero { text-align: left; } .kicker { letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
+.hero h1 { font-weight: 900; color: #C4302B; letter-spacing: 1px; text-shadow: 2px 2px 0 #E2B044, 3px 3px 0 #1F2E4F; }
+.b1 { border: 2px solid #E2B044; }
+.art .m { position: absolute; left: 10px; right: 10px; top: 24px; bottom: 6px; background: repeating-linear-gradient(90deg, #C4302B 0 18px, #FFF6E5 18px 36px);
+  clip-path: polygon(50% 0, 100% 40%, 100% 100%, 62% 100%, 50% 70%, 38% 100%, 0 100%, 0 40%); }
+.art .h { position: absolute; left: 50%; top: 4px; width: 2px; height: 22px; background: #1F2E4F; }
+.art .h::after { content: ""; position: absolute; left: 2px; top: 0; border-left: 16px solid #E2B044; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+.art::before { content: "★ ★ ★"; position: absolute; left: 0; right: 0; bottom: -8px; text-align: center; color: #E2B044; font-size: 13px; letter-spacing: 6px; }
+.feats article { padding: 12px; border: 2px solid #1F2E4F; box-shadow: 3px 3px 0 #E2B044; background: #FFF9EE; } .feats b { color: #C4302B; font-weight: 700; letter-spacing: 1px; }
+.stats { background: #1F2E4F; color: #FFF6E5; } .stats b { color: #E2B044; }
+</style>
