@@ -38,37 +38,58 @@
     {
       "id": "web-east",
       "kind": "web",
-      "name": "东方与地域",
-      "en": "East & regional",
+      "name": "东方",
+      "en": "East Asian",
       "label": "整体风格",
       "labelEn": "Overall style",
       "pick": "one",
       "exclusive": "web-style",
       "stage": "site",
-      "intro": "东方雅致、水墨、宋式、新中式、园林、青花、敦煌、浮世绘，加上北欧、地中海、摩洛哥、热带这些有地域气质的风格。",
+      "intro": "中国、日本、韩国的审美：东方雅致、水墨、宋式、新中式、园林、青花、敦煌、盛唐、漆器、篆刻、浮世绘、枯山水、侘寂。",
       "items": [
         "oriental",
         "ink-wash",
         "wabi-sabi",
         "guochao",
-        "nordic",
-        "mediterranean",
         "ukiyo-e",
         "blue-white",
         "dunhuang",
         "song-minimal",
-        "moroccan",
         "new-chinese",
         "suzhou-garden",
         "indigo-dye",
+        "korean-minimal",
+        "seal-carving",
+        "blue-green-landscape",
+        "old-shanghai",
+        "tang-splendor",
+        "lacquerware",
+        "zen-garden"
+      ]
+    },
+    {
+      "id": "web-world",
+      "name": "世界各地",
+      "en": "Around the world",
+      "kind": "web",
+      "label": "整体风格",
+      "labelEn": "Overall style",
+      "pick": "one",
+      "exclusive": "web-style",
+      "stage": "site",
+      "intro": "带着地域气质的风格：北欧、地中海、巴黎、阿尔卑斯、摩洛哥、印度、墨西哥、哈瓦那、热带、波西米亚、泥染布纹。",
+      "items": [
+        "nordic",
+        "mediterranean",
+        "moroccan",
         "mexican-folk",
         "bohemian",
         "tropical",
-        "korean-minimal",
         "jaipur",
-        "seal-carving",
-        "blue-green-landscape",
-        "old-shanghai"
+        "parisian",
+        "alpine-lodge",
+        "havana",
+        "mudcloth"
       ]
     },
     {
@@ -104,7 +125,11 @@
         "baroque",
         "secession",
         "suprematism",
-        "arts-and-crafts"
+        "arts-and-crafts",
+        "dada",
+        "postmodern",
+        "cubism",
+        "pointillism"
       ]
     },
     {
@@ -137,7 +162,11 @@
         "zakka",
         "scrollytelling",
         "geometric",
-        "soft-gray"
+        "soft-gray",
+        "product-launch",
+        "outline-type",
+        "masonry",
+        "mono-type"
       ]
     },
     {
@@ -167,7 +196,10 @@
         "foil-stamp",
         "leather",
         "ceramic-glaze",
-        "felt"
+        "felt",
+        "corten",
+        "denim",
+        "embossed"
       ]
     },
     {
@@ -193,7 +225,10 @@
         "cyanotype",
         "mosaic",
         "marbled-paper",
-        "gouache"
+        "gouache",
+        "quilt",
+        "pencil-sketch",
+        "crayon"
       ]
     },
     {
@@ -221,7 +256,10 @@
         "polaroid",
         "silent-film",
         "diner",
-        "apothecary"
+        "apothecary",
+        "frutiger-aero",
+        "vhs",
+        "city-pop"
       ]
     },
     {
@@ -250,7 +288,10 @@
         "recipe-card",
         "periodic",
         "almanac",
-        "bookshelf"
+        "bookshelf",
+        "receipt",
+        "metro-map",
+        "rpg-dialog"
       ]
     },
     {
@@ -284,7 +325,10 @@
         "finance-trust",
         "sticker",
         "medical-clean",
-        "wellness"
+        "wellness",
+        "gov-formal",
+        "pet-friendly",
+        "esports"
       ]
     },
     {

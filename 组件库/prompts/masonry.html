@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Masonry Grid",
+  "zh": "瀑布流",
+  "alias": [
+    "图墙",
+    "Pinboard"
+  ],
+  "lead": "大小不一的图片卡片像砖墙一样错落排列，向下无限延伸，浏览起来很上瘾。丰富、好逛、有灵感感，适合图片社区、设计灵感站、电商发现页和作品集。",
+  "prompt": "瀑布流风格：浅灰白背景，内容为宽度相同、高度不一的圆角卡片多列错落排列，卡片以图片为主、下方一行小标题，卡片间距统一，悬停时卡片轻微上浮，顶部是简洁的搜索框和分类胶囊",
+  "promptEn": "masonry grid style: light gray-white background, content as rounded cards of equal width and varied height arranged in staggered columns, image-led cards with a one-line caption below, even gutters, cards lifting slightly on hover, a clean search bar and category pills on top",
+  "avoid": "卡片宽度和间距必须统一，只有高度变化，否则就乱了。图片多时要懒加载，不然页面会很卡。",
+  "neg": [
+    "卡片宽度间距不一、图片一次全加载",
+    "inconsistent widths and gaps, loading all images at once"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E34A2F; --a2: #E34A2F; --on: #fff; background: #F4F4F2; color: #1F1F1F; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 99px; } .hero { grid-template-columns: 1fr 210px; } .hero h1 { font-weight: 800; }
+.art { columns: 3; column-gap: 6px; min-height: 0; }
+.art .m, .art .h, .art::before, .art::after { content: ""; display: block; break-inside: avoid; margin-bottom: 6px; border-radius: 10px; }
+.art .m { height: 90px; background: linear-gradient(160deg, #F2B880, #D97B5A); } .art .h { height: 60px; background: linear-gradient(160deg, #A9C9B5, #6E9E86); }
+.art::before { height: 70px; background: linear-gradient(160deg, #B8C6E0, #7D93C2); } .art::after { height: 100px; background: linear-gradient(160deg, #E9D9A8, #C9A85A); }
+.feats { grid-template-columns: repeat(3, 1fr); align-items: start; } .feats article { padding: 12px; border-radius: 14px; background: #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .05); }
+.feats article:nth-child(2) { padding-bottom: 34px; } .feats b { color: #E34A2F; }
+</style>

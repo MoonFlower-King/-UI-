@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Dada",
+  "zh": "达达主义",
+  "alias": [
+    "达达",
+    "Anti-art"
+  ],
+  "lead": "反常规的拼排：不同字体、字号和方向的字混排，剪报、印章和箭头，像一张故意捣乱的海报。荒诞、先锋、有态度，适合艺术展、实验剧场、独立杂志和创意工作室。",
+  "prompt": "达达主义风格：旧纸色背景，黑色为主加一种红，标题由不同字体、粗细、大小的字混排拼成，部分字倒置或旋转，剪报式文字块、手绘箭头和圆形印章穿插，正文仍保持横排可读",
+  "promptEn": "Dada style: aged paper background, mostly black plus one red, headlines assembled from mixed typefaces, weights and sizes with some letters rotated or inverted, newspaper-clipping text blocks, hand-drawn arrows and round stamps interspersed, body text kept horizontal and readable",
+  "avoid": "「捣乱」只在标题和装饰里，正文、按钮和导航必须规矩，否则网站没法用。别把它和拼贴风混：达达的重点是文字本身的荒诞排列。",
+  "neg": [
+    "正文也打乱、导航难找",
+    "scrambled body text, hidden navigation"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #C4281C; --on: #F1EBDD; background: #EAE2D0; color: #111; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.hero h1 { font-size: 34px; line-height: 1.1; font-family: "Bodoni 72", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 900; } .hero h1::first-letter { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 50px; color: #C4281C; }
+.kicker { display: inline-block; padding: 2px 6px; background: #111; color: #EAE2D0; transform: rotate(-4deg); }
+.art .m { position: absolute; left: 20px; top: 20px; width: 80px; height: 80px; border-radius: 50%; border: 3px solid #C4281C; color: #C4281C; transform: rotate(-14deg); }
+.art .m::after { content: "DA"; position: absolute; inset: 0; display: grid; place-items: center; font: 900 30px -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art .h { position: absolute; right: 10px; top: 70px; padding: 4px 8px; background: #F7F2E6; border: 1px solid #111; transform: rotate(90deg); font-size: 14px; font-weight: 700; } .art .h::before { content: "夜读！"; }
+.art::after { content: "↙"; position: absolute; left: 90px; top: 110px; font-size: 40px; transform: rotate(10deg); }
+.feats h3 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; } .feats article:nth-child(2) h3 { font-family: "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 400; } .feats b { color: #C4281C; }
+.stats b { font-family: "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .stats div:nth-child(2) b { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; color: #C4281C; }
+</style>

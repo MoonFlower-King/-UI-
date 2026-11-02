@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Monospace Minimal",
+  "zh": "等宽极简",
+  "alias": [
+    "开发者风",
+    "Mono"
+  ],
+  "lead": "全站只用等宽字体，浅色背景，像一份写得很漂亮的技术文档。理性、诚实、有极客感，适合开发者工具、开源项目、技术博客和个人主页。",
+  "prompt": "等宽极简风格：白或米白背景，全站使用等宽字体，黑色文字加一种强调色（亮蓝或橘），层级只靠字号和粗细，用方括号、井号、箭头等字符当装饰，细线分隔，左对齐、窄栏，几乎没有图片",
+  "promptEn": "monospace minimal style: white or off-white background, monospace type across the whole site, black text plus one accent (bright blue or orange), hierarchy built only from size and weight, characters like brackets, hashes and arrows used as decoration, hairline dividers, left-aligned narrow column, almost no images",
+  "avoid": "等宽字读长段落比较累，段落要短、行距要大。别做成黑底绿字的终端，那是另一种风格。",
+  "neg": [
+    "长段落、黑底绿字终端",
+    "long paragraphs, green-on-black terminal look"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F4FFF; --a2: #1F4FFF; --on: #fff; background: #FCFCFA; color: #1A1A1A; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav { font-size: 11px; border-bottom: 1px solid #E2E2DE; } .logo i { display: none; } .logo::before { content: "~/"; color: #1F4FFF; }
+.cta { background: none; color: #1F4FFF; } .cta::before { content: "["; } .cta::after { content: "]"; }
+.hero { grid-template-columns: 1fr; padding: 28px 40px; } .art { display: none; }
+.kicker::before { content: "# "; color: #1F4FFF; } .hero h1 { font-size: 26px; font-weight: 700; line-height: 1.4; } .sub { line-height: 1.9; max-width: 360px; }
+.b1 { border-radius: 0; } .b2 { color: #1F4FFF; } .b2::before { content: "→ "; }
+.feats article { padding-top: 8px; border-top: 1px solid #E2E2DE; } .feats b { color: #1F4FFF; } .feats b::before { content: "0"; }
+.stats b { font-weight: 700; } .ft::before { content: "// "; }
+</style>

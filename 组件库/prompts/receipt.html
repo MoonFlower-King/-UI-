@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Thermal Receipt",
+  "zh": "购物小票",
+  "alias": [
+    "收据风",
+    "Receipt"
+  ],
+  "lead": "热敏纸小票：窄窄一条、等宽字、虚线分隔、底部锯齿撕边，最后印着条码和「谢谢惠顾」。好玩、直白、有生活感，适合餐饮、零售、年度总结、个人账单类页面。",
+  "prompt": "购物小票风格：深色背景上居中一条窄窄的热敏纸小票，全部为等宽字体，项目与价格左右对齐，用短横虚线分隔，底部是锯齿撕边、条形码和一句结束语，只用黑色，可以有一点点褪色",
+  "promptEn": "thermal receipt style: a narrow strip of thermal paper centered on a dark background, all monospace type, items and prices aligned left and right, dashed lines as dividers, a zigzag torn edge at the bottom with a barcode and a closing line, black only, maybe slightly faded",
+  "avoid": "小票是窄栏，适合短内容；长文章放进去会很难读。等宽字要选清楚的，热敏纸的「褪色」只能一点点。",
+  "neg": [
+    "长文章、严重褪色",
+    "long articles, heavy fading"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1A1A; --a2: #1A1A1A; --on: #FBFBF6; background: #3A3D45; color: #1A1A1A; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.pg { width: 300px; margin: 0 auto; background: #FBFBF6; padding-bottom: 14px;
+  -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 8px) no-repeat, conic-gradient(from 135deg at 50% 0, #000 90deg, transparent 0) 0 100% / 12px 8px repeat-x;
+  mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 8px) no-repeat, conic-gradient(from 135deg at 50% 0, #000 90deg, transparent 0) 0 100% / 12px 8px repeat-x; }
+.nav { flex-direction: column; gap: 6px; padding: 16px; border-bottom: 1px dashed #1A1A1A; } .logo i { display: none; } .cta { background: none; color: #1A1A1A; padding: 0; }
+.hero { grid-template-columns: 1fr; padding: 16px; text-align: center; } .art { display: none; } .acts { justify-content: center; }
+.hero h1 { font-size: 20px; } .b1 { border-radius: 0; }
+.feats { grid-template-columns: 1fr; gap: 6px; padding: 0 16px 12px; } .feats article { display: flex; justify-content: space-between; gap: 8px; } .feats p { display: none; } .feats h3 { font-size: 12px; order: -1; }
+.stats { flex-direction: column; gap: 4px; padding: 12px 16px; border-top: 1px dashed #1A1A1A; border-bottom: 1px dashed #1A1A1A; } .stats div { display: flex; justify-content: space-between; width: 100%; } .stats b { font-size: 14px; }
+.ft { text-align: center; } .ft::before { content: ""; display: block; height: 30px; margin: 0 30px 8px; background: repeating-linear-gradient(90deg, #1A1A1A 0 2px, transparent 2px 4px, #1A1A1A 4px 5px, transparent 5px 7px, #1A1A1A 7px 10px, transparent 10px 12px); }
+</style>
