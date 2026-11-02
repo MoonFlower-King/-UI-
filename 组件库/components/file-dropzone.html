@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Drag & Drop Upload",
+  "zh": "拖拽上传区",
+  "lead": "一块虚线框，把文件拖进来就上传，也能点击选择。拖着文件经过时整块高亮，让人知道“可以放这儿”。",
+  "prompt": "上传区用 Drag & Drop Upload：虚线边框圆角区域，中间图标 + “拖拽文件到这里，或点击选择”；文件拖入时边框变品牌色实线、背景变浅品牌色并放大 1.02；上传后显示文件名和进度条。"
+}
+-->
+<label class="drop">
+  <input type="file" hidden />
+  <div class="icon">⇪</div>
+  <b>拖拽文件到这里</b>
+  <span>或 <u>点击选择</u>，支持 PNG / JPG / PDF</span>
+  <div class="file" hidden><span class="name"></span><div class="bar"><i></i></div></div>
+</label>
+
+<style>
+.drop { display: grid; justify-items: center; gap: 4px; width: min(320px, 88vw); box-sizing: border-box; padding: 26px 16px; border: 2px dashed #D4D4D8; border-radius: 16px; background: #fff; text-align: center; font-size: 13px; color: #71717A; cursor: pointer; transition: all .2s; }
+.drop:hover, .drop.over { border-color: #FA8C16; border-style: solid; background: #FFF7ED; transform: scale(1.02); }
+.drop .icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: #F4F4F5; font-size: 22px; color: #FA8C16; margin-bottom: 6px; }
+.drop b { color: #18181B; font-size: 15px; } .drop u { color: #FA8C16; text-decoration: none; }
+.file { width: 100%; margin-top: 12px; text-align: left; color: #18181B; }
+.bar { height: 4px; margin-top: 6px; border-radius: 2px; background: #F4F4F5; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: #FA8C16; transition: width 1.2s ease-out; }
+</style>
+<script>
+const drop = document.querySelector(".drop"), file = drop.querySelector(".file");
+function show(name) { file.hidden = false; drop.querySelector(".name").textContent = "📄 " + name; const bar = drop.querySelector(".bar i"); bar.style.width = 0; requestAnimationFrame(() => requestAnimationFrame(() => bar.style.width = "100%")); }
+["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => e.dataTransfer.files[0] && show(e.dataTransfer.files[0].name));
+drop.querySelector("input").addEventListener("change", e => e.target.files[0] && show(e.target.files[0].name));
+// 演示：模拟一次拖入
+setTimeout(() => drop.classList.add("over"), 500);
+setTimeout(() => { drop.classList.remove("over"); show("设计稿-v2.png"); }, 1300);
+</script>

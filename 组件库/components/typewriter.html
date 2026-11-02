@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Typewriter Effect",
+  "zh": "打字机效果",
+  "lead": "文字一个一个地打出来，后面跟一个闪烁的光标，打完再删掉换下一句。首页标语用它，比静态文字抓眼球。",
+  "prompt": "首页标题用 Typewriter Effect：固定前缀“让 AI 做出”，后半句在“高级感/呼吸感/层次感”之间循环，每字 90ms 打出、停 1.2s、每字 40ms 删除，末尾品牌色竖线光标 1s 闪烁。"
+}
+-->
+<h1 class="tw">让 AI 做出<span class="word"></span><i class="caret"></i></h1>
+
+<style>
+.tw { margin: 0; font-size: clamp(26px, 7vw, 40px); font-weight: 800; letter-spacing: -.02em; }
+.tw .word { color: #FA8C16; }
+.caret { display: inline-block; width: 3px; height: 1em; margin-left: 4px; vertical-align: -.12em; background: #FA8C16; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+<script>
+const words = ["高级感", "呼吸感", "层次感"], el = document.querySelector(".tw .word");
+let w = 0, i = 0, deleting = false;
+(function tick() {
+  const word = words[w];
+  el.textContent = word.slice(0, i += deleting ? -1 : 1);
+  let delay = deleting ? 40 : 90;
+  if (!deleting && i === word.length) { deleting = true; delay = 1200; }
+  else if (deleting && i === 0) { deleting = false; w = (w + 1) % words.length; delay = 300; }
+  setTimeout(tick, delay);
+})();
+</script>

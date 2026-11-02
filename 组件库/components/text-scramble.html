@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Text Scramble",
+  "zh": "文字乱码解码",
+  "lead": "文字先变成一堆乱跳的字符，再一个个“解码”成正确的字，很有科技感和黑客感。悬停在文字上会再解一次。",
+  "prompt": "标题用 Text Scramble 效果：出现时每个字符先在随机字符（A-Z、0-9、符号）间快速跳变，从左到右依次定格为正确字符，总时长约 1s，鼠标悬停时重播，乱码字符用浅灰色。"
+}
+-->
+<h2 class="scramble" data-text="JIANGYUE UI">JIANGYUE UI</h2>
+<p class="tip">鼠标移到文字上重播</p>
+
+<style>
+.scramble { margin: 0; font: 800 clamp(28px, 8vw, 46px)/1.1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .04em; cursor: default; }
+.scramble .r { color: #A1A1AA; }
+.tip { position: absolute; bottom: 24px; margin: 0; font-size: 12px; color: #A1A1AA; }
+</style>
+<script>
+const el = document.querySelector(".scramble"), target = el.dataset.text, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*@$";
+let frame = 0, raf;
+function play() {
+  cancelAnimationFrame(raf); frame = 0;
+  (function step() {
+    let out = "", done = 0;
+    [...target].forEach((c, i) => {
+      if (c === " " || frame > i * 3 + 12) { out += c; done++; }
+      else out += `<span class="r">${chars[Math.random() * chars.length | 0]}</span>`;
+    });
+    el.innerHTML = out; frame++;
+    if (done < target.length) raf = requestAnimationFrame(step);
+  })();
+}
+el.addEventListener("mouseenter", play); play();
+</script>

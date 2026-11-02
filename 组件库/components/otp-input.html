@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "OTP Input",
+  "zh": "验证码输入框",
+  "lead": "一格一个数字，输完自动跳下一格，删除自动退回上一格，粘贴一串数字能自动填满。登录验证码几乎都这么做。",
+  "prompt": "短信验证码用 OTP Input：6 个独立方格，每格 48×56px，输入后自动聚焦下一格，退格回到上一格，支持粘贴 6 位数字一次填满，填满后边框变绿并提示“验证中”。"
+}
+-->
+<div class="otp-wrap">
+  <p>输入发送到 138****8888 的验证码</p>
+  <div class="otp"><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /></div>
+  <small class="state">　</small>
+</div>
+
+<style>
+.otp-wrap { text-align: center; font-size: 13px; color: #52525B; }
+.otp-wrap p { margin: 0 0 14px; }
+.otp { display: flex; gap: 8px; justify-content: center; }
+.otp input { width: 42px; height: 52px; border: 1.5px solid #D4D4D8; border-radius: 10px; text-align: center; font-size: 22px; font-weight: 600; outline: none; background: #fff; transition: border-color .2s, transform .2s; }
+.otp input:focus { border-color: #FA8C16; transform: translateY(-2px); }
+.otp.done input { border-color: #16A34A; }
+.state { display: block; margin-top: 12px; color: #16A34A; }
+</style>
+<script>
+const boxes = [...document.querySelectorAll(".otp input")], wrap = document.querySelector(".otp"), state = document.querySelector(".state");
+function update() { const full = boxes.every(b => b.value); wrap.classList.toggle("done", full); state.textContent = full ? "验证中…" : "　"; }
+boxes.forEach((b, i) => {
+  b.addEventListener("input", () => { b.value = b.value.replace(/\D/g, ""); if (b.value && boxes[i + 1]) boxes[i + 1].focus(); update(); });
+  b.addEventListener("keydown", e => { if (e.key === "Backspace" && !b.value && boxes[i - 1]) boxes[i - 1].focus(); });
+  b.addEventListener("paste", e => { e.preventDefault(); const d = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6); [...d].forEach((c, j) => boxes[j] && (boxes[j].value = c)); boxes[Math.min(d.length, 5)].focus(); update(); });
+});
+// 演示：自动填入
+let k = 0; const code = "520131"; boxes[0].focus();
+const t = setInterval(() => { boxes[k].value = code[k]; boxes[k + 1] ? boxes[k + 1].focus() : boxes[k].blur(); k++; update(); if (k === 6) clearInterval(t); }, 260);
+</script>

@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Range Slider",
+  "zh": "滑块",
+  "lead": "拖动来选一个数值，比输入框直观。好的滑块会把当前值显示在拇指上方，填充色跟着走。拖一下试试。",
+  "prompt": "价格筛选用 Range Slider：轨道高 6px 圆角，已选部分填充品牌色，拇指 20px 白色带阴影，拖动时上方气泡实时显示当前值（¥），拇指按下放大 1.15 倍。"
+}
+-->
+<div class="rs">
+  <div class="rs-head"><span>预算</span><b class="rs-val">¥ 300</b></div>
+  <div class="rs-track"><input type="range" min="0" max="1000" step="10" value="300" /><output class="bubble">300</output></div>
+  <div class="rs-scale"><span>¥0</span><span>¥1000</span></div>
+</div>
+
+<style>
+.rs { width: min(300px, 86vw); font-size: 13px; color: #52525B; }
+.rs-head { display: flex; justify-content: space-between; margin-bottom: 30px; } .rs-head b { color: #18181B; font-size: 15px; }
+.rs-track { position: relative; }
+.rs input { --p: 30%; width: 100%; margin: 0; height: 20px; background: transparent; -webkit-appearance: none; appearance: none; cursor: pointer; }
+.rs input::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #FA8C16 var(--p), #E4E4E7 var(--p)); }
+.rs input::-moz-range-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #FA8C16 var(--p), #E4E4E7 var(--p)); }
+.rs input::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); transition: transform .15s; }
+.rs input::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.rs input:active::-webkit-slider-thumb { transform: scale(1.15); }
+.bubble { position: absolute; bottom: 26px; transform: translateX(-50%); padding: 3px 8px; border-radius: 6px; background: #18181B; color: #fff; font-size: 12px; white-space: nowrap; }
+.rs-scale { display: flex; justify-content: space-between; margin-top: 8px; color: #A1A1AA; font-size: 12px; }
+</style>
+<script>
+const range = document.querySelector(".rs input"), bubble = document.querySelector(".bubble"), val = document.querySelector(".rs-val");
+function paint() {
+  const p = range.value / range.max * 100;
+  range.style.setProperty("--p", p + "%");
+  bubble.style.left = `calc(${p}% + ${10 - p * .2}px)`; // 让气泡对准拇指中心
+  bubble.textContent = "¥" + range.value; val.textContent = "¥ " + range.value;
+}
+range.addEventListener("input", paint); paint();
+let t = 0; const demo = setInterval(() => { range.value = 300 + Math.sin(t += .05) * 250; paint(); if (t > 3.14) clearInterval(demo); }, 30);
+</script>

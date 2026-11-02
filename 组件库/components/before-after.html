@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Before / After Slider",
+  "zh": "前后对比滑块",
+  "lead": "两张图叠在一起，中间一根可拖动的分割线，左边看“改之前”，右边看“改之后”。修图、改版前后对比最直观。",
+  "prompt": "改版对比用 Before / After Slider：两张同尺寸图叠放，用 clip-path 裁切上层，中间 2px 白色分割线带圆形把手（左右箭头），拖动或点击任意位置移动分割线，左上右上分别标注“Before”“After”。"
+}
+-->
+<div class="ba">
+  <div class="after"><div class="ui ui-new"><i></i><i></i><i></i></div><em>After</em></div>
+  <div class="before"><div class="ui ui-old"><i></i><i></i><i></i></div><em>Before</em></div>
+  <div class="handle"><span>‹ ›</span></div>
+</div>
+
+<style>
+.ba { --x: 50%; position: relative; width: min(340px, 90vw); aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; cursor: ew-resize; touch-action: none; user-select: none; }
+.after, .before { position: absolute; inset: 0; display: grid; place-items: center; }
+.after { background: linear-gradient(135deg, #0B0F1A, #1E2440); }
+.before { background: #E5E5E5; clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+.ui { width: 70%; display: grid; gap: 8px; }
+.ui i { display: block; height: 18px; }
+.ui-old i { background: #9CA3AF; } .ui-old i:first-child { height: 30px; background: #6B7280; }
+.ui-new i { border-radius: 8px; background: rgba(255,255,255,.12); } .ui-new i:first-child { height: 30px; background: linear-gradient(90deg, #FA8C16, #FFD58A); }
+.ba em { position: absolute; top: 10px; padding: 2px 8px; border-radius: 6px; background: rgba(0,0,0,.5); color: #fff; font: 600 11px/1.6 sans-serif; font-style: normal; }
+.before em { left: 10px; } .after em { right: 10px; }
+.handle { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: #fff; }
+.handle span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: #18181B; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+</style>
+<script>
+const ba = document.querySelector(".ba");
+const set = clientX => { const r = ba.getBoundingClientRect(); ba.style.setProperty("--x", Math.min(100, Math.max(0, (clientX - r.left) / r.width * 100)) + "%"); };
+ba.addEventListener("pointerdown", e => { ba.setPointerCapture(e.pointerId); set(e.clientX); ba.onpointermove = ev => set(ev.clientX); });
+ba.addEventListener("pointerup", () => ba.onpointermove = null);
+let t = 0; const demo = setInterval(() => { ba.style.setProperty("--x", 50 + Math.sin(t += .05) * 30 + "%"); if (t > 6.28) clearInterval(demo); }, 30);
+</script>

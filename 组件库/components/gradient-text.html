@@ -1,0 +1,16 @@
+<!--
+{
+  "en": "Gradient Text",
+  "zh": "渐变文字",
+  "lead": "文字本身填上渐变色，还可以让渐变缓缓流动。用在标题的关键词上，比整句变色更克制、更高级。",
+  "prompt": "主标题关键词用 Gradient Text：从江月橘 #FA8C16 到月光金 #FFD58A 再到玫瑰粉 #F472B6 的线性渐变，用 background-clip: text 填充文字，背景尺寸 200% 并 6s 循环左右流动。"
+}
+-->
+<h1 class="gt">江上明月，<span>一词点亮</span></h1>
+
+<style>
+.gt { margin: 0; padding: 0 16px; text-align: center; font-size: clamp(28px, 8vw, 48px); font-weight: 800; letter-spacing: -.02em; color: #18181B; }
+.gt span { background: linear-gradient(90deg, #FA8C16, #FFD58A, #F472B6, #FA8C16); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 6s linear infinite; }
+@keyframes flow { to { background-position: 300% 0; } }
+@media (prefers-reduced-motion: reduce) { .gt span { animation: none; } }
+</style>

@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Sparkline",
+  "zh": "迷你趋势图",
+  "lead": "没有坐标轴、没有网格的小折线，只告诉你“涨了还是跌了”。常放在数据卡片里，数字旁边一眼看趋势。",
+  "prompt": "数据卡片加 Sparkline：卡片右侧 100×36 的迷你折线图，无坐标轴，线宽 2px，上涨用绿色、下跌用红色，线下方同色 15% 透明度渐变填充，加载时从左到右描线动画。"
+}
+-->
+<div class="kpis">
+  <div class="kpi"><div><span>本周访问</span><b>8,240</b><em class="up">↑ 12.4%</em></div><svg data-v="12,18,14,22,19,26,24,31"></svg></div>
+  <div class="kpi"><div><span>跳出率</span><b>38.2%</b><em class="down">↓ 4.1%</em></div><svg data-v="30,28,31,26,27,22,24,20" data-down></svg></div>
+</div>
+
+<style>
+.kpis { display: grid; gap: 12px; width: min(300px, 88vw); }
+.kpi { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; background: #fff; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.05); }
+.kpi span { display: block; font-size: 12px; color: #71717A; }
+.kpi b { font-size: 22px; margin-right: 6px; font-variant-numeric: tabular-nums; }
+.kpi em { font-style: normal; font-size: 12px; } .up { color: #16A34A; } .down { color: #DC2626; }
+.kpi svg { width: 100px; height: 36px; flex: none; overflow: visible; }
+.kpi path.line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw 1.2s ease-out forwards; }
+.kpi path.area { opacity: 0; animation: fadeIn .6s .8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } } @keyframes fadeIn { to { opacity: 1; } }
+</style>
+<script>
+document.querySelectorAll(".kpi svg").forEach((svg, n) => {
+  const v = svg.dataset.v.split(",").map(Number), min = Math.min(...v), max = Math.max(...v);
+  const pts = v.map((y, i) => [i / (v.length - 1) * 100, 34 - (y - min) / (max - min) * 30]);
+  const d = "M" + pts.map(p => p.join(",")).join(" L"), color = svg.hasAttribute("data-down") ? "#DC2626" : "#16A34A";
+  svg.setAttribute("viewBox", "0 0 100 36");
+  svg.innerHTML = `<defs><linearGradient id="g${n}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".18"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    <path class="area" d="${d} L100,36 L0,36 Z" fill="url(#g${n})"/><path class="line" d="${d}" stroke="${color}"/>`;
+});
+</script>

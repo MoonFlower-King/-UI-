@@ -35,6 +35,19 @@
     ]
   },
   {
+    "id": "text",
+    "name": "文字特效",
+    "intro": "标题怎么出场、关键词怎么强调，决定了第一眼的气质。这些词让 AI 做出会“说话”的文字。",
+    "items": [
+      "typewriter",
+      "text-scramble",
+      "gradient-text",
+      "split-text",
+      "highlight-marker",
+      "marquee"
+    ]
+  },
+  {
     "id": "color",
     "name": "色彩",
     "intro": "配色难看，通常不是颜色选错，而是颜色太多、没有主次。",
@@ -106,6 +119,34 @@
     ]
   },
   {
+    "id": "form",
+    "name": "表单与输入",
+    "intro": "表单是用户最容易烦躁的地方。说对这些词，AI 做出的输入框会更顺手、更有反馈。",
+    "items": [
+      "floating-label",
+      "password-strength",
+      "otp-input",
+      "range-slider",
+      "star-rating",
+      "tag-input",
+      "file-dropzone",
+      "autocomplete"
+    ]
+  },
+  {
+    "id": "data",
+    "name": "数据展示",
+    "intro": "后台、仪表盘、个人主页都离不开数据。这些词让数字和列表看起来清楚又专业。",
+    "items": [
+      "data-table",
+      "number-ticker",
+      "progress-ring",
+      "sparkline",
+      "timeline",
+      "tree-view"
+    ]
+  },
+  {
     "id": "overlay",
     "name": "弹窗与浮层",
     "intro": "盖在页面上面的东西。重要程度不同，该用的浮层也不同。",
@@ -130,6 +171,18 @@
       "morphing",
       "image-zoom",
       "underline-slide"
+    ]
+  },
+  {
+    "id": "gesture",
+    "name": "拖拽与手势",
+    "intro": "能按住、拖动、甩出去的界面，才有“手感”。这些词描述的是直接用手操作的交互。",
+    "items": [
+      "drag-sort",
+      "swipe-to-delete",
+      "before-after",
+      "resizable-panel",
+      "swipe-cards"
     ]
   },
   {

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Timeline",
+  "zh": "时间线",
+  "lead": "用一根竖线把事情按时间串起来，每个节点一个圆点。物流进度、更新日志、项目里程碑都适合。",
+  "prompt": "物流详情用 Timeline：左侧 2px 竖线串起圆点节点，最新节点用品牌色实心圆并带呼吸光圈，已完成节点灰色，每项包含标题、时间（小号灰字），节点依次从下往上淡入。"
+}
+-->
+<ol class="tl">
+  <li class="now"><b>正在派送</b><span>快递员 江师傅 · 今天 14:20</span></li>
+  <li><b>到达 杭州西湖营业点</b><span>今天 08:05</span></li>
+  <li><b>已发货</b><span>昨天 19:32</span></li>
+  <li><b>订单已提交</b><span>昨天 10:11</span></li>
+</ol>
+
+<style>
+.tl { list-style: none; margin: 0; padding: 0 0 0 4px; width: min(280px, 86vw); }
+.tl li { position: relative; padding: 0 0 18px 26px; opacity: 0; animation: tlIn .5s ease-out forwards; }
+.tl li:nth-child(2) { animation-delay: .1s; } .tl li:nth-child(3) { animation-delay: .2s; } .tl li:nth-child(4) { animation-delay: .3s; }
+.tl li::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: -8px; width: 2px; background: #E4E4E7; }
+.tl li:last-child::before { display: none; }
+.tl li::after { content: ""; position: absolute; left: 0; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: #D4D4D8; box-sizing: border-box; border: 2px solid #fff; }
+.tl li.now::after { background: #FA8C16; box-shadow: 0 0 0 0 rgba(250,140,22,.5); animation: breathe 1.8s infinite; }
+.tl b { display: block; font-size: 14px; color: #71717A; font-weight: 500; } .tl .now b { color: #18181B; font-weight: 600; }
+.tl span { font-size: 12px; color: #A1A1AA; }
+@keyframes tlIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes breathe { 70% { box-shadow: 0 0 0 8px rgba(250,140,22,0); } 100% { box-shadow: 0 0 0 0 rgba(250,140,22,0); } }
+</style>

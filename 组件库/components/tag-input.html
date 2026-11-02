@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Tag Input",
+  "zh": "标签输入",
+  "lead": "输入一个词按回车，它就变成一个小标签，点 × 删掉，退格删最后一个。填技能、关键词、收件人都用它。",
+  "prompt": "技能输入用 Tag Input：输入框内回车或逗号生成圆角标签（浅品牌色底），标签带 × 删除，空输入时退格删除最后一个，新标签出现时有缩放淡入，最多 6 个。"
+}
+-->
+<div class="tags">
+  <span class="tag">Figma<button>×</button></span>
+  <span class="tag">交互设计<button>×</button></span>
+  <input placeholder="输入后按回车" />
+</div>
+
+<style>
+.tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; width: min(320px, 88vw); box-sizing: border-box; min-height: 46px; padding: 7px 8px; background: #fff; border: 1.5px solid #D4D4D8; border-radius: 12px; }
+.tags:focus-within { border-color: #FA8C16; }
+.tag { display: inline-flex; align-items: center; gap: 2px; padding: 4px 4px 4px 10px; border-radius: 999px; background: #FFF4E6; color: #C2410C; font-size: 13px; animation: tagIn .2s ease-out; }
+.tag button { border: 0; background: none; color: inherit; font-size: 15px; line-height: 1; width: 20px; height: 20px; border-radius: 50%; cursor: pointer; }
+.tag button:hover { background: rgba(194,65,12,.12); }
+.tags input { flex: 1; min-width: 90px; border: 0; outline: none; font-size: 14px; padding: 4px; }
+@keyframes tagIn { from { opacity: 0; transform: scale(.6); } }
+</style>
+<script>
+const box = document.querySelector(".tags"), input = box.querySelector("input");
+function add(text) {
+  text = text.trim(); if (!text || box.querySelectorAll(".tag").length >= 6) return;
+  const t = document.createElement("span"); t.className = "tag"; t.innerHTML = "<button>×</button>"; t.prepend(text);
+  box.insertBefore(t, input);
+}
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === ",") { e.preventDefault(); add(input.value); input.value = ""; }
+  if (e.key === "Backspace" && !input.value) box.querySelector(".tag:last-of-type")?.remove();
+});
+box.addEventListener("click", e => { if (e.target.tagName === "BUTTON") e.target.parentNode.remove(); else input.focus(); });
+setTimeout(() => add("动效"), 700); setTimeout(() => add("前端"), 1300);
+</script>

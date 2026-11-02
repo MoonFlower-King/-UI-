@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Resizable Panels",
+  "zh": "可拖拽分栏",
+  "lead": "两个面板中间一根分隔条，拖动它就能调整左右宽度。代码编辑器、邮件客户端、设计工具都这样做。",
+  "prompt": "编辑器布局用 Resizable Panels：左侧栏和右侧内容之间 6px 分隔条，悬停时显示品牌色细线和 col-resize 光标，拖动调整左栏宽度（最小 80px，最大 70%），双击分隔条恢复默认宽度。"
+}
+-->
+<div class="rp">
+  <aside class="side"><b>目录</b><i></i><i></i><i></i></aside>
+  <div class="gutter"></div>
+  <main class="main"><b>内容</b><i></i><i></i><i class="s"></i></main>
+</div>
+
+<style>
+.rp { --w: 120px; display: flex; width: min(380px, 92vw); height: 200px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; font-size: 12px; }
+.side { width: var(--w); flex: none; padding: 14px; background: #FAFAFA; box-sizing: border-box; }
+.main { flex: 1; min-width: 0; padding: 14px; }
+.rp b { display: block; margin-bottom: 10px; color: #71717A; }
+.rp i { display: block; height: 8px; margin-bottom: 8px; border-radius: 4px; background: #E4E4E7; } .rp i.s { width: 60%; }
+.gutter { position: relative; width: 6px; flex: none; cursor: col-resize; touch-action: none; }
+.gutter::after { content: ""; position: absolute; left: 2px; top: 0; bottom: 0; width: 2px; background: #E4E4E7; transition: background .2s; }
+.gutter:hover::after, .gutter.on::after { background: #FA8C16; }
+</style>
+<script>
+const rp = document.querySelector(".rp"), g = document.querySelector(".gutter");
+g.addEventListener("pointerdown", e => {
+  g.setPointerCapture(e.pointerId); g.classList.add("on");
+  g.onpointermove = ev => { const r = rp.getBoundingClientRect(); rp.style.setProperty("--w", Math.min(r.width * .7, Math.max(80, ev.clientX - r.left)) + "px"); };
+});
+g.addEventListener("pointerup", () => { g.onpointermove = null; g.classList.remove("on"); });
+g.addEventListener("dblclick", () => rp.style.setProperty("--w", "120px"));
+let t = 0; const demo = setInterval(() => { rp.style.setProperty("--w", 120 + Math.sin(t += .05) * 50 + "px"); if (t > 3.14) clearInterval(demo); }, 30);
+</script>

@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Swipe Cards",
+  "zh": "滑动卡片堆",
+  "lead": "一叠卡片，把最上面一张往左或右甩出去，下一张顶上来。交友 App、单词卡、选题投票都爱用。拖一下试试。",
+  "prompt": "推荐卡片用 Swipe Cards：3 张卡片叠放（下层依次缩小 6% 并下移 16px），拖动顶层卡片时随水平位移旋转（每 10px 转 1°），拖过 100px 松手则飞出屏幕，否则弹回，下一张平滑升上来。"
+}
+-->
+<div class="deck">
+  <div class="card c3"><b>新拟态</b><span>Neumorphism</span></div>
+  <div class="card c2"><b>玻璃拟态</b><span>Glassmorphism</span></div>
+  <div class="card c1"><b>便当网格</b><span>Bento Grid</span></div>
+</div>
+<p class="deck-tip">← 不喜欢　　喜欢 →</p>
+
+<style>
+.deck { position: relative; width: 190px; height: 210px; margin-bottom: 30px; }
+.card { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 4px; border-radius: 20px; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.15); touch-action: none; user-select: none; cursor: grab; transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .35s; }
+.card b { font-size: 24px; } .card span { font-size: 12px; opacity: .8; }
+.c1 { background: linear-gradient(140deg, #FA8C16, #F472B6); }
+.c2 { background: linear-gradient(140deg, #6366F1, #22D3EE); }
+.c3 { background: linear-gradient(140deg, #0B0F1A, #3F3F46); }
+.card.drag { transition: none; }
+.deck-tip { position: absolute; bottom: 16px; margin: 0; font-size: 12px; color: #A1A1AA; }
+</style>
+<script>
+const deck = document.querySelector(".deck");
+function layout() { [...deck.children].reverse().forEach((c, i) => { if (!c.dataset.out) c.style.transform = `translateY(${i * 16}px) scale(${1 - i * .06})`; }); }
+function topCard() { return [...deck.children].reverse().find(c => !c.dataset.out); }
+function fling(c, dir) { c.dataset.out = 1; c.style.transform = `translateX(${dir * 400}px) rotate(${dir * 30}deg)`; c.style.opacity = 0; layout();
+  setTimeout(() => { deck.prepend(c); delete c.dataset.out; c.style.opacity = 1; layout(); }, 400); }  // 飞出后放回最底下，循环演示
+deck.addEventListener("pointerdown", e => {
+  const c = topCard(); if (e.target.closest(".card") !== c) return;
+  const x0 = e.clientX; c.classList.add("drag"); c.setPointerCapture(e.pointerId);
+  c.onpointermove = ev => { const dx = ev.clientX - x0; c.style.transform = `translateX(${dx}px) rotate(${dx / 10}deg)`; };
+  c.onpointerup = ev => { c.onpointermove = null; c.classList.remove("drag"); const dx = ev.clientX - x0; Math.abs(dx) > 100 ? fling(c, Math.sign(dx)) : layout(); };
+});
+layout(); setTimeout(() => fling(topCard(), 1), 900);
+</script>

@@ -249,5 +249,59 @@
    ]
   ],
   "prompt": "定一套 Type Scale（14 / 16 / 20 / 28 / 40px）；正文 Line Height 1.7；段落 Measure 不超过 65 个字符；标题 Font Weight 700，正文 400。"
+ },
+ {
+  "vague": "表单填起来好烦",
+  "why": "通常是输入框没有反馈：不知道填对没有、要来回切换、出错了才说。",
+  "terms": [
+   [
+    "Floating Label",
+    "浮动标签",
+    "floating-label"
+   ],
+   [
+    "Inline Validation",
+    "实时校验",
+    "inline-validation"
+   ],
+   [
+    "OTP Input",
+    "验证码输入框",
+    "otp-input"
+   ],
+   [
+    "Autocomplete",
+    "输入联想",
+    "autocomplete"
+   ]
+  ],
+  "prompt": "表单输入框用 Floating Label，输入时 Inline Validation 实时提示对错；验证码用 6 格 OTP Input 自动跳格；城市等选项用 Autocomplete 边输边联想。"
+ },
+ {
+  "vague": "数据看着干巴巴的",
+  "why": "数字只是摆出来，没有趋势、对比和出场节奏，读的人抓不住重点。",
+  "terms": [
+   [
+    "Number Ticker",
+    "数字滚动",
+    "number-ticker"
+   ],
+   [
+    "Sparkline",
+    "迷你趋势图",
+    "sparkline"
+   ],
+   [
+    "Progress Ring",
+    "环形进度",
+    "progress-ring"
+   ],
+   [
+    "Data Table",
+    "数据表格",
+    "data-table"
+   ]
+  ],
+  "prompt": "数据卡片的大数字用 Number Ticker 从 0 滚到目标值，旁边配 Sparkline 显示近 7 天趋势；完成率用 Progress Ring；明细列表用 Data Table，数字右对齐、表头可排序。"
  }
 ]
