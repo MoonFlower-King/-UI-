@@ -171,9 +171,8 @@ const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (!painting) { painting = true; idle(paintSome, { timeout: 200 }); }
 }), { rootMargin: '600px 0px' });
 
-// 同一时间最多只让离屏幕中心最近的几张卡片播放演示，其余显示静态首帧；滚动停下 200ms 后才重新挑选，
-// 滚动过程中不新开演示，所以滚起来不卡。鼠标所在的卡片总是优先播放。
-const MAX_PLAY = matchMedia('(max-width: 720px)').matches ? 2 : 4;
+// 屏幕里看得到的卡片全部播放演示，滑出屏幕的立刻停掉、换回静态首帧，所以同时在跑的只有一屏的量。
+// 新进屏幕的卡片按离屏幕中心由近到远、每隔一小会儿开一张，避免一下子全挤在同一帧里卡住。
 const inView = new Set(), playing = new Set(), queue = new Set();
 let pumping = false, hovered = null, pickTimer;
 const swap = (f, fade) => {
@@ -185,24 +184,24 @@ function pump() {
   const f = queue.values().next().value;
   if (!f) { pumping = false; return; }
   queue.delete(f); pumping = true; if (playing.has(f)) swap(f, f.dataset.live);
-  setTimeout(pump, 120);
+  setTimeout(pump, 60);
 }
 const load = (f, now) => { queue.delete(f); if (now) swap(f, true); else { queue.add(f); if (!pumping) pump(); } };
 const stop = (f) => { playing.delete(f); queue.delete(f); f.classList.add('swap'); delete f.dataset.live; if (f.srcdoc) f.srcdoc = ''; };
 function pick() {
   const mid = innerHeight / 2;
   const dist = (f) => { const r = f.parentElement.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid) + Math.abs(r.left + r.width / 2 - innerWidth / 2) / 4; };
-  const want = new Set([...inView].sort((x, y) => dist(x) - dist(y)).slice(0, MAX_PLAY));
-  if (hovered && inView.has(hovered)) want.add(hovered);
+  const want = new Set([...inView].sort((x, y) => dist(x) - dist(y)));
+  if (hovered) want.add(hovered);
   playing.forEach((f) => { if (!want.has(f)) stop(f); });
   want.forEach((f) => { if (!playing.has(f)) { playing.add(f); load(f); } });
 }
-const repick = () => { clearTimeout(pickTimer); pickTimer = setTimeout(pick, 200); };
+const repick = () => { clearTimeout(pickTimer); pickTimer = setTimeout(pick, 100); };
 addEventListener('scroll', repick, { passive: true });
 const watch = new IntersectionObserver((entries) => {
-  entries.forEach((e) => { if (e.intersectionRatio >= .4) inView.add(e.target); else { inView.delete(e.target); if (playing.has(e.target)) stop(e.target); } });
+  entries.forEach((e) => { if (e.isIntersecting) inView.add(e.target); else { inView.delete(e.target); if (playing.has(e.target)) stop(e.target); } });
   repick();
-}, { threshold: [0, .4] });
+}, { rootMargin: '80px 0px' });
 addEventListener('message', (e) => {
   const f = [...playing].find((x) => x.contentWindow === e.source);
   if (!f) return;
