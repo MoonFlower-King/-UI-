@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Foil Stamp",
+  "zh": "烫金工艺",
+  "alias": [
+    "烫金",
+    "Gold Foil"
+  ],
+  "lead": "深色卡纸上烫出的金色细线和标题，有一点金属反光。隆重、精致、有礼盒感，适合礼品、茶叶月饼礼盒、邀请函、高端会员页面。",
+  "prompt": "烫金风格：深墨绿、藏青或酒红的哑光卡纸背景，标题、细线框和小图形为带轻微反光的金色烫印效果，文字其余为米白，衬线标题，元素少而精，居中对称，像一张高级请柬",
+  "promptEn": "foil stamp style: matte deep green, navy or wine card-stock background, headlines, fine frames and small motifs in gold foil with a subtle metallic sheen, remaining text in cream, serif headings, few but refined elements, centered symmetry, like a premium invitation",
+  "avoid": "金只用在标题和细线上，大面积金色会俗。反光要轻，像光扫过纸面，不要做成亮闪闪的渐变。",
+  "neg": [
+    "大面积金色、亮闪渐变",
+    "large gold areas, glittery gradients"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D4B26A; --a2: #D4B26A; --on: #1D2B27; background: #1D2B27; color: #EDE6D6; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid rgba(212, 178, 106, .45); } .logo i { background: linear-gradient(135deg, #B8913F, #F1DC9C 50%, #B8913F); transform: rotate(45deg); }
+.cta { background: none; color: #D4B26A; border: 1px solid #D4B26A; }
+.hero { grid-template-columns: 1fr; text-align: center; margin: 14px 40px; padding: 24px; border: 1px solid #D4B26A; } .art { display: none; } .acts { justify-content: center; }
+.hero h1 { font-weight: 600; letter-spacing: 3px; color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(100deg, #B8913F 0 35%, #F6E6B4 45%, #B8913F 55% 100%); background-size: 300% 100%; animation: foil 5s ease-in-out infinite; }
+@keyframes foil { 0%, 30% { background-position: 100% 0; } 70%, 100% { background-position: 0 0; } }
+.kicker { color: #D4B26A; letter-spacing: 3px; } .b1 { background: linear-gradient(135deg, #B8913F, #E9D08C 50%, #B8913F); color: #1D2B27; }
+.feats article { padding: 12px; text-align: center; border: 1px solid rgba(212, 178, 106, .4); } .feats b, .stats b { color: #D4B26A; font-weight: 500; }
+</style>

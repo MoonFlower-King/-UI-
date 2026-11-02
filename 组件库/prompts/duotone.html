@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Duotone",
+  "zh": "双色调",
+  "alias": [
+    "双色",
+    "Two-tone"
+  ],
+  "lead": "整页只用两种颜色：图片被处理成深浅两色的映射，文字和色块也只在这两色里取。醒目、统一、很有品牌感，适合音乐、活动、科技发布和潮流品牌。",
+  "prompt": "双色调风格：全站只用两种颜色（一深一亮，如深蓝和柠檬黄），图片做成双色映射（暗部是深色、亮部是亮色），背景、文字、按钮都只取这两色及其深浅，粗无衬线标题，大块色面构图",
+  "promptEn": "duotone style: the whole site uses only two colors (one dark, one bright, such as navy and lemon yellow), photos converted to a two-color map (shadows in the dark, highlights in the bright), backgrounds, type and buttons drawn only from these two and their tints, bold sans headings, large color-field composition",
+  "avoid": "两色要有足够的明度差，深蓝配亮黄可以，红配绿就会刺眼又看不清。不要偷偷加第三种颜色。",
+  "neg": [
+    "明度接近的两色、偷加第三色",
+    "two colors of similar lightness, a sneaky third color"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F4E04D; --a2: #F4E04D; --on: #1B2A6B; background: #1B2A6B; color: #F4E04D; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-size: 34px; font-weight: 900; } .sub { color: #F7EDA0; }
+.art { overflow: hidden; background: #1B2A6B; }
+.art .m { position: absolute; inset: 0; background: radial-gradient(circle at 46% 36%, #F4E04D 0 20%, transparent 21%), radial-gradient(ellipse 60% 50% at 46% 100%, #F4E04D 0 60%, transparent 61%), linear-gradient(160deg, #6D7AA8, #1B2A6B); }
+.art .h { position: absolute; inset: 0; background: linear-gradient(transparent 70%, rgba(244, 224, 77, .35)); mix-blend-mode: screen; }
+.b2 { color: #F4E04D; } .feats article { padding: 12px; background: #F4E04D; color: #1B2A6B; } .feats b { color: #1B2A6B; }
+.stats { background: #F4E04D; color: #1B2A6B; } .ft { color: #F4E04D; }
+</style>

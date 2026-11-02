@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Fashion Editorial",
+  "zh": "时装杂志",
+  "alias": [
+    "高级时装风",
+    "Editorial Fashion"
+  ],
+  "lead": "超大的高对比衬线标题、极细的线、黑白大片和很多留白，像时装杂志的跨页。高级、冷静、有态度，适合服装、美妆、奢侈品、摄影师作品集。",
+  "prompt": "时装杂志风格：纯白背景，黑色为主，最多一种低调强调色，超大号高对比的细衬线标题，标题与图片相互叠压，正文为小号无衬线并有宽松字距，黑白人像大图占据半屏，极细分隔线，大量留白",
+  "promptEn": "fashion editorial style: pure white background, mostly black with at most one muted accent, oversized high-contrast thin serif headlines overlapping the imagery, small widely tracked sans body text, a large black-and-white portrait filling half the screen, hairline dividers, lots of white space",
+  "avoid": "「高级感」来自对比：极大的标题配极小的正文，中间别有过渡字号。颜色越少越好，彩色渐变按钮一出现就不像杂志了。",
+  "neg": [
+    "中等字号堆满、彩色渐变按钮",
+    "mid-size text everywhere, colorful gradient buttons"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #fff; color: #111; font-family: "Didot", "Bodoni 72", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 3px; font-size: 10px; text-transform: uppercase; } .logo { letter-spacing: 6px; } .logo i { display: none; }
+.cta { background: none; color: #111; border-bottom: 1px solid #111; padding: 2px 0; }
+.hero { position: relative; grid-template-columns: 1fr 210px; gap: 0; padding: 20px 0 20px 26px; }
+.copy { position: relative; z-index: 1; } .hero h1 { margin-right: -70px; font-size: 44px; font-weight: 400; line-height: 1.05; letter-spacing: -1px; }
+.kicker, .sub, .acts { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .kicker { letter-spacing: 3px; color: #111; } .sub { font-size: 11px; letter-spacing: .5px; max-width: 220px; }
+.art { min-height: 220px; background: linear-gradient(160deg, #D8D8D8, #6E6E6E 60%, #2A2A2A); }
+.art .m { position: absolute; left: 50%; top: 34px; width: 56px; height: 70px; margin-left: -28px; border-radius: 50% 50% 46% 46%; background: #ECECEC; }
+.art .h { position: absolute; left: 50%; top: 100px; width: 130px; height: 140px; margin-left: -65px; border-radius: 60px 60px 0 0; background: #1A1A1A; }
+.b1 { padding: 8px 18px; } .feats { border-top: 1px solid #111; padding-top: 14px; margin: 0 26px; padding-left: 0; padding-right: 0; }
+.feats h3 { font-size: 20px; font-weight: 400; } .feats p, .feats b, .stats span, .ft { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .stats b { font-size: 30px; font-weight: 400; }
+</style>

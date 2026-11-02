@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Playful Kids",
+  "zh": "童趣活泼",
+  "alias": [
+    "儿童风",
+    "Kid-friendly"
+  ],
+  "lead": "饱满的原色、圆滚滚的形状、大号圆润字和会弹跳的小元素。快乐、安全、好上手，适合儿童教育、绘本、亲子活动、玩具品牌。",
+  "prompt": "童趣活泼风格：奶白背景，红、黄、蓝、绿四种饱满但不刺眼的颜色，大圆角和圆形色块，超大号圆润粗体字，按钮为大号胶囊并带底部厚阴影，插画为简单几何拼出的小动物或积木，轻微弹跳动效",
+  "promptEn": "playful kids style: cream background, four full but not harsh colors (red, yellow, blue, green), big radii and round color blobs, oversized rounded bold type, large pill buttons with thick bottom shadows, illustrations of simple geometric animals or building blocks, gentle bouncing motion",
+  "avoid": "给孩子看的也要好读：字大、对比够，别用细字和花体。颜色饱满但别荧光，动画轻一点，别让页面一直晃。",
+  "neg": [
+    "荧光色、细字花体",
+    "fluorescent colors, thin or fancy fonts"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3D7BE0; --a2: #E04A3D; --on: #fff; background: #FFF9EE; color: #2A2A3A; font-family: "Arial Rounded MT Bold", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 99px; box-shadow: 0 4px 0 #2A58A8; } .logo i { border-radius: 50%; background: #F5B700; } .hero h1 { font-size: 32px; font-weight: 900; }
+.art { min-height: 170px; }
+.art .m { position: absolute; left: 10px; bottom: 10px; width: 70px; height: 70px; border-radius: 16px; background: #E04A3D; box-shadow: 74px 0 0 #3D7BE0, 37px -64px 0 #F5B700; animation: kid-bounce 2.4s ease-in-out infinite; }
+.art .h { position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 50%; background: #3FAE5A; animation: kid-bounce 2.4s .4s ease-in-out infinite; }
+@keyframes kid-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.feats article { padding: 12px; border-radius: 22px; background: #FFE9A8; } .feats article:nth-child(2) { background: #CFE4FF; } .feats article:nth-child(3) { background: #D3F0D9; }
+.feats b { color: #E04A3D; } .stats b { color: #3D7BE0; font-size: 28px; }
+</style>

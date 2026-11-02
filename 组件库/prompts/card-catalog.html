@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Library Card Catalog",
+  "zh": "图书馆卡片",
+  "alias": [
+    "借书卡",
+    "目录卡"
+  ],
+  "lead": "老图书馆的借阅卡和目录卡：横线卡片、打字机编号、红色印章日期、木抽屉的拉手标签。温文、可靠、有书卷气，适合图书馆、出版、教育、档案和知识产品。",
+  "prompt": "图书馆卡片风格：浅米色背景，内容放在带蓝色横线和红色顶线的索引卡片上，编号与分类号用打字机等宽字，红色圆角印章日期，导航像木抽屉上的铜框标签，衬线标题",
+  "promptEn": "library card catalog style: light beige background, content on index cards with blue ruled lines and a red top rule, call numbers and IDs in typewriter monospace, red rounded date stamps, navigation like brass label holders on wooden drawers, serif headings",
+  "avoid": "横线卡片的线要淡，否则像作业本。印章、编号这些细节点到为止，一张卡上一两个就够。",
+  "neg": [
+    "深色横线、细节堆满",
+    "dark ruled lines, details piled up"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #6B4A2E; --a2: #B23A3A; --on: #FBF7EF; background: #EDE5D6; color: #2D2A26; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav nav a { padding: 2px 8px; border: 1.5px solid #A78B5A; border-radius: 3px; background: linear-gradient(#F4ECDC, #E2D4BA); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10px; }
+.cta { border-radius: 3px; }
+.hero { margin: 10px 26px 20px; padding: 18px; background: #FDFBF6; box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+  background-image: linear-gradient(#B23A3A, #B23A3A), repeating-linear-gradient(transparent 0 21px, rgba(60, 100, 170, .22) 21px 22px); background-size: 100% 2px, 100% 100%; background-position: 0 30px, 0 30px; background-repeat: no-repeat, repeat; }
+.kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6B4A2E; } .hero h1 { font-weight: 600; font-size: 28px; }
+.art { min-height: 0; }
+.art .m { position: absolute; right: 8px; top: 10px; padding: 4px 8px; border: 2px solid #B23A3A; border-radius: 6px; color: #B23A3A; font: 700 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; transform: rotate(-8deg); opacity: .85; }
+.art .m::before { content: "2026.09.18"; } .art .h::before { content: "索书号 I247.5 / 012"; position: absolute; right: 8px; bottom: 6px; font: 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6B4A2E; }
+.feats article { padding: 10px 12px; background: #FDFBF6; border-top: 2px solid #B23A3A; box-shadow: 0 2px 6px rgba(0, 0, 0, .06); } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6B4A2E; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; color: #6B4A2E; }
+</style>

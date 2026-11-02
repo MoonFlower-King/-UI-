@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Kinetic Typography",
+  "zh": "动态文字",
+  "alias": [
+    "文字动效",
+    "Motion Type"
+  ],
+  "lead": "文字本身就是主视觉：大字会滚动、伸缩、逐字出现，像一段片头。有冲击力、现代，适合发布会、品牌活动、作品集首屏、音乐节。",
+  "prompt": "动态文字风格：纯黑或纯白背景，主视觉是超大号的粗无衬线文字，文字做水平无限滚动的跑马条、逐字出现或字重变化的动效，只用黑白加一种亮色，其余版面极简，动效只用在首屏大字上",
+  "promptEn": "kinetic typography style: solid black or white background, oversized bold sans type as the hero, animated as an endless horizontal marquee, letter-by-letter reveals or weight shifts, black and white plus one bright color, the rest of the layout minimal, motion used only on the hero type",
+  "avoid": "动效只给首屏的大字，正文和按钮一动就没法读。记得给「减少动态效果」的用户关掉动画。",
+  "neg": [
+    "正文也在动、到处闪烁",
+    "moving body text, flashing everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C6FF3D; --a2: #C6FF3D; --on: #0C0C0C; background: #0C0C0C; color: #F2F2F2; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { grid-template-columns: 1fr; position: relative; padding-top: 86px; overflow: hidden; }
+.art { position: absolute; left: 0; right: 0; top: 10px; height: 70px; min-height: 0; overflow: hidden; }
+.art .m { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: 58px; font-weight: 900; line-height: 70px; color: #C6FF3D; animation: kt-run 8s linear infinite; }
+.art .m::before { content: "慢读 · 夜读 · 慢读 · 夜读 · 慢读 · 夜读 · 慢读 · 夜读 · "; }
+@keyframes kt-run { to { transform: translateX(-50%); } }
+.hero h1 { font-size: 26px; font-weight: 800; } .kicker { color: #C6FF3D; }
+.feats article { padding-top: 8px; border-top: 2px solid #F2F2F2; } .feats b, .stats b { color: #C6FF3D; } .stats b { font-size: 30px; font-weight: 900; }
+</style>
