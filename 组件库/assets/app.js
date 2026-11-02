@@ -142,14 +142,30 @@ function paintPoster(t) {
   t.classList.add('ready');
   // 首帧画好就顺手量一下组件大小，预览立刻按实际大小放大；放大后可能换行变高，下一帧再量一次确认装得下
   measurePoster(c.id, host, root);
-  requestAnimationFrame(() => measurePoster(c.id, host, root));
+}
+// 首帧在浏览器空闲时分批画，每批最多 4 张，不和滚动抢主线程
+const posterQueue = new Set();
+const idle = window.requestIdleCallback || ((fn) => setTimeout(() => fn({ timeRemaining: () => 8 }), 32));
+let painting = false;
+function paintSome(deadline) {
+  let n = 0;
+  for (const t of posterQueue) {
+    if (n++ >= 4 || deadline.timeRemaining() < 4) break;
+    posterQueue.delete(t); if (t.isConnected) paintPoster(t);
+  }
+  posterQueue.size ? idle(paintSome, { timeout: 300 }) : (painting = false);
 }
 const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
-  if (e.isIntersecting) { paintPoster(e.target); posters.unobserve(e.target); }
-}), { rootMargin: '1200px 0px' });
+  if (!e.isIntersecting) { posterQueue.delete(e.target); return; }
+  posterQueue.add(e.target); posters.unobserve(e.target);
+  if (!painting) { painting = true; idle(paintSome, { timeout: 300 }); }
+}), { rootMargin: '500px 0px' });
 
-const playing = new Set(), queue = new Set();
-let pumping = false;
+// 同一时间最多只让离屏幕中心最近的几张卡片播放演示，其余显示静态首帧；滚动停下 200ms 后才重新挑选，
+// 滚动过程中不新开演示，所以滚起来不卡。鼠标所在的卡片总是优先播放。
+const MAX_PLAY = matchMedia('(max-width: 720px)').matches ? 2 : 4;
+const inView = new Set(), playing = new Set(), queue = new Set();
+let pumping = false, hovered = null, pickTimer;
 const swap = (f, fade) => {
   if (!fade) { f.srcdoc = doc(byId[f.dataset.id]); return; }
   f.classList.add('swap');
@@ -158,15 +174,25 @@ const swap = (f, fade) => {
 function pump() {
   const f = queue.values().next().value;
   if (!f) { pumping = false; return; }
-  queue.delete(f); pumping = true; swap(f, f.dataset.live);
-  setTimeout(pump, 80);
+  queue.delete(f); pumping = true; if (playing.has(f)) swap(f, f.dataset.live);
+  setTimeout(pump, 120);
 }
 const load = (f, now) => { queue.delete(f); if (now) swap(f, true); else { queue.add(f); if (!pumping) pump(); } };
-const watch = new IntersectionObserver((entries) => entries.forEach((e) => {
-  const f = e.target;
-  if (e.isIntersecting) { if (!playing.has(f)) { playing.add(f); load(f); } }
-  else if (playing.delete(f)) { queue.delete(f); f.classList.add('swap'); delete f.dataset.live; f.srcdoc = ''; }
-}), { rootMargin: '120px 0px' });
+const stop = (f) => { playing.delete(f); queue.delete(f); f.classList.add('swap'); delete f.dataset.live; if (f.srcdoc) f.srcdoc = ''; };
+function pick() {
+  const mid = innerHeight / 2;
+  const dist = (f) => { const r = f.parentElement.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid) + Math.abs(r.left + r.width / 2 - innerWidth / 2) / 4; };
+  const want = new Set([...inView].sort((x, y) => dist(x) - dist(y)).slice(0, MAX_PLAY));
+  if (hovered && inView.has(hovered)) want.add(hovered);
+  playing.forEach((f) => { if (!want.has(f)) stop(f); });
+  want.forEach((f) => { if (!playing.has(f)) { playing.add(f); load(f); } });
+}
+const repick = () => { clearTimeout(pickTimer); pickTimer = setTimeout(pick, 200); };
+addEventListener('scroll', repick, { passive: true });
+const watch = new IntersectionObserver((entries) => {
+  entries.forEach((e) => { if (e.intersectionRatio >= .4) inView.add(e.target); else { inView.delete(e.target); if (playing.has(e.target)) stop(e.target); } });
+  repick();
+}, { threshold: [0, .4] });
 addEventListener('message', (e) => {
   const f = [...playing].find((x) => x.contentWindow === e.source);
   if (!f) return;
@@ -188,8 +214,8 @@ function hydrate(root) {
     fit.observe(t); posters.observe(t); watch.observe(f);
     f.addEventListener('load', () => { if (f.srcdoc) { f.classList.remove('swap'); f.dataset.live = 1; } });
     if (canHover) {
-      cardEl.addEventListener('mouseenter', () => { if (playing.has(f)) load(f, true); });
-      cardEl.addEventListener('mouseleave', () => { let stopped = false; try { stopped = f.contentWindow.__jyStop; } catch {} if (stopped && playing.has(f)) load(f); });
+      cardEl.addEventListener('mouseenter', () => { hovered = f; if (!playing.has(f)) { playing.add(f); pick(); } load(f, true); });
+      cardEl.addEventListener('mouseleave', () => { if (hovered === f) hovered = null; let stopped = false; try { stopped = f.contentWindow.__jyStop; } catch {} if (stopped && playing.has(f)) load(f); repick(); });
     }
   });
   $$('[data-add]', root).forEach(syncAddBtn);
