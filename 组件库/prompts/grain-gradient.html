@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Grain Gradient",
+  "zh": "颗粒渐变",
+  "alias": [
+    "噪点渐变",
+    "Grainy Gradient"
+  ],
+  "lead": "柔和的大色块渐变上撒一层细细的噪点颗粒，像胶片或印刷品，比纯渐变更有质感、不那么「数码」。适合品牌主视觉、音乐、创意工作室。",
+  "prompt": "颗粒渐变风格：首屏背景为两到三种低饱和暖色（如赭橙、玫瑰灰、奶油色）的柔和大面积渐变，叠加一层细腻的噪点颗粒纹理，文字为深色或白色并保证对比度，其他区域保持简洁纯色",
+  "promptEn": "grainy gradient style: hero background with soft large gradients of two or three muted warm colors (e.g. ochre, rose gray, cream) overlaid with fine noise grain, dark or white text with sufficient contrast, other areas kept plain and simple",
+  "avoid": "渐变颜色一定要选相邻、低饱和的色，跨度太大（比如紫到绿）就是 AI 味。颗粒要细、要淡，粗噪点会让整页看起来脏。",
+  "neg": [
+    "高饱和撞色渐变、粗噪点",
+    "saturated clashing gradients, coarse noise"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #2A1E1A; --a2: #8A4B32; --on: #FBF2E8; background: #FBF7F2; color: #2A1E1A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { position: relative; z-index: 2; } .logo i { border-radius: 50%; background: #8A4B32; } .cta { border-radius: 99px; }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 260px; margin-top: -50px; padding-top: 70px; } .copy { position: relative; z-index: 1; }
+.art { position: absolute; inset: 0; background: radial-gradient(60% 80% at 20% 20%, #E9B48C, transparent 70%), radial-gradient(60% 80% at 85% 40%, #C99A9A, transparent 70%), radial-gradient(70% 60% at 50% 100%, #F3DEC4, transparent 70%), #EBC9B0; }
+.art::after { content: ""; position: absolute; inset: 0; opacity: .35; mix-blend-mode: multiply;
+  background: radial-gradient(rgba(0,0,0,.5) .6px, transparent .7px) 0 0 / 3px 3px, radial-gradient(rgba(0,0,0,.4) .5px, transparent .6px) 1px 2px / 4px 4px; }
+.hero h1 { font-size: 34px; font-weight: 600; letter-spacing: -.5px; } .b1 { border-radius: 99px; }
+.feats { padding-top: 22px; } .feats article { border-top: 1px solid #E2D3C4; padding-top: 8px; } .stats b { color: #8A4B32; }
+</style>

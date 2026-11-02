@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Soft Aurora",
+  "zh": "柔和极光",
+  "alias": [
+    "极光渐变",
+    "Aurora Gradient"
+  ],
+  "lead": "背景上漂着几团大而模糊的柔光，像极光或晨雾，前面是干净的白字或深字。梦幻、轻盈、很有氛围，适合 AI 与创意工具、音乐、活动首页。",
+  "prompt": "柔和极光风格：深色或浅色背景上有两到三团大面积高斯模糊的柔光（低饱和的暖橙、雾粉、淡青），光团缓慢漂移，前景内容简洁，大标题，卡片为纯色或轻微透明，整体留白充足",
+  "promptEn": "soft aurora style: two or three large heavily blurred light blobs (muted warm orange, misty pink, pale cyan) drifting slowly over a dark or light background, minimal foreground content, large headline, solid or slightly translucent cards, generous white space",
+  "avoid": "这是最容易出 AI 味的风格，调研时被标成「慎收」。避开紫蓝霓虹配色，光团控制在两三团、颜色要低饱和；它只适合首屏氛围，整站都用会很腻。",
+  "neg": [
+    "紫蓝霓虹、光团铺满整页",
+    "neon purple and blue, glow blobs across the whole page"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #F4EEE6; --a2: #F2B482; --on: #14161C; background: #14161C; color: #ECE8E1; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { position: relative; z-index: 2; } .logo i { border-radius: 50%; background: #F2B482; } .cta { border-radius: 99px; }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 270px; margin-top: -50px; padding-top: 80px; text-align: center; overflow: hidden; } .copy { position: relative; z-index: 1; }
+.art { position: absolute; inset: 0; filter: blur(30px); }
+.art .m { position: absolute; left: 60px; top: 40px; width: 220px; height: 140px; border-radius: 50%; background: rgba(242,180,130,.55); animation: drift 9s ease-in-out infinite alternate; }
+.art .h { position: absolute; right: 40px; top: 90px; width: 220px; height: 150px; border-radius: 50%; background: rgba(150,200,210,.4); animation: drift 11s ease-in-out infinite alternate-reverse; }
+@keyframes drift { to { transform: translate(40px, 20px) scale(1.1); } }
+.hero h1 { font-size: 32px; font-weight: 600; } .hero h1 br { display: none; } .sub { margin: 12px auto 0; max-width: 320px; } .acts { justify-content: center; } .b1 { border-radius: 99px; } .b2 { color: #ECE8E1; }
+.feats article { padding: 12px; border-radius: 14px; background: #1D2028; } .stats b { color: #F2B482; }
+</style>

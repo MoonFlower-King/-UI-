@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Skeuomorphism",
+  "zh": "拟物质感",
+  "alias": [
+    "拟物化",
+    "Skeuomorphic"
+  ],
+  "lead": "按钮像真的按键、卡片像纸片或皮革、开关像真的拨杆，有光泽、有厚度。熟悉、好懂、有怀旧感，适合音乐与录音工具、计算器、复古主题。",
+  "prompt": "拟物质感风格：界面元素模仿真实材质，按钮有顶部高光、底部阴影和按下的凹陷感，面板带细腻的金属拉丝或纸张纹理，卡片有真实的投影和厚度，旋钮、开关、指示灯等实物控件，配色温暖低饱和",
+  "promptEn": "skeuomorphic style: interface elements imitate real materials, buttons with top highlights, bottom shadows and a pressed-in state, panels with fine brushed metal or paper texture, cards with realistic shadows and thickness, physical controls like knobs, switches and indicator lights, warm muted palette",
+  "avoid": "拟物很容易「过头」变成十年前的老界面：纹理太重、高光太亮。现在的拟物要克制，质感点到即可，文字和布局依然要清楚。",
+  "neg": [
+    "厚重纹理、刺眼高光",
+    "heavy textures, glaring highlights"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #C9572B; --a2: #8A6A4A; --on: #fff; background: linear-gradient(#E9E4DA, #D9D2C4); color: #2E2822; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { margin: 12px; padding: 10px 14px; border-radius: 10px; background: linear-gradient(#FAF8F4, #E4DED2); box-shadow: 0 1px 0 #fff inset, 0 2px 6px rgba(60,40,20,.25); }
+.logo i { border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFB28A, #C9572B 60%, #8A3415); box-shadow: 0 0 6px rgba(201,87,43,.6); }
+.cta, .b1 { border-radius: 8px; background: linear-gradient(#E27A50, #B8461C); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 2px 0 #7E2F10, 0 4px 8px rgba(0,0,0,.25); }
+.copy { padding: 16px; border-radius: 12px; background: #FBF9F4 repeating-linear-gradient(transparent 0 23px, rgba(120,150,200,.25) 23px 24px); box-shadow: 0 6px 14px rgba(60,40,20,.25); }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 28px; } .b2 { color: #6B4F35; }
+.art { border-radius: 14px; background: linear-gradient(145deg, #C8C2B6, #9E978A); box-shadow: inset 0 2px 4px rgba(255,255,255,.6), inset 0 -3px 6px rgba(0,0,0,.3), 0 6px 12px rgba(0,0,0,.25); }
+.art .m { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px; border-radius: 50%; background: conic-gradient(from 200deg, #F4F1EA, #A9A296, #F4F1EA, #A9A296, #F4F1EA); box-shadow: 0 4px 10px rgba(0,0,0,.4), inset 0 0 0 6px rgba(0,0,0,.05); }
+.feats article { padding: 12px; border-radius: 10px; background: linear-gradient(#FAF8F4, #ECE6DA); box-shadow: 0 1px 0 #fff inset, 0 3px 8px rgba(60,40,20,.2); } .stats b { color: #C9572B; text-shadow: 0 1px 0 #fff; }
+</style>

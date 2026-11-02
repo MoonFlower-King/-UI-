@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Earthy Tones",
+  "zh": "大地色系",
+  "alias": [
+    "大地色",
+    "Earth Tones"
+  ],
+  "lead": "陶土、焦糖、橄榄、沙色、深咖，取自泥土和石头的颜色。踏实、温暖、可信，适合咖啡、手工皮具、户外装备、农产品品牌。",
+  "prompt": "大地色系风格：沙色背景，陶土红、焦糖棕、橄榄绿、深咖啡色为主色，衬线标题配无衬线正文，色块平涂，轻微纸张质感，按钮为深咖底色，整体温暖厚重",
+  "promptEn": "earthy tones style: sand background, terracotta, caramel, olive and deep coffee as main colors, serif headings with sans body, flat color blocks, slight paper texture, deep coffee buttons, warm and grounded overall",
+  "avoid": "全是棕色会显得闷和旧，要有一个稍亮的色（陶土橙或橄榄绿）提神，并保留足够的浅色留白。",
+  "neg": [
+    "冷色、荧光色",
+    "cool colors, neon"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #4A3426; --a2: #B5603A; --on: #F2E8D8; background: #EADBC4; color: #33251B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1, .feats h3, .logo { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .logo i { border-radius: 50%; background: #B5603A; }
+.art { background: linear-gradient(#C9A27A 0 40%, #B5603A 40% 62%, #6E7448 62% 82%, #4A3426 82%); } .art .m { position: absolute; right: 22px; top: 18px; width: 34px; height: 34px; border-radius: 50%; background: #F2E8D8; }
+.feats article { padding: 12px; background: #F2E8D8; } .feats article:nth-child(2) { background: #6E7448; color: #F2E8D8; } .feats article:nth-child(2) b { color: #F2E8D8; } .stats { background: #4A3426; color: #F2E8D8; } .stats b { color: #E1A77B; }
+</style>

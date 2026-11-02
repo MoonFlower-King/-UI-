@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "De Stijl",
+  "zh": "风格派格子",
+  "alias": [
+    "蒙德里安风格",
+    "Neoplasticism"
+  ],
+  "lead": "粗黑线把画面切成大小不一的矩形，只填红、黄、蓝和白。极度理性、像一幅抽象画，适合艺术、建筑、设计学院、展览。",
+  "prompt": "风格派格子风格：用 6px 粗黑线把页面划分为大小不一的矩形格子，格子只填纯红、纯黄、纯蓝或白色，大部分保持白色，文字放在白色格子中，无衬线字体，严格水平垂直、没有斜线和圆角",
+  "promptEn": "De Stijl grid style: 6px thick black lines divide the page into rectangles of different sizes, cells filled only with pure red, yellow, blue or white with most left white, text sits in white cells, sans-serif type, strictly horizontal and vertical with no diagonals or rounded corners",
+  "avoid": "彩色格子要少，白色格子占大部分，否则像拼图玩具。格子的比例要有大有小，平均切分会显得呆板。",
+  "neg": [
+    "圆角、斜线、渐变",
+    "rounded corners, diagonals, gradients"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #111; --a2: #1F4FA0; --on: #fff; background: #111; color: #111; font-family: "Helvetica Neue", Arial, -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; padding: 6px; }
+.hero, .copy, .feats, .stats { display: contents; } .nav, .copy > *, .art, .feats article, .stats div, .ft { background: #F7F5EF; }
+.nav { grid-column: 1 / -1; padding: 12px 16px; } .logo i { background: #D62A20; } .cta { background: #F2C71F; color: #111; }
+.kicker { grid-column: 1; padding: 8px 14px; margin: 0; } .hero h1 { grid-column: 1; grid-row: span 2; padding: 14px; margin: 0; font-size: 30px; font-weight: 800; }
+.sub { grid-column: 2 / 4; padding: 12px; margin: 0; } .acts { grid-column: 2 / 4; padding: 12px; margin: 0; } .b1 { background: #111; }
+.art { grid-column: 2 / 4; min-height: 70px; background: #D62A20; } .feats article { padding: 12px; } .feats article:nth-child(2) { background: #F2C71F; } .feats article:nth-child(3) { background: #1F4FA0; color: #fff; } .feats article:nth-child(3) b { color: #fff; }
+.stats div { padding: 12px; } .stats div:nth-child(3) { grid-column: span 1; } .ft { grid-column: 1 / -1; padding: 10px 14px; opacity: 1; }
+</style>

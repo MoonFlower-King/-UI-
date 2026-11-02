@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Maximalism",
+  "zh": "极繁主义",
+  "alias": [
+    "繁复风",
+    "More is More"
+  ],
+  "lead": "和极简反着来：大胆的花纹、丰富的配色、层层叠叠的字和图，信息和装饰都开到最满。张扬、华丽、令人难忘，适合时装、艺术展、音乐节、潮流品牌。",
+  "prompt": "极繁主义风格：深色或宝石色背景，多种大胆配色（宝石绿、洋红、芥末黄、深紫）同时出现，重复的图案纹样做底，超大的衬线标题与小字层叠，图片与色块互相叠压，但保留一个清楚的阅读主线和主按钮",
+  "promptEn": "maximalist style: dark or jewel-toned background, several bold colors at once (emerald, magenta, mustard, deep purple), repeating patterns as backdrops, oversized serif headlines layered with small text, images and color blocks overlapping, yet one clear reading path and primary button",
+  "avoid": "极繁不是乱。即使元素再多，也要有一条清楚的阅读顺序和一个最突出的按钮。这是难度最高的风格之一，AI 很容易做成一团糟，建议明确写出「保留清晰的阅读主线」。",
+  "neg": [
+    "没有主次、文字被装饰淹没",
+    "no hierarchy, text drowned by decoration"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #E0457B; --a2: #F2B134; --on: #fff; background: #13423A; color: #FBEFD8; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
+  background-image: radial-gradient(circle at 10px 10px, rgba(242,177,52,.25) 3px, transparent 4px), repeating-linear-gradient(45deg, transparent 0 18px, rgba(224,69,123,.12) 18px 20px); background-size: 20px 20px, auto; }
+.nav { background: #3B1E54; } .logo i { background: #F2B134; border-radius: 50%; box-shadow: 0 0 0 3px #E0457B; } .cta { border-radius: 99px; }
+.copy { position: relative; z-index: 1; } .hero h1 { font-size: 40px; line-height: 1; font-style: italic; color: #F2B134; text-shadow: 3px 3px 0 #E0457B; }
+.sub { background: #3B1E54; padding: 8px; } .b1 { border-radius: 99px; box-shadow: 0 0 0 3px #F2B134; }
+.art { background: #E0457B; border-radius: 50% 50% 0 0; box-shadow: -14px 14px 0 #F2B134, -28px 28px 0 #3B1E54; } .art .m { position: absolute; left: 30px; top: 30px; width: 80px; height: 80px; border-radius: 50%; background: repeating-conic-gradient(#F2B134 0 15deg, #13423A 15deg 30deg); }
+.feats article { padding: 12px; background: #3B1E54; border: 2px solid #F2B134; } .feats article:nth-child(2) { background: #E0457B; } .stats b { font-size: 30px; font-style: italic; color: #F2B134; }
+</style>

@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Mid-Century Modern",
+  "zh": "中世纪现代",
+  "alias": [
+    "五十年代现代主义",
+    "Mid-Century"
+  ],
+  "lead": "五六十年代的乐观设计：芥末黄、橄榄绿、焦橙、青绿，回旋镖和圆点等有机几何，复古又轻松。适合咖啡、家具、复古选品店、生活方式品牌。",
+  "prompt": "中世纪现代风格：奶油色背景，芥末黄、焦橙、橄榄绿、青绿四色中选三种，有机几何图形（腰果形、回旋镖、圆点、星芒）作为装饰，几何无衬线或带衬线的复古字体，平涂色块，轻微颗粒质感",
+  "promptEn": "mid-century modern style: cream background, three of mustard, burnt orange, olive and teal, organic geometric shapes (kidney, boomerang, dots, starbursts) as decoration, geometric sans or retro serif type, flat color fills with slight grain",
+  "avoid": "复古色一定要「脏一点」的低饱和版本，纯正的黄和橙会变成快餐店。装饰图形点缀两三个就够。",
+  "neg": [
+    "高饱和纯色、霓虹",
+    "pure saturated colors, neon"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #D2691E; --a2: #2E7D7A; --on: #FFF6E5; background: #F4E9D5; color: #2B2420; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: #D9A42B; box-shadow: 8px 0 0 #2E7D7A; margin-right: 8px; } .cta { border-radius: 99px; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 32px; } .b1 { border-radius: 99px; }
+.art .m { position: absolute; left: 20px; top: 10px; width: 110px; height: 70px; border-radius: 60% 40% 55% 45% / 60% 60% 40% 40%; background: #D9A42B; }
+.art .h { position: absolute; right: 10px; bottom: 10px; width: 90px; height: 90px; border-radius: 50%; background: #2E7D7A; }
+.art::after { content: ""; position: absolute; left: 40px; bottom: 26px; width: 40px; height: 40px; background: #D2691E; clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+.feats article { padding: 12px; border-radius: 20px; background: #FBF3E4; } .feats article:nth-child(2) { background: #E8C77A; } .stats b { color: #D2691E; }
+</style>

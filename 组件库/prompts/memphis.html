@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Memphis",
+  "zh": "孟菲斯",
+  "alias": [
+    "孟菲斯风格",
+    "Memphis Design"
+  ],
+  "lead": "八十年代的叛逆派对：波点、波浪线、三角、撞色，故意不讲规矩。热闹、好玩、年轻，适合潮玩、儿童、音乐节、创意活动。",
+  "prompt": "孟菲斯风格：浅色底上散落波点、波浪线、三角形、圆柱等小图形，粉色、明黄、青绿、黑色撞色，粗体圆润字体，卡片带黑色细描边，整体活泼但主内容区保持干净可读",
+  "promptEn": "Memphis style: light background scattered with small dots, squiggles, triangles and cylinders, clashing pink, bright yellow, teal and black, bold rounded type, cards with thin black outlines, playful overall while the main content area stays clean and readable",
+  "avoid": "装饰图形要绕着内容放，别压在文字上。这种风格信息一多就乱成一锅粥，只适合内容少、情绪为主的页面。",
+  "neg": [
+    "装饰覆盖文字、信息密集",
+    "decorations over text, dense information"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #FF6FA8; --a2: #12A6A0; --on: #111; background: #FFFBEF; color: #111; font-family: "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif;
+  background-image: radial-gradient(#111 1.4px, transparent 1.6px); background-size: 22px 22px; background-position: 0 0; }
+.nav { background: #FFFBEF; border-bottom: 2px solid #111; } .logo i { border-radius: 50%; background: #FFD23F; border: 2px solid #111; } .cta { border: 2px solid #111; border-radius: 99px; }
+.copy { background: #FFFBEF; border: 2px solid #111; padding: 16px; border-radius: 4px; } .hero h1 { font-size: 30px; font-weight: 900; } .b1 { border: 2px solid #111; border-radius: 99px; }
+.art .m { position: absolute; left: 10px; top: 10px; width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 70px solid #FFD23F; }
+.art .h { position: absolute; right: 10px; top: 70px; width: 70px; height: 70px; border-radius: 50%; background: #12A6A0; border: 2px solid #111; }
+.art::after { content: ""; position: absolute; left: 10px; bottom: 6px; width: 120px; height: 20px; background: radial-gradient(circle at 10px 0, transparent 8px, #FF6FA8 8px 11px, transparent 11px) 0 10px / 20px 20px repeat-x; }
+.feats article { padding: 10px; border: 2px solid #111; background: #fff; } .feats article:nth-child(2) { background: #FFD23F; } .stats { background: #111; color: #fff; } .stats b { color: #FFD23F; }
+</style>

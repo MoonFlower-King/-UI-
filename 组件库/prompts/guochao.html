@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Guochao",
+  "zh": "国潮新中式",
+  "alias": [
+    "新国潮",
+    "Chinese Trend Style"
+  ],
+  "lead": "传统纹样、配色和现代平面设计结合：大胆的撞色、粗体字、几何化的传统元素。年轻、有记忆点，适合潮流消费品、联名活动、文创。",
+  "prompt": "国潮新中式风格：以朱红、藏青、明黄、墨绿中的两三种做大块撞色，传统元素（祥云、回纹、窗格）做几何化简化处理并只用于边角装饰，粗黑体或粗宋体大标题，版式像现代海报，元素间距规整",
+  "promptEn": "modern Guochao style: bold color blocking with two or three of vermilion, indigo, imperial yellow and ink green, traditional motifs (clouds, fret patterns, lattice) simplified geometrically and used only as corner accents, bold sans or heavy Song-style headlines, modern poster-like layout with tidy spacing",
+  "avoid": "国潮最容易做俗：纹样铺满、红金堆砌、到处都是书法字。纹样要简化成几何线条，只用在边角；颜色选两三种就够，留出呼吸的空间。",
+  "neg": [
+    "红金堆砌、纹样铺满",
+    "overloaded red and gold, patterns everywhere"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #C8302B; --a2: #1F3A5F; --on: #FFF4E0; background: #FFF4E0; color: #1F1A17; font-family: "PingFang SC", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: #1F3A5F; color: #FFF4E0; } .logo i { background: #F2B134; transform: rotate(45deg); } .cta { background: #C8302B; }
+.hero { background: #C8302B; color: #FFF4E0; margin: 14px; padding: 22px; grid-template-columns: 1fr 140px; box-shadow: inset 0 0 0 4px #C8302B, inset 0 0 0 6px #F2B134; }
+.kicker { color: #F2B134; } .hero h1 { font-size: 34px; font-weight: 900; } .b1 { background: #F2B134; color: #1F1A17; } .b2 { color: #FFF4E0; }
+.art { background: repeating-linear-gradient(0deg, transparent 0 10px, rgba(242,177,52,.6) 10px 12px), repeating-linear-gradient(90deg, transparent 0 10px, rgba(242,177,52,.6) 10px 12px); border: 3px solid #F2B134; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; margin: -35px; border-radius: 50%; background: #1F3A5F; border: 3px solid #F2B134; }
+.feats article { padding: 10px; border: 2px solid #1F3A5F; } .feats b { color: #C8302B; } .stats b { color: #C8302B; font-weight: 900; }
+</style>

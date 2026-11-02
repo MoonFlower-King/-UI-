@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Full-Bleed Imagery",
+  "zh": "沉浸大图",
+  "alias": [
+    "满版大图",
+    "Hero Image"
+  ],
+  "lead": "一张大图铺满整个首屏，文字直接压在图上，用暗角或渐变保证可读。氛围感最强，适合旅行、地产、餐厅、摄影、品牌故事。",
+  "prompt": "沉浸大图风格：首屏为满版出血的场景大图（无边距），图上叠加从下往上的深色渐变遮罩，白色大标题和按钮放在左下角，导航为透明叠在图上，下方内容区为干净的浅色背景",
+  "promptEn": "full-bleed imagery style: the hero is an edge-to-edge scenic photo with no margins, a dark bottom-up gradient overlay, white headline and buttons in the lower left, a transparent navigation bar over the image, clean light content area below",
+  "avoid": "这个风格的成败全看那张图。图不好、太杂乱，字就压不住。一定要加渐变遮罩，别直接把白字放在亮图上。",
+  "neg": [
+    "文字压在杂乱亮图上、无遮罩",
+    "text on busy bright image without overlay"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #fff; --a2: #C48B4E; --on: #1C1A18; background: #F6F3EE; color: #1C1A18; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { position: relative; z-index: 2; color: #fff; } .logo i { border-radius: 50%; } .cta { background: rgba(255,255,255,.2); color: #fff; border: 1px solid rgba(255,255,255,.6); }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 330px; margin-top: -50px; padding: 0; align-content: end; color: #fff; }
+.art { position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(10,8,6,.75)), linear-gradient(165deg, #6E86A0 0%, #C9A27A 45%, #5A4636 75%, #2E241C); }
+.art .m { position: absolute; right: 70px; top: 70px; width: 40px; height: 40px; border-radius: 50%; background: #FFE9C4; box-shadow: 0 0 40px 20px rgba(255,220,170,.5); }
+.copy { position: relative; z-index: 1; padding: 24px; } .kicker { color: #F2D3AE; } .hero h1 { font-size: 32px; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .sub { max-width: 300px; }
+.b1 { border-radius: 99px; } .b2 { color: #fff; } .feats { padding-top: 22px; } .stats b { color: #C48B4E; }
+</style>

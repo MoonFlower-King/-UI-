@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Art Deco",
+  "zh": "装饰艺术",
+  "alias": [
+    "Art Deco",
+    "装饰风艺术"
+  ],
+  "lead": "二三十年代的摩登奢华：对称的几何线条、扇形和阶梯纹样、金色描边配深色底，高挑的细字。隆重、复古、有仪式感，适合酒店、酒吧、珠宝、晚宴邀请。",
+  "prompt": "装饰艺术风格：墨绿或深海军蓝背景，香槟金细线描边与对称几何装饰（扇形、阶梯、放射线），高瘦的几何衬线或无衬线大写字体，字距加宽，版式严格居中对称",
+  "promptEn": "Art Deco style: deep emerald or navy background, champagne-gold hairline borders and symmetrical geometric ornaments (fans, steps, sunbursts), tall narrow geometric display type with wide letter-spacing, strictly centered symmetrical layout",
+  "avoid": "金色只用细线和小装饰，大面积金色块会显得暴发户。装饰纹样放在边框和分隔处，正文区保持干净。",
+  "neg": [
+    "大面积金色、立体金属字",
+    "large gold areas, 3D metallic text"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #C9A961; --a2: #C9A961; --on: #10261F; background: #10261F; color: #EDE3CC; font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #C9A961; letter-spacing: 3px; } .logo i { background: none; border: 1px solid #C9A961; transform: rotate(45deg); }
+.hero { grid-template-columns: 1fr; text-align: center; padding: 26px 40px; margin: 14px; border: 1px solid #C9A961; box-shadow: inset 0 0 0 4px #10261F, inset 0 0 0 5px #C9A961; }
+.art { display: none; } .kicker { letter-spacing: 4px; } .hero h1 { font-size: 30px; letter-spacing: 6px; font-weight: 400; } .hero h1 br { display: none; }
+.acts { justify-content: center; } .b1 { background: none; color: #C9A961; border: 1px solid #C9A961; letter-spacing: 2px; }
+.hero::before { content: ""; display: block; height: 40px; margin: 0 auto 8px; width: 80px; background: repeating-conic-gradient(from -60deg at 50% 100%, #C9A961 0 4deg, transparent 4deg 15deg); clip-path: polygon(0 100%, 50% 0, 100% 100%); }
+.feats { text-align: center; } .feats article { border: 1px solid rgba(201,169,97,.5); padding: 10px; } .feats h3 { letter-spacing: 4px; font-weight: 400; }
+.stats { border-top: 1px solid #C9A961; border-bottom: 1px solid #C9A961; margin: 0 26px; } .stats b { color: #C9A961; font-weight: 400; }
+</style>

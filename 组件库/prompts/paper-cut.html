@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Paper Cut",
+  "zh": "剪纸层叠",
+  "alias": [
+    "纸雕风",
+    "Layered Paper"
+  ],
+  "lead": "一层层剪好的彩纸叠在一起，每层边缘带一点阴影，像纸雕立体书。温暖、有手工感，适合节日活动、儿童内容、故事型落地页。",
+  "prompt": "剪纸层叠风格：主视觉由 4 到 5 层同色系、由浅到深的剪纸形状（山丘、云朵、波浪）叠成，每层带柔和投影营造纸张厚度，背景有极淡的纸纹，配色为暖色同色系，字体圆润",
+  "promptEn": "paper-cut layered style: the hero is built from four or five layers of cut paper shapes (hills, clouds, waves) in one color family from light to dark, each layer with a soft drop shadow to suggest paper thickness, faint paper texture background, warm analogous palette, rounded type",
+  "avoid": "层数和颜色要有秩序：同一色系由浅到深，层与层之间阴影方向一致。颜色乱跳会变成一堆彩纸垃圾。",
+  "neg": [
+    "颜色杂乱、阴影方向不一",
+    "random colors, inconsistent shadow directions"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #D9643A; --a2: #B5482A; --on: #fff; background: #FBEFE3; color: #4A2618; font-family: "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50% 50% 0 50%; } .cta { border-radius: 99px; } .b1 { border-radius: 99px; box-shadow: 0 3px 0 #9E3B1F; }
+.hero { position: relative; grid-template-columns: 1fr; min-height: 270px; } .copy { position: relative; z-index: 2; max-width: 260px; }
+.art { position: absolute; inset: 0; overflow: hidden; }
+.art::before, .art::after, .art .m, .art .h { content: ""; position: absolute; left: -10%; right: -10%; border-radius: 50% 50% 0 0; filter: drop-shadow(0 -4px 5px rgba(74,38,24,.25)); }
+.art::before { top: 120px; bottom: -40px; left: 30%; background: #F6C9A8; } .art .m { top: 160px; bottom: -40px; left: 10%; right: 30%; background: #EFA27A; }
+.art .h { top: 200px; bottom: -60px; left: 45%; background: #E07A4E; } .art::after { top: 235px; bottom: -80px; background: #B5482A; }
+.feats { padding-top: 22px; } .feats article { padding: 12px; border-radius: 14px; background: #fff; box-shadow: 0 3px 8px rgba(74,38,24,.15); } .stats b { color: #D9643A; }
+</style>

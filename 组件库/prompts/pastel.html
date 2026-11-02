@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Pastel Soft",
+  "zh": "马卡龙粉彩",
+  "alias": [
+    "粉彩风",
+    "Pastel"
+  ],
+  "lead": "奶油粉、薄荷绿、浅薰衣草、淡柠檬，像一盒马卡龙。温柔、甜美、减压，适合甜品、美妆、母婴、轻社交产品。",
+  "prompt": "马卡龙粉彩风格：奶白背景，三到四种低饱和粉彩（奶油粉、薄荷绿、浅薰衣草、淡柠檬黄）作为卡片和色块，文字使用深灰紫而不是黑色，圆润无衬线字体，大圆角，几乎没有阴影",
+  "promptEn": "pastel soft style: off-white background, three or four muted pastels (cream pink, mint, pale lavender, soft lemon) for cards and blocks, text in deep plum-gray instead of black, rounded sans-serif type, large rounded corners, almost no shadows",
+  "avoid": "粉彩背景上放白字或浅灰字基本看不清，文字一定要深。颜色选太多会像糖果店，挑三四种固定下来。",
+  "neg": [
+    "浅色字、粉彩上白字",
+    "light text, white text on pastels"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #F2A7B8; --a2: #8C6E9E; --on: #3A2C40; background: #FFF9F5; color: #3A2C40; font-family: "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; } .cta, .b1 { border-radius: 99px; }
+.art { border-radius: 28px; background: #CDEBDD; overflow: hidden; } .art .m { position: absolute; left: 24px; top: 24px; width: 70px; height: 70px; border-radius: 50%; background: #FBE7A1; }
+.art .h { position: absolute; right: -20px; bottom: -20px; width: 110px; height: 110px; border-radius: 50%; background: #DCCFF0; }
+.feats article { padding: 14px; border-radius: 22px; background: #FCE1E6; } .feats article:nth-child(2) { background: #CDEBDD; } .feats article:nth-child(3) { background: #DCCFF0; } .stats b { color: #8C6E9E; }
+</style>

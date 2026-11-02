@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Nordic",
+  "zh": "北欧简约",
+  "alias": [
+    "斯堪的纳维亚风",
+    "Scandinavian"
+  ],
+  "lead": "浅木色、灰白、雾蓝，圆润的无衬线字、柔和的大圆角，干净又温暖。实用、亲切、不冷淡，适合家居、生活服务、儿童与教育产品。",
+  "prompt": "北欧简约风格：灰白和浅木色为底，点缀雾蓝或鼠尾草绿，圆润的无衬线字体，中等圆角，留白充足，插图为简单的几何植物和家具线稿，阴影极轻，整体明亮温暖",
+  "promptEn": "Nordic minimal style: off-white and light wood base with accents of misty blue or sage green, rounded sans-serif type, medium rounded corners, ample white space, simple geometric illustrations of plants and furniture, very light shadows, bright and warm overall",
+  "avoid": "北欧风常被做成「白 + 灰」的样板间，冷冰冰的。一定要有一点暖色（木色、陶土色）和一点自然元素。",
+  "neg": [
+    "冷硬的纯黑纯白、强烈对比",
+    "harsh pure black and white, strong contrast"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #5D7A8C; --a2: #8A9A7B; --on: #fff; background: #F5F3EF; color: #2F3437; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: #D9B88F; } .cta { border-radius: 99px; }
+.hero h1 { font-weight: 600; } .b1 { border-radius: 99px; } .art { border-radius: 22px; background: #E6DED2; overflow: hidden; }
+.art .m { position: absolute; left: 30px; bottom: 0; width: 30px; height: 70px; border-radius: 15px 15px 0 0; background: #8A9A7B; }
+.art .h { position: absolute; right: 24px; bottom: 0; width: 80px; height: 40px; border-radius: 14px 14px 0 0; background: #5D7A8C; }
+.art::after { content: ""; position: absolute; right: 40px; top: 24px; width: 34px; height: 34px; border-radius: 50%; background: #F2DDBF; }
+.feats article { padding: 12px; border-radius: 16px; background: #fff; } .stats b { color: #5D7A8C; }
+</style>

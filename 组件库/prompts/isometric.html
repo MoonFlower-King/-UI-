@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Isometric",
+  "zh": "等距插画",
+  "alias": [
+    "2.5D 等距",
+    "Isometric Illustration"
+  ],
+  "lead": "用 30 度等距视角画出的小场景、小方块，有立体感又不复杂，像一座座精致的模型。清楚、有趣、适合解释流程，常用于科技产品、物流、数据与平台介绍。",
+  "prompt": "等距插画风格：主视觉为 30 度等距视角的立体小场景（方块、建筑、设备），每个立方体三个面用同一色相的三档明度上色，背景浅色干净，其余界面扁平简洁，配色为两三种柔和主色，无衬线字体",
+  "promptEn": "isometric style: hero is a small 3D scene in 30-degree isometric projection (cubes, buildings, devices), each cube's three faces colored with three lightness steps of one hue, clean light background, the rest of the interface flat and simple, two or three soft main colors, sans-serif type",
+  "avoid": "等距插画要统一视角和光源方向（比如顶面最亮、左面中、右面最暗），混用透视就会穿帮。插图别塞太多物件，一个场景讲清一件事。",
+  "neg": [
+    "透视混乱、光源方向不一",
+    "mixed perspectives, inconsistent lighting"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #3D5AFE; --a2: #3D5AFE; --on: #fff; background: #F3F5F9; color: #1E2433; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { background: #FFB74D; transform: rotate(45deg) scale(.8); } .cta, .b1 { border-radius: 8px; }
+.art { min-height: 170px; }
+.art .m, .art .h, .art::after { content: ""; position: absolute; width: 60px; height: 60px; transform: rotateX(55deg) rotateZ(45deg); }
+.art .m { left: 50px; top: 40px; background: #8C9EFF; box-shadow: 1px 1px 0 #6A7FF0, 2px 2px 0 #6A7FF0, 3px 3px 0 #6A7FF0, 4px 4px 0 #6A7FF0, 5px 5px 0 #6A7FF0, 6px 6px 0 #5468E0, 7px 7px 0 #5468E0, 8px 8px 0 #5468E0, 9px 9px 0 #5468E0, 10px 10px 0 #5468E0, 11px 11px 0 #4253C8, 12px 12px 0 #4253C8, 13px 13px 0 #4253C8, 14px 14px 0 #4253C8, 15px 15px 0 #4253C8; }
+.art .h { left: 90px; top: 80px; width: 40px; height: 40px; background: #FFCC80; box-shadow: 1px 1px 0 #FFB74D, 2px 2px 0 #FFB74D, 3px 3px 0 #FFB74D, 4px 4px 0 #FFA726, 5px 5px 0 #FFA726, 6px 6px 0 #FFA726, 7px 7px 0 #FB8C00, 8px 8px 0 #FB8C00; }
+.art::after { left: 20px; top: 90px; width: 40px; height: 40px; background: #A5D6A7; box-shadow: 1px 1px 0 #81C784, 2px 2px 0 #81C784, 3px 3px 0 #66BB6A, 4px 4px 0 #66BB6A, 5px 5px 0 #4CAF50, 6px 6px 0 #4CAF50; }
+.feats article { padding: 12px; border-radius: 10px; background: #fff; } .stats b { color: #3D5AFE; }
+</style>

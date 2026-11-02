@@ -50,9 +50,11 @@ function toggle(id) {
   const it = byId[id], g = groupById[it.group];
   if (picked.includes(id)) { picked = picked.filter((x) => x !== id); }
   else {
-    const same = g.pick === 'one' ? picked.find((x) => byId[x].group === g.id) : null;
+    // exclusive：几个组共用一个「只能选一个」，比如 50 种网站风格分成 6 组，但整站只能有一种主风格
+    const key = (x) => x.exclusive || x.id;
+    const same = g.pick === 'one' ? picked.find((x) => key(groupById[byId[x].group]) === key(g)) : null;
     picked = [...picked.filter((x) => x !== same), id];
-    if (same) toast(`「${g.name}」只选一个，已换成${it.zh}`);
+    if (same) toast(`「${g.label || g.name}」只选一个，已换成${it.zh}`);
   }
   save(); syncCards(); renderComposer();
 }
@@ -67,7 +69,7 @@ function compile() {
     const lines = [`${en ? k.headEn : k.head}${en ? ': ' : '：'}${subject}${en ? '.' : '。'}`];
     for (const g of groups.filter((x) => x.kind === k.id)) {
       const its = mine.filter((it) => it.group === g.id);
-      if (its.length) lines.push(`${en ? g.en : g.name}${en ? ': ' : '：'}${its.map((it) => en ? it.promptEn : it.prompt).join(en ? '; then ' : '；随后')}${en ? '.' : '。'}`);
+      if (its.length) lines.push(`${en ? g.labelEn || g.en : g.label || g.name}${en ? ': ' : '：'}${its.map((it) => en ? it.promptEn : it.prompt).join(en ? '; then ' : '；随后')}${en ? '.' : '。'}`);
     }
     mine.forEach((it) => { if (it.neg) neg.push(it.neg[en ? 1 : 0]); });
     out.push(lines.join('\n'));

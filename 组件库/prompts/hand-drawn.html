@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Hand-Drawn",
+  "zh": "手绘涂鸦",
+  "alias": [
+    "手绘风",
+    "Doodle"
+  ],
+  "lead": "铅笔或马克笔画的线条、不完全规整的边框、随手的箭头和圈注，像笔记本里的草图。亲切、轻松、有人情味，适合教育、笔记工具、儿童、社区类产品。",
+  "prompt": "手绘涂鸦风格：纸白背景，所有边框和分隔线为略带抖动的手绘线条，按钮和卡片像用马克笔圈出来的，点缀手绘箭头、星星、下划线和圈注，标题为手写感字体，正文为清晰的无衬线，配一种马克笔高亮色",
+  "promptEn": "hand-drawn doodle style: paper-white background, all borders and dividers drawn as slightly wobbly hand-drawn lines, buttons and cards look circled with a marker, hand-drawn arrows, stars, underlines and circles as accents, handwritten-style headings with clear sans-serif body, one marker highlight color",
+  "avoid": "手绘只用在装饰、标题和边框上，正文必须是正常字体。线条风格（粗细、笔触）全站统一，否则像好几个人画的。",
+  "neg": [
+    "正文也用手写体、笔触不统一",
+    "handwritten body text, inconsistent strokes"
+  ]
+}
+-->
+<style>
+/* 通用骨架（这批风格共用，后面是这个风格自己的样式） */
+.nav { justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 14px; height: 14px; background: var(--a); }
+.nav nav { gap: 18px; opacity: .8; } .cta { padding: 5px 12px; background: var(--a); color: var(--on); }
+.hero { display: grid; grid-template-columns: 1fr 170px; gap: 20px; padding: 26px; }
+.kicker { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.hero h1 { margin-top: 10px; font-size: 32px; line-height: 1.2; font-weight: 700; }
+.sub { margin-top: 12px; font-size: 12px; line-height: 1.7; opacity: .88; }
+.acts { gap: 14px; margin-top: 16px; font-size: 12px; font-weight: 600; } .b1 { padding: 8px 14px; background: var(--a); color: var(--on); } .b2 { color: var(--a2); }
+.art { position: relative; min-height: 150px; }
+.feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 26px 22px; }
+.feats b { font-size: 11px; color: var(--a2); } .feats h3 { font-size: 15px; font-weight: 700; } .feats p { font-size: 11px; line-height: 1.6; opacity: .85; }
+.stats { justify-content: space-around; padding: 18px 26px; } .stats b { display: block; font-size: 24px; font-weight: 700; } .stats span { font-size: 11px; opacity: .75; }
+.ft { padding: 14px 26px 20px; font-size: 10.5px; opacity: .65; }
+.site { --a: #2A2A2A; --a2: #E4572E; --on: #FFFDF6; background: #FFFDF6; color: #2A2A2A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1, .feats h3, .logo { font-family: "Bradley Hand", "Comic Sans MS", "Kaiti SC", "STKaiti", cursive; }
+.logo i { border-radius: 50% 45% 55% 40%; background: none; border: 2px solid #E4572E; } .cta, .b1 { border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; border: 2px solid #2A2A2A; background: #FFE066; color: #2A2A2A; }
+.hero h1 { font-size: 32px; } .hero h1 br + * { } .kicker::after { content: " ✎"; }
+.sub { background: linear-gradient(transparent 70%, rgba(255,224,102,.7) 70%); display: inline; }
+.art { border: 2px solid #2A2A2A; border-radius: 30px 12px 26px 10px / 12px 28px 10px 30px; } .art .m { position: absolute; left: 30px; top: 30px; width: 70px; height: 70px; border: 2px dashed #E4572E; border-radius: 48% 52% 46% 54%; }
+.art::after { content: "← 今晚有位"; position: absolute; right: 8px; bottom: 16px; font: 14px "Bradley Hand", "Kaiti SC", cursive; color: #E4572E; }
+.feats article { padding: 12px; border: 2px solid #2A2A2A; border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px; } .stats b { color: #E4572E; font-family: "Bradley Hand", "Kaiti SC", cursive; }
+</style>
