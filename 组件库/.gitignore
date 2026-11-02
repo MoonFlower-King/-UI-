@@ -1,4 +1,5 @@
 # 由 npm run build:ui 生成，不入库
 /data/components.js
 /data/prompts.js
+/data/prompt-code/
 /data/code/

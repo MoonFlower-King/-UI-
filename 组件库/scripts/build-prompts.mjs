@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// 把 prompts/*.html 收录成 data/prompts.js，提示词调配台（prompts.html）直接读取它。
+// 把 prompts/*.html 收录成 data/prompts.js（名字、提示词等文字）和 data/prompt-code/<分组>.js（预览代码），
+// 提示词调配台（prompts.html）先读文字，卡片快到屏幕时才按分组下载预览代码，词条再多首屏也不变慢。
 // 用法：在仓库根目录 npm run build:ui（会顺带跑这个脚本）
 //
 // 词条文件和 components/ 是同一种格式：开头一段 HTML 注释包着 JSON 元信息，后面是预览代码。
@@ -20,7 +21,7 @@
 // - 同一组词条可以共用一个「舞台」：prompts/_<舞台名>.html（比如所有运镜共用一个江边场景），
 //   词条只写自己那部分 CSS。舞台在 data/prompt-groups.json 的 stage 字段里指定
 // 词条属于哪个组、排第几，由 data/prompt-groups.json 决定，新词条要在那里登记。
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -63,7 +64,19 @@ for (const g of groups) {
 const orphan = [...byId].filter(([, it]) => !it.group).map(([id]) => id);
 if (orphan.length) fail(`这些词条没有在 data/prompt-groups.json 里登记：${orphan.join('、')}`);
 
-const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items, stages, kits };
-writeFileSync(join(ROOT, 'data/prompts.js'),
-  `// 由 scripts/build-prompts.mjs 生成，不要手改。\nwindow.JY_PROMPTS = ${JSON.stringify(out)};\n`);
-console.log(`✓ 提示词调配台：${groups.length} 组、${items.length} 个词条、${Object.keys(stages).length} 个舞台、${Object.keys(kits).length} 套骨架`);
+// 预览代码按分组拆开：每组一个文件，用到哪组才加载哪组（用 <script> 而不是 fetch，直接双击打开 html 也能用）
+const HEAD = '// 由 scripts/build-prompts.mjs 生成，不要手改。\n';
+const codeDir = join(ROOT, 'data/prompt-code');
+rmSync(codeDir, { recursive: true, force: true });
+mkdirSync(codeDir, { recursive: true });
+let codeBytes = 0;
+for (const g of groups) {
+  const code = Object.fromEntries(items.filter((it) => it.group === g.id).map((it) => [it.id, it.code]));
+  const js = `${HEAD}(window.JY_PROMPT_CODE ||= {})[${JSON.stringify(g.id)}] = ${JSON.stringify(code)};\n`;
+  codeBytes = Math.max(codeBytes, Buffer.byteLength(js));
+  writeFileSync(join(codeDir, `${g.id}.js`), js);
+}
+const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items: items.map(({ code, ...it }) => it), stages, kits };
+const index = `${HEAD}window.JY_PROMPTS = ${JSON.stringify(out)};\n`;
+writeFileSync(join(ROOT, 'data/prompts.js'), index);
+console.log(`✓ 提示词调配台：${groups.length} 组、${items.length} 个词条、${Object.keys(stages).length} 个舞台、${Object.keys(kits).length} 套骨架（索引 ${Math.round(Buffer.byteLength(index) / 1024)}KB，最大的分组代码 ${Math.round(codeBytes / 1024)}KB）`);
