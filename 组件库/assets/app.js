@@ -140,7 +140,7 @@ syncTheme();
 //    又轻又快，所以滚到哪都不会看到空白。
 // 2. 上层「自动演示」iframe（assets/autoplay.js）：卡片进入屏幕才临时建一个 iframe，加载好后淡入盖住首帧；
 //    滚出去就把 iframe 整个删掉（连同里面的网页），所以几百张卡片的页面也只有屏幕里那几个 iframe，省内存、省 CPU。
-// 所有预览和网页共用一条主线程，所以 iframe 一次只启动一张、错开 60ms；同时最多播 MAX_LIVE 张（离屏幕中心近的优先）。
+// 所有预览和网页共用一条主线程，所以 iframe 一次只启动一张、错开 60ms，离屏幕中心近的先开。
 // 鼠标移进卡片：从头重播一遍；访客自己点一下就接管。系统开了「减少动态效果」就不自动演示。
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
@@ -224,10 +224,9 @@ const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (!painting) { painting = true; idle(paintSome, { timeout: 200 }); }
 }), { rootMargin: '600px 0px' });
 
-// 屏幕里看得到的卡片播放演示（最多 MAX_LIVE 张），滑出屏幕的立刻停掉、换回静态首帧。
+// 屏幕里看得到的卡片全部一起播放、一直循环（作者明确要求，不要设上限），滑出屏幕的立刻停掉、换回静态首帧。
 // 新进屏幕的卡片按离屏幕中心由近到远、每隔一小会儿开一张，避免一下子全挤在同一帧里卡住。
 // 下面的 t 都是卡片里的 .thumb，播放时 t.frame 是临时建的 iframe。
-const MAX_LIVE = canHover ? 10 : 4;
 const inView = new Set(), playing = new Set(), queue = new Set();
 let pumping = false, hovered = null, pickTimer;
 function frameOf(t) {
@@ -256,7 +255,7 @@ const stop = (t) => { playing.delete(t); queue.delete(t); if (t.frame) { t.frame
 function pick() {
   const mid = innerHeight / 2;
   const dist = (t) => { const r = t.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid) + Math.abs(r.left + r.width / 2 - innerWidth / 2) / 4; };
-  const want = new Set([...inView].filter((t) => t.isConnected).sort((x, y) => dist(x) - dist(y)).slice(0, MAX_LIVE));
+  const want = new Set([...inView].filter((t) => t.isConnected).sort((x, y) => dist(x) - dist(y)));
   if (hovered?.isConnected) want.add(hovered);
   playing.forEach((t) => { if (!want.has(t)) stop(t); });
   want.forEach((t) => { if (!playing.has(t)) { playing.add(t); load(t); } });
