@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Care Label",
+  "zh": "衣服洗标",
+  "alias": [
+    "水洗标",
+    "织唛"
+  ],
+  "lead": "衣服内侧的小洗标：白色缎面布条、细细的织纹、一排洗涤图标和几行小字，边缘轻微卷曲。细节控、温柔、带点幽默，适合服装品牌、可持续时尚、生活方式和“使用说明”类页面。",
+  "prompt": "衣服洗标风格：浅暖灰背景，内容卡为竖长的白色缎面布条（极细横向织纹、上端缝线、底部轻微斜切），里面一排线性洗涤小图标（盆、三角、方框、熨斗的简化几何）与几行小号无衬线说明，配色几乎只有黑白，点缀一点品牌色织唛",
+  "promptEn": "care label style: light warm gray background, content cards as tall white satin ribbons (very fine horizontal weave, a stitched top edge, a slightly angled bottom), a row of simple line laundry icons inside (simplified geometric tub, triangle, square, iron) with a few lines of small sans-serif text, almost only black and white, a touch of brand color woven label",
+  "avoid": "图标用简化几何即可，别照搬标准洗涤符号的全部细节；布条的织纹要非常细。拿来写“使用说明”很有趣。",
+  "neg": [
+    "照搬标准符号、粗纹理",
+    "copying standard symbols wholesale, coarse texture"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1E1E1E; --a2: #C2563E; --on: #fff; background: #ECE9E3; color: #1E1E1E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 700; }
+.art .m { position: absolute; left: 50px; top: 0; width: 72px; height: 150px; background: repeating-linear-gradient(transparent 0 1px, rgba(0,0,0,.04) 1px 2px), #FDFDFB; box-shadow: 0 3px 8px rgba(0,0,0,.1); clip-path: polygon(0 0, 100% 0, 100% 92%, 50% 100%, 0 92%); }
+.art .m::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; border-top: 1px dashed #9A958C; }
+.art .m::after { content: "100% 安静\A 低温阅读\A 勿带手机\A 山月书房"; white-space: pre; position: absolute; left: 0; right: 0; top: 66px; text-align: center; font: 8.5px/1.8 -apple-system, "Inter", "PingFang SC", sans-serif; color: #1E1E1E; }
+.art .h { position: absolute; left: 60px; top: 22px; width: 14px; height: 10px; border: 1.2px solid #1E1E1E; border-top: 0; border-radius: 0 0 3px 3px; box-shadow: 0 0 0 0 transparent; }
+.art::before { content: "△ □ ○"; position: absolute; left: 80px; top: 19px; font-size: 11px; letter-spacing: 3px; z-index: 1; }
+.art::after { content: ""; position: absolute; left: 58px; top: 44px; width: 56px; height: 12px; background: #C2563E; z-index: 1; }
+.feats article { padding: 12px; background: #FDFDFB; border-top: 1px dashed #9A958C; } .feats b { color: #C2563E; }
+.stats b { font-weight: 600; }
+</style>

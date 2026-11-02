@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Spec Sheet",
+  "zh": "规格参数表",
+  "alias": [
+    "技术规格",
+    "参数页"
+  ],
+  "lead": "像一份产品规格书：左边是产品线稿，右边一行行参数用细线隔开，数值右对齐，单位小一号。精确、可信、工程师气质，适合硬件产品、户外装备、相机、汽车和工业品牌。",
+  "prompt": "规格参数表风格：浅灰白背景，主视觉为产品细线稿（带尺寸标注线与小号数值），右侧或下方为参数表（左列参数名、右列数值右对齐、单位缩小、细分隔线），等宽数字，无衬线标题，单一深色加一个标注橙",
+  "promptEn": "spec sheet style: light gray-white background, a hero of a fine-line product drawing (with dimension lines and small values), a specification table beside or below (parameter names in the left column, right-aligned values in the right, smaller units, thin dividers), monospaced numerals, sans-serif headings, one dark color plus an annotation orange",
+  "avoid": "数值必须右对齐、单位统一缩小，表格才清楚；尺寸标注线要细且带端点短线。别把参数做成花哨图标卡片。",
+  "neg": [
+    "数值不对齐、图标化参数",
+    "misaligned values, iconified specs"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1C2026; --a2: #E3702E; --on: #fff; background: #F4F5F6; color: #1C2026; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E3702E; }
+.art::before { content: "重量 ········ 1.2 kg\A 尺寸 ···· 32 × 24 cm\A 座位 ············ 12\A 开放 ······ 18–24 时"; white-space: pre; position: absolute; left: 0; right: 0; top: 50px; font: 11px/2.1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; border-top: 1px solid #C9CDD2; }
+.art .m { position: absolute; left: 10px; top: 4px; width: 100px; height: 34px; border: 1px solid #1C2026; border-radius: 4px; }
+.art .h { position: absolute; left: 10px; top: 42px; width: 100px; height: 1px; background: #E3702E; }
+.art .h::before, .art .h::after { content: ""; position: absolute; top: -3px; width: 1px; height: 7px; background: #E3702E; } .art .h::before { left: 0; } .art .h::after { right: 0; }
+.art::after { content: "320"; position: absolute; left: 116px; top: 36px; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E3702E; }
+.feats article { padding: 10px 0; border-top: 1px solid #C9CDD2; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E3702E; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 500; }
+</style>

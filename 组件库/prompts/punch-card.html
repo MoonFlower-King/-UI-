@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Punch Card",
+  "zh": "打孔卡",
+  "alias": [
+    "计算机穿孔卡",
+    "老式卡片"
+  ],
+  "lead": "早期计算机用的打孔卡：米黄卡片、一角斜切、密密麻麻的列编号和一个个长方形小孔。理性、古早、带着计算机考古的浪漫，适合编程教育、开发者社区、科技博物馆和数据主题活动。",
+  "prompt": "打孔卡风格：浅灰背景，内容卡为米黄色长方卡片（左上角斜切、细密的列编号小字、若干位置被打成长方形小孔透出底色），顶部一行等宽大写文字，配色只有米黄、深灰与一点红色印刷线，等宽字体为主",
+  "promptEn": "punch card style: light gray background, content cards as buff rectangular cards (top-left corner clipped, dense tiny column numbers, some positions punched into small rectangular holes showing the background), a line of monospaced uppercase text along the top, palette of only buff, dark gray and a thin red printed line, mainly monospaced type",
+  "avoid": "斜切角和长方小孔是辨识点；孔要排在列上，随机散点就不像了。正文仍放在卡片空白处，别被孔打穿。",
+  "neg": [
+    "圆孔乱撒、孔打穿正文",
+    "random round holes, holes through body text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B2B2B; --a2: #B8382E; --on: #F1E6C8; background: #DDDDD8; color: #2B2B2B; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.cta, .b1 { border-radius: 0; } .hero h1 { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 26px; } .kicker { color: #B8382E; }
+.copy { background: #F1E6C8; padding: 14px 16px; clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px); box-shadow: inset 0 3px 0 #B8382E; }
+.art .m { position: absolute; left: 0; top: 0; width: 170px; height: 150px; background: #F1E6C8; clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+  background: linear-gradient(#3A3A36 0 0) 20px 30px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 32px 60px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 44px 18px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 56px 90px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 68px 44px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 80px 110px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 92px 30px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 104px 76px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 116px 18px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 128px 124px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 140px 60px / 5px 10px no-repeat, linear-gradient(#3A3A36 0 0) 152px 96px / 5px 10px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 11px, rgba(43,43,43,.15) 11px 12px), #F1E6C8; }
+.art::after { content: "0 1 2 3 4 5 6 7 8 9"; position: absolute; left: 14px; bottom: 4px; white-space: nowrap; font-size: 8px; letter-spacing: 3px; color: #8A7E5E; }
+.feats article { padding: 10px; background: #F1E6C8; clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px); } .feats b { color: #B8382E; } .feats h3 { text-transform: uppercase; font-size: 13px; }
+.stats b { font-weight: 700; }
+</style>

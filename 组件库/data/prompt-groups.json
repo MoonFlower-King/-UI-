@@ -76,7 +76,10 @@
         "bamboo",
         "water-town",
         "crackle",
-        "lantern"
+        "lantern",
+        "rubbing",
+        "gongbi",
+        "kite"
       ]
     },
     {
@@ -113,7 +116,10 @@
         "tartan",
         "iceland",
         "savanna",
-        "subway-tile"
+        "subway-tile",
+        "rosemaling",
+        "black-figure",
+        "iznik"
       ]
     },
     {
@@ -165,7 +171,10 @@
         "renaissance",
         "byzantine",
         "vorticism",
-        "orphism"
+        "orphism",
+        "fauvism",
+        "impressionism",
+        "hard-edge"
       ]
     },
     {
@@ -218,7 +227,11 @@
         "timeline",
         "toc-index",
         "chat-ui",
-        "command-palette"
+        "command-palette",
+        "spec-sheet",
+        "marquee",
+        "sidebar-portfolio",
+        "wireframe"
       ]
     },
     {
@@ -263,7 +276,10 @@
         "slate",
         "sand-dune",
         "ice",
-        "crumpled-paper"
+        "crumpled-paper",
+        "terracotta",
+        "brushed-steel",
+        "washi"
       ]
     },
     {
@@ -304,7 +320,10 @@
         "pyrography",
         "layered-paper",
         "tie-dye",
-        "stencil"
+        "stencil",
+        "embroidered-patch",
+        "quilling",
+        "string-art"
       ]
     },
     {
@@ -351,7 +370,11 @@
         "pinball",
         "motel",
         "slide-film",
-        "workout-80s"
+        "workout-80s",
+        "punch-card",
+        "fax",
+        "jukebox",
+        "drive-in"
       ]
     },
     {
@@ -399,7 +422,11 @@
         "star-chart",
         "envelope",
         "luggage-tag",
-        "weather-map"
+        "weather-map",
+        "nutrition-label",
+        "laundry-tag",
+        "crossword",
+        "safety-sign"
       ]
     },
     {
@@ -448,7 +475,10 @@
         "tech-conference",
         "architect",
         "coffee-roaster",
-        "music-festival"
+        "music-festival",
+        "boutique-hotel",
+        "farm",
+        "nonprofit"
       ]
     },
     {

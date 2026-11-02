@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Farm Direct",
+  "zh": "农场直销",
+  "alias": [
+    "有机农场",
+    "农产品直供"
+  ],
+  "lead": "一家小农场的官网：手绘感的蔬果、田垄的条纹、每样东西旁边写着产地和采摘日，颜色像晒过太阳的土地。真诚、新鲜、看得见源头，适合农场直销、有机蔬菜订阅、社区支持农业和农家乐。",
+  "prompt": "农场直销风格：麦秆米黄背景，主色为叶绿与泥土褐，点缀番茄红和南瓜橙，主视觉为平涂的蔬果组合与一片田垄条纹（斜向深浅绿条），粗衬线或手写感标题，产品卡为白色带小标签（产地、采摘日），等宽小字标注",
+  "promptEn": "farm direct style: straw beige background, main colors leaf green and soil brown with tomato red and pumpkin orange accents, a hero of flat-painted produce and a patch of furrowed field stripes (diagonal light and dark green bands), heavy serif or hand-lettered headings, white product cards with small tags (origin, harvest date), small monospaced labels",
+  "avoid": "产地和采摘日这类具体信息最打动人，要写上；颜色保持自然的土地色，别用荧光绿和卡通笑脸蔬菜。",
+  "neg": [
+    "卡通笑脸蔬菜、荧光绿",
+    "cartoon smiling vegetables, neon green"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3E6B2E; --a2: #C8452E; --on: #FBF6E8; background: #F3EAD2; color: #2E2618; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 4px; } .hero h1 { font-weight: 800; color: #3E6B2E; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8A5A2E; }
+.art { overflow: hidden; border-radius: 6px; background: repeating-linear-gradient(-30deg, #7FA65A 0 10px, #5E8A3E 10px 20px) 0 90px / 100% 60px no-repeat, #F7E9C6; height: 150px; }
+.art .m { position: absolute; left: 30px; top: 30px; width: 46px; height: 42px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #E8644A, #C8452E); }
+.art .m::after { content: ""; position: absolute; left: 18px; top: -8px; width: 12px; height: 10px; border-radius: 0 100%; background: #3E6B2E; }
+.art .h { position: absolute; left: 86px; top: 36px; width: 56px; height: 44px; border-radius: 50% 50% 46% 46%; background: repeating-linear-gradient(90deg, #E8923A 0 8px, #D27A26 8px 10px); }
+.art::after { content: "11.02 采摘"; position: absolute; right: 8px; top: 8px; padding: 2px 6px; background: #fff; font: 9px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #2E2618; }
+.feats article { padding: 12px; background: #fff; border-radius: 6px; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8A5A2E; }
+.stats { background: #3E6B2E; color: #FBF6E8; } .stats b { color: #F3D27A; }
+</style>

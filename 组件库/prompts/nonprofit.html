@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Nonprofit",
+  "zh": "公益组织",
+  "alias": [
+    "慈善机构",
+    "非营利组织"
+  ],
+  "lead": "一家公益组织的官网：真实的人物照片、大号的成果数字、清楚的“如何帮助”和一个温暖醒目的捐助按钮，语气诚恳。可信、温暖、有行动力，适合公益基金会、志愿者组织、社区项目和环保团体。",
+  "prompt": "公益组织风格：暖白背景，一个温暖而不刺眼的主色（如赭橙或深青绿），首屏为真实温暖的人物场景画面与一句诚恳的大标题，成果区为三个大号数字配简短说明，捐助按钮为主色大圆角，无衬线标题，正文行距宽、易读",
+  "promptEn": "nonprofit style: warm white background, one warm but not harsh main color (such as ochre orange or deep teal), a first screen with a warm real-life scene and one sincere large headline, an impact section with three big numbers and short captions, a large rounded main-color donate button, sans-serif headings, widely leaded readable body text",
+  "avoid": "诚恳靠具体数字和真实画面，不靠煽情；别用苦难特写博同情。捐助按钮颜色只留给它。",
+  "neg": [
+    "苦难特写、煽情文案",
+    "close-ups of suffering, manipulative copy"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #D9733A; --a2: #2E6E68; --on: #fff; background: #FCF9F3; color: #26302E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 999px; font-weight: 800; } .hero h1 { font-weight: 800; } .kicker { color: #2E6E68; font-weight: 700; }
+.art { overflow: hidden; border-radius: 16px; background: linear-gradient(#F7D9B8, #EBB88A); }
+.art .m { position: absolute; left: 30px; bottom: 0; width: 44px; height: 80px; border-radius: 22px 22px 0 0; background: #2E6E68; }
+.art .m::before { content: ""; position: absolute; left: 8px; top: -30px; width: 28px; height: 28px; border-radius: 50%; background: #8A5A3A; }
+.art .h { position: absolute; left: 90px; bottom: 0; width: 36px; height: 60px; border-radius: 18px 18px 0 0; background: #D9733A; }
+.art .h::before { content: ""; position: absolute; left: 6px; top: -24px; width: 24px; height: 24px; border-radius: 50%; background: #5A3A26; }
+.art::after { content: ""; position: absolute; left: 66px; bottom: 34px; width: 36px; height: 6px; border-radius: 3px; background: #26302E; transform: rotate(-8deg); }
+.feats article { padding: 12px; border-radius: 12px; background: #fff; } .feats b { color: #2E6E68; font-weight: 800; }
+.stats b { color: #D9733A; font-size: 28px; font-weight: 800; }
+</style>

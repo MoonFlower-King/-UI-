@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Nutrition Label",
+  "zh": "营养成分表",
+  "alias": [
+    "成分表",
+    "营养标签"
+  ],
+  "lead": "食品包装背面的营养成分表：粗黑边框、粗细不同的分隔横线、左边项目右边数值，排版严谨又一目了然。直白、可信、带点幽默，适合食品饮料、健康品牌、数据可视化和自嘲式文案页面。",
+  "prompt": "营养成分表风格：白色背景，核心内容装在黑色粗边框的表格里（大号粗体标题、粗细三级分隔横线、左列项目右列数值与百分比、小号脚注），粗压缩无衬线与常规无衬线混排，只有黑白两色，可用一个强调色标注重点数值",
+  "promptEn": "nutrition label style: white background, core content inside a table with a thick black border (big bold title, three weights of dividing rules, items on the left and values with percentages on the right, small footnotes), condensed bold sans mixed with regular sans, black and white only, optionally one accent color on a key value",
+  "avoid": "分隔线粗细三级是辨识点；数字右对齐。拿它写“书房成分”这类幽默文案很合适，但别仿真实法规标签的认证标识。",
+  "neg": [
+    "分隔线粗细一样、仿真实法规标识",
+    "uniform rule weights, imitating real regulatory marks"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #D9442E; --on: #fff; background: #fff; color: #111; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; font-weight: 800; } .hero h1 { font-weight: 900; letter-spacing: -.5px; }
+.art { border: 3px solid #111; padding: 6px 8px; min-height: 150px; }
+.art::before { content: "书房成分\A 每晚 · 12 座"; white-space: pre; display: block; font: 900 15px/1.2 -apple-system, "Inter", "PingFang SC", sans-serif; border-bottom: 8px solid #111; padding-bottom: 3px; }
+.art::after { content: "安静 ·············· 98%\A 书香 ·············· 86%\A 茶 ··················· 3 壶\A 手机 ················ 0%"; white-space: pre; display: block; font: 600 10.5px/2 -apple-system, "Inter", "PingFang SC", sans-serif; background: linear-gradient(#111 0 0) 0 21px / 100% 1px no-repeat, linear-gradient(#111 0 0) 0 42px / 100% 1px no-repeat, linear-gradient(#111 0 0) 0 63px / 100% 3px no-repeat; }
+.feats article { border-top: 4px solid #111; padding-top: 6px; } .feats b { font-weight: 900; color: #111; } .feats article:nth-child(1) b { color: #D9442E; }
+.stats { border: 3px solid #111; margin: 0 26px; } .stats b { font-weight: 900; }
+</style>
