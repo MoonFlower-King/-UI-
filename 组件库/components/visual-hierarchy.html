@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Visual Hierarchy",
+  "zh": "视觉层级",
+  "lead": "通过大小、粗细、颜色区分主次，让人一眼知道先看什么。左边每行一样重，右边一眼就看到价格。",
+  "prompt": "建立 Visual Hierarchy：价格 32px 粗体最显眼，商品名 16px 中粗，说明文字 13px 灰色，按钮用唯一的品牌色。"
+}
+-->
+<div class="vs">
+  <figure><div class="card flat"><p>无线耳机</p><p>主动降噪，续航 30 小时</p><p>¥899</p><p>加入购物车</p></div><figcaption>没有层级</figcaption></figure>
+  <figure><div class="card"><small>主动降噪 · 续航 30 小时</small><b>无线耳机</b><strong>¥899</strong><button>加入购物车</button></div><figcaption>有 Visual Hierarchy</figcaption></figure>
+</div>
+
+<style>
+.vs { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.vs figure { margin: 0; display: grid; gap: 6px; justify-items: center; }
+.vs figcaption { font-size: 12px; color: #71717A; }
+.card { width: 150px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; display: grid; gap: 4px; }
+.flat p { margin: 0; font-size: 13px; color: #3F3F46; }
+.card small { font-size: 11px; color: #A1A1AA; } .card b { font-size: 15px; }
+.card strong { font-size: 26px; color: #18181B; }
+.card button { margin-top: 6px; border: 0; border-radius: 8px; background: #FA8C16; color: #fff; padding: 8px; font-size: 12px; }
+</style>

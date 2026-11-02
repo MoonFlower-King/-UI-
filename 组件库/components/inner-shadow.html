@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Inner Shadow",
+  "zh": "内阴影",
+  "lead": "阴影在元素内部，做出凹陷的感觉，常用于输入框、进度槽，让人觉得“这里可以填东西”。",
+  "prompt": "输入框加轻微 Inner Shadow：box-shadow: inset 0 2px 4px rgba(0,0,0,.06)，聚焦时外加 3px 品牌色光圈。"
+}
+-->
+<div class="ins">
+  <input placeholder="搜索歌曲、歌手">
+  <div class="track"><i></i></div>
+</div>
+
+<style>
+.ins { display: grid; gap: 16px; width: min(260px, 88vw); }
+.ins input { border: 1px solid #E4E4E7; border-radius: 12px; padding: 12px 14px; font-size: 14px; background: #F4F4F5; outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.08); transition: box-shadow .2s, background .2s; }
+.ins input:focus { background: #fff; box-shadow: inset 0 2px 4px rgba(0,0,0,.04), 0 0 0 3px #FFE7BA; border-color: #FA8C16; }
+.track { height: 12px; border-radius: 99px; background: #F4F4F5; box-shadow: inset 0 2px 4px rgba(0,0,0,.12); padding: 2px; }
+.track i { display: block; height: 100%; width: 62%; border-radius: 99px; background: #FA8C16; }
+</style>

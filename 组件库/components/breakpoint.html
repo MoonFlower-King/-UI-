@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Breakpoint",
+  "zh": "断点",
+  "lead": "屏幕宽度到某个值时切换布局，那个值就是断点。拖动滑块改变宽度，看布局在哪里“跳”。",
+  "prompt": "设置三个 Breakpoint：640px 以下手机（1 列），640 到 1024px 平板（2 列），1024px 以上桌面（4 列）；用 min-width 媒体查询从小往大写。"
+}
+-->
+<div class="bp">
+  <label>容器宽度 <output>360</output>px<input type="range" min="200" max="440" value="360"></label>
+  <div class="box"><div class="g"><i></i><i></i><i></i><i></i></div></div>
+  <small class="hint"></small>
+</div>
+
+<style>
+.bp { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; justify-items: center; width: min(460px, 94vw); }
+.bp label { font-size: 12px; color: #71717A; display: flex; gap: 6px; align-items: center; }
+.bp input { accent-color: #FA8C16; width: 110px; }
+.box { box-sizing: border-box; container-type: inline-size; width: 360px; max-width: 100%; padding: 10px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; transition: width .1s; }
+.g { display: grid; grid-template-columns: 1fr; gap: 6px; } .g i { height: 26px; border-radius: 6px; background: #FFB86B; }
+@container (min-width: 260px) { .g { grid-template-columns: repeat(2, 1fr); } }
+@container (min-width: 380px) { .g { grid-template-columns: repeat(4, 1fr); } }
+.hint { font-size: 12px; color: #D46B08; font-weight: 600; }
+</style>
+<script>
+const r = document.querySelector(".bp input"), o = document.querySelector(".bp output"), box = document.querySelector(".box"), hint = document.querySelector(".hint");
+function upd() { box.style.width = r.value + "px"; o.textContent = r.value; hint.textContent = r.value < 260 ? "< 260：1 列（手机）" : r.value < 380 ? "260 – 380：2 列（平板）" : "≥ 380：4 列（桌面）"; }
+r.oninput = upd; upd();
+</script>

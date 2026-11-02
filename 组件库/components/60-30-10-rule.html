@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "60-30-10 Rule",
+  "zh": "60-30-10 法则",
+  "lead": "60% 主背景色、30% 辅助色、10% 强调色。比例对了，颜色再多也不会乱。",
+  "prompt": "按 60-30-10 Rule 配色：60% 浅米白背景，30% 深藏青用于导航和卡片，10% 橙色只用于按钮和重点数字。"
+}
+-->
+<div class="r631">
+  <div class="mock"><div class="nav"></div><div class="body"><div class="card"></div><div class="card"></div><button></button></div></div>
+  <div class="bar"><span style="flex:60;background:#F5F1E8">60%</span><span style="flex:30;background:#1E3A5F;color:#fff">30%</span><span style="flex:10;background:#FA8C16;color:#fff">10</span></div>
+</div>
+
+<style>
+.r631 { display: grid; gap: 10px; width: min(300px, 90vw); }
+.mock { height: 150px; border-radius: 12px; overflow: hidden; background: #F5F1E8; display: grid; grid-template-rows: 26px 1fr; border: 1px solid #E4E4E7; }
+.nav { background: #1E3A5F; }
+.body { padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-content: start; }
+.card { height: 60px; border-radius: 8px; background: #1E3A5F; opacity: .9; }
+.body button { grid-column: span 2; height: 24px; border: 0; border-radius: 6px; background: #FA8C16; width: 40%; }
+.bar { display: flex; height: 26px; border-radius: 8px; overflow: hidden; font-size: 11px; }
+.bar span { display: grid; place-items: center; }
+</style>

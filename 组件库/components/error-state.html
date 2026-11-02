@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Error State",
+  "zh": "错误态",
+  "lead": "出错时的提示：红色边框、错误说明、怎么修复。要说清楚“哪里错了、怎么改”，而不是只写“输入有误”。",
+  "prompt": "输入框校验失败显示 Error State：边框和光圈变红 #FF3B30，输入框轻微左右抖动一次，下方红色小字说明原因和正确格式。"
+}
+-->
+<form class="er" onsubmit="return false">
+  <label>手机号</label>
+  <input value="1381234" >
+  <small>手机号应该是 11 位数字，你输入了 7 位</small>
+  <button>获取验证码</button>
+</form>
+
+<style>
+.er { display: grid; gap: 6px; width: min(240px, 88vw); }
+.er label { font-size: 12px; color: #71717A; }
+.er input { border: 1px solid #E4E4E7; border-radius: 10px; padding: 10px; font-size: 14px; outline: none; }
+.er small { font-size: 12px; color: #FF3B30; visibility: hidden; }
+.er.bad input { border-color: #FF3B30; box-shadow: 0 0 0 3px #FFE1DF; animation: shake .35s; }
+.er.bad small { visibility: visible; }
+.er button { margin-top: 6px; border: 0; border-radius: 10px; padding: 10px; background: #18181B; color: #fff; cursor: pointer; }
+@keyframes shake { 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-3px); } }
+</style>
+<script>
+const f = document.querySelector(".er"), inp = f.querySelector("input");
+const check = () => { f.classList.remove("bad"); f.offsetWidth; if (!/^1\d{10}$/.test(inp.value)) { f.classList.add("bad"); f.querySelector("small").textContent = `手机号应该是 11 位数字，你输入了 ${inp.value.length} 位`; } };
+f.querySelector("button").onclick = check;
+setTimeout(check, 500);
+</script>

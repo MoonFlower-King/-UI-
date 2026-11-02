@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Border Radius",
+  "zh": "圆角",
+  "lead": "直角显得严肃，大圆角显得友好。全站圆角要统一，内层圆角 = 外层圆角 − 内边距，嵌套才好看。",
+  "prompt": "全站 Border Radius 统一：按钮 10px，卡片 16px，弹窗 24px；嵌套元素的圆角 = 外层圆角 − 内边距。"
+}
+-->
+<div class="rad">
+  <div><i style="border-radius:0"></i><small>0 严肃</small></div>
+  <div><i style="border-radius:8px"></i><small>8 稳重</small></div>
+  <div><i style="border-radius:20px"></i><small>20 友好</small></div>
+  <div><i style="border-radius:50%"></i><small>50% 圆</small></div>
+</div>
+
+<style>
+.rad { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.rad div { display: grid; gap: 6px; justify-items: center; }
+.rad i { width: 64px; height: 64px; background: #FA8C16; }
+.rad small { font-size: 12px; color: #71717A; }
+</style>

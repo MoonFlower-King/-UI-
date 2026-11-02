@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Claymorphism",
+  "zh": "黏土风",
+  "lead": "圆滚滚、软乎乎的 3D 质感，像橡皮泥捏的。外阴影柔和、内部有高光和暗部，可爱亲和。",
+  "prompt": "按钮和卡片用 Claymorphism：大圆角 32px，柔和外投影，加白色内高光（inset 左上）和深色内阴影（inset 右下），马卡龙配色。"
+}
+-->
+<div class="clay-row">
+  <div class="clay" style="background:#FFB5C2">🍓</div>
+  <div class="clay" style="background:#B5E3FF">🫧</div>
+  <div class="clay" style="background:#C9F2C7">🍀</div>
+</div>
+
+<style>
+.clay-row { display: flex; gap: 20px; padding: 20px; }
+.clay { width: 84px; height: 84px; border-radius: 32px; display: grid; place-items: center; font-size: 32px;
+  box-shadow: 0 14px 24px rgba(0,0,0,.12), inset 6px 6px 10px rgba(255,255,255,.7), inset -6px -6px 12px rgba(0,0,0,.12);
+  animation: bob 2.4s ease-in-out infinite; }
+.clay:nth-child(2) { animation-delay: .3s; } .clay:nth-child(3) { animation-delay: .6s; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+</style>

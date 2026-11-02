@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Pagination",
+  "zh": "分页器",
+  "lead": "“上一页 1 2 3 下一页”。页数多时中间用省略号。",
+  "prompt": "列表底部加 Pagination：上一页 / 页码 / 下一页，当前页黑底白字，页数超过 7 页时中间显示 …，第一页时“上一页”禁用。"
+}
+-->
+<nav class="pg"><button class="prev">‹</button><div class="nums"></div><button class="next">›</button></nav>
+
+<style>
+.pg { display: flex; gap: 3px; align-items: center; }
+.pg button, .nums span { min-width: 28px; height: 32px; padding: 0 2px; border-radius: 9px; border: 1px solid #E4E4E7; background: #fff; font-size: 13px; cursor: pointer; display: grid; place-items: center; }
+.nums { display: flex; gap: 3px; } .nums span.on { background: #18181B; border-color: #18181B; color: #fff; }
+.nums span.gap { border: 0; background: none; cursor: default; color: #A1A1AA; }
+.pg button:disabled { opacity: .35; cursor: not-allowed; }
+</style>
+<script>
+let page = 1; const total = 12, nums = document.querySelector(".nums");
+function render() {
+  const list = page <= 4 ? [1, 2, 3, 4, 5, "…", total] : page >= total - 3 ? [1, "…", total - 4, total - 3, total - 2, total - 1, total] : [1, "…", page - 1, page, page + 1, "…", total];
+  nums.innerHTML = list.map(n => n === "…" ? '<span class="gap">…</span>' : `<span class="${n === page ? "on" : ""}">${n}</span>`).join("");
+  document.querySelector(".prev").disabled = page === 1; document.querySelector(".next").disabled = page === total;
+}
+nums.onclick = e => { const n = +e.target.textContent; if (n) { page = n; render(); } };
+document.querySelector(".prev").onclick = () => { page--; render(); };
+document.querySelector(".next").onclick = () => { page++; render(); };
+render();
+</script>

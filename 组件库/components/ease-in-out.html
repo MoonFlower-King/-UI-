@@ -1,0 +1,17 @@
+<!--
+{
+  "en": "Ease-in-out",
+  "zh": "缓入缓出",
+  "lead": "慢慢开始、中间加速、慢慢停下，像真实物体一样有惯性。最常用、最不会出错的缓动。",
+  "prompt": "位移和缩放动画用 Ease-in-out：cubic-bezier(.65, 0, .35, 1)，时长 400ms，元素在两端停顿，中间加速。"
+}
+-->
+<div class="eio"><i></i></div>
+
+<style>
+.eio { position: relative; width: min(300px, 88vw); height: 120px; border-radius: 16px; background: #fff; border: 1px solid #E4E4E7; overflow: hidden; }
+.eio::before { content: ""; position: absolute; left: 30px; right: 30px; top: 50%; border-top: 2px dashed #E4E4E7; }
+.eio i { position: absolute; left: 14px; top: 38px; width: 44px; height: 44px; border-radius: 12px; background: #FA8C16; box-shadow: 0 6px 16px rgba(250,140,22,.4);
+  animation: move 1.6s cubic-bezier(.65, 0, .35, 1) infinite alternate; }
+@keyframes move { to { transform: translateX(calc(min(300px, 88vw) - 72px)) rotate(180deg); } }
+</style>

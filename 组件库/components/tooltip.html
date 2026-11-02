@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Tooltip",
+  "zh": "文字提示",
+  "lead": "鼠标悬停时冒出的小黑框说明文字，带一个小三角指向目标。适合给图标按钮解释用途。",
+  "prompt": "图标按钮悬停 300ms 后显示 Tooltip：深色 #18181B 圆角 6px 小框，白色 12px 文字，带指向按钮的小三角，淡入并上移 4px。"
+}
+-->
+<div class="tt">
+  <button data-tip="复制链接">🔗</button><button data-tip="下载">⬇</button><button data-tip="删除">🗑</button>
+</div>
+
+<style>
+.tt { display: flex; gap: 12px; padding-top: 40px; }
+.tt button { position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E4E4E7; background: #fff; font-size: 18px; cursor: pointer; }
+.tt button::after, .tt button::before { position: absolute; left: 50%; opacity: 0; pointer-events: none; transition: .2s; transition-delay: 0s; }
+.tt button::after { content: attr(data-tip); bottom: calc(100% + 8px); transform: translate(-50%, 4px); white-space: nowrap;
+  background: #18181B; color: #fff; font-size: 12px; padding: 5px 9px; border-radius: 6px; }
+.tt button::before { content: ""; bottom: calc(100% + 3px); transform: translate(-50%, 4px); border: 5px solid transparent; border-top-color: #18181B; border-bottom: 0; }
+.tt button:hover::after, .tt button:hover::before, .tt button:focus-visible::after, .tt button:focus-visible::before { opacity: 1; transform: translate(-50%, 0); transition-delay: .3s; }
+</style>

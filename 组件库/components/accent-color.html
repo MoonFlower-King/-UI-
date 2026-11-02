@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Accent Color",
+  "zh": "主题色 / 强调色",
+  "lead": "全站最重要的那个颜色，只用在按钮、链接、选中状态这些关键位置。点下面的色块换主题色试试。",
+  "prompt": "Accent Color 用 #FA8C16，只用在主按钮、链接、选中状态和重要数字上，其余全部用中性灰。"
+}
+-->
+<div class="ac">
+  <div class="panel"><b>本月支出</b><strong>¥3,280</strong><a>查看明细</a><button>记一笔</button></div>
+  <div class="dots"><i style="background:#FA8C16"></i><i style="background:#007AFF"></i><i style="background:#34C759"></i><i style="background:#AF52DE"></i></div>
+</div>
+
+<style>
+.ac { --accent: #FA8C16; display: grid; gap: 12px; justify-items: center; }
+.panel { width: 200px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; display: grid; gap: 4px; }
+.panel b { font-size: 12px; color: #71717A; font-weight: 500; } .panel strong { font-size: 26px; color: var(--accent); transition: color .3s; }
+.panel a { font-size: 12px; color: var(--accent); transition: color .3s; }
+.panel button { margin-top: 8px; border: 0; border-radius: 8px; padding: 9px; color: #fff; background: var(--accent); transition: background .3s; }
+.dots { display: flex; gap: 8px; } .dots i { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; }
+</style>
+<script>
+document.querySelectorAll(".dots i").forEach(d => d.onclick = () => document.querySelector(".ac").style.setProperty("--accent", d.style.background));
+</script>

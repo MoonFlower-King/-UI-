@@ -1,0 +1,19 @@
+<!--
+{
+  "en": "Hover State",
+  "zh": "悬停态",
+  "lead": "鼠标移上去时的样子。没有悬停态，用户不确定这东西能不能点。把鼠标移到卡片上试试。",
+  "prompt": "所有可点击卡片加 Hover State：上浮 2px、阴影加深、描边变成品牌色，鼠标变成手形，过渡 200ms ease-out。"
+}
+-->
+<div class="hs">
+  <div class="c">没有悬停态</div>
+  <div class="c on">有 Hover State</div>
+</div>
+
+<style>
+.hs { display: flex; gap: 14px; }
+.c { width: 130px; height: 90px; border-radius: 14px; border: 1px solid #E4E4E7; background: #fff; display: grid; place-items: center; font-size: 13px; }
+.c.on { cursor: pointer; transition: transform .2s ease-out, box-shadow .2s ease-out, border-color .2s; }
+.c.on:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); border-color: #FA8C16; }
+</style>

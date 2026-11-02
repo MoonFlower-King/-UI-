@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Empty State",
+  "zh": "空状态",
+  "lead": "列表没有内容时显示的插图、一句话和引导按钮，而不是一片空白。空状态是引导用户行动的好机会。",
+  "prompt": "购物车为空时显示 Empty State：居中的简单线条插画，一句“购物车还是空的”，一句灰色说明，下方“去逛逛”主按钮。"
+}
+-->
+<div class="es">
+  <div class="art"><i></i></div>
+  <b>购物车还是空的</b>
+  <small>看看今天有什么好东西</small>
+  <button>去逛逛</button>
+</div>
+
+<style>
+.es { width: min(260px, 88vw); padding: 28px 20px; background: #fff; border: 1px dashed #D4D4D8; border-radius: 18px; display: grid; justify-items: center; gap: 6px; text-align: center; }
+.art { width: 72px; height: 72px; border-radius: 50%; background: #FFF3E3; display: grid; place-items: center; margin-bottom: 6px; animation: float 3s ease-in-out infinite; }
+.art i { width: 30px; height: 24px; border: 2px solid #FA8C16; border-top: 0; border-radius: 0 0 8px 8px; position: relative; }
+.art i::before { content: ""; position: absolute; top: -10px; left: 6px; width: 14px; height: 10px; border: 2px solid #FA8C16; border-bottom: 0; border-radius: 8px 8px 0 0; }
+.es b { font-size: 15px; } .es small { font-size: 12px; color: #A1A1AA; }
+.es button { margin-top: 10px; border: 0; border-radius: 99px; background: #FA8C16; color: #fff; padding: 8px 22px; font-size: 13px; cursor: pointer; }
+@keyframes float { 50% { transform: translateY(-5px); } }
+</style>

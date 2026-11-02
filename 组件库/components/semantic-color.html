@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Semantic Color",
+  "zh": "语义色",
+  "lead": "按含义固定的颜色：成功绿、警告黄、错误红、信息蓝。用户不用读字就知道发生了什么。",
+  "prompt": "提示条用 Semantic Color：成功 #34C759、警告 #FFCC00、错误 #FF3B30、信息 #007AFF，浅色背景加同色图标和左侧色条。"
+}
+-->
+<div class="sem">
+  <div class="ok"><i>✓</i>保存成功</div>
+  <div class="warn"><i>!</i>存储空间剩余 5%</div>
+  <div class="err"><i>✕</i>网络连接失败</div>
+  <div class="info"><i>i</i>有新版本可以更新</div>
+</div>
+
+<style>
+.sem { display: grid; gap: 8px; width: min(280px, 90vw); }
+.sem div { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 10px; font-size: 13px; border-left: 4px solid var(--c); background: var(--bg); }
+.sem i { width: 20px; height: 20px; border-radius: 50%; background: var(--c); color: #fff; font-style: normal; font-size: 11px; font-weight: 700; display: grid; place-items: center; }
+.ok { --c: #34C759; --bg: #F0FAF2; } .warn { --c: #E6B800; --bg: #FFFBEB; } .err { --c: #FF3B30; --bg: #FFF2F1; } .info { --c: #007AFF; --bg: #F0F6FF; }
+</style>

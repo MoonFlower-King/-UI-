@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Accessibility (a11y)",
+  "zh": "无障碍",
+  "lead": "让视障、色弱、只用键盘的人也能用：足够的对比度、清楚的焦点框、读屏软件能读的标签、不只靠颜色传达信息。",
+  "prompt": "注意 Accessibility：图片加 alt，图标按钮加 aria-label，表单输入框有可见的 label，错误提示不只靠红色还要有图标和文字，所有操作都能用键盘完成。"
+}
+-->
+<div class="a11y">
+  <figure><div class="f bad"><input placeholder="邮箱"><button>→</button></div><figcaption>只有占位文字、只靠颜色</figcaption></figure>
+  <figure><div class="f good"><label for="em">邮箱</label><input id="em" aria-describedby="em-err" aria-invalid="true"><small id="em-err">⚠ 请填写正确的邮箱格式</small><button aria-label="提交">提交 →</button></div><figcaption>有标签、图标 + 文字、aria</figcaption></figure>
+</div>
+
+<style>
+.a11y { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; } .a11y figure { margin: 0; display: grid; gap: 6px; justify-items: center; }
+.a11y figcaption { font-size: 11px; color: #71717A; max-width: 150px; text-align: center; }
+.f { width: 150px; display: grid; gap: 6px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+.f input { border: 1px solid #E4E4E7; border-radius: 8px; padding: 7px; font-size: 12px; } .f button { border: 0; border-radius: 8px; padding: 7px; background: #18181B; color: #fff; font-size: 12px; }
+.bad input { border-color: #FF8A80; color: #CCC; }
+.good label { font-size: 12px; font-weight: 600; } .good input { border: 2px solid #D70015; } .good small { font-size: 11px; color: #D70015; }
+.good button:focus-visible, .good input:focus-visible { outline: 2px solid #FA8C16; outline-offset: 2px; }
+</style>

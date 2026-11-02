@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Accordion",
+  "zh": "手风琴折叠",
+  "lead": "点标题展开内容、再点收起，一次只开一条，常用于 FAQ。",
+  "prompt": "常见问题用 Accordion：每条标题右侧有 + 号，展开时变成 ×（旋转 45 度），内容高度 300ms 平滑展开；一次只展开一条。"
+}
+-->
+<div class="acc">
+  <details open><summary>可以免费使用吗？</summary><p>基础功能永久免费，团队协作需要升级专业版。</p></details>
+  <details><summary>支持导出代码吗？</summary><p>支持导出 HTML、React 和 Vue 代码。</p></details>
+  <details><summary>数据安全吗？</summary><p>所有数据加密存储，你可以随时删除。</p></details>
+</div>
+
+<style>
+.acc { width: min(320px, 90vw); background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+.acc details + details { border-top: 1px solid #F4F4F5; }
+.acc summary { list-style: none; display: flex; justify-content: space-between; padding: 14px 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: "+"; font-size: 18px; line-height: 1; color: #A1A1AA; transition: transform .3s; }
+.acc details[open] summary::after { transform: rotate(45deg); color: #FA8C16; }
+.acc p { margin: 0; padding: 0 16px 14px; font-size: 13px; color: #71717A; animation: open .3s ease-out; }
+@keyframes open { from { opacity: 0; transform: translateY(-6px); } }
+</style>
+<script>
+// 一次只展开一条
+document.querySelectorAll(".acc details").forEach(d => d.addEventListener("toggle", () => {
+  if (d.open) document.querySelectorAll(".acc details").forEach(o => o !== d && (o.open = false));
+}));
+</script>

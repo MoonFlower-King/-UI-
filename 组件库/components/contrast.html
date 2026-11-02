@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Contrast",
+  "zh": "对比度",
+  "lead": "文字和背景的明暗差距。不够就看不清，正文至少要 4.5:1。浅灰字配白底是最常见的错误。",
+  "prompt": "正文和背景 Contrast 至少 4.5:1（WCAG AA），大标题至少 3:1；把 #C0C0C0 的浅灰字改成 #52525B。"
+}
+-->
+<div class="ct">
+  <div class="bad"><b>1.8 : 1 ✗</b><p>这段文字几乎看不清</p></div>
+  <div class="mid"><b>3.0 : 1 勉强</b><p>大标题可以，正文不够</p></div>
+  <div class="good"><b>8.6 : 1 ✓</b><p>清楚，长时间阅读也不累</p></div>
+</div>
+
+<style>
+.ct { display: grid; gap: 8px; width: min(280px, 90vw); }
+.ct > div { padding: 10px 14px; border-radius: 10px; background: #fff; border: 1px solid #E4E4E7; }
+.ct b { font-size: 11px; color: #71717A; } .ct p { margin: 2px 0 0; font-size: 15px; }
+.bad p { color: #CCCCCC; } .mid p { color: #949494; } .good p { color: #3F3F46; }
+</style>

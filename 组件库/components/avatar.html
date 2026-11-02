@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Avatar",
+  "zh": "头像",
+  "lead": "圆形的用户头像。没有图片时显示名字首字母，多个头像可以叠在一起，右下角可以加在线状态点。",
+  "prompt": "评论区 Avatar 40px 圆形；没头像时用名字首字母加随机浅色背景；多人时叠放成 Avatar Group（每个向左重叠 10px，白色 2px 描边），右下角绿色在线点。"
+}
+-->
+<div class="av">
+  <div class="group"><span style="background:#FFE7BA">江</span><span style="background:#DCEBFF">月</span><span style="background:#DDF5E3">L</span><span class="more">+5</span></div>
+  <div class="one"><span style="background:#F1E2F9">M</span><i></i></div>
+</div>
+
+<style>
+.av { display: flex; gap: 32px; align-items: center; }
+.group { display: flex; } .group span + span { margin-left: -10px; }
+.av span { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 15px; color: #3F3F46; border: 2px solid #FAFAFA; }
+.group .more { background: #18181B; color: #fff; font-size: 12px; }
+.one { position: relative; } .one span { width: 56px; height: 56px; font-size: 20px; }
+.one i { position: absolute; right: 2px; bottom: 2px; width: 12px; height: 12px; border-radius: 50%; background: #34C759; border: 2px solid #FAFAFA; }
+</style>

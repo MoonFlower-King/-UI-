@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Bottom Sheet",
+  "zh": "底部面板",
+  "lead": "手机上从底部滑上来的面板，顶部有一个小横条，可以拖动或点遮罩关闭。比居中弹窗更顺手。",
+  "prompt": "手机端分享菜单用 Bottom Sheet：从底部滑入（300ms，cubic-bezier(.32,.72,0,1)），顶部圆角 20px，中间 36×4px 灰色拖动条，背后 40% 黑色遮罩，点遮罩或下拉关闭。"
+}
+-->
+<div class="phone">
+  <button class="open">分享</button>
+  <div class="mask"></div>
+  <div class="sheet"><i class="grab"></i><b>分享到</b><div class="apps"><span>💬<small>微信</small></span><span>🌐<small>朋友圈</small></span><span>🔗<small>复制链接</small></span><span>⋯<small>更多</small></span></div></div>
+</div>
+
+<style>
+.phone { position: relative; width: 210px; height: 270px; border-radius: 24px; border: 6px solid #18181B; background: #F4F4F5; overflow: hidden; display: grid; place-items: center; }
+.open { border: 0; background: #18181B; color: #fff; padding: 8px 20px; border-radius: 99px; cursor: pointer; }
+.mask { position: absolute; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: .3s; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #fff; border-radius: 20px 20px 0 0; padding: 8px 14px 18px; display: grid; gap: 10px;
+  transform: translateY(100%); transition: transform .3s cubic-bezier(.32,.72,0,1); }
+.grab { width: 36px; height: 4px; border-radius: 2px; background: #D4D4D8; justify-self: center; }
+.sheet b { font-size: 14px; } .apps { display: flex; justify-content: space-between; }
+.apps span { display: grid; justify-items: center; gap: 4px; font-size: 22px; } .apps small { font-size: 10px; color: #71717A; }
+.phone.on .mask { opacity: 1; pointer-events: auto; } .phone.on .sheet { transform: none; }
+</style>
+<script>
+const ph = document.querySelector(".phone");
+ph.querySelector(".open").onclick = () => ph.classList.add("on");
+ph.querySelector(".mask").onclick = () => ph.classList.remove("on");
+setTimeout(() => ph.classList.add("on"), 500);
+</script>

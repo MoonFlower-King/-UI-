@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Safe Area",
+  "zh": "安全区",
+  "lead": "手机刘海、灵动岛、底部横条占掉的区域。按钮和文字放进去会被挡住或误触。",
+  "prompt": "底部按钮避开 Safe Area：padding-bottom: calc(16px + env(safe-area-inset-bottom))，顶部导航加 env(safe-area-inset-top)，并在 viewport meta 里加 viewport-fit=cover。"
+}
+-->
+<div class="sa">
+  <div class="phone bad"><i class="notch"></i><b>标题被挡住</b><button>按钮贴底</button><i class="home"></i></div>
+  <div class="phone good"><i class="notch"></i><b>避开安全区</b><button>按钮在上方</button><i class="home"></i></div>
+</div>
+
+<style>
+.sa { display: flex; gap: 16px; }
+.phone { position: relative; width: 120px; height: 220px; border-radius: 22px; border: 5px solid #18181B; background: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.notch { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 46px; height: 14px; border-radius: 99px; background: #18181B; z-index: 2; }
+.home { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 46px; height: 4px; border-radius: 2px; background: #18181B; }
+.phone b { font-size: 11px; padding: 6px 8px; } .phone button { border: 0; background: #FA8C16; color: #fff; font-size: 11px; padding: 8px; margin: 0 8px; border-radius: 8px; }
+.bad b { background: #FFE1DF; } .bad button { margin-bottom: 0; border-radius: 0; margin: 0; }
+.good { padding: 26px 0 18px; } .good::before, .good::after { content: ""; position: absolute; left: 0; right: 0; height: 24px; background: repeating-linear-gradient(45deg, #DDF5E3 0 4px, transparent 4px 8px); }
+.good::before { top: 0; } .good::after { bottom: 0; height: 16px; }
+</style>

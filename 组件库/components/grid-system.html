@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Grid System",
+  "zh": "栅格系统",
+  "lead": "把页面竖着分成固定的几栏（常见 12 栏），所有内容对齐到栏上，页面就整齐。橙色竖条就是看不见的栏。",
+  "prompt": "页面用 12 栏 Grid System：最大宽度 1200px，栏间距 24px；标题占 12 栏，正文占 8 栏，侧栏占 4 栏。"
+}
+-->
+<div class="grid12">
+  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  <div class="blk" style="grid-column: 1 / -1">标题 · 12 栏</div>
+  <div class="blk" style="grid-column: span 8">正文 · 8 栏</div>
+  <div class="blk" style="grid-column: span 4">侧栏 · 4 栏</div>
+  <div class="blk" style="grid-column: span 4">4</div><div class="blk" style="grid-column: span 4">4</div><div class="blk" style="grid-column: span 4">4</div>
+</div>
+
+<style>
+.grid12 { position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; width: min(420px, 92vw); padding: 12px; background: #fff; border-radius: 12px; border: 1px solid #E4E4E7; }
+.grid12 i { grid-row: 1 / 5; background: rgba(250, 140, 22, .12); border-radius: 3px; }
+.grid12 i ~ i { grid-row: 1 / 5; }
+.blk { grid-row: auto; position: relative; z-index: 1; background: #18181B; color: #fff; font-size: 12px; border-radius: 6px; padding: 10px 8px; text-align: center; }
+.grid12 i:nth-child(n) { grid-column: auto; }
+</style>
+<script>
+// 让 12 根参考栏铺满 1~4 行，内容块排在它们上面
+document.querySelectorAll(".grid12 i").forEach((el, n) => { el.style.gridColumn = n + 1; el.style.gridRow = "1 / 5"; });
+document.querySelectorAll(".grid12 .blk").forEach((el, n) => { el.style.gridRow = [1, 2, 2, 3, 3, 3][n]; });
+</script>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Dropdown",
+  "zh": "下拉菜单",
+  "lead": "点一下展开一列选项，选中后收起，按钮上显示当前选择。",
+  "prompt": "排序用 Dropdown：按钮显示当前选项和向下箭头，展开时箭头旋转 180 度，菜单从上往下展开，当前项右侧打勾，支持键盘上下选择。"
+}
+-->
+<div class="dd">
+  <button class="trig"><span>最新发布</span><i>▾</i></button>
+  <ul class="menu" hidden><li class="on">最新发布</li><li>最多点赞</li><li>价格从低到高</li><li>价格从高到低</li></ul>
+</div>
+
+<style>
+.dd { position: relative; width: 180px; height: 220px; }
+.trig { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; font-size: 13px; cursor: pointer; }
+.trig i { font-style: normal; transition: transform .2s; color: #A1A1AA; } .dd.open .trig i { transform: rotate(180deg); }
+.menu { position: absolute; top: 46px; left: 0; right: 0; margin: 0; padding: 4px; list-style: none; background: #fff; border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04);
+  transform-origin: top; animation: drop .18s ease-out; }
+.menu[hidden] { display: none; }
+.menu li { padding: 8px 10px; font-size: 13px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; }
+.menu li:hover { background: #F4F4F5; } .menu li.on::after { content: "✓"; color: #FA8C16; }
+@keyframes drop { from { opacity: 0; transform: scaleY(.9) translateY(-4px); } }
+</style>
+<script>
+const dd = document.querySelector(".dd"), menu = dd.querySelector(".menu");
+const toggle = open => { menu.hidden = !open; dd.classList.toggle("open", open); };
+dd.querySelector(".trig").onclick = () => toggle(menu.hidden);
+menu.onclick = e => { if (e.target.tagName !== "LI") return; menu.querySelector(".on").classList.remove("on"); e.target.classList.add("on"); dd.querySelector(".trig span").textContent = e.target.textContent; toggle(false); };
+</script>

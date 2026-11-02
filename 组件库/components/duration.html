@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Duration",
+  "zh": "时长",
+  "lead": "动画持续多久。小元素 150 到 250ms，大面板 300 到 500ms。太快看不清，太慢就拖沓。三个方块同时出发，对比一下。",
+  "prompt": "所有过渡 Duration 控制在 200 到 300ms：按钮、开关 200ms，卡片、下拉 250ms，抽屉、弹窗 300ms；不超过 500ms。"
+}
+-->
+<div class="du">
+  <div><small>100ms 太快</small><i style="--d:100ms"></i></div>
+  <div><small>250ms 刚好</small><i style="--d:250ms" class="ok"></i></div>
+  <div><small>1000ms 拖沓</small><i style="--d:1000ms"></i></div>
+</div>
+
+<style>
+.du { display: grid; gap: 12px; width: min(300px, 88vw); }
+.du div { position: relative; height: 34px; background: #F4F4F5; border-radius: 10px; }
+.du small { position: absolute; right: 10px; top: 9px; font-size: 11px; color: #71717A; }
+.du i { position: absolute; left: 4px; top: 4px; width: 26px; height: 26px; border-radius: 8px; background: #A1A1AA; transition: transform var(--d) ease-out; }
+.du i.ok { background: #FA8C16; }
+.du.go i { transform: translateX(170px); }
+</style>
+<script>
+const du = document.querySelector(".du"); setInterval(() => du.classList.toggle("go"), 1600);
+</script>

@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Stagger",
+  "zh": "交错出场",
+  "lead": "一组元素不是同时出现，而是一个接一个，间隔几十毫秒，像多米诺骨牌。列表、卡片入场都可以用。",
+  "prompt": "列表项进入时 Stagger 依次出现：每项淡入并上移 12px，时长 300ms，相邻两项间隔 60ms（animation-delay: calc(var(--i) * 60ms)）。"
+}
+-->
+<ul class="stg">
+  <li style="--i:0"></li><li style="--i:1"></li><li style="--i:2"></li><li style="--i:3"></li><li style="--i:4"></li>
+</ul>
+
+<style>
+.stg { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; width: min(260px, 88vw); }
+.stg li { height: 34px; border-radius: 10px; background: #fff; border: 1px solid #E4E4E7; position: relative;
+  animation: in .4s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i) * 80ms); }
+.stg li::before { content: ""; position: absolute; left: 10px; top: 10px; width: 14px; height: 14px; border-radius: 50%; background: #FFE7BA; }
+.stg li::after { content: ""; position: absolute; left: 34px; top: 14px; width: 50%; height: 6px; border-radius: 3px; background: #E4E4E7; }
+@keyframes in { from { opacity: 0; transform: translateY(12px); } }
+</style>
+<script>
+// 每 2.5 秒重播一次
+const ul = document.querySelector(".stg"); setInterval(() => { ul.style.display = "none"; ul.offsetWidth; ul.style.display = ""; }, 2500);
+</script>

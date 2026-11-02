@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Card Layout",
+  "zh": "卡片式布局",
+  "lead": "把每条内容装进一张独立的卡片，再排成网格。电商、博客列表最常见。窗口变窄时卡片自动换行。",
+  "prompt": "文章列表用 Card Layout：每张卡片上图下文，图片 16:9，圆角 14px，白底细描边；桌面每行 3 张，平板 2 张，手机 1 张。"
+}
+-->
+<div class="cards">
+  <article><div class="img a"></div><b>配色入门</b><small>5 分钟读完</small></article>
+  <article><div class="img b"></div><b>排版的秘密</b><small>8 分钟读完</small></article>
+  <article><div class="img c"></div><b>动效节奏</b><small>6 分钟读完</small></article>
+</div>
+
+<style>
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; width: min(440px, 92vw); }
+.cards article { background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; display: grid; gap: 2px; padding-bottom: 10px; }
+.img { aspect-ratio: 16 / 9; margin-bottom: 6px; }
+.a { background: #FFE7BA; } .b { background: #DCEBFF; } .c { background: #DDF5E3; }
+.cards b, .cards small { padding: 0 10px; } .cards b { font-size: 13px; } .cards small { font-size: 11px; color: #A1A1AA; }
+</style>

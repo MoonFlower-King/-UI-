@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Scroll-triggered",
+  "zh": "滚动触发",
+  "lead": "滚动到某个位置时元素才开始动画，比如淡入、上移。在预览里往下滚试试。",
+  "prompt": "每个内容区块加 Scroll-triggered 动画：元素进入视口 20% 时淡入并上移 24px，时长 600ms ease-out，只触发一次（IntersectionObserver）。"
+}
+-->
+<div class="st">
+  <p>往下滚动 ↓</p>
+  <div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div>
+</div>
+
+<style>
+.st { width: min(280px, 88vw); height: 240px; overflow-y: auto; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 14px; display: grid; gap: 14px; }
+.st p { margin: 0 0 120px; font-size: 13px; color: #A1A1AA; text-align: center; }
+.blk { height: 80px; border-radius: 12px; background: linear-gradient(135deg, #FFE7BA, #FFB86B); opacity: 0; transform: translateY(24px); transition: .6s cubic-bezier(.2,.8,.2,1); }
+.blk.in { opacity: 1; transform: none; }
+</style>
+<script>
+const box = document.querySelector(".st");
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { root: box, threshold: .2 });
+document.querySelectorAll(".blk").forEach(b => io.observe(b));
+let t = 0; const auto = setInterval(() => { box.scrollTop += 3; if (++t > 120) clearInterval(auto); }, 16);
+</script>

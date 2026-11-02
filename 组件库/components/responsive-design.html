@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Responsive Design",
+  "zh": "响应式设计",
+  "lead": "同一个页面在电脑、平板、手机上自动调整布局。切换上方的“桌面 / 平板 / 手机”看看这个组件怎么变。",
+  "prompt": "整站 Responsive Design：桌面 3 列、平板 2 列、手机 1 列；导航在手机上收起成汉堡菜单；图片和卡片宽度用百分比，不出现横向滚动。"
+}
+-->
+<div class="rd">
+  <header><b>◆ Moon</b><nav>首页　产品　价格</nav><span class="burger">☰</span></header>
+  <div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<style>
+.rd { width: 92vw; max-width: 640px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; overflow: hidden; }
+.rd header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid #F4F4F5; font-size: 13px; }
+.rd nav { color: #71717A; } .burger { display: none; font-size: 18px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px; }
+.grid div { height: 54px; border-radius: 10px; background: #FFE7BA; }
+@media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .grid { grid-template-columns: 1fr; } .rd nav { display: none; } .burger { display: block; } .grid div { height: 36px; } }
+</style>

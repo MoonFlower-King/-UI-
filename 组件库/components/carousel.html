@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Carousel",
+  "zh": "轮播图",
+  "lead": "几张图左右滑动轮流展示，下面的小圆点显示第几张，当前圆点会拉长。",
+  "prompt": "首页 Banner 用 Carousel：3 张图横向滑动（scroll-snap），每 4 秒自动切换，底部圆点指示器，当前圆点拉长成胶囊；手机可以手指滑动。"
+}
+-->
+<div class="car">
+  <div class="track"><div style="background:#FFB86B">春季上新</div><div style="background:#7AB3FF">会员日</div><div style="background:#9BE3AD">满 199 减 30</div></div>
+  <div class="dots"><i class="on"></i><i></i><i></i></div>
+</div>
+
+<style>
+.car { width: min(320px, 90vw); }
+.track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; border-radius: 16px; scrollbar-width: none; }
+.track::-webkit-scrollbar { display: none; }
+.track div { flex: 0 0 100%; height: 160px; scroll-snap-align: start; display: grid; place-items: center; color: #fff; font-size: 22px; font-weight: 800; }
+.dots { display: flex; gap: 6px; justify-content: center; margin-top: 10px; }
+.dots i { width: 6px; height: 6px; border-radius: 99px; background: #D4D4D8; transition: .3s; }
+.dots i.on { width: 20px; background: #18181B; }
+</style>
+<script>
+const track = document.querySelector(".track"), dots = document.querySelectorAll(".dots i");
+let n = 0;
+track.addEventListener("scroll", () => { n = Math.round(track.scrollLeft / track.clientWidth); dots.forEach((d, i) => d.classList.toggle("on", i === n)); });
+setInterval(() => track.scrollTo({ left: ((n + 1) % 3) * track.clientWidth }), 4000);
+</script>

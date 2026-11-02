@@ -1,0 +1,19 @@
+<!--
+{
+  "en": "Active / Pressed",
+  "zh": "按下态",
+  "lead": "按住不放那一刻的样子，通常轻微缩小或变暗，像真的按下了一个实体按钮。按住按钮试试。",
+  "prompt": "按钮加 Active 按下态：按下时缩放到 0.96、背景加深 10%，松开时 150ms 弹回；手机上同样生效。"
+}
+-->
+<div class="ap">
+  <button class="no">没有按下态</button>
+  <button class="yes">有按下态</button>
+</div>
+
+<style>
+.ap { display: flex; gap: 12px; }
+.ap button { border: 0; border-radius: 12px; padding: 14px 20px; font-size: 14px; font-weight: 600; color: #fff; background: #FA8C16; cursor: pointer; }
+.yes { transition: transform .15s, background .15s; }
+.yes:active { transform: scale(.96); background: #D46B08; }
+</style>

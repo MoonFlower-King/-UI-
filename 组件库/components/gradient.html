@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Gradient",
+  "zh": "渐变",
+  "lead": "两种以上颜色平滑过渡。线性、径向、锥形渐变效果各不相同。",
+  "prompt": "按钮用 135 度 Linear Gradient（#FA8C16 → #FF2D55），悬停时渐变位置平移；头像外圈用 Conic Gradient 做彩色描边。"
+}
+-->
+<div class="gr">
+  <div><i class="lin"></i><small>线性 Linear</small></div>
+  <div><i class="rad"></i><small>径向 Radial</small></div>
+  <div><i class="con"></i><small>锥形 Conic</small></div>
+</div>
+
+<style>
+.gr { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.gr div { display: grid; gap: 6px; justify-items: center; } .gr small { font-size: 12px; color: #71717A; }
+.gr i { width: 96px; height: 96px; border-radius: 20px; }
+.lin { background: linear-gradient(135deg, #FA8C16, #FF2D55); }
+.rad { background: radial-gradient(circle at 30% 30%, #FFE7BA, #FA8C16 60%, #D46B08); }
+.con { background: conic-gradient(from 0deg, #FA8C16, #FF2D55, #AF52DE, #007AFF, #34C759, #FA8C16); border-radius: 50%; animation: spin 6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>

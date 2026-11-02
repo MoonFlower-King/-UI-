@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Undo",
+  "zh": "撤销",
+  "lead": "删除后给几秒“撤销”机会，比弹窗确认更不打扰：大多数时候用户是想删的，偶尔误删也能救回来。点删除试试。",
+  "prompt": "删除消息时不弹确认框，改用 Undo：消息立刻消失，底部出现 Toast“已删除 · 撤销”，5 秒倒计时进度条，点撤销恢复原位，倒计时结束才真正删除。"
+}
+-->
+<div class="ud">
+  <ul><li>周末计划 <button>删除</button></li><li>设计评审 <button>删除</button></li><li>读书笔记 <button>删除</button></li></ul>
+  <div class="bar" hidden>已删除 <button class="undo">撤销</button><i></i></div>
+</div>
+
+<style>
+.ud { position: relative; width: min(260px, 88vw); height: 220px; }
+.ud ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ud li { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 13px; animation: in .25s; }
+.ud li button { border: 0; background: none; color: #FF3B30; font-size: 12px; cursor: pointer; }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 12px; background: #18181B; color: #fff; font-size: 13px; overflow: hidden; }
+.bar[hidden] { display: none; }
+.undo { border: 0; background: none; color: #FFC069; font-weight: 700; cursor: pointer; }
+.bar i { position: absolute; left: 0; bottom: 0; height: 3px; background: #FA8C16; animation: count 5s linear forwards; }
+@keyframes count { from { width: 100%; } to { width: 0; } } @keyframes in { from { opacity: 0; transform: translateY(-6px); } }
+</style>
+<script>
+const ul = document.querySelector(".ud ul"), bar = document.querySelector(".ud .bar"); let last, timer;
+ul.onclick = e => {
+  if (e.target.tagName !== "BUTTON") return;
+  const li = e.target.closest("li"); last = { li, next: li.nextSibling }; li.remove();
+  bar.hidden = false; const i = bar.querySelector("i"); i.style.animation = "none"; i.offsetWidth; i.style.animation = "";
+  clearTimeout(timer); timer = setTimeout(() => bar.hidden = true, 5000);
+};
+bar.querySelector(".undo").onclick = () => { ul.insertBefore(last.li, last.next); bar.hidden = true; clearTimeout(timer); };
+</script>

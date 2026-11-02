@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Flat Design",
+  "zh": "扁平化",
+  "lead": "没有阴影、没有渐变、没有质感，纯色块和简单图形。清爽直接。",
+  "prompt": "图标和卡片用 Flat Design：纯色填充、无阴影、无渐变、无描边，形状用简单的圆和圆角矩形，颜色饱和明亮。"
+}
+-->
+<div class="flat">
+  <div style="background:#FF6B6B"><i class="c"></i>相册</div>
+  <div style="background:#4ECDC4"><i class="s"></i>文件</div>
+  <div style="background:#FFD93D;color:#18181B"><i class="t"></i>笔记</div>
+  <div style="background:#6C5CE7"><i class="c"></i>音乐</div>
+</div>
+
+<style>
+.flat { display: grid; grid-template-columns: repeat(2, 110px); gap: 12px; }
+.flat div { height: 90px; border-radius: 16px; color: #fff; font-weight: 700; font-size: 14px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.flat i { width: 24px; height: 24px; background: rgba(255,255,255,.85); }
+.flat .c { border-radius: 50%; } .flat .s { border-radius: 6px; } .flat .t { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+</style>

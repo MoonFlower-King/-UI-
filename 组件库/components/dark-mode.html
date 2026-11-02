@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Dark Mode",
+  "zh": "深色模式",
+  "lead": "整套界面换成深色背景。不是简单反色：深色下背景用深灰不用纯黑，阴影要弱，颜色要降饱和。点开关切换。",
+  "prompt": "支持 Dark Mode：背景 #0F0F11，卡片 #18181B，文字 #FAFAFA / #A1A1AA，边框 #2E2E33；跟随系统 prefers-color-scheme 自动切换，切换时 300ms 过渡。"
+}
+-->
+<div class="dm">
+  <button class="sw" aria-label="切换深色模式">🌙</button>
+  <div class="card"><b>今日步数</b><strong>8,432</strong><small>比昨天多 12%</small></div>
+</div>
+
+<style>
+.dm { --bg: #F4F4F5; --card: #fff; --ink: #18181B; --sub: #71717A; --line: #E4E4E7;
+  width: 240px; padding: 18px; border-radius: 18px; background: var(--bg); display: grid; gap: 10px; transition: background .3s; }
+.dm.dark { --bg: #0F0F11; --card: #18181B; --ink: #FAFAFA; --sub: #A1A1AA; --line: #2E2E33; }
+.sw { justify-self: end; border: 1px solid var(--line); background: var(--card); border-radius: 99px; padding: 4px 10px; cursor: pointer; transition: .3s; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 2px; transition: .3s; }
+.card b { font-size: 12px; color: var(--sub); font-weight: 500; } .card strong { font-size: 28px; color: var(--ink); } .card small { color: #34C759; font-size: 12px; }
+</style>
+<script>
+const dm = document.querySelector(".dm"), sw = document.querySelector(".sw");
+sw.onclick = () => { dm.classList.toggle("dark"); sw.textContent = dm.classList.contains("dark") ? "☀️" : "🌙"; };
+</script>

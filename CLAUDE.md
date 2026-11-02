@@ -10,6 +10,7 @@
 ## 目录速览
 
 - `图鉴网站（开源）/`：术语图鉴，`npm run build:site` 生成数据
-- `组件库/`：组件库文档站，每个组件一个文件 `组件库/components/*.html`，`npm run build:ui` 生成 `data/components.js`
+- `组件库/`：「江月 UI」词典 + 组件库（发布在 `/ui/`）。每个术语一个文件 `组件库/components/*.html`，在 `data/categories.json` 登记主题，`npm run build:ui` 生成 `data/components.js`
+- 品牌：江月 UI 设计，视觉主题「江上明月」（夜色江面 + 月光暖金 + 江月橘 #FA8C16，标题用宋体类衬线字）。网站本身就是审美示范，改界面时保持这个水准
 - `.claude/skills/jiangyue-ui-video/`：做视频的 skill
 - 合并到 `main` 后 `.github/workflows/pages.yml` 自动发布：图鉴在根目录，组件库在 `/ui/`

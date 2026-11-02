@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Selected State",
+  "zh": "选中态",
+  "lead": "被选中的项要明显区别于其他项：边框、背景、对勾三者至少有一个。点选套餐试试。",
+  "prompt": "套餐选择卡片加 Selected State：选中后描边变成 2px 品牌色、背景淡橙色，右上角出现圆形对勾，其余卡片保持灰描边。"
+}
+-->
+<div class="ss">
+  <label><input type="radio" name="p"><b>月付</b><small>¥30 / 月</small></label>
+  <label><input type="radio" name="p" checked><b>年付</b><small>¥288 / 年 · 省 20%</small></label>
+</div>
+
+<style>
+.ss { display: grid; gap: 10px; width: min(260px, 88vw); }
+.ss label { position: relative; display: grid; padding: 14px 16px; border: 1px solid #E4E4E7; border-radius: 14px; background: #fff; cursor: pointer; transition: .2s; }
+.ss input { position: absolute; opacity: 0; }
+.ss b { font-size: 15px; } .ss small { font-size: 12px; color: #71717A; }
+.ss label:has(input:checked) { border-color: #FA8C16; box-shadow: inset 0 0 0 1px #FA8C16; background: #FFF7EB; }
+.ss label:has(input:checked)::after { content: "✓"; position: absolute; top: 12px; right: 14px; width: 20px; height: 20px; border-radius: 50%; background: #FA8C16; color: #fff; font-size: 12px; display: grid; place-items: center; }
+</style>

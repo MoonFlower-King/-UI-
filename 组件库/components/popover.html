@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Popover",
+  "zh": "气泡浮层",
+  "lead": "点击后弹出的小卡片，比 Tooltip 大，里面能放按钮和表单。点外面自动关闭。",
+  "prompt": "点头像弹出 Popover：白色卡片圆角 14px、大阴影，从头像下方 8px 处缩放淡入（transform-origin 顶部），包含用户信息和 3 个菜单项，点击外部关闭。"
+}
+-->
+<div class="po">
+  <button class="me">江</button>
+  <div class="card" hidden><b>江月</b><small>jiangyue@example.com</small><hr><a>个人主页</a><a>设置</a><a class="out">退出登录</a></div>
+</div>
+
+<style>
+.po { position: relative; height: 230px; padding-top: 10px; }
+.me { width: 40px; height: 40px; border-radius: 50%; border: 0; background: #FFE7BA; font-weight: 700; cursor: pointer; }
+.card { position: absolute; top: 58px; left: 0; width: 200px; background: #fff; border-radius: 14px; padding: 12px; display: grid; gap: 2px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04); transform-origin: 20px top; animation: pop .18s ease-out; }
+.card[hidden] { display: none; }
+.card small { font-size: 12px; color: #A1A1AA; } .card hr { border: 0; border-top: 1px solid #F4F4F5; margin: 8px 0; width: 100%; }
+.card a { font-size: 13px; padding: 7px 8px; border-radius: 8px; cursor: pointer; } .card a:hover { background: #F4F4F5; } .out { color: #FF3B30; }
+@keyframes pop { from { opacity: 0; transform: scale(.92); } }
+</style>
+<script>
+const me = document.querySelector(".me"), card = document.querySelector(".po .card");
+me.onclick = e => { e.stopPropagation(); card.hidden = !card.hidden; };
+document.addEventListener("click", e => { if (!card.contains(e.target)) card.hidden = true; });
+setTimeout(() => card.hidden = false, 400); // 预览时自动打开一次
+</script>

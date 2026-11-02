@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Consistency",
+  "zh": "一致性",
+  "lead": "同样的东西在全站长得一样、用法一样：按钮样式、圆角、间距、图标、用词。左边每个按钮各不相同，右边统一了。",
+  "prompt": "保持 Consistency：全站只有主按钮、次按钮、文字按钮三种样式；圆角统一 10px，间距只用 4 的倍数，同一个操作在不同页面用同一个词（统一叫“保存”，不要一会儿“确定”一会儿“提交”）。"
+}
+-->
+<div class="cs">
+  <figure><div class="col"><button style="background:#FA8C16;color:#fff;border-radius:20px">提交</button><button style="background:#007AFF;color:#fff;border-radius:4px">确定</button><button style="background:#34C759;color:#fff;border-radius:0;font-weight:700">保存！</button></div><figcaption>不一致</figcaption></figure>
+  <figure><div class="col ok"><button class="p">保存</button><button class="p">保存</button><button class="s">取消</button></div><figcaption>Consistency</figcaption></figure>
+</div>
+
+<style>
+.cs { display: flex; gap: 24px; } .cs figure { margin: 0; display: grid; gap: 8px; justify-items: center; } .cs figcaption { font-size: 12px; color: #71717A; }
+.col { display: grid; gap: 8px; width: 110px; } .col button { border: 1px solid transparent; padding: 9px; font-size: 13px; }
+.ok button { border-radius: 10px; font-weight: 600; } .ok .p { background: #18181B; color: #fff; } .ok .s { background: #fff; border-color: #E4E4E7; color: #3F3F46; }
+</style>

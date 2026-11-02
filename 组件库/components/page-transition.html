@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Page Transition",
+  "zh": "页面转场",
+  "lead": "从一个页面切到另一个页面时的过渡动画。有转场，用户知道自己“去了哪”；没有就是生硬地闪一下。点列表项试试。",
+  "prompt": "页面切换加 Page Transition：进入详情页时新页面从右侧滑入 30% 并淡入，旧页面向左移 10% 并变暗，时长 350ms；返回时反向。"
+}
+-->
+<div class="pt">
+  <div class="page list"><b>消息</b><a>小明：周末去爬山吗</a><a>设计组：评审改到周三</a><a>快递：已签收</a></div>
+  <div class="page detail"><button>‹ 返回</button><b>小明</b><p>周末去爬山吗？早上 8 点地铁站见。</p></div>
+</div>
+
+<style>
+.pt { position: relative; width: 220px; height: 240px; border-radius: 22px; border: 6px solid #18181B; overflow: hidden; background: #fff; }
+.page { position: absolute; inset: 0; padding: 14px; display: grid; gap: 8px; align-content: start; background: #fff; transition: transform .35s cubic-bezier(.32,.72,0,1), opacity .35s, filter .35s; }
+.page b { font-size: 17px; } .page a { padding: 10px; border-radius: 10px; background: #F4F4F5; font-size: 12px; cursor: pointer; }
+.page p { margin: 0; font-size: 13px; color: #3F3F46; }
+.detail button { justify-self: start; border: 0; background: none; color: #007AFF; font-size: 13px; padding: 0; cursor: pointer; }
+.detail { transform: translateX(100%); opacity: 0; }
+.pt.go .list { transform: translateX(-25%); filter: brightness(.9); }
+.pt.go .detail { transform: none; opacity: 1; }
+</style>
+<script>
+const pt = document.querySelector(".pt");
+pt.querySelectorAll(".list a").forEach(a => a.onclick = () => pt.classList.add("go"));
+pt.querySelector(".detail button").onclick = () => pt.classList.remove("go");
+setInterval(() => pt.classList.toggle("go"), 1800);
+</script>

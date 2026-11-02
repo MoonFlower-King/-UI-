@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Chip / Tag",
+  "zh": "标签胶囊",
+  "lead": "圆角小胶囊，用来显示分类，或者作为可多选的筛选条件。点一下切换选中。",
+  "prompt": "筛选条件做成可多选的 Chip：默认白底细描边，选中后黑底白字并在左侧出现 ✓，切换时 150ms 过渡。"
+}
+-->
+<div class="chips">
+  <button class="on">全部</button><button>设计</button><button>开发</button><button class="on">AI</button><button>产品</button><button>运营</button>
+</div>
+
+<style>
+.chips { display: flex; flex-wrap: wrap; gap: 8px; width: min(300px, 90vw); }
+.chips button { border: 1px solid #E4E4E7; background: #fff; border-radius: 99px; padding: 6px 14px; font-size: 13px; color: #3F3F46; cursor: pointer; transition: .15s; }
+.chips button.on { background: #18181B; border-color: #18181B; color: #fff; }
+.chips button.on::before { content: "✓ "; }
+</style>
+<script>
+document.querySelectorAll(".chips button").forEach(b => b.onclick = () => b.classList.toggle("on"));
+</script>
