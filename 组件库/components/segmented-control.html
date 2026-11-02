@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Segmented Control",
+  "zh": "分段控件",
+  "lead": "几个按钮连成一体、只能选一个，选中块会滑过去。像 iOS 里的切换条，适合 2 到 4 个选项。",
+  "prompt": "视图切换用 Segmented Control：灰色胶囊底座，白色选中块带轻投影，点击时选中块 250ms 弹性滑动到目标位置。"
+}
+-->
+<div class="seg"><i class="pill"></i><button class="on">日</button><button>周</button><button>月</button><button>年</button></div>
+
+<style>
+.seg { position: relative; display: grid; grid-template-columns: repeat(4, 64px); padding: 3px; border-radius: 12px; background: #EEEEF0; }
+.seg button { position: relative; z-index: 1; border: 0; background: none; height: 34px; font-size: 14px; color: #71717A; cursor: pointer; transition: color .2s; }
+.seg button.on { color: #18181B; font-weight: 600; }
+.pill { position: absolute; top: 3px; left: 3px; width: 64px; height: 34px; border-radius: 9px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  transition: transform .3s cubic-bezier(.34, 1.4, .64, 1); }
+</style>
+<script>
+const bs = document.querySelectorAll(".seg button"), pill = document.querySelector(".pill");
+bs.forEach((b, i) => b.onclick = () => { bs.forEach(x => x.classList.toggle("on", x === b)); pill.style.transform = `translateX(${i * 64}px)`; });
+</script>

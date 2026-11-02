@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Material Design",
+  "zh": "Material 设计",
+  "lead": "谷歌的设计语言：卡片有阴影层级，点击有水波纹，按钮浮在纸面上，动效有物理感。",
+  "prompt": "按 Material Design 3 风格：圆角 16px 的卡片带 1 级阴影，主按钮是胶囊形填充按钮，右下角 FAB 悬浮按钮，点击有水波纹。"
+}
+-->
+<div class="md">
+  <div class="top">收件箱</div>
+  <div class="card"><b>周末计划</b><small>一起去爬山吗？</small></div>
+  <div class="card"><b>设计评审</b><small>周三下午 3 点</small></div>
+  <button class="fab">✎</button>
+</div>
+
+<style>
+.md { position: relative; width: 240px; height: 250px; border-radius: 20px; background: #FEF7FF; padding: 14px; display: grid; gap: 10px; align-content: start; overflow: hidden; font-family: Roboto, sans-serif; }
+.top { font-size: 20px; color: #1D1B20; }
+.card { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15); display: grid; }
+.card b { font-size: 14px; } .card small { font-size: 12px; color: #49454F; }
+.fab { position: absolute; right: 16px; bottom: 16px; width: 52px; height: 52px; border: 0; border-radius: 16px; background: #EADDFF; color: #21005D; font-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,.2); cursor: pointer; transition: box-shadow .2s; }
+.fab:hover { box-shadow: 0 6px 12px rgba(0,0,0,.25); }
+</style>

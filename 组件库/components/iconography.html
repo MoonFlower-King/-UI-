@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Iconography",
+  "zh": "图标体系",
+  "lead": "全站图标统一风格：线性还是面性、线条粗细、圆角、尺寸。风格混用会显得很乱。",
+  "prompt": "Iconography 统一用 24px 网格、1.5px 线宽、圆角端点的线性图标；选中状态切换为同款面性图标，颜色变为品牌色。"
+}
+-->
+<div class="ico">
+  <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 11-8 11z"/></svg>
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+</div>
+
+<style>
+.ico { display: flex; gap: 14px; padding: 16px 20px; background: #fff; border-radius: 16px; border: 1px solid #E4E4E7; }
+.ico svg { width: 32px; height: 32px; fill: none; stroke: #3F3F46; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; transition: .2s; }
+.ico svg.on { fill: #FA8C16; stroke: #FA8C16; }
+</style>
+<script>
+document.querySelectorAll(".ico svg").forEach(s => s.onclick = () => { document.querySelectorAll(".ico svg").forEach(x => x.classList.remove("on")); s.classList.add("on"); });
+document.querySelector(".ico svg").classList.add("on");
+</script>

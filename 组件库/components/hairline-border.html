@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Hairline Border",
+  "zh": "细描边",
+  "lead": "1px 的浅色描边，比阴影更克制地分隔内容。Linear、Vercel 这类工具网站常用，显得精致利落。",
+  "prompt": "卡片用 Hairline Border 代替阴影：1px solid rgba(0,0,0,.08)，悬停时描边加深到 .16；深色模式下用 rgba(255,255,255,.08)。"
+}
+-->
+<div class="hl">
+  <div class="c"><b>部署</b><small>2 分钟前 · 成功</small></div>
+  <div class="c"><b>域名</b><small>example.com</small></div>
+  <div class="c"><b>日志</b><small>无错误</small></div>
+</div>
+
+<style>
+.hl { display: grid; gap: 0; width: min(280px, 90vw); border: 1px solid rgba(0,0,0,.08); border-radius: 12px; background: #fff; overflow: hidden; }
+.c { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+.c + .c { border-top: 1px solid rgba(0,0,0,.06); }
+.c:hover { background: #FAFAFA; }
+.c b { font-size: 13px; font-weight: 600; } .c small { font-size: 12px; color: #71717A; }
+</style>

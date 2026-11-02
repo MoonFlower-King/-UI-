@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Focus Ring",
+  "zh": "焦点框",
+  "lead": "用键盘 Tab 键选中时出现的外框。没有它，只用键盘的人不知道自己在哪。点一下预览，再按 Tab 键试试。",
+  "prompt": "所有可点击元素加 Focus Ring：:focus-visible 时显示 2px 橙色外框、偏移 2px；鼠标点击时不显示，只在键盘操作时出现。"
+}
+-->
+<div class="fr">
+  <button>保存</button><button>取消</button><a href="#">忘记密码</a><input placeholder="邮箱">
+</div>
+
+<style>
+.fr { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; width: min(320px, 90vw); }
+.fr button, .fr input { border: 1px solid #E4E4E7; border-radius: 10px; padding: 9px 14px; font-size: 13px; background: #fff; }
+.fr a { font-size: 13px; color: #3F3F46; padding: 4px; border-radius: 4px; }
+.fr :focus { outline: none; }
+.fr :focus-visible { outline: 2px solid #FA8C16; outline-offset: 2px; }
+</style>
+<script>
+// 预览时自动演示：依次聚焦每个元素
+const els = [...document.querySelectorAll(".fr > *")]; let i = 0;
+const demo = setInterval(() => { els[i++ % els.length].focus({ focusVisible: true }); if (i > 8) clearInterval(demo); }, 700);
+</script>

@@ -1,0 +1,17 @@
+<!--
+{
+  "en": "Display Font",
+  "zh": "展示字体",
+  "lead": "专门给大标题用的、有个性的字体或字形处理，只在少数地方用，正文不用它。",
+  "prompt": "Hero 标题换成 Display Font 效果：80px 超粗、字间距 -3px、文字填充渐变色；只用在首屏标题。"
+}
+-->
+<h1 class="display">SUMMER<br>SALE</h1>
+
+<style>
+.display { margin: 0; font-size: clamp(48px, 16vw, 80px); line-height: .9; font-weight: 900; letter-spacing: -3px; text-align: center;
+  font-family: "Arial Black", Impact, "Helvetica Neue", sans-serif;
+  background: linear-gradient(120deg, #FA8C16, #FF2D55, #AF52DE); -webkit-background-clip: text; background-clip: text; color: transparent;
+  background-size: 200% 100%; animation: shift 4s ease-in-out infinite alternate; }
+@keyframes shift { to { background-position: 100% 0; } }
+</style>

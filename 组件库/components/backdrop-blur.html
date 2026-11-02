@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Backdrop Blur",
+  "zh": "背景模糊",
+  "lead": "把元素后面的内容模糊掉，是毛玻璃效果的核心。常用在导航栏、弹窗、底部栏。",
+  "prompt": "底部标签栏加 Backdrop Blur：背景 70% 白色 + backdrop-filter: blur(16px) saturate(180%)，内容可以从下面滚过去。"
+}
+-->
+<div class="bb">
+  <div class="feed"><i></i><i></i><i></i><i></i><i></i></div>
+  <nav class="tabbar"><span>首页</span><span>发现</span><span>消息</span><span>我</span></nav>
+</div>
+
+<style>
+.bb { position: relative; width: 220px; height: 260px; border-radius: 24px; overflow: hidden; background: #fff; border: 6px solid #18181B; }
+.feed { padding: 10px; display: grid; gap: 8px; animation: up 5s linear infinite; }
+.feed i { height: 70px; border-radius: 12px; }
+.feed i:nth-child(1) { background: #FF9A62; } .feed i:nth-child(2) { background: #5AC8FA; } .feed i:nth-child(3) { background: #AF52DE; }
+.feed i:nth-child(4) { background: #34C759; } .feed i:nth-child(5) { background: #FF2D55; }
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-around; padding: 12px 0 14px; font-size: 11px;
+  background: rgba(255,255,255,.7); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border-top: 1px solid rgba(0,0,0,.06); }
+@keyframes up { 50% { transform: translateY(-140px); } }
+</style>

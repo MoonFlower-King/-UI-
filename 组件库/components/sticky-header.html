@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Sticky Header",
+  "zh": "吸顶导航",
+  "lead": "往下滚动时导航栏固定在顶部不跟着走，滚动后还可以变成毛玻璃。在预览里滚一下试试。",
+  "prompt": "导航做成 Sticky Header：position: sticky; top: 0；页面滚动超过 10px 后背景变成 80% 白色加 backdrop-filter: blur(12px)，底部出现 1px 分隔线。"
+}
+-->
+<div class="win">
+  <header class="bar">Logo<span>产品　价格　登录</span></header>
+  <main><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p></main>
+</div>
+
+<style>
+.win { width: min(360px, 92vw); height: 240px; overflow-y: auto; border-radius: 14px; border: 1px solid #E4E4E7;
+  background: linear-gradient(#FFE7BA, #DCEBFF); }
+.bar { position: sticky; top: 0; display: flex; justify-content: space-between; padding: 12px 16px; font-weight: 700; font-size: 14px; transition: .25s; }
+.bar span { font-weight: 400; font-size: 12px; color: #3F3F46; }
+.bar.scrolled { background: rgba(255,255,255,.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,.06); }
+main { padding: 16px; display: grid; gap: 10px; }
+main p { margin: 0; height: 46px; border-radius: 10px; background: rgba(255,255,255,.7); }
+</style>
+<script>
+const win = document.querySelector(".win"), bar = document.querySelector(".bar");
+win.addEventListener("scroll", () => bar.classList.toggle("scrolled", win.scrollTop > 10));
+// 预览时自动来回滚动一次
+let t = 0; const auto = setInterval(() => { win.scrollTop = 80 * (1 - Math.cos(t += .05)); if (t > 6.3) clearInterval(auto); }, 30);
+</script>

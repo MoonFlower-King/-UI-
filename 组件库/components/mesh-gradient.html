@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Mesh Gradient",
+  "zh": "网格渐变",
+  "lead": "多个颜色团块自由融合，像一团流动的彩色雾，比普通渐变更柔和、更高级。",
+  "prompt": "背景用 Mesh Gradient：4 个不同位置的径向渐变叠加（橙、粉、紫、蓝），整体缓慢漂移，20 秒一个循环。"
+}
+-->
+<div class="mesh"><b>Hello, Spring</b></div>
+
+<style>
+.mesh { width: min(380px, 92vw); height: 220px; border-radius: 20px; display: grid; place-items: center; color: #fff; font-size: 28px; font-weight: 800;
+  background:
+    radial-gradient(at 20% 20%, #FFB86B 0, transparent 50%),
+    radial-gradient(at 80% 10%, #FF6B9A 0, transparent 50%),
+    radial-gradient(at 70% 90%, #9B7BFF 0, transparent 55%),
+    radial-gradient(at 10% 90%, #5AC8FA 0, transparent 55%), #FFD6E0;
+  background-size: 160% 160%; animation: drift 10s ease-in-out infinite alternate; }
+@keyframes drift { to { background-position: 100% 100%; } }
+</style>

@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Neo-Brutalism",
+  "zh": "新粗野主义",
+  "lead": "粗黑描边、硬投影、高饱和撞色，故意显得“不精致”，年轻有个性。按下按钮会“压”下去。",
+  "prompt": "整站用 Neo-Brutalism：所有元素 3px 纯黑描边，4px 4px 0 纯黑硬投影（无模糊），背景亮黄 #FFE66D，按钮按下时位移 4px 抵消投影。"
+}
+-->
+<div class="brut">
+  <span class="sticker">NEW!</span>
+  <h3>做点不一样的</h3>
+  <p>不完美，但很有态度。</p>
+  <button>马上开始</button>
+</div>
+
+<style>
+.brut { position: relative; width: 240px; padding: 20px; background: #FFE66D; border: 3px solid #000; box-shadow: 6px 6px 0 #000; font-family: "Arial Black", sans-serif; }
+.brut h3 { margin: 0 0 4px; font-size: 22px; } .brut p { margin: 0 0 14px; font-family: sans-serif; font-size: 13px; }
+.brut button { background: #FF6B9A; border: 3px solid #000; box-shadow: 4px 4px 0 #000; padding: 8px 16px; font-weight: 900; cursor: pointer; transition: .1s; }
+.brut button:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
+.sticker { position: absolute; top: -14px; right: -12px; background: #4ECDC4; border: 3px solid #000; padding: 2px 8px; transform: rotate(8deg); font-size: 12px; }
+</style>

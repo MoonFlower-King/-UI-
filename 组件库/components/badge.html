@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Badge",
+  "zh": "徽标",
+  "lead": "角上的小红点或小数字，提示有新消息。数字超过 99 显示 99+。点图标看数字变化。",
+  "prompt": "消息图标右上角加 Badge：红色 #FF3B30 胶囊，白色 11px 数字，外加 2px 白边；超过 99 显示 99+，新消息到达时轻微弹跳一下。"
+}
+-->
+<div class="bd">
+  <button class="ic">🔔<span class="badge">3</span></button>
+  <button class="ic">💬<span class="badge dot"></span></button>
+  <button class="ic">🛒<span class="badge">99+</span></button>
+</div>
+
+<style>
+.bd { display: flex; gap: 24px; }
+.ic { position: relative; width: 52px; height: 52px; border-radius: 14px; border: 1px solid #E4E4E7; background: #fff; font-size: 22px; cursor: pointer; }
+.badge { position: absolute; top: -6px; right: -8px; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; background: #FF3B30; color: #fff;
+  font-size: 11px; font-weight: 700; line-height: 20px; border: 2px solid #FAFAFA; box-sizing: content-box; }
+.badge.dot { min-width: 0; width: 10px; height: 10px; padding: 0; top: -3px; right: -3px; }
+.badge.pop { animation: pop .4s cubic-bezier(.34, 1.8, .64, 1); }
+@keyframes pop { 40% { transform: scale(1.4); } }
+</style>
+<script>
+const b = document.querySelector(".badge");
+document.querySelector(".ic").onclick = () => { b.textContent = +b.textContent + 1; b.classList.remove("pop"); b.offsetWidth; b.classList.add("pop"); };
+</script>

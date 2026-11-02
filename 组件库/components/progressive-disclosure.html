@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Progressive Disclosure",
+  "zh": "渐进披露",
+  "lead": "先只显示最常用的选项，高级选项折叠起来，需要时再展开。新手不被吓到，老手也找得到。",
+  "prompt": "导出设置用 Progressive Disclosure：默认只显示格式和尺寸两个选项，下面一个“高级选项 ▾”链接，点开后平滑展开压缩率、色彩空间等高级设置。"
+}
+-->
+<div class="pd">
+  <label>格式<select><option>PNG</option><option>JPG</option></select></label>
+  <label>尺寸<select><option>2x</option><option>1x</option></select></label>
+  <button class="more">高级选项 <i>▾</i></button>
+  <div class="adv"><div><label>压缩率<input type="range"></label><label>色彩空间<select><option>sRGB</option></select></label></div></div>
+  <button class="go">导出</button>
+</div>
+
+<style>
+.pd { display: grid; gap: 10px; width: min(240px, 88vw); padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.pd label { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.pd select { border: 1px solid #E4E4E7; border-radius: 6px; padding: 3px 6px; }
+.more { justify-self: start; border: 0; background: none; padding: 0; color: #71717A; font-size: 12px; cursor: pointer; }
+.more i { display: inline-block; font-style: normal; transition: transform .25s; }
+.adv { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; } .adv > div { overflow: hidden; display: grid; gap: 10px; }
+.pd.open .adv { grid-template-rows: 1fr; } .pd.open .more i { transform: rotate(180deg); }
+.adv input { width: 90px; accent-color: #FA8C16; }
+.go { border: 0; border-radius: 10px; background: #18181B; color: #fff; padding: 9px; cursor: pointer; }
+</style>
+<script>
+const pd = document.querySelector(".pd"); pd.querySelector(".more").onclick = () => pd.classList.toggle("open");
+setTimeout(() => pd.classList.add("open"), 900);
+</script>

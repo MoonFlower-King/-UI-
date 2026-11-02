@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Monochrome",
+  "zh": "单色系",
+  "lead": "只用一个色相的深浅变化来配色，干净统一，不会出错。",
+  "prompt": "整套插画和图表用 Monochrome 蓝色系：从 #F0F6FF 到 #0040A0 的 5 档深浅，不再引入其他颜色。"
+}
+-->
+<div class="mono">
+  <div class="bars"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i></div>
+</div>
+
+<style>
+.mono { width: min(300px, 90vw); padding: 18px; border-radius: 16px; background: #F0F6FF; }
+.bars { height: 150px; display: flex; gap: 10px; align-items: flex-end; }
+.bars i { flex: 1; border-radius: 8px 8px 4px 4px; animation: grow .8s cubic-bezier(.2,.8,.2,1) backwards; }
+.bars i:nth-child(1) { background: #B3D4FF; } .bars i:nth-child(2) { background: #7AB3FF; animation-delay: .1s; }
+.bars i:nth-child(3) { background: #3D8BFF; animation-delay: .2s; } .bars i:nth-child(4) { background: #0062CC; animation-delay: .3s; }
+.bars i:nth-child(5) { background: #0040A0; animation-delay: .4s; }
+@keyframes grow { from { transform: scaleY(0); transform-origin: bottom; } }
+</style>

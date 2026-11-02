@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Parallax",
+  "zh": "视差滚动",
+  "lead": "滚动时前景和背景移动速度不同，远的慢、近的快，产生纵深感。在预览里滚一下。",
+  "prompt": "Hero 加 Parallax 视差：背景山脉以 0.3 倍速移动，中景 0.6 倍，前景文字 1 倍；用 transform 实现，不要用 background-attachment。"
+}
+-->
+<div class="px">
+  <div class="layer far"></div><div class="layer mid"></div>
+  <h2 class="layer">远山</h2>
+  <div class="spacer"></div>
+</div>
+
+<style>
+.px { position: relative; width: min(320px, 90vw); height: 220px; overflow-y: auto; border-radius: 16px; background: linear-gradient(#FFD9B0, #FFF3E3); }
+.layer { position: absolute; left: 0; right: 0; will-change: transform; }
+.far { top: 90px; height: 160px; background: #F7B27A; clip-path: polygon(0 60%, 20% 20%, 40% 50%, 65% 10%, 85% 45%, 100% 25%, 100% 100%, 0 100%); }
+.mid { top: 140px; height: 160px; background: #D46B08; clip-path: polygon(0 50%, 25% 20%, 50% 55%, 75% 15%, 100% 50%, 100% 100%, 0 100%); }
+.px h2 { top: 40px; margin: 0; text-align: center; font-size: 30px; color: #7A3A00; }
+.spacer { height: 600px; }
+</style>
+<script>
+const px = document.querySelector(".px"), far = px.querySelector(".far"), mid = px.querySelector(".mid"), h = px.querySelector("h2");
+px.addEventListener("scroll", () => { const y = px.scrollTop; far.style.transform = `translateY(${y * .7}px)`; mid.style.transform = `translateY(${y * .4}px)`; h.style.transform = `translateY(${y * .9}px)`; });
+let t = 0; const auto = setInterval(() => { px.scrollTop = 90 * (1 - Math.cos(t += .04)); if (t > 6.3) clearInterval(auto); }, 30);
+</script>

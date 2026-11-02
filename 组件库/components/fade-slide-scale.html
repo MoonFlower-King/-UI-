@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Fade / Slide / Scale",
+  "zh": "淡入 / 滑入 / 缩放",
+  "lead": "三种最基础的进场方式，可以组合使用。淡入最温和，滑入有方向感，缩放有“弹出”的感觉。",
+  "prompt": "卡片进场组合 Fade + Slide：透明度 0→1、向上位移 16px→0，时长 400ms ease-out；弹窗用 Fade + Scale（0.95→1）。"
+}
+-->
+<div class="fss">
+  <figure><i class="f"></i><figcaption>Fade 淡入</figcaption></figure>
+  <figure><i class="s"></i><figcaption>Slide 滑入</figcaption></figure>
+  <figure><i class="c"></i><figcaption>Scale 缩放</figcaption></figure>
+</div>
+
+<style>
+.fss { display: flex; gap: 18px; } .fss figure { margin: 0; display: grid; gap: 8px; justify-items: center; }
+.fss figcaption { font-size: 12px; color: #71717A; }
+.fss i { width: 72px; height: 72px; border-radius: 18px; background: #FA8C16; animation: 2s cubic-bezier(.2,.8,.2,1) infinite; }
+.f { animation-name: fade !important; } .s { animation-name: slide !important; } .c { animation-name: scale !important; }
+@keyframes fade { 0% { opacity: 0; } 40%, 100% { opacity: 1; } }
+@keyframes slide { 0% { opacity: 0; transform: translateY(24px); } 40%, 100% { opacity: 1; transform: none; } }
+@keyframes scale { 0% { opacity: 0; transform: scale(.6); } 40%, 100% { opacity: 1; transform: none; } }
+</style>

@@ -1,0 +1,19 @@
+<!--
+{
+  "en": "Skeuomorphism",
+  "zh": "拟物化",
+  "lead": "模仿真实物体的质感：金属、皮革、实体按键。早期 iOS 的风格，现在常用于做出“可触摸”的感觉。",
+  "prompt": "播放器按钮做成 Skeuomorphism：金属拉丝质感的圆形旋钮，顶部高光、底部暗部，按下时内凹，外圈有细微刻度。"
+}
+-->
+<div class="knob-wrap"><button class="knob" aria-label="播放"><span>▶</span></button></div>
+
+<style>
+.knob-wrap { width: 180px; height: 180px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle, #2a2a2a 55%, #111 56%, #1a1a1a 70%); box-shadow: inset 0 2px 4px rgba(0,0,0,.8), 0 1px 0 rgba(255,255,255,.1); }
+.knob { width: 120px; height: 120px; border-radius: 50%; border: 0; cursor: pointer;
+  background: repeating-conic-gradient(from 0deg, #d8d8d8 0deg 4deg, #c4c4c4 4deg 8deg);
+  box-shadow: inset 0 3px 2px rgba(255,255,255,.9), inset 0 -4px 6px rgba(0,0,0,.35), 0 8px 16px rgba(0,0,0,.6); transition: transform .1s, box-shadow .1s; }
+.knob span { display: grid; place-items: center; width: 64px; height: 64px; margin: auto; border-radius: 50%; background: linear-gradient(#f0f0f0, #bdbdbd); color: #555; font-size: 22px; text-shadow: 0 1px 0 #fff; box-shadow: inset 0 1px 1px #fff, 0 1px 2px rgba(0,0,0,.4); }
+.knob:active { transform: scale(.97); box-shadow: inset 0 3px 8px rgba(0,0,0,.5), 0 3px 6px rgba(0,0,0,.6); }
+</style>

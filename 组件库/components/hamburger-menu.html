@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Hamburger Menu",
+  "zh": "汉堡菜单",
+  "lead": "手机上三条横线的图标，点开显示完整菜单。三条线会变成 ×。",
+  "prompt": "手机端导航收进 Hamburger Menu：右上角三条线图标，点击后变形为 ×（上下两条旋转 45 度，中间淡出，300ms），菜单从顶部滑下并依次淡入。"
+}
+-->
+<div class="hm">
+  <header><b>◆ Moon</b><button class="burger" aria-label="菜单"><i></i><i></i><i></i></button></header>
+  <nav><a>首页</a><a>产品</a><a>价格</a><a>联系我们</a></nav>
+</div>
+
+<style>
+.hm { width: 220px; height: 240px; border-radius: 22px; border: 6px solid #18181B; background: #fff; overflow: hidden; }
+.hm header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid #F4F4F5; position: relative; z-index: 1; background: #fff; }
+.burger { width: 28px; height: 28px; border: 0; background: none; position: relative; cursor: pointer; }
+.burger i { position: absolute; left: 4px; right: 4px; height: 2px; border-radius: 2px; background: #18181B; transition: .3s; }
+.burger i:nth-child(1) { top: 8px; } .burger i:nth-child(2) { top: 13px; } .burger i:nth-child(3) { top: 18px; }
+.hm.open .burger i:nth-child(1) { top: 13px; transform: rotate(45deg); } .hm.open .burger i:nth-child(2) { opacity: 0; } .hm.open .burger i:nth-child(3) { top: 13px; transform: rotate(-45deg); }
+.hm nav { display: grid; padding: 6px 14px; transform: translateY(-110%); transition: transform .3s cubic-bezier(.32,.72,0,1); }
+.hm nav a { padding: 10px 0; font-size: 15px; font-weight: 600; border-bottom: 1px solid #F4F4F5; opacity: 0; transition: opacity .3s; }
+.hm.open nav { transform: none; } .hm.open nav a { opacity: 1; }
+.hm.open nav a:nth-child(2) { transition-delay: .05s; } .hm.open nav a:nth-child(3) { transition-delay: .1s; } .hm.open nav a:nth-child(4) { transition-delay: .15s; }
+</style>
+<script>
+const hm = document.querySelector(".hm"); hm.querySelector(".burger").onclick = () => hm.classList.toggle("open");
+setTimeout(() => hm.classList.add("open"), 600);
+</script>

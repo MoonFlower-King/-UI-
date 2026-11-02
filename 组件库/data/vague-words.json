@@ -1,32 +1,253 @@
 [
-  { "vague": "不高级 / 没质感", "why": "“高级感”通常来自三件事：层次（阴影和叠放）、留白、克制的细节光效。告诉 AI 具体要哪一种，它才知道往哪改。",
-    "terms": [["Layered Elevation", "层次阴影", "layered-elevation"], ["Whitespace", "留白"], ["Glassmorphism", "毛玻璃", "glassmorphism"], ["Spotlight Border", "聚光边框", "spotlight-border"]],
-    "prompt": "整体加大留白（区块间距 96px，卡片内边距 24px），卡片改用 Layered Elevation 三层阴影，重点卡片加 Spotlight Border。" },
-  { "vague": "太乱了 / 看不出重点", "why": "乱一般是层级不清：所有东西一样大、一样粗、一样颜色。要让 AI 建立视觉层级并对齐到网格。",
-    "terms": [["Visual Hierarchy", "视觉层级"], ["Grid System", "栅格系统"], ["Alignment", "对齐"], ["Bento Grid", "便当盒布局"]],
-    "prompt": "建立 Visual Hierarchy：标题 40px 粗体，副标题 18px 灰色，正文 15px；全部内容对齐到 12 栏 Grid System，功能区改成 Bento Grid。" },
-  { "vague": "点了没反应 / 不知道成功没有", "why": "缺的是反馈。每次点击都应该有即时的视觉回应，耗时操作还要有过程和结果。",
-    "terms": [["Ripple Effect", "水波纹点击", "ripple-effect"], ["Loading Button", "加载按钮", "loading-button"], ["Toast", "轻提示", "toast"], ["Optimistic UI", "乐观更新"]],
-    "prompt": "按钮加 Ripple Effect；提交按钮改成 Loading Button；保存成功后弹出 Toast；点赞用 Optimistic UI，先变色再发请求。" },
-  { "vague": "加载的时候好丑 / 白屏太久", "why": "等待本身没法消除，但可以让它“看起来快”。先给出轮廓，比空白和转圈更让人安心。",
-    "terms": [["Skeleton Screen", "骨架屏", "skeleton-screen"], ["Shimmer Effect", "扫光"], ["Progressive Blur", "渐进模糊"]],
-    "prompt": "数据加载时用 Skeleton Screen 占位并加 Shimmer 扫光；图片用 Progressive Blur，先显示模糊小图再过渡到清晰图。" },
-  { "vague": "动画很生硬 / 很廉价", "why": "生硬多半是缓动不对：匀速运动在现实里不存在。换成缓动曲线、弹簧，或者让元素错开出场。",
-    "terms": [["Ease-in-out", "缓入缓出"], ["Spring", "弹簧动画"], ["Stagger", "交错出场"]],
-    "prompt": "所有过渡改成 ease-in-out（300ms）；弹窗用 Spring 动画；列表项进入时 Stagger 依次出现，间隔 60ms。" },
-  { "vague": "弹窗太突兀 / 打断我", "why": "不同重要程度的信息该用不同的浮层。必须决定的才用模态弹窗，其余用更轻的形式。",
-    "terms": [["Backdrop Modal", "遮罩弹窗", "backdrop-modal"], ["Drawer", "侧边抽屉", "drawer"], ["Toast", "轻提示", "toast"], ["Popover", "气泡浮层"]],
-    "prompt": "确认删除用 Backdrop Modal（遮罩模糊、缩放进入）；筛选条件放进右侧 Drawer；操作结果用 Toast；字段说明用 Popover。" },
-  { "vague": "太平了 / 太素了", "why": "平是因为缺少深度和动态。加一点层次、背景氛围或悬停微交互，页面就“活”了。",
-    "terms": [["Layered Elevation", "层次阴影", "layered-elevation"], ["Aurora Background", "极光背景"], ["Micro-interaction", "微交互"], ["Underline Slide", "下划线滑入", "underline-slide"]],
-    "prompt": "首屏加 Aurora Background；卡片用 Layered Elevation；导航链接加 Underline Slide，按钮加悬停 Micro-interaction。" },
-  { "vague": "流程太长 / 用户会跑", "why": "长流程的焦虑来自“不知道还剩多少”。把它拆开，并且一直告诉用户进度。",
-    "terms": [["Stepper Progress", "步骤进度条", "stepper-progress"], ["Multi-step Form", "分步表单"], ["Progress Indicator", "进度指示"]],
-    "prompt": "注册改成 Multi-step Form，分 3 步，顶部加 Stepper Progress 显示当前第几步，每步只放 2 到 3 个字段。" },
-  { "vague": "颜色不好看 / 配色很土", "why": "配色问题通常是颜色太多、没有主次。定一个主色，其余用中性灰，再控制对比度。",
-    "terms": [["Accent Color", "主题色"], ["Neutral Palette", "中性色板"], ["60-30-10 Rule", "60-30-10 配色法则"], ["Contrast", "对比度"]],
-    "prompt": "只保留一个 Accent Color（#FA8C16），其余用锌灰 Neutral Palette；按 60-30-10 Rule 分配背景、表面、强调色；正文和背景 Contrast 至少 4.5:1。" },
-  { "vague": "字不好看 / 读起来累", "why": "排版要素就四个：字号层级、字重、行高、行宽。大多数“难读”是行太长或行高太挤。",
-    "terms": [["Type Scale", "字号层级"], ["Font Weight", "字重"], ["Line Height", "行高"], ["Measure", "行宽"]],
-    "prompt": "定一套 Type Scale（14 / 16 / 20 / 28 / 40px）；正文 Line Height 1.7；段落 Measure 不超过 65 个字符；标题 Font Weight 700，正文 400。" }
+ {
+  "vague": "不高级 / 没质感",
+  "why": "“高级感”通常来自三件事：层次（阴影和叠放）、留白、克制的细节光效。告诉 AI 具体要哪一种，它才知道往哪改。",
+  "terms": [
+   [
+    "Layered Elevation",
+    "层次阴影",
+    "layered-elevation"
+   ],
+   [
+    "Whitespace",
+    "留白",
+    "whitespace"
+   ],
+   [
+    "Glassmorphism",
+    "毛玻璃",
+    "glassmorphism"
+   ],
+   [
+    "Spotlight Border",
+    "聚光边框",
+    "spotlight-border"
+   ]
+  ],
+  "prompt": "整体加大留白（区块间距 96px，卡片内边距 24px），卡片改用 Layered Elevation 三层阴影，重点卡片加 Spotlight Border。"
+ },
+ {
+  "vague": "太乱了 / 看不出重点",
+  "why": "乱一般是层级不清：所有东西一样大、一样粗、一样颜色。要让 AI 建立视觉层级并对齐到网格。",
+  "terms": [
+   [
+    "Visual Hierarchy",
+    "视觉层级",
+    "visual-hierarchy"
+   ],
+   [
+    "Grid System",
+    "栅格系统",
+    "grid-system"
+   ],
+   [
+    "Alignment",
+    "对齐"
+   ],
+   [
+    "Bento Grid",
+    "便当盒布局",
+    "bento-grid"
+   ]
+  ],
+  "prompt": "建立 Visual Hierarchy：标题 40px 粗体，副标题 18px 灰色，正文 15px；全部内容对齐到 12 栏 Grid System，功能区改成 Bento Grid。"
+ },
+ {
+  "vague": "点了没反应 / 不知道成功没有",
+  "why": "缺的是反馈。每次点击都应该有即时的视觉回应，耗时操作还要有过程和结果。",
+  "terms": [
+   [
+    "Ripple Effect",
+    "水波纹点击",
+    "ripple-effect"
+   ],
+   [
+    "Loading Button",
+    "加载按钮",
+    "loading-button"
+   ],
+   [
+    "Toast",
+    "轻提示",
+    "toast"
+   ],
+   [
+    "Optimistic UI",
+    "乐观更新",
+    "optimistic-ui"
+   ]
+  ],
+  "prompt": "按钮加 Ripple Effect；提交按钮改成 Loading Button；保存成功后弹出 Toast；点赞用 Optimistic UI，先变色再发请求。"
+ },
+ {
+  "vague": "加载的时候好丑 / 白屏太久",
+  "why": "等待本身没法消除，但可以让它“看起来快”。先给出轮廓，比空白和转圈更让人安心。",
+  "terms": [
+   [
+    "Skeleton Screen",
+    "骨架屏",
+    "skeleton-screen"
+   ],
+   [
+    "Shimmer Effect",
+    "扫光",
+    "skeleton-screen"
+   ],
+   [
+    "Progressive Blur",
+    "渐进模糊"
+   ]
+  ],
+  "prompt": "数据加载时用 Skeleton Screen 占位并加 Shimmer 扫光；图片用 Progressive Blur，先显示模糊小图再过渡到清晰图。"
+ },
+ {
+  "vague": "动画很生硬 / 很廉价",
+  "why": "生硬多半是缓动不对：匀速运动在现实里不存在。换成缓动曲线、弹簧，或者让元素错开出场。",
+  "terms": [
+   [
+    "Ease-in-out",
+    "缓入缓出",
+    "ease-in-out"
+   ],
+   [
+    "Spring",
+    "弹簧动画",
+    "spring"
+   ],
+   [
+    "Stagger",
+    "交错出场",
+    "stagger"
+   ]
+  ],
+  "prompt": "所有过渡改成 ease-in-out（300ms）；弹窗用 Spring 动画；列表项进入时 Stagger 依次出现，间隔 60ms。"
+ },
+ {
+  "vague": "弹窗太突兀 / 打断我",
+  "why": "不同重要程度的信息该用不同的浮层。必须决定的才用模态弹窗，其余用更轻的形式。",
+  "terms": [
+   [
+    "Backdrop Modal",
+    "遮罩弹窗",
+    "backdrop-modal"
+   ],
+   [
+    "Drawer",
+    "侧边抽屉",
+    "drawer"
+   ],
+   [
+    "Toast",
+    "轻提示",
+    "toast"
+   ],
+   [
+    "Popover",
+    "气泡浮层",
+    "popover"
+   ]
+  ],
+  "prompt": "确认删除用 Backdrop Modal（遮罩模糊、缩放进入）；筛选条件放进右侧 Drawer；操作结果用 Toast；字段说明用 Popover。"
+ },
+ {
+  "vague": "太平了 / 太素了",
+  "why": "平是因为缺少深度和动态。加一点层次、背景氛围或悬停微交互，页面就“活”了。",
+  "terms": [
+   [
+    "Layered Elevation",
+    "层次阴影",
+    "layered-elevation"
+   ],
+   [
+    "Aurora Background",
+    "极光背景",
+    "aurora-background"
+   ],
+   [
+    "Micro-interaction",
+    "微交互",
+    "micro-interaction"
+   ],
+   [
+    "Underline Slide",
+    "下划线滑入",
+    "underline-slide"
+   ]
+  ],
+  "prompt": "首屏加 Aurora Background；卡片用 Layered Elevation；导航链接加 Underline Slide，按钮加悬停 Micro-interaction。"
+ },
+ {
+  "vague": "流程太长 / 用户会跑",
+  "why": "长流程的焦虑来自“不知道还剩多少”。把它拆开，并且一直告诉用户进度。",
+  "terms": [
+   [
+    "Stepper Progress",
+    "步骤进度条",
+    "stepper-progress"
+   ],
+   [
+    "Multi-step Form",
+    "分步表单"
+   ],
+   [
+    "Progress Indicator",
+    "进度指示"
+   ]
+  ],
+  "prompt": "注册改成 Multi-step Form，分 3 步，顶部加 Stepper Progress 显示当前第几步，每步只放 2 到 3 个字段。"
+ },
+ {
+  "vague": "颜色不好看 / 配色很土",
+  "why": "配色问题通常是颜色太多、没有主次。定一个主色，其余用中性灰，再控制对比度。",
+  "terms": [
+   [
+    "Accent Color",
+    "主题色",
+    "accent-color"
+   ],
+   [
+    "Neutral Palette",
+    "中性色板",
+    "neutral-palette"
+   ],
+   [
+    "60-30-10 Rule",
+    "60-30-10 配色法则",
+    "60-30-10-rule"
+   ],
+   [
+    "Contrast",
+    "对比度",
+    "contrast"
+   ]
+  ],
+  "prompt": "只保留一个 Accent Color（#FA8C16），其余用锌灰 Neutral Palette；按 60-30-10 Rule 分配背景、表面、强调色；正文和背景 Contrast 至少 4.5:1。"
+ },
+ {
+  "vague": "字不好看 / 读起来累",
+  "why": "排版要素就四个：字号层级、字重、行高、行宽。大多数“难读”是行太长或行高太挤。",
+  "terms": [
+   [
+    "Type Scale",
+    "字号层级",
+    "type-scale"
+   ],
+   [
+    "Font Weight",
+    "字重",
+    "font-weight"
+   ],
+   [
+    "Line Height",
+    "行高",
+    "line-height"
+   ],
+   [
+    "Measure",
+    "行宽",
+    "measure"
+   ]
+  ],
+  "prompt": "定一套 Type Scale（14 / 16 / 20 / 28 / 40px）；正文 Line Height 1.7；段落 Measure 不超过 65 个字符；标题 Font Weight 700，正文 400。"
+ }
 ]

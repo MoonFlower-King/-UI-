@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Tabs",
+  "zh": "标签页",
+  "lead": "一排可切换的标签，点哪个下面就显示哪块内容。下划线会滑到当前标签。",
+  "prompt": "设置页用 Tabs：账号 / 通知 / 隐私三个标签，当前标签文字变黑并有 2px 下划线，切换时下划线 250ms 滑动过去，内容淡入。"
+}
+-->
+<div class="tabs">
+  <div class="tl"><button class="on">账号</button><button>通知</button><button>隐私</button><i class="ink"></i></div>
+  <div class="panel">管理你的头像、昵称和手机号。</div>
+</div>
+
+<style>
+.tabs { width: min(300px, 90vw); background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 0 16px 16px; }
+.tl { position: relative; display: flex; gap: 20px; border-bottom: 1px solid #F4F4F5; }
+.tl button { border: 0; background: none; padding: 14px 0; font-size: 14px; color: #A1A1AA; cursor: pointer; }
+.tl button.on { color: #18181B; font-weight: 600; }
+.ink { position: absolute; bottom: -1px; height: 2px; background: #18181B; border-radius: 2px; transition: left .25s, width .25s; }
+.panel { padding-top: 14px; font-size: 13px; color: #3F3F46; animation: fade .3s; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } }
+</style>
+<script>
+const text = ["管理你的头像、昵称和手机号。", "选择哪些消息需要推送提醒。", "控制谁可以看到你的动态。"];
+const btns = [...document.querySelectorAll(".tl button")], ink = document.querySelector(".ink"), panel = document.querySelector(".panel");
+function go(i) {
+  btns.forEach(b => b.classList.toggle("on", b === btns[i]));
+  ink.style.left = btns[i].offsetLeft + "px"; ink.style.width = btns[i].offsetWidth + "px";
+  panel.textContent = text[i]; panel.style.animation = "none"; panel.offsetWidth; panel.style.animation = "";
+}
+btns.forEach((b, i) => b.onclick = () => go(i)); go(0);
+</script>

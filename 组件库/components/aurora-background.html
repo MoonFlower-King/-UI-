@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Aurora Background",
+  "zh": "极光背景",
+  "lead": "几团彩色光晕在深色背景里缓慢流动，像极光。很多 AI 产品官网都在用。",
+  "prompt": "Hero 背景用 Aurora Background：深色底 #0B0B1A，三团模糊 80px 的彩色光晕（青、紫、粉）各自缓慢漂移，20 秒循环，前景白色大标题。"
+}
+-->
+<div class="aurora">
+  <i class="a1"></i><i class="a2"></i><i class="a3"></i>
+  <h2>Build with AI</h2>
+</div>
+
+<style>
+.aurora { position: relative; width: min(400px, 94vw); height: 230px; border-radius: 20px; overflow: hidden; background: #0B0B1A; display: grid; place-items: center; }
+.aurora i { position: absolute; width: 220px; height: 220px; border-radius: 50%; filter: blur(50px); opacity: .7; }
+.a1 { background: #00D4FF; top: -60px; left: -40px; animation: f1 8s ease-in-out infinite alternate; }
+.a2 { background: #8B5CF6; bottom: -80px; left: 30%; animation: f2 10s ease-in-out infinite alternate; }
+.a3 { background: #FF4D9A; top: -40px; right: -60px; animation: f3 9s ease-in-out infinite alternate; }
+.aurora h2 { position: relative; margin: 0; color: #fff; font-size: 30px; font-weight: 800; letter-spacing: -1px; }
+@keyframes f1 { to { transform: translate(120px, 60px); } } @keyframes f2 { to { transform: translate(-100px, -50px); } } @keyframes f3 { to { transform: translate(-90px, 70px); } }
+</style>

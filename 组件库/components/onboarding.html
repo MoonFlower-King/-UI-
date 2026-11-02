@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Onboarding",
+  "zh": "新手引导",
+  "lead": "第一次使用时的几步引导，一次只讲一个功能，可以随时跳过。",
+  "prompt": "首次登录显示 3 步 Onboarding：每步一张插图、一句标题、一句说明，底部圆点进度和“下一步”按钮，右上角可以“跳过”；切换时左右滑动。"
+}
+-->
+<div class="ob">
+  <button class="skip">跳过</button>
+  <div class="slides"><div><i>✍️</i><b>一句话描述</b><small>告诉 AI 你想要什么界面</small></div><div><i>⚡</i><b>几秒生成</b><small>马上得到可以用的代码</small></div><div><i>🎨</i><b>随时调整</b><small>说“更高级一点”也能懂</small></div></div>
+  <div class="foot"><span class="dots"><i class="on"></i><i></i><i></i></span><button class="next">下一步</button></div>
+</div>
+
+<style>
+.ob { position: relative; width: 240px; padding: 18px; background: #fff; border-radius: 20px; box-shadow: 0 12px 32px rgba(0,0,0,.08); overflow: hidden; }
+.skip { position: absolute; top: 10px; right: 12px; border: 0; background: none; font-size: 12px; color: #A1A1AA; cursor: pointer; z-index: 1; }
+.slides { display: flex; transition: transform .35s cubic-bezier(.32,.72,0,1); }
+.slides div { flex: 0 0 100%; display: grid; justify-items: center; gap: 4px; text-align: center; padding: 14px 0; }
+.slides i { font-style: normal; font-size: 40px; margin-bottom: 6px; } .slides b { font-size: 16px; } .slides small { font-size: 12px; color: #71717A; }
+.foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.dots { display: flex; gap: 5px; } .dots i { width: 6px; height: 6px; border-radius: 99px; background: #E4E4E7; transition: .3s; } .dots i.on { width: 18px; background: #FA8C16; }
+.next { border: 0; border-radius: 99px; background: #18181B; color: #fff; padding: 7px 16px; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+let s = 0; const slides = document.querySelector(".slides"), dots = document.querySelectorAll(".dots i"), next = document.querySelector(".next");
+function go(n) { s = n % 3; slides.style.transform = `translateX(${-100 * s}%)`; dots.forEach((d, i) => d.classList.toggle("on", i === s)); next.textContent = s === 2 ? "开始使用" : "下一步"; }
+next.onclick = () => go(s + 1); setInterval(() => go(s + 1), 2200);
+</script>

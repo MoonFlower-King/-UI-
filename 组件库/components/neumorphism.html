@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Neumorphism",
+  "zh": "新拟态",
+  "lead": "元素和背景同色，靠一亮一暗两道阴影做出凸起或凹陷的效果，柔软得像塑料。点按钮看凹凸切换。",
+  "prompt": "控制面板用 Neumorphism：背景 #E0E5EC，元素同色，左上白色阴影 -6px -6px 12px、右下 #A3B1C6 阴影 6px 6px 12px；按下后变成内阴影凹陷。"
+}
+-->
+<div class="neu">
+  <button class="nb">♥</button>
+  <div class="nslider"><i></i></div>
+</div>
+
+<style>
+.neu { padding: 32px; border-radius: 24px; background: #E0E5EC; display: flex; gap: 28px; align-items: center; }
+.nb { width: 72px; height: 72px; border: 0; border-radius: 22px; background: #E0E5EC; color: #A3B1C6; font-size: 24px; cursor: pointer;
+  box-shadow: -6px -6px 12px #fff, 6px 6px 12px #A3B1C6; transition: .2s; }
+.nb.on { color: #FF6B8A; box-shadow: inset -5px -5px 10px #fff, inset 5px 5px 10px #A3B1C6; }
+.nslider { width: 120px; height: 18px; border-radius: 99px; background: #E0E5EC; box-shadow: inset -3px -3px 6px #fff, inset 3px 3px 6px #A3B1C6; padding: 3px; }
+.nslider i { display: block; width: 60%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #8EC5FC, #A78BFA); }
+</style>
+<script>
+document.querySelector(".nb").onclick = e => e.currentTarget.classList.toggle("on");
+</script>

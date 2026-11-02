@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Infinite Scroll",
+  "zh": "无限滚动",
+  "lead": "滑到底自动加载更多，不用翻页。加载时底部显示小转圈。在预览里往下滚试试。",
+  "prompt": "动态列表用 Infinite Scroll：距离底部 200px 时自动加载下一页（IntersectionObserver），加载中底部显示转圈，没有更多时显示“到底了”。"
+}
+-->
+<div class="feed"><div class="list"></div><div class="more"><i></i>加载中</div></div>
+
+<style>
+.feed { width: min(260px, 88vw); height: 240px; overflow-y: auto; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 10px; }
+.list { display: grid; gap: 8px; }
+.list div { padding: 12px; border-radius: 10px; background: #F4F4F5; font-size: 13px; animation: in .3s; }
+.more { display: flex; gap: 8px; justify-content: center; align-items: center; padding: 12px; font-size: 12px; color: #A1A1AA; }
+.more i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #E4E4E7; border-top-color: #FA8C16; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } } @keyframes in { from { opacity: 0; transform: translateY(8px); } }
+</style>
+<script>
+const list = document.querySelector(".list"), more = document.querySelector(".more"); let n = 0, busy = false;
+function load() { for (let i = 0; i < 5; i++) list.insertAdjacentHTML("beforeend", `<div>第 ${++n} 条动态</div>`); }
+load();
+new IntersectionObserver(([e]) => {
+  if (!e.isIntersecting || busy) return;
+  if (n >= 30) { more.textContent = "到底了"; return; }
+  busy = true; setTimeout(() => { load(); busy = false; }, 700);
+}, { root: document.querySelector(".feed"), rootMargin: "0px 0px 60px 0px" }).observe(more);
+</script>

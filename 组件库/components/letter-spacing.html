@@ -1,0 +1,20 @@
+<!--
+{
+  "en": "Letter Spacing",
+  "zh": "字间距",
+  "lead": "字与字之间的距离。大标题略收紧显得精致，全大写的小标签略放宽更好认。",
+  "prompt": "大标题 Letter Spacing -1px 收紧；全大写的小标签 Letter Spacing 1.5px 放宽；正文保持 0。"
+}
+-->
+<div class="ls">
+  <div><small>默认</small><h2>Design Better</h2></div>
+  <div><small>收紧 -1.5px</small><h2 style="letter-spacing:-1.5px">Design Better</h2></div>
+  <div><small>小标签放宽 2px</small><span>NEW FEATURE</span></div>
+</div>
+
+<style>
+.ls { display: grid; gap: 12px; }
+.ls small { font-size: 11px; color: #A1A1AA; display: block; }
+.ls h2 { margin: 0; font-size: 32px; font-weight: 800; }
+.ls span { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #D46B08; }
+</style>

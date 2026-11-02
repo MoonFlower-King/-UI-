@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Navbar",
+  "zh": "导航栏",
+  "lead": "页面顶部那一横条，放 Logo、菜单和按钮。当前页的菜单项要有明显标记。",
+  "prompt": "顶部 Navbar：高 64px，左 Logo，中间 4 个菜单（当前页加粗并有 2px 橙色下划线），右侧描边“登录”和实心“免费注册”按钮。"
+}
+-->
+<nav class="nav">
+  <b class="logo">◆ Moon</b>
+  <div class="links"><a class="on">首页</a><a>产品</a><a>价格</a></div>
+  <div class="act"><button>登录</button><button class="pri">注册</button></div>
+</nav>
+
+<style>
+.nav { box-sizing: border-box; display: flex; align-items: center; gap: 10px; width: min(460px, 94vw); height: 56px; padding: 0 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; }
+.logo { font-size: 15px; white-space: nowrap; } .links { display: flex; gap: 12px; flex: 1; justify-content: center; }
+.links a { position: relative; font-size: 13px; color: #71717A; cursor: pointer; padding: 18px 0; }
+.links a.on { color: #18181B; font-weight: 600; }
+.links a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 10px; height: 2px; background: #FA8C16; border-radius: 2px; }
+.act { display: flex; gap: 6px; }
+.act button { font-size: 12px; padding: 6px 12px; border-radius: 8px; border: 1px solid #E4E4E7; background: #fff; cursor: pointer; }
+.act .pri { background: #18181B; border-color: #18181B; color: #fff; }
+</style>
+<script>
+document.querySelectorAll(".links a").forEach(a => a.onclick = () => { document.querySelector(".links .on").classList.remove("on"); a.classList.add("on"); });
+</script>

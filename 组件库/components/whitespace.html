@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Whitespace",
+  "zh": "留白",
+  "lead": "元素之间、四周的空白。留白多显得从容、高级，留白少显得拥挤廉价。左边是没提留白时 AI 常做出的样子，右边是说了之后。",
+  "prompt": "整体加大 Whitespace：卡片内边距 28px，标题和正文间距 12px，正文和按钮间距 24px，区块之间留 96px。"
+}
+-->
+<div class="vs">
+  <figure><div class="card tight"><h4>专业版</h4><p>无限项目，团队协作，优先支持</p><button>升级</button></div><figcaption>没说留白</figcaption></figure>
+  <figure><div class="card airy"><h4>专业版</h4><p>无限项目，团队协作，优先支持</p><button>升级</button></div><figcaption>说了 Whitespace</figcaption></figure>
+</div>
+
+<style>
+.vs { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.vs figure { margin: 0; display: grid; gap: 6px; justify-items: center; }
+.vs figcaption { font-size: 12px; color: #71717A; }
+.card { width: 150px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+.card h4 { margin: 0; font-size: 15px; } .card p { margin: 0; font-size: 12px; color: #71717A; line-height: 1.5; }
+.card button { border: 0; border-radius: 8px; background: #18181B; color: #fff; font-size: 12px; padding: 7px 0; width: 100%; }
+.tight { padding: 8px; } .tight p { margin-top: 2px; } .tight button { margin-top: 4px; }
+.airy { padding: 22px 18px; } .airy p { margin-top: 10px; } .airy button { margin-top: 22px; }
+</style>

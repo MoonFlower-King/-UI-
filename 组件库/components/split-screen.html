@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Split Screen",
+  "zh": "左右分屏",
+  "lead": "页面从中间一分为二，两边各讲一件事，常用于登录页、对比页。手机上会自动变成上下排。",
+  "prompt": "登录页用 Split Screen：左半边品牌色背景加插画和一句标语，右半边白底登录表单，垂直居中；手机端上下堆叠。"
+}
+-->
+<div class="split">
+  <div class="brand"><b>欢迎回来</b><span>继续你的创作</span></div>
+  <form class="form"><b>登录</b><input placeholder="手机号"><input placeholder="密码" type="password"><button type="button">登录</button></form>
+</div>
+
+<style>
+.split { display: flex; flex-wrap: wrap; width: min(440px, 94vw); border-radius: 16px; overflow: hidden; border: 1px solid #E4E4E7; background: #fff; }
+.split > * { flex: 1 1 160px; padding: 20px; }
+.brand { background: linear-gradient(135deg, #FA8C16, #FF2D55); color: #fff; display: grid; align-content: center; gap: 4px; min-height: 160px; }
+.brand b { font-size: 20px; } .brand span { font-size: 12px; opacity: .85; }
+.form { display: grid; gap: 8px; align-content: center; }
+.form input { border: 1px solid #E4E4E7; border-radius: 8px; padding: 8px; font-size: 12px; }
+.form button { border: 0; border-radius: 8px; background: #18181B; color: #fff; padding: 9px; font-size: 13px; }
+</style>

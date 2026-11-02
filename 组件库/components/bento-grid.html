@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Bento Grid",
+  "zh": "便当盒布局",
+  "lead": "大小不一的方格拼在一起，像便当盒的分格。苹果发布会和很多产品官网的功能介绍都这么排。",
+  "prompt": "功能区用 Bento Grid：4 列网格，一个 2×2 大格放主功能，其余小格放次要功能，格子圆角 20px、间距 12px，每格不同浅色背景。"
+}
+-->
+<div class="bento">
+  <div class="big">AI 写作<small>一句话生成整篇文章</small></div>
+  <div>多人协作</div><div>版本历史</div>
+  <div class="wide">50+ 模板</div>
+</div>
+
+<style>
+.bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 72px; gap: 10px; width: min(420px, 92vw); }
+.bento > div { border-radius: 18px; background: #fff; border: 1px solid #E4E4E7; padding: 12px; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; justify-content: flex-end; }
+.bento .big { grid-column: span 2; grid-row: span 2; background: #18181B; color: #fff; font-size: 18px; }
+.bento .big small { font-size: 12px; font-weight: 400; opacity: .7; margin-top: 4px; }
+.bento .wide { grid-column: span 2; background: #FFF3E3; }
+.bento > div:nth-child(2) { background: #F0F6FF; } .bento > div:nth-child(3) { background: #F0FAF2; }
+</style>

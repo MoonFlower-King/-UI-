@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Easing",
+  "zh": "缓动曲线",
+  "lead": "动画速度怎么变化。匀速（linear）最生硬，ease-out 先快后慢最自然，ease-in 先慢后快适合离场。",
+  "prompt": "进入动画 Easing 用 ease-out（cubic-bezier(.2,.8,.2,1)），离场用 ease-in，位置移动用 ease-in-out；不要用 linear。"
+}
+-->
+<div class="ea">
+  <div><small>linear</small><i style="--e:linear"></i></div>
+  <div><small>ease-in</small><i style="--e:cubic-bezier(.6,0,.9,.4)"></i></div>
+  <div><small>ease-out</small><i style="--e:cubic-bezier(.2,.8,.2,1)" class="ok"></i></div>
+  <div><small>ease-in-out</small><i style="--e:cubic-bezier(.65,0,.35,1)"></i></div>
+</div>
+
+<style>
+.ea { display: grid; gap: 10px; width: min(300px, 88vw); }
+.ea div { position: relative; height: 30px; background: #F4F4F5; border-radius: 9px; }
+.ea small { position: absolute; right: 10px; top: 7px; font: 11px ui-monospace, monospace; color: #71717A; }
+.ea i { position: absolute; left: 4px; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: #A1A1AA; animation: run 2s var(--e) infinite alternate; }
+.ea i.ok { background: #FA8C16; }
+@keyframes run { 0%, 10% { transform: none; } 90%, 100% { transform: translateX(180px); } }
+</style>

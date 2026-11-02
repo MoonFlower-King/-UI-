@@ -2,76 +2,44 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>江月组件库</title>
-<meta name="description" content="会说专业词，AI 才做得好看。每个组件都有实时预览、可复制的代码和给 AI 的提示词。">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>江月 UI · 给 AI 描述界面的词典</title>
+<meta name="description" content="说对一个词，AI 就懂你的审美。106 个界面术语，每个都有实时效果、可复制的代码和一句能直接发给 AI 的话。">
+<meta name="theme-color" content="#0B0F1A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0F1A'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23FFD58A'/%3E%3Cpath d='M7 23h18M10 27h12' stroke='%23FA8C16' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<div class="app">
-  <aside class="side">
-    <a class="brand" href="#guide"><span class="logo"></span>江月组件库</a>
-    <input id="q" class="search" type="search" placeholder="搜中文、英文或大白话" aria-label="搜索组件">
-    <nav class="nav" id="nav"></nav>
-  </aside>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span><span><span>江月 <b>UI</b></span></span></a>
+  <button class="icon-btn" id="menu-btn" aria-label="打开目录">☰</button>
+</header>
 
-  <main id="view-guide" class="view" hidden>
-    <header>
-      <p class="crumb">开始</p>
-      <h1>说不清的时候，<em>换成这个词</em></h1>
-      <p class="lead">对 AI 说“不高级”“不好看”，它只能瞎猜。把感觉换成专业词，AI 就知道具体改哪里。下面是最常见的 10 种说法，点橙色的词可以直接看组件。</p>
-    </header>
-    <div class="guide" id="guide"></div>
-  </main>
+<aside class="side" id="side">
+  <a class="brand" href="#home"><span class="mark" aria-hidden="true"></span><span><span>江月 <b>UI</b></span><small>给 AI 描述界面的词典</small></span></a>
+  <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="搜词或说感觉…" aria-label="搜索术语"><kbd>/</kbd></label>
+  <nav class="nav" id="nav"></nav>
+  <footer class="side-foot">
+    <button class="icon-btn" id="theme-btn" aria-label="切换明暗"></button>
+    <a href="../">图鉴网站</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub</a>
+  </footer>
+</aside>
+<div class="scrim" id="scrim"></div>
 
-  <main id="view-glossary" class="view" hidden>
-    <header>
-      <p class="crumb">开始</p>
-      <h1>UI 术语词典</h1>
-      <p class="lead" id="glossary-lead"></p>
-    </header>
-    <div class="gloss-bar">
-      <input id="gq" class="search" type="search" placeholder="搜术语，比如“圆角”“hover”“手机”" aria-label="搜索术语">
-      <div class="chips" id="cats"></div>
-    </div>
-    <div id="glossary-list"></div>
-  </main>
+<main class="main" id="main"></main>
 
-  <main id="view-component" class="view" hidden>
-    <header>
-      <p class="crumb" id="crumb"></p>
-      <h1 id="title"></h1>
-      <p class="lead" id="lead"></p>
-    </header>
-    <section class="say">
-      <h2>你可能会这么说</h2>
-      <div class="vague" id="vague"></div>
-    </section>
-    <div class="toolbar">
-      <div class="seg" role="group" aria-label="视图">
-        <button type="button" id="v-preview" aria-pressed="true">预览</button>
-        <button type="button" id="v-code" aria-pressed="false">代码</button>
-      </div>
-      <div class="seg" role="group" aria-label="预览宽度" id="devices">
-        <button type="button" data-d="desktop" aria-pressed="true">桌面</button>
-        <button type="button" data-d="tablet" aria-pressed="false">平板</button>
-        <button type="button" data-d="phone" aria-pressed="false">手机</button>
-      </div>
-      <div class="tool-end">
-        <button type="button" class="btn" id="replay">重新播放</button>
-        <button type="button" class="btn primary" id="copy-code">复制代码</button>
-      </div>
-    </div>
-    <div class="stage" id="stage" data-device="desktop"><div class="frame"><iframe id="preview" title="组件实时预览"></iframe></div></div>
-    <pre class="code" id="code" hidden></pre>
-    <section class="prompt">
-      <div class="prompt-head"><h2>直接复制给 AI 的提示词</h2><button type="button" class="btn" id="copy-prompt">复制提示词</button></div>
-      <p id="prompt"></p>
-    </section>
-    <nav class="pager" id="pager"></nav>
-  </main>
+<button class="basket-fab" id="basket-fab" hidden><span>提示词篮子</span><b id="basket-count">0</b></button>
+<div class="basket" id="basket" hidden>
+  <div class="basket-panel" role="dialog" aria-label="提示词篮子">
+    <header><h2>提示词篮子</h2><button class="icon-btn" id="basket-close" aria-label="关闭">✕</button></header>
+    <p class="muted">挑几个词放进来，自动拼成一段完整的提示词，一次发给 AI。</p>
+    <ul id="basket-list"></ul>
+    <textarea id="basket-text" rows="9" aria-label="拼好的提示词"></textarea>
+    <div class="row"><button class="btn ghost" id="basket-clear">清空</button><button class="btn primary" id="basket-copy">复制整段提示词</button></div>
+  </div>
 </div>
 <div class="toast" id="toast" role="status"></div>
+
 <script src="data/components.js"></script>
 <script src="assets/app.js"></script>
 </body>

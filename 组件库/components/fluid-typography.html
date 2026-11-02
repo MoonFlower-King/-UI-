@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Fluid Typography",
+  "zh": "流式字号",
+  "lead": "字号随屏幕宽度平滑变化，不用每个断点手动调。拖动滑块看标题怎么连续变大变小。",
+  "prompt": "标题用 Fluid Typography：font-size: clamp(28px, 6vw, 56px)，最小 28px、最大 56px，中间随视口宽度平滑缩放。"
+}
+-->
+<div class="ft">
+  <input type="range" min="200" max="440" value="320" aria-label="宽度">
+  <div class="box"><h2>Fluid Type</h2><p>clamp(20px, 12cqi, 48px)</p></div>
+</div>
+
+<style>
+.ft { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; justify-items: center; width: min(460px, 94vw); }
+.ft input { accent-color: #FA8C16; }
+.box { box-sizing: border-box; container-type: inline-size; width: 320px; max-width: 100%; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; }
+.box h2 { margin: 0; font-size: clamp(20px, 12cqi, 48px); line-height: 1.1; letter-spacing: -1px; }
+.box p { margin: 4px 0 0; font: 11px ui-monospace, monospace; color: #A1A1AA; }
+</style>
+<script>
+const r = document.querySelector(".ft input"), box = document.querySelector(".ft .box");
+r.oninput = () => box.style.width = r.value + "px";
+let t = 0; const auto = setInterval(() => { r.value = 320 + 110 * Math.sin(t += .05); r.oninput(); if (t > 6.3) clearInterval(auto); }, 30);
+</script>

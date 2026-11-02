@@ -1,0 +1,17 @@
+<!--
+{
+  "en": "Breadcrumb",
+  "zh": "面包屑",
+  "lead": "“首页 / 分类 / 当前页”这样一串路径，告诉用户现在在哪，也能一键回到上一层。",
+  "prompt": "详情页顶部加 Breadcrumb：首页 › 数码 › 耳机 › 当前商品，前几级是可点击的灰色链接，最后一级黑色不可点，用 › 分隔。"
+}
+-->
+<nav class="crumb">
+  <a>首页</a><i>›</i><a>数码</a><i>›</i><a>耳机</a><i>›</i><span>降噪耳机 Pro</span>
+</nav>
+
+<style>
+.crumb { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 12px 16px; background: #fff; border-radius: 12px; border: 1px solid #E4E4E7; flex-wrap: wrap; }
+.crumb a { color: #71717A; cursor: pointer; text-decoration: none; } .crumb a:hover { color: #FA8C16; }
+.crumb i { color: #D4D4D8; font-style: normal; } .crumb span { color: #18181B; font-weight: 600; }
+</style>

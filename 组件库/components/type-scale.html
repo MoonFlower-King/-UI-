@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Type Scale",
+  "zh": "字号层级",
+  "lead": "一套固定的字号阶梯，全站只用这几档。字号有规律，页面就显得有秩序。",
+  "prompt": "定一套 Type Scale（1.25 倍比例）：12 / 14 / 16 / 20 / 25 / 31 / 39px，全站只用这几档，标题、正文、注释各取一档。"
+}
+-->
+<div class="scale">
+  <div style="font-size:39px">39 · 大标题</div>
+  <div style="font-size:31px">31 · 标题</div>
+  <div style="font-size:25px">25 · 小标题</div>
+  <div style="font-size:20px">20 · 导语</div>
+  <div style="font-size:16px">16 · 正文</div>
+  <div style="font-size:12px;color:#71717A">12 · 注释</div>
+</div>
+
+<style>
+.scale { display: grid; gap: 2px; line-height: 1.25; font-weight: 600; }
+.scale div { animation: in .5s backwards; } .scale div:nth-child(2) { animation-delay: .08s; } .scale div:nth-child(3) { animation-delay: .16s; }
+.scale div:nth-child(4) { animation-delay: .24s; } .scale div:nth-child(5) { animation-delay: .32s; } .scale div:nth-child(6) { animation-delay: .4s; }
+@keyframes in { from { opacity: 0; transform: translateX(-10px); } }
+</style>

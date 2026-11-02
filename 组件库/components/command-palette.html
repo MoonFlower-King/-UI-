@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Command Palette",
+  "zh": "命令面板",
+  "lead": "按 Ctrl+K 弹出的搜索框，能搜页面、搜操作、跑命令。Notion、Linear、VS Code 都有。输入试试。",
+  "prompt": "加一个 Ctrl+K 唤起的 Command Palette：居中弹出，顶部大搜索框，下面分组列出结果（页面 / 操作），实时模糊过滤，上下键选择、回车执行，右侧显示快捷键。"
+}
+-->
+<div class="cmd">
+  <input placeholder="搜索或输入命令…" autofocus>
+  <ul></ul>
+  <footer><kbd>↑↓</kbd> 选择 <kbd>↵</kbd> 执行 <kbd>esc</kbd> 关闭</footer>
+</div>
+
+<style>
+.cmd { width: min(340px, 92vw); background: #fff; border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.05); overflow: hidden; }
+.cmd input { width: 100%; border: 0; border-bottom: 1px solid #F4F4F5; padding: 16px; font-size: 15px; outline: none; box-sizing: border-box; }
+.cmd ul { list-style: none; margin: 0; padding: 6px; max-height: 170px; overflow-y: auto; }
+.cmd li { display: flex; justify-content: space-between; padding: 8px 10px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.cmd li.on { background: #FFF3E3; color: #D46B08; } .cmd li kbd, .cmd footer kbd { font: 11px ui-monospace, monospace; color: #A1A1AA; }
+.cmd footer { padding: 8px 14px; border-top: 1px solid #F4F4F5; font-size: 11px; color: #A1A1AA; }
+.cmd footer kbd { border: 1px solid #E4E4E7; border-radius: 4px; padding: 0 4px; }
+</style>
+<script>
+const all = [["新建文档", "⌘N"], ["打开设置", "⌘,"], ["切换深色模式", "⌘D"], ["邀请成员", ""], ["导出 PDF", "⌘E"], ["查看快捷键", "?"]];
+const input = document.querySelector(".cmd input"), ul = document.querySelector(".cmd ul"); let sel = 0, shown = all;
+function render() {
+  shown = all.filter(([t]) => t.includes(input.value.trim()));
+  sel = Math.min(sel, Math.max(shown.length - 1, 0));
+  ul.innerHTML = shown.map(([t, k], i) => `<li class="${i === sel ? "on" : ""}">${t}<kbd>${k}</kbd></li>`).join("") || '<li>没有匹配的命令</li>';
+}
+input.oninput = () => { sel = 0; render(); };
+input.onkeydown = e => { if (e.key === "ArrowDown") sel = (sel + 1) % shown.length; if (e.key === "ArrowUp") sel = (sel - 1 + shown.length) % shown.length; render(); };
+render();
+</script>

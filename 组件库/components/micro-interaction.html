@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Micro-interaction",
+  "zh": "微交互",
+  "lead": "点赞、开关、复制这类小操作上的小动画，让界面有反馈、有情绪。点一下复制按钮。",
+  "prompt": "复制按钮加 Micro-interaction：点击后图标从“复制”平滑切换为绿色对勾（缩放 + 淡入，200ms），文字变成“已复制”，2 秒后自动恢复。"
+}
+-->
+<button class="mi"><span class="i1">⧉</span><span class="i2">✓</span><b>复制链接</b></button>
+
+<style>
+.mi { position: relative; display: flex; align-items: center; gap: 8px; border: 1px solid #E4E4E7; background: #fff; border-radius: 12px; padding: 10px 16px 10px 40px; font-size: 14px; cursor: pointer; transition: .2s; }
+.mi span { position: absolute; left: 14px; font-size: 16px; transition: .25s cubic-bezier(.34,1.56,.64,1); }
+.i2 { opacity: 0; transform: scale(.3); color: #34C759; font-weight: 700; }
+.mi.done { border-color: #9BE3AD; background: #F0FAF2; color: #248A3D; }
+.mi.done .i1 { opacity: 0; transform: scale(.3) rotate(-90deg); } .mi.done .i2 { opacity: 1; transform: none; }
+</style>
+<script>
+const mi = document.querySelector(".mi"), label = mi.querySelector("b");
+mi.onclick = () => { mi.classList.add("done"); label.textContent = "已复制"; setTimeout(() => { mi.classList.remove("done"); label.textContent = "复制链接"; }, 2000); };
+setTimeout(() => mi.click(), 600);
+</script>

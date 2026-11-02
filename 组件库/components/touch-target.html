@@ -1,0 +1,19 @@
+<!--
+{
+  "en": "Touch Target",
+  "zh": "触控热区",
+  "lead": "手指能点中的区域，至少 44×44px。图标可以很小，但可点区域要够大。橙色虚线就是真正能点的范围。",
+  "prompt": "所有按钮和图标的 Touch Target 至少 44×44px：图标本身 20px，用 padding 把可点区域撑大；相邻两个可点元素间距至少 8px。"
+}
+-->
+<div class="tt">
+  <figure><div class="row small"><button>✕</button><button>♡</button><button>⤴</button></div><figcaption>20px 太小，容易点错</figcaption></figure>
+  <figure><div class="row big"><button>✕</button><button>♡</button><button>⤴</button></div><figcaption>44px 热区</figcaption></figure>
+</div>
+
+<style>
+.tt { display: grid; gap: 16px; } .tt figure { margin: 0; display: grid; gap: 6px; justify-items: center; } .tt figcaption { font-size: 12px; color: #71717A; }
+.row { display: flex; } .row button { border: 0; background: none; font-size: 16px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.small button { width: 20px; height: 20px; outline: 1px dashed #FF3B30; }
+.big { gap: 8px; } .big button { width: 44px; height: 44px; outline: 1.5px dashed #FA8C16; border-radius: 10px; }
+</style>

@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Disabled State",
+  "zh": "禁用态",
+  "lead": "暂时不能点的样子：变灰、半透明、鼠标变成禁止符号。表单没填完时，提交按钮就该是禁用态。输入内容试试。",
+  "prompt": "表单没填完时提交按钮是 Disabled State：40% 透明度、cursor: not-allowed、不响应点击；所有必填项填完后 200ms 过渡到正常状态。"
+}
+-->
+<form class="ds" onsubmit="return false">
+  <input placeholder="输入昵称（至少 2 个字）">
+  <button disabled>下一步</button>
+</form>
+
+<style>
+.ds { display: grid; gap: 10px; width: min(240px, 88vw); }
+.ds input { border: 1px solid #E4E4E7; border-radius: 10px; padding: 11px; font-size: 14px; }
+.ds button { border: 0; border-radius: 10px; padding: 11px; font-size: 14px; font-weight: 600; background: #18181B; color: #fff; cursor: pointer; transition: opacity .2s; }
+.ds button:disabled { opacity: .4; cursor: not-allowed; }
+</style>
+<script>
+const inp = document.querySelector(".ds input"), btn = document.querySelector(".ds button");
+inp.oninput = () => btn.disabled = inp.value.trim().length < 2;
+</script>

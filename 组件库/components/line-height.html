@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Line Height",
+  "zh": "行高",
+  "lead": "两行文字之间的距离。正文一般是字号的 1.5 到 1.8 倍，太挤就累眼。拖动滑块看看变化。",
+  "prompt": "正文 Line Height 1.7，标题 Line Height 1.2；段落之间再留一行的间距。"
+}
+-->
+<div class="lh">
+  <label>行高 <output>1.7</output><input type="range" min="1" max="2.4" step="0.1" value="1.7"></label>
+  <p>好的界面不需要说明书。用户打开页面的第一秒，就应该知道这里是做什么的、下一步该点哪里。行高合适的文字，读起来像在呼吸。</p>
+</div>
+
+<style>
+.lh { width: min(320px, 90vw); display: grid; gap: 10px; }
+.lh label { display: flex; gap: 8px; align-items: center; font-size: 12px; color: #71717A; }
+.lh input { flex: 1; accent-color: #FA8C16; }
+.lh p { margin: 0; font-size: 15px; line-height: 1.7; background: #fff; padding: 14px; border-radius: 10px; border: 1px solid #E4E4E7; transition: line-height .2s; }
+</style>
+<script>
+const r = document.querySelector(".lh input"), o = document.querySelector(".lh output"), p = document.querySelector(".lh p");
+r.addEventListener("input", () => { p.style.lineHeight = r.value; o.textContent = r.value; });
+</script>
