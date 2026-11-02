@@ -166,16 +166,23 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
 .thumb iframe { border: 0; pointer-events: none; }
 .thumb iframe { z-index: 1; transition: opacity .25s ease; }
 .thumb .poster { contain: strict; pointer-events: none; }
-/* 顶部半透明按钮：叠在预览上，平时淡一些不挡画面，鼠标移进卡片时变清楚 */
-.thumb-actions { position: absolute; top: 10px; right: 10px; z-index: 3; display: flex; gap: 6px; }
-.glass-btn { height: 28px; padding: 0 11px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .7); background: rgba(255, 255, 255, .5); color: #1D1B18;
+/* 卡片几乎全给预览，下面只留一条细细的词名。
+   操作按钮：电脑上平时藏起来，鼠标移进卡片才浮到预览右上角；手机上没有悬停，就放在词名那一条的右侧，不挡预览。 */
+.glass-btn { height: 28px; padding: 0 11px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .7); background: rgba(255, 255, 255, .82); color: #1D1B18;
   font-size: 12px; font-weight: 600; white-space: nowrap; backdrop-filter: blur(10px) saturate(1.4); -webkit-backdrop-filter: blur(10px) saturate(1.4);
-  box-shadow: 0 1px 3px rgba(20, 15, 5, .1); opacity: .72; transition: opacity .2s, background .2s, transform .1s; }
-.card:hover .glass-btn, .glass-btn:focus-visible { opacity: 1; background: rgba(255, 255, 255, .82); }
-.glass-btn:hover { background: #fff !important; }
+  box-shadow: 0 2px 8px rgba(20, 15, 5, .14); transition: background .2s, transform .1s; }
+.glass-btn:hover { background: #fff; }
 .glass-btn:active { transform: scale(.95); }
-.glass-btn.add-btn[aria-pressed="true"] { opacity: 1; background: rgba(250, 140, 22, .9); border-color: transparent; color: var(--on-accent); }
-@media (hover: none) { .glass-btn { opacity: .9; } }
+.glass-btn.add-btn[aria-pressed="true"] { background: rgba(250, 140, 22, .92); border-color: transparent; color: var(--on-accent); }
+.card-actions { z-index: 3; display: flex; gap: 6px; }
+@media (hover: hover) {
+  .card-actions { position: absolute; top: 10px; right: 10px; opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s; pointer-events: none; }
+  .card:hover .card-actions, .card:focus-within .card-actions { opacity: 1; transform: none; pointer-events: auto; }
+}
+@media (hover: none) {
+  .card-actions { position: relative; margin-left: auto; flex-shrink: 0; }
+  .card-actions .glass-btn { height: 26px; padding: 0 9px; font-size: 11px; background: var(--surface-2); border-color: var(--line); color: var(--ink); box-shadow: none; backdrop-filter: none; }
+}
 /* 首帧还没画好时（极少见）显示一道流光，而不是一块死白 */
 .thumb:not(.ready)::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .7) 50%, transparent 70%) var(--canvas); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
 @keyframes shimmer { from { background-position: 150% 0; } to { background-position: -50% 0; } }
@@ -185,9 +192,9 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
   .card:hover .thumb iframe { pointer-events: auto; }
   .card:hover .thumb .live { opacity: 1; }
 }
-.card-body { display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; }
-.card-title { display: flex; align-items: baseline; gap: 8px; margin: 0; }
-.card-title a { font: 700 17px/1.35 var(--serif); }
+.card-body { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 12px; }
+.card-title { display: flex; align-items: baseline; gap: 6px; min-width: 0; margin: 0; white-space: nowrap; overflow: hidden; }
+.card-title a { font: 600 14px/1.4 var(--sans); }
 .card-title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .card:hover .card-title a { color: var(--accent-ink); }
 .card-title small { font-size: 12px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -334,9 +341,10 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
   .answer .grid, .grid.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .grid.compact .card p, .answer .grid .card p, .grid.compact .card-title small, .answer .grid .card-title small { display: none; }
   .grid.compact .card-body, .answer .grid .card-body { padding: 10px 12px 12px; }
-  .grid.compact .card-title a, .answer .grid .card-title a { font-size: 15px; }
-  .grid.compact .thumb-actions, .answer .grid .thumb-actions { top: 6px; right: 6px; gap: 4px; }
-  .grid.compact .glass-btn, .answer .grid .glass-btn { height: 24px; padding: 0 8px; font-size: 11px; }
+  .grid.compact .card-title a, .answer .grid .card-title a { font-size: 13px; }
+  .grid.compact .card-body, .answer .grid .card-body { flex-wrap: wrap; gap: 6px; }
+  .grid.compact .card-actions, .answer .grid .card-actions { margin-left: 0; width: 100%; }
+  .grid.compact .glass-btn, .answer .grid .glass-btn { flex: 1; padding: 0 4px; }
   .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .cat-tile { padding: 14px; }
   .cat-tile p, .cat-tile .names { display: none; }
