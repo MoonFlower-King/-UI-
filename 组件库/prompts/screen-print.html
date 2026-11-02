@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Screen Print",
+  "zh": "丝网印刷",
+  "alias": [
+    "丝印海报",
+    "演出海报"
+  ],
+  "lead": "丝网印刷的演出海报：两三种不透明的油墨大块叠印，交叠处变出第三种颜色，边缘有一点点漏墨。有力、手作、带独立音乐现场的味道，适合演出票务、啤酒节、乐队官网和艺术市集。",
+  "prompt": "丝网印刷风格：灰白纸背景，三种平涂专色（如番茄红、湖蓝、芥末黄）大块叠印，交叠处用正片叠底产生新色，色块边缘略微错位和轻微墨点，粗压缩无衬线大标题，图形为简化剪影，无渐变",
+  "promptEn": "screen print style: gray-white paper background, three flat spot colors (e.g. tomato red, lake blue, mustard) overprinted in large shapes, overlaps multiplied into new colors, slight misregistration and ink specks on edges, bold condensed sans headlines, simplified silhouette graphics, no gradients",
+  "avoid": "叠印的魅力在交叠处出现第三色，所以要用正片叠底；专色三种封顶，渐变一出现就不像丝印了。",
+  "neg": [
+    "渐变、颜色太多、无叠印",
+    "gradients, too many colors, no overprint"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E24A33; --a2: #2A7AA8; --on: #F1EEE6; background: #EDEAE2; color: #1E1E1E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.hero h1 { font-weight: 900; font-size: 36px; letter-spacing: -1px; text-transform: uppercase; transform: scaleY(1.1); transform-origin: top left; color: #1E1E1E; text-shadow: 2px 1px 0 rgba(226,74,51,.8); }
+.art .m { position: absolute; left: 10px; top: 10px; width: 100px; height: 100px; border-radius: 50%; background: #E24A33; mix-blend-mode: multiply; }
+.art .h { position: absolute; left: 60px; top: 40px; width: 100px; height: 100px; background: #2A7AA8; mix-blend-mode: multiply; transform: rotate(12deg); }
+.art::before { content: ""; position: absolute; left: 30px; top: 80px; width: 120px; height: 50px; background: #F0B429; mix-blend-mode: multiply; transform: translate(2px, -1px); }
+.feats article { border-top: 6px solid #E24A33; padding-top: 8px; } .feats article:nth-child(2) { border-color: #2A7AA8; } .feats article:nth-child(3) { border-color: #F0B429; } .feats h3 { font-weight: 900; text-transform: uppercase; }
+.stats { background: #1E1E1E; color: #EDEAE2; } .stats b { color: #F0B429; font-weight: 900; }
+</style>

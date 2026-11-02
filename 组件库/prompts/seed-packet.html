@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Seed Packet",
+  "zh": "种子包装袋",
+  "alias": [
+    "种子袋",
+    "园艺包装"
+  ],
+  "lead": "老式种子纸袋：上半是手绘的植物插画，下半是品种名、播种月份表和小字说明，边缘一圈细框。朴实、亲切、充满生长的期待，适合园艺品牌、农场直销、植物商店和自然教育。",
+  "prompt": "种子包装袋风格：米黄纸色背景，内容像一只只竖版纸袋（顶部锯齿或折边），上半为平涂植物插画（叶绿、番茄红、胡萝卜橙），下半为衬线品种名与等宽小字说明，一排月份格子标注播种期，细线双框",
+  "promptEn": "seed packet style: buff paper background, content as vertical paper packets (zigzag or folded top edge), upper half with flat botanical illustrations (leaf green, tomato red, carrot orange), lower half with serif variety names and small monospaced notes, a row of month boxes marking sowing time, thin double-line frames",
+  "avoid": "月份格是辨识点，一定要有；插画平涂简洁，别用写实照片。每个袋子的版式要统一。",
+  "neg": [
+    "写实蔬菜照片、袋子版式不统一",
+    "realistic vegetable photos, inconsistent packet layouts"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #3F6B35; --a2: #C4472E; --on: #FBF5E4; background: #F2E8CC; color: #2E2A20; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 800; color: #3F6B35; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #C4472E; }
+.art .m { position: absolute; left: 30px; top: 0; width: 110px; height: 150px; background: #FBF5E4; border: 1px solid #2E2A20; box-shadow: inset 0 0 0 3px #FBF5E4, inset 0 0 0 4px #2E2A20;
+  clip-path: polygon(0 6px, 6% 0, 12% 6px, 18% 0, 24% 6px, 30% 0, 36% 6px, 42% 0, 48% 6px, 54% 0, 60% 6px, 66% 0, 72% 6px, 78% 0, 84% 6px, 90% 0, 96% 6px, 100% 0, 100% 100%, 0 100%); }
+.art .h { position: absolute; left: 62px; top: 22px; width: 46px; height: 46px; border-radius: 50%; background: #C4472E; z-index: 1; }
+.art .h::before { content: ""; position: absolute; left: 16px; top: -10px; width: 16px; height: 14px; background: #3F6B35; border-radius: 0 100%; }
+.art::after { content: ""; position: absolute; left: 40px; top: 118px; width: 90px; height: 12px; z-index: 1; border: 1px solid #2E2A20;
+  background: linear-gradient(90deg, transparent 0 calc(25% - .5px), #2E2A20 0 25%, transparent 0 calc(50% - .5px), #2E2A20 0 50%, transparent 0 calc(75% - .5px), #2E2A20 0 75%, transparent 0), linear-gradient(90deg, transparent 25%, #9DBF6A 25% 75%, transparent 75%); }
+.feats article { padding: 12px; background: #FBF5E4; border: 1px solid #2E2A20; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #C4472E; }
+.stats { border-top: 3px double #2E2A20; margin: 0 26px; } .stats b { color: #3F6B35; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Rococo",
+  "zh": "洛可可",
+  "alias": [
+    "洛可可风",
+    "宫廷粉彩"
+  ],
+  "lead": "十八世纪的沙龙：淡粉、薄荷、天青的粉彩墙面，金色 C 形卷草和贝壳纹，轻盈俏皮。精致、甜美、有点浮华，适合甜品店、香水、婚礼策划和高级下午茶。",
+  "prompt": "洛可可风格：淡奶油背景，粉彩主色（淡粉、薄荷绿、天青），金色细线的 C 形和 S 形卷草框只用在主视觉和标题周围，椭圆画框，高反差细衬线标题配一行斜体，对称但轻盈，大量留白",
+  "promptEn": "Rococo style: pale cream background, pastel main colors (blush pink, mint, sky blue), thin gold C- and S-scroll frames only around the hero and headings, oval picture frames, high-contrast thin serif headings with one italic line, symmetrical yet airy, generous white space",
+  "avoid": "卷草只围在一两处，满页金边就成了暴发户；粉彩要灰一点、淡一点，别用芭比粉。",
+  "neg": [
+    "满页金色卷草、高饱和粉色",
+    "gold scrolls everywhere, saturated pink"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C9858F; --a2: #7FAF9E; --on: #fff; background: #FBF6EE; color: #4A3A36; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 999px; } .kicker { font-style: italic; letter-spacing: 2px; } .hero h1 { font-weight: 300; letter-spacing: 1px; } .b2 { font-style: italic; }
+.art .m { position: absolute; left: 25px; top: 8px; width: 120px; height: 140px; border-radius: 50%; background: radial-gradient(ellipse at 50% 35%, #F7DDE0, #E8B8BE 60%, #D9A0A8); border: 2px solid #C7A55E; box-shadow: 0 0 0 5px #FBF6EE, 0 0 0 6px #C7A55E; }
+.art .h { position: absolute; left: 60px; top: -4px; width: 50px; height: 20px; border: 2px solid #C7A55E; border-bottom: 0; border-radius: 50% 50% 0 0; background: #FBF6EE; }
+.art .h::before, .art .h::after { content: ""; position: absolute; top: 6px; width: 14px; height: 14px; border: 2px solid #C7A55E; border-radius: 50%; border-right-color: transparent; }
+.art .h::before { left: -14px; } .art .h::after { right: -14px; transform: scaleX(-1); }
+.art::after { content: ""; position: absolute; left: 70px; top: 50px; width: 30px; height: 40px; border-radius: 50%; background: #CFE6DD; box-shadow: 0 0 0 4px rgba(255,255,255,.6); }
+.feats article { text-align: center; padding: 12px; border-radius: 40px 40px 6px 6px; background: #fff; border: 1px solid #E8D6B0; } .feats b { font-style: italic; color: #7FAF9E; } .feats h3 { font-weight: 400; }
+.stats { background: #EAF3EF; margin: 0 26px; border-radius: 999px; } .stats b { font-weight: 300; color: #C9858F; }
+</style>

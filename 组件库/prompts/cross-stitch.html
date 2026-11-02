@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Cross Stitch",
+  "zh": "十字绣",
+  "alias": [
+    "刺绣格子",
+    "针脚像素"
+  ],
+  "lead": "一格一格的小叉叉绣在网眼布上，图案像像素画却更柔软。手作、温馨、有奶奶家的味道，适合手工社区、母婴品牌、文创礼物和节日贺卡。",
+  "prompt": "十字绣风格：米白网眼布背景（极淡的方格点阵），主视觉为由小 X 形针脚拼成的像素图案（花朵、小房子或爱心，三四种线色：茜红、苔绿、芥黄），边缘一圈绣绷圆框，圆润或手写感标题，卡片边缘用虚线针脚",
+  "promptEn": "cross stitch style: off-white aida cloth background (very faint grid of dots), a hero of a pixel motif made from tiny X-shaped stitches (flower, little house or heart; three or four thread colors: madder red, moss green, mustard), an embroidery hoop circle around it, rounded or handwritten-feel headings, cards edged with dashed stitches",
+  "avoid": "针脚要用 X 形才像十字绣，方块就成了像素画；图案简单、色少，网眼底纹要非常淡。",
+  "neg": [
+    "方块像素、网格底纹太重",
+    "square pixels, heavy grid background"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B23B3B; --a2: #5C7A3E; --on: #FBF8F1; background: #F7F3EA; color: #3A2F28; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { background: radial-gradient(circle, rgba(80,60,40,.09) .8px, transparent 1.2px) 0 0 / 6px 6px; }
+.cta, .b1 { border-radius: 999px; } .hero h1 { font-weight: 800; }
+.art .m { position: absolute; left: 15px; top: 5px; width: 140px; height: 140px; border-radius: 50%; border: 6px solid #C9A574; box-shadow: inset 0 0 0 2px #A8834F, 0 0 0 2px #A8834F; background: #FBF8F1; }
+.art .h { position: absolute; left: 49px; top: 41px; width: 72px; height: 66px;
+  background: linear-gradient(45deg, transparent 40%, currentColor 40% 60%, transparent 60%) 0 0 / 6px 6px, linear-gradient(-45deg, transparent 40%, currentColor 40% 60%, transparent 60%) 0 0 / 6px 6px; color: #B23B3B;
+  clip-path: polygon(25% 0, 42% 0, 50% 18%, 58% 0, 75% 0, 92% 18%, 92% 45%, 50% 100%, 8% 45%, 8% 18%); }
+.art::after { content: ""; position: absolute; left: 73px; top: 116px; width: 24px; height: 18px; color: #5C7A3E;
+  background: linear-gradient(45deg, transparent 40%, currentColor 40% 60%, transparent 60%) 0 0 / 6px 6px, linear-gradient(-45deg, transparent 40%, currentColor 40% 60%, transparent 60%) 0 0 / 6px 6px; }
+.feats article { padding: 12px; border-radius: 8px; background: #FBF8F1; outline: 1.5px dashed #B23B3B; outline-offset: -5px; } .feats article:nth-child(2) { outline-color: #5C7A3E; } .feats b { font-weight: 700; }
+.stats b { color: #B23B3B; }
+</style>

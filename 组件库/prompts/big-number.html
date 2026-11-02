@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Big Numbers",
+  "zh": "巨型数字",
+  "alias": [
+    "数字主导",
+    "大数据字"
+  ],
+  "lead": "页面的主角是几个巨大的数字：年份、百分比、排名，正文退到旁边当注脚。直接、自信、一眼抓住重点，适合年度报告、公益成果、产品发布和数据新闻。",
+  "prompt": "巨型数字风格：浅米白背景，主视觉为一个占据半屏的超大数字（细体或压缩粗体，近黑或主色），配一行小号说明，正文和导航都很小，数据区每项一个大数字，单一强调色标注最关键的那个",
+  "promptEn": "big numbers style: light off-white background, a hero of one oversized numeral filling half the screen (thin or condensed bold, near-black or main color) with a small one-line caption, small body text and navigation, data sections with one big number per item, a single accent marking the most important figure",
+  "avoid": "大数字只放真正重要的，三五个就够；数字和说明要挨着，不然读者不知道这个数说的是什么。",
+  "neg": [
+    "满屏大数字、数字没有说明",
+    "big numbers everywhere, numbers without captions"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #121212; --a2: #E8572B; --on: #FAF7F0; background: #FAF7F0; color: #121212; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 0; } .hero { grid-template-columns: 1fr 200px; }
+.hero h1 { font-size: 22px; font-weight: 700; } .sub { font-size: 11px; }
+.art::before { content: "12"; position: absolute; right: -4px; top: -26px; font: 800 150px/1 -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: -10px; color: #121212; }
+.art::after { content: "个座位 · 每晚只开放这么多"; position: absolute; right: 0; bottom: -2px; font-size: 10.5px; color: #E8572B; font-weight: 700; }
+.feats b { font-size: 28px; font-weight: 800; color: #121212; letter-spacing: -1px; } .feats article:nth-child(2) b { color: #E8572B; } .feats h3 { font-size: 13px; }
+.stats { border-top: 2px solid #121212; margin: 0 26px; padding: 14px 0; justify-content: space-between; } .stats b { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Stacked Cards",
+  "zh": "叠卡布局",
+  "alias": [
+    "卡片堆叠",
+    "层叠卡片"
+  ],
+  "lead": "内容像一叠扑克牌，前面一张完整，后面几张露出边，暗示“还有更多”。轻盈、有层次、引人往下翻，适合 App 官网、作品集、会员卡和功能介绍页。",
+  "prompt": "叠卡布局风格：浅暖灰背景，主视觉为三四张错位叠放的圆角卡片（每张后移并略缩小，颜色由浅到深同一色系），柔和大半径阴影，干净无衬线标题，功能区同样用轻微错位的卡片，一个明亮主色",
+  "promptEn": "stacked cards style: light warm gray background, a hero of three or four rounded cards stacked with offsets (each one behind shifted and slightly smaller, shades of one color family from light to dark), soft large-radius shadows, clean sans-serif headings, feature section also using slightly offset cards, one bright main color",
+  "avoid": "后面的卡片只露出一条边就够，露太多就成了乱摊；阴影要柔、要统一方向。",
+  "neg": [
+    "卡片乱摊、硬阴影",
+    "scattered cards, hard shadows"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #2B59C3; --a2: #2B59C3; --on: #fff; background: #F1EFEB; color: #1F2430; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 10px; } .hero h1 { font-weight: 800; letter-spacing: -.5px; }
+.art .m, .art .h, .art::before { position: absolute; left: 22px; width: 130px; height: 100px; border-radius: 14px; content: ""; }
+.art::before { top: 6px; transform: scale(.84); background: #C9D5F2; }
+.art .h { top: 20px; transform: scale(.92); background: #8FA8E6; box-shadow: 0 6px 16px rgba(31,36,48,.08); }
+.art .m { top: 36px; background: #2B59C3; box-shadow: 0 12px 26px rgba(43,89,195,.25); z-index: 1; }
+.art::after { content: "山月会员 · 0517"; position: absolute; left: 36px; top: 108px; color: #fff; font: 600 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; z-index: 2; }
+.feats article { padding: 14px; border-radius: 14px; background: #fff; box-shadow: 0 6px 0 -2px #E1DDD5, 0 12px 0 -5px #D3CEC4; } .feats b { font-weight: 700; }
+.stats { margin: 6px 26px 0; border-radius: 14px; background: #fff; } .stats b { color: #2B59C3; }
+</style>

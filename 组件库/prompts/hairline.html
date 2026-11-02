@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Hairline",
+  "zh": "发丝线",
+  "alias": [
+    "极细线",
+    "细线排版"
+  ],
+  "lead": "整页只靠头发丝一样细的线分隔：线框、线图标、线状图表，字也偏细。轻盈、精确、高级，像精密仪器的说明书，适合珠宝、腕表、建筑和高端科技产品。",
+  "prompt": "发丝线风格：纯白或极浅灰背景，所有分隔、边框和图形都用 0.5–1px 的发丝细线（深灰），细体无衬线标题与较大字号对比，线状几何主视觉（同心圆、刻度、坐标），无填充色块，只有一个金属色或深蓝点缀",
+  "promptEn": "hairline style: pure white or very light gray background, every divider, border and graphic drawn in 0.5–1px hairlines (dark gray), light-weight sans headings in larger sizes for contrast, a line-only geometric hero (concentric circles, ticks, coordinates), no filled color blocks, one metallic or deep blue accent",
+  "avoid": "线要统一的细，混进一条粗线就破功；细体字要够大，小号细体字读不清。",
+  "neg": [
+    "粗细混用、小号细字",
+    "mixed line weights, tiny thin text"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1A1C20; --a2: #8A6E3E; --on: #fff; background: #FCFCFB; color: #1A1C20; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: .5px solid #1A1C20; } .logo { font-weight: 300; letter-spacing: 3px; } .logo i { background: none; border: .5px solid #1A1C20; border-radius: 50%; }
+.cta { background: none; color: #1A1C20; border: .5px solid #1A1C20; border-radius: 999px; font-weight: 300; }
+.hero h1 { font-weight: 200; font-size: 36px; letter-spacing: -.5px; } .b1 { background: none; color: #1A1C20; border: .5px solid #1A1C20; border-radius: 999px; font-weight: 400; }
+.art .m { position: absolute; left: 15px; top: 5px; width: 140px; height: 140px; border-radius: 50%; border: .5px solid #1A1C20;
+  background: repeating-conic-gradient(#1A1C20 0 .4deg, transparent .4deg 6deg); -webkit-mask: radial-gradient(circle, transparent 62px, #000 62.5px); mask: radial-gradient(circle, transparent 62px, #000 62.5px); }
+.art .h { position: absolute; left: 40px; top: 30px; width: 90px; height: 90px; border-radius: 50%; border: .5px solid #1A1C20; }
+.art::before { content: ""; position: absolute; left: 85px; top: 22px; width: .5px; height: 63px; background: #8A6E3E; transform-origin: bottom; transform: rotate(38deg); }
+.art::after { content: ""; position: absolute; left: 83px; top: 73px; width: 4px; height: 4px; border-radius: 50%; background: #8A6E3E; }
+.feats article { border-top: .5px solid #1A1C20; padding-top: 10px; } .feats b { font-weight: 400; } .feats h3 { font-weight: 300; font-size: 16px; }
+.stats { border-top: .5px solid #1A1C20; border-bottom: .5px solid #1A1C20; margin: 0 26px; } .stats b { font-weight: 200; font-size: 28px; }
+</style>

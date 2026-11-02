@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Postcard",
+  "zh": "明信片",
+  "alias": [
+    "旅行明信片",
+    "寄语卡"
+  ],
+  "lead": "一张寄出去的明信片：左边手写几句话，右边是邮票、邮戳和地址横线，中间一道竖线分开。温暖、私人、带着远方的问候，适合旅行品牌、文创、城市推广和纪念活动。",
+  "prompt": "明信片风格：浅米白卡纸背景，内容卡片模仿明信片背面（中间竖线分隔，左侧手写感短句，右侧地址横线、邮票框和圆形波浪邮戳），首屏可用一张正面风景插画，衬线标题，一种邮政红点缀",
+  "promptEn": "postcard style: light off-white card stock background, content cards imitating a postcard back (a vertical dividing line in the middle, short handwritten-feel notes on the left, address lines, a stamp box and a round wavy postmark on the right), the first screen may use a front-side scenic illustration, serif headings, one postal red accent",
+  "avoid": "中间竖线和右侧地址线是明信片的标志，别省；手写字只放一两句，正文仍用规整字体。",
+  "neg": [
+    "去掉分隔线和地址线、全文手写",
+    "dropping the divider and address lines, handwriting everywhere"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B83A32; --a2: #2F5C7A; --on: #fff; background: #F5F0E6; color: #2D2A26; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; }
+.art .m { position: absolute; left: 0; top: 10px; width: 170px; height: 120px; background: #FFFDF8; box-shadow: 0 4px 14px rgba(0,0,0,.1); transform: rotate(-3deg);
+  background: linear-gradient(90deg, transparent 49.6%, #C9C2B4 49.6% 50.4%, transparent 50.4%), repeating-linear-gradient(transparent 0 17px, #D9D3C6 17px 18px) 92px 52px / 70px 56px no-repeat, #FFFDF8; }
+.art .m::before { content: "见字如面，\A山月一切都好。"; white-space: pre; position: absolute; left: 10px; top: 30px; font: italic 11px/1.7 "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #2F5C7A; }
+.art .h { position: absolute; left: 128px; top: 14px; width: 28px; height: 34px; background: #B83A32; transform: rotate(-3deg); z-index: 1;
+  -webkit-mask: radial-gradient(circle, transparent 1.6px, #000 2px) -2px -2px / 5px 5px, linear-gradient(#000, #000) center / 22px 28px no-repeat; mask: radial-gradient(circle, transparent 1.6px, #000 2px) -2px -2px / 5px 5px, linear-gradient(#000, #000) center / 22px 28px no-repeat; }
+.art::after { content: ""; position: absolute; left: 106px; top: 20px; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid rgba(47,92,122,.6); z-index: 2; box-shadow: 18px 0 0 -14px rgba(47,92,122,.6); }
+.feats article { padding: 12px; background: #FFFDF8; box-shadow: 0 2px 8px rgba(0,0,0,.06); } .feats b { color: #B83A32; } .feats h3 { font-weight: 600; }
+.stats { border-top: 1px solid #D9D3C6; margin: 0 26px; } .stats b { color: #2F5C7A; font-weight: 500; }
+</style>

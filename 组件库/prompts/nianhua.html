@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "New Year Print",
+  "zh": "木版年画",
+  "alias": [
+    "年画",
+    "杨柳青桃花坞"
+  ],
+  "lead": "过年贴在门上的木版年画：粗黑线稿、桃红翠绿明黄大块平涂、胖娃娃和鱼，套色略微错位。喜庆、热闹、接地气，适合春节营销、非遗文创、民俗餐厅和节庆活动。",
+  "prompt": "木版年画风格：大红或米黄纸色背景，粗黑木刻轮廓线，桃红、翠绿、明黄、湖蓝大块平涂，套色轻微错位，主视觉为圆润的吉祥图形（鱼、莲花、元宝），四周回纹或卷草边框，粗衬线或手写感标题",
+  "promptEn": "Chinese New Year woodblock print style: bright red or rice-yellow paper background, thick black woodcut outlines, big flat fills of peach pink, jade green, bright yellow and lake blue, slight color misregistration, a hero of rounded auspicious motifs (fish, lotus, ingots), fret or scroll-vine borders, heavy serif or hand-lettered headings",
+  "avoid": "黑线要粗、颜色要平涂不要渐变；颜色多但要有一个主底色压住。别直接放门神等具体传统人物形象，用图形符号更安全也更好看。",
+  "neg": [
+    "渐变上色、颜色没有主次",
+    "gradient coloring, no dominant base color"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #C8302B; --a2: #1F8A5B; --on: #FFF4D6; background: #F7E7BF; color: #2A1A12; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg { box-shadow: inset 0 0 0 6px #C8302B, inset 0 0 0 8px #2A1A12; }
+.nav { padding: 18px 30px; } .cta, .b1 { border-radius: 0; border: 2px solid #2A1A12; } .hero h1 { font-weight: 900; color: #C8302B; text-shadow: 2px 2px 0 #2A1A12; letter-spacing: 2px; }
+.art .m { position: absolute; left: 14px; top: 20px; width: 140px; height: 90px; border: 3px solid #2A1A12; background: #E9517A;
+  border-radius: 50% 40% 40% 50% / 60% 50% 50% 40%; box-shadow: 3px 3px 0 #F2C531; }
+.art .h { position: absolute; left: 140px; top: 40px; width: 30px; height: 50px; border: 3px solid #2A1A12; background: #1F8A5B; clip-path: polygon(0 50%, 100% 0, 80% 50%, 100% 100%); }
+.art::before { content: ""; position: absolute; left: 40px; top: 50px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid #2A1A12; box-shadow: 0 0 0 0 #2A1A12, inset 0 0 0 3px #2A1A12; z-index: 1; }
+.art::after { content: ""; position: absolute; left: 70px; top: 40px; width: 50px; height: 50px; z-index: 1; background: repeating-radial-gradient(circle at 0 100%, transparent 0 8px, #2A1A12 8px 10px); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: .5; }
+.feats article { padding: 12px; background: #FFF4D6; border: 2px solid #2A1A12; box-shadow: 3px 3px 0 #1F8A5B; } .feats b { color: #C8302B; font-weight: 700; }
+.stats { background: #C8302B; color: #FFF4D6; margin: 0 8px; } .stats b { color: #F2C531; }
+</style>
