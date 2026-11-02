@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Outline Type",
+  "zh": "空心大字",
+  "alias": [
+    "描边字",
+    "Hollow Type"
+  ],
+  "lead": "超大号的空心描边字做背景或主视觉，配一行实心小字，层次分明。时髦、有设计感、很省颜色，适合潮牌、作品集、展览和音乐活动。",
+  "prompt": "空心大字风格：纯色背景（米白或黑），主视觉为超大号的空心描边无衬线字，只描边不填色，部分字与实心字叠在一起形成层次，其余文字为常规实心字，只用一两种颜色",
+  "promptEn": "outline type style: solid background (off-white or black), a hero of oversized hollow outlined sans letters with stroke only and no fill, some overlapping with solid letters to create depth, all other text in normal solid type, only one or two colors",
+  "avoid": "空心字只能用在超大字号上，小字描边会糊掉看不清。描边粗细要统一，一行里粗细不同会很乱。",
+  "neg": [
+    "小字号描边、描边粗细不一",
+    "small outlined text, inconsistent strokes"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #111; --a2: #FF5A1F; --on: #fff; background: #F1EFEA; color: #111; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero { position: relative; grid-template-columns: 1fr; padding-top: 74px; overflow: hidden; }
+.art { position: absolute; left: 20px; right: 0; top: 4px; height: 90px; min-height: 0; }
+.art .m { position: absolute; left: 0; top: 0; font-size: 86px; font-weight: 900; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #111; white-space: nowrap; } .art .m::before { content: "慢读 SLOW"; }
+.art .h { position: absolute; left: 6px; top: 6px; font-size: 86px; font-weight: 900; line-height: 1; color: #FF5A1F; white-space: nowrap; clip-path: inset(0 82% 0 0); } .art .h::before { content: "慢读 SLOW"; }
+.copy { position: relative; } .hero h1 { font-size: 24px; font-weight: 800; } .b2 { color: #FF5A1F; }
+.feats b { font-size: 30px; font-weight: 900; color: transparent; -webkit-text-stroke: 1px #111; } .stats b { font-size: 34px; font-weight: 900; color: transparent; -webkit-text-stroke: 1.2px #111; }
+</style>

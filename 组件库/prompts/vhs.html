@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "VHS Tape",
+  "zh": "录像带",
+  "alias": [
+    "磁带年代",
+    "Camcorder"
+  ],
+  "lead": "录像带的画面：轻微的扫描线、色彩错位、角落里的「播放 ▶」和时间码，加上磁带盒的标签。怀旧、温暖、有家庭录像感，适合复古音乐、独立电影、怀旧活动和创作者频道。",
+  "prompt": "录像带风格：深灰蓝背景，主视觉为带细扫描线和轻微红蓝错位的画面，角落有等宽字体的「PLAY ▶」和时间码，下方是磁带盒标签式的手写条，颜色暖而略褪色，正文放在干净的深色区域",
+  "promptEn": "VHS tape style: deep slate background, a hero frame with fine scanlines and slight red-blue misregistration, a monospace PLAY indicator and timecode in the corners, a cassette-label style handwritten strip below, warm slightly faded colors, body text on clean dark areas",
+  "avoid": "扫描线和错位只在画面里，正文上面绝对不要加。别做成霓虹紫粉的蒸汽波，录像带的颜色是暖的、褪色的。",
+  "neg": [
+    "正文上加扫描线、霓虹蒸汽波",
+    "scanlines over body text, neon vaporwave"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #E9C46A; --a2: #E9C46A; --on: #1D2230; background: #1D2230; color: #E8E3D6; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.kicker, .stats b, .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 800; text-shadow: 1.5px 0 rgba(230, 80, 70, .5), -1.5px 0 rgba(80, 160, 230, .5); }
+.art { overflow: hidden; background: linear-gradient(160deg, #C9875B, #6B4B5E 60%, #2E3550); }
+.art::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .18) 2px 3px); }
+.art .m { position: absolute; left: 8px; top: 6px; font: 700 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, .6); } .art .m::before { content: "PLAY ▶"; }
+.art .h { position: absolute; right: 8px; bottom: 6px; font: 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #fff; } .art .h::before { content: "SP 0:12:48"; }
+.feats article { padding: 12px; background: #262C3D; border-left: 4px solid #E9C46A; } .feats b, .stats b { color: #E9C46A; }
+.ft { font-family: "Kaiti SC", "STKaiti", cursive; color: #2A2A2A; background: #F2EBD9; opacity: 1; margin: 0 26px 18px; padding: 8px 12px; }
+</style>

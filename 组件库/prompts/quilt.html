@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Patchwork Quilt",
+  "zh": "拼布",
+  "alias": [
+    "百衲布",
+    "Patchwork"
+  ],
+  "lead": "一块块不同花色的布拼成几何图案，边缘有缝线。温暖、怀旧、有家的感觉，适合手工布艺、家居、母婴、乡村民宿和社区活动。",
+  "prompt": "拼布风格：奶白背景，主视觉为由方块和三角布片拼成的几何图案（风车、星形），布片为几种柔和色加细小的格子或条纹，布片之间有浅色缝线，圆润衬线标题，卡片像一块素色布片",
+  "promptEn": "patchwork quilt style: cream background, a hero of geometric blocks (pinwheel, star) pieced from square and triangle patches in a few soft colors with small checks or stripes, light stitch lines between patches, rounded serif headings, cards like plain fabric patches",
+  "avoid": "布片颜色要限定在一套里，四五种就够；什么颜色都拼会像碎布堆。花纹要小，大花纹会抢走几何结构。",
+  "neg": [
+    "颜色太杂、大花纹",
+    "too many colors, large prints"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #B6534A; --a2: #4F6E8C; --on: #FFF8EE; background: #FBF4E8; color: #3A2E28; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 6px; } .hero h1 { font-weight: 700; }
+.art { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; min-height: 170px; background: #F3E6CF; padding: 3px; border-radius: 4px; }
+.art .m, .art .h, .art::before, .art::after { content: ""; outline: 1px dashed rgba(255, 255, 255, .7); outline-offset: -4px; }
+.art .m { background: linear-gradient(to top right, #B6534A 50%, #F2D7A8 50%); } .art .h { background: linear-gradient(to top left, repeating-linear-gradient(90deg, #4F6E8C 0 4px, #6E8CAA 4px 8px) 50%, #F2D7A8 50%); background: linear-gradient(to top left, #4F6E8C 50%, #F2D7A8 50%); }
+.art::before { background: linear-gradient(to bottom right, #7E9A6A 50%, #F2D7A8 50%); } .art::after { background: linear-gradient(to bottom left, #E0A24A 50%, #F2D7A8 50%); }
+.feats article { padding: 12px; border-radius: 8px; background: #F2E4CC; outline: 1px dashed #B6534A; outline-offset: -5px; } .feats b, .stats b { color: #B6534A; }
+</style>

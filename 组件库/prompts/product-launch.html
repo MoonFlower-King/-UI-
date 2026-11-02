@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Product Launch",
+  "zh": "新品发布",
+  "alias": [
+    "发布会风",
+    "Product Hero"
+  ],
+  "lead": "深色舞台上只放一件产品，柔光从上面打下来，超大的一句话标题和一个按钮。聚焦、高级、有仪式感，适合硬件新品、App 发布、香水和限量款。",
+  "prompt": "新品发布风格：近黑背景，主视觉为居中的单个产品剪影，上方有柔和的聚光和地面反光，超大号粗无衬线一句话标题居中，副标题小而灰，只有一个主按钮和一个文字链接，大量留白，渐进式滚动展示卖点",
+  "promptEn": "product launch style: near-black background, a single centered product silhouette as the hero with soft overhead spotlight and floor reflection, an oversized bold sans one-line headline centered, a small gray subheading, only one primary button and one text link, lots of space, selling points revealed section by section on scroll",
+  "avoid": "一屏只讲一件事、只放一个产品。紫蓝渐变光晕是 AI 模板的标志，用白色或暖色的柔光就好。",
+  "neg": [
+    "紫蓝光晕、一屏塞多个卖点",
+    "purple-blue glows, multiple selling points per screen"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #F5F5F7; --a2: #F5A35C; --on: #111; background: #0B0B0C; color: #F5F5F7; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { font-size: 11px; opacity: .9; } .logo i { display: none; } .cta { background: none; color: #F5F5F7; }
+.hero { grid-template-columns: 1fr; text-align: center; padding: 10px 26px 30px; } .acts { justify-content: center; }
+.art { order: -1; height: 120px; min-height: 0; background: radial-gradient(ellipse 40% 60% at 50% 0, rgba(255, 255, 255, .18), transparent 70%); }
+.art .m { position: absolute; left: 50%; top: 22px; width: 50px; height: 80px; margin-left: -25px; border-radius: 12px; background: linear-gradient(160deg, #4A4A4F, #1C1C1E); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25); }
+.art .h { position: absolute; left: 50%; bottom: 0; width: 80px; height: 10px; margin-left: -40px; border-radius: 50%; background: radial-gradient(rgba(255, 255, 255, .15), transparent 70%); }
+.hero h1 { font-size: 30px; font-weight: 700; letter-spacing: -.5px; } .kicker { color: #F5A35C; } .sub { color: #A1A1A6; opacity: 1; margin-left: auto; margin-right: auto; max-width: 320px; }
+.b1 { border-radius: 99px; padding: 8px 18px; } .b2 { color: #F5A35C; }
+.feats article { padding: 14px; border-radius: 16px; background: #1C1C1E; text-align: center; } .feats b { color: #F5A35C; } .stats b { font-weight: 600; }
+</style>

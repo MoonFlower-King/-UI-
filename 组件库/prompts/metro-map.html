@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Metro Map",
+  "zh": "地铁线路图",
+  "alias": [
+    "线路图",
+    "Transit Map"
+  ],
+  "lead": "只走横竖和 45 度斜线的彩色线路、白心圆站点、换乘站的胶囊圈和清楚的站名。清晰、理性、一看就懂，适合城市指南、交通、流程介绍、课程路线和品牌发展史。",
+  "prompt": "地铁线路图风格：白色背景，主视觉为几条粗细一致的彩色线路，只用水平、垂直和 45 度斜线，站点为白心圆、换乘站为胶囊形双圈，站名为清晰的无衬线小字，图例和编号整齐排列",
+  "promptEn": "metro map style: white background, a hero of a few colored lines of equal weight running only horizontally, vertically or at 45 degrees, stations as white-centered circles and interchanges as pill-shaped double rings, clear small sans station names, a tidy legend and numbering",
+  "avoid": "线路只能走横、竖和 45 度，任意角度就不像线路图了。颜色要区分明显，同时给每条线配编号，色弱用户也能分辨。",
+  "neg": [
+    "任意角度的线、只靠颜色区分",
+    "lines at random angles, color as the only cue"
+  ],
+  "kit": "site-kit"
+}
+-->
+<style>
+.site { --a: #1F2A44; --a2: #E4572E; --on: #fff; background: #fff; color: #1F2A44; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1 { border-radius: 99px; } .hero h1 { font-weight: 800; } .logo i { border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 4px #E4572E; }
+.art { min-height: 170px; }
+.art .m { position: absolute; left: 0; right: 0; top: 60px; height: 7px; background: #E4572E; border-radius: 4px; }
+.art .h { position: absolute; left: 40px; top: 10px; width: 7px; height: 150px; background: #2E86C1; border-radius: 4px; }
+.art::before { content: ""; position: absolute; left: 30px; top: 50px; width: 28px; height: 28px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 3px #1F2A44; }
+.art::after { content: ""; position: absolute; left: 90px; top: 62px; width: 90px; height: 7px; background: #27AE60; transform-origin: left; transform: rotate(45deg); border-radius: 4px; box-shadow: none; }
+.feats article { padding-left: 12px; border-left: 6px solid #E4572E; } .feats article:nth-child(2) { border-color: #2E86C1; } .feats article:nth-child(3) { border-color: #27AE60; }
+.feats b { display: inline-block; padding: 0 6px; border-radius: 99px; background: #1F2A44; color: #fff; } .stats b { color: #E4572E; }
+</style>
