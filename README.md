@@ -59,16 +59,18 @@ npm run render -- "EP11 按钮点击反馈/按钮点击反馈 动画网页.html"
 ```
 
 ```bash
-npm run build:site
+npm run build
 ```
 
 - `check`：发片前自检，包括外壳是否被改、6 个词的顺序、标题字数、Prompt 格式
 - `render`：逐帧渲染横屏/竖屏 MP4 和封面（加 `--cover-only` 只出封面）
-- `build:site`：把 `图鉴网站（开源）/episodes/` 重新生成为网站数据
+- `build`：生成组件库和图鉴网站的数据（等于先 `build:ui` 再 `build:site`）。生成的文件不入库，本地预览前跑一次；线上由 GitHub Actions 自动生成
+- `build:site`：从各期 `EPxx 主题/` 文件夹生成图鉴网站数据
+- `build:ui`：从 `组件库/components/` 生成组件库数据
 
 ## 在线访问图鉴网站
 
-仓库已带 GitHub Pages 自动部署（[`.github/workflows/pages.yml`](.github/workflows/pages.yml)）。在 **Settings → Pages → Source** 里选择 **GitHub Actions**，之后每次改动网站都会自动发布。
+仓库已带 GitHub Pages 自动部署（[`.github/workflows/pages.yml`](.github/workflows/pages.yml)）。在 **Settings → Pages → Source** 里选择 **GitHub Actions**，之后每次合并到 `main` 都会自动构建并发布；提 PR 时会先跑一遍构建检查，有错会在合并前报红。
 
 ## 许可
 

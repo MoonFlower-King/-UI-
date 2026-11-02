@@ -49,7 +49,7 @@
   components/*.html       每个组件一个文件（元信息 + 代码）
   data/categories.json    11 个主题及每个主题包含哪些组件
   data/vague-words.json   感觉翻译器的数据
-  data/components.js      由 scripts/build.mjs 生成，不要手改
+  data/components.js      由 scripts/build.mjs 生成，不入库、不要手改
   scripts/build.mjs       收录脚本
 ```
 

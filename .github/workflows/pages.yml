@@ -1,42 +1,53 @@
 # 把「图鉴网站（开源）」发布到 GitHub Pages 根目录，「组件库」发布到 /ui/。
 # 首次使用：仓库 Settings → Pages → Build and deployment → Source 选「GitHub Actions」。
-name: 发布图鉴网站与组件库
+#
+# - 提 PR 时：只跑构建检查（缺组件、元信息写错等会在合并前报红），不发布。
+# - 合并到 main 时：构建并发布。
+# 生成的数据文件不入库，每次都在这里重新生成。
+name: 构建并发布图鉴网站与组件库
 on:
   push:
     branches: [main]
-    paths: ['图鉴网站（开源）/**', '组件库/**', '.github/workflows/pages.yml']
+    paths: ['EP*/**', '图鉴网站（开源）/**', '组件库/**', 'package.json', '.github/workflows/pages.yml']
+  pull_request:
+    paths: ['EP*/**', '图鉴网站（开源）/**', '组件库/**', 'package.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: 生成词条数据
-        run: node "图鉴网站（开源）/scripts/build.mjs"
-      - name: 生成组件库数据
-        run: node 组件库/scripts/build.mjs
+      - name: 生成组件库与图鉴数据
+        run: npm run build
       - name: 组装站点
         run: |
-          mkdir -p _site
-          cp -r "图鉴网站（开源）/." _site/
           mkdir -p _site/ui
+          cp -r "图鉴网站（开源）/." _site/
           cp -r 组件库/. _site/ui/
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+          rm -f _site/.gitignore _site/ui/.gitignore
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
       - id: deployment
         uses: actions/deploy-pages@v4
