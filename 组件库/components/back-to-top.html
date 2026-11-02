@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Back to Top", "zh": "回到顶部",
+  "lead": "长页面往下滚一段后，右下角浮现一个圆形按钮，外圈显示读了多少；点一下平滑滚回顶部。没滚动时它是隐藏的，不占视线。",
+  "vague": ["一键回顶部", "页面太长"],
+  "terms": ["Back to Top", "Scroll Progress 阅读进度", "Smooth Scroll 平滑滚动", "FAB"],
+  "prompt": "加 Back to Top 按钮：页面滚动超过 300px 后在右下角 24px 处淡入并上移 8px 出现；44px 白色圆形按钮带阴影，中间 ↑ 箭头，外圈 2px 品牌色圆环表示阅读进度（随滚动实时变化）；点击 smooth 滚回顶部，回到顶部后按钮淡出。"
+}
+-->
+<div class="page">
+  <article>
+    <h3>江上明月</h3>
+    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+  </article>
+  <button class="top" aria-label="回到顶部"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="20"/></svg>↑</button>
+</div>
+
+<style>
+.page { position: relative; width: 260px; height: 280px; border-radius: 16px; border: 1px solid #E4E4E7; background: #fff; overflow: hidden; }
+article { height: 100%; overflow-y: auto; padding: 16px 18px; box-sizing: border-box; scroll-behavior: smooth; }
+h3 { margin: 0 0 10px; font-family: "Songti SC", Georgia, serif; }
+p { height: 10px; margin: 0 0 10px; border-radius: 5px; background: #F4F4F5; } p:nth-child(3n) { width: 70%; } p:nth-child(4n) { margin-bottom: 22px; }
+.top { position: absolute; right: 14px; bottom: 14px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.12); font-size: 16px; cursor: pointer; opacity: 0; transform: translateY(8px); pointer-events: none; transition: all .25s; }
+.top.show { opacity: 1; transform: none; pointer-events: auto; }
+.top svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.top circle { fill: none; stroke: #FA8C16; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 125.7; stroke-dashoffset: var(--o, 125.7); }
+</style>
+<script>
+const art = document.querySelector("article"), btn = document.querySelector(".top");
+art.addEventListener("scroll", () => {
+  const p = art.scrollTop / (art.scrollHeight - art.clientHeight);
+  btn.classList.toggle("show", art.scrollTop > 60); btn.style.setProperty("--o", 125.7 * (1 - p));
+});
+btn.addEventListener("click", () => art.scrollTop = 0);
+</script>

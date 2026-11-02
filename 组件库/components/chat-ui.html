@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Chat UI", "zh": "聊天界面",
+  "lead": "对方的气泡在左、灰色；自己的在右、品牌色。发出去之后先出现“对方正在输入…”三个跳动的点，再收到回复。新消息出现时自动滚到底部。",
+  "vague": ["做个像微信的聊天框", "AI 对话界面"],
+  "terms": ["Chat Bubble 气泡", "Typing Indicator 正在输入", "Composer 输入栏", "Auto-scroll 自动滚动"],
+  "prompt": "做一个 Chat UI：消息列表可滚动，对方气泡左对齐浅灰 #F4F4F5，自己的右对齐品牌色白字，气泡圆角 16px、靠近头像的角 4px；新消息从下方 8px 淡入；发送后显示 Typing Indicator（三个点依次上下跳，间隔 150ms），800ms 后收到回复；底部输入栏圆角胶囊 + 圆形发送按钮，新消息时平滑滚到底。"
+}
+-->
+<div class="chat">
+  <div class="msgs">
+    <p class="them">在吗？首页的按钮总觉得不够显眼</p>
+    <p class="me">试试给它一个 Accent Color</p>
+  </div>
+  <form class="bar"><input placeholder="输入消息…"><button aria-label="发送">↑</button></form>
+</div>
+
+<style>
+.chat { width: 290px; height: 300px; display: flex; flex-direction: column; background: #fff; border: 1px solid #E4E4E7; border-radius: 18px; overflow: hidden; }
+.msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth; }
+.msgs p { margin: 0; max-width: 76%; padding: 8px 12px; font-size: 13px; line-height: 1.45; border-radius: 16px; animation: in .3s ease-out; }
+.them { align-self: flex-start; background: #F4F4F5; border-bottom-left-radius: 4px; }
+.me { align-self: flex-end; background: #FA8C16; color: #fff; border-bottom-right-radius: 4px; }
+@keyframes in { from { opacity: 0; transform: translateY(8px); } }
+.typing { display: flex; gap: 4px; padding: 12px 14px !important; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: #A1A1AA; animation: jump 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes jump { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-5px); } }
+.bar { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #F0F0F2; }
+.bar input { flex: 1; height: 36px; border: 0; background: #F4F4F5; border-radius: 999px; padding: 0 14px; font-size: 13px; outline: none; }
+.bar button { width: 36px; height: 36px; border: 0; border-radius: 50%; background: #FA8C16; color: #fff; font-size: 16px; cursor: pointer; }
+</style>
+<script>
+const box = document.querySelector(".msgs"), form = document.querySelector(".bar"), input = form.querySelector("input");
+const add = (cls, html) => { const p = document.createElement("p"); p.className = cls; p.innerHTML = html; box.append(p); box.scrollTop = box.scrollHeight; return p; };
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); const text = input.value.trim() || "收到，我去改改"; input.value = "";
+  add("me", "").textContent = text;
+  const dots = add("them typing", "<i></i><i></i><i></i>");
+  setTimeout(() => { dots.remove(); add("them", "好主意，橘色按钮一下就跳出来了 👍"); }, 900);
+});
+input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.isTrusted) { e.preventDefault(); form.dispatchEvent(new Event("submit", { cancelable: true })); } });
+</script>

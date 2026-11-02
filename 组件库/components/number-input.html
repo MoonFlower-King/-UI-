@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Number Input", "zh": "数字输入框",
+  "lead": "数量、人数这类小数字，用“− 数字 +”的加减器比让人手打更顺手。到达上下限时对应按钮变灰，长按可以连续加减，数字变化时上下滚动。",
+  "vague": ["数量加减", "选人数"],
+  "terms": ["Number Input", "Stepper 步进器", "Min / Max 上下限", "Press and Hold 长按连续"],
+  "prompt": "做 Number Input 步进器：一体式胶囊，左右是 36px 圆形 − / + 按钮，中间等宽数字；数字增加时旧值向上滑出、新值从下滑入（减少则相反，150ms）；到达最小值 1 或最大值 9 时对应按钮置灰禁用；长按按钮 400ms 后每 100ms 连续加减。"
+}
+-->
+<div class="ni">
+  <p>入住人数</p>
+  <div class="step"><button class="dec" aria-label="减少">−</button><output><span>2</span></output><button class="inc" aria-label="增加">+</button></div>
+  <small>最多 9 人</small>
+</div>
+
+<style>
+.ni { display: grid; justify-items: center; gap: 10px; } p { margin: 0; font-size: 14px; color: #52525B; } small { font-size: 11px; color: #A1A1AA; }
+.step { display: flex; align-items: center; gap: 4px; padding: 4px; background: #fff; border: 1px solid #E4E4E7; border-radius: 999px; }
+.step button { width: 36px; height: 36px; border-radius: 50%; border: 0; background: #F4F4F5; font-size: 18px; cursor: pointer; transition: background .2s, transform .1s; user-select: none; }
+.step button:hover:not(:disabled) { background: #FFE8CC; color: #C2410C; } .step button:active:not(:disabled) { transform: scale(.9); }
+.step button:disabled { color: #D4D4D8; cursor: not-allowed; }
+output { width: 44px; height: 36px; overflow: hidden; display: grid; place-items: center; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.up { animation: up .15s ease-out; } .down { animation: down .15s ease-out; }
+@keyframes up { from { transform: translateY(100%); opacity: 0; } } @keyframes down { from { transform: translateY(-100%); opacity: 0; } }
+</style>
+<script>
+const out = document.querySelector("output"), dec = document.querySelector(".dec"), inc = document.querySelector(".inc"); let n = 2, hold, rep;
+const set = (d) => { const v = Math.min(9, Math.max(1, n + d)); if (v === n) return; n = v; out.innerHTML = `<span class="${d > 0 ? "up" : "down"}">${n}</span>`; dec.disabled = n === 1; inc.disabled = n === 9; };
+[[dec, -1], [inc, 1]].forEach(([b, d]) => {
+  b.addEventListener("click", () => set(d));
+  b.addEventListener("pointerdown", () => { hold = setTimeout(() => { rep = setInterval(() => set(d), 100); }, 400); });
+  ["pointerup", "pointerleave"].forEach((t) => b.addEventListener(t, () => { clearTimeout(hold); clearInterval(rep); }));
+});
+</script>

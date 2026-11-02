@@ -1,0 +1,36 @@
+<!--
+{
+  "en": "Alert", "zh": "提示条",
+  "lead": "嵌在页面里、不会自己消失的提示：信息蓝、成功绿、警告黄、错误红，各配一个图标，可以带操作链接和关闭按钮。跟会自动消失的 Toast 不一样，Alert 是要让人看到并处理的。",
+  "vague": ["页面顶部的提示", "警告信息怎么放"],
+  "terms": ["Alert", "Inline Message 行内消息", "Banner 横幅", "Semantic Color"],
+  "prompt": "用 Alert 显示页面级提示：四种语义（info 蓝 / success 绿 / warning 黄 / error 红），浅色底 + 同色系 1px 边框 + 左侧 18px 图标；标题 13px 粗体，说明 12px；右侧可选文字操作和 × 关闭按钮，关闭时高度收起并淡出（250ms）。"
+}
+-->
+<div class="alerts">
+  <div class="al info"><i>i</i><p><b>新版本可用</b>刷新页面即可体验新组件。</p><a href="#">刷新</a><button aria-label="关闭">×</button></div>
+  <div class="al ok"><i>✓</i><p><b>已发布</b>作品已对所有人可见。</p><button aria-label="关闭">×</button></div>
+  <div class="al warn"><i>!</i><p><b>存储空间快满了</b>已使用 92%。</p><a href="#">升级</a><button aria-label="关闭">×</button></div>
+  <div class="al err"><i>×</i><p><b>上传失败</b>文件超过 20MB。</p><button aria-label="关闭">×</button></div>
+</div>
+
+<style>
+.alerts { width: 310px; display: grid; gap: 8px; }
+.al { display: flex; align-items: flex-start; gap: 10px; padding: 10px 10px 10px 12px; border-radius: 10px; border: 1px solid; font-size: 12px; max-height: 80px; overflow: hidden; transition: all .25s; }
+.al.gone { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; margin-top: -8px; border-width: 0; }
+.al i { flex: none; width: 18px; height: 18px; border-radius: 50%; color: #fff; display: grid; place-items: center; font: normal 700 11px sans-serif; }
+.al p { flex: 1; margin: 0; color: #3F3F46; line-height: 1.5; } .al b { display: block; color: #18181B; }
+.al a { font-weight: 600; text-decoration: none; align-self: center; }
+.al button { border: 0; background: none; color: #A1A1AA; font-size: 16px; line-height: 1; cursor: pointer; padding: 0 2px; }
+.al button:hover { color: #18181B; }
+.info { background: #EFF6FF; border-color: #BFDBFE; } .info i { background: #3B82F6; } .info a { color: #2563EB; }
+.ok { background: #F0FDF4; border-color: #BBF7D0; } .ok i { background: #22C55E; }
+.warn { background: #FFFBEB; border-color: #FDE68A; } .warn i { background: #F59E0B; } .warn a { color: #B45309; }
+.err { background: #FEF2F2; border-color: #FECACA; } .err i { background: #EF4444; }
+</style>
+<script>
+document.querySelectorAll(".al button").forEach((b) => b.addEventListener("click", () => {
+  const al = b.parentElement; al.classList.add("gone");
+  setTimeout(() => al.classList.remove("gone"), 2400);
+}));
+</script>

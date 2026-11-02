@@ -1,0 +1,47 @@
+<!--
+{
+  "en": "Testimonial", "zh": "用户评价",
+  "lead": "用真实用户的一句话来说服新用户：大引号、评价正文、头像 + 名字 + 身份，几条评价自动轮换。是落地页里最常见的“社会认同”区块。",
+  "vague": ["放点用户好评", "让人更信任"],
+  "terms": ["Testimonial", "Social Proof 社会认同", "Quote 引语", "Auto-rotate 自动轮换"],
+  "prompt": "做 Testimonial 区块：白卡圆角 18px，左上角 48px 品牌色衬线大引号；评价正文 15px 行高 1.7；底部头像 36px + 名字粗体 + 灰色身份；5 颗星评分；三条评价每 4 秒自动切换（当前条淡出左移 12px，下一条从右侧淡入），底部三个小圆点指示当前第几条，可点击切换。"
+}
+-->
+<figure class="tm">
+  <b class="q">“</b>
+  <div class="slides"></div>
+  <div class="dots"></div>
+</figure>
+
+<style>
+.tm { width: 290px; margin: 0; padding: 22px 22px 16px; background: #fff; border-radius: 18px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px rgba(0,0,0,.07); position: relative; }
+.q { position: absolute; top: 4px; left: 16px; font: 700 54px/1 Georgia, serif; color: #FA8C16; opacity: .9; }
+.slides { position: relative; min-height: 150px; margin-top: 20px; }
+.s { position: absolute; inset: 0; transition: opacity .45s, transform .45s; }
+.s.out { opacity: 0; transform: translateX(-12px); pointer-events: none; } .s.wait { opacity: 0; transform: translateX(12px); }
+.s blockquote { margin: 0; font-size: 14px; line-height: 1.7; color: #27272A; }
+.who { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12px; color: #71717A; }
+.who i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: normal 600 14px serif; color: #fff; }
+.who b { display: block; color: #18181B; font-size: 13px; } .stars { margin-left: auto; color: #F59E0B; letter-spacing: 1px; }
+.dots { display: flex; gap: 6px; justify-content: center; }
+.dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 3px; background: #E4E4E7; cursor: pointer; transition: width .3s, background .3s; }
+.dots button.on { width: 18px; background: #FA8C16; }
+</style>
+<script>
+const list = [
+  ["以前跟 AI 说“好看点”，现在我会说“Layered Elevation + 留白 96px”，一次就对。", "江小月", "独立开发者", "#FA8C16"],
+  ["视频里的词我全收藏了，给设计师提需求终于不鸡同鸭讲。", "林一舟", "产品经理", "#3B82F6"],
+  ["感觉翻译器太实用了，输入“太乱”直接给我答案。", "苏白", "前端工程师", "#22C55E"]];
+const box = document.querySelector(".slides"), dots = document.querySelector(".dots"); let cur = 0, timer;
+list.forEach(([t, n, r, c], i) => {
+  box.insertAdjacentHTML("beforeend", `<div class="s ${i ? "wait" : ""}"><blockquote>${t}</blockquote><div class="who"><i style="background:${c}">${n[0]}</i><span><b>${n}</b>${r}</span><span class="stars">★★★★★</span></div></div>`);
+  const d = document.createElement("button"); d.ariaLabel = `第 ${i + 1} 条`; d.onclick = () => go(i); dots.append(d);
+});
+function go(i) {
+  const s = box.children; s[cur].className = "s out"; s[i].className = "s";
+  const old = cur; setTimeout(() => { if (old !== cur) s[old].className = "s wait"; }, 450);
+  cur = i; [...dots.children].forEach((d, k) => d.classList.toggle("on", k === i));
+  clearInterval(timer); timer = setInterval(() => go((cur + 1) % list.length), 4000);
+}
+go(0);
+</script>

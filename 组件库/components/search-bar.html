@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Search Bar", "zh": "搜索框",
+  "lead": "左边放大镜，右边快捷键提示（⌘K）；聚焦时整条变宽、描边变亮，下面展开“最近搜索”和“热门”；输入后出现 × 一键清空。",
+  "vague": ["搜索栏", "搜索框太普通"],
+  "terms": ["Search Bar", "Recent Searches 最近搜索", "Clear Button 清空按钮", "Keyboard Shortcut Hint 快捷键提示"],
+  "prompt": "做 Search Bar：高 42px 胶囊形，浅灰底 #F4F4F5 无边框，左侧放大镜图标，右侧 ⌘K 小键帽提示；聚焦时变白底 + 品牌色描边光圈，宽度从 240px 平滑扩展到 280px（250ms）；下方展开面板显示“最近搜索”（带 ↺ 图标）和“热门”标签；输入内容后快捷键提示换成圆形 × 清空按钮。"
+}
+-->
+<div class="sb">
+  <label class="box"><i>⌕</i><input type="search" placeholder="搜索术语、组件…"><kbd>⌘K</kbd><button class="clr" aria-label="清空">×</button></label>
+  <div class="panel">
+    <small>最近搜索</small><a>↺ 毛玻璃</a><a>↺ 骨架屏</a>
+    <small>热门</small><div class="hot"><span>留白</span><span>缓动</span><span>Bento</span></div>
+  </div>
+</div>
+
+<style>
+.sb { position: relative; width: 280px; height: 250px; display: flex; flex-direction: column; align-items: center; }
+.box { display: flex; align-items: center; gap: 8px; width: 240px; height: 42px; padding: 0 8px 0 14px; box-sizing: border-box; border-radius: 999px; background: #EFEFF1; transition: all .25s ease; border: 1px solid transparent; }
+.box:focus-within { width: 280px; background: #fff; border-color: #FA8C16; box-shadow: 0 0 0 4px rgba(250,140,22,.12); }
+.box i { font-style: normal; color: #71717A; font-size: 17px; }
+input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font-size: 14px; } input::-webkit-search-cancel-button { display: none; }
+kbd { font: 11px ui-monospace, monospace; color: #71717A; background: #fff; border: 1px solid #E4E4E7; border-radius: 6px; padding: 2px 6px; }
+.clr { display: none; width: 22px; height: 22px; border-radius: 50%; border: 0; background: #D4D4D8; color: #fff; cursor: pointer; font-size: 13px; line-height: 1; }
+.typed kbd { display: none; } .typed .clr { display: block; }
+.panel { width: 280px; box-sizing: border-box; margin-top: 8px; padding: 10px; background: #fff; border-radius: 14px; box-shadow: 0 10px 28px rgba(0,0,0,.1); display: grid; gap: 2px; opacity: 0; transform: translateY(-6px); transition: all .2s; pointer-events: none; }
+.sb:focus-within .panel { opacity: 1; transform: none; pointer-events: auto; }
+small { font-size: 11px; color: #A1A1AA; margin: 4px 4px 2px; }
+a { padding: 6px 6px; border-radius: 8px; font-size: 13px; color: #3F3F46; cursor: pointer; } a:hover { background: #F4F4F5; }
+.hot { display: flex; gap: 6px; padding: 2px 4px; } .hot span { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: #FFF4E6; color: #C2410C; }
+</style>
+<script>
+const sb = document.querySelector(".sb"), input = document.querySelector("input");
+input.addEventListener("input", () => sb.classList.toggle("typed", !!input.value));
+document.querySelector(".clr").addEventListener("mousedown", (e) => { e.preventDefault(); input.value = ""; sb.classList.remove("typed"); input.focus(); });
+</script>

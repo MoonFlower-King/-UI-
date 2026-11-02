@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Footer", "zh": "页脚",
+  "lead": "网页最底部的“导航收纳区”：左边品牌和一句话，右边几列链接，最下面一条细线隔开版权和社交图标。别小看它，很多人会滚到底来找联系方式。",
+  "vague": ["网页底部怎么做", "页尾"],
+  "terms": ["Footer", "Sitemap 站点地图", "Newsletter 订阅框", "Legal 版权信息"],
+  "prompt": "做网站 Footer：深色 #18181B 背景；左侧 Logo + 一行灰色简介 + 邮箱订阅输入框（右侧内嵌品牌色按钮）；右侧三列链接（产品/资源/关于），列标题白色 12px，链接灰色 #A1A1AA 悬停变白并右移 2px；底部 1px 分隔线下方左边版权“© 2026 江月 UI”，右边三个圆形社交图标。"
+}
+-->
+<footer class="ft">
+  <div class="top">
+    <div class="brand"><b>江月 UI</b><p>说对一个词，AI 就懂你的审美。</p><form><input type="email" placeholder="订阅更新"><button>订阅</button></form></div>
+    <nav><h6>产品</h6><a href="#">词典</a><a href="#">组件</a><a href="#">翻译器</a></nav>
+    <nav><h6>资源</h6><a href="#">视频</a><a href="#">图鉴</a><a href="#">GitHub</a></nav>
+  </div>
+  <div class="bottom"><span>© 2026 江月 UI · MIT</span><span class="so"><a href="#">抖</a><a href="#">B</a><a href="#">G</a></span></div>
+</footer>
+
+<style>
+.ft { width: 360px; background: #18181B; color: #A1A1AA; border-radius: 16px; padding: 20px 20px 14px; font-size: 12px; box-sizing: border-box; }
+.top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 14px; }
+.brand b { color: #fff; font: 600 15px "Songti SC", serif; } .brand p { margin: 6px 0 10px; line-height: 1.5; }
+form { display: flex; background: #27272A; border-radius: 8px; padding: 3px; }
+form input { flex: 1; min-width: 0; background: none; border: 0; color: #fff; font-size: 12px; padding: 0 8px; outline: none; }
+form button { border: 0; background: #FA8C16; color: #fff; font-size: 11px; border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+nav { display: grid; gap: 7px; align-content: start; } h6 { margin: 0 0 2px; color: #fff; font-size: 12px; font-weight: 600; }
+nav a { color: #A1A1AA; text-decoration: none; transition: color .2s, transform .2s; } nav a:hover { color: #fff; transform: translateX(2px); }
+.bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 12px; border-top: 1px solid #27272A; }
+.so { display: flex; gap: 6px; } .so a { width: 24px; height: 24px; border-radius: 50%; background: #27272A; color: #D4D4D8; display: grid; place-items: center; text-decoration: none; font-size: 10px; transition: background .2s; }
+.so a:hover { background: #FA8C16; color: #fff; }
+</style>

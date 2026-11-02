@@ -1,0 +1,40 @@
+<!--
+{
+  "en": "Checkbox", "zh": "复选框",
+  "lead": "可以多选的小方框。好的复选框勾选时对勾会“画”出来；有一个“全选”框时，部分选中要显示成一条横线（半选状态），而不是空着。",
+  "vague": ["多选框", "勾选框太丑"],
+  "terms": ["Checkbox", "Indeterminate 半选", "Select All 全选", "Check Animation 打勾动画"],
+  "prompt": "自定义 Checkbox：18px 圆角 5px 方框，未选 1.5px #D4D4D8 描边，选中品牌色填充 + 白色对勾用 stroke-dashoffset 在 200ms 内画出；全选框在部分选中时显示 Indeterminate 横线；整行（框 + 文字）都可点击，悬停时方框描边加深。"
+}
+-->
+<div class="cb">
+  <label class="all"><input type="checkbox"><i><svg viewBox="0 0 18 18"><path class="tick" d="M4 9.5l3.2 3L14 5.5"/><path class="dash" d="M5 9h8"/></svg></i>全选</label>
+  <div class="list">
+    <label><input type="checkbox" checked><i><svg viewBox="0 0 18 18"><path class="tick" d="M4 9.5l3.2 3L14 5.5"/></svg></i>留白</label>
+    <label><input type="checkbox"><i><svg viewBox="0 0 18 18"><path class="tick" d="M4 9.5l3.2 3L14 5.5"/></svg></i>层次阴影</label>
+    <label><input type="checkbox"><i><svg viewBox="0 0 18 18"><path class="tick" d="M4 9.5l3.2 3L14 5.5"/></svg></i>毛玻璃</label>
+  </div>
+</div>
+
+<style>
+.cb { width: 200px; background: #fff; border: 1px solid #E4E4E7; border-radius: 12px; padding: 8px; }
+.list { border-top: 1px solid #F4F4F5; margin-top: 4px; padding-top: 4px; }
+label { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+label:hover { background: #FAFAFA; } .list label { padding-left: 22px; }
+input { position: absolute; opacity: 0; pointer-events: none; }
+label > i { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid #D4D4D8; box-sizing: border-box; display: grid; transition: all .2s; }
+label:hover > i { border-color: #A1A1AA; }
+svg { width: 100%; height: 100%; } path { fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.tick { stroke-dasharray: 16; stroke-dashoffset: 16; transition: stroke-dashoffset .2s ease-out .05s; } .dash { opacity: 0; }
+input:checked + i, input:indeterminate + i { background: #FA8C16; border-color: #FA8C16; }
+input:checked + i .tick { stroke-dashoffset: 0; }
+input:indeterminate + i .tick { opacity: 0; } input:indeterminate + i .dash { opacity: 1; }
+input:focus-visible + i { box-shadow: 0 0 0 3px rgba(250,140,22,.25); }
+</style>
+<script>
+const all = document.querySelector(".all input"), items = [...document.querySelectorAll(".list input")];
+const sync = () => { const n = items.filter((i) => i.checked).length; all.checked = n === items.length; all.indeterminate = n > 0 && n < items.length; };
+items.forEach((i) => i.addEventListener("change", sync));
+all.addEventListener("change", () => { items.forEach((i) => i.checked = all.checked); sync(); });
+sync();
+</script>

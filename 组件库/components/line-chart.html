@@ -1,0 +1,46 @@
+<!--
+{
+  "en": "Line Chart", "zh": "折线图",
+  "lead": "看一段时间里的变化趋势。好看的折线图：线条平滑、线下有淡淡的渐变填充、出场时线从左往右“画”出来；鼠标在图上移动时，一条竖线跟着走，显示当天的数值。",
+  "vague": ["趋势图", "增长曲线"],
+  "terms": ["Line Chart", "Area Fill 面积填充", "Crosshair 十字准线", "Tooltip"],
+  "prompt": "做 Line Chart：SVG 平滑曲线 2px 品牌色，线下从品牌色 25% 到透明的纵向渐变填充；出场时用 stroke-dashoffset 从左到右画出（1.2s ease-out），填充随后淡入；鼠标在图上移动时显示竖直虚线 + 曲线上的白芯圆点 + 深色数值气泡，跟随最近的数据点吸附。"
+}
+-->
+<div class="lc">
+  <header><span>月活跃用户</span><b>12,480</b></header>
+  <div class="plot">
+    <svg viewBox="0 0 280 120" preserveAspectRatio="none">
+      <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FA8C16" stop-opacity=".28"/><stop offset="1" stop-color="#FA8C16" stop-opacity="0"/></linearGradient></defs>
+      <path class="area" fill="url(#g)"/><path class="line"/>
+    </svg>
+    <i class="v"></i><i class="dot"></i><span class="tip"></span>
+  </div>
+</div>
+
+<style>
+.lc { width: 300px; background: #fff; border: 1px solid #F0F0F2; border-radius: 14px; padding: 14px 10px 10px; }
+header { display: flex; justify-content: space-between; align-items: baseline; padding: 0 6px 10px; font-size: 12px; color: #71717A; } header b { font-size: 20px; color: #18181B; font-variant-numeric: tabular-nums; }
+.plot { position: relative; height: 120px; cursor: crosshair; }
+svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.line { fill: none; stroke: #FA8C16; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.2s ease-out forwards; }
+.area { opacity: 0; animation: show .6s .8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } } @keyframes show { to { opacity: 1; } }
+.v { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #A1A1AA; opacity: 0; pointer-events: none; }
+.dot { position: absolute; width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: #fff; border: 2.5px solid #FA8C16; box-sizing: border-box; opacity: 0; pointer-events: none; transition: top .1s; }
+.tip { position: absolute; top: -6px; transform: translate(-50%, -100%); background: #18181B; color: #fff; font-size: 11px; padding: 3px 7px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; }
+.plot.on .v, .plot.on .dot, .plot.on .tip { opacity: 1; }
+</style>
+<script>
+const ys = [62, 70, 58, 74, 66, 82, 78, 90, 86, 98, 94, 112], plot = document.querySelector(".plot"), W = 280, H = 120;
+const pts = ys.map((y, i) => [i * W / (ys.length - 1), H - (y - 40) / 80 * H]);
+let d = `M${pts[0]}`; for (let i = 1; i < pts.length; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2; d += ` C${mx},${y0} ${mx},${y1} ${x1},${y1}`; }
+document.querySelector(".line").setAttribute("d", d); document.querySelector(".area").setAttribute("d", d + ` L${W},${H} L0,${H} Z`);
+const [v, dot, tip] = [".v", ".dot", ".tip"].map((s) => document.querySelector(s));
+plot.addEventListener("mousemove", (e) => {
+  const r = plot.getBoundingClientRect(), i = Math.round((e.clientX - r.left) / r.width * (ys.length - 1));
+  const k = Math.max(0, Math.min(ys.length - 1, i)), x = pts[k][0] / W * r.width, y = pts[k][1] / H * r.height;
+  plot.classList.add("on"); v.style.left = tip.style.left = dot.style.left = x + "px"; dot.style.top = y + "px"; tip.textContent = `${k + 1}月 · ${(ys[k] * 111).toLocaleString()}`;
+});
+plot.addEventListener("mouseleave", () => plot.classList.remove("on"));
+</script>

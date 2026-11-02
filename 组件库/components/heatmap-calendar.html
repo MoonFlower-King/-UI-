@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Calendar Heatmap", "zh": "日历热力图",
+  "lead": "一格一天，颜色越深那天越活跃，像 GitHub 的贡献图。适合打卡、学习记录、运动天数。悬停某一格显示日期和次数。",
+  "vague": ["打卡记录", "像 GitHub 那样的格子"],
+  "terms": ["Heatmap", "Contribution Graph 贡献图", "Color Scale 色阶", "Legend 图例"],
+  "prompt": "做 Calendar Heatmap：近 15 周 × 7 天的小方格，每格 12px、间距 3px、圆角 3px；色阶 5 级（#F4F4F5 → #FFEDD5 → #FDBA74 → #FB923C → #EA580C）；格子出场按列从左到右依次淡入；悬停格子描边加深并显示深色气泡“11月2日 · 6 次”；右下角“少 ▢▢▢▢▢ 多”图例。"
+}
+-->
+<div class="hm">
+  <header><b>创作打卡</b><span>近 15 周 · 共 <em>0</em> 次</span></header>
+  <div class="grid"></div>
+  <footer><span class="tip">悬停查看</span><span class="lg">少 <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> 多</span></footer>
+</div>
+
+<style>
+.hm { background: #fff; border: 1px solid #F0F0F2; border-radius: 14px; padding: 14px; }
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 13px; } header span { font-size: 11px; color: #71717A; } em { font-style: normal; color: #FA8C16; font-weight: 600; }
+.grid { display: grid; grid-template-rows: repeat(7, 12px); grid-auto-flow: column; grid-auto-columns: 12px; gap: 3px; margin: 12px 0 10px; }
+.grid i { border-radius: 3px; animation: in .4s ease-out backwards; cursor: pointer; } .grid i:hover { outline: 1.5px solid #18181B; outline-offset: -1px; }
+@keyframes in { from { opacity: 0; transform: scale(.4); } }
+.l0 { background: #F4F4F5; } .l1 { background: #FFEDD5; } .l2 { background: #FDBA74; } .l3 { background: #FB923C; } .l4 { background: #EA580C; }
+footer { display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #A1A1AA; }
+.tip { color: #3F3F46; font-size: 11px; font-variant-numeric: tabular-nums; }
+.lg { display: flex; align-items: center; gap: 2px; } .lg i { width: 10px; height: 10px; border-radius: 2px; }
+</style>
+<script>
+const grid = document.querySelector(".grid"), tip = document.querySelector(".tip"); let total = 0, seed = 7;
+const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+const end = new Date(2026, 10, 2), start = new Date(end); start.setDate(end.getDate() - 104);
+for (let i = 0; i < 105; i++) {
+  const d = new Date(start); d.setDate(start.getDate() + i);
+  const n = rnd() < .25 ? 0 : Math.floor(rnd() * (d.getDay() % 6 ? 9 : 4)); total += n;
+  const c = document.createElement("i"); c.className = "l" + (n && Math.min(4, Math.ceil(n / 2))); c.style.animationDelay = (i / 7 | 0) * 35 + "ms";
+  c.addEventListener("mouseenter", () => tip.textContent = `${d.getMonth() + 1}月${d.getDate()}日 · ${n ? n + " 次" : "没有记录"}`);
+  grid.append(c);
+}
+document.querySelector("em").textContent = total;
+</script>

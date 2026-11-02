@@ -1,0 +1,43 @@
+<!--
+{
+  "en": "Kanban Board", "zh": "看板",
+  "lead": "把任务卡片分成“待办 / 进行中 / 已完成”几列，按住卡片拖到另一列就改了状态。列头写数量，卡片上有标签色条和负责人头像。",
+  "vague": ["任务管理界面", "像 Trello 那样拖来拖去"],
+  "terms": ["Kanban", "Drag and Drop 拖放", "Column 泳道列", "Drop Zone 放置区"],
+  "prompt": "做 Kanban Board：三列（待办/进行中/已完成），列底色 #F4F4F5 圆角 12px，列头名称 + 灰色数量徽标；卡片白底圆角 10px，左侧 3px 彩色标签条，底部负责人小头像；按住卡片可拖到其它列，拖动时卡片轻微旋转 2° 并加深阴影，目标列出现虚线高亮的放置区，松手后数量更新。"
+}
+-->
+<div class="kb">
+  <div class="col" data-n="待办"><h5>待办 <em></em></h5><div class="card" style="--c:#3B82F6">首页改版<i>江</i></div><div class="card" style="--c:#A855F7">图标重绘<i>林</i></div></div>
+  <div class="col" data-n="进行中"><h5>进行中 <em></em></h5><div class="card" style="--c:#FA8C16">登录页动效<i>苏</i></div></div>
+  <div class="col" data-n="已完成"><h5>已完成 <em></em></h5><div class="card" style="--c:#22C55E">配色规范<i>周</i></div></div>
+</div>
+
+<style>
+.kb { display: grid; grid-template-columns: repeat(3, 110px); gap: 8px; user-select: none; }
+.col { background: #F4F4F5; border-radius: 12px; padding: 8px; min-height: 170px; display: flex; flex-direction: column; gap: 6px; outline: 2px dashed transparent; outline-offset: -4px; transition: outline-color .15s, background .15s; }
+.col.over { outline-color: #FA8C16; background: #FFF7ED; }
+h5 { margin: 2px 2px 4px; font-size: 12px; display: flex; justify-content: space-between; }
+h5 em { font-style: normal; font-weight: 400; color: #71717A; background: #E4E4E7; border-radius: 999px; padding: 0 6px; font-size: 11px; }
+.card { position: relative; background: #fff; border-radius: 8px; padding: 8px 8px 8px 11px; font-size: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.06); cursor: grab; touch-action: none; display: grid; gap: 6px; }
+.card::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 3px; background: var(--c); }
+.card i { width: 18px; height: 18px; border-radius: 50%; background: #E4E4E7; font: normal 10px/18px sans-serif; text-align: center; }
+.card.drag { position: fixed; z-index: 9; width: 94px; pointer-events: none; transform: rotate(2deg); box-shadow: 0 12px 24px rgba(0,0,0,.15); }
+</style>
+<script>
+const cols = [...document.querySelectorAll(".col")];
+const count = () => cols.forEach((c) => c.querySelector("em").textContent = c.querySelectorAll(".card").length);
+document.querySelectorAll(".card").forEach((card) => card.addEventListener("pointerdown", (e) => {
+  const r = card.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, home = card.parentElement;
+  card.classList.add("drag"); let target = home;
+  const move = (ev) => {
+    card.style.left = ev.clientX - dx + "px"; card.style.top = ev.clientY - dy + "px";
+    target = cols.find((c) => { const b = c.getBoundingClientRect(); return ev.clientX > b.left && ev.clientX < b.right; }) || home;
+    cols.forEach((c) => c.classList.toggle("over", c === target && c !== home));
+  };
+  move(e);
+  const up = () => { document.removeEventListener("pointermove", move); document.removeEventListener("pointerup", up); card.classList.remove("drag"); card.style.left = card.style.top = ""; target.append(card); cols.forEach((c) => c.classList.remove("over")); count(); };
+  document.addEventListener("pointermove", move); document.addEventListener("pointerup", up);
+}));
+count();
+</script>

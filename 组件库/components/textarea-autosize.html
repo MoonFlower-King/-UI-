@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Auto-resize Textarea", "zh": "自适应高度输入框",
+  "lead": "多行输入框跟着内容自动长高，不出现小滚动条；到一定高度再开始滚动。右下角显示字数，快超限时变橙、超限变红。",
+  "vague": ["评论框", "输入框会长高"],
+  "terms": ["Auto-resize Textarea", "Character Counter 字数统计", "Max Height 最大高度", "field-sizing"],
+  "prompt": "评论框用 Auto-resize Textarea：初始 1 行高 44px，随内容自动增高（高度过渡 120ms），最高 160px 后出现滚动；聚焦时品牌色描边光圈；右下角字数统计“36 / 200”，超过 180 字变橙色、超过 200 字变红色并禁用发送按钮。"
+}
+-->
+<div class="ta">
+  <textarea rows="1" placeholder="写下你的想法…"></textarea>
+  <div class="foot"><span class="count">0 / 80</span><button disabled>发送</button></div>
+</div>
+
+<style>
+.ta { width: 280px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; padding: 10px 12px; transition: border-color .2s, box-shadow .2s; }
+.ta:focus-within { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.14); }
+textarea { width: 100%; box-sizing: border-box; border: 0; outline: none; resize: none; font: 14px/1.6 inherit; font-family: inherit; max-height: 140px; min-height: 24px; transition: height .12s; }
+.foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.count { font-size: 11px; color: #A1A1AA; font-variant-numeric: tabular-nums; } .count.warn { color: #F59E0B; } .count.over { color: #EF4444; }
+button { height: 30px; padding: 0 14px; border: 0; border-radius: 8px; background: #FA8C16; color: #fff; font-size: 12px; cursor: pointer; } button:disabled { background: #E4E4E7; color: #A1A1AA; cursor: not-allowed; }
+</style>
+<script>
+const ta = document.querySelector("textarea"), count = document.querySelector(".count"), send = document.querySelector("button");
+const fit = () => { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; const n = ta.value.length; count.textContent = `${n} / 80`; count.className = "count" + (n > 80 ? " over" : n > 70 ? " warn" : ""); send.disabled = !n || n > 80; };
+ta.addEventListener("input", fit);
+setTimeout(() => { if (!ta.value) { ta.value = "这个配色方案很舒服，\n尤其是夜色背景配暖金色标题，\n像真的在看江上的月亮。"; fit(); } }, 1200);
+</script>

@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Button Hierarchy", "zh": "按钮层级",
+  "lead": "一屏里按钮要分主次：最重要的一个用实心品牌色（Primary），次要的用描边（Secondary），不重要的只用文字（Tertiary），危险操作用红色。一屏最多一个主按钮。",
+  "vague": ["按钮都长一样", "不知道该点哪个"],
+  "terms": ["Primary Button 主按钮", "Secondary Button 次按钮", "Ghost / Text Button 文字按钮", "Destructive 危险按钮"],
+  "prompt": "按 Button Hierarchy 统一按钮：Primary 实心 #FA8C16 白字、Secondary 白底 1px #E4E4E7 描边深色字、Tertiary 无边框灰字悬停出浅灰底、Destructive 红色描边悬停变实心红；高度统一 40px、圆角 10px、左右内边距 18px；同一区域只放一个 Primary，放在最右边。"
+}
+-->
+<div class="bh">
+  <div class="row"><button class="b tert">取消</button><button class="b sec">存草稿</button><button class="b pri">发布</button></div>
+  <div class="row"><button class="b danger">删除作品</button></div>
+  <div class="tags"><span>Primary</span><span>Secondary</span><span>Tertiary</span><span>Destructive</span></div>
+</div>
+
+<style>
+.bh { display: grid; gap: 14px; justify-items: center; }
+.row { display: flex; gap: 8px; }
+.b { height: 40px; padding: 0 18px; border-radius: 10px; font-size: 14px; cursor: pointer; transition: all .2s; border: 1px solid transparent; }
+.b:active { transform: scale(.97); }
+.pri { background: #FA8C16; color: #fff; font-weight: 600; box-shadow: 0 2px 8px rgba(250,140,22,.3); } .pri:hover { background: #F07C00; }
+.sec { background: #fff; border-color: #E4E4E7; color: #18181B; } .sec:hover { border-color: #A1A1AA; }
+.tert { background: none; color: #71717A; } .tert:hover { background: #F4F4F5; color: #18181B; }
+.danger { background: #fff; border-color: #FCA5A5; color: #DC2626; } .danger:hover { background: #DC2626; border-color: #DC2626; color: #fff; }
+.tags { display: flex; gap: 6px; font-size: 10px; color: #A1A1AA; } .tags span { padding: 2px 6px; border: 1px dashed #E4E4E7; border-radius: 4px; }
+</style>

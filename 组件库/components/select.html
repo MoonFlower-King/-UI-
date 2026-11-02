@@ -1,0 +1,42 @@
+<!--
+{
+  "en": "Select", "zh": "下拉选择",
+  "lead": "从一列固定选项里挑一个。自定义的下拉框比系统默认的好看：展开时列表从上方淡入，当前选中项右边打勾，键盘上下键也能选。",
+  "vague": ["下拉框", "选择框太丑"],
+  "terms": ["Select", "Listbox 列表框", "Combobox", "Chevron 下拉箭头"],
+  "prompt": "自定义 Select：触发器高 40px 白底 1px 描边圆角 10px，右侧 ⌄ 箭头展开时旋转 180°；下拉列表圆角 12px、Layered Elevation 阴影、从上方 4px 淡入 150ms；每项 36px 高，悬停浅灰底，已选项品牌色文字 + 右侧 ✓；支持键盘 ↑↓ 移动、Enter 选择、Esc 关闭，点击外部收起。"
+}
+-->
+<div class="sel">
+  <small>风格</small>
+  <button class="trigger" aria-haspopup="listbox"><span>极简主义</span><i>⌄</i></button>
+  <ul role="listbox">
+    <li class="on">极简主义</li><li>毛玻璃</li><li>新拟物</li><li>新粗野主义</li><li>瑞士风格</li>
+  </ul>
+</div>
+
+<style>
+.sel { position: relative; width: 220px; height: 280px; }
+small { font-size: 12px; color: #71717A; display: block; margin-bottom: 6px; }
+.trigger { width: 100%; height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 10px; font-size: 14px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+.trigger:hover { border-color: #D4D4D8; }
+.open .trigger { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.15); }
+.trigger i { font-style: normal; color: #71717A; transition: transform .2s; line-height: 0; margin-top: -6px; } .open .trigger i { transform: rotate(180deg); margin-top: 6px; }
+ul { position: absolute; left: 0; right: 0; top: 70px; margin: 0; padding: 4px; list-style: none; background: #fff; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 10px 28px rgba(0,0,0,.12); opacity: 0; transform: translateY(-4px); pointer-events: none; transition: all .15s ease-out; }
+.open ul { opacity: 1; transform: none; pointer-events: auto; }
+li { height: 34px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+li:hover, li.hl { background: #F4F4F5; } li.on { color: #FA8C16; font-weight: 600; } li.on::after { content: "✓"; }
+</style>
+<script>
+const sel = document.querySelector(".sel"), label = document.querySelector(".trigger span"), opts = [...document.querySelectorAll("li")]; let hl = 0;
+const pick = (li) => { opts.forEach((o) => o.classList.toggle("on", o === li)); label.textContent = li.textContent; sel.classList.remove("open"); };
+document.querySelector(".trigger").addEventListener("click", () => sel.classList.toggle("open"));
+opts.forEach((li) => li.addEventListener("click", () => pick(li)));
+document.addEventListener("click", (e) => { if (!sel.contains(e.target)) sel.classList.remove("open"); });
+document.addEventListener("keydown", (e) => {
+  if (!sel.classList.contains("open")) return;
+  if (e.key === "Escape") sel.classList.remove("open");
+  if (/Arrow(Up|Down)/.test(e.key)) { hl = (hl + (e.key === "ArrowDown" ? 1 : -1) + opts.length) % opts.length; opts.forEach((o, i) => o.classList.toggle("hl", i === hl)); e.preventDefault(); }
+  if (e.key === "Enter") pick(opts[hl]);
+});
+</script>

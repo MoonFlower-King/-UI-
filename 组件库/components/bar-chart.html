@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Bar Chart", "zh": "柱状图",
+  "lead": "比较几个类别的大小，柱状图最直观。好看的柱状图：柱子圆头、只高亮最重要的那根、其余用浅色，悬停时显示具体数值，出场时从底部依次长出。",
+  "vague": ["做个图表", "数据可视化"],
+  "terms": ["Bar Chart", "Highlight 重点高亮", "Data Label 数据标签", "Gridline 网格线"],
+  "prompt": "做 Bar Chart：7 根柱子宽 24px 顶部圆角 6px，默认浅橘 #FED7AA，最大值那根品牌色 #FA8C16；背景只保留 3 条浅灰虚线网格；柱子出场从底部依次长出（每根延迟 60ms，600ms ease-out）；悬停柱子时其余变淡、上方浮出深色数值气泡；切换“本周/上周”时柱高平滑过渡。"
+}
+-->
+<div class="bc">
+  <header><b>访问量</b><div class="seg"><button class="on">本周</button><button>上周</button></div></header>
+  <div class="plot"></div>
+  <div class="x"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+</div>
+
+<style>
+.bc { width: 290px; background: #fff; border-radius: 14px; padding: 14px 16px 10px; border: 1px solid #F0F0F2; }
+header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.seg { display: flex; background: #F4F4F5; border-radius: 8px; padding: 2px; } .seg button { border: 0; background: none; font-size: 11px; padding: 4px 8px; border-radius: 6px; cursor: pointer; color: #71717A; }
+.seg .on { background: #fff; color: #18181B; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.plot { position: relative; height: 140px; margin-top: 14px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 4px;
+  background: repeating-linear-gradient(to top, transparent 0 46px, #F0F0F2 46px 47px); }
+.plot i { position: relative; width: 24px; border-radius: 6px 6px 2px 2px; background: #FED7AA; transform-origin: bottom; transition: height .5s cubic-bezier(.22,1,.36,1), opacity .2s; animation: grow .6s cubic-bezier(.22,1,.36,1) backwards; cursor: pointer; }
+.plot i.max { background: #FA8C16; }
+.plot:hover i:not(:hover) { opacity: .35; }
+.plot i::after { content: attr(data-v); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translate(-50%, 4px); background: #18181B; color: #fff; font: normal 11px sans-serif; padding: 3px 6px; border-radius: 6px; opacity: 0; transition: all .15s; white-space: nowrap; }
+.plot i:hover::after { opacity: 1; transform: translate(-50%, 0); }
+@keyframes grow { from { transform: scaleY(0); } }
+.x { display: flex; justify-content: space-between; padding: 6px 4px 0; font-size: 11px; color: #A1A1AA; } .x span { width: 24px; text-align: center; }
+</style>
+<script>
+const sets = [[320, 480, 410, 560, 720, 1040, 860], [280, 300, 520, 450, 610, 760, 900]], plot = document.querySelector(".plot");
+plot.innerHTML = sets[0].map((_, i) => `<i style="animation-delay:${i * 60}ms"></i>`).join("");
+const draw = (d) => { const m = Math.max(...d); [...plot.children].forEach((b, i) => { b.style.height = d[i] / 1100 * 100 + "%"; b.dataset.v = d[i].toLocaleString(); b.classList.toggle("max", d[i] === m); }); };
+document.querySelectorAll(".seg button").forEach((b, i) => b.addEventListener("click", () => { document.querySelectorAll(".seg button").forEach((x) => x.classList.toggle("on", x === b)); draw(sets[i]); }));
+draw(sets[0]);
+</script>
