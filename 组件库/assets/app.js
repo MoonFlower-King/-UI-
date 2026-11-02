@@ -90,30 +90,39 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme)
 syncTheme();
 
 /* ---------------- 词卡与自动演示预览 ---------------- */
-// 卡片预览只在屏幕内时运行：滚进来就加载并自动演示（assets/autoplay.js），滚出去就卸掉，省电省 CPU。
-// 鼠标移进卡片时换成可以亲手玩的版本；系统开了「减少动态效果」就不自动演示。
+// 卡片预览只在大部分露出屏幕时运行：露出来就加载并自动演示（assets/autoplay.js），滚出去就卸掉，省电省 CPU。
+// 所有预览和网页共用一条主线程，所以一次只启动一张、错开 140ms，重播时先淡出再淡入，不闪白。
+// 鼠标移进卡片：从头重播一遍；访客自己点一下就接管。系统开了「减少动态效果」就不自动演示。
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 const canHover = matchMedia('(hover: hover)').matches;
 const AUTO = window.JY_AUTOPLAY;
-const doc = (c, auto) => auto && AUTO && !calm.matches
+const doc = (c) => AUTO && !calm.matches
   ? `${BASE}<script>(${AUTO.pre})()<\/script>\n${c.code}\n<script>(${AUTO.post})()<\/script>`
   : BASE + c.code;
-const playing = new Set();
-const load = (f, auto = true) => { f.srcdoc = doc(byId[f.dataset.id], auto); };
+const playing = new Set(), queue = new Set();
+let pumping = false;
+const swap = (f) => { f.classList.add('swap'); setTimeout(() => { if (playing.has(f)) f.srcdoc = doc(byId[f.dataset.id]); }, 180); };
+function pump() {
+  const f = queue.values().next().value;
+  if (!f) { pumping = false; return; }
+  queue.delete(f); pumping = true; swap(f);
+  setTimeout(pump, 140);
+}
+const load = (f, now) => { queue.delete(f); if (now) swap(f); else { queue.add(f); if (!pumping) pump(); } };
 const watch = new IntersectionObserver((entries) => entries.forEach((e) => {
   const f = e.target;
-  if (e.isIntersecting) { playing.add(f); if (!f.dataset.hold) load(f); }
-  else if (playing.delete(f)) f.srcdoc = BASE;
-}), { rootMargin: '80px' });
+  if (e.intersectionRatio >= .3) { if (!playing.has(f)) { playing.add(f); load(f); } }
+  else if (playing.delete(f)) { queue.delete(f); f.srcdoc = BASE; }
+}), { threshold: [0, .3] });
 addEventListener('message', (e) => {
   if (e.data !== 'jy-replay') return;
   const f = [...playing].find((x) => x.contentWindow === e.source);
-  if (f && !f.dataset.hold) load(f);
+  if (f) load(f);
 });
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--s', e.contentRect.width / 560)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">换你来玩 · 可以直接点</span></div>
+    <div class="thumb"><iframe data-id="${c.id}" title="${esc(c.zh)} 预览" tabindex="-1"></iframe><span class="live">点一下，换你来玩</span></div>
     <div class="card-body"><h3 class="card-title"><a href="#${c.id}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3><p>${esc(c.lead)}</p>
       <div class="card-actions"><button class="btn sm" data-copy="${c.id}">复制提示词</button><button class="btn sm add-btn" data-add="${c.id}"></button></div></div>
   </article>`;
@@ -122,9 +131,10 @@ function hydrate(root) {
   $$('.thumb', root).forEach((t) => {
     const f = t.firstElementChild, cardEl = t.closest('.card');
     fit.observe(t); watch.observe(f);
+    f.addEventListener('load', () => f.classList.remove('swap'));
     if (canHover) {
-      cardEl.addEventListener('mouseenter', () => { f.dataset.hold = 1; load(f, false); });
-      cardEl.addEventListener('mouseleave', () => { delete f.dataset.hold; if (playing.has(f)) load(f); });
+      cardEl.addEventListener('mouseenter', () => { if (playing.has(f)) load(f, true); });
+      cardEl.addEventListener('mouseleave', () => { let stopped = false; try { stopped = f.contentWindow.__jyStop; } catch {} if (stopped && playing.has(f)) load(f); });
     }
   });
   $$('[data-add]', root).forEach(syncAddBtn);
