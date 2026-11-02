@@ -139,27 +139,37 @@ function paintPoster(t) {
     .replace(/(^|[\s,}>])(:root|html|body)(?=\s*[{,.:#\[\s])/g, '$1:host');
   const root = host.attachShadow({ mode: 'open' });
   root.innerHTML = `<style>${POSTER_CSS}</style>${html}`;
+  // 入场动画（只播一次的）直接跳到最后一帧，否则暂停在第 0 帧时元素还是透明的，卡片看着像空白或半透明
+  if (root.getAnimations) root.getAnimations().forEach((a) => {
+    const end = a.effect && a.effect.getComputedTiming().endTime;
+    if (isFinite(end)) a.currentTime = end;
+  });
   t.classList.add('ready');
   // 首帧画好就顺手量一下组件大小，预览立刻按实际大小放大；放大后可能换行变高，下一帧再量一次确认装得下
   measurePoster(c.id, host, root);
 }
-// 首帧在浏览器空闲时分批画，每批最多 4 张，不和滚动抢主线程
+// 首帧：屏幕里的立刻画，屏幕外（提前 600px）的在浏览器空闲时分批画，不和滚动抢主线程
 const posterQueue = new Set();
 const idle = window.requestIdleCallback || ((fn) => setTimeout(() => fn({ timeRemaining: () => 8 }), 32));
 let painting = false;
 function paintSome(deadline) {
+  // 每批至少画 2 张：页面一直有动画时浏览器几乎没有「空闲」，只等空闲会让首帧永远排不上
   let n = 0;
   for (const t of posterQueue) {
-    if (n++ >= 4 || deadline.timeRemaining() < 4) break;
-    posterQueue.delete(t); if (t.isConnected) paintPoster(t);
+    if (n >= 2 && (n >= 6 || deadline.timeRemaining() < 4)) break;
+    posterQueue.delete(t); n++; if (t.isConnected) paintPoster(t);
   }
-  posterQueue.size ? idle(paintSome, { timeout: 300 }) : (painting = false);
+  posterQueue.size ? idle(paintSome, { timeout: 200 }) : (painting = false);
 }
 const posters = new IntersectionObserver((entries) => entries.forEach((e) => {
-  if (!e.isIntersecting) { posterQueue.delete(e.target); return; }
-  posterQueue.add(e.target); posters.unobserve(e.target);
-  if (!painting) { painting = true; idle(paintSome, { timeout: 300 }); }
-}), { rootMargin: '500px 0px' });
+  if (!e.isIntersecting) return;
+  posters.unobserve(e.target);
+  // 已经在屏幕里的立刻画；还在屏幕外的（提前 600px）排队，空闲时分批画
+  const r = e.boundingClientRect;
+  if (r.bottom > 0 && r.top < innerHeight) { posterQueue.delete(e.target); paintPoster(e.target); return; }
+  posterQueue.add(e.target);
+  if (!painting) { painting = true; idle(paintSome, { timeout: 200 }); }
+}), { rootMargin: '600px 0px' });
 
 // 同一时间最多只让离屏幕中心最近的几张卡片播放演示，其余显示静态首帧；滚动停下 200ms 后才重新挑选，
 // 滚动过程中不新开演示，所以滚起来不卡。鼠标所在的卡片总是优先播放。
