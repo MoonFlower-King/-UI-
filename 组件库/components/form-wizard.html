@@ -1,0 +1,51 @@
+<!--
+{
+  "en": "Form Wizard", "zh": "分步表单",
+  "lead": "长表单拆成几步，一次只问一小组问题，顶部告诉你在第几步、还剩几步。比一整页密密麻麻的输入框更不吓人，填错了也只要回到那一步。",
+  "vague": ["表单太长用户不想填", "注册流程太复杂"],
+  "terms": ["Form Wizard", "Multi-step Form 多步表单", "Progressive Disclosure 渐进披露"],
+  "prompt": "把注册表单做成三步向导：顶部三个圆点步骤条（完成的变江月橘实心并打勾，当前的橘色描边），中间每步只放 1–2 个字段，切换时内容向左滑出、新内容从右滑入（250ms）；底部「上一步」「下一步」，最后一步按钮变成「完成」；当前步没填完时「下一步」禁用。"
+}
+-->
+<div class="wz">
+  <ol><li class="cur">账号</li><li>资料</li><li>完成</li></ol>
+  <div class="steps">
+    <section><label>邮箱<input placeholder="you@example.com"></label></section>
+    <section hidden><label>昵称<input placeholder="怎么称呼你"></label></section>
+    <section hidden><p>🌙 一切就绪，欢迎来到山月书房</p></section>
+  </div>
+  <footer><button class="prev" disabled>上一步</button><button class="next" disabled>下一步</button></footer>
+</div>
+<style>
+.wz { width: 280px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; font: 13px -apple-system, "PingFang SC", sans-serif; }
+ol { display: flex; margin: 0 0 16px; padding: 0; list-style: none; counter-reset: s; }
+li { flex: 1; position: relative; display: grid; justify-items: center; gap: 4px; font-size: 11px; color: #A1A1AA; counter-increment: s; }
+li::before { content: counter(s); position: relative; z-index: 1; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 1.5px solid #E4E4E7; font-weight: 600; transition: all .25s; }
+li + li::after { content: ""; position: absolute; top: 11px; right: 50%; width: 100%; height: 1.5px; background: #E4E4E7; transition: background .25s; }
+li.cur { color: #18181B; } li.cur::before { border-color: #FA8C16; color: #FA8C16; }
+li.done::before { content: "✓"; background: #FA8C16; border-color: #FA8C16; color: #fff; }
+li.done + li::after, li.done + li.done::after { background: #FA8C16; }
+.steps { min-height: 66px; overflow: hidden; }
+section { animation: in .25s ease-out; } @keyframes in { from { opacity: 0; transform: translateX(24px); } }
+label { display: grid; gap: 6px; color: #3F3F46; }
+input { height: 36px; padding: 0 10px; border: 1px solid #E4E4E7; border-radius: 10px; font: inherit; outline: none; } input:focus { border-color: #FA8C16; }
+section p { margin: 10px 0; text-align: center; color: #3F3F46; }
+footer { display: flex; justify-content: space-between; margin-top: 12px; }
+button { height: 32px; padding: 0 14px; border-radius: 10px; font: inherit; cursor: pointer; border: 1px solid #E4E4E7; background: #fff; }
+.next { border: 0; background: #FA8C16; color: #fff; font-weight: 600; }
+button:disabled { opacity: .4; cursor: not-allowed; }
+</style>
+<script>
+const secs = [...document.querySelectorAll("section")], dots = [...document.querySelectorAll("li")], prev = document.querySelector(".prev"), next = document.querySelector(".next");
+let k = 0;
+function render() {
+  secs.forEach((s, i) => { s.hidden = i !== k; });
+  dots.forEach((d, i) => { d.className = i < k ? "done" : i === k ? "cur" : ""; });
+  prev.disabled = k === 0 || k === 2; next.textContent = k === 2 ? "完成" : k === 1 ? "下一步" : "下一步";
+  const inp = secs[k].querySelector("input"); next.disabled = inp ? !inp.value.trim() : false;
+}
+document.querySelectorAll("input").forEach((i) => i.addEventListener("input", render));
+next.addEventListener("click", () => { if (k < 2) { k += 1; render(); } else { k = 0; document.querySelectorAll("input").forEach((i) => { i.value = ""; }); render(); } });
+prev.addEventListener("click", () => { k -= 1; render(); });
+render();
+</script>

@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Share Sheet", "zh": "分享面板",
+  "lead": "点“分享”后从底部升起的面板：上面一排常用联系人，中间一排分享目标，下面是复制链接这类操作。手机上最熟悉的分享方式。",
+  "vague": ["分享按钮点了要出什么", "分享入口太多太乱"],
+  "terms": ["Share Sheet", "Action Sheet 操作表", "Bottom Sheet 底部面板"],
+  "prompt": "移动端分享面板：点击分享按钮后从底部滑出（300ms，cubic-bezier(.3,.7,.3,1)），背景加 40% 黑色遮罩；面板圆角 20px，顶部小横条；第一排是可横向滑动的圆形头像联系人，第二排是带图标的分享目标，下方是「复制链接」「保存图片」列表行；点「复制链接」后行尾出现绿色「已复制」；点遮罩或下滑关闭。"
+}
+-->
+<div class="phone">
+  <div class="art"><b>慢读一本书</b><button class="open">分享</button></div>
+  <div class="mask" hidden></div>
+  <div class="sheet">
+    <i class="grab"></i>
+    <div class="row people"><span><b style="background:#FDBA74">夏</b>知夏</span><span><b style="background:#93C5FD">白</b>叙白</span><span><b style="background:#86EFAC">禾</b>清禾</span><span><b style="background:#C4B5FD">野</b>星野</span></div>
+    <div class="row apps"><span><b>✉</b>邮件</span><span><b>✦</b>动态</span><span><b>☾</b>收藏</span><span><b>⋯</b>更多</span></div>
+    <ul><li class="copy">复制链接<em></em></li><li>保存图片</li></ul>
+  </div>
+</div>
+<style>
+.phone { position: relative; width: 220px; height: 260px; overflow: hidden; border-radius: 22px; background: #FFF7ED; border: 1px solid #E4E4E7; font: 12px -apple-system, "PingFang SC", sans-serif; }
+.art { display: grid; place-items: center; gap: 10px; align-content: center; height: 100%; } .art b { font: 600 18px "Songti SC", serif; color: #7C2D12; }
+.open { padding: 6px 16px; border: 0; border-radius: 99px; background: #FA8C16; color: #fff; font: inherit; cursor: pointer; }
+.mask { position: absolute; inset: 0; background: rgba(0,0,0,.4); animation: f .3s; } @keyframes f { from { opacity: 0; } }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 12px 12px; border-radius: 20px 20px 0 0; background: #fff; transform: translateY(100%); transition: transform .3s cubic-bezier(.3,.7,.3,1); }
+.phone.on .sheet { transform: none; }
+.grab { display: block; width: 32px; height: 4px; margin: 0 auto 10px; border-radius: 99px; background: #E4E4E7; }
+.row { display: flex; gap: 12px; padding-bottom: 10px; margin-bottom: 8px; border-bottom: 1px solid #F4F4F5; overflow-x: auto; }
+.row span { display: grid; justify-items: center; gap: 4px; flex: none; width: 38px; color: #52525B; font-size: 10px; }
+.row b { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; font-size: 13px; }
+.apps b { border-radius: 10px; background: #F4F4F5; color: #3F3F46; }
+ul { margin: 0; padding: 0; list-style: none; } li { display: flex; justify-content: space-between; padding: 8px 4px; color: #18181B; cursor: pointer; border-radius: 8px; } li:hover { background: #FAFAFA; }
+em { color: #16A34A; font-style: normal; }
+</style>
+<script>
+const phone = document.querySelector(".phone"), mask = document.querySelector(".mask"), em = document.querySelector("em");
+const open = (v) => { phone.classList.toggle("on", v); mask.hidden = !v; if (!v) em.textContent = ""; };
+document.querySelector(".open").addEventListener("click", () => open(true));
+mask.addEventListener("click", () => open(false));
+document.querySelector(".copy").addEventListener("click", () => { em.textContent = "✓ 已复制"; setTimeout(() => open(false), 900); });
+</script>

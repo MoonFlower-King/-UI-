@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Bevel", "zh": "斜面高光",
+  "lead": "边缘上亮下暗，像把面板的四条边切成斜面，光从左上照过来。老式系统按钮、游戏界面和拟物图标都靠它，按下去时明暗反过来就“凹”进去了。",
+  "vague": ["按钮要有立体感", "像老电脑那种按钮"],
+  "terms": ["Bevel", "Emboss 浮雕", "Light Source 光源方向"],
+  "prompt": "按钮用斜面高光：底色 #C9CCD3，上边和左边 2px 白色高光、下边和右边 2px #6B7280 阴影（用 border-color: #fff #6B7280 #6B7280 #fff），整体无圆角；按下时明暗互换、文字向右下移 1px，看起来凹进去；光源统一来自左上方。"
+}
+-->
+<div class="panel">
+  <p>保存修改？</p>
+  <div class="row"><button>取消</button><button class="pri">确定</button></div>
+</div>
+<style>
+.panel { width: 240px; padding: 16px; background: #C9CCD3; border: 2px solid; border-color: #fff #6B7280 #6B7280 #fff; font: 13px Tahoma, "Microsoft YaHei", sans-serif; }
+p { margin: 0 0 14px; padding: 10px; background: #E5E7EB; border: 2px solid; border-color: #6B7280 #fff #fff #6B7280; color: #111827; }
+.row { display: flex; justify-content: flex-end; gap: 8px; }
+button { min-width: 72px; padding: 6px 12px; background: #C9CCD3; border: 2px solid; border-color: #fff #6B7280 #6B7280 #fff; font: inherit; color: #111827; cursor: pointer; }
+button.pri { box-shadow: 0 0 0 1px #111827; }
+button:active { border-color: #6B7280 #fff #fff #6B7280; padding: 7px 11px 5px 13px; }
+</style>

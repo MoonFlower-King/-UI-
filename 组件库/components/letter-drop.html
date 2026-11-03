@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Letter Drop", "zh": "逐字落下",
+  "lead": "标题的每个字从上方依次掉下来，落地时轻轻回弹一下。比整行淡入更有节奏感，适合首屏大标题和开场。",
+  "vague": ["标题出场太平淡", "想让文字一个个蹦出来"],
+  "terms": ["Letter Drop", "Staggered Text", "Bounce Easing 回弹缓动"],
+  "prompt": "首屏标题用逐字落下动画：把每个字拆成独立 span，从 translateY(-40px)、透明度 0 落到原位，时长 600ms、缓动 cubic-bezier(.34,1.56,.64,1)（带一点回弹），每个字延迟 60ms；动画只播放一次，开启“减少动态效果”时直接显示。"
+}
+-->
+<div class="wrap"><h2 class="t">江上明月照归人</h2>
+<button>再播一次</button></div>
+<style>
+.wrap { text-align: center; }
+.t { margin: 0 0 18px; font: 700 34px/1.2 "Songti SC", "Noto Serif SC", serif; color: #1F2937; letter-spacing: .04em; }
+.t span { display: inline-block; animation: drop .6s cubic-bezier(.34,1.56,.64,1) both; animation-delay: calc(var(--i) * 60ms); }
+.t span:nth-child(3), .t span:nth-child(4) { color: #FA8C16; }
+@keyframes drop { from { opacity: 0; transform: translateY(-40px); } }
+@media (prefers-reduced-motion: reduce) { .t span { animation: none; } }
+button { display: block; margin: 0 auto; padding: 6px 14px; border: 1px solid #E4E4E7; border-radius: 99px; background: #fff; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+const t = document.querySelector(".t");
+const text = t.textContent;
+const play = () => { t.innerHTML = [...text].map((c, i) => `<span style="--i:${i}">${c}</span>`).join(""); };
+play();
+document.querySelector("button").addEventListener("click", play);
+setInterval(play, 3500);
+</script>

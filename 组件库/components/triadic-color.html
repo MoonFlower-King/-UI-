@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Triadic Color", "zh": "三角配色",
+  "lead": "在色轮上取三个等距（相隔 120°）的颜色，鲜艳又平衡，像儿童玩具和游戏界面。诀窍是只让一个当主角，另外两个少量点缀。",
+  "vague": ["想要活泼的配色", "颜色多了就乱"],
+  "terms": ["Triadic Color", "Color Harmony 配色和谐", "60-30-10"],
+  "prompt": "配色用三角色：色相 30°（江月橘 #FA8C16）、150°（绿 #22C55E）、270°（紫 #A855F7）三色等距；主色占 60%、第二色 30%、第三色 10%；做一个小卡片示范：橘色底的大按钮、绿色的进度条、紫色的小徽标；点击可以把三个颜色整体在色轮上旋转。"
+}
+-->
+<div class="card" style="--h:30">
+  <div class="tri"><i></i><i></i><i></i></div>
+  <div class="demo">
+    <span class="tag">新课</span>
+    <div class="bar"><b></b></div>
+    <button>开始学习</button>
+  </div>
+</div>
+<style>
+.card { --a: hsl(var(--h) 92% 53%); --b: hsl(calc(var(--h) + 120) 65% 45%); --c: hsl(calc(var(--h) + 240) 80% 62%);
+  display: flex; align-items: center; gap: 18px; width: 300px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; cursor: pointer; }
+.tri { position: relative; flex: none; width: 96px; height: 96px; border-radius: 50%; border: 2px dashed #E4E4E7; transition: transform .6s cubic-bezier(.3,.7,.3,1); }
+.tri i { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+.tri i:nth-child(1) { background: var(--a); transform: rotate(0deg) translateY(-48px); }
+.tri i:nth-child(2) { background: var(--b); transform: rotate(120deg) translateY(-48px); }
+.tri i:nth-child(3) { background: var(--c); transform: rotate(240deg) translateY(-48px); }
+.demo { flex: 1; display: grid; gap: 10px; justify-items: start; }
+.tag { padding: 2px 8px; border-radius: 99px; background: var(--c); color: #fff; font-size: 11px; }
+.bar { width: 100%; height: 6px; border-radius: 99px; background: #F4F4F5; } .bar b { display: block; width: 62%; height: 100%; border-radius: inherit; background: var(--b); }
+button { padding: 8px 14px; border: 0; border-radius: 10px; background: var(--a); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; }
+</style>
+<script>
+const card = document.querySelector(".card"), tri = document.querySelector(".tri");
+let h = 30;
+card.addEventListener("click", () => { h = (h + 40) % 360; card.style.setProperty("--h", h); tri.style.transform = `rotate(${h - 30}deg)`; });
+</script>

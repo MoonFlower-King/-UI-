@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Follow Through", "zh": "跟随与重叠",
+  "lead": "主体停下了，附在它身上的东西（头发、尾巴、挂件）还会再晃几下才停。动画原则之一，让运动有“惯性”和重量，不像机器一样一刀切。",
+  "vague": ["动画停得太死", "动起来没有重量感"],
+  "terms": ["Follow Through", "Overlapping Action 重叠动作", "12 Principles of Animation 动画十二原则"],
+  "prompt": "卡片滑入时加跟随动作：卡片本体 400ms 从左滑到位停住；卡片顶部挂着的小吊牌晚 80ms 出发，到位后继续以卡片顶部为轴左右摆动 2–3 次逐渐减弱（rotate 12° → -7° → 3° → 0，总长 900ms）；同时放一个没有跟随动作的对照卡片，对比出“死板”和“有惯性”的差别。"
+}
+-->
+<div class="stage">
+  <div class="card a"><i class="tag"></i><span>有跟随</span></div>
+  <div class="card b"><i class="tag"></i><span>没有跟随</span></div>
+</div>
+<style>
+.stage { display: grid; gap: 22px; width: 280px; padding: 26px 18px 18px; overflow: hidden; border-radius: 16px; background: #0F1726; }
+.card { position: relative; width: 150px; height: 46px; border-radius: 12px; background: #152033; border: 1px solid #22304A; animation: slide 2.6s cubic-bezier(.3,.7,.3,1) infinite; }
+.card span { position: absolute; right: 12px; top: 14px; font-size: 12px; color: #8F98AB; }
+.tag { position: absolute; left: 22px; top: -14px; width: 22px; height: 30px; transform-origin: 50% 0; }
+.tag::before { content: ""; position: absolute; left: 10px; top: 0; width: 1.5px; height: 12px; background: #C9B48A; }
+.tag::after { content: ""; position: absolute; left: 3px; top: 12px; width: 16px; height: 18px; border-radius: 3px; background: #FA8C16; }
+.a .tag { animation: swing 2.6s infinite; }
+.b .tag::after { background: #5B6477; }
+@keyframes slide { 0% { transform: translateX(-190px); } 16%, 100% { transform: none; } }
+@keyframes swing { 0%, 3% { transform: rotate(0); } 10% { transform: rotate(-14deg); } 18% { transform: rotate(12deg); } 26% { transform: rotate(-7deg); } 33% { transform: rotate(3deg); } 40%, 100% { transform: rotate(0); } }
+@media (prefers-reduced-motion: reduce) { .card, .tag { animation: none !important; } }
+</style>

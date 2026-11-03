@@ -1,0 +1,26 @@
+<!--
+{
+  "en": "Vaporwave", "zh": "蒸汽波",
+  "lead": "八九十年代电脑和商场广告的怀旧梦：粉紫到青的渐变、霓虹网格地平线、落日条纹、复古系统窗口。荒诞、慵懒、很有梗，适合音乐、潮牌和活动页。",
+  "vague": ["想要那种复古梦幻的粉紫", "像老电脑和霓虹灯的感觉"],
+  "terms": ["Vaporwave", "Retro Grid 复古网格", "Synthwave 合成器浪潮"],
+  "prompt": "蒸汽波风格横幅：背景从 #2B1055 到 #D53A9D 的竖向渐变，下半部分是带透视的青色 #4DE8F4 网格地平线并缓慢向前滚动，中间一个被横条切开的粉橙渐变落日；前景放一个复古系统窗口（灰色标题栏 + 三个方形按钮），标题用斜体粗体加青色描影。"
+}
+-->
+<div class="vw">
+  <div class="sun"></div>
+  <div class="floor"></div>
+  <div class="win"><header>moon.exe <i></i><i></i><i></i></header><b>ＭＯＯＮ ＷＡＶＥ</b></div>
+</div>
+<style>
+.vw { position: relative; width: 300px; height: 200px; overflow: hidden; border-radius: 12px; background: linear-gradient(#2B1055, #7A2A8C 55%, #D53A9D); }
+.sun { position: absolute; left: 50%; top: 30px; width: 110px; height: 110px; margin-left: -55px; border-radius: 50%; background: linear-gradient(#FFD36E, #FF6FA9 70%);
+  -webkit-mask: linear-gradient(#000 52%, transparent 52% 57%, #000 57% 66%, transparent 66% 72%, #000 72% 80%, transparent 80% 87%, #000 87%); mask: linear-gradient(#000 52%, transparent 52% 57%, #000 57% 66%, transparent 66% 72%, #000 72% 80%, transparent 80% 87%, #000 87%); }
+.floor { position: absolute; left: -50%; right: -50%; bottom: -10px; height: 90px; background-image: linear-gradient(#4DE8F4 1.5px, transparent 1.5px), linear-gradient(90deg, #4DE8F4 1.5px, transparent 1.5px); background-size: 28px 18px; background-color: #1A0A33;
+  transform: perspective(120px) rotateX(55deg); transform-origin: 50% 100%; animation: run 1s linear infinite; }
+@keyframes run { to { background-position: 0 18px; } }
+.win { position: absolute; left: 22px; top: 18px; width: 150px; background: #C8C8D8; border: 2px solid; border-color: #fff #555 #555 #fff; font: 10px monospace; }
+.win header { display: flex; gap: 3px; align-items: center; padding: 2px 4px; background: linear-gradient(90deg, #3A1A7A, #B04BCB); color: #fff; }
+.win header i { width: 9px; height: 9px; background: #C8C8D8; border: 1px solid #555; } .win header i:first-of-type { margin-left: auto; }
+.win b { display: block; padding: 10px 6px; color: #FF6FA9; font: italic 900 15px Arial, sans-serif; text-shadow: 2px 2px 0 #4DE8F4; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Pancake Stack", "zh": "上中下三段布局",
+  "lead": "页头、内容、页脚叠成三层：内容少的时候页脚也贴在底部，内容多了中间那层自己变高。最常用的整页骨架之一。",
+  "vague": ["内容少的时候页脚飘在中间", "页脚贴不到底"],
+  "terms": ["Pancake Stack", "grid-template-rows: auto 1fr auto", "Sticky Footer"],
+  "prompt": "整页用 Pancake Stack 布局：容器 min-height: 100dvh，display: grid; grid-template-rows: auto 1fr auto；页头 56px、页脚 48px，中间内容区自动撑满剩余高度，内容少时页脚仍然贴底，内容多时整页正常滚动。"
+}
+-->
+<div class="page">
+  <header>江月</header>
+  <main><p>正文第一段</p></main>
+  <footer>© 江月 UI</footer>
+</div>
+<button class="add">+ 加一段内容</button>
+<style>
+.page { display: grid; grid-template-rows: auto 1fr auto; width: 260px; height: 200px; overflow: auto; border: 1px solid #E4E4E7; border-radius: 12px; background: #fff; font-size: 12px; }
+header { padding: 10px 12px; background: #1F2937; color: #fff; font-weight: 600; }
+main { padding: 8px 12px; background: repeating-linear-gradient(-45deg, #FFF7ED 0 6px, #fff 6px 12px); }
+main p { margin: 0 0 6px; padding: 6px 8px; border-radius: 6px; background: #FED7AA; color: #7C2D12; animation: in .3s ease; }
+@keyframes in { from { opacity: 0; transform: translateY(4px); } }
+footer { padding: 10px 12px; background: #F4F4F5; color: #71717A; }
+.add { display: block; margin: 10px auto 0; padding: 6px 12px; border: 1px solid #E4E4E7; border-radius: 8px; background: #fff; font-size: 12px; cursor: pointer; }
+</style>
+<script>
+const main = document.querySelector("main");
+let n = 1;
+document.querySelector(".add").addEventListener("click", () => {
+  if (n >= 6) { main.innerHTML = "<p>正文第一段</p>"; n = 1; return; }
+  n += 1; main.insertAdjacentHTML("beforeend", `<p>正文第 ${n} 段</p>`);
+});
+</script>

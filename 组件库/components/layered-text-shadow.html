@@ -1,0 +1,18 @@
+<!--
+{
+  "en": "Layered Text Shadow", "zh": "叠层文字阴影",
+  "lead": "给大字叠好几层错开的实色阴影，看起来像一层层贴纸或立体字。复古海报、活动页标题常用，鼠标靠近时阴影会“立”得更高。",
+  "vague": ["标题不够有冲击力", "想要复古立体字"],
+  "terms": ["Layered Text Shadow", "Stacked Shadow 叠层阴影", "Retro Type"],
+  "prompt": "活动页大标题用叠层文字阴影：字号 56px 粗体，text-shadow 叠 4 层无模糊实色阴影，每层向右下偏移 3px，颜色依次为 #FDBA74、#FB923C、#EA580C、#7C2D12；悬停时每层偏移变成 5px（过渡 200ms），文字本体用奶白 #FFF7ED。"
+}
+-->
+<div class="wrap"><h2>GOOD<br>NIGHT</h2></div>
+<style>
+.wrap { display: grid; place-items: center; width: 300px; height: 200px; border-radius: 16px; background: #1E293B; }
+h2 { margin: 0; font: 900 52px/0.95 "Arial Black", Impact, sans-serif; letter-spacing: .02em; color: #FFF7ED; text-align: center; cursor: default;
+  --d: 3px; text-shadow: var(--d) var(--d) 0 #FDBA74, calc(var(--d) * 2) calc(var(--d) * 2) 0 #FB923C, calc(var(--d) * 3) calc(var(--d) * 3) 0 #EA580C, calc(var(--d) * 4) calc(var(--d) * 4) 0 #7C2D12;
+  transition: --d .2s, transform .2s; }
+@property --d { syntax: "<length>"; inherits: true; initial-value: 3px; }
+h2:hover { --d: 5px; transform: translate(-4px, -4px); }
+</style>

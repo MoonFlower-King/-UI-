@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Pricing Toggle", "zh": "月付年付切换",
+  "lead": "价格卡片上方的一个小开关：月付 / 年付。切到年付时价格数字滚动变化，旁边亮出“省 20%”的小标签，促使用户选更划算的方案。",
+  "vague": ["想引导用户选年付", "价格切换太生硬"],
+  "terms": ["Pricing Toggle", "Billing Switch", "Anchoring 价格锚点"],
+  "prompt": "定价区顶部放月付 / 年付切换：胶囊形分段控件，选中块滑动过渡 250ms；年付旁边一个绿色小标签「省 20%」；切换时价格数字从旧值滚动到新值（400ms），年付状态下原价用灰色删除线显示在旁边，下方小字「按年付 ¥768，相当于每月 ¥64」。"
+}
+-->
+<div class="pt">
+  <div class="sw"><i></i><button class="on" data-y="0">月付</button><button data-y="1">年付 <em>省 20%</em></button></div>
+  <div class="price"><small>¥</small><b>80</b><span>/ 月</span><del hidden>¥80</del></div>
+  <p class="note">随时可以取消</p>
+</div>
+<style>
+.pt { width: 260px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 16px; text-align: center; font-family: -apple-system, "PingFang SC", sans-serif; }
+.sw { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 99px; background: #F4F4F5; }
+.sw i { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 99px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: transform .25s cubic-bezier(.3,.7,.3,1); }
+.sw.y i { transform: translateX(100%); }
+.sw button { position: relative; padding: 6px 14px; border: 0; background: none; font: inherit; font-size: 12px; color: #71717A; cursor: pointer; white-space: nowrap; }
+.sw button.on { color: #18181B; font-weight: 600; }
+em { margin-left: 2px; padding: 1px 5px; border-radius: 99px; background: #DCFCE7; color: #15803D; font-size: 10px; font-style: normal; }
+.price { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin: 16px 0 4px; color: #18181B; }
+.price b { min-width: 2ch; font: 700 40px/1 -apple-system, sans-serif; font-variant-numeric: tabular-nums; }
+.price span { color: #71717A; font-size: 13px; } del { color: #A1A1AA; font-size: 13px; }
+.note { margin: 0; font-size: 11px; color: #A1A1AA; }
+</style>
+<script>
+const sw = document.querySelector(".sw"), b = document.querySelector(".price b"), del = document.querySelector("del"), note = document.querySelector(".note");
+let cur = 80, raf;
+function roll(to) {
+  cancelAnimationFrame(raf); const from = cur, t0 = performance.now();
+  const step = (t) => { const k = Math.min(1, (t - t0) / 400); cur = Math.round(from + (to - from) * (1 - (1 - k) ** 3)); b.textContent = cur; if (k < 1) raf = requestAnimationFrame(step); };
+  raf = requestAnimationFrame(step);
+}
+sw.querySelectorAll("button").forEach((x) => x.addEventListener("click", () => {
+  const y = x.dataset.y === "1";
+  sw.classList.toggle("y", y); sw.querySelectorAll("button").forEach((k) => k.classList.toggle("on", k === x));
+  roll(y ? 64 : 80); del.hidden = !y; note.textContent = y ? "按年付 ¥768，相当于每月 ¥64" : "随时可以取消";
+}));
+</script>

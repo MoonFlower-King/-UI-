@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Smart Defaults", "zh": "聪明的默认值",
+  "lead": "表单提前帮用户填好最可能的答案：常用地址、上次选的规格、根据时间推断的日期。大多数人直接点下一步就行，少数人再改。",
+  "vague": ["用户嫌表单要填的太多", "每次都要重新选一遍"],
+  "terms": ["Smart Defaults", "Sensible Defaults 合理默认", "Pre-fill 预填"],
+  "prompt": "预约表单用聪明的默认值：日期默认「今晚」（如果已过 21 点则默认明晚），人数默认上次的 2 人，座位默认上次选的「靠窗」；预填的字段右侧显示小字「已按上次填好」，用户改动后该提示消失；所有默认值都可以一键改，不要藏起来。"
+}
+-->
+<form class="f">
+  <label>日期<select class="d"><option></option><option>明晚</option><option>周六晚</option></select><em>按时间推荐</em></label>
+  <label>人数<select><option>1 人</option><option selected>2 人</option><option>3 人</option></select><em>已按上次填好</em></label>
+  <label>座位<select><option selected>靠窗</option><option>吧台</option><option>角落</option></select><em>已按上次填好</em></label>
+  <button type="button">预约</button>
+</form>
+<style>
+.f { display: grid; gap: 10px; width: 250px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 13px -apple-system, "PingFang SC", sans-serif; }
+label { display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 4px 8px; color: #52525B; }
+select { height: 34px; padding: 0 8px; border: 1px solid #FED7AA; border-radius: 9px; background: #FFFBF5; font: inherit; color: #18181B; transition: border-color .2s, background .2s; }
+select.changed { border-color: #E4E4E7; background: #fff; }
+em { grid-column: 2; font-size: 11px; font-style: normal; color: #D97706; transition: opacity .2s; }
+em::before { content: "✦ "; }
+em.gone { opacity: 0; }
+button { margin-top: 4px; height: 36px; border: 0; border-radius: 10px; background: #FA8C16; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+</style>
+<script>
+const d = document.querySelector(".d");
+d.options[0].textContent = new Date().getHours() >= 21 ? "明晚" : "今晚";
+if (d.options[0].textContent === "明晚") d.options[1].textContent = "后天晚上";
+document.querySelectorAll("select").forEach((s) => s.addEventListener("change", () => { s.classList.add("changed"); s.parentElement.querySelector("em").classList.add("gone"); }));
+document.querySelector("button").addEventListener("click", (e) => { e.target.textContent = "✓ 已预约"; setTimeout(() => { e.target.textContent = "预约"; }, 1200); });
+</script>

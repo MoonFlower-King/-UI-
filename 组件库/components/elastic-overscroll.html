@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Elastic Overscroll", "zh": "橡皮筋回弹",
+  "lead": "列表拉到头还继续拉，内容会像橡皮筋一样跟着走一小段，越拉越费劲，松手后弹回去。它在告诉你“到底了”，比硬邦邦停住友好。",
+  "vague": ["拉到底没有反馈", "滚动停得太生硬"],
+  "terms": ["Elastic Overscroll", "Rubber Banding 橡皮筋效果", "Overscroll"],
+  "prompt": "列表到达顶部或底部后继续拖动，内容按阻尼位移：位移 = 拖动距离 × 0.35 且越拉越小（例如 d * 60 / (d + 60)），最多约 60px；松手后用 spring 曲线 cubic-bezier(.2,1.4,.4,1) 在 400ms 内弹回原位；拉出的空白处显示浅灰「已经到底啦」。"
+}
+-->
+<div class="phone">
+  <p class="hint top">已经到顶啦</p><p class="hint bot">已经到底啦</p>
+  <ul class="list"><li>夜读 · 第 1 夜</li><li>夜读 · 第 2 夜</li><li>夜读 · 第 3 夜</li><li>夜读 · 第 4 夜</li><li>夜读 · 第 5 夜</li></ul>
+</div>
+<p class="tip">上下拖动列表</p>
+<style>
+.phone { position: relative; width: 220px; height: 210px; overflow: hidden; border-radius: 20px; background: #F4F4F5; border: 1px solid #E4E4E7; touch-action: none; cursor: grab; user-select: none; }
+.hint { position: absolute; left: 0; right: 0; margin: 0; text-align: center; font-size: 11px; color: #A1A1AA; } .top { top: 14px; } .bot { bottom: 14px; }
+.list { position: relative; margin: 0; padding: 8px; list-style: none; background: #F4F4F5; transition: transform .4s cubic-bezier(.2,1.4,.4,1); }
+.list.drag { transition: none; }
+li { margin-bottom: 6px; padding: 10px 12px; border-radius: 10px; background: #fff; font-size: 13px; color: #3F3F46; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+li:nth-child(odd) { border-left: 3px solid #FA8C16; }
+.tip { margin: 8px 0 0; text-align: center; font-size: 11px; color: #A1A1AA; }
+</style>
+<script>
+const phone = document.querySelector(".phone"), list = document.querySelector(".list");
+let y0 = null;
+const damp = (d) => Math.sign(d) * (Math.abs(d) * 60) / (Math.abs(d) + 60);
+phone.addEventListener("pointerdown", (e) => { y0 = e.clientY; list.classList.add("drag"); phone.setPointerCapture(e.pointerId); });
+phone.addEventListener("pointermove", (e) => { if (y0 === null) return; list.style.transform = `translateY(${damp(e.clientY - y0)}px)`; });
+const end = () => { if (y0 === null) return; y0 = null; list.classList.remove("drag"); list.style.transform = ""; };
+phone.addEventListener("pointerup", end); phone.addEventListener("pointercancel", end);
+</script>

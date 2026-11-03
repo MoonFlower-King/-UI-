@@ -1,0 +1,41 @@
+<!--
+{
+  "en": "Order Tracking", "zh": "订单追踪页",
+  "lead": "下单后最常打开的一页：最上面一句话告诉你现在到哪了、预计什么时候到，下面是进度条和时间线，最后是联系入口。把“包裹在哪”这个焦虑一次说清。",
+  "vague": ["物流页信息太乱", "用户总问快递到哪了"],
+  "terms": ["Order Tracking", "Stepper Progress 步骤进度", "Timeline 时间线"],
+  "prompt": "订单追踪页：顶部大字状态「正在派送」+「预计今天 18:00 前送达」；下面四段式进度条（已下单 → 已发货 → 派送中 → 已签收），已完成段为江月橘实色，当前段带流动的条纹动画；中间是倒序时间线（最新在上，当前节点橘色圆点带光晕，其余灰色），每条有时间和地点；底部「联系快递员」（主按钮）和「复制单号」两个按钮，复制后按钮变「已复制」。"
+}
+-->
+<div class="ot">
+  <header><small>订单 #MOON2026</small><h3>正在派送</h3><p>预计今天 18:00 前送达</p></header>
+  <div class="steps"><i class="d"></i><i class="d"></i><i class="cur"></i><i></i></div>
+  <div class="lab"><span>已下单</span><span>已发货</span><span class="on">派送中</span><span>已签收</span></div>
+  <ol>
+    <li class="now"><b>快递员陈师傅正在派送</b><small>今天 14:20 · 江边路站</small></li>
+    <li><b>到达江边路站</b><small>今天 09:05</small></li>
+    <li><b>已从仓库发出</b><small>昨天 21:40 · 城南仓</small></li>
+  </ol>
+  <footer><button>联系快递员</button><button class="cp">复制单号</button></footer>
+</div>
+<style>
+.ot { width: 300px; padding: 14px 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 18px; font: 12px -apple-system, "PingFang SC", sans-serif; color: #18181B; }
+header small { color: #A1A1AA; } h3 { margin: 2px 0 0; font: 700 22px "Songti SC", "Noto Serif SC", serif; } header p { margin: 0 0 14px; color: #D97706; font-weight: 500; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; } .steps i { height: 6px; border-radius: 99px; background: #F4F4F5; }
+.steps .d { background: #FA8C16; } .steps .cur { background: repeating-linear-gradient(-45deg, #FA8C16 0 6px, #FDBA74 6px 12px); background-size: 17px 17px; animation: flow 1s linear infinite; }
+@keyframes flow { to { background-position: 17px 0; } }
+.lab { display: grid; grid-template-columns: repeat(4, 1fr); margin: 6px 0 14px; color: #A1A1AA; font-size: 11px; } .lab .on { color: #FA8C16; font-weight: 600; }
+ol { margin: 0 0 12px; padding: 0 0 0 4px; list-style: none; }
+li { position: relative; padding: 0 0 8px 18px; } li::before { content: ""; position: absolute; left: 0; top: 4px; width: 7px; height: 7px; border-radius: 50%; background: #D4D4D8; }
+li:not(:last-child)::after { content: ""; position: absolute; left: 3px; top: 15px; bottom: 0; width: 1px; background: #E4E4E7; }
+li.now::before { background: #FA8C16; box-shadow: 0 0 0 4px rgba(250,140,22,.2); }
+li b { display: block; font-weight: 500; } li:not(.now) b { color: #71717A; } li small { color: #A1A1AA; }
+.item { display: flex; gap: 10px; align-items: center; padding: 10px; border-radius: 12px; background: #FAFAFA; }
+.item i { width: 36px; height: 46px; border-radius: 4px; background: linear-gradient(160deg, #1E3A5F, #0F1726); box-shadow: 2px 2px 0 #C9B48A; } .item small { color: #71717A; }
+footer { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+button { height: 34px; border: 1px solid #E4E4E7; border-radius: 10px; background: #fff; font: inherit; cursor: pointer; } button:first-child { border: 0; background: #FA8C16; color: #fff; font-weight: 600; }
+</style>
+<script>
+const cp = document.querySelector(".cp");
+cp.addEventListener("click", () => { cp.textContent = "✓ 已复制"; setTimeout(() => { cp.textContent = "复制单号"; }, 1400); });
+</script>

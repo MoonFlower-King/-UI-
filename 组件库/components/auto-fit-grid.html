@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Auto-fit Grid", "zh": "自适应网格",
+  "lead": "卡片列表不用写断点：告诉浏览器“每张卡最少多宽”，放得下几列就自动排几列，窄了自动换行。拖一下右下角就能看到列数自己变。",
+  "vague": ["卡片在不同屏幕上排得乱", "不想为每个屏幕写一套布局"],
+  "terms": ["Auto-fit Grid", "repeat(auto-fit, minmax())", "Intrinsic Layout 内在布局"],
+  "prompt": "卡片列表用自适应网格：grid-template-columns: repeat(auto-fit, minmax(120px, 1fr))，间距 10px，不写任何媒体查询；容器变宽时自动加列、变窄时自动减列，每张卡同高、圆角 10px；右上角实时显示当前列数。"
+}
+-->
+<div class="box">
+  <header><span>拖动右下角改变宽度</span><b>3 列</b></header>
+  <div class="grid">
+    <div>晨读</div><div>江景</div><div>夜航</div><div>听雨</div><div>月色</div><div>茶歇</div>
+  </div>
+</div>
+<style>
+.box { width: 320px; min-width: 150px; max-width: 360px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; resize: horizontal; overflow: hidden; }
+header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; color: #71717A; }
+header b { color: #FA8C16; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; }
+.grid div { display: grid; place-items: center; height: 52px; border-radius: 10px; background: #FFF4E6; color: #AD4E00; font-size: 13px; }
+</style>
+<script>
+const box = document.querySelector(".box"), grid = document.querySelector(".grid"), out = document.querySelector("header b");
+const count = () => { out.textContent = getComputedStyle(grid).gridTemplateColumns.split(" ").length + " 列"; };
+new ResizeObserver(count).observe(grid);
+// 演示：宽度在 320 和 170 之间来回变
+let wide = true;
+setInterval(() => { wide = !wide; box.style.transition = "width .8s ease"; box.style.width = (wide ? 320 : 170) + "px"; }, 2400);
+</script>
