@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Wagara Patterns",
+  "zh": "和柄纹样",
+  "alias": [
+    "和柄",
+    "七宝纹",
+    "市松纹",
+    "Japanese Patterns"
+  ],
+  "lead": "把日本传统纹样（市松格、七宝圆、矢絣、波点）拼成一块块：每一格用不同的纹样和传统色，像一叠和纸样本。热闹但有秩序，适合和菓子、和服、文创、手账品牌。",
+  "prompt": "和柄纹样风格：生成色底 #F4EEDF，内容拆成便当格，每格铺一种低对比的传统纹样（市松方格、七宝交圆、矢羽斜纹、圆点），用藏青 #2E4A6B、朱红 #C8553D、抹茶绿 #7A8B5A、芥子黄 #D7A83E 四个传统色；标题格保持素底；宋体类衬线标题，格子圆角 6px",
+  "promptEn": "Wagara pattern style: #F4EEDF unbleached background, content split into bento tiles each filled with a different low-contrast traditional pattern (checkerboard, overlapping-circle shippo, arrow-feather stripes, polka dots) in four traditional colors: indigo #2E4A6B, vermilion #C8553D, matcha #7A8B5A and mustard #D7A83E; the headline tile stays plain; Song-style serif headlines and 6px tile radii",
+  "avoid": "纹样对比度要低，文字所在的格子要么素底、要么纹样极淡，否则字看不清。一屏最多四种纹样，多了就成了花布。",
+  "neg": [
+    "高对比密集花纹、纹样压在正文下面、超过四种颜色",
+    "high-contrast busy patterns, patterns under body text, more than four colors"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #2E4A6B; --a2: #C8553D; --on: #F4EEDF; background: #F4EEDF; color: #2A2723; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { gap: 8px; } .nav, .copy, .art, .feats article, .stats div, .ft { border-radius: 6px; }
+.nav { background: #2E4A6B; color: #F4EEDF; } .logo i { background: #C8553D; border-radius: 50%; } .cta { background: #F4EEDF; color: #2E4A6B; }
+.copy { background: #FBF7EC; box-shadow: inset 0 0 0 1px rgba(46,74,107,.18); } .hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; }
+.art { background: radial-gradient(circle at 0 0, transparent 13px, #C8553D 14px 15px, transparent 16px) 0 0 / 28px 28px, radial-gradient(circle at 14px 14px, transparent 13px, #C8553D 14px 15px, transparent 16px) 0 0 / 28px 28px, #F6E3D8; }
+.feats article:nth-child(1) { background: repeating-conic-gradient(rgba(46,74,107,.13) 0 25%, transparent 0 50%) 0 0 / 22px 22px, #EEF1F2; }
+.feats article:nth-child(2) { background: repeating-linear-gradient(60deg, rgba(122,139,90,.22) 0 6px, transparent 6px 14px), #F0F1E6; }
+.feats article:nth-child(3) { background: radial-gradient(rgba(215,168,62,.4) 2px, transparent 2.5px) 0 0 / 12px 12px, #F7F0DD; }
+.feats b { color: #C8553D; } .feats h3 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.stats div { color: #F4EEDF; } .stats div:nth-child(1) { background: #C8553D; } .stats div:nth-child(2) { background: #7A8B5A; } .stats div:nth-child(3) { background: #D7A83E; color: #2A2723; }
+.ft { background: none; }
+</style>

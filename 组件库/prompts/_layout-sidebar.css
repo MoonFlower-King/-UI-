@@ -1,0 +1,8 @@
+/* 版式骨架「侧栏导航」：导航竖着放在左边一整条，品牌在上、菜单往下排、按钮在底；右边是内容。适合作品集、工作室、专业服务类风格。 */
+.pg { display: grid; grid-template-columns: 116px minmax(0, 1fr); }
+.pg > .nav { grid-row: 1 / span 4; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 22px; padding: 24px 16px; border-right: 1px solid color-mix(in srgb, currentColor 16%, transparent); }
+.nav nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+.hero, .feats, .stats, .ft { grid-column: 2; }
+.hero { grid-template-columns: 1fr 120px; padding-top: 30px; }
+.hero h1 { font-size: 30px; }
+.feats { grid-template-columns: 1fr 1fr 1fr; }

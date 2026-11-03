@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Observatory",
+  "zh": "天文台",
+  "alias": [
+    "天文台",
+    "星象仪",
+    "Astrolabe"
+  ],
+  "lead": "老天文台和星盘仪器的气质：深夜蓝底上散落着小星点，黄铜色的细环、刻度和指针，文字像科学插图的说明。神秘、理性、浪漫，适合天文、科普、钟表、夜间活动和高端酒店。",
+  "prompt": "天文台风格：深夜蓝底 #0E1A2B，散落几层大小不一的小星点（重复的小径向点，透明度不同）；主色黄铜 #C8A464，文字月白 #E6E1D3、宋体类衬线；居中构图，插图是一枚星盘徽记：黄铜细圆环 + 一圈刻度（repeating-conic 细线）+ 一根斜指针；分隔线是带小圆点端头的黄铜细线；按钮黄铜描边、直角",
+  "promptEn": "Observatory style: deep night-blue #0E1A2B with scattered layers of small stars (repeating tiny radial dots at varying opacity); brass #C8A464 as the primary color, moon-white #E6E1D3 Song-style serif text; centered composition with an astrolabe emblem: a thin brass ring, a ring of tick marks (thin repeating-conic lines) and one diagonal pointer; dividers are thin brass lines with small dot ends; square brass-outlined buttons",
+  "avoid": "星点要小、要稀，满天繁星会像壁纸；黄铜色只做细线和刻度，不要做金属质感的大面积渐变。",
+  "neg": [
+    "密集星空壁纸、金属渐变、卡通星球",
+    "dense starfield wallpaper, metallic gradients, cartoon planets"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #C8A464; --a2: #C8A464; --on: #0E1A2B; color: #E6E1D3; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
+  background: radial-gradient(rgba(255,255,255,.7) .8px, transparent 1.2px) 0 0 / 53px 47px, radial-gradient(rgba(255,255,255,.35) .6px, transparent 1px) 20px 11px / 31px 37px, #0E1A2B; }
+.cta, .b1 { background: none; color: #C8A464; border: 1px solid #C8A464; } .logo i { border-radius: 50%; background: none; border: 1px solid #C8A464; }
+.hero h1 { font-weight: 500; letter-spacing: 2px; } .kicker { color: #C8A464; letter-spacing: 3px; } .b2 { color: #E6E1D3; }
+.art .m { position: absolute; inset: 0; border-radius: 50%; border: 1px solid #C8A464; background: repeating-conic-gradient(#C8A464 0 .8deg, transparent .8deg 10deg); -webkit-mask: radial-gradient(circle, transparent 36px, #000 37px 45px, transparent 46px); mask: radial-gradient(circle, transparent 36px, #000 37px 45px, transparent 46px); }
+.art .h { position: absolute; left: 50%; top: 50%; width: 70px; height: 1px; margin-left: -35px; background: #C8A464; transform: rotate(-30deg); box-shadow: 0 0 0 0 transparent; }
+.art .h::after { content: ""; position: absolute; left: 50%; top: -3px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: #C8A464; }
+.feats { padding-top: 16px; background: linear-gradient(#C8A464, #C8A464) center top / 60% 1px no-repeat; } .feats b { color: #C8A464; }
+.stats b { font-weight: 400; color: #C8A464; }
+</style>

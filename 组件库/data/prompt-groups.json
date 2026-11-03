@@ -4,7 +4,7 @@
       "id": "web",
       "name": "网站风格",
       "en": "Web style",
-      "intro": "同一个示例网站换上不同风格，一眼看出差别。一个网站只选一种主风格；风格多，可以用上面的搜索框找。",
+      "intro": "同一个示例网站换上不同风格，一眼看出差别；左下角标了「版式」的，连排法也一起换了（居中、竖排、杂志、分屏、海报、便当格、侧栏）。一个网站只选一种主风格；风格多，可以用上面的搜索框找。",
       "subject": "做什么网站",
       "subjectEg": "一家城市小书房的官网首页",
       "subjectEgEn": "the homepage of a small city bookshop",
@@ -85,7 +85,12 @@
         "ru-celadon",
         "miao-silver",
         "peking-opera",
-        "fan-painting"
+        "fan-painting",
+        "chidu",
+        "inkstone",
+        "hanji",
+        "wagara",
+        "famille-rose"
       ]
     },
     {
@@ -131,7 +136,10 @@
         "tuscan",
         "venetian",
         "sashiko",
-        "provence"
+        "provence",
+        "celtic",
+        "thai-gilt",
+        "dala"
       ]
     },
     {
@@ -192,7 +200,9 @@
         "neo-geo",
         "pre-raphaelite",
         "precisionism",
-        "color-field"
+        "color-field",
+        "fluxus",
+        "minimal-art"
       ]
     },
     {
@@ -257,7 +267,10 @@
         "sidenote",
         "folder-tab",
         "dither",
-        "big-quote"
+        "big-quote",
+        "soft-brutalism",
+        "ultra-thin",
+        "index-list"
       ]
     },
     {
@@ -311,7 +324,10 @@
         "mother-of-pearl",
         "rust",
         "moss",
-        "gold-leaf"
+        "gold-leaf",
+        "acrylic",
+        "holographic",
+        "plaster"
       ]
     },
     {
@@ -361,7 +377,9 @@
         "beadwork",
         "macrame",
         "bookbinding",
-        "kintsugi"
+        "kintsugi",
+        "bookplate",
+        "chalk-pastel"
       ]
     },
     {
@@ -420,7 +438,10 @@
         "pager",
         "bowling",
         "photo-booth",
-        "tin-toy"
+        "tin-toy",
+        "arcade",
+        "classified",
+        "retro-catalog"
       ]
     },
     {
@@ -480,7 +501,11 @@
         "boarding-pass",
         "street-sign",
         "exam-paper",
-        "sheet-music"
+        "sheet-music",
+        "night-market",
+        "observatory",
+        "greenhouse",
+        "aquarium"
       ]
     },
     {
@@ -538,7 +563,12 @@
         "photo-studio",
         "bicycle-shop",
         "ski-resort",
-        "noodle-shop"
+        "noodle-shop",
+        "perfumer",
+        "tailor",
+        "bartender",
+        "lab-notebook",
+        "podcast"
       ]
     },
     {

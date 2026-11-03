@@ -39,6 +39,8 @@
 .mix-card { contain-intrinsic-size: auto 330px; }
 .mix-card:hover { transform: none; }
 .mix-card .thumb { --vw: 560; cursor: pointer; }
+/* 用了版式骨架的网站风格，在缩略图左下角标出版式名（也能搜） */
+.mix-card .lay { position: absolute; left: 8px; bottom: 8px; z-index: 2; padding: 2px 8px; border-radius: 99px; background: rgba(15, 23, 38, .72); color: #F4EBD9; font: 500 11px/1.6 var(--sans); letter-spacing: .02em; backdrop-filter: blur(6px); pointer-events: none; }
 .mix-card .poster { contain: strict; }
 .mix-card .tick { position: absolute; left: 10px; top: 10px; z-index: 2; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
   background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 800; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); transform: scale(0); transition: transform .2s cubic-bezier(.34, 1.56, .64, 1); }

@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Tailor Shop",
+  "zh": "裁缝铺",
+  "alias": [
+    "裁缝",
+    "西装定制",
+    "Bespoke Tailor"
+  ],
+  "lead": "老派定制裁缝铺：深藏青的细条纹面料，划粉留下的白色虚线，一条黄色软尺横过页面。讲究、可靠、有手艺人的骄傲，适合定制服装、皮具、理发店、高端男装。",
+  "prompt": "裁缝铺风格：深藏青底 #1F2A3A 叠极细的竖条纹（1px 浅灰线、间隔 9px，透明度很低）；文字米白 #EDE7DA，宋体类衬线标题；主色软尺黄 #E8C547（只用在一条带刻度的软尺装饰、编号和按钮上），区块边框用划粉白的虚线 1px dashed；左侧竖向导航，插图是一块面料 + 一条斜放的带刻度软尺；按钮直角",
+  "promptEn": "Tailor-shop style: deep navy #1F2A3A with very fine vertical pinstripes (1px light gray lines every 9px at low opacity); off-white #EDE7DA text with Song-style serif headlines; tape-measure yellow #E8C547 as the primary color, used only for a ruled tape-measure strip, numbers and buttons; section borders are chalk-white 1px dashed lines; a vertical navigation on the left, and an illustration of a fabric swatch with a diagonal ruled tape measure; square buttons",
+  "avoid": "条纹必须非常淡，不然会和文字打架、看久了晕；黄色只在软尺和按钮上出现。",
+  "neg": [
+    "明显粗条纹、格子花呢满屏、金色金属",
+    "bold visible stripes, tartan everywhere, gold metallic"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #E8C547; --a2: #E8C547; --on: #1F2A3A; color: #EDE7DA; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
+  background: repeating-linear-gradient(90deg, rgba(237,231,218,.05) 0 1px, transparent 1px 9px), #1F2A3A; }
+.pg > .nav { border-right: 1px dashed rgba(237,231,218,.35); } .logo i { background: #E8C547; }
+.hero h1 { font-weight: 600; } .kicker { color: #E8C547; letter-spacing: 2px; } .b2 { color: #EDE7DA; }
+.art { background: repeating-linear-gradient(90deg, rgba(237,231,218,.12) 0 1px, transparent 1px 6px), #2B3A50; outline: 1px dashed rgba(237,231,218,.5); outline-offset: -6px; }
+.art .m { position: absolute; left: -10%; right: -10%; top: 46%; height: 22px; background: repeating-linear-gradient(90deg, #1F2A3A 0 1px, transparent 1px 6px) 0 0 / 100% 7px no-repeat, repeating-linear-gradient(90deg, #1F2A3A 0 1.5px, transparent 1.5px 30px) 0 0 / 100% 12px no-repeat, #E8C547; transform: rotate(-24deg); }
+.feats article { padding: 10px; border: 1px dashed rgba(237,231,218,.35); } .feats b { color: #E8C547; }
+.stats b { color: #E8C547; font-weight: 500; } .ft { border-top: 1px dashed rgba(237,231,218,.3); }
+</style>

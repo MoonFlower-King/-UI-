@@ -1,0 +1,10 @@
+/* 版式骨架「海报大字」：插图铺满首屏当背景，超大标题压在上面靠下对齐；三个特点改成一条条横排清单。适合有冲击力、活动、娱乐类风格。 */
+.nav { position: relative; z-index: 2; }
+.hero { position: relative; grid-template-columns: 1fr; align-content: end; min-height: 300px; margin-top: -55px; padding: 70px 26px 24px; }
+.art { position: absolute; inset: 0; z-index: 0; min-height: 0; }
+.copy { position: relative; z-index: 1; }
+.hero h1 { font-size: 56px; line-height: 1; letter-spacing: -.02em; }
+.sub { max-width: 300px; }
+.feats { grid-template-columns: 1fr; gap: 0; padding-top: 18px; }
+.feats h3 { flex: none; min-width: 70px; } .feats p { flex: 1; }
+.feats article { display: flex; align-items: baseline; gap: 14px; padding: 10px 0; border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent); }

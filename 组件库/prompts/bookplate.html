@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Ex Libris",
+  "zh": "藏书票",
+  "alias": [
+    "藏书票",
+    "Ex Libris",
+    "书票版画"
+  ],
+  "lead": "贴在书扉页上的小版画：米白纸、单一油墨色，四周一圈双线边框，中间一枚有树或月亮的小徽记，下面刻着主人的名字。精致、有收藏感，适合书店、图书馆、出版社、文创礼品。",
+  "prompt": "藏书票风格：米白纸底 #F6F1E6，全站只用一种墨绿油墨 #23402F（加它的浅色调）；页面各区块套双线边框（外 1.5px、内 0.5px，间距 4px）；居中构图，插图是一枚圆形版画徽记：细密的放射线刻纹围着一轮月亮和一棵小树；宋体类衬线字，栏目名写成「EX LIBRIS」式小号大写；按钮直角描边",
+  "promptEn": "Ex libris style: #F6F1E6 off-white paper with a single deep-green ink #23402F (plus its tints) across the site; every section framed by a double rule (1.5px outer, 0.5px inner, 4px apart); centered composition with a round engraved emblem — fine radiating hatch lines around a moon and a small tree; Song-style serif type, small-caps labels in the manner of \"EX LIBRIS\", square outlined buttons",
+  "avoid": "只能有一种油墨色，这是版画的限制也是它的美；刻线要细且密，粗线会像图标。",
+  "neg": [
+    "多色印刷、粗图标、渐变阴影",
+    "multicolor printing, chunky icons, gradient shadows"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #23402F; --a2: #23402F; --on: #F6F1E6; background: #F6F1E6; color: #23402F; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg { margin: 10px; border: 1.5px solid #23402F; box-shadow: inset 0 0 0 4px #F6F1E6, inset 0 0 0 4.5px #23402F; }
+.logo i { display: none; } .kicker::before { content: "EX LIBRIS · "; letter-spacing: 2px; }
+.cta, .b1 { background: none; color: #23402F; border: 1px solid #23402F; } .b2 { color: #23402F; }
+.art .m { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid #23402F; background: radial-gradient(circle at 50% 42%, #F6F1E6 0 15px, transparent 16px), repeating-conic-gradient(#23402F 0 1.5deg, transparent 1.5deg 6deg); -webkit-mask: radial-gradient(circle, #000 0 42px, transparent 43px); mask: radial-gradient(circle, #000 0 42px, transparent 43px); }
+.art .h { position: absolute; left: 50%; bottom: 14px; width: 26px; height: 34px; margin-left: -13px; background: #23402F; clip-path: polygon(50% 0, 100% 70%, 60% 70%, 60% 100%, 40% 100%, 40% 70%, 0 70%); }
+.feats article { padding: 10px; border: 1px solid rgba(35,64,47,.5); } .stats b { font-weight: 400; } .ft { opacity: .8; }
+</style>

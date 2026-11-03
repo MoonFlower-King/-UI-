@@ -1,0 +1,11 @@
+/* 版式骨架「左右分屏」：插图占满左边一整条，从页头一直到页脚；右边依次是导航、标题、特点、数字和页脚，单列排开。适合重视图片和氛围的风格。 */
+.pg { display: grid; grid-template-columns: 210px minmax(0, 1fr); }
+.hero { display: contents; }
+.art { grid-column: 1; grid-row: 1 / span 5; min-height: 100%; }
+.nav, .copy, .feats, .stats, .ft { grid-column: 2; }
+.nav nav { display: none; }
+.copy { padding: 26px 26px 22px; }
+.hero h1 { font-size: 30px; }
+.feats { grid-template-columns: 1fr; gap: 10px; }
+.feats article { display: flex; align-items: baseline; gap: 10px; } .feats h3 { flex: none; } .feats p { flex: 1; }
+.stats { justify-content: space-between; }

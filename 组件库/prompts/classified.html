@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Classified Ads",
+  "zh": "分类广告",
+  "alias": [
+    "分类广告",
+    "报纸小广告",
+    "Classifieds"
+  ],
+  "lead": "老报纸最后几版的分类广告：密密麻麻的小方框，每个框一条信息，粗体标题、细线分隔、偶尔一个盖章。信息量大又有秩序，有市井烟火气，适合二手市集、社区公告、招聘、本地生活。",
+  "prompt": "分类广告风格：新闻纸底 #EEE9DC，黑字 #151515；版面像报纸末版：大标题用窄长的粗体无衬线、全大写感，正文用小号衬线、两栏排、两端对齐；每个信息块是 1px 黑框的小广告格，格内粗体小标题；只用一个红色 #C3282B 做“盖章”效果（倾斜的描边方框文字）；按钮黑底白字直角",
+  "promptEn": "Classified-ads style: #EEE9DC newsprint with #151515 black text; the layout reads like the back pages of a newspaper: headlines in a condensed bold sans-serif, body in small serif type set in two justified columns; each item is a small ad box with a 1px black frame and a bold mini headline; a single red #C3282B used only for a rubber-stamp effect (a tilted outlined box of text); square black buttons with white text",
+  "avoid": "密集不等于乱：所有小格要用同一套边框粗细和内边距，标题统一粗体。红色只盖一个章。",
+  "neg": [
+    "彩色照片、渐变、圆角卡片",
+    "color photos, gradients, rounded cards"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #151515; --a2: #C3282B; --on: #EEE9DC; background: #EEE9DC; color: #151515; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 3px solid #151515; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .logo { font: 900 15px "Arial Narrow", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: -.02em; } .logo i { display: none; }
+.hero h1 { font-family: "Arial Narrow", "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; letter-spacing: -.03em; transform: scaleX(.92); transform-origin: left; }
+.kicker { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; color: #151515; border-bottom-width: 3px !important; }
+.sub { font-size: 11px; } .b1, .cta { background: #151515; color: #EEE9DC; } .b2 { color: #151515; text-decoration: underline; }
+.art { border: 1px solid #151515; background: repeating-linear-gradient(transparent 0 9px, rgba(21,21,21,.25) 9px 10px) 10px 34px / calc(100% - 20px) 60% no-repeat, #EEE9DC; }
+.art .m { position: absolute; left: 10px; right: 10px; top: 10px; height: 16px; background: #151515; }
+.art .h { position: absolute; right: 12px; bottom: 12px; width: 62px; height: 30px; border: 2px solid #C3282B; transform: rotate(-12deg); background: repeating-linear-gradient(90deg, rgba(195,40,43,.6) 0 4px, transparent 4px 7px) center / 70% 3px no-repeat; }
+.feats article { padding: 8px 10px !important; border: 1px solid #151515 !important; margin-right: 8px; } .feats b { color: #C3282B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .feats h3 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; }
+.stats b { font-family: "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; } .stats { border-width: 3px 0 1px !important; border-color: #151515 !important; }
+</style>

@@ -1,0 +1,11 @@
+/* 版式骨架「竖排」：首屏左边是大面积插图，右边标题和正文从右往左竖排；三个特点也竖排，按 01 在最右的顺序读。适合东方、书法、古籍类风格。 */
+.hero { grid-template-columns: 1fr auto; align-items: start; gap: 26px; padding: 22px 26px; }
+.art { order: -1; align-self: stretch; min-height: 270px; }
+.copy { writing-mode: vertical-rl; height: 270px; }
+.hero h1 { margin: 0 14px 0 0; font-size: 30px; line-height: 1.5; letter-spacing: 4px; }
+.sub { margin: 0 12px 0 0; line-height: 2; }
+.acts { margin: 0 14px 0 0; gap: 12px; } .b1 { padding: 14px 8px; }
+.feats { grid-template-columns: repeat(3, auto); justify-content: end; gap: 34px; }
+.feats article { writing-mode: vertical-rl; height: 120px; }
+.feats article:nth-child(1) { order: 3; } .feats article:nth-child(2) { order: 2; } .feats article:nth-child(3) { order: 1; }
+.feats h3 { margin: 0 6px; letter-spacing: 3px; } .feats p { letter-spacing: 1px; }

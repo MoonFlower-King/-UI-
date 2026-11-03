@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Famille Rose",
+  "zh": "粉彩瓷",
+  "alias": [
+    "粉彩",
+    "洋彩",
+    "Famille Rose Porcelain"
+  ],
+  "lead": "清代粉彩瓷：温润的瓷白底上，粉红牡丹配松绿叶子，边沿一圈描金细线。娇而不俗、富贵又细腻，适合花艺、婚礼、甜品、东方美妆品牌。",
+  "prompt": "粉彩瓷风格：瓷白底 #FBF8F3，左侧整条是粉彩画面（胭脂红 #B8405E 到粉 #E8A2B0 的牡丹团花 + 松绿 #4E9A86 叶子，用柔和径向渐变画出晕染感），边缘一条描金细线 #C9A55C；文字深墨 #2E2A2B、宋体类衬线；主色胭脂红只给按钮和编号，按钮胶囊形",
+  "promptEn": "Famille rose porcelain style: porcelain-white #FBF8F3 background; a full-height strip on the left holds the painting — peony blooms from rouge #B8405E to pink #E8A2B0 with turquoise-green #4E9A86 leaves, rendered as soft blended radial gradients — edged with a thin gilt line #C9A55C; dark ink #2E2A2B Song-style serif text; rouge only for pill-shaped buttons and numbers",
+  "avoid": "粉色要偏胭脂、带一点灰，荧光粉会像廉价贺卡。描金只是一条细线，不要做大面积金色或立体金边。",
+  "neg": [
+    "荧光粉、大面积金色、卡通花朵",
+    "neon pink, large gold areas, cartoon flowers"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #B8405E; --a2: #4E9A86; --on: #FFFFFF; background: #FBF8F3; color: #2E2A2B; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { border-radius: 99px; } .logo i { border-radius: 50%; }
+.art { background: radial-gradient(62px 56px at 50% 36%, #B8405E, #D97A90 45%, rgba(232,162,176,.6) 70%, transparent 72%), radial-gradient(40px 36px at 28% 56%, #E8A2B0, rgba(232,162,176,.3) 70%, transparent 72%), radial-gradient(46px 42px at 70% 60%, #D97A90, rgba(232,162,176,.4) 70%, transparent 72%), linear-gradient(#FBF8F3, #F4EEE6);
+  box-shadow: inset -1px 0 0 #C9A55C, inset -5px 0 0 #FBF8F3, inset -6px 0 0 #C9A55C; }
+.art .m { position: absolute; left: 18%; top: calc(36% + 40px); width: 70px; height: 28px; border-radius: 0 100%; background: #4E9A86; opacity: .85; transform: rotate(-24deg); }
+.art .h { position: absolute; left: 52%; top: calc(36% + 52px); width: 56px; height: 22px; border-radius: 100% 0; background: #6DB09D; opacity: .8; transform: rotate(18deg); }
+.feats b { color: #B8405E; } .stats b { font-weight: 500; color: #B8405E; } .ft { border-top: 1px solid #C9A55C; }
+</style>

@@ -1,6 +1,6 @@
 // 提示词调配台（prompts.html）。数据来自 data/prompts.js 和 data/prompt-code/（npm run build:ui 生成）。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
-const { kinds, groups, items, stages, kits = {} } = window.JY_PROMPTS;
+const { kinds, groups, items, stages, kits = {}, layouts = {} } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
 const groupById = Object.fromEntries(groups.map((g) => [g.id, g]));
 const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
@@ -139,7 +139,7 @@ async function paint(host) {
   const it = byId[host.dataset.id], stage = groupById[it.group].stage;
   const code = (await loadCode(it.group))[it.id];
   if (host.shadowRoot) return;
-  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${code}`;
+  host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${it.layout ? `<style>${kits[`layout-${it.layout}`]}</style>` : ''}${code}`;
   host.closest('.thumb').classList.add('ready');
 }
 const painter = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { painter.unobserve(e.target); paint(e.target); } }), { rootMargin: '600px 0px' });
@@ -148,7 +148,7 @@ const fit = new ResizeObserver((es) => es.forEach((e) => e.target.style.setPrope
 
 function card(it) {
   return `<article class="card mix-card" data-card="${it.id}">
-    <div class="thumb" data-toggle="${it.id}"><div class="poster" data-id="${it.id}" aria-hidden="true"></div><span class="tick" aria-hidden="true">✓</span></div>
+    <div class="thumb" data-toggle="${it.id}"><div class="poster" data-id="${it.id}" aria-hidden="true"></div><span class="tick" aria-hidden="true">✓</span>${it.layout ? `<span class="lay">版式 · ${esc(layouts[it.layout])}</span>` : ''}</div>
     <div class="mix-body">
       <div class="mix-title"><h3>${esc(it.zh)}<small>${esc(it.en)}</small></h3><button class="pick-btn" data-toggle="${it.id}"></button></div>
       <p class="mix-lead">${esc(it.lead)}</p>
@@ -187,7 +187,7 @@ function renderMain() {
 }
 
 // 搜索：按分组名、中英文名、别名、简介、提示词匹配，空格分开的几个词要同时命中；没命中的卡片、分组、大类都藏起来
-const haystack = (it) => (it.hay ||= [groupById[it.group].name, it.zh, it.en, ...(it.alias || []), it.lead, it.prompt, it.promptEn].join(' ').toLowerCase());
+const haystack = (it) => (it.hay ||= [groupById[it.group].name, layouts[it.layout] || '', it.zh, it.en, ...(it.alias || []), it.lead, it.prompt, it.promptEn].join(' ').toLowerCase());
 function search(q) {
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   $$('[data-card]').forEach((c) => { c.hidden = !words.every((w) => haystack(byId[c.dataset.card]).includes(w)); });

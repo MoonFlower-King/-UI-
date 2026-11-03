@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Chalk Pastel",
+  "zh": "色粉笔画",
+  "alias": [
+    "色粉",
+    "粉彩画",
+    "Soft Pastel"
+  ],
+  "lead": "用色粉笔在深色纸上涂出来的画：颜色柔软、边缘毛茸茸地晕开，看得见纸的颗粒。温柔、梦幻、有手作温度，适合绘本、儿童教育、心理咨询、手作课程。",
+  "prompt": "色粉笔画风格：深灰蓝纸底 #2E3A46，叠一层细颗粒纹理（重复的小径向点）；首屏插图是几团用模糊（filter: blur）晕开的色粉团块：粉 #F4A7B9、杏 #F7C99B、雾蓝 #A9C7E8、浅薄荷 #BDE3CF，边缘柔软不规则；超大圆润标题奶白 #FBF3E9，正文 #E4DFD6；按钮杏色底深字、胶囊形",
+  "promptEn": "Chalk pastel style: dark slate-blue paper #2E3A46 with a fine grain texture (repeating tiny radial dots); the hero illustration is a few blurred (filter: blur) pastel smudges in pink #F4A7B9, apricot #F7C99B, misty blue #A9C7E8 and pale mint #BDE3CF with soft irregular edges; an oversized rounded headline in cream #FBF3E9, body text #E4DFD6; apricot pill buttons with dark text",
+  "avoid": "颜色要粉、要灰一点，像粉笔；高饱和色和清晰硬边会立刻变成普通渐变。颗粒纹理要细到几乎看不见。",
+  "neg": [
+    "高饱和渐变、硬边形状、明显噪点",
+    "saturated gradients, hard-edged shapes, obvious noise"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #F7C99B; --a2: #F4A7B9; --on: #2E3A46; color: #E4DFD6; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif;
+  background: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.5px) 0 0 / 5px 5px, #2E3A46; }
+.hero h1 { color: #FBF3E9; font-weight: 700; } .b1, .cta { border-radius: 99px; } .logo i { border-radius: 50%; background: #F4A7B9; filter: blur(1px); }
+.art { overflow: hidden; }
+.art .m { position: absolute; right: 30px; top: 40px; width: 220px; height: 150px; border-radius: 48% 52% 60% 40%; background: radial-gradient(circle at 30% 40%, #F4A7B9, transparent 60%), radial-gradient(circle at 70% 60%, #F7C99B, transparent 60%); filter: blur(14px); opacity: .9; }
+.art .h { position: absolute; left: 40px; top: 70px; width: 200px; height: 110px; border-radius: 60% 40% 50% 50%; background: radial-gradient(circle at 40% 50%, #A9C7E8, transparent 65%), radial-gradient(circle at 80% 40%, #BDE3CF, transparent 60%); filter: blur(16px); opacity: .75; }
+.feats b, .kicker { color: #F7C99B; } .stats b { color: #F4A7B9; font-weight: 700; }
+</style>

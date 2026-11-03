@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Ultra Thin",
+  "zh": "极细线体",
+  "alias": [
+    "极细字体",
+    "Hairline Type",
+    "细体排版"
+  ],
+  "lead": "整页只用最细的字重和发丝一样的线：超大号但极细的标题，0.5px 的分隔线，大量留白。轻、贵、安静，像高级时装或珠宝的画册，适合珠宝、香水、建筑事务所、高端服务。",
+  "prompt": "极细线体风格：纯白底 #FFFFFF，近黑 #141414 文字；标题用超细字重 200、字号放大到 38px、字距 0.02em，正文字重 300；所有分隔线 0.5px 灰 #CFCFCF，按钮是 0.5px 细描边、无填充、直角；插图只有一个 0.5px 的细圆和一条细斜线；左侧竖向导航，整体大量留白、几乎无颜色",
+  "promptEn": "Ultra-thin style: pure white #FFFFFF with near-black #141414 text; headlines in an extra-light weight 200 enlarged to 38px with 0.02em tracking, body text at weight 300; every divider is a 0.5px #CFCFCF hairline, buttons are 0.5px outlines with no fill and square corners; the illustration is just a 0.5px thin circle and one thin diagonal line; a vertical navigation on the left, generous whitespace and almost no color",
+  "avoid": "需要系统里真的有细字重的字体（如 200/300），否则浏览器会用常规粗细，效果全无。小字号不要用 200，正文至少 300 才看得清。",
+  "neg": [
+    "粗体、彩色块、阴影",
+    "bold type, color blocks, shadows"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #141414; --a2: #8A8A8A; --on: #fff; background: #fff; color: #141414; font-family: "Helvetica Neue", "PingFang SC", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.pg > .nav { border-right: .5px solid #CFCFCF; } .logo { font-weight: 300; letter-spacing: .1em; } .logo i { display: none; }
+.cta, .b1 { background: none; color: #141414; border: .5px solid #141414; font-weight: 300; }
+.hero h1 { font-size: 38px; font-weight: 200; letter-spacing: .02em; line-height: 1.15; } .kicker { letter-spacing: .2em; color: #8A8A8A; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 96px; height: 96px; margin: -48px; border-radius: 50%; border: .5px solid #141414; }
+.art .h { position: absolute; left: 10%; right: 10%; top: 50%; height: .5px; background: #141414; transform: rotate(-35deg); }
+.feats article { padding-top: 10px; border-top: .5px solid #CFCFCF; } .feats h3 { font-weight: 300; } .feats b { font-weight: 300; }
+.stats b { font-weight: 200; font-size: 30px; } .ft { border-top: .5px solid #CFCFCF; }
+</style>
