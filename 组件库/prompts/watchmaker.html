@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Watchmaker",
+  "zh": "钟表匠",
+  "alias": [
+    "制表",
+    "腕表工坊",
+    "Horology"
+  ],
+  "lead": "制表工坊的精密感：深墨蓝表盘、细细的刻度和指针、香槟金的小齿轮，一切都对得很准。精致、可靠、讲究工艺，适合手表、珠宝、精密仪器、高端定制和老字号品牌。",
+  "prompt": "钟表匠风格：深墨蓝底 #0F1A2C，文字象牙白 #EDE7DA、细衬线；主色香槟金 #C8AE7D 只用在刻度、指针、细线和按钮描边；居中构图，插图是一枚表盘徽记：象牙白细圆环、外圈 60 格细刻度（12 格加粗）、时针分针（指向 10 点 10 分）和中心小金点，背后半露一个金色细齿轮；分隔线是带刻度的细线；按钮直角描边",
+  "promptEn": "Watchmaker style: deep ink-blue #0F1A2C background with ivory #EDE7DA fine serif text; champagne gold #C8AE7D used only for tick marks, hands, hairlines and outlined buttons; centered composition with a watch-dial emblem: a thin ivory ring, an outer ring of 60 fine ticks (12 bolder), hour and minute hands set to ten past ten and a small gold center dot, with a thin gold gear half-visible behind; dividers are thin lines with tick marks; square outlined buttons",
+  "avoid": "精密感来自细线和对齐，刻度要细且等距；金色只做线，大面积金色和金属渐变会显得俗气。",
+  "neg": [
+    "金属渐变、大面积金色、复杂机械堆砌",
+    "metallic gradients, large gold areas, piles of mechanical parts"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #C8AE7D; --a2: #C8AE7D; --on: #0F1A2C; background: #0F1A2C; color: #EDE7DA; font-family: Didot, Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.cta, .b1 { background: none; color: #C8AE7D; border: 1px solid #C8AE7D; } .logo i { border-radius: 50%; background: none; border: 1px solid #C8AE7D; }
+.hero h1 { font-weight: 400; letter-spacing: 2px; } .kicker { color: #C8AE7D; letter-spacing: 3px; } .b2 { color: #EDE7DA; }
+.art .m { position: absolute; inset: 0; border-radius: 50%; border: 1px solid #EDE7DA; background: repeating-conic-gradient(#C8AE7D 0 1.4deg, transparent 1.4deg 30deg), repeating-conic-gradient(rgba(237,230,218,.7) 0 .6deg, transparent .6deg 6deg); -webkit-mask: radial-gradient(circle, transparent 36px, #000 37px 44px, transparent 45px); mask: radial-gradient(circle, transparent 36px, #000 37px 44px, transparent 45px); }
+.art .h { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px; border-radius: 50%; background: #C8AE7D; box-shadow: 0 0 0 2px #0F1A2C; }
+.art .h::before, .art .h::after { content: ""; position: absolute; left: 1px; bottom: 1px; width: 1.5px; background: #EDE7DA; transform-origin: bottom; }
+.art .h::before { height: 22px; transform: rotate(-60deg); } .art .h::after { height: 32px; transform: rotate(60deg); }
+.feats { padding-top: 16px; background: repeating-linear-gradient(90deg, rgba(200,174,125,.6) 0 1px, transparent 1px 8px) center top / 50% 5px no-repeat; } .feats b { color: #C8AE7D; }
+.stats b { font-weight: 400; color: #C8AE7D; }
+</style>

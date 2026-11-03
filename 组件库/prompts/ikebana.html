@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Ikebana",
+  "zh": "花道",
+  "alias": [
+    "花道",
+    "插花",
+    "生花",
+    "Ikebana"
+  ],
+  "lead": "日本花道的气质：一只素净的花器，几枝错落的花和枝条，留出大片空白，讲究线条和“天地人”的高低。克制、诗意、东方式的留白，适合花店、茶室、香道、美学课程。",
+  "prompt": "花道风格：素白底 #FAF8F4，墨色 #26231F 宋体类衬线文字，标题竖排；插图是一只低矮的深色花器上插着三枝高低不同的细枝（天、地、人三个高度），一朵朱红 #C2412D 小花，大量留白；主色朱红只给那朵花、印章式编号和按钮；分隔线是极细的墨线",
+  "promptEn": "Ikebana style: plain white #FAF8F4 with ink #26231F Song-style serif text and vertical headlines; the illustration is a low dark vase holding three slender branches at different heights (heaven, earth, human) and one small vermilion #C2412D flower, with generous empty space; vermilion is reserved for that flower, seal-like numbers and buttons; hairline ink dividers",
+  "avoid": "它美在“少”：三根线、一朵花、一大片白。别把画面画满，也别用写实的花卉照片。",
+  "neg": [
+    "满屏花卉、写实照片、多种花色",
+    "flowers everywhere, realistic photos, many flower colors"
+  ],
+  "kit": "site-kit",
+  "layout": "vertical"
+}
+-->
+<style>
+.site { --a: #C2412D; --a2: #C2412D; --on: #FAF8F4; background: #FAF8F4; color: #26231F; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: .5px solid rgba(38,35,31,.3); } .logo i { border-radius: 50%; }
+.hero h1 { font-weight: 500; } .b1, .cta { border-radius: 0; }
+.art .m { position: absolute; left: 50%; bottom: 30px; width: 90px; height: 30px; margin-left: -45px; border-radius: 4px 4px 16px 16px; background: #26231F; }
+.art .h, .art::before { content: ""; position: absolute; left: 50%; bottom: 58px; width: 1.5px; background: #26231F; transform-origin: bottom; }
+.art .h { height: 170px; transform: rotate(-12deg); } .art::before { height: 96px; transform: rotate(28deg); }
+.art::after { content: ""; position: absolute; left: calc(50% + 38px); bottom: 136px; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle, #F2C14E 0 3px, #C2412D 4px); }
+.feats b { color: #C2412D; } .feats article { border-right: .5px solid rgba(38,35,31,.3); padding-right: 12px; }
+.stats { border-top: .5px solid rgba(38,35,31,.3); margin: 0 26px; } .stats b { font-weight: 400; }
+</style>

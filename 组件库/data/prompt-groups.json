@@ -90,7 +90,12 @@
         "inkstone",
         "hanji",
         "wagara",
-        "famille-rose"
+        "famille-rose",
+        "hakka-tulou",
+        "sakura",
+        "bojagi",
+        "persimmon",
+        "ikebana"
       ]
     },
     {
@@ -139,7 +144,10 @@
         "provence",
         "celtic",
         "thai-gilt",
-        "dala"
+        "dala",
+        "amalfi-lemon",
+        "greek-meander",
+        "aloha"
       ]
     },
     {
@@ -202,7 +210,9 @@
         "precisionism",
         "color-field",
         "fluxus",
-        "minimal-art"
+        "minimal-art",
+        "surrealism",
+        "japonisme"
       ]
     },
     {
@@ -270,7 +280,10 @@
         "big-quote",
         "soft-brutalism",
         "ultra-thin",
-        "index-list"
+        "index-list",
+        "brand-book",
+        "dark-editorial",
+        "soft-3d"
       ]
     },
     {
@@ -327,7 +340,10 @@
         "gold-leaf",
         "acrylic",
         "holographic",
-        "plaster"
+        "plaster",
+        "glass-block",
+        "corrugated",
+        "liquid-metal"
       ]
     },
     {
@@ -379,7 +395,9 @@
         "bookbinding",
         "kintsugi",
         "bookplate",
-        "chalk-pastel"
+        "chalk-pastel",
+        "crochet",
+        "tufting"
       ]
     },
     {
@@ -441,7 +459,11 @@
         "tin-toy",
         "arcade",
         "classified",
-        "retro-catalog"
+        "retro-catalog",
+        "pulp-magazine",
+        "tiki-bar",
+        "fifties-kitchen",
+        "racing"
       ]
     },
     {
@@ -505,7 +527,10 @@
         "night-market",
         "observatory",
         "greenhouse",
-        "aquarium"
+        "aquarium",
+        "rain-window",
+        "campfire",
+        "snow-cabin"
       ]
     },
     {
@@ -568,7 +593,12 @@
         "tailor",
         "bartender",
         "lab-notebook",
-        "podcast"
+        "podcast",
+        "watchmaker",
+        "pottery-studio",
+        "climbing",
+        "illustrator",
+        "jazz-club"
       ]
     },
     {

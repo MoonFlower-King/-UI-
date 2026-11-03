@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Racing Stripes",
+  "zh": "赛车条纹",
+  "alias": [
+    "赛车",
+    "复古赛车",
+    "Racing Livery"
+  ],
+  "lead": "复古赛车涂装：粗粗的平行条纹从车头贯穿到车尾，圆形号码牌，倾斜的粗体字像在飞驰。速度感、热血、复古运动，适合运动品牌、汽车文化、电竞、骑行和户外活动。",
+  "prompt": "赛车条纹风格：奶白 #F4EFE4 底，左侧整条插图上三条平行的粗斜条纹（深藏青 #1C2C4C、橙红 #E8502A、芥黄 #F2B134）从下往上斜穿，中间压一个白底黑框的圆形号码牌「12」；大号倾斜粗体无衬线标题（skew -8°），下面一排速度线；正文区奶白，主色橙红、辅色藏青；按钮直角、略倾斜",
+  "promptEn": "Racing stripes style: the hero is cream #F4EFE4 crossed by three thick parallel diagonal stripes (deep navy #1C2C4C, orange-red #E8502A, mustard #F2B134) running from lower left to upper right, with a round white-and-black race number roundel \"12\" on the right; an oversized slanted bold sans-serif headline (skew -8°) with speed lines; cream body sections, orange-red as the primary color and navy as the secondary; square, slightly slanted buttons",
+  "avoid": "条纹最多三条、平行等宽；倾斜角度全站统一。不要加真实车辆照片和赞助商 logo。",
+  "neg": [
+    "真实车辆照片、赞助商标志、火焰贴纸",
+    "real car photos, sponsor logos, flame decals"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #E8502A; --a2: #1C2C4C; --on: #fff; background: #F4EFE4; color: #1C2C4C; font-family: "Futura", "Avenir Next Condensed", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 900; font-style: italic; transform: skewX(-8deg); transform-origin: left bottom; }
+.hero h1::after { content: ""; display: block; width: 120px; height: 4px; margin-top: 8px; background: repeating-linear-gradient(90deg, #E8502A 0 30px, transparent 30px 40px); }
+.b1, .cta { transform: skewX(-8deg); } .logo i { background: #E8502A; transform: skewX(-12deg); } .kicker { color: #E8502A; font-weight: 700; letter-spacing: 2px; }
+.art { overflow: hidden; background: linear-gradient(-62deg, transparent 0 22%, #1C2C4C 22% 36%, #F4EFE4 36% 39%, #E8502A 39% 53%, #F4EFE4 53% 56%, #F2B134 56% 70%, transparent 70%), #F4EFE4; box-shadow: inset -1px 0 0 rgba(28,44,76,.15); }
+.art .m { position: absolute; left: 50%; top: 40%; margin-left: -42px; width: 84px; height: 84px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 5px #1C2C4C; }
+.art .m::after { content: "12"; position: absolute; inset: 0; display: grid; place-items: center; font: italic 900 38px "Futura", sans-serif; color: #1C2C4C; }
+.feats b { color: #E8502A; font-style: italic; } .stats { background: #1C2C4C; color: #F4EFE4; } .stats b { font-style: italic; font-weight: 900; color: #F2B134; }
+</style>

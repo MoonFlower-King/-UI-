@@ -55,10 +55,13 @@ function webShots() {
     const [id, lay] = n.split('@');
     const raw = read(`prompts/${id}.html`), meta = JSON.parse(raw.match(META)[1]);
     const g = groups.find((x) => x.items.includes(id));
+    // 还没登记到分组的新词条（通常就是登记前先截图检查）：网站风格默认用书房舞台
+    const stage = g?.stage || (meta.kit === 'site-kit' ? 'site' : '');
+    if (!g) console.log(`· ${id} 还没在 data/prompt-groups.json 登记${stage ? '，先用书房舞台截图' : ''}`);
     const layout = lay || meta.layout;
     // 和 assets/prompts.js 的拼法一致：舞台 → kit → 版式 → 词条自己的 CSS，放进 Shadow DOM
     const inner = `<style>:host{all:initial;display:block;position:relative;width:100%;height:100%;overflow:hidden;background:#FAFAFA;color:#18181B;font-family:-apple-system,"Inter","PingFang SC",sans-serif}</style>`
-      + (g?.stage ? read(`prompts/_${g.stage}.html`) : '') + '\n'
+      + (stage ? read(`prompts/_${stage}.html`) : '') + '\n'
       + (meta.kit ? `<style>${kit(meta.kit)}</style>` : '') + (layout ? `<style>${kit(`layout-${layout}`)}</style>` : '') + raw.replace(META, '');
     return {
       name: n, w: 560, h: 350,

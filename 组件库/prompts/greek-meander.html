@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Greek Meander",
+  "zh": "希腊回纹",
+  "alias": [
+    "回纹",
+    "希腊钥匙纹",
+    "Greek Key"
+  ],
+  "lead": "古希腊陶瓶上的装饰：一圈圈直角回转的回纹带，黑、赭红和陶土色，人物和器物都是剪影。古典、端正、有博物馆感，适合博物馆、古典学、橄榄油、地中海餐厅。",
+  "prompt": "希腊回纹风格：浅陶白底 #F5EADB，文字黑陶色 #1E1A17、高瘦衬线大写；主色赭红 #B5532F；导航和数字区上下各压一条黑色回纹带（直角回转的重复图案，用渐变拼出）；居中构图，插图是一只双耳陶瓶的黑色剪影置于陶橙圆形底上；按钮黑底陶白字、直角",
+  "promptEn": "Greek meander style: pale terracotta-white #F5EADB background with black-figure #1E1A17 tall narrow serif capitals; ochre red #B5532F as the primary color; a black Greek-key band (a repeating right-angled meander pattern built from gradients) runs above the navigation and the numbers section; centered composition with a black silhouette of a two-handled amphora on a round terracotta disc; square black buttons with pale text",
+  "avoid": "回纹带只用在页面上下的边框位置，一页两条足够；颜色只有黑、陶白、赭红三种，加蓝色就成了另一种希腊风。",
+  "neg": [
+    "蓝白配色、大理石纹理、满页花纹",
+    "blue-and-white palette, marble texture, patterns across the page"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #1E1A17; --a2: #B5532F; --on: #F5EADB; background: #F5EADB; color: #1E1A17; font-family: "Optima", "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { padding-top: 26px; background: linear-gradient(#1E1A17, #1E1A17) 0 0 / 100% 2px no-repeat, linear-gradient(90deg, #1E1A17 0 2px, transparent 2px 12px, #1E1A17 12px 14px, transparent 14px) 0 5px / 14px 10px repeat-x, linear-gradient(#1E1A17, #1E1A17) 0 16px / 100% 2px no-repeat; }
+.logo { letter-spacing: 4px; } .logo i { display: none; }
+.hero h1 { font-weight: 500; letter-spacing: 6px; } .kicker { color: #B5532F; letter-spacing: 4px; }
+.art .m { position: absolute; inset: 0; border-radius: 50%; background: #D9824A; }
+.art .h { position: absolute; left: 50%; top: 14px; width: 40px; height: 64px; margin-left: -20px; background: #1E1A17; clip-path: polygon(30% 0, 70% 0, 70% 12%, 100% 30%, 92% 70%, 66% 100%, 34% 100%, 8% 70%, 0 30%, 30% 12%); }
+.feats b { color: #B5532F; } .feats h3 { letter-spacing: 4px; }
+.stats { margin-top: 10px; padding-top: 26px; background: linear-gradient(#1E1A17, #1E1A17) 0 0 / 100% 2px no-repeat, linear-gradient(90deg, #1E1A17 0 2px, transparent 2px 12px, #1E1A17 12px 14px, transparent 14px) 0 5px / 14px 10px repeat-x, linear-gradient(#1E1A17, #1E1A17) 0 16px / 100% 2px no-repeat; } .stats b { font-weight: 400; color: #B5532F; }
+</style>

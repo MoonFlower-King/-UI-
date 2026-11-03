@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Persimmon Autumn",
+  "zh": "柿子秋色",
+  "alias": [
+    "柿子",
+    "秋柿",
+    "Autumn Persimmon"
+  ],
+  "lead": "深秋屋檐下挂着的柿子：熟透的橙红配枯枝的褐和天空的灰蓝，安静又饱满。温暖、有季节感、带一点日式和中式田园气，适合秋季限定、食品、茶点和杂货铺。",
+  "prompt": "柿子秋色风格：秋日灰白底 #F3EFE8，文字枯枝褐 #3D3029、宋体类衬线；主色熟柿橙 #E06A2C、辅色秋空灰蓝 #7C8FA1；左侧竖向导航；插图是一根斜伸的枯枝挂着两三个圆润的柿子（橙色圆 + 深绿四瓣柿蒂）；特点编号用柿橙色小圆点；按钮圆角 6px",
+  "promptEn": "Persimmon autumn style: autumn gray-white #F3EFE8 background with bare-branch brown #3D3029 Song-style serif text; ripe persimmon orange #E06A2C as the primary color and autumn-sky gray-blue #7C8FA1 as the secondary; a vertical navigation on the left; the illustration is a bare branch reaching diagonally with two or three round persimmons hanging from it (orange circles with dark-green four-lobed calyxes); feature numbers on small persimmon-orange dots; 6px button radius",
+  "avoid": "柿橙只用在果实和按钮上，大面积橙色会显得像促销页；背景保持灰白，才有秋天的“空”。",
+  "neg": [
+    "大面积橙色、红叶满屏、促销感",
+    "large orange areas, maple leaves everywhere, sales-page feel"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #E06A2C; --a2: #7C8FA1; --on: #fff; background: #F3EFE8; color: #3D3029; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg > .nav { border-right: 1px solid rgba(61,48,41,.15); } .logo i { border-radius: 50%; background: #E06A2C; }
+.b1, .cta { border-radius: 6px; } .hero h1 { font-weight: 600; } .kicker { color: #7C8FA1; }
+.art .h { position: absolute; left: -10px; top: 26px; width: 150px; height: 3px; border-radius: 2px; background: #3D3029; transform: rotate(24deg); transform-origin: 0 50%; }
+.art .m { position: absolute; left: 36px; top: 62px; width: 34px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F59A5E, #E06A2C 60%, #B84E1C); box-shadow: 48px 22px 0 -2px #E06A2C, 74px 58px 0 -4px #E06A2C; }
+.art::after { content: ""; position: absolute; left: 46px; top: 56px; width: 14px; height: 8px; border-radius: 50%; background: #3F5A35; box-shadow: 48px 22px 0 -1px #3F5A35, 74px 56px 0 -2px #3F5A35; }
+.feats b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #E06A2C; color: #fff; font-size: 10px; } .stats b { color: #E06A2C; font-weight: 500; }
+</style>

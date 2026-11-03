@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Campfire",
+  "zh": "篝火露营",
+  "alias": [
+    "露营",
+    "篝火",
+    "Camping"
+  ],
+  "lead": "夜里的露营地：深蓝的夜空、黑色的松树剪影、中间一堆暖橙的篝火，火光映亮了周围一圈。温暖、自由、有故事感，适合户外品牌、露营地、营火晚会、播客和读书会。",
+  "prompt": "篝火露营风格：首屏是深夜蓝 #10182B 的天空和几颗小星，底部一排深黑绿 #0B1410 的松树剪影（三角形重复），中间一堆篝火（橙 #F28C28、黄 #FFD166 的火焰形状 + 一大团暖橙光晕），火光把地面照亮成暖棕；超大奶白粗体标题；正文区深墨绿 #121C17、文字暖白 #F3EAD8；主色篝火橙；按钮圆角 6px",
+  "promptEn": "Campfire style: the hero is a deep night-blue #10182B sky with a few small stars, a row of black-green #0B1410 pine silhouettes (repeating triangles) along the bottom, and a campfire in the middle (orange #F28C28 and yellow #FFD166 flame shapes with a large warm orange glow) lighting the ground warm brown; an oversized cream bold headline; deep ink-green #121C17 body sections with warm white #F3EAD8 text; campfire orange as the primary color; 6px button radius",
+  "avoid": "火光是画面唯一的暖色和亮点，别再加别的彩色；松树剪影要简单的几何三角，写实树木会抢戏。",
+  "neg": [
+    "写实森林照片、多种亮色、卡通动物",
+    "realistic forest photos, many bright colors, cartoon animals"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #F28C28; --a2: #FFD166; --on: #10182B; background: #121C17; color: #F3EAD8; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { color: #FFF4DE; font-weight: 900; } .kicker, .b2 { color: #FFD166; } .b1, .cta { border-radius: 6px; } .logo i { background: #F28C28; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.art { overflow: hidden; background: radial-gradient(rgba(255,255,255,.7) .8px, transparent 1.3px) 0 0 / 47px 37px, radial-gradient(120px 60px at 74% 100%, rgba(242,140,40,.45), transparent 70%), linear-gradient(#10182B 70%, #2A2118); }
+.art::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 80px; background: linear-gradient(to top right, #0B1410 50%, transparent 50%) 0 100% / 30px 60px repeat-x, linear-gradient(to top left, #0B1410 50%, transparent 50%) 30px 100% / 30px 60px repeat-x; }
+.art .m { position: absolute; right: 110px; bottom: 30px; width: 40px; height: 56px; border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%; background: radial-gradient(circle at 50% 75%, #FFF2C2, #FFD166 35%, #F28C28 70%); box-shadow: 0 0 50px 20px rgba(242,140,40,.45); animation: flick 1.6s ease-in-out infinite alternate; }
+@keyframes flick { to { transform: scaleY(1.12) translateY(-3px); } }
+.feats b { color: #F28C28; } .feats article { border-top-color: rgba(243,234,216,.15) !important; } .stats b { color: #FFD166; }
+</style>

@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Aloha Shirt",
+  "zh": "夏威夷衫",
+  "alias": [
+    "夏威夷衫",
+    "Aloha",
+    "热带印花衬衫"
+  ],
+  "lead": "复古夏威夷衬衫的印花：大朵扶桑花、棕榈叶和冲浪板，平涂的几种鲜艳颜色，印在一块块布上。放松、热情、有度假感，适合冲浪店、果汁吧、夏日派对、潮牌。",
+  "prompt": "夏威夷衫风格：沙白底 #FBF4E6，内容拆成便当格，几格铺复古夏威夷印花（深海军蓝 #1D3557 底上平涂的大扶桑花：珊瑚红 #E85D4A 花瓣 + 黄色花蕊，和深绿 #2A7D5F 棕榈叶），文字格保持素色；圆润粗体无衬线标题，格子圆角 12px；按钮珊瑚红底白字胶囊形",
+  "promptEn": "Aloha shirt style: sand-white #FBF4E6 background with content in bento tiles; some tiles carry a vintage Hawaiian print (flat hibiscus blooms with coral #E85D4A petals and yellow centers, plus dark green #2A7D5F palm leaves, on deep navy #1D3557), while text tiles stay plain; rounded bold sans-serif headlines, 12px tile radius; coral pill buttons with white text",
+  "avoid": "印花只放在一两格，文字所在的格子一定是素底；印花颜色控制在四五种平涂色，不要渐变和写实花卉。",
+  "neg": [
+    "印花铺满文字区、写实热带照片、霓虹色",
+    "prints behind text, realistic tropical photos, neon colors"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #E85D4A; --a2: #2A7D5F; --on: #fff; background: #FBF4E6; color: #1D3557; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 12px !important; }
+.nav { background: #1D3557 !important; color: #FBF4E6; } .cta, .b1 { border-radius: 99px; } .logo i { border-radius: 50%; background: #E85D4A; }
+.copy { background: #fff !important; } .hero h1 { font-weight: 800; }
+.art, .feats article:nth-child(2) { background: radial-gradient(circle, #F6C928 0 4px, transparent 5px) 18px 18px / 56px 56px, conic-gradient(from 0deg at 50% 50%, #E85D4A 0 14%, transparent 0 20%, #E85D4A 0 34%, transparent 0 40%, #E85D4A 0 54%, transparent 0 60%, #E85D4A 0 74%, transparent 0 80%, #E85D4A 0 94%, transparent 0) 2px 2px / 56px 56px, radial-gradient(14px 34px at 50% 50%, #2A7D5F 60%, transparent 62%) 30px 30px / 56px 56px, #1D3557 !important; color: #FBF4E6; }
+.art, .feats article:nth-child(2) { -webkit-mask: none; }
+.feats article:nth-child(1) { background: #FDE2D6 !important; } .feats article:nth-child(3) { background: #D7EDE3 !important; }
+.feats article:nth-child(2) h3, .feats article:nth-child(2) p, .feats article:nth-child(2) b { padding: 0 4px; background: #1D3557; }
+.stats div { background: #fff !important; } .stats div:nth-child(1) { background: #E85D4A !important; color: #fff; } .ft { background: none !important; }
+.feats b, .kicker { color: #E85D4A; font-weight: 700; } .stats b { font-weight: 800; }
+</style>

@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Corrugated Cardboard",
+  "zh": "瓦楞纸箱",
+  "alias": [
+    "瓦楞纸",
+    "纸箱",
+    "Kraft Box"
+  ],
+  "lead": "像快递纸箱和包装：牛皮纸棕色、侧边露出波浪形的瓦楞，印着黑色的运输标记、编号和“易碎”胶带。朴实、环保、有拆箱的期待感，适合电商、包装品牌、搬家服务、环保产品。",
+  "prompt": "瓦楞纸箱风格：浅牛皮纸底 #E3C9A0，内容拆成便当格，每格是一块纸板：牛皮纸棕 #C9A26E 带极细的横向纤维纹，格子边缘露出一条波浪形瓦楞截面（重复的半圆）；文字黑色 #1E1A16，用模板字感的粗体等宽字写标题和编号；一格贴一条黄黑斜纹的“小心轻放”胶带；按钮黑底、直角",
+  "promptEn": "Corrugated cardboard style: light kraft #E3C9A0 background with content in bento tiles, each a cardboard panel in kraft brown #C9A26E with a faint horizontal fiber texture and a wavy corrugated edge (repeating half circles) along one side; black #1E1A16 text with stencil-like bold monospace headlines and numbers; one tile carries a strip of yellow-and-black diagonal \"handle with care\" tape; square black buttons",
+  "avoid": "纸箱感靠“牛皮色 + 瓦楞边 + 黑色运输字”，别做真实的褶皱和污渍；胶带一页一条就够。",
+  "neg": [
+    "真实褶皱污渍、照片纹理、彩色印刷",
+    "realistic creases and stains, photo textures, colorful printing"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #1E1A16; --a2: #8A5A2B; --on: #E3C9A0; background: #E3C9A0; color: #1E1A16; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 2px !important; background: repeating-linear-gradient(transparent 0 3px, rgba(120,80,40,.06) 3px 4px), #C9A26E !important; box-shadow: inset 0 -8px 0 -2px #C9A26E, 0 1px 0 rgba(0,0,0,.1); }
+.copy { background: repeating-linear-gradient(transparent 0 3px, rgba(120,80,40,.06) 3px 4px), #D6B587 !important; }
+.feats article, .stats div { border-bottom: 8px solid transparent; border-image: radial-gradient(circle at 50% 0, transparent 3px, #8A5A2B 3.5px 4.5px, transparent 5px) 0 0 8 0 / 0 0 8px 0 round; }
+.ft { background: none !important; box-shadow: none; } .logo i { background: #1E1A16; } .b1, .cta { border-radius: 0; }
+.hero h1 { font-weight: 800; letter-spacing: -.02em; text-transform: uppercase; } .kicker::before { content: "▲▲ THIS SIDE UP · "; }
+.art .m { position: absolute; left: -10%; right: -10%; top: 42%; height: 26px; background: repeating-linear-gradient(45deg, #F2C14E 0 10px, #1E1A16 10px 20px); transform: rotate(-12deg); }
+.feats b, .stats b { font-weight: 800; }
+</style>

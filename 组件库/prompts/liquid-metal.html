@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Liquid Metal",
+  "zh": "液态金属",
+  "alias": [
+    "液态铬",
+    "流体金属",
+    "Liquid Chrome"
+  ],
+  "lead": "像流动的水银和液态铬：银灰色的形体柔软地变形，表面映着冷暖交替的反光，背景是深色。前卫、科技、有未来感，适合音乐专辑、潮流品牌、科技发布会、电子产品。",
+  "prompt": "液态金属风格：近黑底 #0C0D10，首屏插图是一团缓慢变形的液态金属形体（不规则圆角形状 + 多层银灰 #E6E8EC、#9AA0AB、#3B3F48 线性渐变模拟反光，形状用 border-radius 动画变形，8 秒一轮），外面一圈淡蓝 #7FB8FF 的柔光；超大白色粗体标题压在下方；正文区深灰，主色冰蓝 #7FB8FF，按钮银白底黑字胶囊形",
+  "promptEn": "Liquid metal style: near-black #0C0D10 background; the hero illustration is a slowly morphing liquid-metal blob (an irregular rounded shape whose border-radius animates over an 8-second loop, filled with layered silver gradients #E6E8EC, #9AA0AB and #3B3F48 imitating reflections) with a faint ice-blue #7FB8FF glow around it; an oversized white bold headline set low over it; dark gray body sections, ice blue #7FB8FF as the primary color, silver-white pill buttons with black text",
+  "avoid": "金属感来自明暗对比强烈的反光带，不是简单的灰色渐变；只做一团主形体，变形要慢。",
+  "neg": [
+    "浅色背景、金色金属、很多小金属球",
+    "light backgrounds, gold metal, many small chrome balls"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #E6E8EC; --a2: #7FB8FF; --on: #0C0D10; background: #121419; color: #D6D9E0; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { color: #fff; font-weight: 900; } .b1, .cta { border-radius: 99px; } .kicker, .b2 { color: #7FB8FF; } .logo i { border-radius: 50%; background: linear-gradient(135deg, #fff, #6B7280); }
+.art { overflow: hidden; background: radial-gradient(50% 60% at 72% 40%, rgba(127,184,255,.18), transparent 70%), #0C0D10; }
+.art .m { position: absolute; right: 50px; top: 40px; width: 180px; height: 150px; background: linear-gradient(160deg, #F5F6F8 0%, #9AA0AB 22%, #3B3F48 40%, #E6E8EC 55%, #6B7280 70%, #F5F6F8 82%, #2A2D33 100%);
+  border-radius: 58% 42% 52% 48% / 44% 56% 44% 56%; box-shadow: 0 0 40px rgba(127,184,255,.25), inset -10px -14px 30px rgba(0,0,0,.4); animation: morph 8s ease-in-out infinite; }
+@keyframes morph { 50% { border-radius: 42% 58% 40% 60% / 58% 40% 60% 42%; transform: rotate(12deg); } }
+.feats b { color: #7FB8FF; } .feats article { border-top-color: #2A2D33 !important; } .stats b { color: #fff; }
+</style>

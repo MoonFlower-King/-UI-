@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Pottery Studio",
+  "zh": "陶艺工作室",
+  "alias": [
+    "陶艺",
+    "手作陶器",
+    "Ceramics Studio"
+  ],
+  "lead": "陶艺工作室的质朴：拉坯机上转着的陶泥、粗陶的土色和釉色、手指留下的拉坯纹路。温暖、慢节奏、有手作的不完美，适合陶艺课程、手作市集、器物店、生活美学品牌。",
+  "prompt": "陶艺工作室风格：陶泥米色底 #EFE6DA，文字深土褐 #3B2C22；左侧整条插图是一只正在拉坯的陶罐：赭陶色 #B9805A 的罐身带一圈圈横向拉坯纹（细浅色横线渐变），罐口一圈米白釉 #EDE3D1 往下流淌，底下一块深灰转盘；主色赭陶、辅色釉青 #6E9488；圆润的无衬线正文配宋体类衬线标题；按钮圆角 10px",
+  "promptEn": "Pottery studio style: clay-beige #EFE6DA background with deep earth-brown #3B2C22 text; a full-height illustration strip on the left shows a pot being thrown: an ochre terracotta #B9805A body with horizontal throwing rings (thin light horizontal gradient lines), a band of off-white glaze #EDE3D1 dripping down from the rim, sitting on a dark gray wheel head; ochre terracotta as the primary color and celadon glaze #6E9488 as the secondary; rounded sans-serif body with Song-style serif headlines; 10px button radius",
+  "avoid": "陶器的美在不完美：形状可以略歪，但颜色要低饱和、偏土；别用亮面瓷器的反光。",
+  "neg": [
+    "亮面反光瓷器、鲜艳釉色、写实照片",
+    "glossy porcelain reflections, bright glazes, realistic photos"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #B9805A; --a2: #6E9488; --on: #fff; background: #EFE6DA; color: #3B2C22; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; } .b1, .cta { border-radius: 10px; } .kicker { color: #6E9488; } .logo i { border-radius: 40% 40% 50% 50%; background: #B9805A; }
+.art { background: radial-gradient(60% 40% at 50% 30%, rgba(255,255,255,.35), transparent 70%), #DCCDBA; }
+.art .m { position: absolute; left: 50%; top: 34%; width: 110px; height: 130px; margin-left: -55px; border-radius: 30% 30% 42% 42% / 18% 18% 50% 50%; background: repeating-linear-gradient(transparent 0 9px, rgba(255,255,255,.12) 9px 10px), radial-gradient(circle at 35% 30%, #CC9670, #B9805A 55%, #8F5C3D); }
+.art .m::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 34px; border-radius: 30% 30% 50% 50% / 50% 50% 50% 50%; background: radial-gradient(14px 20px at 30% 100%, #EDE3D1 60%, transparent 62%), radial-gradient(10px 26px at 70% 100%, #EDE3D1 60%, transparent 62%), linear-gradient(#EDE3D1 0 18px, transparent 18px); }
+.art .h { position: absolute; left: 50%; top: calc(34% + 128px); width: 150px; height: 16px; margin-left: -75px; border-radius: 50%; background: #4B4642; }
+.feats b { color: #B9805A; } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #B9805A; font-weight: 600; }
+</style>

@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Rainy Window",
+  "zh": "雨窗",
+  "alias": [
+    "下雨天",
+    "窗上雨滴",
+    "Rainy Day"
+  ],
+  "lead": "下雨天隔着窗户往外看：玻璃上挂着水珠和蜿蜒的水痕，窗外的城市灯光被雨模糊成一团团暖色光斑。安静、伤感、有电影感，适合咖啡馆、书店、助眠音乐、情绪内容。",
+  "prompt": "雨窗风格：灰蓝底 #E6EAEE，文字深灰蓝 #26303A；左侧整条插图是一扇雨窗：深蓝灰 #3A4656 的玻璃背后是模糊的暖色光斑（几团橙黄、粉色的大径向渐变，像失焦的城市灯光），玻璃上有大小不一的水珠（小圆点，左上亮右下暗）和两三道竖向水痕缓慢滑落；主色暖黄 #E8A94A 只给按钮和编号；宋体类衬线标题",
+  "promptEn": "Rainy window style: gray-blue #E6EAEE background with dark gray-blue #26303A text; a full-height illustration strip on the left is a rainy window: behind dark blue-gray #3A4656 glass glow blurred warm bokeh lights (a few large orange-yellow and pink radial gradients like out-of-focus city lights), and the glass carries droplets of different sizes (small dots lit at the top-left, darker at the bottom-right) with two or three vertical streaks slowly sliding down; warm yellow #E8A94A only for buttons and numbers; Song-style serif headlines",
+  "avoid": "雨滴要小、要稀，光斑要模糊；动画只让水痕慢慢滑，别做成满屏下雨的特效。",
+  "neg": [
+    "满屏雨线特效、闪电、高对比",
+    "full-screen rain effects, lightning, high contrast"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #E8A94A; --a2: #5D7186; --on: #26303A; background: #E6EAEE; color: #26303A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; } .b1, .cta { border-radius: 6px; } .kicker { color: #5D7186; } .logo i { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #5D7186; }
+.art { overflow: hidden; background: radial-gradient(rgba(255,255,255,.55) 1.5px, transparent 2.5px) 7px 11px / 61px 73px, radial-gradient(rgba(255,255,255,.35) 1px, transparent 2px) 29px 37px / 47px 59px,
+  radial-gradient(40px 40px at 30% 30%, rgba(232,169,74,.7), transparent 70%), radial-gradient(50px 50px at 70% 55%, rgba(240,140,120,.5), transparent 70%), radial-gradient(36px 36px at 40% 75%, rgba(255,210,120,.6), transparent 70%), #3A4656; }
+.art .m, .art .h { position: absolute; top: -60px; width: 2px; height: 60px; border-radius: 2px; background: linear-gradient(transparent, rgba(255,255,255,.7)); animation: slide 6s linear infinite; }
+.art .m { left: 40%; } .art .h { left: 72%; animation-delay: -3s; }
+@keyframes slide { to { transform: translateY(420px); } }
+.feats b { color: #E8A94A; } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; }
+</style>
