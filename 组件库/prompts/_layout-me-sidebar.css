@@ -1,0 +1,6 @@
+/* 个人站版式「侧栏名片」：左边一整条放头像、名字、介绍和标签，右边是导航、文章和此刻。适合简历、作品集、文档感的风格。 */
+.pg { display: grid; grid-template-columns: 178px minmax(0, 1fr); grid-template-areas: "me nav" "me posts" "me now" "me ft"; align-content: start; }
+.me { grid-area: me; grid-template-columns: 1fr; align-content: start; align-items: start; gap: 12px; padding: 26px 18px; border-right: 1px solid var(--line); }
+.av { width: 72px; } .me h1 { font-size: 24px; } .bio { font-size: 11.5px; }
+.nav { grid-area: nav; } .nav .logo { visibility: hidden; } .posts { grid-area: posts; } .now { grid-area: now; } .ft { grid-area: ft; }
+.posts article { grid-template-columns: 40px minmax(0, 1fr) auto; }

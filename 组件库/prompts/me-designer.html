@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Designer Portfolio",
+  "zh": "设计师作品集",
+  "alias": [
+    "作品集",
+    "Portfolio",
+    "设计师主页"
+  ],
+  "lead": "标准又耐看的设计师作品集：干净的白底、作品缩略图做成大卡片、简短一句定位、低调的灰字说明。专业、让作品说话，适合 UI、平面和产品设计师。",
+  "prompt": "设计师作品集风格：纯白底 #FFFFFF、近黑字 #111；首屏一句大号定位语（如「做让人愿意多停留一秒的界面」），字重中等、紧字距；文章做成大作品卡——上面是大块的作品缩略图（不同颜色的柔和渐变，圆角 12px），下面是作品名和灰色 #8A8A8A 一行说明，卡片没有边框；导航和按钮极简；无衬线字体（Inter 一类）",
+  "promptEn": "designer portfolio style: pure white #FFFFFF with near-black #111 text; a large one-line positioning statement in the hero (like “I design interfaces worth an extra second”) in medium weight with tight tracking; posts become large project cards—big thumbnails on top (soft gradients in different colors with 12px radii) and the project name with a gray #8A8A8A caption below, no card borders; minimal navigation and buttons; sans-serif (Inter-like)",
+  "avoid": "作品图是主角：缩略图要大、留白要匀，文字别抢；别给卡片加边框阴影，会显得像电商列表。",
+  "neg": [
+    "花哨背景、厚重阴影、多种字体、装饰图标",
+    "busy backgrounds, heavy shadows, multiple typefaces, decorative icons"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #111; --a2: #8A8A8A; --line: transparent; --avb: #F2F2F2; --avf: #BDBDBD; background: #fff; color: #111; font-family: "Inter", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { background: #111; border-radius: 50%; } .cta { background: #111; color: #fff; border: 0; }
+.av { width: 56px; } .me { grid-template-columns: 56px minmax(0, 1fr); } .hi { display: none; } .me h1 { font-size: 15px; font-weight: 600; }
+.bio { font-size: 22px; line-height: 1.35; font-weight: 500; letter-spacing: -.5px; opacity: 1; color: #111; margin-top: 6px; } .bio::before { content: "做让人愿意多停留一秒的界面。"; display: block; } .bio { font-size: 0; } .bio::before { font-size: 22px; }
+.tags span { background: #F2F2F2; color: #555; }
+.posts article { border: 0; padding-bottom: 6px; } .posts article > * { padding-inline: 2px; }
+.posts article::before { height: 86px !important; border-radius: 12px; margin-bottom: 8px; opacity: 1 !important; background: linear-gradient(135deg, #FDE2E4, #E2ECF9) !important; }
+.posts article:nth-of-type(2)::before { background: linear-gradient(135deg, #E8F5E9, #FFF3CD) !important; } .posts article:nth-of-type(3)::before { background: linear-gradient(135deg, #EDE7F6, #E0F7FA) !important; }
+.posts time { order: 3; color: #8A8A8A; } .posts p { color: #8A8A8A; opacity: 1; } .posts em { display: none; }
+.now { background: #F7F7F7; }
+</style>

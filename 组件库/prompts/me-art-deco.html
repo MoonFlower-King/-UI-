@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Art Deco",
+  "zh": "装饰艺术",
+  "alias": [
+    "Art Deco",
+    "盖茨比",
+    "爵士时代"
+  ],
+  "lead": "二十年代爵士时代的装饰艺术：黑底金线、扇形和阶梯几何纹样、高瘦的大写字母。华丽、有仪式感，适合活动策划、调酒师、珠宝和高端服务。",
+  "prompt": "装饰艺术风格：墨黑底 #0F0E0C、香槟金 #CFAE6B 线条和文字、象牙白 #EDE4D0 正文；头像外是放射扇形金线（日出纹）；名字用高瘦的几何大写字体、字距很宽，上下各一组阶梯状对称金线；分隔用中间带菱形的金线；全部居中对称；不用其他颜色",
+  "promptEn": "art deco style: ink black #0F0E0C background with champagne gold #CFAE6B lines and headings and ivory #EDE4D0 body text; a radiating sunburst fan of gold lines behind the avatar; the name in tall, slender geometric capitals with very wide tracking, framed above and below by symmetric stepped gold lines; dividers as gold rules with a diamond in the middle; everything centered and symmetric; no other colors",
+  "avoid": "金色只用细线和标题，别做大面积金色渐变块；对称是灵魂，左右必须一致。",
+  "neg": [
+    "多彩配色、手绘涂鸦、圆润可爱字体、不对称排版",
+    "multicolor palettes, hand-drawn doodles, cute rounded fonts, asymmetric layouts"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #CFAE6B; --a2: #A89770; --line: rgba(207,174,107,.3); --avb: #1A1813; --avf: #CFAE6B; background: #0F0E0C; color: #EDE4D0; font-family: "Didot", "Futura", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { text-transform: uppercase; letter-spacing: 4px; font-size: 10.5px; } .cta { border-radius: 0; border-color: #CFAE6B; color: #CFAE6B; }
+.av { box-shadow: 0 0 0 2px #CFAE6B, 0 0 0 6px #0F0E0C, 0 0 0 7px #CFAE6B; background: repeating-conic-gradient(from 0deg, rgba(207,174,107,.25) 0 4deg, transparent 4deg 12deg), radial-gradient(circle at 50% 40%, #CFAE6B 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #CFAE6B 0 97%, transparent 100%), #1A1813 !important; }
+.me h1 { font-family: "Futura", "Avenir Next Condensed", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; letter-spacing: 14px; color: #CFAE6B; padding: 10px 0; background: linear-gradient(#CFAE6B, #CFAE6B) top / 60% 1px no-repeat, linear-gradient(#CFAE6B, #CFAE6B) 50% 4px / 40% 1px no-repeat, linear-gradient(#CFAE6B, #CFAE6B) bottom / 60% 1px no-repeat, linear-gradient(#CFAE6B, #CFAE6B) 50% calc(100% - 4px) / 40% 1px no-repeat; }
+.hi { color: #A89770; letter-spacing: 6px; text-transform: uppercase; } .tags span { background: none; border: 1px solid #CFAE6B; color: #CFAE6B; border-radius: 0; }
+.posts h2 { color: #CFAE6B; opacity: 1; letter-spacing: 6px; } .posts h2::before, .posts h2::after { content: " ◆ "; font-size: 8px; vertical-align: 2px; }
+.posts article { border-top-color: rgba(207,174,107,.3); } .posts h3 { color: #EDE4D0; font-weight: 400; letter-spacing: 2px; } .posts em { color: #CFAE6B; }
+.now { background: none; border: 1px solid #CFAE6B; border-radius: 0; outline: 1px solid rgba(207,174,107,.4); outline-offset: 3px; } .now b { color: #CFAE6B; }
+</style>

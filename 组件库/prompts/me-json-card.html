@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "JSON Card",
+  "zh": "JSON 名片",
+  "alias": [
+    "数据结构",
+    "JSON",
+    "代码名片"
+  ],
+  "lead": "把自我介绍写成一段 JSON：花括号包起来，键名带引号，值按类型着色（字符串、数字、数组）。巧妙、好记，适合后端工程师和数据从业者。",
+  "prompt": "JSON 名片风格：深海军蓝底 #0F1729、文字浅灰蓝 #CBD5E1，全站等宽字体；整页像一段格式化的 JSON——首尾有大花括号，每个区块前面是带引号的键名（如 \"name\": 、\"posts\": [ ），键名用天蓝 #7DD3FC，字符串值用柔绿 #A7F3D0，数字用琥珀 #FCD34D，标点用灰 #64748B；层级用 2 个空格的缩进线表示",
+  "promptEn": "JSON card style: deep navy #0F1729 background with light slate #CBD5E1 text, monospace throughout; the page reads like formatted JSON—large braces at the start and end, each section introduced by a quoted key (like \"name\": or \"posts\": [ ), keys in sky blue #7DD3FC, string values in soft green #A7F3D0, numbers in amber #FCD34D, punctuation in gray #64748B; nesting shown with 2-space indent guides",
+  "avoid": "这是一种「梗」，内容一定要依然好读：标题、文章名还是要清楚；颜色只给结构符号和键名，正文别全上色。",
+  "neg": [
+    "照片头像、亮色背景、衬线字、图标装饰",
+    "photo avatars, light backgrounds, serif fonts, decorative icons"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #7DD3FC; --a2: #64748B; --line: #1E293B; --avb: #1E293B; --avf: #7DD3FC; background: #0F1729; color: #CBD5E1; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.pg::before { content: "{"; display: block; padding: 6px 26px 0; color: #64748B; font-size: 20px; } .pg::after { content: "}"; display: block; padding: 0 26px 16px; color: #64748B; font-size: 20px; }
+.logo i { display: none; } .logo::before { content: '"site": '; color: #7DD3FC; font-weight: 400; } .logo { color: #A7F3D0; } .cta { border-color: #334155; }
+.me { margin-left: 26px; padding-left: 14px; border-left: 1px dashed #334155; } .av { border-radius: 8px; }
+.hi { color: #7DD3FC; } .hi::after { content: ' "name":'; } .me h1 { color: #A7F3D0; font-weight: 400; font-size: 24px; } .me h1::before, .me h1::after { content: '"'; color: #64748B; }
+.tags span { background: none; color: #A7F3D0; padding: 0; } .tags span::before { content: '"'; } .tags span::after { content: '",'; color: #64748B; } .tags::before { content: "["; color: #64748B; } .tags::after { content: "]"; color: #64748B; }
+.posts { margin-left: 26px; padding-left: 14px; border-left: 1px dashed #334155; } .posts h2 { color: #7DD3FC; opacity: 1; letter-spacing: 0; } .posts h2::before { content: '"'; } .posts h2::after { content: '": ['; color: #64748B; }
+.posts article { border-top: 0; padding: 5px 0; } .posts time { color: #FCD34D; opacity: 1; } .posts h3 { color: #A7F3D0; font-weight: 400; } .posts em { color: #64748B; }
+.now { background: none; color: #A7F3D0; } .now b { color: #7DD3FC; } .ft { color: #64748B; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Illustrator",
+  "zh": "插画师",
+  "alias": [
+    "插画作品集",
+    "手绘",
+    "创意工作室"
+  ],
+  "lead": "插画师的「画板」：每个格子都是一块饱满的颜色，里面有手绘感的小涂鸦和不规则形状，标题像手写。活泼、个性鲜明，适合插画师、绘本作者和动画师。",
+  "prompt": "插画师风格：纸白底 #FFFBF4、深墨蓝字 #22223B；格子用饱满的插画配色——番茄红 #F25C54、橄榄黄 #F7B267、薄荷 #7BC6A4、薰衣草 #A79BD8，圆角大小不一；格子里有手绘感的不规则色块和小涂鸦（波浪线、小星星、圆点）；名字用手写感粗体；头像是一张简笔自画像（圆脸 + 两点眼睛）；整体像一页速写画板",
+  "promptEn": "illustrator style: paper white #FFFBF4 with deep ink-navy #22223B text; tiles in rich illustration colors—tomato #F25C54, ochre yellow #F7B267, mint #7BC6A4 and lavender #A79BD8—with varied corner radii; hand-drawn irregular blobs and little doodles (squiggles, stars, dots) inside the tiles; a hand-lettered bold name; a simple self-portrait doodle as the avatar (round face with two dot eyes); feels like a page from a sketch board",
+  "avoid": "涂鸦要少而精，每格一两个；颜色饱满但统一在暖调里，文字放在浅色格子上。",
+  "neg": [
+    "冷硬科技、灰暗配色、严格网格无个性、照片拼贴",
+    "cold techy look, drab colors, characterless rigid grids, photo collages"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #F25C54; --a2: #7BC6A4; --avb: #F7B267; --avf: #22223B; background: #FFFBF4; color: #22223B; font-family: "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.av { border-radius: 30px 14px 26px 18px !important; background: radial-gradient(circle at 40% 44%, #22223B 0 3%, transparent 3.5%), radial-gradient(circle at 60% 44%, #22223B 0 3%, transparent 3.5%), radial-gradient(ellipse 12% 5% at 50% 58%, transparent 60%, #22223B 64% 80%, transparent 84%), radial-gradient(circle at 50% 50%, #FFE2C7 0 30%, transparent 31%), #F7B267 !important; }
+.intro { background: #A79BD8 !important; color: #fff; border-radius: 14px 34px 18px 28px !important; position: relative; } .intro::after { content: "✶ ∿∿"; position: absolute; right: 14px; top: 10px; font-size: 18px; color: #FFE27A; }
+.me h1 { font-family: "Marker Felt", "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 32px; } .hi { color: #FFE27A; } .tags span { background: #fff; color: #22223B; }
+.posts article { background: #7BC6A4 !important; border-radius: 26px 12px 22px 14px !important; } .posts article:nth-of-type(2) { background: #F25C54 !important; color: #fff; border-radius: 12px 28px 14px 24px !important; } .posts article:nth-of-type(3) { background: #F7B267 !important; }
+.posts em { color: inherit; opacity: .8; } .posts h3::after { content: " ✎"; } .now { background: #fff !important; border: 2px dashed #A79BD8; }
+.cta { background: #F25C54; color: #fff; border: 0; } .logo i { background: #F25C54; border-radius: 60% 40% 50% 50%; }
+</style>

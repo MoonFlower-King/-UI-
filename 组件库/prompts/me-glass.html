@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Glassmorphism",
+  "zh": "玻璃拟态",
+  "alias": [
+    "毛玻璃",
+    "Glassmorphism",
+    "磨砂玻璃"
+  ],
+  "lead": "一块块半透明的磨砂玻璃浮在彩色光斑上：背后的颜色透过来变得模糊柔和，玻璃边缘有一圈亮白细线。通透、现代，适合设计师和数码产品爱好者。",
+  "prompt": "玻璃拟态风格：深靛紫底 #1E1B4B 上浮着几团大而模糊的彩色光斑（紫 #8B5CF6、粉 #EC4899、青 #22D3EE）；侧栏和卡片是半透明白色玻璃（白色 12% 透明度 + 背景模糊 16px），边缘 1px 亮白描边（30% 透明度），圆角 16px；文字白色、次要文字白色 70%；按钮是更亮一点的玻璃",
+  "promptEn": "glassmorphism style: a deep indigo-violet #1E1B4B background with a few large blurred color blobs (violet #8B5CF6, pink #EC4899, cyan #22D3EE); the sidebar and cards are translucent white glass (12% white with a 16px backdrop blur) with a 1px bright white edge at 30% opacity and 16px radii; white text with 70% white secondary text; buttons as slightly brighter glass",
+  "avoid": "玻璃后面一定要有颜色变化（光斑）才看得出效果；文字和玻璃的对比要够，必要时把玻璃调得更不透明。",
+  "neg": [
+    "纯白平底、硬投影、粗黑描边、复古纹理",
+    "flat white backgrounds, hard shadows, heavy black outlines, retro textures"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #F0ABFC; --a2: rgba(255,255,255,.7); --line: rgba(255,255,255,.18); --avb: rgba(255,255,255,.2); --avf: #fff; background: radial-gradient(circle at 15% 25%, #8B5CF6 0, transparent 32%), radial-gradient(circle at 70% 70%, #EC4899 0, transparent 30%), radial-gradient(circle at 90% 10%, #22D3EE 0, transparent 26%), #1E1B4B; color: #fff; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me, .posts, .now { background: rgba(255,255,255,.12) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.3) !important; border-radius: 16px; }
+.me { margin: 12px 0 12px 12px; } .posts { margin: 0 18px 10px; padding-top: 12px; } .now { margin: 0 18px 12px; }
+.cta { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); } .tags span { background: rgba(255,255,255,.18); color: #fff; }
+.posts h2 { opacity: .8; } .posts article { border-top-color: rgba(255,255,255,.15); } .posts em { color: #F0ABFC; } .now b { color: #67E8F9; } .ft { opacity: .7; }
+</style>

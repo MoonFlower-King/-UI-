@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Memphis",
+  "zh": "孟菲斯",
+  "alias": [
+    "Memphis",
+    "八十年代孟菲斯",
+    "几何波点"
+  ],
+  "lead": "八十年代孟菲斯设计：波点、斜纹、锯齿线、三角形和彩色几何块随意散落，配色鲜亮跳跃。热闹、俏皮，适合插画师、儿童品牌和创意工作室。",
+  "prompt": "孟菲斯风格：白底 #FFFFFF 上散落几何小图形——黑色波点、粉 #FF6FB5 三角、明黄 #FFD23F 圆、青 #2EC4B6 锯齿线、紫 #7B5CFF 斜纹块；卡片封面是两三种图案拼贴（波点 + 斜纹 + 色块）；黑色 2px 粗描边；名字粗黑无衬线，后面垫一块黄色斜块；整体活泼但文字区保持白底",
+  "promptEn": "Memphis style: a white #FFFFFF background scattered with small geometric figures—black polka dots, pink #FF6FB5 triangles, yellow #FFD23F circles, teal #2EC4B6 zigzags and purple #7B5CFF striped blocks; card covers as collages of two or three patterns (dots + stripes + color blocks); 2px bold black outlines; a heavy black sans-serif name backed by a tilted yellow block; lively overall but text areas stay on white",
+  "avoid": "图案散落在边缘和封面上，文字下面要干净；五种颜色是上限，再多就成了彩虹糖。",
+  "neg": [
+    "低饱和、细线极简、写实照片、衬线书卷",
+    "muted colors, thin-line minimalism, realistic photos, bookish serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #FF6FB5; --a2: #7B5CFF; --line: #111; --avb: #FFD23F; --avf: #111; background: radial-gradient(circle, #111 1.5px, transparent 2px) 0 0 / 16px 16px no-repeat, #fff; color: #111; font-family: "Futura", "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { position: relative; } .me::after { content: ""; position: absolute; right: 30px; top: 10px; width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent; border-bottom: 38px solid #FF6FB5; transform: rotate(18deg); }
+.me::before { content: ""; position: absolute; right: 100px; top: 70px; width: 80px; height: 14px; background: linear-gradient(135deg, #2EC4B6 25%, transparent 25%) -7px 0 / 14px 14px, linear-gradient(225deg, #2EC4B6 25%, transparent 25%) -7px 0 / 14px 14px; }
+.me h1 { font-weight: 900; background: linear-gradient(100deg, transparent 4%, #FFD23F 4% 70%, transparent 70%) 0 60% / 100% 60% no-repeat; display: inline-block; padding-right: 8px; } .intro { position: relative; z-index: 1; }
+.av { border: 2px solid #111; } .cta { background: #7B5CFF; color: #fff; border: 2px solid #111; } .tags span { background: #fff; border: 2px solid #111; color: #111; }
+.posts article { border: 2px solid #111; border-radius: 4px; } .posts article::before { opacity: 1 !important; border-bottom: 2px solid #111; background: radial-gradient(circle, #111 2px, transparent 2.5px) 0 0 / 12px 12px, #FFD23F !important; }
+.posts article:nth-of-type(2)::before { background: repeating-linear-gradient(45deg, #7B5CFF 0 6px, #fff 6px 12px) !important; } .posts article:nth-of-type(3)::before { background: radial-gradient(circle at 70% 50%, #FF6FB5 0 18px, transparent 19px), #2EC4B6 !important; }
+.posts em { color: #7B5CFF; } .now { background: #fff; border: 2px solid #111; border-radius: 4px; box-shadow: 4px 4px 0 #FF6FB5; } .now b { color: #FF6FB5; }
+</style>

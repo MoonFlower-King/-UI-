@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Book Page",
+  "zh": "书页衬线",
+  "alias": [
+    "书籍排版",
+    "衬线",
+    "古典排印"
+  ],
+  "lead": "像一本好书的扉页：象牙白纸色、优雅的衬线字、居中对称、细线和小花饰。安静、有文化感，适合作家、译者、读书博主。",
+  "prompt": "书页衬线风格：象牙白底 #FAF7F0、墨黑字 #2A2622，全站衬线字（宋体 / Garamond 一类）；名字居中、字距略宽，招呼语用小号斜体；分隔处用一条细线中间加一个小花饰 ❦；正文 13px、行距 1.8；配色只有墨色和一点深酒红 #7A2E2E",
+  "promptEn": "book-page serif style: ivory #FAF7F0 background with ink #2A2622 text, serif type (Song / Garamond-like) throughout; a centered, slightly letter-spaced name with a small italic greeting; section breaks as a thin rule with a small fleuron ❦ in the middle; 13px body at 1.8 line height; only ink and a touch of deep claret #7A2E2E",
+  "avoid": "衬线字要选成套的正文字体，别混好几种；花饰只放在分隔处一两个，满屏花纹就变成婚礼请柬了。",
+  "neg": [
+    "无衬线标题、霓虹色、粗边框、满屏花纹",
+    "sans-serif headings, neon colors, heavy borders, ornament everywhere"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #7A2E2E; --a2: #7A6F63; --line: #D8CFBF; --avb: #EFE7DA; --avf: #B9A992; background: #FAF7F0; color: #2A2622; font-family: "Baskerville", "Garamond", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { display: none; } .cta { border-color: #D8CFBF; }
+.hi { font-style: italic; letter-spacing: 0; } .me h1 { font-weight: 400; letter-spacing: 6px; } .bio { line-height: 1.85; }
+.av { box-shadow: 0 0 0 4px #FAF7F0, 0 0 0 5px #C9BDA9; }
+.tags span { background: none; color: #7A6F63; font-style: italic; padding: 0 4px; }
+.posts h2 { opacity: 1; color: #7A2E2E; letter-spacing: 4px; font-weight: 400; } .posts h2::before, .posts h2::after { content: " ❦ "; color: #C9BDA9; }
+.posts article { border-top: 0; } .posts h3 { font-weight: 400; font-size: 15px; } .posts em { font-style: italic; }
+.now { background: none; border-top: 1px solid #D8CFBF; border-bottom: 1px solid #D8CFBF; border-radius: 0; font-style: italic; }
+</style>

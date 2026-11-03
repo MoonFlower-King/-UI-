@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Watercolor",
+  "zh": "水彩晕染",
+  "alias": [
+    "水彩",
+    "晕染",
+    "手绘水彩"
+  ],
+  "lead": "大块水彩颜料在纸上晕开：粉、蓝、杏几团柔和的色斑，边缘有深一点的水痕，文字像写在画纸上。浪漫、柔软，适合插画师、婚礼摄影和花艺师。",
+  "prompt": "水彩晕染风格：冷压水彩纸白底 #FDFBF7（带细纸纹），首屏背后铺几团不规则的水彩色斑——蔷薇粉 #F2B5C4、雾蓝 #A9C7E3、杏色 #F6D3A8，彼此半透明叠加、边缘略深（像水痕）；名字用优雅的手写衬线，正文细无衬线；头像是一团水彩圆；按钮是淡色水彩块而不是实色",
+  "promptEn": "watercolor style: cold-press paper white #FDFBF7 with fine texture, with irregular watercolor blooms behind the hero—rose #F2B5C4, misty blue #A9C7E3 and apricot #F6D3A8—overlapping translucently with slightly darker edges like tide marks; an elegant script-serif name with light sans-serif body; the avatar as a watercolor circle; buttons as pale watercolor washes instead of solid fills",
+  "avoid": "色斑要轻、要有透明感，文字压在上面必须清楚；别用规则的圆形渐变，那像屏保，不像水彩。",
+  "neg": [
+    "纯色块、硬边几何、霓虹色、深色背景",
+    "flat color blocks, hard-edged geometry, neon colors, dark backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #C76B86; --a2: #6C8FB3; --avb: #F2B5C4; --avf: #fff; background: #FDFBF7; color: #3F3A44; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.me { background: radial-gradient(38% 46% at 22% 38%, rgba(242,181,196,.75), rgba(242,181,196,.35) 70%, transparent 74%), radial-gradient(34% 42% at 62% 58%, rgba(169,199,227,.7), rgba(169,199,227,.3) 70%, transparent 74%), radial-gradient(26% 36% at 86% 26%, rgba(246,211,168,.75), transparent 72%); }
+.av { background: radial-gradient(circle at 50% 40%, #fff 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #fff 0 97%, transparent 100%), radial-gradient(circle at 40% 40%, #F2B5C4, #E89AAE 70%, #C76B86); filter: blur(.3px); }
+.me h1 { font-family: "Snell Roundhand", "Apple Chancery", "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; color: #5A3E55; } .hi { color: #C76B86; letter-spacing: 3px; }
+.cta { border: 0; background: rgba(242,181,196,.55); } .tags span { background: rgba(169,199,227,.4); color: #3F5F80; }
+.posts h3 { font-weight: 500; } .posts article { border-top-color: rgba(201,150,170,.35); } .posts em { color: #C76B86; }
+.now { background: radial-gradient(60% 120% at 20% 50%, rgba(246,211,168,.6), transparent 70%); }
+</style>

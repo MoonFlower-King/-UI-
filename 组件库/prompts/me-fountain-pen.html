@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Fountain Pen",
+  "zh": "钢笔横格纸",
+  "alias": [
+    "钢笔字",
+    "横线本",
+    "书写纸"
+  ],
+  "lead": "像用钢笔写在横格信纸上：浅蓝横线、左边一条红色页边线，标题是蓝黑墨水的手写字，偶尔有一个小墨点。亲切、真诚，适合老师、写信的人和手写爱好者。",
+  "prompt": "钢笔横格纸风格：白纸底 #FFFEFA，铺 22px 间距的浅蓝横格线 #CFE0F2，左侧 40px 处一条淡红页边线 #E8A5A5；标题和名字用手写感的楷体或钢笔字、蓝黑墨水色 #1F3A6B；正文用常规字体但同样蓝黑色，基线落在横格线上；一两处小墨点装饰；没有色块和卡片",
+  "promptEn": "fountain-pen style: white paper #FFFEFA with pale blue ruled lines #CFE0F2 every 22px and a faint red margin line #E8A5A5 at 40px from the left; headings and the name in a Kai / pen-handwriting face in blue-black ink #1F3A6B; body text in a regular face also in blue-black, sitting on the ruled lines; one or two small ink blots as decoration; no color blocks or cards",
+  "avoid": "正文行高要和横格线对齐，否则一眼就假；手写字只给标题，正文手写会难读。",
+  "neg": [
+    "彩色卡片、阴影、粗无衬线标题、深色背景",
+    "colorful cards, shadows, heavy sans-serif headings, dark backgrounds"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #1F3A6B; --a2: #5A6F94; --line: transparent; --avb: #E6EEF8; --avf: #1F3A6B; background: linear-gradient(90deg, transparent 39px, #E8A5A5 39px 40px, transparent 40px), repeating-linear-gradient(180deg, transparent 0 21px, #CFE0F2 21px 22px), #FFFEFA; color: #1F3A6B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; line-height: 22px; }
+.nav { padding-left: 52px; } .logo { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 17px; font-weight: 400; } .logo i { display: none; } .cta { border-color: #1F3A6B; }
+.me { padding-left: 52px; } .me h1 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; font-size: 34px; line-height: 44px; } .bio { line-height: 22px; } .hi { line-height: 22px; }
+.me h1::after { content: ""; display: inline-block; width: 7px; height: 6px; margin-left: 8px; border-radius: 50% 60% 40% 55%; background: #1F3A6B; vertical-align: middle; }
+.tags span { background: none; color: #1F3A6B; text-decoration: underline; padding: 0 4px; } .posts, .now, .ft { padding-left: 52px; } .now { margin-left: 26px; }
+.posts h2 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 15px; letter-spacing: 0; opacity: 1; } .posts article { border: 0; padding: 0; } .posts h3 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; font-size: 16px; line-height: 22px; } .posts p, .posts time, .posts em { line-height: 22px; }
+.now { background: none; padding: 0 14px 0 0; } .now b { color: #C04848; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 14px; }
+</style>

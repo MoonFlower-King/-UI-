@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Film Photography",
+  "zh": "胶片摄影",
+  "alias": [
+    "胶片",
+    "135 胶卷",
+    "底片"
+  ],
+  "lead": "整页像一卷冲洗出来的胶片：深色底、文章卡片做成带齿孔的底片格，旁边印着橙色的片号和片基文字，颜色暖而有颗粒。适合摄影师和喜欢胶片的人。",
+  "prompt": "胶片摄影风格：近黑片基底 #121110，暖白字 #EFE7DA；文章卡片是一格格底片——上下边缘有一排白色圆角方齿孔，格子里是暖色调色块（偏橙偏青的胶片色 #C9773E / #3E6B6E）；边缘印橙色 #F08A24 的等宽小字片号（如 24 ▸ 24A）；全局叠一层轻微颗粒噪点；名字用窄体无衬线、全大写",
+  "promptEn": "film photography style: near-black film base #121110 with warm white #EFE7DA text; post cards are film frames—a row of white rounded-square sprocket holes along the top and bottom, warm film-toned blocks inside (orange-cyan film colors #C9773E / #3E6B6E); small orange #F08A24 monospace edge print with frame numbers (like 24 ▸ 24A); a light grain over everything; a condensed uppercase sans-serif name",
+  "avoid": "齿孔和片号是识别符号，有就够了，别再加相机图标；颗粒要轻，不能让文字发糊。",
+  "neg": [
+    "白底、卡通图标、霓虹发光、扁平鲜艳色块",
+    "white backgrounds, cartoon icons, neon glow, flat bright blocks"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #F08A24; --a2: #A89F92; --line: #2A2724; --avb: #3E6B6E; --avf: #C9773E; background: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.2px) 0 0 / 3px 3px, #121110; color: #EFE7DA; font-family: "Avenir Next Condensed", "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo { text-transform: uppercase; letter-spacing: 3px; } .logo i { border-radius: 2px; } .cta { border-color: #F08A24; color: #F08A24; border-radius: 2px; }
+.me h1 { text-transform: uppercase; letter-spacing: 4px; font-weight: 600; } .hi { color: #F08A24; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .tags span { background: none; border: 1px solid #F08A24; color: #F08A24; border-radius: 2px; }
+.posts article { background: #1D1B19; border: 0; border-radius: 2px; padding-bottom: 22px; position: relative; }
+.posts article::before { height: 66px !important; margin: 12px 10px 4px; border-radius: 2px; background: linear-gradient(160deg, #C9773E, #3E6B6E) !important; opacity: 1 !important; }
+.posts article:nth-of-type(2)::before { background: linear-gradient(200deg, #D9A35B, #6E3E3A) !important; } .posts article:nth-of-type(3)::before { background: linear-gradient(140deg, #3E6B6E, #C9B07E) !important; }
+.posts article::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; height: 6px; background: radial-gradient(circle, transparent 0, transparent 0) , repeating-linear-gradient(90deg, transparent 0 6px, #EFE7DA 6px 12px); opacity: .55; box-shadow: 0 calc(100% + 0px) 0 transparent; }
+.posts time { color: #F08A24; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .posts time::after { content: " ▸ 24A"; } .posts em { color: #F08A24; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.now { background: #1D1B19; border-left: 3px solid #F08A24; border-radius: 2px; }
+</style>

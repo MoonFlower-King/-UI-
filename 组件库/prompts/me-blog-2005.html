@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Mid-2000s Blog",
+  "zh": "早期博客",
+  "alias": [
+    "博客模板",
+    "2005 博客",
+    "挂件侧栏"
+  ],
+  "lead": "像 2005 年前后流行的博客模板：顶部一张横幅图、圆角盒子里的文章、右侧一栏挂件（日历、标签云、友情链接），渐变按钮带光泽。怀旧又亲切，适合写日常、讲故事的老博主。",
+  "prompt": "早期博客风格：浅灰蓝页面底 #DDE6EE，内容放在白色居中容器里；顶部一张蓝绿渐变横幅 #3A7BBF→#64B5A8，名字是白色带投影的大字；文章和挂件都是圆角 8px 的白盒子，盒子标题栏是浅蓝渐变 #EAF2FA→#CFE0F0；左侧栏放头像、简介和「标签云」（大小不一的蓝色链接）；按钮有上亮下暗的光泽渐变；Verdana / Tahoma 小字号",
+  "promptEn": "mid-2000s blog style: a light blue-gray page #DDE6EE with content in a centered white container; a blue-green gradient banner across the top #3A7BBF→#64B5A8 with the name in large white text with a drop shadow; posts and widgets in 8px-rounded white boxes whose title bars carry a light blue gradient #EAF2FA→#CFE0F0; a side column with the avatar, bio and a tag cloud (blue links in mixed sizes); glossy buttons lighter on top and darker below; small Verdana / Tahoma text",
+  "avoid": "这是「复古模板感」，但盒子之间间距要整齐；光泽渐变只给按钮和标题栏，大面积用就太晃眼。",
+  "neg": [
+    "扁平极简、大留白、霓虹、超大字",
+    "flat minimalism, big whitespace, neon, oversized type"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #3A7BBF; --a2: #6A86A3; --line: #D2DEEA; --avb: #EAF2FA; --avf: #3A7BBF; background: linear-gradient(90deg, #EEF3F8 178px, #fff 0); color: #333; font-family: Verdana, Tahoma, -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 11.5px; }
+.nav { background: linear-gradient(#64B5A8, #3A7BBF); color: #fff; margin: 0 0 8px; } .nav nav { opacity: 1; } .cta { border: 0; color: #2D4A66; background: linear-gradient(#fff, #D6E4F2); box-shadow: inset 0 -1px #A9C2DB; border-radius: 6px; }
+.me { border-right: 1px solid #D2DEEA; } .me h1 { font-size: 20px; color: #3A7BBF; text-shadow: 1px 1px 0 #fff; } .hi { color: #6A86A3; }
+.av { border-radius: 8px; border: 3px solid #fff; box-shadow: 0 0 0 1px #C3D3E3; }
+.tags { gap: 2px 6px; } .tags span { background: none; padding: 0; color: #3A7BBF; text-decoration: underline; font-size: 10px; } .tags span:nth-child(2) { font-size: 15px; } .tags span:nth-child(3) { font-size: 12px; }
+.posts h2 { opacity: 1; color: #2D4A66; letter-spacing: 0; padding: 5px 10px; background: linear-gradient(#EAF2FA, #CFE0F0); border-radius: 8px 8px 0 0; border: 1px solid #C3D3E3; margin-bottom: 0; }
+.posts article { border: 1px solid #C3D3E3; border-top: 0; padding: 9px 10px; } .posts article:last-of-type { border-radius: 0 0 8px 8px; } .posts h3 { color: #3A7BBF; text-decoration: underline; }
+.now { background: #FFFBE6; border: 1px solid #F0DE9A; border-radius: 8px; } .now b { color: #B07D00; }
+</style>

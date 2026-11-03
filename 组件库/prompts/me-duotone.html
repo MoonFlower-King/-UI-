@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Duotone",
+  "zh": "双色调",
+  "alias": [
+    "Duotone",
+    "双色图",
+    "撞色印刷"
+  ],
+  "lead": "全站只用两种撞色：深蓝紫的暗部和亮橙粉的亮部，所有图片、色块、文字都在这两色之间变化，像双色调海报。大胆、统一、很有记忆点，适合摄影师、音乐人和活动策划。",
+  "prompt": "双色调风格：整页只用两种颜色及其混合——暗色电光蓝紫 #2B1BD1、亮色珊瑚橙 #FF7A59；背景是暗色，文字和线条是亮色；头像是双色调人像（暗部蓝紫、亮部珊瑚橙）；文章行之间用亮色细线分隔，悬停 / 当前行反色（亮底暗字）；名字超大、粗、无衬线；不出现第三种颜色（连白色都不要）",
+  "promptEn": "duotone style: the page uses just two colors and their blend—an electric blue-violet dark #2B1BD1 and a bright coral #FF7A59; the background is the dark color and text and lines the bright one; the avatar is a duotone portrait (blue-violet shadows, coral highlights); post rows separated by thin bright rules, with the current row inverted (bright background, dark text); an oversized heavy sans-serif name; no third color, not even white",
+  "avoid": "两种颜色的明度要拉开，否则文字看不清；坚持只用两色，一加白色就破功了。",
+  "neg": [
+    "第三种颜色、纯白文字、渐变彩虹、照片原色",
+    "a third color, pure white text, rainbow gradients, full-color photos"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #FF7A59; --a2: #FF7A59; --line: rgba(255,122,89,.45); --avb: #FF7A59; --avf: #2B1BD1; background: #2B1BD1; color: #FF7A59; font-family: "Helvetica Neue", "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 0; } .cta { border-color: #FF7A59; border-radius: 0; }
+.av { filter: none; box-shadow: 0 0 0 2px #FF7A59; } .me h1 { font-weight: 900; font-size: 28px; letter-spacing: -1px; }
+.posts h2 { opacity: 1; } .posts article { border-top: 1px solid rgba(255,122,89,.45); } .posts article:first-of-type { background: #FF7A59; color: #2B1BD1; margin: 0 -10px; padding-inline: 10px; }
+.posts article:first-of-type em, .posts article:first-of-type time { color: #2B1BD1; } .posts h3 { font-weight: 800; }
+.now { border-left-color: #FF7A59; } .now b { color: #FF7A59; }
+</style>

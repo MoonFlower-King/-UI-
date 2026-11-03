@@ -1,0 +1,6 @@
+/* 个人站版式「时间线」：文章挂在一条竖线上，每篇一个圆点，日期写在线的左边。适合日记、旅行、记录成长的风格。 */
+.posts article { position: relative; grid-template-columns: 48px minmax(0, 1fr); padding: 10px 0 14px 0; border: 0; }
+.posts article::before { content: ""; position: absolute; left: 58px; top: 0; bottom: 0; width: 1.5px; background: var(--line); }
+.posts article::after { content: ""; position: absolute; left: 54px; top: 15px; width: 9px; height: 9px; border-radius: 50%; background: var(--a); box-shadow: 0 0 0 3px color-mix(in srgb, var(--a) 18%, transparent); }
+.posts h3, .posts p, .posts em { grid-column: 2; padding-left: 26px; } .posts em { grid-row: auto; margin-top: 4px; }
+.posts time { text-align: right; padding-right: 2px; }

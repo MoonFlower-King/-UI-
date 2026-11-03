@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Doc Page",
+  "zh": "笔记文档页",
+  "alias": [
+    "文档风",
+    "笔记页",
+    "All-in-one 笔记"
+  ],
+  "lead": "把个人主页做成一页在线笔记：顶部一条封面色带、方形图标压在上面、灰色面包屑导航、带三角的折叠列表和提示框。亲切、整洁，适合爱整理的知识型博主。",
+  "prompt": "笔记文档页风格：白底 #FFFFFF、文字 #37352F，顶部一条 70px 高的柔和渐变封面（暖橙到粉 #F6D6B8→#F3C4CF），一个圆角方形图标一半压在封面上；导航像灰色面包屑；文章列表每条前面带 ▸ 折叠三角；标签是浅灰底小块；「此刻」做成浅黄 #FBF3DB 提示框；系统无衬线字体",
+  "promptEn": "doc-page style: white #FFFFFF with #37352F text; a soft 70px gradient cover across the top (warm orange to pink #F6D6B8→#F3C4CF) with a rounded-square icon half overlapping it; navigation like gray breadcrumbs; each post row prefixed with a ▸ toggle triangle; tags as small light-gray chips; the now section as a pale yellow #FBF3DB callout; system sans-serif",
+  "avoid": "笔记风的灵魂是「整齐的块」：每块左边缘对齐、间距一致；封面别用照片，色块或纹理就够，别做成某个笔记软件的截图。",
+  "neg": [
+    "复杂插画封面、深色背景、多种字体、照搬笔记软件界面",
+    "illustrated covers, dark backgrounds, mixed fonts, copying a specific notes app UI"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #37352F; --a2: #9B9A97; --line: #EDECE9; --avb: #FFF4E5; --avf: #E8A15C; background: linear-gradient(100deg, #F6D6B8, #F3C4CF) top / 100% 74px no-repeat, #fff; color: #37352F; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { color: #fff; } .nav nav { opacity: 1; } .logo i { display: none; } .cta { border-color: rgba(255,255,255,.7); }
+.me { grid-template-columns: 1fr; padding-top: 0; gap: 10px; } .av { width: 64px; border-radius: 12px; box-shadow: 0 0 0 4px #fff; margin-top: -4px; }
+.me h1 { font-size: 26px; } .hi { color: #9B9A97; letter-spacing: 0; } .tags span { border-radius: 4px; background: #F1F1EF; color: #5F5E5B; }
+.posts h2 { opacity: 1; color: #9B9A97; letter-spacing: 0; } .posts article { border: 0; padding: 6px 0; grid-template-columns: 14px 44px minmax(0,1fr) auto; }
+.posts article::before { content: "▸"; grid-row: span 2; color: #9B9A97; font-size: 11px; } .posts time { grid-column: 2; } .posts h3, .posts p { grid-column: 3; } .posts em { grid-column: 4; }
+.now { background: #FBF3DB; border-radius: 4px; } .now b { color: #37352F; } .now b::before { content: "● "; color: #E8A15C; }
+</style>

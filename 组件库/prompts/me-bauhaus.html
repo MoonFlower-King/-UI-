@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Bauhaus",
+  "zh": "包豪斯",
+  "alias": [
+    "Bauhaus",
+    "基础几何",
+    "三原色"
+  ],
+  "lead": "包豪斯的三原色和基础几何：红圆、黄三角、蓝方块组成大胆的构图，粗黑横线，无衬线大写字。理性又有力量，适合设计师、建筑师和艺术教育者。",
+  "prompt": "包豪斯风格：米白底 #F2EDE4、黑字 #1B1B1B；只用三原色——红 #D7263D、黄 #F4C430、蓝 #1E5AA8；刊头旁边用一个红圆、一个黄三角、一个蓝方块组成构图；分隔用粗黑横线和竖线；名字用几何无衬线、粗、字距略紧；头像外框是蓝色方块；不用渐变和圆角卡片",
+  "promptEn": "Bauhaus style: off-white #F2EDE4 with black #1B1B1B text; only the three primaries—red #D7263D, yellow #F4C430 and blue #1E5AA8; a composition of a red circle, a yellow triangle and a blue square next to the masthead; thick black horizontal and vertical rules as dividers; a bold, slightly tight geometric sans-serif name; a blue square frame around the avatar; no gradients or rounded cards",
+  "avoid": "三原色要成块地用，配大面积米白；几何图形要「纯」——正圆、正三角、正方形，别加阴影和描边花样。",
+  "neg": [
+    "渐变、柔和粉彩、手写字、复杂纹理",
+    "gradients, soft pastels, handwriting, complex textures"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #D7263D; --a2: #1E5AA8; --line: #1B1B1B; --avb: #1E5AA8; --avf: #F4C430; background: #F2EDE4; color: #1B1B1B; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: #D7263D; box-shadow: 14px 0 0 -1px #F4C430, 28px 0 0 -1px #1E5AA8; margin-right: 26px; } .cta { background: #1B1B1B; color: #F2EDE4; border: 0; border-radius: 0; }
+.me h1 { font-weight: 800; letter-spacing: -1px; border-bottom: 4px solid #1B1B1B !important; position: relative; }
+.me h1::after { content: ""; position: absolute; right: 0; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: #D7263D; }
+.me h1::before { content: ""; position: absolute; right: 54px; bottom: 10px; width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent; border-bottom: 40px solid #F4C430; }
+.av { border-radius: 0; box-shadow: 6px 6px 0 #D7263D; } .tags span { border-radius: 0; background: #1B1B1B; color: #F2EDE4; } .tags span:nth-child(2) { background: #1E5AA8; } .tags span:nth-child(3) { background: #D7263D; }
+.posts h2 { opacity: 1; color: #1E5AA8; font-weight: 800; } .posts article:first-of-type { border-top: 4px solid #1B1B1B; } .posts article:first-of-type h3 { font-weight: 800; }
+.posts article:nth-of-type(3) { border-left: 4px solid #1B1B1B !important; } .posts em { color: #D7263D; font-weight: 700; }
+.now { background: #F4C430; border-radius: 0; } .now b { color: #1B1B1B; }
+</style>

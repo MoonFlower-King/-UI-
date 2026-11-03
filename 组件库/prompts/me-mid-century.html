@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Mid-Century Modern",
+  "zh": "世纪中期",
+  "alias": [
+    "Mid-century",
+    "原子时代",
+    "五十年代"
+  ],
+  "lead": "五六十年代的「原子时代」设计：芥末黄、青绿、橘红的扁平几何、飞镖和星爆图形、细腿家具一样轻巧的线条。乐观、有设计感，适合家居、建筑和复古设计爱好者。",
+  "prompt": "世纪中期风格：暖白底 #F4EEDF、深炭灰字 #2E2B27；配色芥末黄 #E0A82E、青绿 #2A8C82、橘红 #D9572B、橄榄 #8C8B3A；装饰用扁平的回力镖形、星爆 ✳ 和细线放射图形；卡片封面是几块不规则几何色块叠放；标题用几何无衬线（Futura 一类）、正文常规；整体扁平无阴影",
+  "promptEn": "mid-century modern style: warm white #F4EEDF with deep charcoal #2E2B27 text; palette of mustard #E0A82E, teal #2A8C82, burnt orange #D9572B and olive #8C8B3A; decoration with flat boomerang shapes, starbursts ✳ and thin radiating lines; card covers built from overlapping irregular geometric color blocks; geometric sans-serif headings (Futura-like) with regular body; flat with no shadows",
+  "avoid": "几何装饰要「轻」，用细线和小块面；四种颜色都是偏旧的中间调，别换成高饱和的原色。",
+  "neg": [
+    "霓虹色、厚重阴影、写实照片、渐变",
+    "neon colors, heavy shadows, realistic photos, gradients"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #D9572B; --a2: #2A8C82; --line: #DED3BC; --avb: #2A8C82; --avf: #E0A82E; background: #F4EEDF; color: #2E2B27; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { position: relative; } .me::after { content: "✳"; position: absolute; right: 40px; top: 18px; font-size: 54px; color: #E0A82E; line-height: 1; }
+.me::before { content: ""; position: absolute; right: 96px; top: 14px; width: 70px; height: 30px; border-radius: 0 100% 0 100%; background: #2A8C82; transform: rotate(-20deg); opacity: .85; }
+.me h1 { font-weight: 500; letter-spacing: 2px; } .hi { color: #D9572B; text-transform: uppercase; letter-spacing: 3px; } .tags span { background: #8C8B3A; color: #F4EEDF; border-radius: 3px; }
+.av { border-radius: 50% 50% 50% 8%; } .cta { background: #2E2B27; color: #F4EEDF; border: 0; border-radius: 3px; }
+.posts article { background: #FBF7EC; border-color: #DED3BC; border-radius: 4px; }
+.posts article::before { opacity: 1 !important; background: radial-gradient(circle at 30% 60%, #E0A82E 0 22px, transparent 23px), linear-gradient(120deg, transparent 50%, #2A8C82 50%), #D9572B !important; }
+.posts article:nth-of-type(2)::before { background: radial-gradient(ellipse 40px 18px at 70% 40%, #D9572B 98%, transparent), linear-gradient(60deg, #8C8B3A 40%, transparent 40%), #E0A82E !important; }
+.posts article:nth-of-type(3)::before { background: radial-gradient(circle at 50% 120%, #2A8C82 0 40px, transparent 41px), #F4EEDF !important; box-shadow: inset 0 0 0 1px #DED3BC; }
+.posts em { color: #2A8C82; } .now { background: #E0A82E; border-radius: 4px; } .now b { color: #2E2B27; }
+</style>

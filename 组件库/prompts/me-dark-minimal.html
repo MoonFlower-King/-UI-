@@ -1,0 +1,25 @@
+<!--
+{
+  "en": "Dark Minimal",
+  "zh": "暗色极简",
+  "alias": [
+    "深色模式",
+    "Dark mode",
+    "暗黑极简"
+  ],
+  "lead": "深色底上的极简：近黑背景、柔和的浅灰字、一点冷蓝高光。晚上看不刺眼，显得专业又有点酷，适合开发者和夜猫子。",
+  "prompt": "暗色极简风格：近黑底 #0E0E10（不是纯黑）、主文字柔白 #EDEDED、次要文字灰 #8B8B93，唯一强调色是淡冷蓝 #8AB4FF，只用在链接和小标签上；分隔线用 8% 透明度的白；无衬线字体，字重常规；不发光、不加霓虹",
+  "promptEn": "dark minimal style: near-black #0E0E10 background (not pure black), soft white #EDEDED primary text and gray #8B8B93 secondary text; a pale cool blue #8AB4FF as the only accent, used just for links and small tags; dividers in 8% white; regular-weight sans-serif; no glow or neon",
+  "avoid": "深色底别用纯黑配纯白，对比太硬眼睛累；强调色要比浅色模式时更淡一点，否则在黑底上会刺眼。",
+  "neg": [
+    "纯黑底纯白字、霓虹发光、高饱和色块",
+    "pure black with pure white, neon glow, saturated color blocks"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #8AB4FF; --a2: #8B8B93; --line: rgba(255,255,255,.08); --avb: #1E1E24; --avf: #5A5A66; background: #0E0E10; color: #EDEDED; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta { border-color: rgba(255,255,255,.2); } .tags span { background: rgba(138,180,255,.12); }
+.posts em { color: #8AB4FF; } .now { background: #17171B; } .now b { color: #8AB4FF; }
+</style>

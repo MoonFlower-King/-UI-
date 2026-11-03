@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Filmmaker",
+  "zh": "导演",
+  "alias": [
+    "电影人",
+    "影视作品集",
+    "片单"
+  ],
+  "lead": "导演和剪辑师的主页：宽银幕比例的黑边、电影海报式的作品卡、片名下方一行像片尾字幕的职员表。有仪式感、电影感强，适合导演、剪辑、编剧和视频创作者。",
+  "prompt": "导演风格：纯黑底 #000、银白字 #E8E8E8；页面上下各一条宽银幕黑边（比例 2.39:1 的遮幅感）；作品卡是竖版电影海报——深色渐变画面、底部片名用窄体全大写、下面一行灰色小字职员表（如 DIRECTED BY 周小舟）；名字像片头字幕：小字「A FILM BY」+ 大字；强调色只有片场黄 #F2C14E 做小标签",
+  "promptEn": "filmmaker style: pure black #000 with silver-white #E8E8E8 text; a widescreen letterbox band across the top and bottom (2.39:1 feel); work cards are vertical film posters—dark gradient imagery with the title in condensed uppercase at the bottom and a gray credit line below (like DIRECTED BY ZHOU XIAOZHOU); the name like an opening title: small “A FILM BY” above large type; clapperboard yellow #F2C14E as the only accent for small tags",
+  "avoid": "海报卡要有统一的版式（片名位置、字体一致）；黄色只做标签，别把大面积底色换成黄。",
+  "neg": [
+    "白底、圆润可爱字体、彩虹配色、扁平卡通",
+    "white backgrounds, cute rounded fonts, rainbow palettes, flat cartoons"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #F2C14E; --a2: #8C8C8C; --line: rgba(255,255,255,.1); --avb: #1A1A1A; --avf: #555; background: #000; color: #E8E8E8; font-family: "Avenir Next Condensed", "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.blog::before, .blog::after { content: ""; position: absolute; left: 0; right: 0; height: 14px; background: #000; z-index: 3; box-shadow: 0 0 0 1px #111; } .blog::before { top: 0; } .blog::after { bottom: 0; }
+.nav { padding-top: 22px; text-transform: uppercase; letter-spacing: 3px; } .logo i { display: none; } .cta { border-color: #F2C14E; color: #F2C14E; border-radius: 0; }
+.hi { font-size: 0; } .hi::before { content: "A FILM BY"; font-size: 10px; letter-spacing: 6px; color: #8C8C8C; } .me h1 { text-transform: uppercase; letter-spacing: 8px; font-weight: 500; }
+.tags span { background: #F2C14E; color: #000; border-radius: 0; text-transform: uppercase; }
+.posts article { border: 0; border-radius: 0; background: #0F0F0F; text-align: center; }
+.posts article::before { height: 110px !important; opacity: 1 !important; background: radial-gradient(circle at 50% 30%, rgba(242,193,78,.35), transparent 40%), linear-gradient(#1C2B3A, #050505) !important; }
+.posts article:nth-of-type(2)::before { background: radial-gradient(circle at 30% 70%, rgba(196,70,60,.5), transparent 50%), linear-gradient(#2A1414, #050505) !important; } .posts article:nth-of-type(3)::before { background: radial-gradient(ellipse at 50% 100%, rgba(90,140,170,.5), transparent 60%), linear-gradient(#0E1A20, #050505) !important; }
+.posts h3 { text-transform: uppercase; letter-spacing: 2px; font-weight: 500; } .posts p { font-size: 0; } .posts p::before { content: "DIRECTED BY 周小舟"; font-size: 8.5px; letter-spacing: 2px; color: #8C8C8C; }
+.posts em { color: #F2C14E; } .now { background: #0F0F0F; border-radius: 0; } .now b { color: #F2C14E; }
+</style>

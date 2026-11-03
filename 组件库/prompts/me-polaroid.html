@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Polaroid Wall",
+  "zh": "拍立得墙",
+  "alias": [
+    "拍立得",
+    "照片墙",
+    "软木板"
+  ],
+  "lead": "像钉在软木板上的一墙拍立得：每个格子是白色厚底边的相纸，略微歪斜，有图钉，标题像用马克笔写在相纸下面。温暖、有回忆感，适合生活博主和旅行者。",
+  "prompt": "拍立得墙风格：软木板底（暖棕 #C69C6D 加细密斑点纹理）；头像、介绍、每篇文章都是一张拍立得——白色 #FFFDF8 相纸、底边比其他三边厚很多、轻微随机倾斜 ±3°、柔和投影；相纸上方中间有一颗红色 #D64545 图钉；照片区是暖色调色块；标题像马克笔手写（手写体），正文小号无衬线",
+  "promptEn": "polaroid wall style: a corkboard background (warm brown #C69C6D with a fine speckled texture); the avatar, bio and each post are Polaroids—white #FFFDF8 photo paper with a much thicker bottom border, a slight random tilt of ±3° and soft shadows; a red #D64545 pushpin at the top center of each; warm-toned blocks as the photo area; titles like marker handwriting with small sans-serif body",
+  "avoid": "每张倾斜角度要不一样但都很小；相纸一定是白的，照片区才放颜色，别把相纸也染色。",
+  "neg": [
+    "整齐网格无倾斜、深色霓虹、扁平图标、密集文字",
+    "perfectly aligned untitled grid, dark neon, flat icons, dense text"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #D64545; --a2: #8A6E4B; --avb: #F2C98A; --avf: #B5703A; background: radial-gradient(rgba(90,60,30,.25) 1px, transparent 1.5px) 0 0 / 6px 6px, radial-gradient(rgba(255,255,255,.15) 1px, transparent 1.5px) 3px 3px / 7px 7px, #C69C6D; color: #3A2E22; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { color: #FFFDF8; } .logo i { background: #D64545; } .cta { border-color: #FFFDF8; }
+.av, .intro, .posts article, .now { background: #FFFDF8 !important; border-radius: 2px !important; box-shadow: 0 6px 14px rgba(60,35,10,.3); position: relative; }
+.av { border: 8px solid #FFFDF8; border-bottom-width: 26px; background: radial-gradient(circle at 50% 40%, #B5703A 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #B5703A 0 97%, transparent 100%), #F2C98A !important; transform: rotate(-3deg); }
+.intro { transform: rotate(1.5deg); } .posts article { padding-bottom: 18px !important; } .posts article:nth-of-type(1) { transform: rotate(-2deg); } .posts article:nth-of-type(2) { transform: rotate(2.5deg); } .posts article:nth-of-type(3) { transform: rotate(-1deg); }
+.posts article::before { content: ""; height: 46px; margin: -4px -4px 4px; background: linear-gradient(150deg, #F2C98A, #D98E5F); border-radius: 1px; }
+.posts article:nth-of-type(2)::before { background: linear-gradient(150deg, #A8C8D8, #6E95A8); } .posts article:nth-of-type(3)::before { background: linear-gradient(150deg, #C7D9A8, #7F9E6B); }
+.intro::after, .posts article::after { content: ""; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F08A8A, #D64545 60%, #9E2B2B); box-shadow: 0 2px 2px rgba(0,0,0,.3); }
+.me h1, .posts h3 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; } .posts em { color: #D64545; } .ft { color: #FFFDF8; }
+</style>

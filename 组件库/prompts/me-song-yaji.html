@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Song Literati",
+  "zh": "宋式雅集",
+  "alias": [
+    "宋韵",
+    "文人雅集",
+    "宋代美学"
+  ],
+  "lead": "宋代文人的审美：素净的绢色、天青和赭石，细细的宋体，像一本刊印讲究的文集。克制、清雅，适合写诗词、书画、茶道的人。",
+  "prompt": "宋式雅集风格：素绢色底 #F2EDE2、墨色 #2E2B26，点缀天青 #8FB3B0 和赭石 #A0634A 两种淡色；全站宋体 / 仿宋，标题字距加宽；名字做成横跨的刊头，下压一粗一细两条墨线；分隔用淡淡的回纹细带；文章像文集目录，标签写成「〔诗〕」这样带括号；不用圆角和阴影",
+  "promptEn": "Song literati style: plain silk #F2EDE2 background with ink #2E2B26, accented by two pale tones—celadon #8FB3B0 and ochre #A0634A; Song / Fangsong type throughout with widely spaced headings; the name as a full-width masthead over a thick-and-thin pair of ink rules; dividers as a faint fret-pattern band; posts read like the contents of an anthology, tags bracketed like 〔poem〕; no rounded corners or shadows",
+  "avoid": "「雅」靠留白和细线，不靠堆花纹；颜色只用两种淡色点到为止，大红大金就成国潮了。",
+  "neg": [
+    "大红大金、霓虹色、粗黑无衬线、卡通图标",
+    "heavy red and gold, neon colors, bold sans-serif, cartoon icons"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #A0634A; --a2: #6F8E8B; --line: #D8CFBF; --avb: #E3E8E2; --avf: #8FB3B0; background: #F2EDE2; color: #2E2B26; font-family: "STSong", "Songti SC", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { border-radius: 0; background: #8FB3B0; } .cta { border-radius: 0; border-color: #A0634A; color: #A0634A; }
+.me h1 { font-weight: 400; letter-spacing: 16px; border-bottom: 1px solid #2E2B26 !important; box-shadow: 0 4px 0 -2px #F2EDE2, 0 5px 0 -2px #2E2B26; }
+.me { border-bottom: 0 !important; background: linear-gradient(90deg, #C8BCA8 50%, transparent 50%) bottom / 8px 1px repeat-x; padding-bottom: 14px; }
+.tags span { background: none; color: #6F8E8B; padding: 0; } .tags span::before { content: "〔"; } .tags span::after { content: "〕"; }
+.posts h2 { opacity: 1; letter-spacing: 8px; color: #A0634A; } .posts h3 { font-weight: 400; letter-spacing: 1px; } .posts em { color: #6F8E8B; } .posts em::before { content: "〔"; } .posts em::after { content: "〕"; }
+.now { background: none; border: 1px solid #D8CFBF; border-radius: 0; } .now b { color: #A0634A; }
+</style>

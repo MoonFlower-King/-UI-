@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Docs Site",
+  "zh": "文档站",
+  "alias": [
+    "技术文档",
+    "Docs",
+    "开发者文档"
+  ],
+  "lead": "把个人站做成一套干净的技术文档：左边是分组目录，右边是正文，标题带 # 锚点，「此刻」是蓝色提示框，代码片段用浅灰块。专业、好查找，适合写教程和开源项目的人。",
+  "prompt": "文档站风格：白底 #FFFFFF、正文 #1C1E21，左侧目录栏浅灰 #F7F8FA、当前项左边一条品牌色竖线 #2E7D6B 并加粗；标题旁边有浅色 # 锚点；正文行距 1.75；行内标签像代码一样用浅灰底 #F1F3F5 等宽字；「此刻」做成左边带色条的提示框（浅绿底 #E8F5F1）；系统无衬线字体",
+  "promptEn": "docs-site style: white #FFFFFF background with #1C1E21 body text; a light gray #F7F8FA table-of-contents sidebar on the left where the current item is bold with a brand-color #2E7D6B bar on its left; faint # anchor marks beside headings; 1.75 line height; inline tags styled like code on light gray #F1F3F5 in monospace; the now section as an admonition box with a colored left bar on pale green #E8F5F1; system sans-serif",
+  "avoid": "文档风重在「层级清楚」：目录、标题、正文三级字号拉开；提示框一页最多一两个，满屏提示就没人看了。",
+  "neg": [
+    "花哨插画、深色霓虹、大图首屏、手写字",
+    "whimsical illustrations, dark neon, big image heroes, handwriting"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #2E7D6B; --a2: #6B7280; --line: #E5E7EB; --avb: #E8F5F1; --avf: #2E7D6B; background: linear-gradient(90deg, #F7F8FA 178px, #fff 0); color: #1C1E21; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { border-right-color: #E5E7EB; } .av { width: 52px; border-radius: 10px; } .me h1 { font-size: 20px; }
+.tags { flex-direction: column; gap: 2px; } .tags span { background: none; color: #4B5563; padding: 3px 8px; border-radius: 0; font-size: 11.5px; } .tags span:first-child { color: #2E7D6B; font-weight: 700; box-shadow: inset 2px 0 #2E7D6B; }
+.cta { background: #2E7D6B; color: #fff; border: 0; border-radius: 6px; }
+.posts h2 { opacity: 1; color: #1C1E21; font-size: 18px; letter-spacing: 0; font-weight: 700; } .posts h2::after { content: " #"; color: #C7CDD4; }
+.posts article { border-top: 0; padding: 7px 0; } .posts h3 { color: #2E7D6B; } .posts em { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: #F1F3F5; color: #C0392B; padding: 0 5px; border-radius: 4px; }
+.now { background: #E8F5F1; border-left: 3px solid #2E7D6B; border-radius: 4px; } .now b::before { content: "ⓘ "; }
+</style>

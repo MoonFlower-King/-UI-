@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Fashion Editorial",
+  "zh": "时尚编辑",
+  "alias": [
+    "时装杂志",
+    "Editorial",
+    "高级时尚"
+  ],
+  "lead": "时装杂志的版面：超大的高对比衬线刊头、黑白分明、大量留白、偶尔一个斜体大字或竖排小标签。高级、有态度，适合时尚博主、造型师和模特。",
+  "prompt": "时尚编辑风格：纯白底 #FFFFFF、纯黑字 #000；名字是横跨整版的超大高对比衬线刊头（Didot / Bodoni 一类，粗细笔画对比强），字距紧、可以压到版边；招呼语用细小的全大写无衬线、字距很宽；头像是竖长的黑白人像，边缘无框；头条文章标题用大号斜体衬线；标签竖排或全大写小字；只用黑白，最多一点胭脂红 #C2185B",
+  "promptEn": "fashion editorial style: pure white #FFFFFF with pure black #000 text; the name as an oversized high-contrast serif masthead spanning the page (Didot / Bodoni-like with dramatic thick-thin strokes), tightly tracked and allowed to touch the margins; the greeting in tiny, widely tracked uppercase sans-serif; a tall black-and-white portrait as the avatar with no frame; the lead post title in large italic serif; tags set vertically or in tiny caps; black and white only, with at most a touch of rouge #C2185B",
+  "avoid": "刊头大而其他都小，对比越强越「时尚」；颜色坚持黑白，加多了就像购物网站。",
+  "neg": [
+    "圆角卡片、柔和渐变、卡通、多彩配色",
+    "rounded cards, soft gradients, cartoons, multicolor palettes"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #C2185B; --a2: #000; --line: #000; --avb: #E6E6E6; --avf: #222; background: #fff; color: #000; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { text-transform: uppercase; letter-spacing: 5px; font-size: 9.5px; } .logo i { display: none; } .cta { border: 0; border-bottom: 1px solid #000; border-radius: 0; padding: 0; }
+.me h1 { font-family: "Didot", "Bodoni 72", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 74px !important; font-weight: 400; letter-spacing: -3px; border-bottom: 0 !important; line-height: .9 !important; }
+.av { border-radius: 0; filter: grayscale(1) contrast(1.2); width: 64px; aspect-ratio: 3 / 4; }
+.bio { font-size: 11px; text-transform: none; } .tags span { background: none; color: #000; padding: 0; text-transform: uppercase; letter-spacing: 3px; font-size: 9px; } .tags span:first-child { color: #C2185B; }
+.posts h2 { opacity: 1; letter-spacing: 6px; text-transform: uppercase; font-size: 9.5px; } .posts article:first-of-type h3 { font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-style: italic; font-size: 30px; font-weight: 400; }
+.posts h3 { font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; } .posts em { text-transform: uppercase; letter-spacing: 2px; font-size: 9px; color: #C2185B; }
+.now { background: #000; color: #fff; border-radius: 0; } .now b { color: #fff; letter-spacing: 3px; }
+</style>

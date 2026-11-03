@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "VHS Tape",
+  "zh": "录像带",
+  "alias": [
+    "VHS",
+    "老录像",
+    "复古电视"
+  ],
+  "lead": "像在老电视上播放录像带：画面有横向扫描线和轻微的色彩错位、左上角是屏显的「▶ PLAY」和时间码，字体是像素感的白字。复古、有点诡秘，适合影视博主、vlog 和恐怖故事写手。",
+  "prompt": "录像带风格：深灰蓝底 #14161C，全屏叠横向扫描线（1px 深线 / 3px 间隔）和轻微暗角；文字是带红蓝色差错位的白色等宽字（红 #FF3B3B 向左、青 #2BE3FF 向右各偏 1px）；左上角屏显「▶ PLAY」，右上角时间码「SP 00:12:48」；偶尔一条横向噪点带缓缓滑过；没有圆角和卡片",
+  "promptEn": "VHS style: dark blue-gray #14161C with full-screen horizontal scanlines (1px dark line every 3px) and a slight vignette; white monospace text with red-cyan chromatic offset (red #FF3B3B shifted left and cyan #2BE3FF shifted right by 1px); an on-screen “▶ PLAY” at the top left and a “SP 00:12:48” timecode at the top right; an occasional horizontal noise band slowly drifting across; no rounded corners or cards",
+  "avoid": "色差错位只给标题，正文偏移会看不清；噪点带要慢、要淡，别做成一直闪的故障特效。",
+  "neg": [
+    "明亮白底、柔和粉彩、圆角卡片、衬线字",
+    "bright white backgrounds, soft pastels, rounded cards, serif type"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #2BE3FF; --a2: #9AA0AE; --line: rgba(255,255,255,.12); --avb: #2A2E3A; --avf: #9AA0AE; background: repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, #1E2230, #0B0C10 85%); color: #EDEFF5; font-family: "VT323", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.blog::after { content: ""; position: absolute; left: 0; right: 0; height: 26px; top: 40%; background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 2px, transparent 2px 5px); animation: me-band 6s linear infinite; pointer-events: none; }
+@keyframes me-band { from { top: -10%; } to { top: 110%; } }
+.nav { text-transform: uppercase; } .logo i { display: none; } .logo::before { content: "▶ PLAY  "; color: #fff; } .cta { border: 0; } .cta::before { content: "SP 00:12:48 "; color: #9AA0AE; }
+.av { border-radius: 0; filter: contrast(1.3) saturate(.6); }
+.me h1, .posts h3 { text-shadow: -1.5px 0 #FF3B3B, 1.5px 0 #2BE3FF; } .me h1 { letter-spacing: 2px; text-transform: uppercase; } .hi { color: #2BE3FF; }
+.tags span { background: none; border: 1px solid rgba(255,255,255,.4); color: #EDEFF5; border-radius: 0; }
+.posts h2 { opacity: 1; color: #9AA0AE; } .posts h2::before { content: "CH 03 · "; } .posts em { color: #FF3B3B; } .now { background: rgba(255,255,255,.05); border-radius: 0; } .now b { color: #2BE3FF; }
+</style>

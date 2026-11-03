@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Hairline",
+  "zh": "细线极简",
+  "alias": [
+    "细线",
+    "线框",
+    "Hairline"
+  ],
+  "lead": "只用最细的线和最细的字：0.5px 的分隔线、细体文字、线框头像，整页轻得像铅笔画的。精致、安静，适合建筑、产品设计、珠宝这类讲究细节的人。",
+  "prompt": "细线极简风格：白底 #FFFFFF、黑字 #1A1A1A，全站字重用细体（300），所有分隔线、边框都是 0.5px 的细线；头像只画线框不填色；按钮也是细线框；时间线的竖线和圆点同样极细；不用色块，唯一的颜色是很淡的灰 #BDBDBD",
+  "promptEn": "hairline style: white #FFFFFF background, black #1A1A1A text, light (300) weights everywhere, and every divider and border a 0.5px hairline; an outline-only avatar; outlined buttons; the timeline line and dots are just as thin; no filled blocks, the only extra color a pale gray #BDBDBD",
+  "avoid": "细线在低分辨率屏上可能看不见，最细用 0.5px 配深一点的颜色；细字别太小，11px 以下的细体很难读。",
+  "neg": [
+    "粗边框、填充色块、阴影、粗体大标题",
+    "heavy borders, filled color blocks, shadows, bold headlines"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #1A1A1A; --a2: #9A9A9A; --line: #BDBDBD; background: #fff; color: #1A1A1A; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.logo { font-weight: 300; } .logo i { background: none; border: .5px solid #1A1A1A; } .cta { border-width: .5px; }
+.av { background: none; border: .5px solid #1A1A1A; position: relative; } .av::after { content: ""; position: absolute; inset: 24% 34% 40%; border: .5px solid #1A1A1A; border-radius: 50%; }
+.me h1 { font-weight: 200; font-size: 34px; } .tags span { background: none; border: .5px solid #BDBDBD; color: #1A1A1A; }
+.posts h3 { font-weight: 300; } .posts article::before { width: .5px !important; background: #1A1A1A !important; }
+.posts article::after { background: #fff !important; border: .5px solid #1A1A1A; box-shadow: none !important; }
+.now { background: none; border: .5px solid #BDBDBD; border-radius: 0; } .now b { font-weight: 300; color: #1A1A1A; }
+</style>

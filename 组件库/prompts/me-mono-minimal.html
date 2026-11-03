@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Monospace Minimal",
+  "zh": "等宽极简",
+  "alias": [
+    "等宽字",
+    "代码字体",
+    "Mono"
+  ],
+  "lead": "全站一种等宽字体、几乎没有颜色，像一份排得很整齐的文本文件。克制、理性、有程序员气质，又不像终端那么「黑客」。",
+  "prompt": "等宽极简风格：浅灰白底 #F6F6F4、深灰字 #2B2B2B，全站只用一种等宽字体（JetBrains Mono / SF Mono 一类）、字号统一偏小；标签写成 [设计] 这样带方括号；日期用 2026-11-02 完整格式；分隔用虚线；唯一的颜色是链接下的一条灰绿 #5E7B6A 下划线",
+  "promptEn": "monospace minimal style: light gray #F6F6F4 background with dark gray #2B2B2B text, one monospace face (JetBrains Mono / SF Mono-like) everywhere at a small uniform size; tags written in square brackets like [design]; full dates such as 2026-11-02; dashed dividers; the only color is a gray-green #5E7B6A underline on links",
+  "avoid": "等宽字很占宽度，正文要比平时再小一号、行宽要短；别再加终端的黑底绿字，那是另一种风格。",
+  "neg": [
+    "黑底绿字终端、霓虹发光、多种字体混排",
+    "black-and-green terminal look, neon glow, mixed typefaces"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #5E7B6A; --a2: #8C8C88; --line: #CFCFCA; --avb: #E4E4E0; --avf: #9A9A94; background: #F6F6F4; color: #2B2B2B; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo { font-weight: 500; font-size: 13px; } .logo i { display: none; } .logo::before { content: "~/"; color: #8C8C88; }
+.nav nav a { text-decoration: underline; text-decoration-color: #5E7B6A; text-underline-offset: 3px; } .cta { border: 0; } .cta::before { content: "→ "; }
+.av { border-radius: 4px; } .me h1 { font-weight: 500; } .posts h2::before { content: "## "; }
+.posts time::before { content: "2026-"; } .posts article { grid-template-columns: 86px minmax(0, 1fr) auto; } .posts time { font-size: 10.5px; }
+.posts em::before { content: "["; } .posts em::after { content: "]"; } .posts em { color: #5E7B6A; }
+.now { border-left-style: dashed; } .ft::before { content: "-- "; }
+</style>

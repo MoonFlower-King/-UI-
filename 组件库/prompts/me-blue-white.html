@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Blue & White",
+  "zh": "青花",
+  "alias": [
+    "青花瓷",
+    "钴蓝",
+    "瓷器纹样"
+  ],
+  "lead": "像一件青花瓷：白瓷底上钴蓝色的缠枝纹、回纹边，蓝色由深到浅分几层。清爽、典雅，适合陶瓷、文博、传统手艺相关的个人站。",
+  "prompt": "青花风格：白瓷底 #F7F9FB、钴蓝主色 #1F4FA0，再配两档浅蓝 #6C8FC7 / #C9D8EE；文章卡片顶部是钴蓝缠枝纹 / 卷草纹图案的封面（用蓝白小圆弧拼成），卡片边框是一圈细回纹带；头像是蓝圈白底；字体宋体标题 + 无衬线正文；全站只有蓝和白",
+  "promptEn": "blue-and-white porcelain style: porcelain white #F7F9FB with cobalt #1F4FA0 as the main color plus two lighter blues #6C8FC7 / #C9D8EE; post cards topped with cobalt scrolling-vine patterns (built from small blue and white arcs), framed by a thin fret band; a blue-ringed white avatar; Song headings with sans-serif body; nothing but blue and white",
+  "avoid": "花纹只放在封面和边带上，正文区保持纯白；别加金色和红色，青花的魅力就是只有一种蓝。",
+  "neg": [
+    "金色描边、大红、渐变彩虹、深色背景",
+    "gold outlines, bright red, rainbow gradients, dark backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #1F4FA0; --a2: #6C8FC7; --line: #C9D8EE; --avb: #fff; --avf: #1F4FA0; background: #F7F9FB; color: #1C2B45; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me h1, .posts h2, .logo { font-family: "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .me h1 { color: #1F4FA0; font-weight: 400; letter-spacing: 6px; }
+.av { box-shadow: 0 0 0 3px #1F4FA0, 0 0 0 6px #F7F9FB, 0 0 0 7px #6C8FC7; } .cta { background: #1F4FA0; color: #fff; border: 0; } .tags span { background: #E4ECF8; }
+.posts article { background: #fff; border: 1px solid #C9D8EE; border-radius: 6px; box-shadow: inset 0 -4px 0 #fff, inset 0 -5px 0 #C9D8EE; }
+.posts article::before { opacity: 1 !important; background: radial-gradient(circle at 0 100%, transparent 7px, #1F4FA0 7.5px 9px, transparent 9.5px) 0 0 / 18px 18px, radial-gradient(circle at 100% 0, transparent 7px, #6C8FC7 7.5px 9px, transparent 9.5px) 9px 9px / 18px 18px, #fff !important; border-bottom: 3px double #1F4FA0; }
+.posts h3 { color: #1F4FA0; } .posts em { color: #6C8FC7; } .now { background: #E4ECF8; } .now b { color: #1F4FA0; }
+</style>

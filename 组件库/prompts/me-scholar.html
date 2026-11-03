@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Academic Scholar",
+  "zh": "学者主页",
+  "alias": [
+    "学术主页",
+    "论文列表",
+    "教授主页"
+  ],
+  "lead": "经典的学术个人主页：衬线字、蓝色链接、按年份排列的论文列表，每条带 [PDF] [BibTeX] 小链接。朴素、可信、信息密度高，适合研究生、教授和科研人员。",
+  "prompt": "学者主页风格：白底 #FFFFFF、深灰字 #222；衬线正文（Georgia / 宋体），标题无衬线；名字下面一行职位和单位（如「江边大学 · 交互设计研究组」）；文章是论文列表——标题蓝色 #1A0DAB、后面跟小号方括号链接 [PDF] [BibTeX] [Code]；日期写成年份，按时间倒序；最多一种强调色：大学红 #9B1C1C 做小标题；没有图片装饰",
+  "promptEn": "academic scholar style: white #FFFFFF with dark gray #222 text; serif body (Georgia / Song) with sans-serif headings; a line under the name with position and affiliation (like “Riverside University · Interaction Design Lab”); posts as a publication list—titles in blue #1A0DAB followed by small bracketed links [PDF] [BibTeX] [Code]; dates as years in reverse chronological order; at most one accent—university red #9B1C1C for small headings; no decorative images",
+  "avoid": "学术主页重在「好找」：列表要整齐、年份要醒目；别为了好看把信息藏进卡片和动画里。",
+  "neg": [
+    "大图首屏、渐变背景、卡片阴影、动效",
+    "big hero images, gradient backgrounds, card shadows, animations"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #9B1C1C; --a2: #555; --line: #E5E5E5; --avb: #EEE; --avf: #999; background: #fff; color: #222; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; } .logo i { display: none; } .nav nav a { color: #1A0DAB; } .cta { border: 0; color: #1A0DAB; text-decoration: underline; padding: 0; }
+.av { border-radius: 4px; } .me h1 { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 22px; } .bio::after { content: "江边大学 · 交互设计研究组"; display: block; color: #555; font-size: 11px; font-style: italic; }
+.posts h2 { opacity: 1; color: #9B1C1C; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 0; font-size: 13px; font-weight: 700; } .posts h2::after { content: " · Publications"; color: #555; font-weight: 400; }
+.posts article { border-top: 0; grid-template-columns: 92px minmax(0, 1fr) auto; } .posts time { font-weight: 700; } .posts time::before { content: "2026 · "; }
+.posts h3 { color: #1A0DAB; font-weight: 400; } .posts em { font-size: 0; } .posts em::before { content: "[PDF] [BibTeX]"; font-size: 10px; color: #555; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.now { border-left-color: #9B1C1C; } .now b { color: #9B1C1C; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+</style>

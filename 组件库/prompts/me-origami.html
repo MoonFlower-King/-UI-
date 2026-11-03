@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Origami Paper",
+  "zh": "折纸",
+  "alias": [
+    "纸艺",
+    "折痕",
+    "彩色卡纸"
+  ],
+  "lead": "用彩色卡纸折出来的页面：每块内容是一张有对角折痕的纸，一半亮一半暗，角上折起一个小三角。手作、明快，适合儿童教育、手作人和设计学生。",
+  "prompt": "折纸风格：浅灰白底 #F2F1EE；每块卡片是一张纯色卡纸（珊瑚 #F26B5B、天蓝 #4BA3D9、明黄 #F7C548、草绿 #6BBF8A），用一条对角线把卡片分成亮暗两半（暗的一半深 8% 左右，表现折痕）；右上角折起一个小三角露出背面浅色；头像是折出来的几何小人；字体圆润几何无衬线、白字",
+  "promptEn": "origami style: light gray-white #F2F1EE background; each card is a sheet of solid colored paper (coral #F26B5B, sky blue #4BA3D9, sunny yellow #F7C548, grass green #6BBF8A) split by a diagonal crease into a lighter and a darker half (about 8% darker); a small folded-up triangle at the top-right corner showing a pale reverse side; a folded geometric figure as the avatar; rounded geometric sans-serif in white",
+  "avoid": "折痕的明暗差要小，太大就像两块不同颜色；黄色卡纸上的文字要用深色，白字看不清。",
+  "neg": [
+    "写实纸张照片、复杂纹理、细衬线、暗色背景",
+    "realistic paper photos, complex textures, thin serifs, dark backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #F26B5B; --a2: #4BA3D9; --avb: #F7C548; --avf: #F26B5B; background: #F2F1EE; color: #2E2E2E; font-family: "Avenir Next Rounded", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.av { border-radius: 4px; background: linear-gradient(135deg, #F7C548 50%, #E2B23C 50%); position: relative; } .av::after { content: ""; position: absolute; inset: 22% 26% 18%; background: linear-gradient(135deg, #F26B5B 50%, #DE5A4A 50%); clip-path: polygon(50% 0, 100% 45%, 75% 100%, 25% 100%, 0 45%); }
+.cta { background: #4BA3D9; color: #fff; border: 0; border-radius: 4px; } .tags span { background: #fff; color: #F26B5B; border-radius: 4px; }
+.posts article { border: 0; border-radius: 4px; color: #fff; background: linear-gradient(135deg, #F26B5B 50%, #E05E4E 50%); position: relative; padding-top: 12px; }
+.posts article::before { display: none; } .posts article::after { content: ""; position: absolute; right: 0; top: 0; width: 22px; height: 22px; background: linear-gradient(225deg, #F2F1EE 50%, #FDE3DE 50%); box-shadow: -2px 2px 3px rgba(0,0,0,.12); }
+.posts article:nth-of-type(2) { background: linear-gradient(135deg, #4BA3D9 50%, #3E94C9 50%); } .posts article:nth-of-type(3) { background: linear-gradient(135deg, #F7C548 50%, #E8B73A 50%); color: #3A2E10; }
+.posts em { color: inherit; opacity: .85; } .now { background: linear-gradient(135deg, #6BBF8A 50%, #5DB07B 50%); color: #fff; border-radius: 4px; } .now b { color: #fff; }
+</style>

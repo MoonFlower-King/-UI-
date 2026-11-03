@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Houseplants",
+  "zh": "绿植之家",
+  "alias": [
+    "室内植物",
+    "陶盆",
+    "城市丛林"
+  ],
+  "lead": "阳台和窗台上的一屋子绿植：陶土盆的砖橙、各种深浅的叶绿、白墙和原木架。清新、有生命力，适合植物博主、家居和室内设计爱好者。",
+  "prompt": "绿植之家风格：白墙底 #F7F5F0、深叶绿字 #1F3B2C；配色陶土橙 #C8704A、龟背竹深绿 #2F6B45、嫩芽绿 #9CC36B、原木 #C9A47A；名字做成杂志刊头，下面一条原木色粗线（像置物架）；头像是一盆植物（陶盆 + 几片叶子剪影）；第一篇文章做大头条，左边一块深绿叶片形状色块；标签是陶土色小圆牌",
+  "promptEn": "houseplant style: white-wall #F7F5F0 background with deep leaf-green #1F3B2C text; palette of terracotta #C8704A, monstera green #2F6B45, sprout green #9CC36B and natural wood #C9A47A; the name as a magazine masthead over a thick wood-colored rule like a shelf; the avatar is a potted plant (a terracotta pot with a few leaf silhouettes); the lead post has a deep green leaf-shaped block on the left; tags as small terracotta round labels",
+  "avoid": "绿色分深浅三档就够；陶土橙是点缀，大面积用会抢掉植物的主角位置。",
+  "neg": [
+    "霓虹、冷灰科技、复杂纹理照片、深色背景",
+    "neon, cold techy grays, busy photo textures, dark backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #2F6B45; --a2: #C8704A; --line: rgba(31,59,44,.15); background: #F7F5F0; color: #1F3B2C; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me h1 { font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 700; border-bottom: 6px solid #C9A47A !important; color: #2F6B45; }
+.av { background: linear-gradient(#C8704A, #A9583A) 50% 100% / 46% 36% no-repeat, radial-gradient(ellipse 18% 30% at 34% 40%, #2F6B45 96%, transparent), radial-gradient(ellipse 18% 30% at 66% 38%, #2F6B45 96%, transparent), radial-gradient(ellipse 14% 30% at 50% 30%, #9CC36B 96%, transparent), #EEF1E6 !important; border-radius: 12px; }
+.tags span { background: #C8704A; color: #F7F5F0; } .cta { background: #2F6B45; color: #fff; border: 0; } .logo i { background: #9CC36B; border-radius: 0 50% 0 50%; }
+.posts h2 { opacity: 1; color: #C8704A; } .posts article:first-of-type { position: relative; padding-left: 64px !important; } .posts article:first-of-type::before { content: ""; position: absolute; left: 0; top: 14px; width: 50px; height: 60px; background: #2F6B45; border-radius: 0 100% 0 100%; }
+.posts em { color: #2F6B45; } .now { background: #EEF1E6; } .now b { color: #C8704A; }
+</style>

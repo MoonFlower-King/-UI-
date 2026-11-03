@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Pencil Sketchbook",
+  "zh": "铅笔速写本",
+  "alias": [
+    "素描本",
+    "铅笔",
+    "草图风"
+  ],
+  "lead": "像一本铅笔速写本：灰白纸、石墨灰的线条、边框是手抖的双线、头像是速写人像。随性、有创作现场感，适合插画师、设计学生和建筑速写爱好者。",
+  "prompt": "铅笔速写本风格：素描纸灰白底 #F5F4F0、石墨灰字 #4A4A48；所有边框像铅笔画的——两条略错开、略带抖动的细灰线；头像用细线勾的速写人像；标题用手写体，正文用细无衬线；强调只用一种淡淡的蓝铅笔 #6E8CB0 做批注和下划线；侧栏像速写本的硬封面边条",
+  "promptEn": "pencil sketchbook style: sketch-paper gray-white #F5F4F0 with graphite #4A4A48 text; every border looks penciled—two slightly offset, slightly wobbly thin gray lines; a fine-line sketched portrait as the avatar; handwritten headings with light sans-serif body; the only accent a faint blue pencil #6E8CB0 for notes and underlines; the sidebar like the hard-cover edge of a sketchbook",
+  "avoid": "铅笔线要淡、要细，太深就像钢笔；抖动幅度很小，看起来手绘但不能歪到影响阅读。",
+  "neg": [
+    "彩色填充、粗黑边框、渐变、照片",
+    "colorful fills, heavy black borders, gradients, photos"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #6E8CB0; --a2: #8A8A86; --line: rgba(74,74,72,.3); background: linear-gradient(90deg, #E8E6DF 178px, #F5F4F0 0); color: #4A4A48; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.me { border-right: 0; box-shadow: inset -1px 0 rgba(74,74,72,.35), inset -4px 0 rgba(74,74,72,.12); }
+.av { background: radial-gradient(circle at 50% 40%, transparent 16%, rgba(74,74,72,.7) 17%, transparent 18.5%), radial-gradient(ellipse 34% 28% at 50% 96%, transparent 94%, rgba(74,74,72,.7) 96%, transparent 99%), #F5F4F0; box-shadow: 0 0 0 1px rgba(74,74,72,.4), 2px 1px 0 1px rgba(74,74,72,.15); }
+.me h1, .posts h2, .logo { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; } .logo i { background: none; border: 1px solid #4A4A48; }
+.tags span { background: none; border: 1px solid rgba(74,74,72,.35); box-shadow: 1px 1px 0 rgba(74,74,72,.15); color: #4A4A48; border-radius: 4px 9px 5px 8px; }
+.cta { border-color: rgba(74,74,72,.5); box-shadow: 1px -1px 0 rgba(74,74,72,.2); border-radius: 12px 6px 14px 8px; }
+.posts h2 { opacity: 1; font-size: 15px; letter-spacing: 0; } .posts h3 { font-weight: 400; text-decoration: underline wavy rgba(110,140,176,.6); text-underline-offset: 4px; } .posts article { border-top: 1px solid rgba(74,74,72,.25); box-shadow: 0 -2px 0 -1px rgba(74,74,72,.1); }
+.now { background: none; border: 1px solid rgba(74,74,72,.35); box-shadow: 2px 2px 0 -1px rgba(74,74,72,.15); border-radius: 10px 4px 12px 6px; } .now b { color: #6E8CB0; }
+</style>

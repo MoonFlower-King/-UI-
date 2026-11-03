@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Chef",
+  "zh": "厨师",
+  "alias": [
+    "主厨主页",
+    "料理",
+    "餐厅"
+  ],
+  "lead": "主厨的个人主页：像一张高级餐厅的菜单卡和厨房便签——深墨绿和奶油色、细细的金色分隔线、手写的「今日推荐」。讲究、有温度，适合厨师、美食写作者和私厨。",
+  "prompt": "厨师风格：奶油底 #F6EFE3、深墨绿 #1F3A30 格子、黄铜金 #B8924A 细线；头像格是深墨绿底上的一顶简笔厨师帽；名字格是奶油底、经典衬线大字；文章格像菜单卡——上方小号全大写的「APPETIZER / MAIN / DESSERT」、中间菜名（文章标题）、下方一行斜体描述；「此刻」做成手写的「今日推荐」便签；整体格子化",
+  "promptEn": "chef style: cream #F6EFE3 background with deep forest-green #1F3A30 tiles and brass gold #B8924A hairlines; the avatar tile shows a simple chef’s hat on deep green; the name tile is cream with a large classic serif name; post tiles read like menu cards—a small uppercase course label at the top (APPETIZER / MAIN / DESSERT), the dish name (post title) in the middle and an italic description below; the now section as a handwritten “today’s special” note; a tiled layout overall",
+  "avoid": "金线只做分隔和边框，越细越高级；菜单的小标题（前菜 / 主菜）要统一格式。",
+  "neg": [
+    "快餐店红黄、卡通食物、霓虹、粗野黑框",
+    "fast-food red and yellow, cartoon food, neon, brutalist black frames"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #B8924A; --a2: #1F3A30; --avb: #1F3A30; --avf: #F6EFE3; background: #F6EFE3; color: #1F3A30; font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.av, .intro, .posts article, .now { border-radius: 4px !important; box-shadow: inset 0 0 0 1px #B8924A, inset 0 0 0 4px transparent, inset 0 0 0 5px rgba(184,146,74,.5); }
+.av { background: radial-gradient(circle at 36% 40%, #F6EFE3 0 13%, transparent 13.5%), radial-gradient(circle at 64% 40%, #F6EFE3 0 13%, transparent 13.5%), radial-gradient(circle at 50% 32%, #F6EFE3 0 16%, transparent 16.5%), linear-gradient(#F6EFE3, #F6EFE3) 50% 62% / 34% 16% no-repeat, #1F3A30 !important; }
+.intro { background: #F6EFE3 !important; } .me h1 { font-weight: 400; letter-spacing: 4px; } .hi { font-style: italic; color: #B8924A; } .tags span { background: none; color: #1F3A30; border: 1px solid #B8924A; border-radius: 0; }
+.posts article { background: #1F3A30 !important; color: #F6EFE3; text-align: center; align-items: center !important; } .posts article::before { content: "APPETIZER"; font: 9px -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 3px; color: #B8924A; }
+.posts article:nth-of-type(2)::before { content: "MAIN"; } .posts article:nth-of-type(3)::before { content: "DESSERT"; } .posts h3 { font-weight: 400; } .posts p { font-style: italic; } .posts em { color: #B8924A; margin-top: 4px; }
+.now { background: #FFF9EC !important; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .now b { color: #B8924A; } .now b::after { content: " · 今日推荐"; }
+.cta { background: #1F3A30; color: #F6EFE3; border: 0; border-radius: 2px; } .logo i { background: #B8924A; }
+</style>

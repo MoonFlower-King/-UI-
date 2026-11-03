@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Moon over River",
+  "zh": "江月夜",
+  "alias": [
+    "江上明月",
+    "夜江",
+    "月光"
+  ],
+  "lead": "夜色江面上升起一轮暖金的月亮，水面拖着长长的倒影。安静、温柔，适合夜里写字的人，也是本站「江上明月」的主题色。",
+  "prompt": "江月夜风格：深夜蓝底 #0F1724，向下渐变到更深的江面 #0A1019；头像是一轮暖金月亮 #FFD58A（外有柔和光晕），正下方拖一条由横线组成的金色月影倒影；文字月白 #EDE9E2、次要文字灰蓝 #8C96A8；强调色江月橘 #FA8C16 只用在按钮和小标签上；名字用宋体类衬线；全部居中",
+  "promptEn": "moon-over-river style: deep night blue #0F1724 fading downward to a darker river #0A1019; the avatar is a warm gold moon #FFD58A with a soft halo, with a golden reflection of short horizontal strokes trailing straight below it; moon-white #EDE9E2 text with gray-blue #8C96A8 secondary text; river orange #FA8C16 accent only on buttons and small tags; a Song-style serif name; everything centered",
+  "avoid": "月亮的光晕要柔，不要做成霓虹发光；橘色只是点缀，金色和橘色别大面积同时出现。",
+  "neg": [
+    "亮白底、霓虹发光、彩虹色、卡通月亮表情",
+    "bright white backgrounds, neon glow, rainbow colors, cartoon moon faces"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #FA8C16; --a2: #8C96A8; --line: rgba(237,233,226,.1); background: linear-gradient(#0F1724, #0A1019); color: #EDE9E2; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.av { background: radial-gradient(circle at 42% 40%, #FFE6B0, #FFD58A 55%, #F2BE62); box-shadow: 0 0 30px 8px rgba(255,213,138,.28); width: 78px; margin-top: 6px; }
+.me { position: relative; } .me::before { content: ""; position: absolute; top: 112px; left: 50%; width: 70px; height: 70px; translate: -50% 0; background: repeating-linear-gradient(180deg, rgba(255,213,138,.5) 0 2px, transparent 2px 7px); -webkit-mask: linear-gradient(#000, transparent), radial-gradient(closest-side, #000, transparent); -webkit-mask-composite: source-in; opacity: .7; }
+.intro { position: relative; } .me h1 { font-family: "Songti SC", "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; letter-spacing: 6px; color: #F5EDDC; }
+.hi { color: #FFD58A; } .tags span { background: rgba(250,140,22,.14); color: #FFB65C; } .cta { background: #FA8C16; color: #231405; border: 0; }
+.posts h3 { font-family: "Songti SC", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; } .posts em { color: #FFB65C; } .now { background: rgba(255,213,138,.07); } .now b { color: #FFD58A; }
+</style>

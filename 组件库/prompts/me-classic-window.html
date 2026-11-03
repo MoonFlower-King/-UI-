@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Classic Desktop Window",
+  "zh": "老式窗口",
+  "alias": [
+    "经典桌面",
+    "复古操作系统",
+    "灰色窗口"
+  ],
+  "lead": "每块内容都是一个老式桌面系统的灰色窗口：蓝色渐变标题栏、右上角三个小按钮、立体凸起的边框。怀旧、好玩，适合程序员、复古数码收藏者。",
+  "prompt": "老式窗口风格：青绿色桌面底 #008080；每块内容是一个银灰 #C0C0C0 窗口——上方深蓝到浅蓝渐变的标题栏 #000080→#1084D0，白色粗体标题，右上角三个灰色方按钮（_ □ ×）；边框用左上亮、右下暗的立体凸起效果；按钮同样是凸起灰按钮；字体用像素感的无衬线（Tahoma / 宋体 12px）",
+  "promptEn": "classic desktop window style: a teal desktop #008080; each block is a silver #C0C0C0 window—a dark-to-light blue gradient title bar #000080→#1084D0 with a bold white title and three gray square buttons (_ □ ×) at the top right; raised 3D borders lit at the top-left and shaded at the bottom-right; buttons are the same raised gray; pixel-like sans-serif (Tahoma / 12px)",
+  "avoid": "立体边框要用两种灰（亮边白、暗边深灰）才像；别照搬某个系统的图标和开始按钮商标。",
+  "neg": [
+    "圆角、玻璃、阴影、扁平现代按钮、具体系统商标",
+    "rounded corners, glass, soft shadows, flat modern buttons, specific OS trademarks"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #000080; --a2: #808080; --avb: #fff; --avf: #000080; background: #008080; color: #000; font-family: Tahoma, "SimSun", -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 12px; }
+.nav { color: #fff; } .logo i { border-radius: 0; background: #C0C0C0; box-shadow: inset -1px -1px #000, inset 1px 1px #fff; } .cta { background: #C0C0C0; color: #000; border: 0; border-radius: 0; box-shadow: inset -1px -1px #000, inset 1px 1px #fff, inset -2px -2px #808080; }
+.av, .intro, .posts article, .now { position: relative; background: #C0C0C0 !important; border-radius: 0 !important; box-shadow: inset -1px -1px #000, inset 1px 1px #DFDFDF, inset -2px -2px #808080, inset 2px 2px #fff; padding-top: 30px !important; }
+.av { background: radial-gradient(circle at 50% 52%, #000080 0 14%, transparent 14.5%), radial-gradient(ellipse 30% 24% at 50% 98%, #000080 0 97%, transparent 100%), #fff !important; }
+.intro::before, .posts article::before, .now::before { content: "关于我.txt"; position: absolute; top: 3px; left: 3px; right: 3px; height: 18px; padding: 0 4px; font: 700 11px/18px Tahoma, -apple-system, "Inter", "PingFang SC", sans-serif; color: #fff; background: linear-gradient(90deg, #000080, #1084D0); }
+.posts article::before { content: "文章.txt"; } .now::before { content: "此刻.txt"; }
+.intro::after, .posts article::after, .now::after { content: "_ □ ×"; position: absolute; top: 5px; right: 6px; font: 10px/14px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #000; background: #C0C0C0; padding: 0 3px; letter-spacing: 3px; }
+.me h1 { font-size: 22px; } .hi { color: #000080; } .tags span { background: #fff; color: #000; border-radius: 0; box-shadow: inset 1px 1px #808080; }
+.posts em { color: #000080; } .ft { color: #fff; }
+</style>

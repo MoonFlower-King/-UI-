@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Novelist",
+  "zh": "作家",
+  "alias": [
+    "小说家",
+    "作者主页",
+    "书封"
+  ],
+  "lead": "作家的个人主页：头像像一本书的作者照、名字是印在书封上的大字，文章像书的章节，配一句引言。文学、有分量，适合小说家、非虚构作者和译者。",
+  "prompt": "作家风格：暖象牙底 #F7F1E7、深墨字 #26211C；头像做成书封的作者照（黑白、细框）；名字大号经典衬线（Garamond / 宋体）、字距宽，下面一行小号斜体引言（如「写给在夜里醒着的人」）；文章标题前标「第一章 / 第二章」；分隔是居中的三个小星号 * * *；唯一的颜色是深酒红 #6E1F2A 的章节号",
+  "promptEn": "novelist style: warm ivory #F7F1E7 with deep ink #26211C text; the avatar as a jacket author photo (black-and-white with a thin frame); the name in large classic serif (Garamond / Song) with wide tracking, followed by a small italic epigraph (like “for those awake at night”); post titles prefixed with “Chapter One / Chapter Two”; centered dividers of three small asterisks * * *; the only color is a deep claret #6E1F2A for chapter numbers",
+  "avoid": "「文学感」靠字体和留白，不靠装饰；引言只有一句，别把介绍写成长段。",
+  "neg": [
+    "无衬线科技字、彩色卡片、图标、霓虹",
+    "techy sans-serif, colorful cards, icons, neon"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #6E1F2A; --a2: #8A7F72; --line: transparent; --avb: #DCD5CB; --avf: #6E665C; background: #F7F1E7; color: #26211C; font-family: "Garamond", "Baskerville", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { display: none; } .cta { border: 0; border-bottom: 1px solid #26211C; border-radius: 0; padding: 0 0 2px; }
+.av { border-radius: 2px; filter: grayscale(1); box-shadow: 0 0 0 4px #F7F1E7, 0 0 0 5px #26211C; width: 80px; aspect-ratio: 4 / 5; }
+.me h1 { font-weight: 400; font-size: 34px; letter-spacing: 10px; } .hi { font-style: italic; } .bio::after { content: "“写给在夜里醒着的人。”"; display: block; margin-top: 6px; font-style: italic; color: #6E1F2A; }
+.tags span { background: none; color: #8A7F72; font-style: italic; }
+.posts h2 { opacity: 1; letter-spacing: 0; font-size: 14px; } .posts h2::before { content: "* * *"; display: block; margin-bottom: 8px; color: #8A7F72; }
+.posts h3 { font-weight: 400; font-size: 16px; } .posts time { color: #6E1F2A; opacity: 1; font-style: italic; } .posts article:nth-of-type(1) time::before { content: "第一章 · "; } .posts article:nth-of-type(2) time::before { content: "第二章 · "; } .posts article:nth-of-type(3) time::before { content: "第三章 · "; }
+.posts em { display: none; } .now { background: none; font-style: italic; } .now b { color: #6E1F2A; }
+</style>

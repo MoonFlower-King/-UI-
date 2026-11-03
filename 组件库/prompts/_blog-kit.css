@@ -1,0 +1,22 @@
+/* 个人网站的通用骨架：词条在元信息里写 "kit": "blog-kit" 就会先套上这一层，再叠自己的样式。
+   默认排法：头像在左、介绍在右，文章是一行一篇的列表。
+   配色用 CSS 变量：--a 主色、--a2 辅色、--on 主色上的文字色、--avb 头像底色、--avf 头像人像色。 */
+.blog { --a: #FA8C16; --a2: #8A8F98; --on: #fff; --avb: color-mix(in srgb, var(--a) 22%, #fff); --avf: var(--a); --line: color-mix(in srgb, currentColor 14%, transparent); }
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 26px; font-size: 12px; }
+.logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; } .logo i { width: 12px; height: 12px; border-radius: 50%; background: var(--a); }
+.nav nav { display: flex; gap: 18px; opacity: .8; } .cta { padding: 4px 12px; border: 1px solid currentColor; border-radius: 99px; }
+.me { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 20px; align-items: center; padding: 20px 26px 26px; }
+.av { width: 84px; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, var(--avf) 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, var(--avf) 0 97%, transparent 100%), var(--avb); }
+.hi { font-size: 11px; color: var(--a2); letter-spacing: 1px; }
+.me h1 { margin-top: 3px; font-size: 30px; line-height: 1.15; font-weight: 700; }
+.bio { margin-top: 8px; font-size: 12px; line-height: 1.7; opacity: .86; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; } .tags span { padding: 2px 9px; border-radius: 99px; font-size: 10.5px; background: color-mix(in srgb, var(--a) 14%, transparent); color: var(--a); }
+.posts { padding: 0 26px 16px; } .posts h2 { margin-bottom: 6px; font-size: 11px; font-weight: 600; letter-spacing: 2px; opacity: .6; }
+.posts article { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; column-gap: 12px; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--line); }
+.posts time { grid-row: span 2; font-size: 11px; opacity: .6; font-variant-numeric: tabular-nums; }
+.posts h3 { font-size: 14px; font-weight: 650; } .posts p { grid-column: 2; margin-top: 2px; font-size: 11px; opacity: .72; }
+.posts em { grid-column: 3; grid-row: 1; font-size: 10px; color: var(--a2); }
+.now { margin: 4px 26px 18px; padding: 12px 14px; border-radius: 10px; background: color-mix(in srgb, var(--a) 9%, transparent); font-size: 11.5px; }
+.now b { margin-right: 8px; font-size: 10.5px; color: var(--a); } .now p { display: inline; }
+.ft { padding: 12px 26px 20px; font-size: 10.5px; opacity: .6; }

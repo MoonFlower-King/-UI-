@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Cyber Neon",
+  "zh": "赛博霓虹",
+  "alias": [
+    "赛博朋克",
+    "Cyberpunk",
+    "霓虹夜城"
+  ],
+  "lead": "深夜城市的霓虹灯牌：深紫黑底上品红和青色的发光字、扫描线和故障错位效果。张扬、未来感强，适合游戏主播、电子音乐人、潮流创作者。",
+  "prompt": "赛博霓虹风格：深紫黑底 #0B0618，主色品红 #FF2E97、辅色青 #00F0FF，文字带同色外发光；名字用超大粗体，加一层青色错位重影（故障效果）；背景叠很淡的横向扫描线；边框是 1px 霓虹细线加外发光；小标签全大写加宽字距；等宽或窄体无衬线字体",
+  "promptEn": "cyber neon style: deep purple-black #0B0618 background with magenta #FF2E97 as the main color and cyan #00F0FF as the second, text glowing in its own color; an oversized bold name with a cyan offset ghost layer (glitch effect); faint horizontal scanlines over the background; 1px neon outlines with outer glow; uppercase widely tracked labels; monospace or condensed sans-serif",
+  "avoid": "发光只给标题和边框，正文要清楚不发光；颜色限两种霓虹色，第三种一加就乱。",
+  "neg": [
+    "白底、柔和粉彩、衬线字、正文发光",
+    "white backgrounds, soft pastels, serif fonts, glowing body text"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #FF2E97; --a2: #00F0FF; --line: rgba(0,240,255,.25); --avb: #1A0D33; --avf: #FF2E97; background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px), radial-gradient(circle at 80% 10%, rgba(255,46,151,.25), transparent 50%), #0B0618; color: #E9E3FF; font-family: "Arial Narrow", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.logo { color: #00F0FF; text-shadow: 0 0 8px #00F0FF; } .logo i { box-shadow: 0 0 10px #FF2E97; } .cta { border-color: #FF2E97; color: #FF2E97; box-shadow: 0 0 10px rgba(255,46,151,.5); border-radius: 0; }
+.av { box-shadow: 0 0 0 1px #00F0FF, 0 0 18px rgba(0,240,255,.6); }
+.me h1 { color: #FF2E97; font-weight: 900; text-shadow: 3px 0 #00F0FF, 0 0 18px rgba(255,46,151,.7); text-transform: uppercase; }
+.hi { color: #00F0FF; letter-spacing: 4px; } .tags span { background: none; border: 1px solid #00F0FF; color: #00F0FF; border-radius: 0; }
+.posts h2 { color: #00F0FF; opacity: 1; letter-spacing: 4px; } .posts h3 { color: #fff; } .posts em { color: #FF2E97; }
+.now { background: none; border: 1px solid #FF2E97; border-radius: 0; box-shadow: 0 0 12px rgba(255,46,151,.35); }
+</style>

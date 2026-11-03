@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Groovy 70s",
+  "zh": "七十年代",
+  "alias": [
+    "70s",
+    "复古嬉皮",
+    "迪斯科"
+  ],
+  "lead": "七十年代的复古：焦橙、芥末黄、咖啡棕的条纹波浪，胖胖的圆润粗体字，像老唱片封套。温暖、松弛，适合音乐、复古穿搭和咖啡博主。",
+  "prompt": "七十年代风格：奶油底 #F5E6C8、深咖啡字 #4A2C1A；配色焦橙 #D9622B、芥末黄 #E2A72E、咖啡棕 #7A4B2A、橄榄绿 #7D7A3A；首屏或卡片封面是平行的彩色波浪条纹（像老唱片封套的弧形彩虹）；名字用超胖的圆润粗体衬线（Cooper 一类）；卡片大圆角；没有冷色",
+  "promptEn": "groovy 70s style: cream #F5E6C8 background with dark coffee #4A2C1A text; palette of burnt orange #D9622B, mustard #E2A72E, coffee brown #7A4B2A and olive #7D7A3A; parallel colored wavy stripes across the hero or card covers (like arched rainbows on old record sleeves); the name in a very fat rounded bold serif (Cooper-like); large card radii; no cool colors",
+  "avoid": "条纹波浪最多三四种颜色，按固定顺序排；冷色（蓝、紫）一加就不是七十年代了。",
+  "neg": [
+    "冷色调、霓虹、细线极简、科技感",
+    "cool tones, neon, thin-line minimalism, techy look"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #D9622B; --a2: #7D7A3A; --line: #E4CFA6; --avb: #E2A72E; --avf: #7A4B2A; background: #F5E6C8; color: #4A2C1A; font-family: "Cooper Black", "Georgia", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.me h1 { font-weight: 900; font-size: 36px; color: #D9622B; text-shadow: 3px 3px 0 #E2A72E, 6px 6px 0 #7A4B2A; }
+.av { box-shadow: 0 0 0 5px #F5E6C8, 0 0 0 10px #D9622B, 0 0 0 15px #E2A72E; margin-left: 12px; } .me { grid-template-columns: 108px minmax(0,1fr); }
+.cta { background: #7A4B2A; color: #F5E6C8; border: 0; } .tags span { background: #7D7A3A; color: #F5E6C8; } .hi { color: #7D7A3A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.posts article { background: #FBF0D9; border: 0; border-radius: 18px; } .bio, .posts p { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.posts article::before { opacity: 1 !important; background: radial-gradient(120% 100% at 50% 130%, transparent 40%, #7A4B2A 40% 52%, #D9622B 52% 64%, #E2A72E 64% 76%, transparent 76%) !important; }
+.posts article:nth-of-type(2)::before { background: repeating-radial-gradient(circle at 0 100%, #D9622B 0 10px, #E2A72E 10px 20px, #7D7A3A 20px 30px) !important; }
+.posts em { color: #D9622B; } .now { background: #7A4B2A; color: #F5E6C8; border-radius: 18px; } .now b { color: #E2A72E; }
+</style>

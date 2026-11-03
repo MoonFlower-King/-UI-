@@ -1,0 +1,9 @@
+/* 个人站版式「卡片网格」：文章变成三张并排的卡片，每张上面一块封面色块，下面是标题和摘要。适合作品集、摄影、手账类风格。 */
+.posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.posts h2 { grid-column: 1 / -1; }
+.posts article { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 0 0 12px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.posts article::before { content: ""; order: -2; height: 64px; margin-bottom: 6px; background: color-mix(in srgb, var(--a) 22%, transparent); }
+.posts article:nth-of-type(2)::before { background: color-mix(in srgb, var(--a2) 26%, transparent); }
+.posts article:nth-of-type(3)::before { background: color-mix(in srgb, var(--a) 40%, var(--a2)); opacity: .5; }
+.posts article > * { padding-inline: 10px; } .posts h3 { font-size: 13px; line-height: 1.35; } .posts p { font-size: 10.5px; line-height: 1.5; }
+.posts time { order: -1; font-size: 10px; } .posts em { order: 5; margin-top: auto; }

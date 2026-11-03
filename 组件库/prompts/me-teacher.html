@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Teacher Chalkboard",
+  "zh": "老师黑板",
+  "alias": [
+    "黑板报",
+    "粉笔字",
+    "讲台"
+  ],
+  "lead": "把个人主页写在一块墨绿黑板上：白色粉笔字、彩色粉笔划的重点和下划线、木框边、右下角一块小黑板擦。亲切、有课堂感，适合老师、教育博主和知识分享者。",
+  "prompt": "老师黑板风格：墨绿黑板底 #2F4A3A（带淡淡的擦痕和粉笔灰）、四周一圈原木框 #9C6B3F；文字是白色粉笔字 #F1F0E8（手写体、边缘略粗糙）；重点用彩色粉笔——黄 #F7E07A 下划线、粉 #F2A3B3 圈注、蓝 #9CCBF0 箭头；文章前面画一个粉笔小勾 ✓；「此刻」像黑板角落写的「今日作业」",
+  "promptEn": "teacher chalkboard style: a dark green chalkboard #2F4A3A with faint eraser smudges and chalk dust, framed by a natural wood border #9C6B3F; text in white chalk #F1F0E8 (handwritten with slightly rough edges); highlights in colored chalk—yellow #F7E07A underlines, pink #F2A3B3 circles and blue #9CCBF0 arrows; a chalk tick ✓ before each post; the now section like “today’s homework” written in a corner of the board",
+  "avoid": "粉笔字只用于标题，正文用清楚的常规字体（同样浅色）；彩色粉笔每种只做一类标记。",
+  "neg": [
+    "纯白底、霓虹、精致衬线、玻璃效果",
+    "pure white backgrounds, neon, refined serifs, glass effects"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #F7E07A; --a2: #9CCBF0; --line: rgba(241,240,232,.18); --avb: #3E5C4A; --avf: #F1F0E8; background: radial-gradient(ellipse 40% 20% at 30% 30%, rgba(255,255,255,.06), transparent), radial-gradient(ellipse 30% 15% at 70% 70%, rgba(255,255,255,.05), transparent), #2F4A3A; color: #F1F0E8; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; box-shadow: inset 0 0 0 10px #9C6B3F, inset 0 0 0 12px #7A5230; }
+.blog > .pg { padding: 10px; } .logo, .me h1, .posts h2, .posts h3, .now b { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; text-shadow: 0 0 1px rgba(241,240,232,.6); }
+.logo i { background: #F7E07A; border-radius: 2px; } .cta { border-color: rgba(241,240,232,.6); }
+.me h1 { font-size: 34px; text-decoration: underline wavy #F7E07A; text-underline-offset: 6px; text-decoration-thickness: 2px; } .hi { color: #9CCBF0; } .hi::after { content: " ➘"; }
+.av { box-shadow: 0 0 0 2px rgba(241,240,232,.7); } .tags span { background: none; color: #F2A3B3; border: 1.5px solid #F2A3B3; border-radius: 50%; }
+.posts h2 { opacity: 1; font-size: 15px; letter-spacing: 2px; color: #F7E07A; } .posts h3::before { content: "✓ "; color: #F7E07A; } .posts article { border-top: 1px dashed rgba(241,240,232,.2); } .posts em { color: #9CCBF0; }
+.now { background: none; border: 1.5px dashed rgba(241,240,232,.4); border-radius: 6px; } .now b { color: #F7E07A; font-size: 14px; } .now b::after { content: "（今日作业）"; font-size: 11px; }
+.ft { position: relative; } .ft::after { content: ""; position: absolute; right: 30px; top: 6px; width: 40px; height: 14px; border-radius: 3px; background: linear-gradient(#C9C3B5 50%, #5E4632 50%); }
+</style>

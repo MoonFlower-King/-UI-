@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Commit Log",
+  "zh": "提交记录",
+  "alias": [
+    "Git log",
+    "版本记录",
+    "开发日志"
+  ],
+  "lead": "把文章写成一条条代码提交记录：左边一条分支线串起圆点，每篇前面一串短哈希，标签像分支名。有趣又有工程师味道，适合开发日志、周更博客。",
+  "prompt": "提交记录风格：近白底 #FAFAFB、文字 #24292F，全站等宽字体；文章挂在一条彩色分支线上（主线青绿 #1F9D8B，一条橙色 #E8833A 支线），每篇前面有黄色 #B08800 的 7 位短哈希（如 a1b2c3d）；标签做成圆角分支名小牌子（浅蓝底 #DDF4FF）；日期写成「3 days ago」这样的相对时间",
+  "promptEn": "commit log style: near-white #FAFAFB background with #24292F text, monospace throughout; posts hang on colored branch lines (a teal #1F9D8B main line and an orange #E8833A side branch), each preceded by a 7-character short hash in amber #B08800 (like a1b2c3d); tags as rounded branch-name labels on pale blue #DDF4FF; dates written as relative time like “3 days ago”",
+  "avoid": "哈希和日期是辅助信息，要比标题浅、比标题小；分支线最多两三条，画成地铁图就看不懂了。",
+  "neg": [
+    "照片头像大图、衬线字、复杂多分支图",
+    "large photo avatars, serif type, tangled multi-branch graphs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #1F9D8B; --a2: #B08800; --line: #E5E7EB; --avb: #E6F6F3; --avf: #1F9D8B; background: #FAFAFB; color: #24292F; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo i { border-radius: 2px; } .cta { border-radius: 6px; border-color: #D0D7DE; } .cta::before { content: "★ "; color: #B08800; }
+.me h1 { font-size: 24px; } .hi::before { content: "HEAD → "; color: #1F9D8B; } .tags span { background: #DDF4FF; color: #0969DA; border-radius: 6px; }
+.posts article::before { width: 2px !important; background: #1F9D8B !important; } .posts article:nth-of-type(2)::after { background: #E8833A !important; box-shadow: 0 0 0 3px rgba(232,131,58,.2) !important; }
+.posts time { color: #B08800; opacity: 1; } .posts article:nth-of-type(1) time::before { content: "a1b2c3d "; } .posts article:nth-of-type(2) time::before { content: "9f8e7d6 "; } .posts article:nth-of-type(3) time::before { content: "4c5d6e7 "; }
+.posts article { grid-template-columns: 110px minmax(0,1fr); } .posts article::before { left: 120px !important; } .posts article::after { left: 116px !important; }
+.posts em { background: #DDF4FF; color: #0969DA; padding: 1px 6px; margin-left: 26px; border-radius: 99px; justify-self: start; }
+.now { background: #F6F8FA; border: 1px solid #D0D7DE; } .now b::before { content: "● "; color: #E8833A; }
+</style>

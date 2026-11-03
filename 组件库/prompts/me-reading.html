@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Reading Room",
+  "zh": "长文阅读",
+  "alias": [
+    "阅读模式",
+    "长文博客",
+    "写作型博客"
+  ],
+  "lead": "一切为读长文服务：较窄的正文栏、舒适的衬线正文、宽松的行距，标题和摘要都像文章本身。适合以写作为主的博客、newsletter 作者。",
+  "prompt": "长文阅读风格：暖白底 #FFFEFB、正文深灰 #29261F，标题用无衬线、正文和摘要用衬线（宋体 / Georgia 一类），正文 13px、行距 1.9，内容栏收窄到约 420px 居中；文章摘要完整显示两行；强调色是沉稳的松石绿 #2F6F62，只用在链接和标签上",
+  "promptEn": "reading-room style: warm white #FFFEFB background with dark gray #29261F body text; sans-serif headings with serif body and excerpts (Song / Georgia-like), 13px body at 1.9 line height in a narrow centered column of about 420px; excerpts shown in full over two lines; a calm teal #2F6F62 accent used only for links and tags",
+  "avoid": "栏宽是关键：一行中文 25～35 个字最舒服，太宽眼睛找不到下一行；别在正文旁边塞侧栏和广告位。",
+  "neg": [
+    "多栏布局、侧边栏广告、大图背景、小字号正文",
+    "multi-column layout, sidebar ads, large background images, small body text"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #2F6F62; --a2: #2F6F62; --line: #ECE8DF; --avb: #E3EEEA; --avf: #2F6F62; background: #FFFEFB; color: #29261F; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg > * { max-width: 440px; margin-inline: auto !important; } .now { max-width: 400px; }
+.bio, .posts p, .now p { font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .bio { font-size: 13px; line-height: 1.9; }
+.posts article { grid-template-columns: 1fr; padding: 14px 0; } .posts time, .posts p, .posts em { grid-column: 1; grid-row: auto; }
+.posts time { order: -1; } .posts h3 { font-size: 16px; } .posts p { font-size: 12.5px; line-height: 1.8; opacity: .85; }
+.cta { background: #2F6F62; color: #fff; border: 0; } .now { background: #F3F1EA; }
+</style>

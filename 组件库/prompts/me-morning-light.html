@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Morning Light",
+  "zh": "晨光",
+  "alias": [
+    "清晨",
+    "日出",
+    "温柔渐变"
+  ],
+  "lead": "清晨第一缕光：从淡桃粉到奶油黄的柔和渐变，一轮刚升起的半个太阳，字体轻盈。温柔、充满希望，适合心理咨询、瑜伽冥想和晨间习惯博主。",
+  "prompt": "晨光风格：从顶部淡桃粉 #FFD9C7 到奶油黄 #FFF3D6 再到暖白 #FFFBF5 的柔和竖向渐变；头像是一轮刚露出一半的暖橙太阳 #FFB37A（带很淡的光晕）；文字暖灰褐 #5B4A42、轻细字重；强调色蜜桃 #F28C6B；全部居中，留白多；按钮是半透明白色胶囊",
+  "promptEn": "morning light style: a soft vertical gradient from pale peach #FFD9C7 at the top through cream yellow #FFF3D6 to warm white #FFFBF5; the avatar is a warm orange sun #FFB37A half risen with a faint glow; warm gray-brown #5B4A42 text in light weights; peach #F28C6B accent; everything centered with lots of space; translucent white pill buttons",
+  "avoid": "渐变要非常柔，颜色之间看不出分界；太阳只露半个，正圆会少了「升起」的感觉。",
+  "neg": [
+    "深色背景、冷色霓虹、粗黑描边、密集信息",
+    "dark backgrounds, cold neon, heavy black outlines, dense information"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #F28C6B; --a2: #B9876F; --line: rgba(91,74,66,.1); background: linear-gradient(#FFD9C7, #FFF3D6 320px, #FFFBF5 520px); color: #5B4A42; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.av { background: radial-gradient(circle at 50% 100%, #FFB37A 0 48%, rgba(255,179,122,.35) 50%, transparent 68%) !important; border-radius: 0; height: 52px; width: 104px !important; aspect-ratio: auto; border-bottom: 1px solid rgba(242,140,107,.5); }
+.me h1 { font-weight: 300; letter-spacing: 6px; } .hi { color: #F28C6B; letter-spacing: 3px; } .tags span { background: rgba(255,255,255,.6); color: #B9876F; }
+.cta { background: rgba(255,255,255,.6); border: 0; } .logo i { background: #FFB37A; }
+.posts h3 { font-weight: 400; } .posts em { color: #F28C6B; } .now { background: rgba(255,255,255,.65); border-radius: 99px; } .now b { color: #F28C6B; }
+</style>

@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Starry Night",
+  "zh": "星空",
+  "alias": [
+    "夜空",
+    "星座",
+    "天文"
+  ],
+  "lead": "晴朗夜空下的星图：深蓝夜幕、散落的星点、几条细线连成的星座，文章像星表里的条目。浪漫又理性，适合天文爱好者、物理学生和深夜写作者。",
+  "prompt": "星空风格：深夜蓝底 #0B1330 向下渐变到 #121A3D，散落大小不一的白色星点（少数带微弱闪烁）；页面右上角用细线 + 圆点画一个小星座；文字星白 #E6E9F5、次要文字雾蓝 #8F9BC2；强调色星光金 #F5D67B；文章列表像星表——每条前面一个小星号 ✦，日期写成「赤经」风格的等宽数字；无衬线细体",
+  "promptEn": "starry night style: a deep night blue #0B1330 fading down to #121A3D with scattered white stars of different sizes (a few faintly twinkling); a small constellation drawn with thin lines and dots in the top right corner; star-white #E6E9F5 text with misty blue #8F9BC2 secondary text; starlight gold #F5D67B accent; the post list like a star catalog—each entry prefixed with a small ✦ and dates in monospace like right-ascension values; light sans-serif",
+  "avoid": "星点要大小不一、稀疏，均匀铺满会像噪点；闪烁只给少数几颗。",
+  "neg": [
+    "白底、暖橙大色块、卡通星星表情、粗重字体",
+    "white backgrounds, large warm orange blocks, cartoon star faces, heavy fonts"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #F5D67B; --a2: #8F9BC2; --line: rgba(143,155,194,.18); --avb: #1C2756; --avf: #F5D67B; background: radial-gradient(circle, #fff 0 1px, transparent 1.5px) 13px 17px / 71px 67px, radial-gradient(circle, rgba(255,255,255,.7) 0 .8px, transparent 1.2px) 40px 5px / 43px 53px, radial-gradient(circle, #fff 0 1.6px, transparent 2px) 100px 120px / 190px 170px, linear-gradient(#0B1330, #121A3D); color: #E6E9F5; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.me { position: relative; } .me::after { content: ""; position: absolute; right: 36px; top: -10px; width: 110px; height: 60px; background: radial-gradient(circle at 10% 70%, #F5D67B 0 2.5px, transparent 3px), radial-gradient(circle at 40% 30%, #F5D67B 0 2px, transparent 2.5px), radial-gradient(circle at 70% 55%, #F5D67B 0 2.5px, transparent 3px), radial-gradient(circle at 95% 15%, #F5D67B 0 2px, transparent 2.5px), linear-gradient(-53deg, transparent 49%, rgba(245,214,123,.5) 49.5% 50.5%, transparent 51%) 10% 30% / 32% 42% no-repeat, linear-gradient(40deg, transparent 49%, rgba(245,214,123,.5) 49.5% 50.5%, transparent 51%) 40% 30% / 30% 28% no-repeat, linear-gradient(-58deg, transparent 49%, rgba(245,214,123,.5) 49.5% 50.5%, transparent 51%) 72% 15% / 25% 42% no-repeat; animation: me-twinkle 3s ease-in-out infinite alternate; }
+@keyframes me-twinkle { to { opacity: .55; } }
+.av { box-shadow: 0 0 14px rgba(245,214,123,.35); } .me h1 { font-weight: 300; letter-spacing: 3px; } .cta { border-color: #8F9BC2; } .logo i { background: #F5D67B; box-shadow: 0 0 8px #F5D67B; }
+.posts h2 { color: #8F9BC2; opacity: 1; } .posts h3::before { content: "✦ "; color: #F5D67B; } .posts h3 { font-weight: 400; } .posts time { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8F9BC2; opacity: 1; } .posts time::before { content: "RA "; font-size: 9px; }
+.posts em { color: #F5D67B; } .now { border-left-color: #F5D67B; } .now b { color: #F5D67B; }
+</style>

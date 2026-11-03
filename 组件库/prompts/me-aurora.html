@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Aurora Gradient",
+  "zh": "弥散渐变",
+  "alias": [
+    "极光渐变",
+    "Mesh gradient",
+    "流体渐变"
+  ],
+  "lead": "大片柔和流动的弥散渐变像极光：蓝、紫、粉、橙几种颜色彼此融化，慢慢地变换位置。梦幻、现代，适合科技创业者、设计师和音乐人。",
+  "prompt": "弥散渐变风格：近白底 #FAFAFF，首屏铺一大片弥散网格渐变——蓝 #6C8CFF、紫 #B07CFF、粉 #FF8FB8、橘 #FFB36B 几团颜色边缘完全融化，并缓慢漂移（20 秒一循环）；文字深墨蓝 #14142B，压在渐变上的部分加一层白色半透明底；按钮是黑底白字胶囊；无衬线粗体标题、紧字距",
+  "promptEn": "aurora gradient style: a near-white #FAFAFF background with a large mesh gradient across the hero—blobs of blue #6C8CFF, violet #B07CFF, pink #FF8FB8 and orange #FFB36B fully melted into each other and drifting slowly (a 20-second loop); deep ink-navy #14142B text, with a translucent white backing where text sits on the gradient; black pill buttons with white text; bold tight-tracked sans-serif headings",
+  "avoid": "渐变要「糊」得很开，看不到边缘才高级；漂移要非常慢，快了会让人头晕；正文区回到干净的白底。",
+  "neg": [
+    "硬边色块、细线条纹、复古纹理、霓虹描边",
+    "hard-edged color blocks, thin stripes, retro textures, neon outlines"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #14142B; --a2: #7C6CF2; --line: rgba(20,20,43,.08); --avb: #fff; --avf: #B07CFF; background: #FAFAFF; color: #14142B; font-family: "Inter", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { position: relative; overflow: hidden; border-radius: 0 0 28px 28px; margin-bottom: 18px; } .me > * { position: relative; }
+.me::before { content: ""; position: absolute; inset: -40%; background: radial-gradient(circle at 30% 40%, #6C8CFF, transparent 38%), radial-gradient(circle at 70% 30%, #B07CFF, transparent 36%), radial-gradient(circle at 60% 75%, #FF8FB8, transparent 38%), radial-gradient(circle at 25% 80%, #FFB36B, transparent 34%); filter: blur(20px); animation: me-drift 20s ease-in-out infinite alternate; }
+@keyframes me-drift { to { transform: rotate(40deg) scale(1.1); } }
+.av { box-shadow: 0 0 0 4px rgba(255,255,255,.7); } .intro { background: rgba(255,255,255,.55); padding: 10px 14px; border-radius: 16px; } .me h1 { font-weight: 800; letter-spacing: -1px; }
+.cta { background: #14142B; color: #fff; border: 0; } .tags span { background: rgba(20,20,43,.08); color: #14142B; } .hi { color: #5B4FD9; }
+.posts em { color: #7C6CF2; } .now { background: linear-gradient(90deg, rgba(108,140,255,.12), rgba(255,143,184,.12)); }
+</style>

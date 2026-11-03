@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Synthwave",
+  "zh": "合成波",
+  "alias": [
+    "Outrun",
+    "复古未来",
+    "日落网格"
+  ],
+  "lead": "八十年代的复古未来：紫黑夜空、条纹切开的渐变大太阳、无限延伸的霓虹网格地平线。热血、电影感，适合电子音乐人、游戏开发者。",
+  "prompt": "合成波风格：紫黑夜空底 #1A0B2E；首屏中间一轮大太阳——从黄 #FFD319 到品红 #FF2975 的竖向渐变，下半部被几条横向空隙切开；太阳下方是透视的霓虹网格地平线（品红 / 青 #00E5FF 细线，向远处收拢）；名字用斜体粗无衬线、铬金属或霓虹描边；文字带品红外发光",
+  "promptEn": "synthwave style: a purple-black night sky #1A0B2E; a big sun in the middle of the hero with a vertical gradient from yellow #FFD319 to magenta #FF2975, its lower half sliced by horizontal gaps; below it a perspective neon grid horizon (magenta / cyan #00E5FF thin lines converging into the distance); the name in heavy italic sans-serif with chrome or neon outline; text with a magenta outer glow",
+  "avoid": "太阳和网格只在首屏出现一次；正文区要回到深色平底，别让网格穿过文字。",
+  "neg": [
+    "白底、柔和粉彩、手绘风、衬线正文",
+    "white backgrounds, soft pastels, hand-drawn look, serif body text"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #FF2975; --a2: #00E5FF; --line: rgba(0,229,255,.2); --avb: #2B1450; --avf: #FF2975; background: #1A0B2E; color: #F3E8FF; font-family: "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { overflow: hidden; }
+.me::after { content: ""; position: absolute; left: 50%; top: 26px; width: 150px; aspect-ratio: 1; translate: -50% 0; border-radius: 50%; background: linear-gradient(transparent 58%, #1A0B2E 58% 61%, transparent 61% 68%, #1A0B2E 68% 72%, transparent 72% 79%, #1A0B2E 79% 85%, transparent 85%), linear-gradient(#FFD319, #FF8C3B 50%, #FF2975); box-shadow: 0 0 40px rgba(255,41,117,.45); }
+.me::before { content: ""; position: absolute; inset: auto -40% 0; height: 90px; background: repeating-linear-gradient(90deg, rgba(255,41,117,.8) 0 1px, transparent 1px 30px), repeating-linear-gradient(0deg, rgba(0,229,255,.7) 0 1px, transparent 1px 16px); transform: perspective(120px) rotateX(55deg); transform-origin: bottom; }
+.me { border-radius: 0; } .me .av { display: none; } .me > * { position: relative; z-index: 1; }
+.me h1 { font-style: italic; font-weight: 900; color: #fff; text-shadow: 0 0 10px #FF2975, 0 0 24px #FF2975; letter-spacing: 0; } .hi { color: #00E5FF; letter-spacing: 4px; } .bio { text-shadow: 0 1px 4px #1A0B2E; }
+.cta { border-color: #00E5FF; color: #00E5FF; } .tags span { background: rgba(255,41,117,.2); color: #FF8CB6; }
+.posts h2 { color: #00E5FF; opacity: 1; } .posts em { color: #FF2975; } .now { background: rgba(0,229,255,.08); border: 1px solid rgba(0,229,255,.4); } .now b { color: #00E5FF; }
+</style>

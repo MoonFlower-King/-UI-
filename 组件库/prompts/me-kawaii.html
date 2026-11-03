@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Kawaii Pastel",
+  "zh": "可爱粉彩",
+  "alias": [
+    "卡哇伊",
+    "萌系",
+    "少女心"
+  ],
+  "lead": "萌系可爱风：草莓粉和奶油色、圆滚滚的字体、小爱心和星星装饰，时间线上的圆点换成小心心。甜、软、治愈，适合萌宠博主、手作甜品和插画师。",
+  "prompt": "可爱粉彩风格：奶油粉底 #FFF0F5、可可棕字 #6B4A55；主色草莓粉 #FF8FB1、辅色薄荷 #9BE3D0 和柠檬奶油 #FFE6A7；圆滚滚的圆体字；头像外一圈白色描边 + 小星星；标签是带小爱心 ♡ 的圆胶囊；时间线圆点换成粉色小心心；卡片大圆角 20px，边框是粉色虚线；偶尔点缀 ✦ ♡ 小符号",
+  "promptEn": "kawaii pastel style: creamy pink #FFF0F5 background with cocoa brown #6B4A55 text; strawberry pink #FF8FB1 as the main color with mint #9BE3D0 and lemon cream #FFE6A7; chubby rounded type; a white ring and tiny stars around the avatar; tags as round pills with little hearts ♡; small pink hearts as the timeline dots; 20px card radii with pink dashed borders; occasional ✦ ♡ accents",
+  "avoid": "小装饰（心、星）一屏五六个就够；文字颜色用可可棕而不是粉色，不然整页糊成一片粉。",
+  "neg": [
+    "黑底、尖锐几何、冷灰商务、粗黑描边",
+    "black backgrounds, sharp geometry, cold corporate grays, heavy black outlines"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #FF8FB1; --a2: #5FBFA6; --line: #FFD1DF; --avb: #FFE6A7; --avf: #FF8FB1; background: radial-gradient(circle, #FFD1DF 1.5px, transparent 2px) 0 0 / 22px 22px, #FFF0F5; color: #6B4A55; font-family: "Hiragino Maru Gothic ProN", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.logo i { background: none; width: auto; height: auto; } .logo i::before { content: "♡"; color: #FF8FB1; font-size: 14px; } .cta { background: #FF8FB1; color: #fff; border: 0; }
+.av { box-shadow: 0 0 0 5px #fff, 0 0 0 7px #FFD1DF; position: relative; } .av::after { content: "✦"; position: absolute; right: -6px; top: -4px; color: #FFC94D; font-size: 18px; }
+.me h1 { color: #FF6F9C; font-weight: 900; } .me h1::after { content: " ♡"; font-size: 20px; } .hi { color: #5FBFA6; }
+.tags span { background: #fff; color: #FF6F9C; border: 1.5px solid #FFD1DF; } .tags span::before { content: "♡ "; }
+.posts h2 { opacity: 1; color: #FF6F9C; } .posts article::before { background: repeating-linear-gradient(180deg, #FFD1DF 0 4px, transparent 4px 8px) !important; width: 2px !important; }
+.posts article::after { content: "♥" !important; width: auto !important; height: auto !important; background: none !important; box-shadow: none !important; color: #FF8FB1; font-size: 13px; left: 53px !important; top: 9px !important; }
+.posts em { color: #5FBFA6; } .now { background: #fff; border: 2px dashed #FFD1DF; border-radius: 20px; } .now b { color: #FF6F9C; }
+</style>

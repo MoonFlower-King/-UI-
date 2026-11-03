@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Claymorphism",
+  "zh": "黏土拟态",
+  "alias": [
+    "黏土风",
+    "Claymorphism",
+    "3D 软萌"
+  ],
+  "lead": "每块内容都像一块软软的彩色黏土：糖果粉彩、超大圆角、内外双层柔和阴影让它们鼓起来。可爱、亲和，适合儿童教育、萌系插画和心理咨询。",
+  "prompt": "黏土拟态风格：浅薰衣草底 #EEE9FF；格子是糖果粉彩色（蜜桃 #FFC9B5、薄荷 #B8F0DC、淡紫 #D6C9FF、奶黄 #FFE9A8），圆角 26px；每块同时有外投影（向下的大范围柔和深色阴影）和内阴影（左上亮白、右下暗），看起来像鼓起来的黏土；文字深紫灰 #3B3456、圆润粗体；头像像一颗黏土球",
+  "promptEn": "claymorphism style: pale lavender #EEE9FF background; tiles in candy pastels (peach #FFC9B5, mint #B8F0DC, lilac #D6C9FF, butter #FFE9A8) with 26px radii; each tile has both an outer shadow (a large soft dark shadow below) and inner shadows (bright white top-left, darker bottom-right) so it looks puffed up like clay; deep purple-gray #3B3456 text in rounded bold type; the avatar like a ball of clay",
+  "avoid": "内外阴影都要很柔、颜色带一点底色倾向，用纯黑阴影会脏；圆角要大，小圆角就不像黏土。",
+  "neg": [
+    "尖角、细线、纯黑阴影、写实纹理",
+    "sharp corners, thin lines, pure black shadows, realistic textures"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #7C5CFF; --a2: #E5738A; --avb: #FFC9B5; --avf: #E5738A; background: #EEE9FF; color: #3B3456; font-family: "Nunito", "Avenir Next Rounded", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.av, .intro, .posts article, .now { border-radius: 26px !important; box-shadow: 0 14px 24px -8px rgba(80,60,160,.28), inset 5px 5px 10px rgba(255,255,255,.7), inset -6px -6px 12px rgba(80,60,160,.16); }
+.intro { background: #D6C9FF !important; } .posts article { background: #B8F0DC !important; } .posts article:nth-of-type(2) { background: #FFE9A8 !important; } .posts article:nth-of-type(3) { background: #FFC9B5 !important; } .now { background: #fff !important; }
+.av { background: radial-gradient(circle at 50% 40%, #E5738A 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #E5738A 0 97%, transparent 100%), #FFC9B5 !important; }
+.cta { background: #7C5CFF; color: #fff; border: 0; box-shadow: inset 2px 2px 4px rgba(255,255,255,.4), 0 6px 12px -4px rgba(124,92,255,.6); }
+.me h1 { font-weight: 900; } .tags span { background: rgba(255,255,255,.6); color: #7C5CFF; } .posts em { color: #7C5CFF; }
+</style>

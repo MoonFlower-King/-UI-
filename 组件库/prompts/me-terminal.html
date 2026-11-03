@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Terminal",
+  "zh": "终端",
+  "alias": [
+    "命令行",
+    "Terminal",
+    "黑客风"
+  ],
+  "lead": "整个主页像一个命令行窗口：黑底、亮绿等宽字、每段前面有 $ 提示符，最后一行有闪烁光标。极客感最强，适合开发者和安全研究者。",
+  "prompt": "终端风格：近黑底 #0C0F0A、荧光绿字 #7CF29A、次要信息暗绿 #3E7A4E，全站等宽字体；每个区块前加一行 $ 命令（如 $ whoami、$ ls posts/），内容像命令输出；顶部有三个小圆点的窗口栏；页脚最后一行是闪烁的方块光标；文字可以有很轻的同色发光",
+  "promptEn": "terminal style: near-black #0C0F0A background, phosphor green #7CF29A text and dim green #3E7A4E for secondary info, monospace everywhere; every section starts with a $ command line (like $ whoami, $ ls posts/) and its content reads as command output; a window bar with three small dots on top; a blinking block cursor on the last line; an optional faint same-color glow on text",
+  "avoid": "绿字只用一两种深浅，别再加彩色语法高亮（那是编辑器风格）；发光要很轻，否则字会糊。",
+  "neg": [
+    "彩色语法高亮、圆角卡片、照片头像、衬线字",
+    "colorful syntax highlighting, rounded cards, photo avatars, serif type"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #7CF29A; --a2: #3E7A4E; --line: #1F3324; --avb: #12301C; --avf: #7CF29A; background: #0C0F0A; color: #7CF29A; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; text-shadow: 0 0 6px rgba(124,242,154,.25); }
+.nav { border-bottom: 1px solid #1F3324; } .logo i { border-radius: 50%; width: 8px; height: 8px; background: #3E7A4E; box-shadow: 12px 0 #3E7A4E, 24px 0 #3E7A4E; margin-right: 26px; }
+.cta { border-radius: 0; border-color: #3E7A4E; } .av { border-radius: 0; }
+.me::before { content: "$ whoami"; grid-column: 1 / -1; color: #3E7A4E; } .me h1 { font-weight: 400; }
+.posts h2 { opacity: 1; letter-spacing: 0; color: #3E7A4E; } .posts h2::before { content: "$ ls posts/ — "; }
+.posts article { border-top: 0; } .posts h3 { font-weight: 400; } .posts h3::before { content: "> "; color: #3E7A4E; }
+.now { border-left-color: #3E7A4E; } .now b { color: #3E7A4E; } .ft::after { content: ""; display: inline-block; width: 7px; height: 12px; margin-left: 6px; vertical-align: -2px; background: #7CF29A; animation: me-blink 1s steps(1) infinite; }
+@keyframes me-blink { 50% { opacity: 0; } }
+</style>

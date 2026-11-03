@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Travel Postcards",
+  "zh": "旅行明信片",
+  "alias": [
+    "旅行",
+    "明信片",
+    "邮戳"
+  ],
+  "lead": "文章是一张张寄回家的明信片：卡片上半是风景色块，下半是手写地址栏，右上角贴着邮票、盖着城市邮戳。浪漫、有故事感，适合旅行博主和旅居者。",
+  "prompt": "旅行明信片风格：浅雾蓝底 #E9EEF2、深蓝灰字 #2B3640；文章卡片是明信片——上半是一块风景渐变色块（海、山、黄昏几种配色），下半白色带两三条浅灰手写横线；右上角贴一枚小邮票（白边齿孔 + 彩色块）和斜盖的圆形邮戳；标题用手写体；强调色邮政红 #C8473B",
+  "promptEn": "travel postcard style: misty blue #E9EEF2 background with deep slate #2B3640 text; post cards are postcards—the top half a scenic gradient block (sea, mountain or dusk palettes), the bottom half white with two or three faint handwritten lines; a small stamp (white perforated border with a color block) on the top right and a tilted round postmark; handwritten titles; postal red #C8473B accent",
+  "avoid": "邮票和邮戳每张卡片各一个就好；风景用渐变色块概括，别塞写实照片。",
+  "neg": [
+    "暗黑科技、霓虹、粗野黑框、密集文字",
+    "dark techy look, neon, brutalist black frames, dense text"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #C8473B; --a2: #5B7A8C; --line: #CBD5DD; --avb: #F2D2B6; --avf: #C8473B; background: #E9EEF2; color: #2B3640; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me h1, .posts h3 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; } .me h1 { font-size: 32px; } .cta { background: #C8473B; color: #fff; border: 0; border-radius: 3px; }
+.tags span { background: #fff; color: #5B7A8C; border-radius: 3px; } .tags span::before { content: "✈ "; }
+.posts article { position: relative; background: #fff; border: 0; border-radius: 3px; box-shadow: 0 3px 10px rgba(43,54,64,.12); padding-bottom: 14px; }
+.posts article::before { opacity: 1 !important; background: linear-gradient(#9FD0E6, #3A8DBA 60%, #F5E9D3 60%) !important; }
+.posts article:nth-of-type(2)::before { background: linear-gradient(160deg, #F2B880 20%, #C86B6B 55%, #4A3F6B) !important; } .posts article:nth-of-type(3)::before { background: linear-gradient(#DCE8D5, #8FB08A 50%, #5B7A5A 50%) !important; }
+.posts article::after { content: ""; position: absolute; right: 8px; top: 8px; width: 20px; height: 24px; background: linear-gradient(#C8473B, #C8473B) center / 14px 18px no-repeat, #fff; outline: 2px dotted #fff; outline-offset: -1px; box-shadow: -14px 10px 0 -2px transparent; }
+.posts p { background: repeating-linear-gradient(transparent 0 15px, #E1E6EA 15px 16px); } .posts em { color: #C8473B; }
+.now { background: #fff; border-radius: 3px; position: relative; } .now::after { content: "SHANGHAI · 2026"; position: absolute; right: 14px; top: 50%; translate: 0 -50%; rotate: -12deg; padding: 6px 8px; border: 1.5px solid rgba(200,71,59,.6); border-radius: 50%; color: rgba(200,71,59,.7); font: 700 8px ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+</style>

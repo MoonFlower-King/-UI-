@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "ASCII Frames",
+  "zh": "字符画框",
+  "alias": [
+    "ASCII",
+    "字符边框",
+    "文本界面"
+  ],
+  "lead": "所有边框都用 ┌─┐│└┘ 这样的制表符画出来，像在文本模式下排的版。复古又有程序员的浪漫，适合极客博客、独立游戏开发者。",
+  "prompt": "字符画框风格：纸白底 #F5F3EE、墨黑字 #1C1C1C，全站等宽字体；每个区块的边框都用制表符字符画成（┌──┐ │ └──┘），标题嵌在上边框里；头像用字符拼成的小图案代替；强调色只用一种暗红 #B3261E 标出当前项（前面加 ▶）；没有任何图片、圆角和阴影",
+  "promptEn": "ASCII frames style: paper-white #F5F3EE background with ink-black #1C1C1C text, monospace throughout; every section is boxed with box-drawing characters (┌──┐ │ └──┘), with the heading set into the top border; the avatar replaced by a tiny character-art pattern; a single dark red #B3261E accent marks the current item (prefixed with ▶); no images, rounded corners or shadows",
+  "avoid": "字符边框必须用等宽字体才能对齐；内容少就把框做窄，别让框线比文字还多。",
+  "neg": [
+    "图片、渐变、圆角卡片、比例字体",
+    "images, gradients, rounded cards, proportional fonts"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #B3261E; --a2: #6B6B6B; --line: transparent; background: #F5F3EE; color: #1C1C1C; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo i { display: none; } .logo::before { content: "[*]"; color: #B3261E; } .cta { border: 0; } .cta::before { content: "< "; } .cta::after { content: " >"; }
+.nav nav a:first-child::before { content: "▶ "; color: #B3261E; }
+.av { background: none; border-radius: 0; font-size: 9px; line-height: 1.05; white-space: pre; color: #6B6B6B; display: grid; place-items: center; }
+.av::before { content: " .--. \A( ^^ )\A /  \ "; }
+.me, .posts, .now { position: relative; margin: 10px 26px; padding: 14px 16px; outline: 0; background: none; border: 1px solid #1C1C1C; border-radius: 0; }
+.me::before { content: "┤ ABOUT ├"; position: absolute; top: -8px; left: 12px; padding: 0 2px; background: #F5F3EE; font-size: 11px; }
+.posts h2 { position: absolute; top: -8px; left: 12px; padding: 0 2px; background: #F5F3EE; opacity: 1; letter-spacing: 0; color: #1C1C1C; } .posts h2::before { content: "┤ "; } .posts h2::after { content: " ├"; }
+.posts article:first-of-type h3::before { content: "▶ "; color: #B3261E; } .posts article { border: 0; } .posts em::before { content: "<"; } .posts em::after { content: ">"; }
+.now b::before { content: "* "; }
+</style>

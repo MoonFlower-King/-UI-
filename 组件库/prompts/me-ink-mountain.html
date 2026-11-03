@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Ink Landscape",
+  "zh": "水墨山水",
+  "alias": [
+    "水墨",
+    "山水画",
+    "国画"
+  ],
+  "lead": "首屏是一幅淡淡的水墨远山，名字像题在画上的大字，旁边一枚红印。意境悠远，适合书法、国画、古琴和写散文的人。",
+  "prompt": "水墨山水风格：宣纸白底 #F7F5EF，首屏下半部铺几层由浓到淡的水墨远山（墨灰 #3C3C3C → 淡灰 #C9C6BE，边缘柔和晕开），山顶有一点留白的雾气；名字用大号行楷或宋体、墨黑 #1F1F1F，旁边一枚朱红 #B8312F 方印；正文仿宋、字距略宽；全站只有墨色和一点朱红",
+  "promptEn": "ink landscape style: rice-paper white #F7F5EF, with layers of ink-wash mountains in the lower half of the hero going from dense to pale (ink gray #3C3C3C → pale gray #C9C6BE, softly bleeding edges) and a little mist of white space at the peaks; a large running-script or Song-style name in ink black #1F1F1F with a vermilion #B8312F square seal beside it; Fangsong body with slightly wide tracking; only ink tones and a touch of vermilion",
+  "avoid": "山要淡、在名字下面，文字压在浓墨上会看不清；红色只给印章，别再用来做按钮和标签。",
+  "neg": [
+    "鲜艳色彩、写实照片山景、科技线条、粗无衬线",
+    "vivid colors, realistic mountain photos, techy lines, heavy sans-serif"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #B8312F; --a2: #7A7770; --line: rgba(60,60,60,.15); --avb: #E7E4DC; --avf: #6E6B64; background: #F7F5EF; color: #2A2A28; font-family: "FangSong", "STFangsong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.me { background: radial-gradient(60% 50% at 25% 100%, rgba(60,60,60,.55), transparent 70%), radial-gradient(50% 42% at 70% 100%, rgba(60,60,60,.35), transparent 72%), radial-gradient(70% 60% at 55% 100%, rgba(150,148,140,.35), transparent 75%), radial-gradient(40% 70% at 90% 100%, rgba(120,118,110,.25), transparent 75%); }
+.me h1 { font-family: "Xingkai SC", "STXingkai", "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; letter-spacing: 4px; color: #1F1F1F; } .me h1::after { content: "舟"; display: inline-grid; place-items: center; width: 26px; height: 26px; margin-left: 10px; vertical-align: 14px; font: 14px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; letter-spacing: 0; color: #F7F5EF; background: #B8312F; border-radius: 3px; }
+.av { filter: grayscale(1); opacity: .85; } .hi { color: #7A7770; letter-spacing: 6px; } .bio { color: #2A2A28; } .tags span { background: rgba(255,255,255,.6); color: #2A2A28; }
+.cta { border-color: #3C3C3C; } .logo i { background: #3C3C3C; }
+.posts h2 { letter-spacing: 6px; } .posts em { color: #B8312F; } .now { background: rgba(60,60,60,.05); }
+</style>

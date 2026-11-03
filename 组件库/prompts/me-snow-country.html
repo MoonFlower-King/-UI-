@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Snow Country",
+  "zh": "雪国",
+  "alias": [
+    "冬日",
+    "雪景",
+    "北国"
+  ],
+  "lead": "安静的雪国冬日：冰雪白和冷灰蓝、慢慢飘落的雪花、远处一排淡蓝的雪松剪影，名字很大、很轻。清冷、干净，适合摄影师、北方生活和冬季运动博主。",
+  "prompt": "雪国风格：冰雪白底 #F4F7FA、冷灰蓝字 #2F4157；首屏底部一排淡蓝灰的雪松三角剪影 #C7D3E0，地平线覆着厚厚的白雪；全屏有很淡的白色雪点缓缓下落；名字超大、细体无衬线；强调色只有一点冬日暖红 #C2504A（像围巾）；按钮冰蓝描边",
+  "promptEn": "snow country style: snow white #F4F7FA with cold gray-blue #2F4157 text; a row of pale blue-gray fir-tree triangles #C7D3E0 along the bottom of the hero with thick snow on the horizon; very faint white snow dots slowly falling across the screen; an oversized light-weight sans-serif name; the only warm accent a touch of winter red #C2504A like a scarf; ice-blue outlined buttons",
+  "avoid": "雪花要稀、要慢；暖红只出现一两处，像雪地里的一抹围巾，多了就不冷了。",
+  "neg": [
+    "暖黄大色块、霓虹、密集排版、厚重阴影",
+    "large warm yellow blocks, neon, dense layout, heavy shadows"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #C2504A; --a2: #7A8DA3; --line: rgba(47,65,87,.1); --avb: #E3EAF2; --avf: #7A8DA3; background: #F4F7FA; color: #2F4157; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.blog::after { content: ""; position: absolute; inset: -350px 0 0; background: radial-gradient(circle, rgba(255,255,255,.9) 0 2px, transparent 2.5px) 0 0 / 83px 71px, radial-gradient(circle, rgba(199,211,224,.6) 0 1.5px, transparent 2px) 30px 23px / 97px 89px; animation: me-snow 12s linear infinite; pointer-events: none; }
+@keyframes me-snow { to { transform: translateY(350px); } }
+.me { background: linear-gradient(transparent 140px, #F4F7FA 140px), conic-gradient(from 150deg at 50% 0, #C7D3E0 0 60deg, transparent 60deg) 0 100px / 28px 40px repeat-x, linear-gradient(#E6EDF5, #F4F7FA); } .me { min-height: 290px; }
+.me h1 { font-weight: 200; letter-spacing: 4px; } .hi { color: #C2504A; letter-spacing: 3px; } .tags span { background: rgba(255,255,255,.8); color: #5A6E86; }
+.cta { border-color: #9DB4CC; color: #5A7896; } .logo i { background: #C2504A; }
+.posts em { color: #7A8DA3; } .now { background: #fff; box-shadow: 0 0 0 1px #E1E8F0; } .now b { color: #C2504A; }
+</style>

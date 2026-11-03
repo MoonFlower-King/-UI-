@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Acid Graphics",
+  "zh": "酸性设计",
+  "alias": [
+    "Acid design",
+    "酸性平面",
+    "Y3K"
+  ],
+  "lead": "近几年潮流圈的酸性设计：黑底、刺眼的荧光绿、液态金属、拉伸变形的超大字和细线网格。叛逆、前卫，适合潮牌主理人、电子音乐和街头艺术家。",
+  "prompt": "酸性设计风格：纯黑底 #050505，强调色荧光酸绿 #C6FF00，配铬银 #D9D9D9；名字用超大的拉伸变形字（横向拉宽或纵向压扁）、带液态金属渐变；背景叠细线网格和几个十字准星 ＋、圆形靶标；小字全大写、等宽、加宽字距，像机器标注；标签是酸绿描边胶囊",
+  "promptEn": "acid graphics style: pure black #050505 with fluorescent acid green #C6FF00 and chrome silver #D9D9D9; an oversized stretched name (horizontally widened or vertically squashed) with a liquid-metal gradient; thin grid lines, a few crosshairs ＋ and circular target marks over the background; small text in uppercase, widely tracked monospace like machine labels; tags as acid-green outlined pills",
+  "avoid": "荧光绿只用来做强调（标签、线条），正文用白或银；变形字只给名字，别把正文也拉伸。",
+  "neg": [
+    "柔和粉彩、手绘温馨、衬线书卷气、木纹纸纹",
+    "soft pastels, cozy hand-drawn style, bookish serifs, wood or paper textures"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #C6FF00; --a2: #8A8A8A; --line: rgba(198,255,0,.25); --avb: #1A1A1A; --avf: #C6FF00; background: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 28px 28px, #050505; color: #EDEDED; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11.5px; }
+.nav { text-transform: uppercase; letter-spacing: 3px; } .logo i { background: none; border: 1px solid #C6FF00; } .cta { border-color: #C6FF00; color: #C6FF00; }
+.me::before { content: "＋          ◎"; position: absolute; left: 30px; top: 20px; color: #C6FF00; font-size: 20px; white-space: pre; opacity: .7; }
+.me h1 { font-family: "Arial Black", Impact, -apple-system, "Inter", "PingFang SC", sans-serif; transform: scaleX(1.35); transform-origin: left; background: linear-gradient(180deg, #fff, #9A9A9A 45%, #F2F2F2 55%, #6A6A6A); -webkit-background-clip: text; color: transparent; letter-spacing: -2px; }
+.hi { color: #C6FF00; text-transform: uppercase; letter-spacing: 4px; } .av { box-shadow: 0 0 0 1px #C6FF00, 0 0 0 6px #050505, 0 0 0 7px rgba(198,255,0,.5); }
+.tags span { background: none; border: 1px solid #C6FF00; color: #C6FF00; text-transform: uppercase; }
+.posts h2 { color: #C6FF00; opacity: 1; } .posts h3 { font-family: "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; text-transform: uppercase; letter-spacing: 1px; } .posts em { color: #C6FF00; }
+.now { background: #C6FF00; color: #050505; border-radius: 0; } .now b { color: #050505; }
+</style>

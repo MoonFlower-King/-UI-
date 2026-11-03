@@ -1,0 +1,11 @@
+/* 个人站版式「便当格」：整页拆成大小不一的圆角格子——头像一格、名字介绍一大格，三篇文章和「此刻」各占一格。适合潮流、可爱、游戏感的风格。 */
+.pg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0 18px 18px; }
+.nav { grid-column: 1 / -1; padding-inline: 8px; }
+.me, .intro, .posts article, .now { border-radius: 14px; background: color-mix(in srgb, var(--a) 10%, transparent); }
+.me { display: contents; } .av { width: auto; height: auto; aspect-ratio: auto; min-height: 128px; border-radius: 14px; }
+.intro { grid-column: 2 / -1; padding: 16px 18px; } .me h1 { font-size: 28px; }
+.posts { display: contents; } .posts h2 { display: none; }
+.posts article { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px; border: 0; }
+.posts article:nth-of-type(2) { background: color-mix(in srgb, var(--a2) 16%, transparent); }
+.posts h3 { font-size: 13px; line-height: 1.35; } .posts p { font-size: 10.5px; } .posts time { font-size: 10px; } .posts em { margin-top: auto; }
+.now { grid-column: 1 / -1; margin: 0; } .ft { grid-column: 1 / -1; padding: 6px 8px 0; }

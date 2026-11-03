@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Blueprint",
+  "zh": "蓝图",
+  "alias": [
+    "工程蓝图",
+    "图纸",
+    "晒图"
+  ],
+  "lead": "像一张工程蓝图：普鲁士蓝底上细白网格，文字和线条都是白色，标注带尺寸线和小号大写说明。理性又浪漫，适合工程师、建筑师、硬件爱好者。",
+  "prompt": "蓝图风格：普鲁士蓝底 #1B4F8A，上面铺 20px 的浅白细网格（透明度 12%）；文字、边框全部是白色和淡蓝白 #CFE3FA；头像画成线框圆加十字中心线；区块用白色细线框，角上有小号标注（如 FIG.01）；字体用等宽或窄体无衬线，小标签全大写加宽字距",
+  "promptEn": "blueprint style: Prussian blue #1B4F8A background overlaid with a 20px light white grid at 12% opacity; all text and lines in white and pale blue-white #CFE3FA; the avatar drawn as an outlined circle with crosshair center lines; sections framed by thin white lines with small corner annotations (like FIG.01); monospace or condensed sans-serif with uppercase, widely tracked labels",
+  "avoid": "网格要淡，文字要压得住；颜色只有蓝和白，别再加别的强调色。",
+  "neg": [
+    "彩色强调、照片、圆润可爱字体、厚重阴影",
+    "colorful accents, photos, cute rounded fonts, heavy shadows"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #fff; --a2: #CFE3FA; --line: rgba(255,255,255,.35); background: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px) 0 0 / 20px 20px, linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px) 0 0 / 20px 20px, #1B4F8A; color: #fff; font-family: "DIN Condensed", "Arial Narrow", ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .5px; }
+.logo i { background: none; border: 1px solid #fff; border-radius: 0; } .cta { border-radius: 0; }
+.av { background: linear-gradient(#fff, #fff) center / 1px 100% no-repeat, linear-gradient(#fff, #fff) center / 100% 1px no-repeat; border: 1px solid #fff; position: relative; }
+.av::after { content: "Ø84"; position: absolute; right: -8px; top: -14px; font-size: 9px; color: #CFE3FA; }
+.me { margin: 0 26px; padding-inline: 14px; border: 1px dashed rgba(255,255,255,.5); position: relative; } .me::before { content: "FIG.01 · PROFILE"; position: absolute; left: 8px; top: -8px; padding: 0 4px; background: #1B4F8A; font-size: 9px; letter-spacing: 2px; }
+.me h1 { font-weight: 400; letter-spacing: 4px; } .tags span { background: none; border: 1px solid rgba(255,255,255,.6); color: #fff; border-radius: 0; }
+.posts { margin-top: 16px; } .posts h2 { opacity: 1; color: #CFE3FA; } .posts h2::before { content: "FIG.02 · "; }
+.now { background: none; border: 1px solid rgba(255,255,255,.5); border-radius: 0; } .now b { color: #CFE3FA; }
+</style>

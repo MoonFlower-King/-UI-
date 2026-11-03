@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Musician",
+  "zh": "音乐人",
+  "alias": [
+    "乐手主页",
+    "唱片",
+    "黑胶"
+  ],
+  "lead": "音乐人的主页：头像是一张缓缓转动的黑胶唱片，文章是专辑曲目，旁边有播放按钮和起伏的音波条。有节奏感、氛围浓，适合歌手、乐队、DJ 和音乐制作人。",
+  "prompt": "音乐人风格：深酒紫黑底 #17111C、暖白字 #F3EEE8、次要灰紫 #9A8FA6；头像是一张黑胶唱片（深黑同心细纹 + 中间一块彩色标签 #E85D75），缓慢旋转；名字大号粗体无衬线、全大写；文章是曲目列表——前面一个圆形播放按钮 ▶、标题后面一段起伏的音波条（几根高低不一的竖线，轻微跳动）；强调色唱片标签粉 #E85D75",
+  "promptEn": "musician style: deep wine-black #17111C with warm white #F3EEE8 text and gray-violet #9A8FA6 secondary text; the avatar is a vinyl record (black with fine concentric grooves and a colored center label #E85D75) rotating slowly; a large bold uppercase sans-serif name; posts as a track list—a round ▶ play button in front and a strip of waveform bars after the title (vertical lines of different heights, gently bouncing); record-label pink #E85D75 accent",
+  "avoid": "唱片转动要慢（一圈 6 秒以上），音波条跳动幅度要小；别同时放好几种动效。",
+  "neg": [
+    "亮白底、卡通音符、彩虹色、衬线书卷",
+    "bright white backgrounds, cartoon music notes, rainbow colors, bookish serifs"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #E85D75; --a2: #9A8FA6; --line: rgba(243,238,232,.1); background: radial-gradient(circle at 20% 10%, rgba(232,93,117,.18), transparent 50%), #17111C; color: #F3EEE8; font-family: "Helvetica Neue", "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.av { background: radial-gradient(circle, #F3EEE8 0 3%, #E85D75 3.5% 26%, #111 27%, #1C1C1C 30%, #111 33%, #1C1C1C 36%, #111 40%, #1C1C1C 44%, #111 48%, #222 52%, #111 70%) !important; box-shadow: 0 6px 18px rgba(0,0,0,.5); animation: me-spin 6s linear infinite; }
+@keyframes me-spin { to { rotate: 360deg; } }
+.me h1 { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; } .hi { color: #E85D75; letter-spacing: 3px; } .tags span { background: rgba(232,93,117,.15); color: #F5A3B2; }
+.cta { background: #E85D75; color: #17111C; border: 0; } .logo i { background: #E85D75; }
+.posts article { grid-template-columns: 26px 40px minmax(0, 1fr) 48px; } .posts article::before { content: "▶"; grid-row: span 2; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 7px; background: #F3EEE8; color: #17111C; align-self: center; }
+.posts time { grid-column: 2; } .posts h3, .posts p { grid-column: 3; }
+.posts em { grid-column: 4; font-size: 0; height: 16px; align-self: center; background: linear-gradient(#E85D75, #E85D75) 0 60% / 3px 50% no-repeat, linear-gradient(#E85D75, #E85D75) 7px 30% / 3px 90% no-repeat, linear-gradient(#E85D75, #E85D75) 14px 50% / 3px 60% no-repeat, linear-gradient(#E85D75, #E85D75) 21px 40% / 3px 80% no-repeat, linear-gradient(#E85D75, #E85D75) 28px 70% / 3px 40% no-repeat, linear-gradient(#E85D75, #E85D75) 35px 50% / 3px 70% no-repeat; animation: me-wave 1.2s ease-in-out infinite alternate; }
+@keyframes me-wave { to { transform: scaleY(.6); } }
+.now { background: rgba(232,93,117,.1); } .now b { color: #E85D75; }
+</style>

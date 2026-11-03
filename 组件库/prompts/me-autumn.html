@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Autumn Leaves",
+  "zh": "秋日",
+  "alias": [
+    "秋天",
+    "枫叶",
+    "落叶"
+  ],
+  "lead": "秋天的午后：枫红、银杏黄、栗色，暖白纸上飘着几片落叶，字是温暖的衬线。温柔、怀旧，适合写生活随笔、读书和散步记录的人。",
+  "prompt": "秋日风格：暖米白底 #FBF5EC、栗色深字 #4A2F23；配色枫叶红 #C2442E、银杏黄 #E8B23A、焦橙 #D9772F、橄榄褐 #7E6B3A；首屏角落飘着几片扁平落叶（枫叶红、银杏黄，轻微旋转、缓慢飘落）；标题用温暖的衬线、正文无衬线；分隔线是细细的栗色虚线；标签是叶子色的小胶囊",
+  "promptEn": "autumn leaves style: warm off-white #FBF5EC background with chestnut #4A2F23 text; palette of maple red #C2442E, ginkgo yellow #E8B23A, burnt orange #D9772F and olive brown #7E6B3A; a few flat falling leaves in a corner of the hero (maple red and ginkgo yellow, slightly rotated and drifting slowly); warm serif headings with sans-serif body; thin chestnut dashed dividers; tags as leaf-colored pills",
+  "avoid": "落叶三五片、放在角落；暖色很多时，正文一定用深栗色保证对比。",
+  "neg": [
+    "冷蓝灰、霓虹、黑色硬朗、科技线条",
+    "cold blue-grays, neon, hard black, techy lines"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #C2442E; --a2: #7E6B3A; --line: rgba(74,47,35,.2); --avb: #F3D9A8; --avf: #C2442E; background: #FBF5EC; color: #4A2F23; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { position: relative; } .me::before, .me::after { content: ""; position: absolute; width: 22px; height: 22px; background: #C2442E; border-radius: 0 70% 0 70%; animation: me-fall 8s ease-in-out infinite; }
+.me::before { right: 60px; top: 6px; } .me::after { right: 130px; top: 50px; background: #E8B23A; border-radius: 50% 50% 4px 50%; animation-delay: -3s; width: 18px; height: 18px; }
+@keyframes me-fall { 0% { transform: translate(0, -6px) rotate(0deg); } 50% { transform: translate(-14px, 16px) rotate(60deg); } 100% { transform: translate(0, -6px) rotate(0deg); } }
+.me h1, .posts h3 { font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .me h1 { font-weight: 400; color: #4A2F23; } .hi { color: #D9772F; }
+.tags span { background: #E8B23A; color: #4A2F23; } .tags span:nth-child(2) { background: #D9772F; color: #fff; } .tags span:nth-child(3) { background: #C2442E; color: #fff; }
+.cta { background: #C2442E; color: #fff; border: 0; } .logo i { background: #D9772F; border-radius: 0 70% 0 70%; }
+.posts article { border-top: 1px dashed rgba(74,47,35,.3); } .posts h3 { font-weight: 400; } .posts em { color: #C2442E; } .now { background: #F6E7CC; } .now b { color: #C2442E; }
+</style>

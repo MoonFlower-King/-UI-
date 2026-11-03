@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Raw Brutalist",
+  "zh": "粗野主义",
+  "alias": [
+    "Brutalism",
+    "野兽派网页",
+    "原始网页"
+  ],
+  "lead": "故意「不设计」的粗野网页：系统默认字体、粗黑边框、大块的原色、没有任何圆角和阴影，信息直来直去。有态度、反潮流，适合艺术家和独立开发者。",
+  "prompt": "粗野主义风格：白底 #FFFFFF、纯黑字 #000，全站用系统默认无衬线或等宽字；所有区块之间用 2px 纯黑实线分隔，像表格；强调色只有一块刺眼的亮黄 #FFE600 做背景高亮；链接蓝色下划线；名字很大、粗、左对齐挤在一起；没有圆角、阴影、渐变和图标",
+  "promptEn": "raw brutalist style: white #FFFFFF with pure black #000 text, the system default sans-serif or monospace throughout; every block separated by 2px solid black lines like a table; the only accent a blaring bright yellow #FFE600 used as a highlight background; blue underlined links; a huge, bold, tightly packed, left-aligned name; no rounded corners, shadows, gradients or icons",
+  "avoid": "粗野不是乱：网格和对齐依然要严格；黄色只给一两块，满屏亮黄就成了警示牌。",
+  "neg": [
+    "圆角、柔和阴影、渐变、精致插画",
+    "rounded corners, soft shadows, gradients, polished illustrations"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #000; --a2: #000; --line: #000; background: #fff; color: #000; font-family: Arial, "PingFang SC", sans-serif; }
+.nav { border-bottom: 2px solid #000; } .logo i { border-radius: 0; background: #FFE600; outline: 2px solid #000; } .nav nav a { text-decoration: underline; color: #0000EE; } .cta { border: 2px solid #000; border-radius: 0; background: #FFE600; font-weight: 700; }
+.me { border-bottom: 2px solid #000; } .av { border-radius: 0; outline: 2px solid #000; --avb: #FFE600; --avf: #000; } .me h1 { font-size: 34px; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
+.bio { background: #FFE600; display: inline; padding: 0 2px; }
+.posts h2 { opacity: 1; font-size: 13px; letter-spacing: 0; font-weight: 900; } .posts article { border-top: 2px solid #000; } .posts h3 { font-weight: 700; text-decoration: underline; color: #0000EE; }
+.posts em { color: #000; font-weight: 700; } .now { border: 2px solid #000; border-radius: 0; padding: 8px 12px; } .now b { color: #000; background: #FFE600; padding: 0 3px; }
+</style>

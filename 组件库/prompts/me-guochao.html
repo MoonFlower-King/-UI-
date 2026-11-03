@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Guochao",
+  "zh": "国潮",
+  "alias": [
+    "新国风",
+    "国潮风",
+    "中国红"
+  ],
+  "lead": "传统元素加潮流设计：中国红和明黄撞色、祥云和回纹做成粗线条图形、标题是粗壮的书法体。热闹、有态度，适合潮玩、文创、国风主播。",
+  "prompt": "国潮风格：中国红底 #C8102E 与米白 #FFF4E0 格子交替，强调明黄 #F6C200 和墨黑 #1A1A1A；格子用粗黑描边 2px；祥云、回纹做成扁平粗线条的装饰图形放在格子角上；名字用粗壮的书法体或黑体加粗，红底白字；标签像红色印花小布标；整体扁平、撞色、对比强烈",
+  "promptEn": "guochao style: Chinese red #C8102E tiles alternating with cream #FFF4E0, accented by bright yellow #F6C200 and ink black #1A1A1A; tiles outlined in 2px bold black; auspicious clouds and fret patterns as flat thick-line ornaments in the tile corners; the name in a heavy brush-calligraphy or bold sans face, white on red; tags like small red printed fabric labels; flat, high-contrast color clashes",
+  "avoid": "红黄撞色要有大面积的米白来透气；祥云回纹做成现代的粗线条，别用写实的古画贴图。",
+  "neg": [
+    "写实古画贴图、低饱和莫兰迪、细衬线、玻璃效果",
+    "realistic classical painting cutouts, muted Morandi tones, thin serifs, glass effects"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #C8102E; --a2: #F6C200; --avb: #F6C200; --avf: #C8102E; background: #FFF4E0; color: #1A1A1A; font-family: "Arial Black", "PingFang SC", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 2px solid #1A1A1A; margin-bottom: 4px; } .logo i { background: #C8102E; border-radius: 0; box-shadow: 0 0 0 2px #1A1A1A; } .cta { background: #F6C200; border: 2px solid #1A1A1A; border-radius: 0; }
+.av, .intro, .posts article, .now { border: 2px solid #1A1A1A; border-radius: 10px !important; }
+.intro { background: #C8102E !important; color: #FFF4E0; position: relative; } .intro::after { content: ""; position: absolute; right: 10px; top: 10px; width: 44px; height: 24px; border-radius: 12px 12px 12px 0; box-shadow: inset 0 0 0 3px #F6C200, 14px 6px 0 -4px #C8102E, 14px 6px 0 -1px #F6C200; }
+.me h1 { font-family: "Xingkai SC", "STXingkai", "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, -apple-system, "Inter", "PingFang SC", sans-serif; font-size: 34px; } .hi { color: #F6C200; } .tags span { background: #F6C200; color: #1A1A1A; border-radius: 0; }
+.posts article { background: #FFF4E0 !important; } .posts article:nth-of-type(2) { background: #F6C200 !important; } .posts em { color: #C8102E; font-weight: 700; }
+.now { background: #1A1A1A !important; color: #FFF4E0; } .now b { color: #F6C200; }
+</style>

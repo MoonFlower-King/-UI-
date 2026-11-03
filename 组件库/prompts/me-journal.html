@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Bullet Journal",
+  "zh": "手账",
+  "alias": [
+    "手帐",
+    "子弹笔记",
+    "点阵本"
+  ],
+  "lead": "像一本摊开的点阵手账：米白纸上有浅灰圆点格，标题像手写，文章挂在日期时间线上，边角贴着半透明的纸胶带。温暖、生活感强，适合日记博主和学生。",
+  "prompt": "手账风格：米白纸色底 #FBF8F1，铺 14px 间距的浅灰圆点格 #D9D3C7；标题用手写感字体（楷体 / 手写体），正文用圆润无衬线；文章挂在时间线上，日期像手写的数字；头像和「此刻」框的角上各贴一条斜放的半透明纸胶带（淡粉 #F4C7C3、薄荷 #BFE3D0，带细斜纹）；强调色是红笔 #D9534F",
+  "promptEn": "bullet journal style: off-white paper #FBF8F1 with a light gray dot grid #D9D3C7 at 14px spacing; headings in a handwritten-looking face (Kai / script), body in rounded sans-serif; posts hang on a timeline with dates like handwritten numbers; the avatar and the now box each have a strip of translucent washi tape on a corner (pale pink #F4C7C3, mint #BFE3D0 with fine diagonal stripes); a red-pen #D9534F accent",
+  "avoid": "纸胶带和贴纸是点缀，一屏两三处就够；手写字只用于标题，正文用手写字会很难读。",
+  "neg": [
+    "满屏贴纸、全站手写字、深色背景、科技感线条",
+    "stickers everywhere, handwriting for all text, dark backgrounds, techy lines"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #D9534F; --a2: #8C8273; --line: #E6DFD2; --avb: #F4E7D7; --avf: #C9A27E; background: radial-gradient(circle, #D9D3C7 1px, transparent 1.4px) 0 0 / 14px 14px, #FBF8F1; color: #4A4238; font-family: "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo, .me h1, .posts h2, .posts h3 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; } .logo i { border-radius: 2px; transform: rotate(8deg); }
+.av { position: relative; border-radius: 10px; } .av::after, .now::before { content: ""; position: absolute; width: 54px; height: 16px; left: -8px; top: -6px; transform: rotate(-14deg); background: repeating-linear-gradient(45deg, rgba(255,255,255,.45) 0 3px, transparent 3px 6px), rgba(244,199,195,.85); }
+.me h1 { font-weight: 400; font-size: 34px; } .hi { color: #D9534F; } .tags span { background: #fff; border: 1px dashed #C9BBA8; color: #8C8273; }
+.posts h2 { opacity: 1; font-size: 16px; letter-spacing: 0; color: #D9534F; } .posts h3 { font-weight: 400; font-size: 16px; }
+.posts article::after { background: #fff !important; border: 2px solid #D9534F; box-shadow: none !important; }
+.now { position: relative; background: #fff; border: 1px solid #E6DFD2; } .now::before { left: auto; right: -6px; transform: rotate(12deg); background: repeating-linear-gradient(45deg, rgba(255,255,255,.45) 0 3px, transparent 3px 6px), rgba(191,227,208,.9); }
+</style>

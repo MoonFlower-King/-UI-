@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Typewriter Draft",
+  "zh": "打字机稿",
+  "alias": [
+    "打字稿",
+    "Courier",
+    "手稿"
+  ],
+  "lead": "像用老式打字机打在纸上的稿子：等宽打字机字体、墨色深浅不匀、有几处划掉重写的字和红笔批注。文学气质浓，适合写小说、剧本和随笔的人。",
+  "prompt": "打字机稿风格：泛黄纸底 #F4EEDF（带很淡的纸纹），全站打字机等宽字体（Courier 一类），墨色 #2B2A27 并有轻微深浅不均；导航和标题全大写；几处文字加删除线后在旁边重写，旁边有红色 #C0392B 手写批注；分隔用一行连字符 ------；没有任何圆角、色块和阴影",
+  "promptEn": "typewriter draft style: yellowed paper #F4EEDF with a faint paper texture, a typewriter monospace (Courier-like) throughout in ink #2B2A27 with slightly uneven darkness; navigation and headings in caps; a few words struck through and retyped beside them, with red #C0392B handwritten margin notes; dividers as a line of hyphens ------; no rounded corners, color blocks or shadows",
+  "avoid": "删除线和红笔批注是彩蛋，全页一两处；正文还是要干净可读，别整页都在「改稿」。",
+  "neg": [
+    "无衬线现代字体、彩色卡片、圆角、图标",
+    "modern sans-serif, colorful cards, rounded corners, icons"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #C0392B; --a2: #6E675A; --line: transparent; --avb: #E8E0CB; --avf: #6E675A; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.5), transparent 60%), #F4EEDF; color: #2B2A27; font-family: "Courier New", Courier, ui-monospace, "SF Mono", Menlo, Consolas, monospace; text-shadow: .3px 0 rgba(43,42,39,.5); }
+.nav { text-transform: uppercase; letter-spacing: 2px; } .logo i { display: none; } .cta { border: 0; text-decoration: underline; }
+.av { border-radius: 0; filter: grayscale(1) contrast(1.1); } .me h1 { font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 26px; }
+.hi { color: #6E675A; } .hi::before { content: "Dear reader — "; } .bio::after { content: "  ← 别删"; color: #C0392B; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 13px; }
+.tags span { background: none; color: #2B2A27; padding: 0; } .tags span:nth-child(2) { text-decoration: line-through; } .tags span:nth-child(2)::after { content: " 胶片"; text-decoration: none; display: inline-block; margin-left: 4px; }
+.posts h2 { opacity: 1; text-transform: uppercase; } .posts h2::after { content: "\A------------------------------"; white-space: pre; letter-spacing: 0; color: #6E675A; }
+.posts article { border: 0; } .posts h3 { font-weight: 700; } .posts em { color: #C0392B; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 12px; }
+.now { background: none; border-radius: 0; border-top: 1px dashed #6E675A; border-bottom: 1px dashed #6E675A; } .now b { color: #2B2A27; }
+</style>

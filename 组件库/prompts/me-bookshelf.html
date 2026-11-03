@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Bookshelf",
+  "zh": "书架",
+  "alias": [
+    "书脊",
+    "读书博主",
+    "藏书"
+  ],
+  "lead": "文章像书架上的一排书：每篇是一条彩色书脊，日期和标签印在书脊两端，下面压着木头隔板。书卷气又有趣，适合读书博主和图书编辑。",
+  "prompt": "书架风格：暖白墙面底 #F7F2EA、深棕字 #3B2F25；每篇文章是一条横放的书脊——不同的书皮色（墨绿 #2F5D50、酒红 #8C2F39、藏青 #2B3A67、芥末 #C9A227）、两端有烫金细线，书名用衬线白字；书脊下面是一条木纹隔板（深棕渐变 #8B5E3C）；头像旁边的介绍像书的扉页；整体衬线字体",
+  "promptEn": "bookshelf style: warm wall white #F7F2EA with dark brown #3B2F25 text; each post is a horizontal book spine in its own cover color (forest #2F5D50, claret #8C2F39, navy #2B3A67, mustard #C9A227) with gold foil rules at both ends and the title in white serif; a wood-grain shelf (dark brown gradient #8B5E3C) under the spines; the bio next to the avatar reads like a title page; serif type overall",
+  "avoid": "书脊颜色控制在四种以内、都选偏暗的「布面色」；书名文字一定要和书皮颜色拉开对比。",
+  "neg": [
+    "亮荧光书脊、卡通插画、无衬线科技字、玻璃效果",
+    "neon spines, cartoon illustrations, techy sans-serif, glass effects"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #8C2F39; --a2: #8B5E3C; --line: transparent; --avb: #E7DCCB; --avf: #8B5E3C; background: #F7F2EA; color: #3B2F25; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { border-radius: 0; width: 6px; height: 16px; background: #8C2F39; box-shadow: 8px 0 #2F5D50, 16px 0 #2B3A67; margin-right: 16px; } .cta { border-color: #8B5E3C; }
+.me h1 { font-weight: 400; } .bio { font-style: italic; }
+.posts { padding-bottom: 26px; } .posts article { margin: 0 0 3px; padding: 9px 14px !important; color: #fff; background: #2F5D50; border: 0 !important; border-radius: 2px; box-shadow: inset 10px 0 0 -8px #D4B26A, inset -10px 0 0 -8px #D4B26A, inset 0 -2px rgba(0,0,0,.2); }
+.posts article:nth-of-type(2) { background: #8C2F39; margin-left: 18px; } .posts article:nth-of-type(3) { background: #2B3A67; margin-right: 30px; }
+.posts article:last-of-type { box-shadow: inset 10px 0 0 -8px #D4B26A, inset -10px 0 0 -8px #D4B26A, 0 10px 0 -2px #8B5E3C, 0 12px 0 -2px #5E3D24; }
+.posts time, .posts em { color: #E9D7A8; opacity: 1; } .posts h3 { font-weight: 400; letter-spacing: 1px; }
+.now { border-left-color: #C9A227; } .now b { color: #8C2F39; }
+</style>

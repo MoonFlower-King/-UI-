@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Indie Maker",
+  "zh": "独立开发者",
+  "alias": [
+    "独立开发",
+    "Build in public",
+    "产品更新日志"
+  ],
+  "lead": "独立开发者的主页：一行「正在做什么」、几个产品小徽章，文章写成产品更新日志——版本号、更新时间线、绿色的「上线」标签。真诚、有成长感，适合独立开发者和小团队创始人。",
+  "prompt": "独立开发者风格：浅暖灰底 #F7F6F3、深灰字 #1F2328；顶部一条小状态栏「● 正在做：记账小工具 v0.9」（绿色呼吸点 #22A06B）；名字旁边是 2～3 个产品小徽章（圆角方形色块 + 首字母）；文章挂在时间线上，像更新日志——每条前面一个版本号小标签（如 v1.2，等宽字、浅灰底），标签写成「已上线」绿色胶囊；强调色绿 #22A06B 和琥珀 #E3A008",
+  "promptEn": "indie maker style: light warm gray #F7F6F3 with dark gray #1F2328 text; a small status line at the top “● Building: budget tool v0.9” with a breathing green dot #22A06B; two or three product badges next to the name (rounded-square color tiles with initials); posts on a timeline like a changelog—each prefixed with a small version tag (like v1.2 in monospace on light gray) and tagged with a green “Shipped” pill; green #22A06B and amber #E3A008 accents",
+  "avoid": "「真实感」是关键：版本号、日期要像真的；徽章两三个就够，别把主页做成广告位。",
+  "neg": [
+    "炫酷大图、霓虹、复杂插画、过度动效",
+    "flashy big images, neon, complex illustrations, excessive animation"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #22A06B; --a2: #E3A008; --line: #E7E5E0; --avb: #E6F4EC; --avf: #22A06B; background: #F7F6F3; color: #1F2328; font-family: "Inter", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav::after { content: none; } .cta { background: #1F2328; color: #fff; border: 0; border-radius: 8px; } .logo i { border-radius: 4px; background: #22A06B; }
+.me::before { content: "● 正在做：记账小工具 v0.9"; position: absolute; top: -2px; left: 26px; font-size: 10.5px; color: #22A06B; animation: me-breathe 2s ease-in-out infinite; } .me { position: relative; padding-top: 30px; }
+@keyframes me-breathe { 50% { opacity: .55; } }
+.me h1::after { content: "记"; display: inline-grid; place-items: center; width: 22px; height: 22px; margin-left: 10px; vertical-align: 6px; border-radius: 6px; font-size: 11px; color: #fff; background: #22A06B; box-shadow: 28px 0 0 #E3A008, 56px 0 0 #6E56CF; }
+.tags span { background: #fff; color: #1F2328; box-shadow: 0 0 0 1px #E7E5E0; }
+.posts time { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .posts time::before { content: "v1.2 "; padding: 0 4px; border-radius: 4px; background: #ECEAE5; color: #57534E; font-size: 9.5px; }
+.posts article:nth-of-type(2) time::before { content: "v1.1 "; } .posts article:nth-of-type(3) time::before { content: "v1.0 "; } .posts article { grid-template-columns: 76px minmax(0, 1fr); } .posts article::before { left: 86px !important; } .posts article::after { left: 82px !important; background: #22A06B !important; }
+.posts em { justify-self: start; margin-left: 26px; padding: 1px 8px !important; border-radius: 99px; background: #E6F4EC; color: #22A06B; } .posts em::before { content: "已上线 · "; }
+.now { background: #fff; border: 1px solid #E7E5E0; } .now b { color: #E3A008; }
+</style>

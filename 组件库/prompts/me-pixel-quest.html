@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Pixel Quest",
+  "zh": "像素冒险",
+  "alias": [
+    "8-bit",
+    "像素 RPG",
+    "游戏存档"
+  ],
+  "lead": "把个人主页做成一款像素角色扮演游戏：角色头像、血条一样的技能条、文章像任务日志，旁边有像素宝箱和金币。好玩、有童心，适合游戏开发者和像素画师。",
+  "prompt": "像素冒险风格：深靛蓝底 #1C1F3B、白色像素字体；所有框是 4px 白边 + 4px 深色阴影的方块框（无圆角）；头像是 8×8 像素块拼的小人；标签做成三条彩色技能条（红 #E83F3F / 绿 #4CC35A / 蓝 #3F8FE8，带方格刻度）；文章像任务日志，时间线圆点换成小金币 #F7C52E；「此刻」像 RPG 对话框，右下角闪烁 ▼",
+  "promptEn": "pixel quest style: deep indigo #1C1F3B background with white pixel type; every frame is a square box with a 4px white border and a 4px dark drop shadow (no rounding); the avatar is an 8×8 pixel-block character; tags as three colored skill bars (red #E83F3F / green #4CC35A / blue #3F8FE8 with segment ticks); posts read like a quest log, with small gold coins #F7C52E as the timeline dots; the now section like an RPG dialog box with a blinking ▼ at the bottom right",
+  "avoid": "像素要「整格」：线宽、间距都用 4 的倍数；颜色限制在 6～8 种，像老游戏机的调色板。",
+  "neg": [
+    "抗锯齿圆角、渐变、写实图片、细衬线",
+    "anti-aliased rounded corners, gradients, realistic images, thin serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #F7C52E; --a2: #9AA3D9; --line: #3A3F6B; --avb: #3A3F6B; --avf: #F7C52E; background: #1C1F3B; color: #fff; font-family: "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+.logo i { border-radius: 0; background: #E83F3F; box-shadow: 4px 0 #4CC35A, 8px 0 #3F8FE8; margin-right: 8px; } .cta { border: 4px solid #fff; border-radius: 0; box-shadow: 4px 4px 0 #000; }
+.av { border-radius: 0; border: 4px solid #fff; box-shadow: 4px 4px 0 #000; image-rendering: pixelated; background: linear-gradient(#F7C52E, #F7C52E) 50% 28% / 24px 20px no-repeat, linear-gradient(#000, #000) 40% 32% / 4px 4px no-repeat, linear-gradient(#000, #000) 60% 32% / 4px 4px no-repeat, linear-gradient(#E83F3F, #E83F3F) 50% 90% / 40px 28px no-repeat, #3A3F6B; }
+.me h1 { font-size: 24px; } .hi { color: #F7C52E; } .hi::before { content: "LV.32 "; }
+.tags { flex-direction: column; gap: 5px; } .tags span { width: 150px; padding: 2px 6px; border-radius: 0; color: #fff; background: repeating-linear-gradient(90deg, transparent 0 14px, #1C1F3B 14px 16px), linear-gradient(90deg, #E83F3F 80%, #3A3F6B 0); }
+.tags span:nth-child(2) { background: repeating-linear-gradient(90deg, transparent 0 14px, #1C1F3B 14px 16px), linear-gradient(90deg, #4CC35A 65%, #3A3F6B 0); } .tags span:nth-child(3) { background: repeating-linear-gradient(90deg, transparent 0 14px, #1C1F3B 14px 16px), linear-gradient(90deg, #3F8FE8 90%, #3A3F6B 0); }
+.posts h2 { opacity: 1; color: #F7C52E; } .posts h2::before { content: "★ QUEST LOG · "; } .posts article::before { width: 4px !important; background: #3A3F6B !important; left: 57px !important; }
+.posts article::after { border-radius: 0 !important; width: 10px !important; height: 10px !important; background: #F7C52E !important; box-shadow: inset -2px -2px #C08F12, 0 0 0 2px #000 !important; }
+.posts em { color: #4CC35A; } .now { position: relative; background: #1C1F3B; border: 4px solid #fff; border-radius: 0; box-shadow: 4px 4px 0 #000; } .now::after { content: "▼"; position: absolute; right: 8px; bottom: 4px; animation: me-blink 1s steps(1) infinite; } .now b { color: #F7C52E; }
+@keyframes me-blink { 50% { opacity: 0; } }
+</style>

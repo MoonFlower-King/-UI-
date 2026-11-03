@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Raw Markdown",
+  "zh": "原始 Markdown",
+  "alias": [
+    "Markdown",
+    "源码风",
+    "纯文本标记"
+  ],
+  "lead": "把页面显示成还没渲染的 Markdown 源码：标题前带 #，加粗两边有 **，链接写成 [文字](地址) 的样子。程序员和写作者一看就会心一笑。",
+  "prompt": "原始 Markdown 风格：浅米白底 #FBFAF7、深灰字 #2E2E2E，全站等宽字体；把 Markdown 标记直接显示出来——标题前的 #、## 用浅灰 #A8A39A，加粗两边有 **，标签写成 `代码` 样式的浅灰底小块，列表前有 - ；链接显示为 [标题](…) 并用靛蓝 #4B5BB5；没有任何图标和色块",
+  "promptEn": "raw Markdown style: off-white #FBFAF7 background with dark gray #2E2E2E text, monospace throughout; Markdown syntax is shown literally—# and ## before headings in light gray #A8A39A, ** around bold text, tags as `inline code` chips with a pale gray fill, list items prefixed with - ; links shown as [title](…) in indigo #4B5BB5; no icons or color blocks",
+  "avoid": "标记符号要比正文浅，不然会抢内容；这是「看起来像源码」，排版本身还是要整齐，别真的把一大段原始文本糊上去。",
+  "neg": [
+    "渲染好的富文本样式、彩色卡片、大图",
+    "fully rendered rich-text styling, colorful cards, big images"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #4B5BB5; --a2: #A8A39A; --line: transparent; --avb: #EEECE6; --avf: #A8A39A; background: #FBFAF7; color: #2E2E2E; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo i { display: none; } .logo::before { content: "# "; color: #A8A39A; } .cta { border: 0; color: #4B5BB5; } .cta::before { content: "["; } .cta::after { content: "](…)"; color: #A8A39A; }
+.av { border-radius: 4px; } .me h1::before { content: "# "; color: #A8A39A; } .me h1 { font-weight: 600; font-size: 26px; } .hi::before { content: "> "; }
+.bio::before, .bio::after { content: "**"; color: #A8A39A; } .tags span { border-radius: 3px; background: #EEECE6; color: #C2412D; font-size: 10.5px; } .tags span::before, .tags span::after { content: "`"; color: #A8A39A; }
+.posts h2 { opacity: 1; letter-spacing: 0; font-size: 13px; font-weight: 600; } .posts h2::before { content: "## "; color: #A8A39A; }
+.posts h3 { font-weight: 400; color: #4B5BB5; } .posts h3::before { content: "- ["; color: #A8A39A; } .posts h3::after { content: "](…)"; color: #A8A39A; }
+.now { background: none; border-left: 3px solid #D9D5CC; border-radius: 0; } .now b::before { content: "**"; } .now b::after { content: "**"; }
+</style>

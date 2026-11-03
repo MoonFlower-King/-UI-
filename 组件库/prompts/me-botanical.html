@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Botanical Plate",
+  "zh": "植物图鉴",
+  "alias": [
+    "博物画",
+    "植物志",
+    "自然笔记"
+  ],
+  "lead": "像一本老派的植物图鉴：奶油纸、细线描绘的叶片、拉丁学名小字、编号标签。博学、安静，适合植物爱好者、自然科普和园艺博主。",
+  "prompt": "植物图鉴风格：奶油纸底 #F6F1E4、深墨绿字 #2F3A2C；左侧栏像图鉴的标本页——头像位置是一片细线描的叶子标本（橄榄绿 #6E7F4E 叶片 + 细叶脉）；标签写成编号标本签（如「No.07 设计」）；标题用古典衬线、学名式小字用斜体；分隔线细而淡；点缀一点赭红 #A55A3C",
+  "promptEn": "botanical plate style: cream paper #F6F1E4 with deep ink-green #2F3A2C text; the left sidebar like a specimen page of a field guide—a finely drawn leaf specimen in place of the avatar (olive #6E7F4E blade with thin veins); tags written as numbered specimen labels (like “No.07 Design”); classic serif headings with italic Latin-style captions; thin, faint dividers; a touch of russet #A55A3C",
+  "avoid": "叶子画成线描或扁平，别用写实照片；斜体学名是点缀，一屏一两处。",
+  "neg": [
+    "照片植物、霓虹、粗黑描边、卡通风格",
+    "photographed plants, neon, heavy black outlines, cartoon style"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #A55A3C; --a2: #6E7F4E; --line: rgba(47,58,44,.15); background: linear-gradient(90deg, #EFE7D3 178px, #F6F1E4 0); color: #2F3A2C; font-family: "Baskerville", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.av { background: linear-gradient(130deg, transparent 49%, #4F5D37 49.5% 50.5%, transparent 51%), radial-gradient(ellipse 22% 42% at 50% 46%, #6E7F4E 96%, transparent 100%), #F6F1E4 !important; border-radius: 6px; box-shadow: 0 0 0 1px rgba(47,58,44,.25); transform: rotate(-12deg); }
+.me h1 { font-weight: 400; } .hi { font-style: italic; color: #6E7F4E; } .hi::after { content: " — Zhou xiaozhou sp."; }
+.tags { flex-direction: column; gap: 4px; } .tags span { background: #F6F1E4; color: #2F3A2C; border: 1px solid rgba(47,58,44,.3); border-radius: 0; padding: 2px 8px; } .tags span:nth-child(1)::before { content: "No.07 "; color: #A55A3C; } .tags span:nth-child(2)::before { content: "No.12 "; color: #A55A3C; } .tags span:nth-child(3)::before { content: "No.21 "; color: #A55A3C; }
+.cta { border-color: #6E7F4E; color: #6E7F4E; border-radius: 0; } .logo i { background: #6E7F4E; border-radius: 0 50%; }
+.posts h2 { opacity: 1; font-style: italic; letter-spacing: 1px; color: #6E7F4E; } .posts h3 { font-weight: 400; } .posts em { font-style: italic; color: #A55A3C; }
+.now { background: none; border: 1px solid rgba(47,58,44,.25); border-radius: 0; } .now b { color: #6E7F4E; font-style: italic; }
+</style>

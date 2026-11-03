@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Dunhuang Mural",
+  "zh": "敦煌壁画",
+  "alias": [
+    "敦煌",
+    "莫高窟配色",
+    "飞天"
+  ],
+  "lead": "取色自敦煌壁画：土黄底、石青石绿、朱砂和赭石，配飞天飘带一样的弧线和斑驳的墙面质感。厚重、绚丽，适合文博、艺术史和国风插画师。",
+  "prompt": "敦煌壁画风格：土黄墙面底 #E3C79A（带斑驳的颗粒和淡淡裂纹质感），主色石青 #2E6E8E、石绿 #3E8E7E，点缀朱砂 #B5432F 和赭石 #8C5A3C；首屏背后有两三条飞天飘带一样的长弧线（石青、朱砂细带）；头像外圈像佛光的同心圆环；标题用宋体加宽字距，正文深赭色 #3E2A1E",
+  "promptEn": "Dunhuang mural style: earthy ochre wall #E3C79A with mottled grain and faint crack texture, main colors azurite blue #2E6E8E and malachite green #3E8E7E, accented by cinnabar #B5432F and sienna #8C5A3C; two or three long sweeping ribbon curves like flying-apsara sashes behind the hero (thin azurite and cinnabar bands); the avatar ringed by concentric halo rings; widely tracked Song headings with dark sienna #3E2A1E body",
+  "avoid": "矿物色都要「哑」一点，像褪色的壁画；飘带只做两三条长弧，别画具象的人物。",
+  "neg": [
+    "亮荧光色、纯白背景、科技线条、写实人物",
+    "fluorescent colors, pure white backgrounds, techy lines, realistic figures"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #B5432F; --a2: #2E6E8E; --line: rgba(62,42,30,.18); --avb: #3E8E7E; --avf: #E3C79A; background: radial-gradient(rgba(140,90,60,.18) 1px, transparent 1.6px) 0 0 / 6px 6px, radial-gradient(120% 80% at 70% 0%, #ECD6AE, #E3C79A 60%, #D6B484); color: #3E2A1E; font-family: "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.me { overflow: hidden; } .me::before { content: ""; position: absolute; left: -40px; right: -40px; top: 40px; height: 160px; border-radius: 50%; border-top: 3px solid rgba(46,110,142,.55); transform: rotate(-8deg); }
+.me::after { content: ""; position: absolute; left: 20%; right: -60px; top: 90px; height: 140px; border-radius: 50%; border-top: 2px solid rgba(181,67,47,.55); transform: rotate(6deg); }
+.av { box-shadow: 0 0 0 4px #E3C79A, 0 0 0 6px #B5432F, 0 0 0 10px #E3C79A, 0 0 0 12px #2E6E8E; z-index: 1; }
+.intro { position: relative; z-index: 1; } .me h1 { font-weight: 400; letter-spacing: 8px; color: #2E6E8E; } .hi { color: #B5432F; letter-spacing: 4px; }
+.tags span { background: #3E8E7E; color: #F3E3C3; } .cta { background: #B5432F; color: #F3E3C3; border: 0; } .logo i { background: #2E6E8E; }
+.posts h2 { opacity: 1; color: #8C5A3C; letter-spacing: 6px; } .posts em { color: #B5432F; } .now { background: rgba(46,110,142,.12); } .now b { color: #2E6E8E; }
+</style>

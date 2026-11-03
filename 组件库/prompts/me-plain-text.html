@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Plain HTML",
+  "zh": "纯文本主页",
+  "alias": [
+    "纯 HTML",
+    "裸网页",
+    "原生网页"
+  ],
+  "lead": "像二十年前手写的网页：白底、系统默认衬线字、蓝色带下划线的链接，几乎没有样式。真诚、好读、加载飞快，适合程序员、学者和「内容比样子重要」的人。",
+  "prompt": "纯文本主页风格：白底 #FFFFFF、黑字，全站用浏览器默认的衬线字体（Times 一类），不做任何装饰；链接一律蓝色 #0000EE 加下划线，导航只是几个文字链接；标题加粗、正文 13px 左对齐；没有阴影、圆角和背景色块",
+  "promptEn": "plain HTML homepage style: white #FFFFFF background with black text, the browser-default serif (Times-like) everywhere and no decoration; all links are blue #0000EE and underlined, navigation is just a few text links; bold headings, 13px left-aligned body; no shadows, rounded corners or color blocks",
+  "avoid": "「朴素」不等于乱：行距、段距还是要整齐，链接颜色全站统一；别为了显得用心又偷偷加阴影和渐变，那就不是这个风格了。",
+  "neg": [
+    "阴影、圆角卡片、渐变背景、图标装饰",
+    "drop shadows, rounded cards, gradient backgrounds, decorative icons"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #0000EE; --a2: #551A8B; background: #fff; color: #000; font-family: "Times New Roman", Times, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { display: none; } .logo { font-size: 15px; } .nav nav a, .cta, .posts h3 { color: #0000EE; text-decoration: underline; } .cta { border: 0; padding: 0; }
+.av { border-radius: 0; --avb: #ddd; --avf: #999; } .me h1 { font-weight: 700; }
+.posts h2 { opacity: 1; letter-spacing: 0; font-size: 15px; font-weight: 700; } .posts article { border-top: 0; }
+.posts article:nth-of-type(2) h3 { color: #551A8B; } .posts em { color: #555; font-style: italic; }
+.now { border-left: 0; padding: 0; } .now b { color: #000; } .ft { border-top: 1px solid #000; margin: 0 26px; padding-inline: 0; opacity: 1; font-size: 11px; }
+</style>

@@ -44,6 +44,7 @@ const PRESETS = [
   { name: '人物登场', note: '推镜头 + 特写', ids: ['dolly-in', 'close-up'] },
   { name: '安静人像', note: '伦勃朗光 + 负空间', ids: ['rembrandt-light', 'negative-space'] },
   { name: '书房官网', note: '东方雅致', ids: ['oriental'] },
+  { name: '个人博客', note: '江月夜', ids: ['me-moon-river'] },
 ];
 
 function toggle(id) {

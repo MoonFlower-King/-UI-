@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Vermilion Seal",
+  "zh": "朱印",
+  "alias": [
+    "印章",
+    "篆刻",
+    "朱砂印"
+  ],
+  "lead": "黑白分明的页面上盖着一枚枚朱红印章：头像是方形阳文印，每篇文章前一个小印，标签像闲章。干净又有金石味，适合书法篆刻、文字工作者。",
+  "prompt": "朱印风格：纸白底 #FAF8F4、浓墨字 #1A1A1A，唯一的颜色是朱砂红 #C0392B；头像做成方形朱文印（红色方框 + 内部留白的「舟」字，边缘略斑驳）；每篇文章前有一个小方印，标签做成红底白字的长方闲章；标题用宋体或篆隶风格、正文宋体；整页黑白红三色",
+  "promptEn": "vermilion seal style: paper white #FAF8F4 with dense ink #1A1A1A text and cinnabar red #C0392B as the only color; the avatar is a square red-relief seal (a red frame with the character 舟 in reserve, slightly weathered edges); a small square seal before each post, and tags as red rectangular leisure seals with white text; Song or seal/clerical-style headings with Song body; only black, white and red",
+  "avoid": "红色只给「印」，别用来做大面积背景；印章边缘做一点斑驳更像真的，但字一定要清楚。",
+  "neg": [
+    "彩虹色、渐变、圆角卡片、无衬线科技字",
+    "rainbow colors, gradients, rounded cards, techy sans-serif"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #C0392B; --a2: #7A746B; --line: #E4DED3; background: #FAF8F4; color: #1A1A1A; font-family: "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { border-radius: 1px; width: 14px; height: 14px; background: #C0392B; } .cta { border-radius: 0; border-color: #C0392B; color: #C0392B; }
+.av { border-radius: 2px; background: #FAF8F4; box-shadow: inset 0 0 0 3px #C0392B, inset 0 0 0 5px #FAF8F4, inset 0 0 0 7px #C0392B; display: grid; place-items: center; position: relative; }
+.av::before { content: "舟"; font: 700 24px "STKaiti", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #C0392B; } .av::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 80%, #FAF8F4 0 2px, transparent 2.5px), radial-gradient(circle at 85% 15%, #FAF8F4 0 1.5px, transparent 2px); }
+.me h1 { font-weight: 700; letter-spacing: 4px; } .posts h2 { opacity: 1; letter-spacing: 6px; }
+.posts h3 { display: flex; align-items: center; gap: 8px; font-weight: 400; } .posts h3::before { content: ""; width: 10px; height: 10px; background: #C0392B; border-radius: 1px; flex: none; }
+.posts em { background: #C0392B; color: #FAF8F4; padding: 1px 6px; font-size: 10px; border-radius: 1px; }
+.now { border-left-color: #C0392B; } .now b { color: #C0392B; }
+</style>

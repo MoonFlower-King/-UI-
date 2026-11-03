@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Handheld LCD",
+  "zh": "掌机屏",
+  "alias": [
+    "8 位掌机",
+    "LCD 绿屏",
+    "像素屏"
+  ],
+  "lead": "像老掌上游戏机的绿色液晶屏：只有四档橄榄绿、像素字体、粗像素边框，菜单前面有小箭头。怀旧、可爱，适合独立游戏开发者和像素画师。",
+  "prompt": "掌机屏风格：整页只用四档橄榄绿——最浅 #C4CFA1、浅 #8B956D、深 #4D533C、最深 #1F1F1F；像素字体（或等宽字放大），所有边框是 3px 实色像素框、无圆角；头像做成像素块拼的小人；当前菜单项前有 ▶ 箭头；「此刻」像游戏里的对话框，底部右侧有一个 ▼ 提示继续",
+  "promptEn": "handheld LCD style: only four olive-green shades—lightest #C4CFA1, light #8B956D, dark #4D533C, darkest #1F1F1F; pixel font (or an enlarged monospace), all borders 3px solid pixel frames with no rounding; a pixel-block character as the avatar; a ▶ arrow before the current menu item; the now section as a game dialog box with a ▼ continue marker at the bottom right",
+  "avoid": "四种绿就是全部调色板，任何别的颜色都会出戏；像素框要整数像素，别做抗锯齿圆角。",
+  "neg": [
+    "第五种颜色、渐变、圆角、高清照片",
+    "a fifth color, gradients, rounded corners, high-res photos"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #4D533C; --a2: #4D533C; --avb: #8B956D; --avf: #1F1F1F; background: #C4CFA1; color: #1F1F1F; font-family: "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+.nav { border-bottom: 3px solid #1F1F1F; } .logo i { border-radius: 0; background: #1F1F1F; } .nav nav a:first-child::before { content: "▶"; } .cta { border-radius: 0; border: 3px solid #1F1F1F; }
+.av, .intro, .posts article, .now { border-radius: 0 !important; border: 3px solid #1F1F1F !important; background: #C4CFA1 !important; box-shadow: 4px 4px 0 #4D533C; }
+.av { background: linear-gradient(#1F1F1F, #1F1F1F) 50% 30% / 24px 24px no-repeat, linear-gradient(#4D533C, #4D533C) 50% 100% / 56px 44px no-repeat, #8B956D !important; image-rendering: pixelated; }
+.me h1 { font-size: 24px; } .tags span { border-radius: 0; background: #1F1F1F; color: #C4CFA1; }
+.posts article:nth-of-type(2) { background: #8B956D !important; } .posts em { color: #4D533C; } .now { position: relative; } .now::after { content: "▼"; position: absolute; right: 10px; bottom: 6px; animation: me-blink 1s steps(1) infinite; }
+@keyframes me-blink { 50% { opacity: 0; } }
+</style>

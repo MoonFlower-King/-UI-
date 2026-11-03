@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Y2K Chrome",
+  "zh": "千禧 Y2K",
+  "alias": [
+    "Y2K",
+    "千禧年",
+    "镭射泡泡"
+  ],
+  "lead": "2000 年前后的千禧风：液态铬金属字、泡泡一样的高光按钮、粉蓝紫的全息渐变和小星星闪光。俏皮、未来感，适合潮流博主和音乐人。",
+  "prompt": "千禧 Y2K 风格：浅粉紫到天蓝的全息渐变底 #F6D5F7→#C9E7FF，散落四角星闪光 ✦；名字做成液态铬金属字（银白多层渐变 + 深色描边 + 高光）；按钮和标签是果冻泡泡——高饱和粉 #FF5CC8 或天蓝 #33C3FF 填充、顶部一条白色高光、大圆角；卡片是半透明白色加白描边；字体圆润粗体",
+  "promptEn": "Y2K chrome style: a holographic gradient background from pale pink-violet to sky blue #F6D5F7→#C9E7FF scattered with four-point sparkles ✦; the name as liquid chrome type (layered silver gradients, a dark outline and highlights); buttons and tags as glossy jelly bubbles—saturated pink #FF5CC8 or sky blue #33C3FF fills with a white top highlight and large radii; cards in translucent white with white borders; rounded bold type",
+  "avoid": "铬金属字只给名字，正文用干净的深色字；闪光星星点缀几颗即可，满屏会显得廉价。",
+  "neg": [
+    "暗沉大地色、细衬线、扁平无高光、严肃商务感",
+    "muddy earth tones, thin serifs, flat glossless shapes, serious corporate feel"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #FF5CC8; --a2: #33C3FF; --line: rgba(255,255,255,.7); --avb: #fff; --avf: #33C3FF; background: radial-gradient(circle at 85% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px), linear-gradient(135deg, #F6D5F7, #E4D9FF 45%, #C9E7FF); color: #2A2340; font-family: "Avenir Next Rounded", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.me::after { content: "✦  ✧\A    ✦"; white-space: pre; position: absolute; right: 120px; top: 30px; color: #fff; font-size: 18px; text-shadow: 0 0 8px #FF5CC8; }
+.me h1 { background: linear-gradient(180deg, #fff 0%, #C9CFDA 40%, #6E7686 50%, #E9EDF3 62%, #9AA3B2 100%); -webkit-background-clip: text; color: transparent; -webkit-text-stroke: 1.5px #3A3F5C; font-weight: 900; filter: drop-shadow(0 3px 0 rgba(58,63,92,.35)); }
+.av { box-shadow: 0 0 0 4px #fff, 0 6px 16px rgba(255,92,200,.35); background: radial-gradient(circle at 50% 40%, #33C3FF 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #33C3FF 0 97%, transparent 100%), linear-gradient(#fff, #EAF6FF) !important; }
+.cta, .tags span { border: 0; color: #fff; background: linear-gradient(#FF8FDB, #FF5CC8); box-shadow: inset 0 3px 0 rgba(255,255,255,.55), 0 2px 6px rgba(255,92,200,.4); border-radius: 99px; }
+.tags span:nth-child(2) { background: linear-gradient(#7FDBFF, #33C3FF); box-shadow: inset 0 3px 0 rgba(255,255,255,.55), 0 2px 6px rgba(51,195,255,.4); }
+.posts article { background: rgba(255,255,255,.55); border: 2px solid #fff !important; border-radius: 16px; padding: 10px 14px !important; margin-bottom: 8px; } .posts em { color: #FF5CC8; }
+.now { background: rgba(255,255,255,.55); border: 2px solid #fff; border-radius: 16px; } .now b::before { content: "✦ "; }
+</style>

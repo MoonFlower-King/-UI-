@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Giant Name",
+  "zh": "超大名字",
+  "alias": [
+    "巨字",
+    "大字报头",
+    "名字即 Logo"
+  ],
+  "lead": "名字就是首屏的全部：撑满宽度的超粗大字，配一句很短的介绍。第一眼就记住你是谁，适合想让人记住名字的创作者、自由职业者。",
+  "prompt": "超大名字风格：暖灰白底 #F2F0EB、近黑字 #141414，首屏只放名字——超粗无衬线、约 76px、行距压到 0.95、字距收紧；名字后面跟一个橙红 #FF4D1F 圆点作唯一点缀；介绍一句话放在名字下方；其余内容字号克制，和名字形成强烈大小对比",
+  "promptEn": "giant-name style: warm off-white #F2F0EB background with near-black #141414 text; the hero holds only the name in ultra-bold sans-serif around 76px with 0.95 line height and tight tracking, followed by an orange-red #FF4D1F dot as the only accent; a one-line bio under the name; everything else stays restrained to create a strong size contrast",
+  "avoid": "名字大了，其他内容一定要小下去，不然没有对比；中文名字字数少，可以更大，但别被页面边缘切掉。",
+  "neg": [
+    "多个大标题抢戏、花哨字体、复杂背景图",
+    "competing large headings, decorative fonts, busy background images"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #FF4D1F; --a2: #6F6A62; --avb: #141414; --avf: #F2F0EB; background: #F2F0EB; color: #141414; font-family: "Helvetica Neue", "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 0; background: #141414; } .cta { background: #141414; color: #F2F0EB; border: 0; }
+.me h1 { font-weight: 900; } .me h1::after { content: "."; color: #FF4D1F; }
+.hi { color: #FF4D1F; font-weight: 700; } .tags span { background: #141414; color: #F2F0EB; }
+.posts h3 { font-size: 16px; font-weight: 800; } .posts article { border-top: 2px solid #141414; } .posts em { color: #FF4D1F; font-weight: 700; }
+.now { background: #141414; color: #F2F0EB; border-radius: 0; }
+</style>

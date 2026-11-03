@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Showa Retro",
+  "zh": "昭和复古",
+  "alias": [
+    "昭和风",
+    "日式复古",
+    "喫茶店"
+  ],
+  "lead": "像昭和年代的喫茶店菜单和老海报：奶油底、砖红和芥末黄、圆润的粗体字、细细的复古双线框。怀旧又可爱，适合咖啡店主、vlog 博主和复古收藏者。",
+  "prompt": "昭和复古风格：奶油底 #F6EBD5、深咖啡字 #4A2E1F，配色砖红 #C4472D、芥末黄 #D9A93A、薄荷绿 #7FB5A4；圆润粗体的标题字，正文圆体；区块用复古双线框（外粗内细）和小圆角；日期写成「昭和风」的竖条小牌；文章挂在时间线上，圆点是砖红小圆",
+  "promptEn": "Showa retro style: cream #F6EBD5 background with dark coffee #4A2E1F text, palette of brick red #C4472D, mustard #D9A93A and mint #7FB5A4; rounded bold headings and rounded body type; sections framed by retro double rules (thick outside, thin inside) with small radii; dates on small vertical tags; posts hang on a timeline with small brick-red dots",
+  "avoid": "三种颜色都要偏旧、偏暖，像褪色的印刷品；双线框是标志，但别每个元素都套。",
+  "neg": [
+    "霓虹色、冷灰科技感、尖锐几何、玻璃效果",
+    "neon colors, cold techy grays, sharp geometry, glass effects"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #C4472D; --a2: #7FB5A4; --line: #E2D2B2; --avb: #D9A93A; --avf: #4A2E1F; background: #F6EBD5; color: #4A2E1F; font-family: "Hiragino Maru Gothic ProN", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { margin: 8px 18px 0; border: 3px double #4A2E1F; border-radius: 8px; padding: 8px 14px; } .logo i { background: #C4472D; } .cta { background: #C4472D; color: #F6EBD5; border: 0; }
+.me h1 { font-weight: 900; color: #C4472D; text-shadow: 2px 2px 0 #D9A93A; } .hi { color: #7FB5A4; font-weight: 700; } .tags span { background: #7FB5A4; color: #F6EBD5; }
+.av { box-shadow: 0 0 0 3px #F6EBD5, 0 0 0 5px #4A2E1F; }
+.posts h2 { opacity: 1; color: #4A2E1F; } .posts time { opacity: 1; color: #F6EBD5; background: #4A2E1F; padding: 2px 4px; border-radius: 3px; justify-self: end; height: fit-content; }
+.posts article::after { background: #C4472D !important; box-shadow: 0 0 0 3px #F6EBD5 !important; } .posts em { color: #C4472D; }
+.now { background: #fff8e8; border: 3px double #4A2E1F; } .now b { color: #C4472D; }
+</style>

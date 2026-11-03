@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Open Source Profile",
+  "zh": "开源者主页",
+  "alias": [
+    "开源主页",
+    "贡献格子",
+    "开发者名片"
+  ],
+  "lead": "像开源开发者的个人页：头像旁边是简介，文章做成项目卡片，最下面有一整块按天着色的贡献小方格。务实、有成就感，适合做开源项目的人。",
+  "prompt": "开源者主页风格：白底 #FFFFFF、文字 #1F2328、次要灰 #656D76，细灰边框 #D0D7DE；头像是圆形、旁边是名字和简介；文章做成带边框的项目卡片，卡片里有标签色点；底部「此刻」区放一整块 7 行 × 多列的小方格热力图，用四档绿 #9BE9A8 / #40C463 / #30A14E / #216E39 表示活跃度；无衬线系统字体",
+  "promptEn": "open-source profile style: white #FFFFFF background, #1F2328 text, secondary gray #656D76 and thin gray borders #D0D7DE; a round avatar next to the name and bio; posts as bordered project cards with a colored language dot; the now section holds a contribution heatmap of small squares (7 rows × many columns) in four greens #9BE9A8 / #40C463 / #30A14E / #216E39; system sans-serif",
+  "avoid": "热力图是点睛，别把它放大成整页主角；也别直接用某个代码托管网站的图标和配色组合，做成自己的名片。",
+  "neg": [
+    "照搬代码托管平台界面、品牌图标、深色霓虹",
+    "copying a code-hosting platform UI, brand logos, dark neon"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #216E39; --a2: #656D76; --line: #D0D7DE; --avb: #DDF4FF; --avf: #54AEFF; background: #fff; color: #1F2328; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { background: #1F2328; } .cta { border-color: #D0D7DE; border-radius: 6px; background: #F6F8FA; }
+.av { box-shadow: 0 0 0 1px #D0D7DE; } .tags span { background: #DDF4FF; color: #0969DA; }
+.posts article { border-radius: 6px; } .posts article::before { display: none; } .posts article { padding-top: 12px; }
+.posts h3 { color: #0969DA; } .posts em::before { content: "● "; color: #F1E05A; } .posts article:nth-of-type(2) em::before { color: #3178C6; } .posts article:nth-of-type(3) em::before { color: #E34C26; }
+.now { position: relative; background: none; border: 1px solid #D0D7DE; border-radius: 6px; padding-bottom: 70px; }
+.now::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 12px; height: 52px; background:
+ repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 8px), repeating-linear-gradient(0deg, transparent 0 6px, #fff 6px 7.4px),
+ linear-gradient(90deg, #EBEDF0 0 8%, #9BE9A8 0 14%, #40C463 0 20%, #EBEDF0 0 28%, #30A14E 0 34%, #9BE9A8 0 46%, #216E39 0 52%, #40C463 0 62%, #EBEDF0 0 70%, #9BE9A8 0 80%, #30A14E 0 88%, #40C463 0); }
+</style>

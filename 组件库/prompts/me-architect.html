@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Architect",
+  "zh": "建筑师",
+  "alias": [
+    "建筑作品集",
+    "混凝土",
+    "工程制图"
+  ],
+  "lead": "建筑师的作品集：清水混凝土的浅灰、精确的细线网格、项目编号和比例尺、大量留白。冷静、严谨、有空间感，适合建筑师、室内设计师和景观设计师。",
+  "prompt": "建筑师风格：清水混凝土浅灰底 #E4E2DE（带极细微的颗粒）、炭黑字 #1E1E1E；页面铺很淡的 1px 细线网格；刊头名字用窄体无衬线、全大写、细体；项目条目前加编号（如 P-01、P-02），旁边一条比例尺小图（黑白相间的短条 + 「1:100」）；头像是平面图式的方框；分隔用 0.5px 黑线；只用一种强调色：安全橙 #E8622C 小标记",
+  "promptEn": "architect style: board-formed concrete light gray #E4E2DE with very fine grain and charcoal #1E1E1E text; a faint 1px fine-line grid over the page; a condensed, uppercase, light sans-serif masthead; project entries numbered (like P-01, P-02) with a small scale bar beside them (alternating black and white segments plus “1:100”); a plan-drawing square frame as the avatar; 0.5px black dividers; one accent only—safety orange #E8622C for small markers",
+  "avoid": "网格和比例尺是细节，必须很淡很细；橙色只给编号或一个小标记，别用来做大面积。",
+  "neg": [
+    "圆润可爱、彩虹色、手绘风、厚重阴影",
+    "cute rounded shapes, rainbow colors, hand-drawn look, heavy shadows"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #E8622C; --a2: #6E6C68; --line: rgba(30,30,30,.4); --avb: #E4E2DE; --avf: #1E1E1E; background: linear-gradient(rgba(30,30,30,.05) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, rgba(30,30,30,.05) 1px, transparent 1px) 0 0 / 24px 24px, radial-gradient(rgba(0,0,0,.05) 1px, transparent 1px) 0 0 / 3px 3px, #E4E2DE; color: #1E1E1E; font-family: "Avenir Next Condensed", "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { text-transform: uppercase; letter-spacing: 3px; } .logo i { border-radius: 0; background: none; border: 1px solid #1E1E1E; } .cta { border-radius: 0; border-color: #1E1E1E; }
+.me h1 { font-weight: 300; text-transform: uppercase; letter-spacing: 8px; border-bottom: .5px solid #1E1E1E !important; }
+.av { border-radius: 0; background: linear-gradient(#1E1E1E, #1E1E1E) 30% 0 / 1px 60% no-repeat, linear-gradient(#1E1E1E, #1E1E1E) 0 60% / 70% 1px no-repeat, #E4E2DE !important; box-shadow: inset 0 0 0 1.5px #1E1E1E; }
+.tags span { background: none; border: .5px solid #1E1E1E; color: #1E1E1E; border-radius: 0; text-transform: uppercase; }
+.posts h2 { opacity: 1; letter-spacing: 4px; } .posts time::before { content: "P-01 · "; color: #E8622C; } .posts article:nth-of-type(2) time::before { content: "P-02 · "; } .posts article:nth-of-type(3) time::before { content: "P-03 · "; }
+.posts h3 { font-weight: 400; letter-spacing: 1px; } .posts em { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 9px; padding-top: 8px; background: repeating-linear-gradient(90deg, #1E1E1E 0 8px, #E4E2DE 8px 16px) 0 0 / 48px 3px no-repeat; color: #6E6C68; } .posts em::after { content: " · 1:100"; }
+.now { background: none; border: .5px solid #1E1E1E; border-radius: 0; } .now b { color: #E8622C; }
+</style>

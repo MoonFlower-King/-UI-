@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Vintage Pictorial",
+  "zh": "老画报",
+  "alias": [
+    "民国画报",
+    "月份牌",
+    "旧杂志"
+  ],
+  "lead": "像上世纪的老画报封面：米黄纸、朱红和墨绿的套色、网点印刷的颗粒、粗壮的美术字刊头。复古、热闹，适合老物件收藏、复古摄影和城市文化写作者。",
+  "prompt": "老画报风格：米黄旧纸底 #F1E3C4（带淡淡的网点颗粒）、深褐字 #3A2A1C；套色只用朱红 #C2392B 和墨绿 #2F5D4B，偶尔对版不准微微错位；名字做成粗壮的美术字刊头，下面压一条朱红粗线和期号小字（如「第拾贰期」）；头像是网点印刷效果的圆；文章栏目像画报目录",
+  "promptEn": "vintage pictorial style: yellowed paper #F1E3C4 with faint halftone grain and dark brown #3A2A1C text; two spot colors only—vermilion #C2392B and dark green #2F5D4B, occasionally slightly misregistered; the name as a heavy hand-lettered masthead over a thick vermilion rule with a small issue line (like “Issue No. 12”); a halftone-dot circle as the avatar; posts styled like the contents page of a pictorial",
+  "avoid": "套色错位一点点就够（1～2px），错太多像出错；颜色坚持只有两色加墨色。",
+  "neg": [
+    "现代渐变、霓虹、玻璃效果、细线极简",
+    "modern gradients, neon, glass effects, thin-line minimalism"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #C2392B; --a2: #2F5D4B; --line: rgba(58,42,28,.3); --avb: #F1E3C4; --avf: #2F5D4B; background: radial-gradient(rgba(58,42,28,.12) 1px, transparent 1.3px) 0 0 / 4px 4px, #F1E3C4; color: #3A2A1C; font-family: "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.me h1 { font-family: "Arial Black", "STHeiti", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; color: #C2392B; text-shadow: 2px 1px 0 #2F5D4B; letter-spacing: 6px; border-bottom: 6px solid #C2392B !important; }
+.me h1::after { content: "第拾贰期 · 二〇二六"; display: block; margin-top: 4px; font: 11px "STSong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; letter-spacing: 4px; color: #2F5D4B; text-shadow: none; }
+.av { background: radial-gradient(circle, #2F5D4B 1.6px, transparent 2px) 0 0 / 5px 5px, #F1E3C4; box-shadow: 0 0 0 2px #2F5D4B; }
+.tags span { background: #2F5D4B; color: #F1E3C4; border-radius: 0; } .cta { background: #C2392B; color: #F1E3C4; border: 0; border-radius: 0; } .logo i { background: #C2392B; border-radius: 0; }
+.posts h2 { opacity: 1; color: #2F5D4B; letter-spacing: 6px; } .posts article:first-of-type h3 { color: #C2392B; } .posts em { color: #2F5D4B; }
+.now { background: #2F5D4B; color: #F1E3C4; border-radius: 0; } .now b { color: #F3C9A5; }
+</style>

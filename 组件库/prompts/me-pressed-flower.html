@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Pressed Flowers",
+  "zh": "押花标本",
+  "alias": [
+    "押花",
+    "植物标本",
+    "干花"
+  ],
+  "lead": "像夹在旧书里的押花：奶油色纸上散落几枝扁平的干花（淡紫、鹅黄、干玫瑰色），名字用细衬线，边角有一行植物拉丁学名。温柔、复古，适合花艺师、手作人和慢生活博主。",
+  "prompt": "押花标本风格：奶油纸底 #F8F3E8，名字周围点缀几枝扁平的押花图案——薰衣草紫 #A99BC9、鹅黄 #EBD58A、干玫瑰 #C98B8B 的小花瓣和橄榄绿 #8A9A6B 的细茎叶，像压平的标本；字体用细衬线（宋体 / Didot 一类），小标签用斜体并加一行小号拉丁学名式的说明；分隔线是细细的橄榄绿；整体居中",
+  "promptEn": "pressed-flower style: cream paper #F8F3E8 with a few flattened pressed-flower sprigs around the name—small petals in lavender #A99BC9, butter yellow #EBD58A and dried rose #C98B8B on fine olive-green #8A9A6B stems and leaves, like herbarium specimens; light serif type (Song / Didot-like), small italic labels with a line of Latin-style botanical captions; thin olive dividers; centered composition",
+  "avoid": "花要「扁平、褪色」才像押花，饱和度低一点；只在头像和标题附近放两三枝，别做成满版花墙纸。",
+  "neg": [
+    "鲜艳写实花卉照片、霓虹色、粗黑字、深色背景",
+    "vivid realistic flower photos, neon colors, heavy black type, dark backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #8A9A6B; --a2: #A99BC9; --line: rgba(138,154,107,.35); --avb: #EFE6D3; --avf: #C98B8B; background: #F8F3E8; color: #4B4436; font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo i { display: none; } .cta { border-color: #8A9A6B; color: #6E7D52; }
+.me { position: relative; } .me::before, .me::after { content: ""; position: absolute; width: 70px; height: 90px; top: 30px; background:
+ radial-gradient(circle at 50% 18%, #A99BC9 0 6px, transparent 6.5px), radial-gradient(circle at 38% 26%, #A99BC9 0 5px, transparent 5.5px), radial-gradient(circle at 62% 26%, #A99BC9 0 5px, transparent 5.5px),
+ radial-gradient(ellipse 9px 4px at 30% 55%, #8A9A6B 98%, transparent), radial-gradient(ellipse 9px 4px at 70% 65%, #8A9A6B 98%, transparent), linear-gradient(#8A9A6B, #8A9A6B) 50% 30% / 1.5px 70% no-repeat; opacity: .85; }
+.me::before { left: 90px; transform: rotate(-18deg); } .me::after { right: 90px; transform: rotate(22deg) scaleX(-1); filter: hue-rotate(150deg) saturate(.9); }
+.me h1 { font-weight: 300; letter-spacing: 6px; } .hi { font-style: italic; color: #8A9A6B; } .hi::after { content: " · Homo scribens"; font-size: 10px; }
+.tags span { background: none; color: #8E7AB5; font-style: italic; }
+.posts h2 { opacity: 1; color: #8A9A6B; letter-spacing: 4px; } .posts article { border-top-color: rgba(138,154,107,.3); } .posts h3 { font-weight: 400; } .posts em { color: #C98B8B; font-style: italic; }
+.now { background: none; border-top: 1px solid rgba(138,154,107,.4); border-bottom: 1px solid rgba(138,154,107,.4); border-radius: 0; font-style: italic; }
+</style>

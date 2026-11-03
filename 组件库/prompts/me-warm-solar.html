@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Warm Low-Contrast",
+  "zh": "暖底护眼",
+  "alias": [
+    "护眼色",
+    "暖底低对比",
+    "长时间阅读"
+  ],
+  "lead": "为长时间盯屏幕的人设计：暖米黄底、灰青色正文、几种柔和的强调色，对比度刚好不刺眼。温和、耐看，适合技术写作和读书笔记。",
+  "prompt": "暖底护眼风格：暖米黄底 #FDF6E3、正文灰青 #586E75、标题深青灰 #073642；强调色用一组柔和但分得清的颜色：青 #2AA198、蓝 #268BD2、橙 #CB4B16、品红 #D33682，分别给标签、链接、日期；边线是浅一号的米色 #EEE8D5；等宽或无衬线字体都可以",
+  "promptEn": "warm low-contrast style: warm cream #FDF6E3 background, gray-teal #586E75 body text and deep slate #073642 headings; a set of soft but distinguishable accents—cyan #2AA198, blue #268BD2, orange #CB4B16 and magenta #D33682—for tags, links and dates; dividers in a slightly darker cream #EEE8D5; monospace or sans-serif",
+  "avoid": "「低对比」是指底色不刺眼，不是正文发虚：正文和底的对比度仍要达到 4.5:1；强调色每种只管一类东西。",
+  "neg": [
+    "纯白底、纯黑字、霓虹高饱和、大面积色块",
+    "pure white background, pure black text, neon saturation, large color blocks"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #2AA198; --a2: #CB4B16; --line: #EEE8D5; --avb: #EEE8D5; --avf: #268BD2; background: #FDF6E3; color: #586E75; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo { color: #073642; } .logo i { background: #D33682; } .cta { border-color: #2AA198; color: #2AA198; }
+.me h1 { color: #073642; } .hi { color: #CB4B16; } .tags span { background: #EEE8D5; color: #2AA198; }
+.posts h2 { color: #D33682; opacity: 1; } .posts h3 { color: #268BD2; font-weight: 600; } .posts time { color: #CB4B16; opacity: 1; } .posts em { color: #2AA198; }
+.posts article::after { background: #D33682 !important; box-shadow: 0 0 0 3px #FDF6E3 !important; }
+.now { background: #EEE8D5; } .now b { color: #D33682; } .ft { color: #93A1A1; }
+</style>

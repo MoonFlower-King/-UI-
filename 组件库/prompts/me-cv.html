@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Résumé",
+  "zh": "简历式",
+  "alias": [
+    "在线简历",
+    "CV",
+    "履历页"
+  ],
+  "lead": "个人主页就是一份排得很好的简历：深色侧栏放头像和联系方式，右边按时间列经历和文章。专业可信，适合求职、接项目、做咨询的人。",
+  "prompt": "简历式风格：右边白底 #FFFFFF、正文深灰 #2A2F3A；左侧一整条深海军蓝 #1E2A44 侧栏，里面头像、名字和标签都是白字；右侧每个区块前有全大写小号的分区标题和一条细线；文章像履历条目，日期在左、标题加粗、摘要在下；强调色是稳重的铜金 #B88A44",
+  "promptEn": "résumé style: white #FFFFFF content area with dark gray #2A2F3A text; a full-height deep navy #1E2A44 sidebar on the left holding the avatar, name and tags in white; every section on the right starts with a small uppercase heading and a thin rule; posts read like CV entries with the date on the left, a bold title and a summary below; a sober brass #B88A44 accent",
+  "avoid": "简历要「好扫读」：分区标题、日期列一定要对齐；侧栏里的白字别太小，深底浅字比浅底深字更难读。",
+  "neg": [
+    "花哨插画、彩色渐变、圆胖可爱字体、过多图标",
+    "whimsical illustrations, colorful gradients, cute rounded fonts, too many icons"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #B88A44; --a2: #6B7385; --line: #E3E6EC; --avb: #2C3B5C; --avf: #B88A44; background: linear-gradient(90deg, #1E2A44 178px, #fff 0); color: #2A2F3A; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { color: #fff; border: 0; } .hi { color: #B88A44; } .bio { opacity: .8; } .tags span { background: rgba(255,255,255,.1); color: #fff; border-radius: 3px; }
+.cta { background: #1E2A44; color: #fff; border: 0; border-radius: 3px; }
+.posts h2 { opacity: 1; color: #1E2A44; font-weight: 700; border-bottom: 1px solid #1E2A44; padding-bottom: 4px; } .posts h2::after { content: " · EXPERIENCE & WRITING"; font-weight: 400; color: #6B7385; letter-spacing: 1px; }
+.posts article { border-top: 0; } .posts h3 { font-weight: 700; } .posts em { color: #B88A44; }
+.now { border-radius: 3px; background: #F4F1EA; } .now b { color: #B88A44; }
+</style>

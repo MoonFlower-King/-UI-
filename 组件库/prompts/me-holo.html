@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Holographic Foil",
+  "zh": "镭射幻彩",
+  "alias": [
+    "镭射",
+    "全息",
+    "幻彩箔"
+  ],
+  "lead": "像镭射卡片和幻彩包装：银白底上流动着彩虹色的金属光泽，随角度变色，配锐利的黑色细字。闪亮、未来感，适合美妆、潮玩和音乐人。",
+  "prompt": "镭射幻彩风格：银白底 #EEF0F4；卡片封面和名字用流动的全息渐变（粉 #FFB6E6、薄荷 #B5FFE9、天蓝 #A8C8FF、淡紫 #E0B5FF、浅黄 #FFF3B0 循环）加白色斜向高光条，并缓慢平移制造「转动变色」的感觉；文字纯黑细体无衬线、小字全大写；卡片细黑描边、无圆角",
+  "promptEn": "holographic foil style: a silver-white #EEF0F4 background; card covers and the name in a flowing holographic gradient (cycling pink #FFB6E6, mint #B5FFE9, sky #A8C8FF, lilac #E0B5FF, pale yellow #FFF3B0) with a white diagonal highlight streak, slowly shifting to suggest color change as it turns; crisp black light sans-serif text with small uppercase labels; thin black outlines on cards with no rounding",
+  "avoid": "幻彩只放在封面和名字上，大面积会刺眼；文字一定用纯黑，压在幻彩上会看不清。",
+  "neg": [
+    "暗沉大地色、复古纸纹、手绘风、厚重阴影",
+    "muddy earth tones, vintage paper textures, hand-drawn style, heavy shadows"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #111; --a2: #6B6F7A; --line: #111; --avb: #fff; --avf: #111; background: #EEF0F4; color: #111; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.nav { text-transform: uppercase; letter-spacing: 3px; font-size: 10.5px; } .cta { border-radius: 0; border-color: #111; } .logo i { border-radius: 0; background: linear-gradient(135deg, #FFB6E6, #B5FFE9, #A8C8FF); outline: 1px solid #111; }
+.me h1 { font-weight: 700; letter-spacing: -1px; background: linear-gradient(110deg, #FFB6E6, #B5FFE9, #A8C8FF, #E0B5FF, #FFF3B0, #FFB6E6) 0 0 / 300% 100%; -webkit-background-clip: text; color: transparent; -webkit-text-stroke: .5px #111; font-size: 38px; animation: me-holo 6s linear infinite; }
+@keyframes me-holo { to { background-position: 300% 0; } }
+.av { box-shadow: 0 0 0 1px #111; background: radial-gradient(circle at 50% 40%, #111 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #111 0 97%, transparent 100%), linear-gradient(135deg, #FFB6E6, #B5FFE9 40%, #A8C8FF 70%, #E0B5FF) !important; }
+.hi { text-transform: uppercase; letter-spacing: 4px; color: #6B6F7A; } .tags span { background: none; border: 1px solid #111; color: #111; border-radius: 0; text-transform: uppercase; }
+.posts article { border: 1px solid #111; border-radius: 0; background: #fff; }
+.posts article::before { opacity: 1 !important; background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.9) 48%, transparent 56%), linear-gradient(110deg, #FFB6E6, #B5FFE9, #A8C8FF, #E0B5FF, #FFF3B0, #FFB6E6) 0 0 / 300% 100% !important; animation: me-holo 6s linear infinite; border-bottom: 1px solid #111; }
+.posts article:nth-of-type(2)::before { animation-delay: -2s; } .posts article:nth-of-type(3)::before { animation-delay: -4s; }
+.posts h3 { font-weight: 600; } .posts em { color: #6B6F7A; text-transform: uppercase; letter-spacing: 1px; } .now { background: #fff; border: 1px solid #111; border-radius: 0; }
+</style>

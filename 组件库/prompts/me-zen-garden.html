@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Zen Garden",
+  "zh": "枯山水",
+  "alias": [
+    "禅意",
+    "石庭",
+    "白砂"
+  ],
+  "lead": "日式枯山水石庭：白砂上耙出一圈圈平行的波纹，一两块深色的石头，大面积留白。宁静、极简，适合冥想、瑜伽老师和建筑设计师。",
+  "prompt": "枯山水风格：白砂色底 #EEEBE4，首屏铺一组耙出来的平行细波纹（浅灰线 #D6D1C6，水平方向，绕着头像形成同心圆）；头像像一块深灰石头 #5B5853（不规则圆形、带一点青苔绿 #7E8B62）；文字深灰 #3A3834、细无衬线，字距略宽；几乎没有色块，强调只用苔绿",
+  "promptEn": "zen garden style: white-sand #EEEBE4 background with raked parallel fine ripples across the hero (light gray lines #D6D1C6, horizontal, forming concentric rings around the avatar); the avatar like a dark gray stone #5B5853 (an irregular rounded shape with a touch of moss green #7E8B62); dark gray #3A3834 text in a light sans-serif with slightly wide tracking; almost no color blocks, moss green as the only accent",
+  "avoid": "波纹要细、要淡，只铺在首屏一块区域；石头一两块就是全部装饰，多了就乱。",
+  "neg": [
+    "鲜艳色、密集装饰、粗边框、照片背景",
+    "bright colors, busy decoration, heavy borders, photo backgrounds"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #7E8B62; --a2: #8C877D; --line: #DDD8CD; background: #EEEBE4; color: #3A3834; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; letter-spacing: .5px; }
+.me { background: repeating-radial-gradient(circle at 68px 62px, transparent 0 7px, #D6D1C6 7px 8px), repeating-linear-gradient(0deg, transparent 0 7px, #D6D1C6 7px 8px); -webkit-mask: linear-gradient(90deg, #000 60%, transparent); padding-bottom: 34px; }
+.av { border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%; background: radial-gradient(circle at 30% 30%, #7E8B62 0 14%, transparent 30%), radial-gradient(circle at 40% 35%, #75716A, #5B5853 60%, #46433F); box-shadow: 0 0 0 8px #EEEBE4; }
+.intro { background: #EEEBE4; padding: 4px 10px; justify-self: start; } .me h1 { font-weight: 300; letter-spacing: 8px; }
+.tags span { background: none; border: 1px solid #C9C3B6; color: #6A665E; } .logo i { background: #5B5853; border-radius: 45% 55% 50% 50%; } .cta { border-color: #C9C3B6; }
+.posts h3 { font-weight: 400; } .posts em { color: #7E8B62; } .now { background: none; border-top: 1px solid #D6D1C6; border-bottom: 1px solid #D6D1C6; border-radius: 0; }
+</style>

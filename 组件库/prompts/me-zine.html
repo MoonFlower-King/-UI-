@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Cut & Paste Zine",
+  "zh": "拼贴小志",
+  "alias": [
+    "Zine",
+    "剪贴",
+    "复印小志"
+  ],
+  "lead": "像自己剪贴复印的小志：报纸剪下来的字拼成名字、黑白复印的颗粒感、歪斜的纸片和透明胶带。叛逆、有手工温度，适合乐手、插画师、独立出版人。",
+  "prompt": "拼贴小志风格：复印纸灰白底 #EDEBE6 带颗粒噪点，主要是黑白，强调色只用荧光粉 #FF3FA4 一种；名字的每个字像从不同报纸剪下来的——各自的底色、字体、轻微旋转；文章是歪斜放置的纸片，用半透明胶带贴住；标题用粗黑无衬线或打字机字，正文等宽；排版故意不对齐但仍可读",
+  "promptEn": "cut-and-paste zine style: photocopy off-white #EDEBE6 with grain, mostly black and white with fluorescent pink #FF3FA4 as the only accent; each character of the name looks clipped from a different newspaper with its own background, typeface and slight rotation; posts are tilted scraps of paper held by translucent tape; heavy black sans-serif or typewriter headings with monospace body; deliberately uneven placement that stays readable",
+  "avoid": "「乱」要有控制：旋转角度 ±3° 以内，正文还是横平竖直；荧光色只点缀，满屏荧光就变成促销海报了。",
+  "neg": [
+    "整齐网格、柔和渐变、圆角卡片、精致衬线",
+    "tidy grids, soft gradients, rounded cards, refined serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #FF3FA4; --a2: #111; --line: #111; --avb: #111; --avf: #EDEBE6; background: radial-gradient(rgba(0,0,0,.08) 1px, transparent 1.2px) 0 0 / 4px 4px, #EDEBE6; color: #111; font-family: "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.logo { font-family: "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; background: #111; color: #EDEBE6; padding: 2px 8px; transform: rotate(-2deg); } .logo i { background: #FF3FA4; } .cta { border: 2px solid #111; border-radius: 0; background: #FF3FA4; transform: rotate(2deg); }
+.me h1 { font-family: "Arial Black", Impact, -apple-system, "Inter", "PingFang SC", sans-serif; border-bottom: 3px solid #111 !important; letter-spacing: 6px; }
+.me h1 { background: linear-gradient(90deg, #fff 0 33%, #FF3FA4 0 66%, #111 0) 0 0 / 190px 70% no-repeat; color: #111; -webkit-text-stroke: .5px #fff; }
+.av { border-radius: 0; filter: contrast(1.4) grayscale(1); transform: rotate(3deg); box-shadow: 4px 4px 0 #111; }
+.tags span { border-radius: 0; background: #111; color: #EDEBE6; transform: rotate(-2deg); }
+.posts article { background: #fff; padding: 10px 12px !important; margin-bottom: 8px; border: 1px solid #111 !important; transform: rotate(-1.2deg); position: relative; }
+.posts article:nth-of-type(2) { transform: rotate(1.5deg); } .posts article::after { content: ""; position: absolute; top: -7px; left: 40%; width: 46px; height: 13px; background: rgba(255,255,255,.6); box-shadow: 0 0 0 1px rgba(0,0,0,.08); transform: rotate(-6deg); }
+.posts h3 { font-family: "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; } .posts em { background: #FF3FA4; color: #111; padding: 0 4px; justify-self: start; }
+.now { background: #111; color: #EDEBE6; border-radius: 0; transform: rotate(.6deg); } .now b { color: #FF3FA4; }
+</style>

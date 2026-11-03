@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Café Menu",
+  "zh": "咖啡馆菜单",
+  "alias": [
+    "咖啡菜单",
+    "牛皮纸",
+    "价目表"
+  ],
+  "lead": "把个人主页排成一张咖啡馆的菜单：牛皮纸底、手写感标题、每篇文章像一道饮品，标题和标签之间用一串点连起来，像价目表。温暖、有生活气，适合咖啡店主和美食博主。",
+  "prompt": "咖啡馆菜单风格：牛皮纸底 #D9BF97（带细纤维纹理）、深咖啡字 #3B2A1E；名字用复古粗衬线、标题像粉笔或刷子手写；文章列表像菜单价目——标题在左、标签在右，中间用一串小圆点「· · · · ·」连起来；栏目名两侧有小咖啡豆装饰；强调色奶油白 #F7EBD3 和焦糖橙 #C27A3A",
+  "promptEn": "café menu style: kraft paper #D9BF97 with fine fibers and dark coffee #3B2A1E text; the name in a vintage heavy serif and headings like chalk or brush lettering; the post list reads like a price menu—title on the left, tag on the right, joined by a dotted leader “· · · · ·”; small coffee-bean ornaments on both sides of section names; cream #F7EBD3 and caramel #C27A3A accents",
+  "avoid": "点线引导要和文字基线对齐，像真的价目表；牛皮纸色要足够浅，让深色字看得清。",
+  "neg": [
+    "冷色科技、霓虹、玻璃效果、极简白底",
+    "cold techy tones, neon, glass effects, minimal white backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #C27A3A; --a2: #6B5340; --line: rgba(59,42,30,.25); --avb: #F7EBD3; --avf: #6B4A2E; background: repeating-linear-gradient(80deg, rgba(255,255,255,.06) 0 2px, transparent 2px 7px), repeating-linear-gradient(-30deg, rgba(90,60,30,.05) 0 1px, transparent 1px 5px), #D9BF97; color: #3B2A1E; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.logo { font-family: "Rockwell", "Georgia", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .logo i { background: #6B4A2E; border-radius: 50% / 40%; } .cta { border-color: #3B2A1E; background: #F7EBD3; }
+.me h1 { font-family: "Rockwell", Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 700; font-size: 24px; } .av { box-shadow: 0 0 0 2px #3B2A1E; }
+.posts h2 { opacity: 1; text-align: center; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 16px; letter-spacing: 3px; } .posts h2::before, .posts h2::after { content: " ◖◗ "; color: #6B4A2E; font-size: 10px; }
+.posts article { grid-template-columns: 46px auto 1fr auto !important; border: 0; } .posts h3 { grid-column: 2; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 15px; }
+.posts article::after { content: ""; grid-column: 3; grid-row: 1; align-self: end; margin: 0 6px 5px; border-bottom: 2px dotted rgba(59,42,30,.5); } .posts em { grid-column: 4; color: #C27A3A; font-weight: 700; }
+.now { background: #F7EBD3; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px #3B2A1E, inset 0 0 0 4px #F7EBD3, inset 0 0 0 5px #3B2A1E; padding: 10px 14px; } .now b { color: #C27A3A; }
+</style>

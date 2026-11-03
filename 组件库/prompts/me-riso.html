@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Risograph",
+  "zh": "孔版印刷",
+  "alias": [
+    "Riso",
+    "孔版",
+    "双色套印"
+  ],
+  "lead": "孔版印刷机印出来的效果：荧光粉和蓝两种油墨叠印出第三种颜色、颗粒粗糙、套版微微错开。独立、有手工印刷味道，适合插画师、独立出版和设计学生。",
+  "prompt": "孔版印刷风格：粗糙的纸白底 #F3EFE6；只用两种油墨——荧光粉 #FF48B0 和联邦蓝 #3255A4，两色叠印处变成深紫（用正片叠底效果）；所有色块带粗颗粒噪点，套版错开 2～3px；名字是两色错位叠印的大字；标题用粗黑无衬线，正文等宽",
+  "promptEn": "risograph style: rough paper white #F3EFE6 with just two inks—fluorescent pink #FF48B0 and federal blue #3255A4—overprinting into a deep purple where they overlap (multiply blending); every color block carries coarse grain and 2–3px misregistration; the name as large type printed twice in the two colors slightly offset; heavy sans-serif headings with monospace body",
+  "avoid": "颜色就是两种油墨加纸白，叠出来的紫是「送的」；颗粒和错位是灵魂，但正文得保持清楚不错位。",
+  "neg": [
+    "多彩配色、平滑渐变、光滑质感、细衬线",
+    "multicolor palettes, smooth gradients, glossy textures, thin serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #FF48B0; --a2: #3255A4; --line: rgba(50,85,164,.4); --avb: #FF48B0; --avf: #3255A4; background: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1.2px) 0 0 / 3px 3px, #F3EFE6; color: #1F2B55; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.logo { font-family: "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; } .logo i { background: #FF48B0; box-shadow: 3px 2px 0 #3255A4; mix-blend-mode: multiply; } .cta { border: 2px solid #3255A4; border-radius: 0; color: #3255A4; }
+.me h1 { font-family: "Arial Black", Impact, -apple-system, "Inter", "PingFang SC", sans-serif; color: #3255A4; text-shadow: 3px 2px 0 rgba(255,72,176,.85); border-bottom: 4px solid #FF48B0 !important; }
+.av { mix-blend-mode: multiply; box-shadow: 4px 3px 0 rgba(50,85,164,.8); background: radial-gradient(rgba(255,255,255,.4) 1px, transparent 1.3px) 0 0 / 3px 3px, radial-gradient(circle at 50% 40%, #3255A4 0 17%, transparent 17.5%), radial-gradient(ellipse 33% 27% at 50% 96%, #3255A4 0 97%, transparent 100%), #FF48B0 !important; }
+.tags span { background: #3255A4; color: #F3EFE6; border-radius: 0; box-shadow: 2px 2px 0 #FF48B0; }
+.posts h2 { opacity: 1; color: #FF48B0; } .posts article:first-of-type { background: radial-gradient(rgba(255,255,255,.5) 1px, transparent 1.3px) 0 0 / 3px 3px, rgba(255,72,176,.22); padding: 12px !important; box-shadow: 3px 2px 0 rgba(50,85,164,.35); }
+.posts h3 { font-family: "Arial Black", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 900; } .posts em { color: #FF48B0; }
+.now { background: rgba(50,85,164,.18); border-radius: 0; box-shadow: -3px 2px 0 rgba(255,72,176,.35); } .now b { color: #3255A4; }
+</style>

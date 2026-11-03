@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Poetry Book",
+  "zh": "诗集",
+  "alias": [
+    "诗歌",
+    "竖排诗集",
+    "文学"
+  ],
+  "lead": "像一本薄薄的诗集：名字竖着排在右边，左边大片留白，文字少而疏，标题用细细的衬线字。安静、诗意，适合写诗、写散文的人。",
+  "prompt": "诗集风格：温白纸底 #F8F6F1、墨色 #33302B，衬线字体（宋体 / 仿宋）、字重偏细；名字从上往下竖排在右侧，旁边一枚小小的朱红 #B23A2E 印章；招呼语和介绍像诗句一样短行、行距 2.2；文章标题后不放摘要，只留标题和一行小字日期；整页留白很多，没有色块和边框",
+  "promptEn": "poetry book style: warm white paper #F8F6F1 with ink #33302B, light-weight serif (Song / Fangsong); the name set vertically top-to-bottom on the right with a small vermilion #B23A2E seal beside it; greeting and bio in short lines like verse at 2.2 line height; post titles without excerpts, just the title and a small date line; generous whitespace with no color blocks or borders",
+  "avoid": "竖排只给名字和一两行诗，正文横排更好读；字号别太小，细衬线字在 12px 以下会断笔。",
+  "neg": [
+    "粗体大标题、彩色色块、密集排版、科技感图标",
+    "bold headlines, colorful blocks, dense layout, techy icons"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #B23A2E; --a2: #8E877C; --line: transparent; --avb: #EEE9DF; --avf: #B9B0A2; background: #F8F6F1; color: #33302B; font-family: "FangSong", "STFangsong", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 300; }
+.logo i { display: none; } .cta { border: 0; color: #8E877C; }
+.me { grid-template-columns: 60px minmax(0, 1fr) 60px; padding: 18px 46px 30px; align-items: start; } .intro { display: contents; }
+.me h1 { grid-column: 3; grid-row: 1 / span 3; width: 1em; font-size: 28px; line-height: 1.45; word-break: break-all; justify-self: center; font-weight: 300; position: relative; }
+.me h1::after { content: "舟"; position: absolute; top: 2px; left: -30px; width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; line-height: 1; color: #fff; background: #B23A2E; border-radius: 3px; }
+.av { width: 52px; grid-row: 1; } .hi, .bio, .tags { grid-column: 2; } .hi { letter-spacing: 6px; } .bio { font-size: 13px; line-height: 2.2; max-width: 300px; } .tags span { background: none; color: #8E877C; }
+.posts { padding: 0 46px 20px; } .posts h2 { opacity: .5; letter-spacing: 8px; } .posts article { grid-template-columns: 1fr auto; border: 0; padding: 8px 0; }
+.posts time { grid-column: 2; grid-row: 1; } .posts p, .posts em { display: none; } .posts h3 { font-size: 15px; font-weight: 300; letter-spacing: 2px; }
+.now { background: none; text-align: center; letter-spacing: 2px; } .now b { color: #B23A2E; }
+</style>

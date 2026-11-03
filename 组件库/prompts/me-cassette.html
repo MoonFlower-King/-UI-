@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Cassette Tape",
+  "zh": "磁带",
+  "alias": [
+    "卡带",
+    "Mixtape",
+    "复古录音带"
+  ],
+  "lead": "把个人主页做成一盒自制混音磁带：标签纸上的手写曲目单、彩色条纹、A 面 B 面、两个转动的卷轴。怀旧、有温度，适合音乐博主、播客主和 DJ。",
+  "prompt": "磁带风格：深灰外壳色底 #2B2B2E、奶白标签纸 #F4EDDC；标签纸上方有三条彩色横条纹（橙 #F28C28、红 #D9432F、黄 #F2C230）；头像位置是两个并排的白色磁带卷轴（带齿的圆）缓慢转动；文章是标签纸上手写的曲目单，日期写成曲目时长（如 03:42），前面标「A1 / A2 / B1」；手写体曲名、等宽数字",
+  "promptEn": "cassette tape style: dark gray shell #2B2B2E with a cream label #F4EDDC; three colored stripes across the top of the label (orange #F28C28, red #D9432F, yellow #F2C230); in place of the avatar, two white tape reels (toothed circles) side by side, slowly turning; posts as a handwritten track list on the label, dates written as track lengths (like 03:42) and prefixed with A1 / A2 / B1; handwritten track names with monospace numbers",
+  "avoid": "卷轴转动要慢（一圈 4 秒以上），快了会分散注意力；条纹三色固定，别再加渐变。",
+  "neg": [
+    "扁平现代图标、霓虹、玻璃拟态、细衬线",
+    "flat modern icons, neon, glassmorphism, thin serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-index"
+}
+-->
+<style>
+.blog { --a: #D9432F; --a2: #6E6A60; --line: rgba(43,43,46,.2); background: #2B2B2E; color: #2B2B2E; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav { color: #F4EDDC; } .logo i { background: #F28C28; box-shadow: 0 4px #D9432F, 0 8px #F2C230; border-radius: 0; height: 4px; margin-bottom: 8px; } .cta { border-color: #F4EDDC; }
+.me, .posts, .now { margin: 0 22px; background: #F4EDDC; } .me { border-radius: 10px 10px 0 0; padding-top: 22px; background: linear-gradient(#F28C28, #F28C28) 0 8px / 100% 4px no-repeat, linear-gradient(#D9432F, #D9432F) 0 13px / 100% 4px no-repeat, linear-gradient(#F2C230, #F2C230) 0 18px / 100% 4px no-repeat, #F4EDDC; }
+.me { grid-template-columns: 150px minmax(0, 1fr); } .av { width: 64px !important; position: relative; background: none !important; }
+.av::before, .av::after { content: ""; position: absolute; left: 0; top: 0; width: 64px; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(#2B2B2E 0 20deg, #fff 20deg 40deg) center / 50% 50% no-repeat, radial-gradient(circle, #fff 0 46%, #2B2B2E 48% 52%, #6E5A44 54% 100%); animation: me-spin 5s linear infinite; } .av::after { left: 74px; background: repeating-conic-gradient(#2B2B2E 0 20deg, #fff 20deg 40deg) center / 50% 50% no-repeat, radial-gradient(circle, #fff 0 46%, #2B2B2E 48% 52%, #6E5A44 54% 72%, transparent 73%); }
+@keyframes me-spin { to { rotate: 360deg; } }
+.me h1 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-weight: 400; font-size: 24px; } .bio { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 13px; }
+.posts { padding: 6px 16px 14px; border-radius: 0; } .posts h2 { opacity: 1; color: #D9432F; letter-spacing: 3px; } .posts h2::before { content: "SIDE A · "; }
+.posts h3 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; font-size: 15px; } .posts time::before { content: "A1 "; color: #D9432F; } .posts article:nth-of-type(2) time::before { content: "A2 "; } .posts article:nth-of-type(3) time::before { content: "B1 "; }
+.now { border-radius: 0 0 10px 10px; margin-bottom: 18px; padding: 10px 16px 14px; border-left: 0; } .now b { color: #D9432F; } .ft { color: #9C978C; }
+</style>

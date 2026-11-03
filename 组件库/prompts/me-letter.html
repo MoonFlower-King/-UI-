@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Airmail Letter",
+  "zh": "航空信笺",
+  "alias": [
+    "信纸",
+    "航空信",
+    "书信风"
+  ],
+  "lead": "像一封寄给读者的航空信：信纸四周是红蓝斜条纹边、头像做成一枚带齿孔的邮票、还有圆形邮戳。亲切、有仪式感，适合 newsletter 作者和旅居者。",
+  "prompt": "航空信笺风格：淡蓝灰信纸底 #F3F5F8，整页四周一圈 8px 的红蓝白斜条纹边（红 #C8323C、蓝 #1F4E9C）；头像做成邮票——白边、锯齿形齿孔边缘、轻微倾斜；名字旁边有一个圆形邮戳（双圈线 + 日期）；标题用衬线、正文用楷体或手写感字体；文章像信里分段的「附言」",
+  "promptEn": "airmail letter style: pale blue-gray letter paper #F3F5F8 framed by an 8px border of red, blue and white diagonal stripes (red #C8323C, blue #1F4E9C); the avatar is a postage stamp with a white border, perforated edges and a slight tilt; a round postmark (double ring plus date) beside the name; serif headings with Kai or handwritten-style body; posts read like postscripts in a letter",
+  "avoid": "斜条纹边框只围一圈，别在页面里面再重复；邮票、邮戳各一个，多了就成集邮册了。",
+  "neg": [
+    "霓虹色、科技线条、深色背景、密集卡片",
+    "neon colors, techy lines, dark backgrounds, dense cards"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #C8323C; --a2: #1F4E9C; --line: #D4DBE6; --avb: #F6E6C8; --avf: #C8323C; background: #F3F5F8; color: #2C3442; font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive; }
+.blog::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border: 8px solid transparent; border-image: repeating-linear-gradient(45deg, #C8323C 0 10px, #fff 10px 16px, #1F4E9C 16px 26px, #fff 26px 32px) 8; }
+.nav { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .logo i { display: none; } .cta { border-color: #1F4E9C; color: #1F4E9C; }
+.av { border-radius: 0; transform: rotate(-4deg); box-shadow: 0 0 0 6px #fff, 0 2px 8px 6px rgba(44,52,66,.12); outline: 4px dotted #F3F5F8; outline-offset: 3px; }
+.me { position: relative; } .me::after { content: "2026 · 11 · 02"; position: absolute; right: 70px; top: 40px; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; text-align: center; font: 9px "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: rgba(31,78,156,.7); border: 2px solid rgba(31,78,156,.6); box-shadow: inset 0 0 0 3px #F3F5F8, inset 0 0 0 4px rgba(31,78,156,.5); transform: rotate(14deg); }
+.me h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; letter-spacing: 4px; } .tags span { background: none; color: #1F4E9C; }
+.posts h2 { opacity: 1; color: #C8323C; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .posts h3 { font-size: 15px; font-weight: 400; } .posts h3::before { content: "P.S. "; color: #C8323C; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-size: 11px; }
+.now { background: #fff; border: 1px solid #D4DBE6; border-radius: 2px; }
+</style>

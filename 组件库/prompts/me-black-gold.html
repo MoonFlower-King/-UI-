@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Black & Gold Luxe",
+  "zh": "黑金奢华",
+  "alias": [
+    "黑金",
+    "奢华",
+    "高级定制"
+  ],
+  "lead": "极致克制的黑金配色：深黑底、香槟金的细线和小字、大量留白、优雅的高对比衬线。贵气、神秘，适合高端定制、设计顾问和奢侈品相关的个人品牌。",
+  "prompt": "黑金奢华风格：深黑底 #0B0B0B、象牙白正文 #E8E2D6、香槟金 #C9A961 只用于细线、小标签和名字下方的一条短线；名字用高对比衬线（Didot / Bodoni 一类）、字距宽；导航全大写小字；头像外一圈 1px 金线；大量留白、全部居中；不用色块和阴影",
+  "promptEn": "black-and-gold luxe style: deep black #0B0B0B with ivory #E8E2D6 body text and champagne gold #C9A961 used only for hairlines, small labels and a short rule under the name; a high-contrast serif name (Didot / Bodoni-like) with wide tracking; small uppercase navigation; a 1px gold ring around the avatar; generous whitespace and everything centered; no color blocks or shadows",
+  "avoid": "金色越少越贵：只给细线和小字；别做金色渐变大字或闪光效果，那会显得俗。",
+  "neg": [
+    "大面积金色渐变、闪光粒子、圆胖字体、彩色",
+    "large gold gradients, sparkle particles, chubby fonts, multicolor"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #C9A961; --a2: #8C8577; --line: rgba(201,169,97,.25); --avb: #1A1A1A; --avf: #5E584C; background: #0B0B0B; color: #E8E2D6; font-family: "Didot", "Bodoni 72", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { text-transform: uppercase; letter-spacing: 5px; font-size: 10px; } .cta { border-color: #C9A961; color: #C9A961; border-radius: 0; }
+.av { box-shadow: 0 0 0 6px #0B0B0B, 0 0 0 7px #C9A961; } .me { gap: 18px; }
+.me h1 { font-weight: 400; letter-spacing: 12px; } .me h1::after { content: ""; display: block; width: 40px; height: 1px; margin: 14px auto 0; background: #C9A961; }
+.hi { color: #C9A961; letter-spacing: 6px; text-transform: uppercase; font-size: 9.5px; } .bio { color: #B8B0A0; } .tags span { background: none; color: #C9A961; letter-spacing: 3px; }
+.posts h2 { color: #C9A961; opacity: 1; letter-spacing: 6px; } .posts h3 { font-weight: 400; letter-spacing: 3px; } .posts em { color: #8C8577; letter-spacing: 2px; }
+.now { background: none; border-top: 1px solid rgba(201,169,97,.4); border-bottom: 1px solid rgba(201,169,97,.4); border-radius: 0; } .now b { color: #C9A961; }
+</style>

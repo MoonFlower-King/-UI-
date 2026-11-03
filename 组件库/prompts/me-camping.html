@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Camping Trail",
+  "zh": "露营徒步",
+  "alias": [
+    "户外",
+    "等高线",
+    "探险"
+  ],
+  "lead": "像一张户外徒步地图：卡其底色上淡淡的等高线、橙色的路线虚线、帐篷和山峰的小图标，文章是沿途的打卡点。自由、有探索感，适合户外、徒步和自驾博主。",
+  "prompt": "露营徒步风格：卡其沙色底 #EAE2CC，上面铺一层淡淡的等高线纹理（不规则同心曲线，深卡其 #CFC3A3）；文字深林绿 #2E3B2C；强调色营火橙 #E8742C；文章是沿着一条橙色虚线路线的打卡点（时间线圆点换成三角小山 ▲）；头像像一枚圆形徽章（山峰剪影）；标签像户外布章；粗体无衬线标题",
+  "promptEn": "camping trail style: khaki sand #EAE2CC with faint contour-line texture (irregular concentric curves in darker khaki #CFC3A3) and deep forest green #2E3B2C text; campfire orange #E8742C accent; posts are checkpoints along an orange dashed trail (timeline dots replaced by small mountain triangles ▲); the avatar as a round badge with a mountain silhouette; tags like outdoor patches; bold sans-serif headings",
+  "avoid": "等高线要淡，只当底纹；橙色是路线和重点，别把大块背景也染橙。",
+  "neg": [
+    "城市霓虹、纯白极简、精致衬线、玻璃效果",
+    "urban neon, pure white minimalism, refined serifs, glass effects"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-timeline"
+}
+-->
+<style>
+.blog { --a: #E8742C; --a2: #6B7A4A; --line: rgba(46,59,44,.15); --avb: #2E3B2C; --avf: #EAE2CC; background: repeating-radial-gradient(ellipse 140% 90% at 80% 30%, transparent 0 14px, #CFC3A3 14px 15px), #EAE2CC; color: #2E3B2C; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 0; background: none; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 12px solid #E8742C; } .cta { background: #2E3B2C; color: #EAE2CC; border: 0; border-radius: 4px; }
+.av { background: linear-gradient(135deg, transparent 50%, #EAE2CC 50%) 30% 70% / 30px 30px no-repeat, linear-gradient(225deg, transparent 50%, #EAE2CC 50%) 60% 70% / 30px 30px no-repeat, linear-gradient(transparent 70%, #EAE2CC 70%), #2E3B2C !important; box-shadow: 0 0 0 3px #EAE2CC, 0 0 0 5px #E8742C; }
+.me h1 { font-weight: 800; text-transform: uppercase; } .hi { color: #E8742C; font-weight: 700; letter-spacing: 2px; } .tags span { background: #6B7A4A; color: #EAE2CC; border-radius: 4px; border: 1px dashed #EAE2CC; outline: 2px solid #6B7A4A; }
+.intro { background: rgba(234,226,204,.8); }
+.posts article::before { background: repeating-linear-gradient(180deg, #E8742C 0 5px, transparent 5px 9px) !important; width: 2px !important; }
+.posts article::after { content: "▲" !important; width: auto !important; height: auto !important; background: none !important; box-shadow: none !important; color: #2E3B2C; font-size: 12px; left: 53px !important; top: 8px !important; }
+.posts em { color: #E8742C; font-weight: 700; } .now { background: #2E3B2C; color: #EAE2CC; border-radius: 4px; } .now b { color: #E8742C; }
+</style>

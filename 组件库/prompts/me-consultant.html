@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Consultant",
+  "zh": "专业顾问",
+  "alias": [
+    "咨询顾问",
+    "律师",
+    "财务顾问"
+  ],
+  "lead": "可信赖的专业顾问主页：深海军蓝侧栏、白色正文、精致的衬线标题、清晰的服务条目和一句客户评价。稳重、专业，适合咨询顾问、律师、财务规划师和教练。",
+  "prompt": "专业顾问风格：左侧深海军蓝 #14213D 侧栏（头像、名字、资质标签用白字和一点金色 #C9A227）、右侧白底 #FFFFFF 正文深灰 #1F2937；标题用沉稳的衬线（Playfair / 宋体），正文无衬线；文章是服务 / 观点条目，前面有金色细线小标；「此刻」做成一句客户评价引用块（大号引号 “ + 斜体）；按钮深蓝实底、小圆角；整体留白充足、对齐严格",
+  "promptEn": "consultant style: a deep navy #14213D sidebar on the left (avatar, name and credential tags in white with a touch of gold #C9A227) and a white #FFFFFF content area with dark gray #1F2937 body text; steady serif headings (Playfair / Song) with sans-serif body; posts as service or insight entries marked with a thin gold rule; the now section as a client testimonial quote block (a large opening quote mark “ and italics); solid navy buttons with small radii; generous whitespace and strict alignment",
+  "avoid": "金色只做小线条和标签；「专业」靠对齐和留白，不靠堆奖杯图标和证书图片。",
+  "neg": [
+    "卡通插画、霓虹、花哨渐变、手写字",
+    "cartoon illustrations, neon, flashy gradients, handwriting"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #C9A227; --a2: #6B7280; --line: #E5E7EB; --avb: #23345A; --avf: #C9A227; background: linear-gradient(90deg, #14213D 178px, #fff 0); color: #1F2937; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.me { color: #fff; border: 0; } .me h1, .posts h2, .posts h3 { font-family: "Playfair Display", Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; } .me h1 { font-weight: 600; } .hi { color: #C9A227; letter-spacing: 2px; }
+.av { box-shadow: 0 0 0 2px #C9A227; } .tags span { background: rgba(201,162,39,.15); color: #E8D18A; border-radius: 3px; }
+.cta { background: #14213D; color: #fff; border: 0; border-radius: 4px; } .logo i { background: #C9A227; }
+.posts h2 { opacity: 1; color: #14213D; font-size: 17px; letter-spacing: 0; font-weight: 600; } .posts article { border-top: 1px solid #E5E7EB; } .posts h3 { font-weight: 600; } .posts h3::before { content: ""; display: inline-block; width: 14px; height: 1.5px; margin-right: 8px; vertical-align: 4px; background: #C9A227; }
+.posts em { color: #6B7280; } .now { background: #F8F7F2; border-left: 3px solid #C9A227; border-radius: 0; font-style: italic; } .now b { font-size: 26px; line-height: 0; vertical-align: -8px; color: #C9A227; } .now b::before { content: "“"; } .now b { font-size: 0; } .now b::before { font-size: 26px; }
+</style>

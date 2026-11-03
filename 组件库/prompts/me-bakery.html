@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Bakery",
+  "zh": "烘焙小屋",
+  "alias": [
+    "面包店",
+    "甜点",
+    "烘焙博主"
+  ],
+  "lead": "刚出炉的面包店感：黄油色、焦糖色、草莓奶油粉，圆滚滚的字体、像蛋糕盒一样的条纹顶和大圆角格子。香甜、温暖，适合烘焙师、甜品店和美食博主。",
+  "prompt": "烘焙小屋风格：黄油奶白底 #FFF6E5、巧克力棕字 #5A3A28；配色焦糖 #D9934A、草莓奶油 #F6B7B0、开心果绿 #B9D49A；顶部导航像蛋糕盒的竖条纹遮阳篷（奶白与草莓粉相间，下沿是波浪边）；格子大圆角 22px、柔和投影；圆润粗体标题；头像像一个圆面包",
+  "promptEn": "bakery style: butter cream #FFF6E5 background with chocolate brown #5A3A28 text; palette of caramel #D9934A, strawberry cream #F6B7B0 and pistachio #B9D49A; the top navigation like a striped awning on a cake box (cream and strawberry stripes with a scalloped lower edge); tiles with 22px radii and soft shadows; rounded bold headings; the avatar like a round bun",
+  "avoid": "条纹遮阳篷只放顶部；几种甜点色都要偏奶、偏柔，太鲜艳会像糖果店。",
+  "neg": [
+    "冷灰、黑色硬朗、科技线条、霓虹",
+    "cold grays, hard black, techy lines, neon"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #D9934A; --a2: #E2847A; --avb: #F2C78F; --avf: #A8642E; background: #FFF6E5; color: #5A3A28; font-family: "Nunito", "Avenir Next Rounded", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.nav { margin: 0 -18px; padding: 14px 26px 22px; background: radial-gradient(circle at 12px 0, transparent 11px, #FFF6E5 11.5px) 0 100% / 24px 12px repeat-x, repeating-linear-gradient(90deg, #F6B7B0 0 24px, #FFF6E5 24px 48px); }
+.nav nav, .logo { background: #FFF6E5; padding: 2px 8px; border-radius: 99px; } .cta { background: #5A3A28; color: #FFF6E5; border: 0; }
+.av, .intro, .posts article, .now { border-radius: 22px !important; box-shadow: 0 6px 16px -6px rgba(90,58,40,.25); }
+.av { background: radial-gradient(ellipse 40% 12% at 50% 46%, rgba(255,255,255,.5), transparent), radial-gradient(circle at 50% 60%, #E9B06E, #C98443 70%, #A8642E) !important; }
+.intro { background: #fff !important; } .posts article { background: #F6B7B0 !important; } .posts article:nth-of-type(2) { background: #B9D49A !important; } .posts article:nth-of-type(3) { background: #F2D3A2 !important; }
+.me h1 { font-weight: 900; color: #A8642E; } .tags span { background: #FFF6E5; color: #A8642E; } .posts em { color: #5A3A28; opacity: .7; } .now { background: #fff !important; }
+</style>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Soft Minimal",
+  "zh": "柔和极简",
+  "alias": [
+    "奶油极简",
+    "莫兰迪",
+    "柔和配色"
+  ],
+  "lead": "极简但不冷：奶油米色底、低饱和的鼠尾草绿和陶土粉、大圆角的格子。温柔、舒服，适合生活方式博主、手作人和心理咨询类个人站。",
+  "prompt": "柔和极简风格：奶油米色底 #F4EFE6、深棕灰字 #4A443C，色块用低饱和的鼠尾草绿 #C9D3C0、陶土粉 #E8CFC2 和燕麦色 #E9E1D3；每块内容是大圆角 18px 的格子，格子之间留 10px 缝；圆润的无衬线字体，标题中等粗细；没有边框和阴影",
+  "promptEn": "soft minimal style: cream #F4EFE6 background with deep taupe #4A443C text; blocks in muted sage #C9D3C0, clay pink #E8CFC2 and oat #E9E1D3; every piece of content sits in an 18px-radius tile with 10px gaps; rounded sans-serif with medium-weight headings; no borders or shadows",
+  "avoid": "低饱和配色容易显脏，几种颜色的明度要接近、都偏暖；文字要用够深的颜色，别也跟着「柔和」成浅灰。",
+  "neg": [
+    "高饱和色、纯黑粗线、尖角、霓虹",
+    "saturated colors, heavy black lines, sharp corners, neon"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #8A9A7B; --a2: #A07862; --avb: #E8CFC2; --avf: #A07862; background: #F4EFE6; color: #4A443C; font-family: "Avenir Next", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.intro { background: #E9E1D3 !important; } .av, .intro, .posts article, .now { border-radius: 18px !important; }
+.posts article { background: #C9D3C0 !important; } .posts article:nth-of-type(2) { background: #E8CFC2 !important; } .posts article:nth-of-type(3) { background: #E9E1D3 !important; }
+.tags span { background: #F4EFE6; color: #8A9A7B; } .cta { background: #4A443C; color: #F4EFE6; border: 0; }
+.now { background: #fff !important; } .me h1 { font-weight: 600; } .posts em { color: #4A443C; opacity: .7; }
+</style>

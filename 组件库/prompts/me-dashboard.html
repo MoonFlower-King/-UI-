@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Personal Dashboard",
+  "zh": "个人仪表盘",
+  "alias": [
+    "数据面板",
+    "Quantified self",
+    "Dashboard"
+  ],
+  "lead": "把自己当成一个产品来看：一格一格的数据卡片，写了多少篇、读了多少本、跑了多少公里，配迷你折线和进度条。理性、有趣，适合爱记录数据的人。",
+  "prompt": "个人仪表盘风格：浅灰底 #F3F4F6、白色卡片 #FFFFFF 带很轻的阴影，文字深灰 #111827；强调色靛蓝 #4F46E5 和薄荷绿 #10B981；每篇文章卡片顶部放一个大号数字和一条迷你折线；「此刻」做成进度条（如今年读书 18/24）；数字用等宽数字；圆角 12px，无衬线字体",
+  "promptEn": "personal dashboard style: light gray #F3F4F6 background with white #FFFFFF cards and very soft shadows, dark gray #111827 text; indigo #4F46E5 and mint #10B981 accents; each post card topped with a large number and a small sparkline; the now section as a progress bar (like books read this year 18/24); tabular numerals; 12px corners and sans-serif type",
+  "avoid": "每张卡片只讲一个数字，别把图表塞满；数字要真实有意义（读书数、跑步公里），不然就只是装饰。",
+  "neg": [
+    "复杂大图表、深色霓虹、手写字体、杂乱配色",
+    "complex large charts, dark neon, handwritten fonts, messy palettes"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #4F46E5; --a2: #10B981; --avb: #E0E7FF; --avf: #4F46E5; background: #F3F4F6; color: #111827; font-family: "Inter", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.av, .intro, .posts article, .now { background: #fff !important; border-radius: 12px !important; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 12px rgba(17,24,39,.05); }
+.cta { background: #4F46E5; color: #fff; border: 0; border-radius: 8px; } .tags span { background: #EEF2FF; }
+.posts article::before { content: "1.2k"; font: 700 20px "Inter", -apple-system, "Inter", "PingFang SC", sans-serif; font-variant-numeric: tabular-nums; color: #111827; padding-right: 54px; background: linear-gradient(135deg, transparent 46%, #10B981 47% 53%, transparent 54%) right 2px top 6px / 50px 18px no-repeat; }
+.posts article:nth-of-type(2)::before { content: "368"; } .posts article:nth-of-type(3)::before { content: "12"; background-image: linear-gradient(45deg, transparent 46%, #4F46E5 47% 53%, transparent 54%); }
+.posts time { order: 2; } .posts em { color: #10B981; font-weight: 600; }
+.now { position: relative; padding-bottom: 26px; } .now::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 12px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #4F46E5 75%, #E5E7EB 0); }
+</style>

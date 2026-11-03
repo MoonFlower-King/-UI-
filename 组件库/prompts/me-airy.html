@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Airy Whitespace",
+  "zh": "大留白",
+  "alias": [
+    "留白",
+    "呼吸感",
+    "极简留白"
+  ],
+  "lead": "东西极少、空白极多：小字号、浅灰色、宽字距，页面上大部分是空的。显得克制、高级，适合设计师、摄影师这类「作品自己说话」的人。",
+  "prompt": "大留白风格：纯白底 #FFFFFF，文字只用中灰 #8A8A8A 和近黑 #222 两种；字号整体偏小（正文 11px），字距放宽 1px；名字也只有 22px、细体；各区块之间留出很大的空白，页边距加倍；头像小而灰；没有色块、边框和图标",
+  "promptEn": "airy whitespace style: pure white #FFFFFF with only mid-gray #8A8A8A and near-black #222 text; small type overall (11px body) with 1px extra tracking; even the name is a light 22px; very large gaps between sections and doubled page margins; a small gray avatar; no color blocks, borders or icons",
+  "avoid": "留白要「有意」：对齐还得精确，否则空看起来像没做完；字再小也别低于 10px，手机上会看不清。",
+  "neg": [
+    "密集排版、彩色色块、大标题、粗边框",
+    "dense layout, colored blocks, large headlines, heavy borders"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #222; --a2: #8A8A8A; --line: transparent; --avb: #EFEFEF; --avf: #C8C8C8; background: #fff; color: #222; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; letter-spacing: 1px; }
+.nav { padding: 26px 46px; font-size: 10.5px; } .logo { font-weight: 400; font-size: 12px; } .logo i { display: none; } .cta { border: 0; padding: 0; color: #8A8A8A; }
+.me { grid-template-columns: 52px 1fr; padding: 40px 46px 56px; gap: 22px; } .av { width: 52px; }
+.me h1 { font-size: 22px; font-weight: 300; } .bio { font-size: 11px; color: #8A8A8A; } .hi { color: #B0B0B0; }
+.tags span { background: none; color: #8A8A8A; padding: 0; margin-right: 8px; }
+.posts { padding: 0 46px 40px; } .posts article { padding: 16px 0; } .posts h3 { font-weight: 400; font-size: 12.5px; } .posts em { color: #B0B0B0; }
+.now { margin: 0 46px 40px; padding: 0; background: none; color: #8A8A8A; } .now b { color: #222; font-weight: 400; } .ft { padding: 20px 46px 30px; }
+</style>

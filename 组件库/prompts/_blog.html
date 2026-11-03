@@ -1,0 +1,33 @@
+<!--
+  个人网站词条共用的舞台：一个虚构的个人主页 / 博客（560 宽），内容和结构固定，词条只写 CSS 换风格，方便公平对比。
+  页面会慢慢自动滚到底再回来。词条可用的结构：
+  .pg 整页 > .nav（.logo > i / nav > a × 3 / .cta）、
+  .me 自我介绍（.av 头像位；.intro > .hi 招呼语、h1 名字、.bio 一句话、.tags > span × 3）、
+  .posts 文章（h2 栏目名；article × 3：time 日期、h3 标题、p 摘要、em 标签）、
+  .now 此刻（b 小标题、p）、.ft 页脚
+  头像默认是一个简笔半身像，用 --avb（底色）和 --avf（人像色）换颜色，也可以整个重画 .av。
+-->
+<div class="blog"><div class="pg">
+  <header class="nav"><b class="logo"><i></i>周小舟</b><nav><a>文章</a><a>作品</a><a>关于</a></nav><a class="cta">订阅</a></header>
+  <section class="me">
+    <i class="av"></i>
+    <div class="intro"><p class="hi">你好，我是</p><h1>周小舟</h1><p class="bio">独立设计师，住在江边的老房子里。写字、拍照，偶尔做一点小工具。</p><p class="tags"><span>设计</span><span>摄影</span><span>独立开发</span></p></div>
+  </section>
+  <section class="posts">
+    <h2>最近写的</h2>
+    <article><time>11.02</time><h3>把房间收拾成一张白纸</h3><p>关于留白、整理和慢下来的三个月。</p><em>生活</em></article>
+    <article><time>10.18</time><h3>一个人做产品的第一年</h3><p>赚到的钱、踩过的坑，和没想到的快乐。</p><em>独立开发</em></article>
+    <article><time>09.27</time><h3>江边的十二种蓝</h3><p>每天傍晚，同一个位置拍一张照片。</p><em>摄影</em></article>
+  </section>
+  <section class="now"><b>此刻</b><p>在读《看不见的城市》，在做一个记账小工具。</p></section>
+  <footer class="ft">© 2026 周小舟 · 本页为风格示例</footer>
+</div></div>
+<style>
+.blog { position: absolute; inset: 0; overflow: hidden; }
+.pg { animation: blog-scroll 14s ease-in-out infinite; }
+@keyframes blog-scroll { 0%, 14% { transform: none; } 50%, 64% { transform: translateY(calc(-100% + 350px)); } 100% { transform: none; } }
+/* 基础重置用 :where() 包起来，优先级为 0，词条里随便写都能覆盖 */
+:where(.blog) :where(h1, h2, h3, p) { margin: 0; font-weight: inherit; font-size: inherit; }
+:where(.blog) a { color: inherit; text-decoration: none; cursor: default; }
+:where(.blog) :where(i, em, time) { display: block; font-style: normal; }
+</style>

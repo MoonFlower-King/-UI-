@@ -10,7 +10,7 @@
 ## 目录速览
 
 - `图鉴网站（开源）/`：术语图鉴。数据直接读根目录各期 `EPxx 主题/` 的动画网页和发布文案（唯一来源，不要再复制副本），期数登记在 `episodes.json`。每个词的「看代码」直接取自 `组件库/components/`（构建时按英文名映射，缺组件会报错），所以视频新增词条时要先在组件库补上对应组件
-- `组件库/`：「江月 UI」词典 + 组件库（发布在 `/ui/`）；`组件库/prompts.html` 是提示词调配台（视频 / 图片 / 网站风格，词条在 `组件库/prompts/`，登记在 `data/prompt-groups.json`）。每个术语一个文件 `组件库/components/*.html`，在 `data/categories.json` 登记主题，`npm run build:ui` 生成 `data/components.js`
+- `组件库/`：「江月 UI」词典 + 组件库（发布在 `/ui/`）；`组件库/prompts.html` 是提示词调配台（视频 / 图片 / 网站风格 / 个人网站，词条在 `组件库/prompts/`，登记在 `data/prompt-groups.json`）。每个术语一个文件 `组件库/components/*.html`，在 `data/categories.json` 登记主题，`npm run build:ui` 生成 `data/components.js`
 - 管理后台整页案例（页面 × 风格，目前 6 × 14 = 84 个）由 `组件库/admin/` 的「页面模板 × 风格」在构建时生成，不是 `components/` 里的文件；加风格改 `styles.mjs`，加页面改 `pages.mjs`
 - 品牌：江月 UI 设计，视觉主题「江上明月」（夜色江面 + 月光暖金 + 江月橘 #FA8C16，标题用宋体类衬线字）。网站本身就是审美示范，改界面时保持这个水准
 - `.claude/skills/jiangyue-ui-video/`：做视频的 skill

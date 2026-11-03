@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Code Editor",
+  "zh": "代码编辑器",
+  "alias": [
+    "IDE",
+    "编辑器界面",
+    "VS Code 风"
+  ],
+  "lead": "主页长得像一个深色代码编辑器：左边是文件树侧栏、顶上是文件标签页、正文带行号和语法高亮色。开发者一眼认出，适合写技术博客的程序员。",
+  "prompt": "代码编辑器风格：编辑区深灰蓝底 #1E2230、侧栏更深 #171A25，文字浅灰 #C9D1E0；左侧侧栏像文件树（文件夹图标 + 缩进的文件名），顶部导航做成编辑器的文件标签页，当前标签带一条青色 #4FC1FF 上边线；正文左边有一列暗色行号；语法高亮配色：关键字紫 #C792EA、字符串橙 #F78C6C、注释灰绿 #637777",
+  "promptEn": "code editor style: a dark slate editor area #1E2230 with an even darker sidebar #171A25 and light gray #C9D1E0 text; the left sidebar looks like a file tree (folder icons and indented file names), the top navigation looks like editor file tabs with a cyan #4FC1FF top border on the active tab; a dim column of line numbers beside the content; syntax-highlight palette: purple #C792EA keywords, orange #F78C6C strings, gray-green #637777 comments",
+  "avoid": "高亮颜色最多三四种，用在「名字、日期、标签」这些固定位置上，别每个字都上色；别照搬某个编辑器的图标和品牌。",
+  "neg": [
+    "亮色背景、手绘插画、衬线字体、复制具体软件的商标",
+    "light backgrounds, hand-drawn illustrations, serif fonts, copying a specific app logo"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #4FC1FF; --a2: #637777; --line: #2A2F40; --avb: #2A2F40; --avf: #C792EA; background: linear-gradient(90deg, #171A25 178px, #1E2230 0); color: #C9D1E0; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.nav { justify-content: flex-start; gap: 0; padding: 0; background: #171A25; } .nav nav { gap: 0; opacity: 1; } .nav nav a, .cta { padding: 9px 14px; border: 0; border-radius: 0; border-right: 1px solid #2A2F40; font-size: 11px; }
+.nav nav a:first-child { background: #1E2230; box-shadow: inset 0 2px #4FC1FF; color: #fff; } .cta { margin-left: auto; color: #637777; }
+.me { border-right-color: #2A2F40; } .av { border-radius: 6px; } .hi { color: #637777; } .hi::before { content: "// "; }
+.me h1 { color: #C792EA; font-weight: 400; } .bio { color: #F78C6C; } .bio::before { content: '"'; } .bio::after { content: '"'; }
+.tags { flex-direction: column; gap: 4px; } .tags span { background: none; color: #C9D1E0; padding: 0 0 0 14px; } .tags span::before { content: "▸ "; color: #637777; margin-left: -14px; }
+.posts { counter-reset: ln; } .posts h2 { color: #637777; opacity: 1; letter-spacing: 0; } .posts h2::before { content: "// "; }
+.posts article { border-top: 0; padding: 6px 0; } .posts time { color: #637777; } .posts h3 { color: #82AAFF; font-weight: 400; } .posts em { color: #C3E88D; }
+.now { background: #171A25; border-radius: 0; } .now b { color: #C792EA; } .ft { color: #637777; }
+</style>

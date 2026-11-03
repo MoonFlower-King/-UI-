@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "90s Homepage",
+  "zh": "90 年代个人主页",
+  "alias": [
+    "老式个人网页",
+    "上世纪网页",
+    "怀旧主页"
+  ],
+  "lead": "复刻上世纪九十年代的个人主页：平铺的花纹背景、彩虹分隔线、闪烁的 NEW!、访客计数器和「施工中」黄黑条。土得可爱，适合怀旧梗和有幽默感的人。",
+  "prompt": "90 年代个人主页风格：深蓝底 #000080 上平铺小星星图案，内容放在居中的浅灰 #C0C0C0 表格框里；标题用彩虹渐变字或亮黄 #FFFF00；文章前有闪烁的红色「NEW!」小标；分隔线是一条彩虹渐变横条；页脚有黑底绿字的访客计数器（如 001024）和黄黑斜纹的「施工中」条；链接蓝色下划线；Times / Comic 一类字体",
+  "promptEn": "90s homepage style: a tiled small-star pattern on deep blue #000080, content in a centered light gray #C0C0C0 table box; rainbow-gradient or bright yellow #FFFF00 headings; a blinking red “NEW!” badge before posts; rainbow gradient bars as dividers; a black-and-green visitor counter (like 001024) and a yellow-black striped “under construction” bar in the footer; blue underlined links; Times / Comic-style type",
+  "avoid": "它是「故意土」，但信息仍要好找：正文区用浅色底保证可读；闪烁只给一两个小标签，满屏闪会让人头晕。",
+  "neg": [
+    "现代极简留白、柔和渐变、玻璃拟态、精致衬线",
+    "modern minimal whitespace, soft gradients, glassmorphism, refined serifs"
+  ],
+  "kit": "blog-kit"
+}
+-->
+<style>
+.blog { --a: #0000EE; --a2: #FF0000; --line: #808080; --avb: #FFFF00; --avf: #FF00FF; background: radial-gradient(circle, #FFFF66 0 1px, transparent 1.6px) 0 0 / 18px 18px, radial-gradient(circle, #fff 0 .8px, transparent 1.2px) 9px 9px / 18px 18px, #000080; color: #000; font-family: "Comic Sans MS", "Times New Roman", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { color: #FFFF00; } .logo i { background: #FF00FF; border-radius: 0; } .nav nav a { text-decoration: underline; color: #00FFFF; } .cta { border: 2px outset #C0C0C0; background: #C0C0C0; color: #000; border-radius: 0; }
+.me, .posts, .now { margin: 0 22px 10px; background: #C0C0C0; border: 3px ridge #fff; } .me { padding: 12px; }
+.me h1 { background: linear-gradient(90deg, #f00, #f90, #ff0, #0c0, #00f, #90f); -webkit-background-clip: text; color: transparent; font-weight: 900; } .hi { color: #800080; }
+.av { border-radius: 0; border: 2px inset #fff; } .tags span { background: #000080; color: #FFFF00; border-radius: 0; }
+.posts { padding: 10px 12px; } .posts h2 { opacity: 1; color: #FF0000; letter-spacing: 0; font-size: 13px; padding-bottom: 6px; border-bottom: 4px solid; border-image: linear-gradient(90deg, #f00, #f90, #ff0, #0c0, #00f, #90f) 1; }
+.posts article { border-top: 1px dashed #808080; } .posts h3 { color: #0000EE; text-decoration: underline; font-weight: 400; } .posts article:first-of-type h3::before { content: "NEW! "; color: #FF0000; font-weight: 700; animation: me-blink .8s steps(1) infinite; }
+.now { border-radius: 0; } .now b { color: #FF0000; }
+.ft { color: #fff; text-align: center; } .ft::before { content: "001024"; display: block; width: fit-content; margin: 0 auto 6px; padding: 1px 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #0f0; background: #000; letter-spacing: 3px; }
+.ft::after { content: "UNDER CONSTRUCTION"; display: block; margin-top: 6px; padding: 2px; color: #000; font: 700 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: repeating-linear-gradient(45deg, #FFD800 0 10px, #000 10px 20px); -webkit-text-stroke: 2px #FFD800; paint-order: stroke; }
+@keyframes me-blink { 50% { opacity: 0; } }
+</style>

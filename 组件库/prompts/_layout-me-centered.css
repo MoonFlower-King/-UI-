@@ -1,0 +1,8 @@
+/* 个人站版式「居中名片」：头像放大居中在最上面，名字、介绍、标签、文章标题全部居中，像一张名片。适合文艺、诗意、安静的风格。 */
+.nav { justify-content: center; gap: 28px; } .nav .logo { display: none; }
+.me { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; padding-top: 14px; }
+.av { width: 96px; } .me h1 { font-size: 32px; } .bio { max-width: 340px; margin-inline: auto; } .tags { justify-content: center; }
+.posts { max-width: 400px; margin: 0 auto; text-align: center; } .posts h2 { text-align: center; }
+.posts article { grid-template-columns: 1fr; justify-items: center; row-gap: 2px; }
+.posts time, .posts p, .posts em { grid-column: 1; grid-row: auto; }
+.now { max-width: 380px; margin-inline: auto; text-align: center; } .ft { text-align: center; }

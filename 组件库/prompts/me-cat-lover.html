@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Cat Lover",
+  "zh": "猫咪日常",
+  "alias": [
+    "猫奴",
+    "猫咪主题",
+    "萌宠"
+  ],
+  "lead": "属于猫奴的个人站：头像长出两只猫耳、导航旁有小爪印、背景散落浅浅的肉垫图案，配色是橘猫和奶牛猫的颜色。可爱、温柔，适合萌宠博主和猫咖店主。",
+  "prompt": "猫咪日常风格：奶油底 #FFF8EE、深灰褐字 #4A3F38；配色橘猫橙 #F0A04B、奶白 #FFFFFF、奶牛猫黑 #2E2A28 和猫鼻粉 #F4A6A6；头像上方长出两只三角猫耳（橙色外 + 粉色内）；背景散落很淡的肉垫小图案 🐾 风格（一个大圆 + 三个小圆）；标签前面带小爪印；全部居中，圆润字体",
+  "promptEn": "cat lover style: cream #FFF8EE background with deep taupe #4A3F38 text; palette of ginger orange #F0A04B, milk white #FFFFFF, tuxedo black #2E2A28 and nose pink #F4A6A6; two triangular cat ears (orange outside, pink inside) on top of the avatar; very faint paw-print patterns (one big pad and three small toes) scattered in the background; little paw prints before tags; centered layout with rounded type",
+  "avoid": "猫耳和爪印就是全部的「猫元素」，再加猫咪插画就太满；肉垫底纹要淡到几乎看不见。",
+  "neg": [
+    "写实猫照片铺满、深色酷炫、尖锐几何、霓虹",
+    "full-bleed realistic cat photos, dark edgy looks, sharp geometry, neon"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-centered"
+}
+-->
+<style>
+.blog { --a: #F0A04B; --a2: #C97F86; --line: rgba(74,63,56,.12); --avb: #fff; --avf: #F0A04B; background: radial-gradient(circle at 10px 14px, rgba(240,160,75,.12) 0 5px, transparent 5.5px) 0 0 / 60px 60px, radial-gradient(circle at 4px 6px, rgba(240,160,75,.12) 0 2.4px, transparent 2.8px) 0 0 / 60px 60px, radial-gradient(circle at 10px 4px, rgba(240,160,75,.12) 0 2.4px, transparent 2.8px) 0 0 / 60px 60px, radial-gradient(circle at 16px 6px, rgba(240,160,75,.12) 0 2.4px, transparent 2.8px) 0 0 / 60px 60px, #FFF8EE; color: #4A3F38; font-family: "Nunito", "Hiragino Maru Gothic ProN", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.av { position: relative; margin-top: 18px; background: radial-gradient(circle at 36% 46%, #2E2A28 0 4%, transparent 4.5%), radial-gradient(circle at 64% 46%, #2E2A28 0 4%, transparent 4.5%), radial-gradient(ellipse 6% 4% at 50% 58%, #F4A6A6 96%, transparent), radial-gradient(circle at 30% 70%, #fff 0 22%, transparent 23%), #F0A04B !important; }
+.av::before, .av::after { content: ""; position: absolute; top: -14px; width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid #F0A04B; } .av::before { left: 6px; rotate: -18deg; } .av::after { right: 6px; rotate: 18deg; }
+.me h1 { font-weight: 900; } .hi { color: #F0A04B; } .tags span { background: #fff; color: #C97F86; box-shadow: 0 0 0 1.5px #F4D0B0; } .tags span::before { content: "🐾 "; filter: grayscale(1) sepia(1) hue-rotate(-20deg) saturate(3); font-size: 9px; }
+.cta { background: #2E2A28; color: #FFF8EE; border: 0; } .logo i { background: #F0A04B; }
+.posts em { color: #F0A04B; } .now { background: #fff; border: 2px solid #F4D0B0; border-radius: 18px; } .now b { color: #F0A04B; }
+</style>

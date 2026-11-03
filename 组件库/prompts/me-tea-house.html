@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Tea House",
+  "zh": "茶室",
+  "alias": [
+    "茶道",
+    "茶席",
+    "日式茶屋"
+  ],
+  "lead": "像一间安静的茶室：原木色侧栏、抹茶绿的点缀、亚麻纸的底，字小而疏。温润、慢，适合茶人、手作陶艺、慢生活博主。",
+  "prompt": "茶室风格：亚麻纸底 #F1ECE2、深茶褐字 #3E3328；左侧栏是浅原木色 #D9C3A0（带极淡木纹竖线），头像像一只俯视的茶碗（深褐外圈 + 抹茶绿 #7A8C4F 茶汤）；强调色抹茶绿，标签像小木牌；衬线或楷体标题、细无衬线正文；整体留白多、色彩低饱和",
+  "promptEn": "tea house style: linen paper #F1ECE2 background with deep tea-brown #3E3328 text; a pale natural-wood sidebar #D9C3A0 with very faint vertical grain lines; the avatar like a tea bowl seen from above (dark brown rim with matcha-green #7A8C4F tea); matcha green as the accent, tags like small wooden tags; serif or Kai headings with light sans-serif body; lots of space and low saturation",
+  "avoid": "木色和绿色都要「灰一点」，饱和度高就像儿童乐园；茶碗头像是巧思，别再画满茶具图标。",
+  "neg": [
+    "高饱和绿、亮橙、塑料感图标、密集卡片",
+    "saturated green, bright orange, plastic-looking icons, dense cards"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-sidebar"
+}
+-->
+<style>
+.blog { --a: #7A8C4F; --a2: #8E7A60; --line: #DCD2C0; background: repeating-linear-gradient(90deg, transparent 0 13px, rgba(120,90,50,.06) 13px 14px) 0 0 / 178px 100% no-repeat, linear-gradient(90deg, #D9C3A0 178px, #F1ECE2 0); color: #3E3328; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.me { border-right: 0; } .av { background: radial-gradient(circle, #7A8C4F 0 44%, #5E6B3A 47%, #4A3426 50% 64%, #6B4E38 66% 70%, transparent 71%); }
+.me h1, .posts h2 { font-family: "Kaiti SC", "STKaiti", "KaiTi", "Bradley Hand", cursive, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 400; } .hi { color: #6B5640; }
+.tags span { background: #F1ECE2; color: #6B5640; border-radius: 2px; box-shadow: inset 0 0 0 1px #BFA582; }
+.cta { background: #7A8C4F; color: #F1ECE2; border: 0; border-radius: 2px; } .logo i { background: #7A8C4F; }
+.posts h2 { font-size: 15px; letter-spacing: 4px; opacity: 1; color: #7A8C4F; } .posts h3 { font-weight: 400; } .posts em { color: #8E7A60; }
+.now { background: #E7DFCF; border-radius: 2px; } .now b { color: #7A8C4F; }
+</style>

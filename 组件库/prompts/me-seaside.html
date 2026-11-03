@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Seaside",
+  "zh": "海边",
+  "alias": [
+    "海岸",
+    "海风",
+    "夏日海滩"
+  ],
+  "lead": "夏天的海边：上半屏是浅蓝天空和一道道白浪的蓝色海面，下面是暖沙色，名字像写在沙滩上。清爽、放松，适合冲浪、潜水、旅行和夏日生活博主。",
+  "prompt": "海边风格：首屏从天空浅蓝 #CDEBF5 过渡到海蓝 #3A8DBA，海面上有两三道白色浪花波纹线；下方内容区是暖沙色 #F5E9D3，文字深海军蓝 #1D3B53；强调色珊瑚 #F27E63 和海玻璃绿 #8CC7B5；名字超大、圆润无衬线、白色压在海面上；头像像一枚贝壳色圆章",
+  "promptEn": "seaside style: the hero fades from pale sky blue #CDEBF5 into sea blue #3A8DBA with two or three white wave lines on the water; the content below sits on warm sand #F5E9D3 with deep navy #1D3B53 text; coral #F27E63 and sea-glass green #8CC7B5 accents; an oversized rounded sans-serif name in white over the sea; the avatar as a shell-colored round badge",
+  "avoid": "海浪线要简洁（两三道），别画写实海景；沙色区域是正文主场，对比度要够。",
+  "neg": [
+    "写实海景照片、霓虹、深色背景、厚重衬线",
+    "realistic beach photos, neon, dark backgrounds, heavy serifs"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #F27E63; --a2: #8CC7B5; --line: rgba(29,59,83,.12); --avb: #FBE3D3; --avf: #F27E63; background: #F5E9D3; color: #1D3B53; font-family: "Avenir Next Rounded", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav, .me { background: linear-gradient(#CDEBF5, #9FD0E6 30%, #3A8DBA 72%, #2F7AA6); } .nav { background: #CDEBF5; } .cta { background: #F27E63; color: #fff; border: 0; }
+.me { position: relative; } .me::before { content: ""; position: absolute; left: 0; right: 0; top: 30%; height: 60px; background: radial-gradient(ellipse 30px 6px at 30px 6px, transparent 70%, rgba(255,255,255,.75) 72% 86%, transparent 88%) 0 0 / 60px 22px repeat-x; }
+.me::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 18px; background: radial-gradient(ellipse 22px 12px at 22px 0, transparent 96%, #F5E9D3) 0 0 / 44px 18px repeat-x; }
+.me > :not(.av) { position: relative; } .me h1 { color: #fff; font-weight: 800; text-shadow: 0 2px 10px rgba(29,59,83,.3); } .hi { color: #1D3B53; } .bio { color: #fff; opacity: 1; }
+.tags span { background: rgba(255,255,255,.85); color: #2F7AA6; } .av { box-shadow: 0 0 0 4px #fff; }
+.posts { padding-top: 16px; } .posts em { color: #F27E63; } .now { background: #fff7ea; } .now b { color: #2F7AA6; }
+</style>

@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Neo-Brutalism",
+  "zh": "新粗野主义",
+  "alias": [
+    "Neo-brutalism",
+    "粗描边",
+    "硬投影"
+  ],
+  "lead": "现在很流行的新粗野主义：明亮的糖果色块、3px 粗黑描边、往右下方错开的实心硬投影，按钮像能按下去。活泼、有个性，适合独立开发者、创作者和产品主页。",
+  "prompt": "新粗野主义风格：奶黄底 #FFF4D6、纯黑字 #111；每个格子都是亮色填充（粉 #FF90E8、薄荷 #90F1C8、柠檬 #FFE45E、天蓝 #7FC8F8）+ 3px 纯黑描边 + 向右下偏移 4px 的纯黑硬投影；圆角 10px；按钮同样带硬投影，像实体按键；标题粗黑无衬线；标签是白底黑框小胶囊",
+  "promptEn": "neo-brutalism style: buttery cream #FFF4D6 background with pure black #111 text; every tile filled with a bright color (pink #FF90E8, mint #90F1C8, lemon #FFE45E, sky #7FC8F8) plus a 3px solid black border and a solid black hard shadow offset 4px down-right; 10px radii; buttons with the same hard shadow like physical keys; heavy black sans-serif headings; tags as white pills with black outlines",
+  "avoid": "硬投影方向必须全站一致（都往右下）；颜色鲜艳但每格只用一种，同一格里别放渐变。",
+  "neg": [
+    "柔和模糊阴影、渐变、细线、低饱和配色",
+    "soft blurred shadows, gradients, thin lines, muted palettes"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-bento"
+}
+-->
+<style>
+.blog { --a: #111; --a2: #111; --avb: #7FC8F8; --avf: #111; background: #FFF4D6; color: #111; font-family: "Archivo Black", "Arial Black", "PingFang SC", sans-serif; }
+.logo i { border-radius: 4px; background: #FF90E8; outline: 2px solid #111; } .cta { background: #FFE45E; border: 3px solid #111; border-radius: 10px; box-shadow: 3px 3px 0 #111; font-weight: 700; }
+.av, .intro, .posts article, .now { border: 3px solid #111 !important; border-radius: 12px !important; box-shadow: 4px 4px 0 #111; }
+.intro { background: #FF90E8 !important; } .posts article { background: #90F1C8 !important; } .posts article:nth-of-type(2) { background: #FFE45E !important; } .posts article:nth-of-type(3) { background: #fff !important; }
+.now { background: #7FC8F8 !important; } .me h1 { font-weight: 900; } .tags span { background: #fff; color: #111; border: 2px solid #111; font-weight: 700; } .posts em { color: #111; font-weight: 700; }
+.bio, .posts p { font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+</style>

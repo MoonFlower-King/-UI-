@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Photographer",
+  "zh": "摄影师",
+  "alias": [
+    "摄影作品集",
+    "暗房",
+    "影像"
+  ],
+  "lead": "为照片让路的暗色作品集：近黑背景、全出血的大图首屏、极细的白色小字、图片下面一行拍摄参数。沉浸、有电影感，适合摄影师和影像创作者。",
+  "prompt": "摄影师风格：近黑底 #0D0D0D、白字 #F2F2F2、次要灰 #7A7A7A；首屏整块是一张全出血的大照片（用暖橙到深蓝的黄昏渐变色块代替），名字白色细体压在照片左下角；导航全大写小字、字距宽；文章是作品条目，每条下方一行等宽小字拍摄参数（如 35mm · f/2 · 1/250s）；不用任何彩色强调",
+  "promptEn": "photographer style: near-black #0D0D0D with white #F2F2F2 text and gray #7A7A7A secondary text; the hero is one full-bleed photograph (represented by a warm orange to deep blue dusk gradient block) with the name in light white type at its lower left; small uppercase widely tracked navigation; posts as work entries, each with a line of monospace shooting data underneath (like 35mm · f/2 · 1/250s); no colored accents",
+  "avoid": "界面颜色越少越好，让照片成为唯一的颜色来源；文字压在照片上要加一层很淡的暗角保证可读。",
+  "neg": [
+    "彩色界面元素、圆角卡片、花哨字体、浅色背景",
+    "colorful UI elements, rounded cards, fancy fonts, light backgrounds"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-hero"
+}
+-->
+<style>
+.blog { --a: #F2F2F2; --a2: #7A7A7A; --line: rgba(255,255,255,.1); background: #0D0D0D; color: #F2F2F2; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.nav { text-transform: uppercase; letter-spacing: 4px; font-size: 10px; } .logo { font-weight: 400; letter-spacing: 4px; } .logo i { display: none; } .cta { border-color: rgba(255,255,255,.4); border-radius: 0; }
+.me { margin: 0 14px; background: linear-gradient(transparent 50%, rgba(0,0,0,.55)), radial-gradient(circle at 70% 62%, #FFD6A0 0 6%, transparent 14%), linear-gradient(180deg, #2B3A67 0%, #C46A4B 58%, #F2A65A 66%, #1E1E2A 67%, #0D0D0D); }
+.av { opacity: .0; } .me h1 { font-weight: 200; letter-spacing: 6px; } .hi { color: rgba(255,255,255,.7); letter-spacing: 4px; text-transform: uppercase; } .tags span { background: none; border: 1px solid rgba(255,255,255,.4); color: #F2F2F2; border-radius: 0; }
+.posts h2 { opacity: .6; letter-spacing: 6px; } .posts h3 { font-weight: 300; letter-spacing: 1px; } .posts p { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10px; letter-spacing: 1px; } .posts p::before { content: "35mm · f/2 · 1/250s — "; color: #7A7A7A; }
+.posts em { color: #7A7A7A; } .now { background: none; border-top: 1px solid rgba(255,255,255,.12); border-radius: 0; } .now b { color: #7A7A7A; }
+</style>

@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Monochrome Blue",
+  "zh": "单色蓝",
+  "alias": [
+    "单色",
+    "同色系",
+    "Monochrome"
+  ],
+  "lead": "整站只用一种蓝色的深浅：深蓝字、浅蓝底、中蓝色块，没有第二种颜色。统一、冷静、很好记，适合想要鲜明个人色的人。",
+  "prompt": "单色蓝风格：全站只用一个色相——极浅蓝底 #EEF1FB、深蓝字 #14247A、中蓝 #2F48D4 做按钮和色块，再加两三档同色系深浅做层次；不出现任何其他颜色（连灰色都换成蓝灰）；无衬线字体，圆角 10px",
+  "promptEn": "monochrome blue style: a single hue across the site—very pale blue #EEF1FB background, deep blue #14247A text, mid blue #2F48D4 for buttons and blocks, plus two or three tints of the same hue for hierarchy; no other colors at all (even grays become blue-grays); sans-serif type with 10px corners",
+  "avoid": "单色靠深浅分层，最深和最浅之间要拉开足够对比，正文对比度至少 4.5:1；一旦混进别的颜色就破功了。",
+  "neg": [
+    "第二种强调色、纯灰色、彩虹配色",
+    "a second accent color, neutral grays, rainbow palettes"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-cards"
+}
+-->
+<style>
+.blog { --a: #2F48D4; --a2: #5B6CC9; --on: #fff; --line: #CBD3F3; --avb: #2F48D4; --avf: #BFC9F5; background: #EEF1FB; color: #14247A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta { background: #2F48D4; color: #fff; border: 0; } .tags span { background: #D9DFF8; color: #2F48D4; }
+.posts article { background: #fff; border-color: #CBD3F3; } .posts article::before { background: #2F48D4 !important; opacity: 1 !important; }
+.posts article:nth-of-type(2)::before { background: #8A9BEA !important; } .posts article:nth-of-type(3)::before { background: #14247A !important; }
+.now { background: #2F48D4; color: #fff; } .now b { color: #BFC9F5; }
+</style>

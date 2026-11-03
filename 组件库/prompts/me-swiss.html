@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Swiss Grid",
+  "zh": "瑞士网格",
+  "alias": [
+    "国际主义",
+    "瑞士风格",
+    "网格系统"
+  ],
+  "lead": "瑞士国际主义排版：无衬线粗体、严格的网格对齐、大量黑白加一抹红，信息层级靠字号和线条而不是装饰。理性、专业，适合设计师和建筑师。",
+  "prompt": "瑞士网格风格：白底 #FFFFFF、黑字 #111，唯一的强调色是信号红 #E3000F；全站无衬线粗体（Helvetica 一类），名字很大且紧排，所有内容严格左对齐在网格上；分区用 2px 黑色粗线和 1px 细线；小标签全大写字母或小号字加宽字距；不要圆角和阴影",
+  "promptEn": "Swiss grid style: white #FFFFFF background, black #111 text and signal red #E3000F as the only accent; bold sans-serif (Helvetica-like) throughout, a large tightly set name, everything strictly left-aligned to a grid; sections divided by 2px black rules and 1px hairlines; small labels in caps or small widely tracked type; no rounded corners or shadows",
+  "avoid": "红色只用在一两个点（比如一个圆点、一个数字），多了就成了促销页；网格要真对齐，左边缘一条直线，别有的居中有的靠左。",
+  "neg": [
+    "圆角、渐变、阴影、居中排版、多种强调色",
+    "rounded corners, gradients, shadows, centered text, multiple accent colors"
+  ],
+  "kit": "blog-kit",
+  "layout": "me-magazine"
+}
+-->
+<style>
+.blog { --a: #E3000F; --a2: #111; --line: #111; background: #fff; color: #111; font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", sans-serif; }
+.logo i { border-radius: 0; } .cta { border-radius: 0; background: #111; color: #fff; border: 0; }
+.me h1 { font-weight: 800; letter-spacing: -2px; } .av { border-radius: 0; --avb: #E3000F; --avf: #fff; }
+.tags span { border-radius: 0; background: none; color: #111; border: 1px solid #111; }
+.posts h2 { opacity: 1; color: #E3000F; font-weight: 700; } .posts article { border-top: 1px solid #111; } .posts em { color: #E3000F; font-weight: 700; }
+.posts article:first-of-type { border-top: 2px solid #111; } .now { border-radius: 0; background: #111; color: #fff; } .now b { color: #E3000F; }
+</style>
