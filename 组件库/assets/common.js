@@ -1,5 +1,8 @@
 // 词典（index.html）和提示词调配台（prompts.html）共用的小工具，在各页脚本之前加载。
 // 两个页面的脚本都是普通 <script>，这里用 const 声明的名字在后面的脚本里直接能用。
+// 发布时 .github/workflows/pages.yml 会给页面引用的脚本加上 ?v=版本号，按需下载的数据文件也带上同一个，
+// 这样刚发布完不会出现「浏览器缓存里的旧脚本 + 新数据」对不上；本地直接打开时是空字符串
+const V = new URL(document.currentScript.src).search;
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);

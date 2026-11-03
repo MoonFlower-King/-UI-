@@ -32,6 +32,10 @@ jobs:
           rm -f _site/.gitignore _site/ui/.gitignore
           # 源文件和构建脚本只在构建时用，网页运行时用不到，不上传（发布包小一半多）
           rm -rf _site/scripts _site/episodes.json _site/ui/scripts _site/ui/components _site/ui/prompts _site/ui/admin _site/ui/data/*.json
+          # 页面引用的本地脚本和样式加上 ?v=提交号：刚发布完浏览器不会拿缓存里的旧文件配新数据（按需下载的数据文件由 common.js 带上同一个版本号）
+          v=${GITHUB_SHA::7}
+          find _site -name '*.html' -not -path '*/demos/*' -not -path '*/episodes/*' -exec sed -i -E "s#(src|href)=\"((assets|data)/[^\"?]+\.(js|css))\"#\1=\"\2?v=$v\"#g" {} +
+          grep -ho '[a-z]*\.\(js\|css\)?v=[0-9a-f]*' _site/index.html _site/ui/*.html
           du -sh _site
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3

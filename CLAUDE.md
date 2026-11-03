@@ -14,6 +14,6 @@
 - 管理后台整页案例（页面 × 风格，目前 6 × 14 = 84 个）由 `组件库/admin/` 的「页面模板 × 风格」在构建时生成，不是 `components/` 里的文件；加风格改 `styles.mjs`，加页面改 `pages.mjs`
 - 品牌：江月 UI 设计，视觉主题「江上明月」（夜色江面 + 月光暖金 + 江月橘 #FA8C16，标题用宋体类衬线字）。网站本身就是审美示范，改界面时保持这个水准
 - `.claude/skills/jiangyue-ui-video/`：做视频的 skill
-- `npm run build` 生成两个站点的数据，最后检查各页面脚本有没有语法错误（`组件库/scripts/check-scripts.mjs`）。生成物（`组件库/data/components.js`、图鉴的 `data/` `demos/` `episodes/`）已 gitignore，不要提交；PR 时 Actions 会自动跑构建检查
+- `npm run build` 生成两个站点的数据，最后检查各页面脚本有没有语法错误（`组件库/scripts/check-scripts.mjs`）。生成物（`组件库/data/` 下的 .js 和 code/、text/、prompt-code/、prompt-text/，图鉴的 `data/` `demos/` `episodes/`）已 gitignore，不要提交；PR 时 Actions 会自动跑构建检查
 - 工作方式：一件事一个线程、一个 PR，别在一个线程里连续追加不相关的需求
 - 合并到 `main` 后 `.github/workflows/pages.yml` 自动发布：图鉴在根目录，组件库在 `/ui/`

@@ -11,7 +11,7 @@ const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
 const loads = {};
 const load = (dir, global, g) => (loads[`${dir}/${g}`] ||= new Promise((ok, no) => {
   const s = document.createElement('script');
-  s.src = `data/${dir}/${g}.js`; s.onload = () => ok(window[global][g]); s.onerror = () => { delete loads[`${dir}/${g}`]; s.remove(); no(); };
+  s.src = `data/${dir}/${g}.js${V}`; s.onload = () => ok(window[global][g]); s.onerror = () => { delete loads[`${dir}/${g}`]; s.remove(); no(); };
   document.head.append(s);
 }));
 const loadCode = (g) => load('prompt-code', 'JY_PROMPT_CODE', g);

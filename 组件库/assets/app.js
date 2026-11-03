@@ -20,7 +20,7 @@ function loadData(dir, cat) {
   const key = `${dir}/${cat}`;
   return loads[key] ||= new Promise((ok, no) => {
     const s = document.createElement('script');
-    s.src = `data/${key}.js`;
+    s.src = `data/${key}.js${V}`;
     s.onload = ok;
     s.onerror = () => { delete loads[key]; s.remove(); no(new Error(key)); }; // 网络抖一下的话，下次用到再试
     document.head.append(s);
