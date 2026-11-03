@@ -2,6 +2,20 @@
 
 > 给 AI 描述 UI，说对一个词就够了。
 
+<p align="center">
+  <a href="https://moonflower-king.github.io/-UI-/ui/"><b>🌙 打开「江月 UI」组件库 →</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://moonflower-king.github.io/-UI-/ui/prompts.html">提示词调配台</a>
+  &nbsp;·&nbsp;
+  <a href="https://moonflower-king.github.io/-UI-/">UI 提示词图鉴</a>
+</p>
+
+<p align="center">
+  <a href="https://moonflower-king.github.io/-UI-/ui/"><img src=".github/assets/site-index.png" alt="江月 UI 组件库：每个术语都能实时预览、看代码、一键复制提示词" width="820"></a>
+</p>
+
+不用安装，浏览器打开就能用：搜一个词或说出你想要的感觉，看实时效果，把提示词复制给 AI。
+
 短视频系列「给AI描述UI的6个词」（江月AI设计）的工作仓库。每期讲一个 UI 主题里的 6 个专业术语，每个术语配一段实时动画和一段可以直接复制给 AI 的提示词。
 
 这个仓库放三样东西：
@@ -68,7 +82,11 @@ npm run build
 - `build:site`：从各期 `EPxx 主题/` 文件夹生成图鉴网站数据
 - `build:ui`：从 `组件库/components/` 生成组件库数据
 
-## 在线访问图鉴网站
+## 在线访问
+
+- 组件库：<https://moonflower-king.github.io/-UI-/ui/>
+- 提示词调配台：<https://moonflower-king.github.io/-UI-/ui/prompts.html>
+- 图鉴网站：<https://moonflower-king.github.io/-UI-/>
 
 仓库已带 GitHub Pages 自动部署（[`.github/workflows/pages.yml`](.github/workflows/pages.yml)）。在 **Settings → Pages → Source** 里选择 **GitHub Actions**，之后每次合并到 `main` 都会自动构建并发布；提 PR 时会先跑一遍构建检查，有错会在合并前报红。
 
