@@ -8,7 +8,8 @@
 //   npm run shots -- web web-east                         写分组 id 截整组
 //   npm run shots -- web web-east --at=0.5                网站风格会自动滚动，--at 指定截第几成（0~1）的画面
 //   npm run shots -- admin dashboard clay                 管理后台：id 里包含任一关键词的整页（如 admin-users-clay）
-//   加 --mobile 用手机宽度（390）截管理后台和组件
+//   npm run shots -- site blog paper                      个人网站：id 里包含任一关键词的整页（如 site-blog-paper）；加 --full 截整页长图
+//   加 --mobile 用手机宽度（390）截管理后台、个人网站和组件
 // 截图时页面报的 JS 错误会直接打印出来。
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -26,8 +27,8 @@ const OUT = join(ROOT, '.shots');
 const [kind, ...rest] = process.argv.slice(2);
 const flags = Object.fromEntries(rest.filter((a) => a.startsWith('--')).map((a) => { const [k, v = '1'] = a.slice(2).split('='); return [k, v]; }));
 const names = rest.filter((a) => !a.startsWith('--'));
-if (!['ui', 'web', 'admin'].includes(kind) || !names.length) {
-  console.error('用法：npm run shots -- <ui|web|admin> <名字或分组…> [--at=0.5] [--mobile]（详见 scripts/shots.mjs 开头）');
+if (!['ui', 'web', 'admin', 'site'].includes(kind) || !names.length) {
+  console.error('用法：npm run shots -- <ui|web|admin|site> <名字或分组…> [--at=0.5] [--mobile] [--full]（详见 scripts/shots.mjs 开头）');
   process.exit(1);
 }
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -82,7 +83,16 @@ async function adminShots() {
   }));
 }
 
-const shots = kind === 'ui' ? uiShots() : kind === 'web' ? webShots() : await adminShots();
+async function siteShots() {
+  const { siteCases } = await import(pathToFileURL(join(ROOT, 'sites/pages.mjs')));
+  const w = flags.mobile ? 390 : 1120;
+  return siteCases().filter((c) => names.some((n) => c.id.includes(n))).map((c) => ({
+    name: c.id, w, h: flags.mobile ? 844 : 700, full: !!flags.full,
+    html: `${BODY}<style>html,body{margin:0;height:100%}</style>${c.code}`,
+  }));
+}
+
+const shots = kind === 'ui' ? uiShots() : kind === 'web' ? webShots() : kind === 'site' ? await siteShots() : await adminShots();
 if (!shots.length) { console.error('没有匹配到任何东西'); process.exit(1); }
 
 rmSync(OUT, { recursive: true, force: true });
@@ -100,7 +110,10 @@ for (const s of shots) {
   await page.waitForTimeout(kind === 'ui' ? 1200 : 300);
   if (errs.length) { console.log(`✗ ${s.name}：${errs.join('；')}`); errs = []; }
   const file = `img/${s.name.replace(/[^\w.-]/g, '_')}.png`;
-  await page.screenshot({ path: join(OUT, file) });
+  if (s.full) { // 整页长图：把内部滚动容器撑开
+    await page.addStyleTag({ content: '.site,.scroll{height:auto!important;overflow:visible!important}html,body{height:auto!important}' });
+    await page.screenshot({ path: join(OUT, file), fullPage: true });
+  } else await page.screenshot({ path: join(OUT, file) });
   files.push([file, s.name, s.w]);
 }
 // 总览图：两列，每张最多 8 格，桌面后台截图缩到一半宽

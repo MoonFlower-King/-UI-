@@ -204,6 +204,13 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
 .filter { position: sticky; top: var(--top-h); z-index: 5; display: flex; gap: 8px; margin: 0 -48px 24px; padding: 12px 48px; overflow-x: auto; scrollbar-width: none;
   background: var(--bg); }
 .filter::-webkit-scrollbar { display: none; }
+/* 个人网站栏目的「按风格看」：可换行的一组小字链接，不吸顶 */
+.style-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; margin: -8px 0 28px; font-size: 13px; }
+.style-bar span { margin-right: 6px; color: var(--ink-3); }
+.style-bar a { padding: 3px 9px; border-radius: 6px; color: var(--ink-2); }
+.style-bar a:hover { background: var(--surface-2); color: var(--ink); }
+.style-bar a[aria-current="page"] { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 720px) { .style-bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: -8px -16px 20px; padding: 0 16px; } .style-bar > * { flex-shrink: 0; } }
 .filter a { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); font-size: 13px; }
 .filter a small { color: var(--ink-3); font: 11px var(--mono); }
 .filter a:hover { color: var(--ink); border-color: var(--line-2); }
@@ -368,7 +375,7 @@ a.term-pill:hover { text-decoration: underline; text-underline-offset: 3px; }
   .main:has(.mbar) { padding-bottom: calc(160px + env(safe-area-inset-bottom)); }
   .panel { grid-template-columns: minmax(0, 1fr); margin-top: 20px; }
   .ask { box-shadow: none; }
-  .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(4, 1fr);
+  .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(5, 1fr);
     padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: var(--surface);
  border-top: 1px solid var(--line); }
   .tabbar a, .tabbar button { position: relative; display: grid; justify-items: center; gap: 2px; padding: 6px 0; border: 0; background: none; color: var(--ink-3); font-size: 11px; font-weight: 500; }

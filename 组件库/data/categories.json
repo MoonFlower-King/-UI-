@@ -568,5 +568,77 @@
     "intro": "操作日志、系统设置的整页参考，同样 14 种风格可比较。同一种风格在「账号」「系统」里是一套，拼起来就是一整个后台。",
     "generated": "admin",
     "items": []
+  },
+  {
+    "id": "site-home",
+    "name": "个人网站 · 个人主页",
+    "intro": "一个人在网上的名片：你是谁、最近在做什么、怎么找到你。同一份内容换不同风格，挑一个最像你的。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-blog",
+    "name": "个人网站 · 博客首页",
+    "intro": "文章是主角的首页：自我介绍、文章列表、标签和订阅。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-post",
+    "name": "个人网站 · 文章页",
+    "intro": "真正被读的那一页：舒服的行长、跟着走的目录和阅读进度。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-portfolio",
+    "name": "个人网站 · 作品集",
+    "intro": "让作品自己说话：一句态度鲜明的开场白，加上大小错落的作品网格。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-resume",
+    "name": "个人网站 · 在线简历",
+    "intro": "一页看完一个人：联系方式、技能、按时间倒序的经历。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-links",
+    "name": "个人网站 · 链接主页",
+    "intro": "放在社交平台简介里的那一个链接：头像、一句话、一列大按钮。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-photo",
+    "name": "个人网站 · 摄影集",
+    "intro": "照片是唯一的主角：瀑布流铺满，点开是能左右翻的大图。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-garden",
+    "name": "个人网站 · 数字花园",
+    "intro": "按想法而不是按时间连起来的笔记，带双向链接和关系图。",
+    "section": "site",
+    "generated": "site",
+    "items": []
+  },
+  {
+    "id": "site-weekly",
+    "name": "个人网站 · 周刊订阅页",
+    "intro": "个人周刊的门面：订阅框放在最显眼的地方，下面是往期存档。",
+    "section": "site",
+    "generated": "site",
+    "items": []
   }
 ]

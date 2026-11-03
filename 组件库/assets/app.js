@@ -1,10 +1,19 @@
 // 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）。
 // 路由：#home 首页（感觉翻译器）· #all 词典全部 · #cat-<主题> 单个主题 · #<组件 id> 词条详情
+//       #sites 「个人网站」栏目 · #sites-<风格 id> 只看一种风格（栏目里的主题在 categories.json 写了 "section": "site"）
 // 搜索不占路由：按 / 或 Ctrl/⌘+K 打开搜索面板，手机上点底部「搜索」。
-const { categories, components, vague } = window.UI_KIT;
+const { categories, components, vague, siteStyles = [] } = window.UI_KIT;
 const byId = Object.fromEntries(components.map((c) => [c.id, c]));
 const catById = Object.fromEntries(categories.map((c) => [c.id, c]));
 const inCat = (id) => components.filter((x) => x.cat === id);
+// 词典和「个人网站」栏目分开展示：词典只列没写 section 的主题，栏目只列自己的主题；搜索两边都能搜到
+const dictCats = categories.filter((c) => !c.section), siteCats = categories.filter((c) => c.section === 'site');
+const countOf = (cats) => cats.reduce((n, c) => n + c.count, 0);
+const DICT_N = countOf(dictCats), SITE_N = countOf(siteCats);
+const isSite = (catId) => catById[catId]?.section === 'site';
+// 首页「个人网站」区块挑 6 个风格差异大的做展示
+const SITE_PICKS = ['site-home-jiangyue', 'site-portfolio-brutal', 'site-links-glass', 'site-blog-neon', 'site-photo-film', 'site-weekly-memphis'];
+const shortName = (c) => (c.section ? c.name.split(' · ').pop() : c.name);
 // 组件代码按主题分文件（data/code/<主题>.js），用到哪个主题才加载哪个，组件再多首页也不变慢。
 // 用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
 const codeLoads = {};
@@ -378,11 +387,13 @@ $('#search-btn-m').onclick = openSearch;
 /* ---------------- 侧边目录（桌面） ---------------- */
 function renderSide(here, curCat) {
   const cur = (h) => (h === here ? ' aria-current="page"' : '');
-  $('#side').innerHTML = `<div class="side-label">词典 · ${components.length} 个词</div>
-    <a href="#all"${cur('all')}>全部主题<span class="n">${components.length}</span></a>` +
-    categories.map((c) => `<a href="#cat-${c.id}"${cur('cat-' + c.id)}>${esc(c.name)}<span class="n">${c.count}</span></a>` +
+  const site = here.startsWith('sites') || isSite(curCat), cats = site ? siteCats : dictCats;
+  $('#side').innerHTML = (site
+    ? `<div class="side-label">个人网站 · ${SITE_N} 版</div><a href="#sites"${cur('sites')}>全部页面<span class="n">${SITE_N}</span></a>`
+    : `<div class="side-label">词典 · ${DICT_N} 个词</div><a href="#all"${cur('all')}>全部主题<span class="n">${DICT_N}</span></a>`) +
+    cats.map((c) => `<a href="#cat-${c.id}"${cur('cat-' + c.id)}>${esc(shortName(c))}<span class="n">${c.count}</span></a>` +
       (c.id === curCat ? `<div class="sub">${inCat(c.id).map((x) => `<a href="#${x.id}"${cur(x.id)}>${esc(x.zh)}</a>`).join('')}</div>` : '')).join('') +
-    `<div class="side-foot"><a href="../">UI 提示词图鉴 →</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub 开源 · MIT</a></div>`;
+    `<div class="side-foot">${site ? '<a href="#all">← 回到词典</a>' : `<a href="#sites">个人网站风格 ${SITE_N} 版 →</a>`}<a href="../">UI 提示词图鉴 →</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub 开源 · MIT</a></div>`;
   $('#side [aria-current]')?.scrollIntoView({ block: 'nearest' });
 }
 
@@ -433,10 +444,15 @@ function renderHome() {
   </section>` : ''}
 
   <section class="section">
-    <div class="section-head"><div><h2 class="h2">按主题翻</h2><p>${categories.length} 个主题、${components.length} 个词，从布局、配色到动效和体验。</p></div><a class="more" href="#all">看全部 →</a></div>
-    <div class="cat-grid">${categories.map((c) => `<a class="cat-tile" href="#cat-${c.id}"><h3>${esc(c.name)}<span>${c.count}</span></h3><p>${esc(c.intro)}</p>
+    <div class="section-head"><div><h2 class="h2">按主题翻</h2><p>${dictCats.length} 个主题、${DICT_N} 个词，从布局、配色到动效和体验。</p></div><a class="more" href="#all">看全部 →</a></div>
+    <div class="cat-grid">${dictCats.map((c) => `<a class="cat-tile" href="#cat-${c.id}"><h3>${esc(c.name)}<span>${c.count}</span></h3><p>${esc(c.intro)}</p>
       <div class="names">${inCat(c.id).slice(0, 4).map((x) => esc(x.zh)).join(' · ')}</div></a>`).join('')}</div>
   </section>
+
+  ${siteCats.length ? `<section class="section">
+    <div class="section-head"><div><h2 class="h2">个人网站风格 · ${SITE_N} 版</h2><p>博客、作品集、简历、链接页……${siteCats.length} 种页面 × ${siteStyles.length} 种风格，每版都能直接玩，附中英文提示词。</p></div><a class="more" href="#sites">进入栏目 →</a></div>
+    <div class="grid compact">${SITE_PICKS.filter((id) => byId[id]).map((id) => card(byId[id])).join('')}</div>
+  </section>` : ''}
 
   <section class="section">
     <div class="section-head"><div><h2 class="h2">三步用法</h2></div></div>
@@ -458,17 +474,18 @@ function renderHome() {
 const foot = () => `<footer class="site-foot"><span>江月 UI 设计 · MIT 开源</span><a href="../">UI 提示词图鉴</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub</a><span>内容来自短视频系列「给AI描述UI的6个词」</span></footer>`;
 
 /* ---------------- 页面：词典（全部 / 单个主题） ---------------- */
-function filterBar(curId) {
-  return `<nav class="filter" aria-label="按主题筛选"><a href="#all"${curId ? '' : ' aria-current="page"'}>全部<small>${components.length}</small></a>` +
-    categories.map((c) => `<a href="#cat-${c.id}"${c.id === curId ? ' aria-current="page"' : ''}>${esc(c.name)}<small>${c.count}</small></a>`).join('') + '</nav>';
+function filterBar(curId, site) {
+  const cats = site ? siteCats : dictCats, all = site ? 'sites' : 'all';
+  return `<nav class="filter" aria-label="按主题筛选"><a href="#${all}"${curId ? '' : ' aria-current="page"'}>全部<small>${site ? SITE_N : DICT_N}</small></a>` +
+    cats.map((c) => `<a href="#cat-${c.id}"${c.id === curId ? ' aria-current="page"' : ''}>${esc(shortName(c))}<small>${c.count}</small></a>`).join('') + '</nav>';
 }
 const lazyGrids = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && lazyGrids.fill(e.target)), { rootMargin: '1600px 0px' });
-function renderAll() {
-  $('#main').innerHTML = `<header class="page-head"><h1 class="h1">词典</h1><p class="lead">${components.length} 个界面术语，分成 ${categories.length} 个主题。鼠标放在卡片上能直接玩预览，点名字看代码。</p></header>
-    ${filterBar()}
-    ${categories.map((c) => `<section class="group"><div class="group-head"><h2>${esc(c.name)}</h2><p>${esc(c.intro)}</p><a href="#cat-${c.id}">只看这个主题</a></div>
-      <div class="grid" data-lazy="${c.id}"></div></section>`).join('')}${foot()}`;
-  // 几百张卡片一次全塞进页面会卡：每个主题先放一个等高的空格子，快滚到时（提前约两屏）才真正生成卡片
+// 按主题分组的长列表（词典全部、个人网站全部）：每组先放等高的空格子，快滚到时（提前约两屏）才真正生成卡片
+function groupedList(cats) {
+  return cats.map((c) => `<section class="group"><div class="group-head"><h2>${esc(shortName(c))}</h2><p>${esc(c.intro)}</p><a href="#cat-${c.id}">只看这个主题</a></div>
+      <div class="grid" data-lazy="${c.id}"></div></section>`).join('');
+}
+function fillLazy() {
   const grids = $$('[data-lazy]');
   grids.forEach((g) => {
     const cols = getComputedStyle(g).gridTemplateColumns.split(' ').length, w = g.clientWidth / cols;
@@ -478,12 +495,33 @@ function renderAll() {
   lazyGrids.disconnect();
   grids.forEach((g) => lazyGrids.observe(g));
   lazyGrids.fill = fill;
+}
+function renderAll() {
+  $('#main').innerHTML = `<header class="page-head"><h1 class="h1">词典</h1><p class="lead">${DICT_N} 个界面术语，分成 ${dictCats.length} 个主题。鼠标放在卡片上能直接玩预览，点名字看代码。</p></header>
+    ${filterBar()}
+    ${groupedList(dictCats)}${foot()}`;
+  fillLazy();
   document.title = '词典 · 江月 UI';
+}
+// 「个人网站」栏目：按页面分组看全部，或者用风格条只看一种风格（同一风格的几种页面拼起来就是一整套个人站）
+function renderSites(styleId) {
+  const st = siteStyles.find((x) => x.id === styleId);
+  const list = st ? components.filter((c) => c.style === st.id) : [];
+  $('#main').innerHTML = `<header class="page-head"><div class="crumb"><a href="#sites">个人网站</a>${st ? ` / ${esc(st.zh)}` : ''}</div>
+      <h1 class="h1">${st ? esc(st.zh) : '个人网站风格'}</h1>
+      <p class="lead">${st ? `「${esc(st.zh)}」风格的 ${list.length} 种页面，拼起来就是一整套个人网站。每个都能直接玩，复制中文或英文提示词给 AI 就能做出同款。`
+        : `博客、作品集、在线简历、链接主页……${siteCats.length} 种个人网站页面 × ${siteStyles.length} 种风格，一共 ${SITE_N} 版整页参考。每版都能直接玩，附中英文提示词。先按页面挑，或者在下面按风格看。`}</p></header>
+    ${filterBar('', true)}
+    <nav class="style-bar" aria-label="按风格看"><span>按风格看</span>${siteStyles.map((x) => `<a href="#sites-${x.id}"${x.id === styleId ? ' aria-current="page"' : ''}>${esc(x.zh)}</a>`).join('')}</nav>
+    ${st ? `<div class="grid">${list.map(card).join('')}</div>` : groupedList(siteCats)}${foot()}`;
+  if (st) hydrate($('#main')); else fillLazy();
+  document.title = `${st ? st.zh + ' · ' : ''}个人网站风格 · 江月 UI`;
 }
 function renderCategory(cat) {
   const list = inCat(cat.id);
-  $('#main').innerHTML = `<header class="page-head"><div class="crumb"><a href="#all">词典</a> / ${esc(cat.name)}</div><h1 class="h1">${esc(cat.name)}</h1><p class="lead">${esc(cat.intro)}</p></header>
-    ${filterBar(cat.id)}<div class="grid">${list.map(card).join('')}</div>${foot()}`;
+  const site = cat.section === 'site';
+  $('#main').innerHTML = `<header class="page-head"><div class="crumb">${site ? '<a href="#sites">个人网站</a>' : '<a href="#all">词典</a>'} / ${esc(shortName(cat))}</div><h1 class="h1">${esc(cat.name)}</h1><p class="lead">${esc(cat.intro)}</p></header>
+    ${filterBar(cat.id, site)}<div class="grid">${list.map(card).join('')}</div>${foot()}`;
   hydrate($('#main'));
   $('.filter [aria-current]')?.scrollIntoView({ block: 'nearest', inline: 'center' });
   document.title = `${cat.name} · 江月 UI`;
@@ -492,12 +530,12 @@ function renderCategory(cat) {
 /* ---------------- 页面：词条详情 ---------------- */
 function renderDetail(c) {
   const cat = catById[c.cat], sibs = inCat(c.cat), i = sibs.indexOf(c);
-  const nextCat = categories[(categories.indexOf(cat) + 1) % categories.length];
+  const peers = cat.section ? siteCats : dictCats, nextCat = peers[(peers.indexOf(cat) + 1) % peers.length];
   const prev = sibs[i - 1], next = sibs[i + 1];
   $('#main').innerHTML = `<div class="detail">
   <div>
     <header class="detail-head">
-      <div class="crumb"><a href="#all">词典</a> / <a href="#cat-${cat.id}">${esc(cat.name)}</a>${c.episode ? `<span class="episode">视频 ${esc(c.episode)}</span>` : ''}</div>
+      <div class="crumb">${cat.section ? '<a href="#sites">个人网站</a>' : '<a href="#all">词典</a>'} / <a href="#cat-${cat.id}">${esc(shortName(cat))}</a>${c.style ? ` / <a href="#sites-${c.style}">同风格整套</a>` : ''}${c.episode ? `<span class="episode">视频 ${esc(c.episode)}</span>` : ''}</div>
       <h1>${esc(c.zh)}<span>${esc(c.en)}</span></h1>
       <p class="lead">${esc(c.lead)}</p>
       ${c.vague ? `<div class="swap">别再说 ${c.vague.map((v) => `<s>${esc(v)}</s>`).join('')}<i>→</i>换成 ${(c.terms || [c.en]).map((t) => `<b>${esc(t)}</b>`).join('')}</div>` : ''}
@@ -558,8 +596,9 @@ function route() {
     withCode(byId[h]).then(() => byId[h].code != null && route(), () => toast('网络不太好，代码没加载出来，刷新试试'));
     return;
   }
-  if (byId[h]) { renderDetail(byId[h]); tab = 'all'; curCat = byId[h].cat; }
-  else if (h.startsWith('cat-') && catById[h.slice(4)]) { renderCategory(catById[h.slice(4)]); tab = 'all'; curCat = h.slice(4); }
+  if (byId[h]) { renderDetail(byId[h]); curCat = byId[h].cat; tab = isSite(curCat) ? 'sites' : 'all'; }
+  else if (h.startsWith('cat-') && catById[h.slice(4)]) { renderCategory(catById[h.slice(4)]); curCat = h.slice(4); tab = isSite(curCat) ? 'sites' : 'all'; }
+  else if (h === 'sites' || h.startsWith('sites-')) { renderSites(h.slice(6)); tab = 'sites'; }
   else if (h === 'all') { renderAll(); tab = 'all'; }
   else renderHome();
   $$('[data-tab]').forEach((a) => (a.dataset.tab === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
