@@ -1,4 +1,4 @@
-// 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）。
+// 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）；$、esc、store、toast、copy、明暗切换在 assets/common.js。
 // 路由：#home 首页（感觉翻译器）· #all 词典全部 · #cat-<主题> 单个主题 · #<组件 id> 词条详情
 // 搜索不占路由：按 / 或 Ctrl/⌘+K 打开搜索面板，手机上点底部「搜索」。
 const { categories, components, vague } = window.UI_KIT;
@@ -30,13 +30,6 @@ function loadData(dir, cat) {
 const withCode = (c) => (c.code != null && c.prompt != null ? Promise.resolve(c) : Promise.all([loadData('code', c.cat), loadData('text', c.cat)]).then(() => c));
 // 只要那句话（篮子、卡片上的「复制提示词」）：只加载很小的 text 文件
 const withText = (ids) => Promise.all([...new Set(ids.map((id) => byId[id]).filter((c) => c.prompt == null).map((c) => c.cat))].map((cat) => loadData('text', cat)));
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const store = {
-  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
-};
 const feels = vague.map((v) => v.vague.split(/\s*\/\s*/)[0]);
 
 // 组件预览底座：浅色画布、内容居中（组件代码都按浅色背景写）
@@ -74,22 +67,6 @@ function guard() {
 const BASE = '<!DOCTYPE html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
   '<style>html,body{height:100%}body{margin:0;min-height:100%;display:grid;place-items:center;background:#FAFAFA;color:#18181B;' +
   `font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}</style><script>(${guard})()<\/script>\n`;
-
-/* ---------------- 小工具 ---------------- */
-let toastTimer;
-function toast(msg) {
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
-}
-function copy(text, done = '已复制，粘贴给 AI 就行') {
-  const fallback = () => {
-    const ta = Object.assign(document.createElement('textarea'), { value: text });
-    document.body.append(ta); ta.select();
-    try { document.execCommand('copy'); toast(done); } catch { toast('复制失败，请手动选中复制'); }
-    ta.remove();
-  };
-  navigator.clipboard ? navigator.clipboard.writeText(text).then(() => toast(done), fallback) : fallback();
-}
 
 // 浮层（搜索面板、篮子）：打开时锁住页面滚动，点遮罩或按 Esc 关闭
 function openLayer(el) { el.hidden = false; document.body.style.overflow = 'hidden'; }
@@ -135,18 +112,6 @@ $('#basket-btn').onclick = openBasket;
 $('#basket-list').onclick = (e) => { const b = e.target.closest('[data-remove]'); if (b) toggleBasket(b.dataset.remove); };
 $('#basket-clear').onclick = () => { setBasket([]); toast('篮子已清空'); };
 $('#basket-copy').onclick = () => copy($('#basket-text').value, '整段提示词已复制');
-
-/* ---------------- 明暗：默认跟随系统，手动选过就记住 ---------------- */
-const SUN = '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>';
-const MOON = '<svg viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9z"/></svg>';
-const isDark = () => (document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
-function syncTheme() {
-  const b = $('#theme-btn'), dark = isDark();
-  b.innerHTML = dark ? SUN : MOON; b.title = b.ariaLabel = dark ? '切换到白天' : '切换到夜晚';
-}
-$('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('jy-theme', t); syncTheme(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
-syncTheme();
 
 /* ---------------- 词卡与自动演示预览 ---------------- */
 // 每张卡片的预览分两层：

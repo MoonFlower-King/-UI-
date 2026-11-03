@@ -1,17 +1,10 @@
 // 提示词调配台（prompts.html）。数据来自 data/prompts.js（首屏索引）、data/prompt-text/（提示词全文）和 data/prompt-code/（预览代码），
-// 都由 npm run build:ui 生成；后两种按分组拆开，用到才下载。
+// 都由 npm run build:ui 生成；后两种按分组拆开，用到才下载。$、esc、store、toast、copy、明暗切换在 assets/common.js。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
 const { kinds, groups, items, stages, kits = {}, layouts = {} } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
 const groupById = Object.fromEntries(groups.map((g) => [g.id, g]));
 const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const store = {
-  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
-};
 
 /* ---------------- 按分组下载全文和预览代码 ---------------- */
 // 用 <script> 而不是 fetch，直接双击打开 html 也能用；同一个文件只下载一次
@@ -28,29 +21,6 @@ const loadText = (g) => load('prompt-text', 'JY_PROMPT_TEXT', g).then((t) => {
   for (const [id, x] of Object.entries(t)) if (!hasText(id)) { Object.assign(byId[id], x); fillText(id); }
 });
 const needText = (ids) => Promise.all([...new Set(ids.map((id) => byId[id].group))].map(loadText));
-
-/* ---------------- 小工具（和词典页同款） ---------------- */
-let toastTimer;
-function toast(msg) {
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
-}
-function copy(text, done = '已复制，粘贴给 AI 就行') {
-  const fallback = () => {
-    const ta = Object.assign(document.createElement('textarea'), { value: text });
-    document.body.append(ta); ta.select();
-    try { document.execCommand('copy'); toast(done); } catch { toast('复制失败，请手动选中复制'); }
-    ta.remove();
-  };
-  navigator.clipboard ? navigator.clipboard.writeText(text).then(() => toast(done), fallback) : fallback();
-}
-const SUN = '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>';
-const MOON = '<svg viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9z"/></svg>';
-const isDark = () => (document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
-function syncTheme() { const b = $('#theme-btn'), d = isDark(); b.innerHTML = d ? SUN : MOON; b.title = b.ariaLabel = d ? '切换到白天' : '切换到夜晚'; }
-$('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('jy-theme', t); syncTheme(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
-syncTheme();
 
 /* ---------------- 状态：勾了哪些词、用哪种语言、每类填的主体 ---------------- */
 let picked = store.get('jy-mix', []).filter((id) => byId[id]);
