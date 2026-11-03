@@ -5,9 +5,9 @@ const { categories, components, vague } = window.UI_KIT;
 const byId = Object.fromEntries(components.map((c) => [c.id, c]));
 const catById = Object.fromEntries(categories.map((c) => [c.id, c]));
 const inCat = (id) => components.filter((x) => x.cat === id);
-// 组件代码按主题分文件（data/code/<主题>.js），用到哪个主题才加载哪个，组件再多首页也不变慢。
-// 用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
-const codeLoads = {};
+// 组件代码和「发给 AI 的一句话」按主题分文件（data/code/<主题>.js、data/text/<主题>.js），
+// 用到哪个主题才加载哪个，组件再多首页也不变慢。用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
+const loads = {};
 // 生成的「管理后台」案例：en 是英文提示词；chunks 是共用代码，数据里用 \u0001编号\u0001 代替，这里还原成完整代码
 window.JY_CODE = (cat, map, en, chunks) => {
   for (const id in map) if (byId[id]) {
@@ -15,16 +15,21 @@ window.JY_CODE = (cat, map, en, chunks) => {
     if (en && en[id]) byId[id].promptEn = en[id];
   }
 };
-function loadCode(cat) {
-  return codeLoads[cat] ||= new Promise((ok, no) => {
+window.JY_TEXT = (cat, map) => { for (const id in map) if (byId[id]) byId[id].prompt = map[id]; };
+function loadData(dir, cat) {
+  const key = `${dir}/${cat}`;
+  return loads[key] ||= new Promise((ok, no) => {
     const s = document.createElement('script');
-    s.src = `data/code/${cat}.js`;
+    s.src = `data/${key}.js`;
     s.onload = ok;
-    s.onerror = () => { delete codeLoads[cat]; s.remove(); no(new Error(cat)); }; // 网络抖一下的话，下次用到再试
+    s.onerror = () => { delete loads[key]; s.remove(); no(new Error(key)); }; // 网络抖一下的话，下次用到再试
     document.head.append(s);
   });
 }
-const withCode = (c) => (c.code != null ? Promise.resolve(c) : loadCode(c.cat).then(() => c));
+// 要代码的地方（卡片首帧、词条页）也一定要那句话，两个文件一起加载
+const withCode = (c) => (c.code != null && c.prompt != null ? Promise.resolve(c) : Promise.all([loadData('code', c.cat), loadData('text', c.cat)]).then(() => c));
+// 只要那句话（篮子、卡片上的「复制提示词」）：只加载很小的 text 文件
+const withText = (ids) => Promise.all([...new Set(ids.map((id) => byId[id]).filter((c) => c.prompt == null).map((c) => c.cat))].map((cat) => loadData('text', cat)));
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -116,11 +121,14 @@ function syncAddBtn(b) {
 const basketPrompt = () => basket.length
   ? '请按下面的要求修改界面：\n\n' + basket.map((id, i) => `${i + 1}. 【${byId[id].en} · ${byId[id].zh}】${byId[id].prompt}`).join('\n\n') : '';
 function renderBasket() {
+  // 篮子里有词的那句话还没下载（比如上次放进去的）：先显示「载入中」，下载完再画一遍
+  const ready = basket.every((id) => byId[id].prompt != null);
+  if (!ready) withText(basket).then(renderBasket, () => toast('网络不太好，提示词没加载出来，刷新试试'));
   $('#basket-list').innerHTML = basket.length
     ? basket.map((id) => `<li><span>${esc(byId[id].zh)}<small>${esc(byId[id].en)}</small></span><button class="icon-btn" data-remove="${id}" aria-label="移出 ${esc(byId[id].zh)}"><svg viewBox="0 0 20 20"><path d="m6 6 8 8M14 6l-8 8"/></svg></button></li>`).join('')
     : '<li class="basket-empty">篮子还是空的。在任意词条上点「+ 篮子」，挑好几个后回到这里一次复制。</li>';
-  $('#basket-text').value = basketPrompt();
-  $('#basket-copy').disabled = !basket.length;
+  $('#basket-text').value = ready ? basketPrompt() : '正在载入提示词…';
+  $('#basket-copy').disabled = !basket.length || !ready;
 }
 const openBasket = () => openLayer($('#basket'));
 $('#basket-btn').onclick = openBasket;
@@ -306,7 +314,8 @@ function hydrate(root) {
   $$('[data-add]', root).forEach(syncAddBtn);
 }
 document.addEventListener('click', (e) => {
-  const c = e.target.closest('[data-copy]'); if (c) copy(byId[c.dataset.copy].prompt);
+  const c = e.target.closest('[data-copy]');
+  if (c) { const it = byId[c.dataset.copy]; it.prompt != null ? copy(it.prompt) : withText([it.id]).then(() => copy(it.prompt), () => toast('网络不太好，提示词没加载出来，刷新试试')); }
   const a = e.target.closest('[data-add]'); if (a) toggleBasket(a.dataset.add);
   if (e.target.closest('[data-open-basket]')) openBasket();
   if (e.target.closest('[data-open-search]')) openSearch();
@@ -554,7 +563,7 @@ function renderDetail(c) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1)) || 'home', keepScroll = h === 'translator' || pendingFeel;
   let tab = 'home', curCat = '';
-  if (byId[h] && byId[h].code == null) { // 词条页要用代码：先加载它所在主题的代码文件，再画页面
+  if (byId[h] && (byId[h].code == null || byId[h].prompt == null)) { // 词条页要用代码和那句话：先加载它所在主题的文件，再画页面
     withCode(byId[h]).then(() => byId[h].code != null && route(), () => toast('网络不太好，代码没加载出来，刷新试试'));
     return;
   }

@@ -60,7 +60,7 @@
   components/*.html       每个组件一个文件（元信息 + 代码）
   data/categories.json    各主题及每个主题包含哪些组件
   data/vague-words.json   感觉翻译器的数据
-  data/components.js      由 scripts/build.mjs 生成，不入库、不要手改
+  data/components.js      由 scripts/build.mjs 生成（还有 data/text/、data/code/、data/stats.js），不入库、不要手改
   scripts/build.mjs       收录脚本
   admin/                  管理后台整页案例的模板（pages.mjs）和风格（styles.mjs）
 ```
@@ -119,7 +119,7 @@
 
 组件到几百、上千个也不会卡，靠的是三件事：
 
-- **数据拆开**：`data/components.js` 只放名字、说明和提示词（搜索、感觉翻译、篮子只用这些），一打开就加载；组件代码按主题分成 `data/code/<主题>.js`，滚到这个主题、或打开它的词条时才加载
+- **数据拆开**：`data/components.js` 只放名字、一句话说明、模糊说法和相关词（卡片、搜索、感觉翻译只用这些），一打开就加载；「发给 AI 的一句话」按主题放在 `data/text/<主题>.js`（很小），组件代码按主题放在 `data/code/<主题>.js`，滚到这个主题、打开它的词条或放进篮子时才加载。图鉴首页要显示的组件总数单独放在 `data/stats.js`，不用为了一个数字下载整份索引
 - **卡片按需生成**：「词典 · 全部」先给每个主题留出等高的空位，快滚到时才生成卡片
 - **预览不常驻**：卡片平时只显示静态首帧；屏幕里看得见的全部一起播放、一直循环；滑出屏幕就把 iframe 整个删掉，所以同时在跑的只有一屏的量
 

@@ -62,15 +62,25 @@ const orphan = [...byId].filter(([, c]) => !c.cat).map(([id]) => id);
 if (orphan.length) fail(`这些组件没有在 categories.json 里登记：${orphan.join('、')}`);
 for (const v of vague) for (const [, , id] of v.terms) if (id && !byId.has(id)) fail(`vague-words.json：找不到组件 ${id}`);
 
-// 拆成两部分，组件再多打开也快：
-// - data/components.js：只有名字、说明、提示词（搜索、感觉翻译、篮子都只用这些），一打开就加载
+// 拆成三部分，组件再多打开也快：
+// - data/components.js：只有名字、一句话说明、模糊说法和相关词（卡片、搜索、感觉翻译只用这些），一打开就加载
+// - data/text/<主题>.js：这个主题所有组件「发给 AI 的一句话」，很小；卡片快到屏幕、打开词条、放进篮子时才加载
 // - data/code/<主题>.js：每个主题一个文件，装这个主题所有组件的代码；滚到这个主题、或打开它的词条时才加载
+// 另外 data/stats.js 只有组件总数，给图鉴首页显示用（不用为了一个数字下载整份索引）
 // 用 .js 而不是 .json：双击 index.html（file://）时浏览器不允许 fetch 本地文件
 const HEAD = '// 由 scripts/build.mjs 生成，不要手改。改组件请改 components/ 下的文件后重新运行 npm run build:ui。\n';
 const cats = categories.map(({ items, generated: _, ...c }) => ({ ...c, count: items.length }));
 // 英文提示词只有详情页用得到，跟代码一起放进主题文件，首页索引不变大
-const meta = components.map(({ code, promptEn, ...c }) => c);
+const meta = components.map(({ code, promptEn, prompt, ...c }) => c);
 writeFileSync(join(ROOT, 'data/components.js'), `${HEAD}window.UI_KIT = ${JSON.stringify({ categories: cats, components: meta, vague })};\n`);
+writeFileSync(join(ROOT, 'data/stats.js'), `${HEAD}window.UI_KIT_STATS = ${JSON.stringify({ components: components.length })};\n`);
+const TEXT = join(ROOT, 'data/text');
+rmSync(TEXT, { recursive: true, force: true });
+mkdirSync(TEXT);
+for (const cat of categories) {
+  const text = Object.fromEntries(components.filter((c) => c.cat === cat.id).map((c) => [c.id, c.prompt]));
+  writeFileSync(join(TEXT, `${cat.id}.js`), `${HEAD}window.JY_TEXT(${JSON.stringify(cat.id)}, ${JSON.stringify(text)});\n`);
+}
 const CODE = join(ROOT, 'data/code');
 rmSync(CODE, { recursive: true, force: true });
 mkdirSync(CODE);
@@ -93,5 +103,5 @@ for (const cat of categories) {
 }
 const kb = (n) => `${Math.round(n / 1024)}KB`;
 const biggest = Math.max(...categories.map((c) => statSync(join(CODE, `${c.id}.js`)).size));
-console.log(`✓ ${categories.length} 个主题、${components.length} 个组件、${vague.length} 条“说不清”速查（索引 ${kb(JSON.stringify(meta).length)}，最大的主题代码 ${kb(biggest)}）`);
+console.log(`✓ ${categories.length} 个主题、${components.length} 个组件、${vague.length} 条“说不清”速查（首屏索引 ${kb(statSync(join(ROOT, 'data/components.js')).size)}，最大的主题代码 ${kb(biggest)}）`);
 if (biggest > 400 * 1024) console.warn('! 有主题的代码超过 400KB，考虑把它拆成两个主题');
