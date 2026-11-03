@@ -1,4 +1,4 @@
-// 管理后台整页案例的生成器：5 种页面模板 × styles.mjs 里的每种风格 = 一个个独立可运行的整页。
+// 管理后台整页案例的生成器：页面模板 × styles.mjs 里的每种风格 = 一个个独立可运行的整页。
 // build.mjs 调用 adminCases()，生成的案例和 components/*.html 一样进词典（看代码、复制提示词都能用），但不落成文件：
 // 改一处模板，所有风格一起生效；加一种风格，5 种页面一起多出来。
 // 生成的代码必须自包含（变量、外壳、页面样式、脚本都在一段里），访客复制走就能直接跑。
@@ -37,7 +37,8 @@ const USERS = [
   ['许砚秋', 'yanqiu.xu', '访客', '市场部', 'warn', '待审核', '—'],
   ['江迟', 'chi.jiang', '开发', '技术部', 'ok', '活跃', '3 天前'],
 ];
-const av = (s, name, i) => `<span class="av" style="--h:${s.av[i % s.av.length]}">${name.slice(-1)}</span>`;
+// 头像颜色写成变量（--av1 ~ --av4，在 :root 里按风格定义），页面 HTML 就和风格无关，换风格只改变量
+const av = (s, name, i) => `<span class="av" style="--h:var(--av${(i % 4) + 1})">${name.slice(-1)}</span>`;
 
 /* ---------------- 共用样式：变量 + 外壳 + 通用控件 ---------------- */
 function rootVars(s) {
@@ -50,9 +51,10 @@ function rootVars(s) {
   v['font-head'] = FONTS[s.v.head || s.v.font || 'sans'];
   v['font-num'] = s.v['font-num'] === 'mono' ? MONO : 'var(--font)';
   v.ring = 'color-mix(in srgb, var(--accent) 22%, transparent)';
+  s.av.forEach((c, i) => { v[`av${i + 1}`] = c; });
   delete v.head;
   const order = ['bg', 'panel', 'nav', 'nav-text', 'nav-dim', 'nav-hover', 'nav-active', 'nav-active-text', 'nav-line', 'bar', 'text', 'dim', 'line', 'line-soft', 'hover', 'field', 'th',
-    'accent', 'on-accent', 'ring', 'ok', 'warn', 'danger', 'radius', 'radius-sm', 'radius-btn', 'shadow', 'font', 'font-head', 'font-num', 'head-weight', 'size', 'row'];
+    'accent', 'on-accent', 'ring', 'ok', 'warn', 'danger', 'radius', 'radius-sm', 'radius-btn', 'shadow', 'font', 'font-head', 'font-num', 'head-weight', 'size', 'row', 'av1', 'av2', 'av3', 'av4'];
   return `:root {\n  /* 「${s.zh}」风格：换风格只改这一段变量 */\n${order.map((k) => `  --${k}: ${v[k]};`).join('\n')}\n}`;
 }
 
@@ -295,7 +297,7 @@ const account = {
       </div>
       <form class="acc" onsubmit="return false">
         <aside class="card profile">
-          <span class="av big" style="--h:${s.av[0]}">夏</span>
+          <span class="av big" style="--h:var(--av1)">夏</span>
           <h2>林知夏</h2>
           <p>zhixia.lin@lanyue.example</p>
           <span class="badge ok">活跃</span>
@@ -663,7 +665,152 @@ output { min-width: 44px; text-align: right; }
   },
 };
 
-export const pages = [users, account, roles, logs, settings];
+/* ---------------- 页面 6：数据概览 ---------------- */
+// 两套图表数据：7 天 / 30 天（30 天按周汇总成 5 根柱），切换分段控件时整组换掉
+const TREND = {
+  7: { label: ['周二', '周三', '周四', '周五', '周六', '周日', '周一'], v: [612, 688, 734, 702, 388, 342, 761] },
+  30: { label: ['第 1 周', '第 2 周', '第 3 周', '第 4 周', '本周'], v: [3920, 4310, 4105, 4580, 4127] },
+};
+const TODO = [
+  ['沈清禾', '申请开通「财务报表 · 导出」权限', '10 分钟前'],
+  ['许砚秋', '新成员加入「市场部」，等待分配角色', '42 分钟前'],
+  ['周叙白', '申请把「运营专员」的数据范围扩大到全部门', '2 小时前'],
+];
+const FEED = [
+  ['ok', '陆星野 登录成功', 'Chrome / macOS · 09:12'],
+  ['info', '林知夏 修改了「周叙白」的角色', '运营专员 → 运营主管 · 09:42'],
+  ['bad', '账号「顾南乔」连续 5 次密码错误被锁定', '风控服务 · 09:31'],
+  ['off', '沈清禾 导出「10 月财务报表」', '2,416 行 · 昨天 18:05'],
+];
+const SHARE = [['运营', 38], ['技术', 27], ['市场', 16], ['财务', 11], ['其他', 8]];
+const dashboard = {
+  id: 'dashboard', zh: '数据概览', en: 'Overview Dashboard', nav: '', crumb: '账号 / <b>概览</b>', cat: 'admin-overview',
+  lead: '登录后台看到的第一页：一排带迷你趋势线的指标卡先说结论，柱状图看走势，待办审批能直接处理，最近动态和部门占比补充细节。',
+  terms: ['KPI Card 指标卡', 'Sparkline 迷你趋势线', 'Bar Chart 柱状图', 'Activity Feed 动态流'],
+  prompt: '后台「概览」首页：标题区左边「早上好，林知夏」+ 一行日期和待办提示，右边「近 7 天 / 近 30 天」分段控件和「导出报告」；第一排 4 张指标卡（活跃用户、新增账号、待审批、异常登录），每张是小标题、大号数字、涨跌（涨绿跌红，异常登录上涨用红色）和右下角一条迷你趋势线；第二排左边 2/3 宽「登录趋势」柱状图卡片（柱子圆顶、最后一根用主色其余用浅主色、悬停显示数值、底部是日期），切换 7 天 / 30 天时柱子高度带过渡动画；右边 1/3 宽「待审批」卡片：每项是头像 + 申请人 + 一行申请内容 + 时间，右侧「拒绝」「通过」小按钮，处理后这一项淡出、卡片标题上的数字减一，全部处理完显示「都处理完了」空状态；第三排左边「最近动态」时间线（彩色圆点 + 事件 + 灰色小字），右边「成员部门分布」横向条形图（部门名、条、百分比）。',
+  promptEn: 'Admin "Overview" home page: a header with "Good morning, Lin Zhixia" plus a line with the date and pending count on the left, and a "7 days / 30 days" segmented control plus an "Export report" button on the right; a first row of 4 KPI cards (active users, new accounts, pending approvals, unusual sign-ins), each with a small label, a large number, a delta (green up, red down, and red when unusual sign-ins go up) and a sparkline in the bottom-right corner; a second row with a 2/3-wide "Sign-in trend" bar chart card (rounded bar tops, the last bar in the accent color and the rest in a pale accent, values on hover, dates along the bottom) whose bars animate their height when switching between 7 and 30 days, and a 1/3-wide "Pending approvals" card where each item shows avatar, requester, one line describing the request and time, with small "Reject" and "Approve" buttons; a handled item fades out, the count in the card title goes down, and an "All done" empty state appears when nothing is left; a third row with a "Recent activity" timeline (colored dots, event, gray caption) on the left and a "Members by department" horizontal bar chart (department, bar, percentage) on the right.',
+  html: (s) => {
+    const spark = (pts) => `<svg class="spark" viewBox="0 0 80 28" aria-hidden="true"><polyline points="${pts.map((y, i) => `${i * 16},${y}`).join(' ')}"/></svg>`;
+    const max = Math.max(...TREND[7].v);
+    return `      <div class="ph">
+        <div><h1>早上好，林知夏</h1><p>11 月 3 日 星期一 · 有 <b class="todo-n">${TODO.length}</b> 项审批等你处理</p></div>
+        <div class="acts"><div class="seg range" role="group" aria-label="时间范围">${[7, 30].map((r, i) => `<button aria-pressed="${!i}" data-v="${TREND[r].v}" data-l="${TREND[r].label}">近 ${r} 天</button>`).join('')}</div><button class="btn">${ico('down')}导出报告</button></div>
+      </div>
+      <div class="stats">
+        <div class="card stat"><span>活跃用户</span><b class="num">962</b><em>↑ 8.4%</em>${spark([20, 16, 18, 11, 13, 6])}</div>
+        <div class="card stat"><span>新增账号</span><b class="num">36</b><em>↑ 12</em>${spark([22, 19, 21, 14, 16, 9])}</div>
+        <div class="card stat"><span>待审批</span><b class="num todo-n">${TODO.length}</b><em class="d">平均 1.6 小时处理</em>${spark([12, 18, 10, 16, 14, 15])}</div>
+        <div class="card stat"><span>异常登录</span><b class="num">5</b><em class="up-bad">↑ 3</em>${spark([24, 22, 23, 20, 12, 8])}</div>
+      </div>
+      <div class="dash">
+        <section class="card chart">
+          <header><h2>登录趋势</h2><span class="dim">登录次数 · <span class="sum num">${TREND[7].v.reduce((a, b) => a + b).toLocaleString('en-US')}</span></span></header>
+          <div class="bars">${TREND[7].v.map((v, i) => `<div class="col${i === 6 ? ' now' : ''}"><i style="height:${Math.round((v / max) * 100)}%"><b class="num">${v}</b></i><span>${TREND[7].label[i]}</span></div>`).join('')}</div>
+        </section>
+        <section class="card todo">
+          <header><h2>待审批 <span class="pill todo-n">${TODO.length}</span></h2></header>
+          <ul>${TODO.map(([n, what, t], i) => `
+            <li>${av(s, n, i + 2)}<div><b>${n}</b><p>${what}</p><small class="dim">${t}</small></div><span class="ops"><button class="btn sm">拒绝</button><button class="btn sm pri">通过</button></span></li>`).join('')}
+          </ul>
+          <div class="empty" hidden>${ico('shield')}<b>都处理完了</b><span class="dim">新的申请会出现在这里</span></div>
+        </section>
+        <section class="card feed">
+          <header><h2>最近动态</h2><a class="more-link">查看日志 ${ico('chev')}</a></header>
+          <ol>${FEED.map(([c, t, sub]) => `<li class="${c}"><b>${t}</b><small class="dim">${sub}</small></li>`).join('')}</ol>
+        </section>
+        <section class="card share">
+          <header><h2>成员部门分布</h2><span class="dim num">1,284 人</span></header>
+          <ul>${SHARE.map(([d, p]) => `<li><span>${d}</span><i><b style="width:${p}%"></b></i><span class="num">${p}%</span></li>`).join('')}</ul>
+        </section>
+      </div>`;
+  },
+  css: `.ph p b { color: var(--accent); font-weight: 600; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+.stat { position: relative; padding: 14px 16px; overflow: hidden; }
+.stat span { color: var(--dim); font-size: 12px; }
+.stat b { display: block; margin: 4px 0 2px; font-size: 24px; font-weight: 600; line-height: 1.2; }
+.stat em { color: var(--ok); font-size: 12px; font-style: normal; }
+.stat em.d { color: var(--dim); } .stat em.up-bad { color: var(--danger); }
+.spark { position: absolute; right: 16px; top: 18px; width: 72px; height: 26px; overflow: visible; }
+.spark polyline { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dash { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 16px; }
+.dash > .card { display: flex; flex-direction: column; min-width: 0; padding: 16px 18px; }
+.dash header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.dash h2 { display: flex; align-items: center; gap: 8px; margin: 0; font: var(--head-weight) 15px/1.3 var(--font-head); }
+.dash header .dim { font-size: 12px; }
+.pill { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; background: var(--accent); color: var(--on-accent); font: 600 11px/20px var(--font); text-align: center; }
+.bars { display: flex; align-items: stretch; gap: 10px; height: 200px; padding-top: 22px; border-bottom: 1px solid var(--line); }
+.col { position: relative; display: flex; flex: 1; flex-direction: column; justify-content: flex-end; min-width: 0; }
+.col[hidden] { display: none; }
+.col i { position: relative; display: block; min-height: 4px; border-radius: 6px 6px 2px 2px; background: color-mix(in srgb, var(--accent) 28%, transparent); transition: height .5s cubic-bezier(.3,.7,.3,1), background .15s; }
+.col.now i, .col:hover i { background: var(--accent); }
+.col b { position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); color: var(--text); font-size: 11px; font-weight: 600; opacity: 0; transition: opacity .15s; }
+.col.now b, .col:hover b { opacity: 1; }
+.col span { position: absolute; top: 100%; left: 0; right: 0; padding-top: 6px; color: var(--dim); font-size: 11px; text-align: center; white-space: nowrap; }
+.chart { padding-bottom: 36px !important; }
+.todo ul, .feed ol, .share ul { margin: 0; padding: 0; list-style: none; }
+.todo li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line-soft); transition: opacity .25s, transform .25s; }
+.todo li:first-child { border-top: 0; padding-top: 0; }
+.todo li.gone { opacity: 0; transform: translateX(16px); }
+.todo li > div { flex: 1; min-width: 0; }
+.todo b { font-weight: 500; }
+.todo p { margin: 1px 0; font-size: 12px; }
+.todo small { font-size: 11px; }
+.todo .av { width: 28px; height: 28px; font-size: 11px; }
+.ops { display: flex; flex-direction: column; gap: 4px; }
+.btn.sm { height: 26px; padding: 0 10px; font-size: 12px; }
+.empty { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 20px 0; text-align: center; }
+.empty[hidden] { display: none; }
+.empty svg { width: 28px; height: 28px; margin-bottom: 4px; color: var(--ok); }
+.empty span { font-size: 12px; }
+.more-link { display: inline-flex; align-items: center; gap: 2px; color: var(--accent); font-size: 12px; cursor: pointer; }
+.more-link svg { width: 14px; height: 14px; }
+.feed li { position: relative; padding: 0 0 14px 20px; }
+.feed li::before { content: ""; position: absolute; left: 0; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 18%, transparent); }
+.feed li:not(:last-child)::after { content: ""; position: absolute; left: 3.5px; top: 18px; bottom: 2px; width: 1px; background: var(--line); }
+.feed b { display: block; font-weight: 500; }
+.feed small { font-size: 12px; }
+.share li { display: grid; grid-template-columns: 40px minmax(0, 1fr) 40px; align-items: center; gap: 10px; padding: 7px 0; }
+.share i { height: 8px; border-radius: 99px; background: var(--hover); overflow: hidden; }
+.share i b { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.share li + li i b { background: color-mix(in srgb, var(--accent) 65%, transparent); }
+.share li span:last-child { color: var(--dim); font-size: 12px; text-align: right; }
+@media (max-width: 720px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .spark { display: none; }
+  .dash { grid-template-columns: minmax(0, 1fr); }
+  .acts { flex-wrap: wrap; }
+}`,
+  js: function () {
+    const cols = [...document.querySelectorAll('.bars .col')];
+    const sum = document.querySelector('.sum');
+    document.querySelector('.range').addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      document.querySelectorAll('.range button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+      const d = { v: b.dataset.v.split(',').map(Number), label: b.dataset.l.split(',') }, max = Math.max(...d.v);
+      cols.forEach((c, i) => {
+        c.hidden = i >= d.v.length;
+        if (c.hidden) return;
+        c.querySelector('i').style.height = `${Math.round((d.v[i] / max) * 100)}%`;
+        c.querySelector('b').textContent = d.v[i].toLocaleString('en-US');
+        c.querySelector('span').textContent = d.label[i];
+        c.classList.toggle('now', i === d.v.length - 1);
+      });
+      sum.textContent = d.v.reduce((a, x) => a + x).toLocaleString('en-US');
+    });
+    const items = [...document.querySelectorAll('.todo li')];
+    let left = items.length;
+    items.forEach((li) => li.querySelector('.ops').addEventListener('click', (e) => {
+      if (!e.target.closest('button') || li.classList.contains('gone')) return;
+      li.classList.add('gone');
+      left -= 1;
+      document.querySelectorAll('.todo-n').forEach((n) => { n.textContent = left; });
+      setTimeout(() => { li.remove(); if (!left) document.querySelector('.todo .empty').hidden = false; }, 260);
+    }));
+  },
+};
+
+export const pages = [dashboard, users, account, roles, logs, settings];
 
 /* ---------------- 拼装 ---------------- */
 const LAYOUT = {
@@ -673,8 +820,9 @@ const LAYOUT = {
 };
 const MOBILE = ['手机宽度下导航收成顶部一排图标，多列布局改成单列，表格可以横向滑动', 'on phones the navigation collapses into a row of icons at the top, multi-column layouts stack into one column and tables scroll horizontally'];
 
+const extraBlock = (s) => `/* 「${s.zh}」专属细节 */\n${s.extra}`;
 function code(s, page) {
-  const extra = s.extra ? `\n\n/* 「${s.zh}」专属细节 */\n${s.extra}` : '';
+  const extra = s.extra ? `\n\n${extraBlock(s)}` : '';
   const scheme = s.v.scheme ? `\n.app { color-scheme: ${s.v.scheme}; }` : '';
   const avText = s.avText ? `\n.av { color: ${s.avText}; }` : '';
   return `${shell(s, page, page.html(s))}
@@ -695,7 +843,9 @@ ${page.css}${extra}
 }
 
 // 所有案例共用的大段代码（外壳样式、各页面样式和脚本）。构建时在数据文件里只存一份，浏览器加载后再还原成完整代码
-export const sharedChunks = () => [BASE, ...pages.map((p) => p.css), ...pages.map((p) => p.js.toString()), MOON, ...Object.keys(P).map(ico)];
+// 页面 HTML 在各风格里一样（颜色都走变量），每种风格的变量和专属细节在各页面里也一样，同样只存一份
+export const sharedChunks = () => [BASE, ...pages.map((p) => p.css), ...pages.map((p) => p.js.toString()),
+  ...pages.map((p) => p.html(styles[0])), ...styles.map(rootVars), ...styles.filter((s) => s.extra).map(extraBlock), MOON, ...Object.keys(P).map(ico)];
 
 export function adminCases() {
   const out = [];
