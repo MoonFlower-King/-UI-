@@ -1,3 +1,5 @@
+<p align="center"><img src="组件库/assets/logo.svg" alt="江月 UI 标志" width="88"></p>
+
 # 江月UI设计
 
 > 给 AI 描述 UI，说对一个词就够了。
