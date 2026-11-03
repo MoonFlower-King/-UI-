@@ -4,8 +4,8 @@
    组件预览始终放在浅色画布上（组件代码按浅色背景写），像墙上挂的一幅幅小画。 */
 :root {
   --bg: #F7F4EE; --surface: #FFFFFF; --surface-2: #F0ECE4; --line: #E7E1D6; --line-2: #D6CEC0;
-  --ink: #1D1B18; --ink-2: #4B463F; --ink-3: #847D72;
-  --accent: #FA8C16; --accent-press: #E37A08; --on-accent: #231405; --accent-ink: #B4530A; --accent-soft: #FDF0DD;
+  --ink: #1D1B18; --ink-2: #4B463F; --ink-3: #716A60;
+  --accent: #FA8C16; --accent-press: #E37A08; --on-accent: #231405; --accent-ink: #A84C07; --accent-soft: #FDF0DD;
   --moon: #E9A23B; --night: #121722; --canvas: #FAFAFA;
   --shadow-sm: 0 1px 2px rgba(40, 30, 15, .06); --shadow: 0 12px 32px -12px rgba(40, 30, 15, .18); --shadow-lg: 0 24px 64px -16px rgba(30, 22, 10, .28);
   --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "SimSun", serif;
@@ -16,13 +16,13 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0F1218; --surface: #161A22; --surface-2: #1D222C; --line: #262C37; --line-2: #353C4A;
-  --ink: #EDE9E2; --ink-2: #BAB4A9; --ink-3: #8C867B;
+  --ink: #EDE9E2; --ink-2: #BAB4A9; --ink-3: #9A9488;
   --accent-ink: #FFB65C; --accent-soft: rgba(250, 140, 22, .14); --moon: #FFD58A;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3); --shadow: 0 12px 32px -12px rgba(0, 0, 0, .55); --shadow-lg: 0 24px 64px -16px rgba(0, 0, 0, .7);
   color-scheme: dark; } }
 :root[data-theme="dark"] {
   --bg: #0F1218; --surface: #161A22; --surface-2: #1D222C; --line: #262C37; --line-2: #353C4A;
-  --ink: #EDE9E2; --ink-2: #BAB4A9; --ink-3: #8C867B;
+  --ink: #EDE9E2; --ink-2: #BAB4A9; --ink-3: #9A9488;
   --accent-ink: #FFB65C; --accent-soft: rgba(250, 140, 22, .14); --moon: #FFD58A;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3); --shadow: 0 12px 32px -12px rgba(0, 0, 0, .55); --shadow-lg: 0 24px 64px -16px rgba(0, 0, 0, .7);
   color-scheme: dark;
