@@ -8,7 +8,13 @@ const inCat = (id) => components.filter((x) => x.cat === id);
 // 组件代码按主题分文件（data/code/<主题>.js），用到哪个主题才加载哪个，组件再多首页也不变慢。
 // 用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
 const codeLoads = {};
-window.JY_CODE = (cat, map) => { for (const id in map) if (byId[id]) byId[id].code = map[id]; };
+// 生成的「管理后台」案例：en 是英文提示词；chunks 是共用代码，数据里用 \u0001编号\u0001 代替，这里还原成完整代码
+window.JY_CODE = (cat, map, en, chunks) => {
+  for (const id in map) if (byId[id]) {
+    byId[id].code = chunks ? map[id].replace(/\u0001(\d+)\u0001/g, (_, i) => chunks[i]) : map[id];
+    if (en && en[id]) byId[id].promptEn = en[id];
+  }
+};
 function loadCode(cat) {
   return codeLoads[cat] ||= new Promise((ok, no) => {
     const s = document.createElement('script');
@@ -150,7 +156,7 @@ const tidy = (c) => c.code.replace(/\sautofocus\b/g, ''); // autofocus 同样会
 const measured = new Set();
 const doc = (c) => {
   if (!AUTO) return BASE + tidy(c);
-  const fit = measured.has(c.id) ? '' : `(${AUTO.fit})();`;
+  const fit = measured.has(c.id) || c.canvas ? '' : `(${AUTO.fit})();`;
   return calm.matches ? `${BASE}${tidy(c)}\n<script>${fit}<\/script>`
     : `${BASE}<script>(${AUTO.pre})()<\/script>\n${tidy(c)}\n<script>${fit}(${AUTO.post})()<\/script>`;
 };
@@ -158,8 +164,10 @@ const doc = (c) => {
 // 预览占满：组件按 560×350 的画布写，但很多只占中间一小块。量出实际大小后，把预览「视口」缩到刚好包住它，
 // 再整体放大到卡片宽度，组件就占满预览框。每个组件只量一次，记在 fitCache 里。
 const fitCache = {};
+// 整页案例（元信息里写了 canvas，比如管理后台）按固定画布宽度缩放，不用量
+const vwOf = (c) => c.canvas || fitCache[c.id];
 function setFit(id, w, h) {
-  if (!(w > 0)) return;
+  if (!(w > 0) || byId[id].canvas) return;
   const need = Math.round(Math.min(560, Math.max(240, w * 1.1, h * 1.36 * 1.6)));
   if (fitCache[id] && need <= fitCache[id] + 2) return; // 只放宽、不收窄，避免来回跳
   fitCache[id] = Math.max(need, fitCache[id] || 0);
@@ -167,6 +175,7 @@ function setFit(id, w, h) {
 }
 // 量 Shadow DOM 首帧里组件的实际大小（换算回预览视口里的像素）
 function measurePoster(id, host, root) {
+  if (byId[id].canvas) return;
   const o = host.getBoundingClientRect(), vw = fitCache[id] || 560, k = o.width / vw, W = vw, H = vw / 1.6;
   if (!(k > 0)) return;
   let l = 1e9, t = 1e9, r = -1e9, b = -1e9;
@@ -276,7 +285,7 @@ addEventListener('message', (e) => {
 const fit = new ResizeObserver((entries) => entries.forEach((e) => e.target.style.setProperty('--tw', e.contentRect.width)));
 function card(c) {
   return `<article class="card">
-    <div class="thumb" data-id="${c.id}"${fitCache[c.id] ? ` style="--vw:${fitCache[c.id]}"` : ''}><div class="poster" aria-hidden="true"></div>
+    <div class="thumb" data-id="${c.id}"${vwOf(c) ? ` style="--vw:${vwOf(c)}"` : ''}><div class="poster" aria-hidden="true"></div>
 <span class="live">点一下，换你来玩</span></div>
     <div class="card-body"><h3 class="card-title"><a href="#${c.id}" title="${esc(c.lead)}">${esc(c.zh)}</a><small>${esc(c.en)}</small></h3>
       <div class="card-actions"><button class="glass-btn" data-copy="${c.id}">复制提示词</button><button class="glass-btn add-btn" data-add="${c.id}"></button></div></div>
@@ -499,14 +508,15 @@ function renderDetail(c) {
         <div class="seg" role="group" aria-label="预览宽度" id="devices"><button data-d="desktop" aria-pressed="true">桌面</button><button data-d="tablet" aria-pressed="false">平板</button><button data-d="phone" aria-pressed="false">手机</button></div>
         <div class="end"><button class="btn sm ghost" id="replay">↻ 重播</button></div>
       </div>
-      <div class="stage" id="stage" data-device="desktop"><div class="frame"><iframe id="preview" title="${esc(c.zh)} 实时预览"></iframe></div></div>
+      <div class="stage${c.canvas ? ' wide' : ''}" id="stage" data-device="desktop"><div class="frame"><iframe id="preview" title="${esc(c.zh)} 实时预览"></iframe></div></div>
       <pre class="code" id="code" hidden></pre>
     </div>
   </div>
   <aside class="panel">
-    <section class="ask"><h2>发给 AI 的一句话</h2><p>${esc(c.prompt)}</p>
+    <section class="ask${c.promptEn ? ' long' : ''}"><h2>发给 AI 的一句话</h2><p>${esc(c.prompt)}</p>
       <button class="btn primary lg block" data-copy="${c.id}">复制这句话</button>
       <div class="row"><button class="btn add-btn" data-add="${c.id}"></button><button class="btn" id="copy-code">复制代码</button></div>
+      ${c.promptEn ? `<h2 class="en-h">English prompt</h2><p class="en">${esc(c.promptEn)}</p><button class="btn block" id="copy-en">复制英文提示词</button>` : ''}
       <p class="hint">不会写代码也没关系：把这句话贴给你常用的 AI，它就会照着改。要改好几处，先都放进篮子再一起复制。</p></section>
     <nav class="pager">${prev ? `<a href="#${prev.id}"><small>← 上一个</small><b>${esc(prev.zh)}</b></a>` : ''}${next ? `<a href="#${next.id}"><small>下一个 →</small><b>${esc(next.zh)}</b></a>` : `<a href="#cat-${nextCat.id}"><small>下一个主题 →</small><b>${esc(nextCat.name)}</b></a>`}</nav>
     <div class="sibs"><h3>「${esc(cat.name)}」里的其他词</h3><div>${sibs.filter((x) => x !== c).map((x) => `<a href="#${x.id}">${esc(x.zh)}</a>`).join('')}</div></div>
@@ -519,10 +529,22 @@ function renderDetail(c) {
   $('#v-code').onclick = () => setView(true);
   $('#replay').onclick = () => { setView(false); replay(); };
   $('#copy-code').onclick = () => copy(c.code, '代码已复制');
+  if (c.promptEn) $('#copy-en').onclick = () => copy(c.promptEn, '英文提示词已复制');
+  // 整页案例（canvas）在「桌面」下按真实画布宽度渲染再整体缩小，看到的才是真正的桌面布局，而不是被挤成手机版
+  const st = $('#stage'), fr = $('.frame', st);
+  const fitWide = () => {
+    if (!st.isConnected) return;
+    const w = fr.clientWidth;
+    const on = !!c.canvas && st.dataset.device === 'desktop' && w >= 560;
+    st.classList.toggle('scaled', on);
+    if (on) fr.style.setProperty('--k', w / c.canvas), fr.style.setProperty('--cw', c.canvas);
+  };
   $('#devices').onclick = (e) => {
     const d = e.target.dataset.d; if (!d) return;
     $('#stage').dataset.device = d; $$('#devices button').forEach((b) => b.setAttribute('aria-pressed', b === e.target));
+    fitWide();
   };
+  if (c.canvas) new ResizeObserver(fitWide).observe(fr);
   $$('[data-add]', $('#main')).forEach(syncAddBtn);
   replay();
   document.title = `${c.zh} ${c.en} · 江月 UI`;

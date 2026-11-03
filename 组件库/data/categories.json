@@ -516,5 +516,19 @@
       "admin-table",
       "weather-card"
     ]
+  },
+  {
+    "id": "admin-account",
+    "name": "管理后台 · 账号",
+    "intro": "系统管理、账号管理的整页参考：用户列表、账号详情、角色权限，每种页面都有 11 种风格。挑一个顺眼的，复制中文或英文提示词给 AI，整页一次到位。",
+    "generated": "admin",
+    "items": []
+  },
+  {
+    "id": "admin-system",
+    "name": "管理后台 · 系统",
+    "intro": "操作日志、系统设置的整页参考，同样 11 种风格可比较。同一种风格在「账号」「系统」里是一套，拼起来就是一整个后台。",
+    "generated": "admin",
+    "items": []
   }
 ]
