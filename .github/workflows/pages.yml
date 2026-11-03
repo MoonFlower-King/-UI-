@@ -30,6 +30,9 @@ jobs:
           cp -r "图鉴网站（开源）/." _site/
           cp -r 组件库/. _site/ui/
           rm -f _site/.gitignore _site/ui/.gitignore
+          # 源文件和构建脚本只在构建时用，网页运行时用不到，不上传（发布包小一半多）
+          rm -rf _site/scripts _site/episodes.json _site/ui/scripts _site/ui/components _site/ui/prompts _site/ui/admin _site/ui/data/*.json
+          du -sh _site
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
