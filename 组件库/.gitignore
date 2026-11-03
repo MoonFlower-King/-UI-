@@ -2,6 +2,7 @@
 /data/components.js
 /data/prompts.js
 /data/prompt-code/
+/data/prompt-text/
 /data/code/
 
 # npm run shots 的截图输出，不入库

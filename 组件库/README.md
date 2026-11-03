@@ -88,7 +88,7 @@
 - 很多词条重复的 CSS 抽成「骨架」`prompts/_<名字>.css`，词条元信息写 `"kit": "<名字>"` 就会先套上它（网站风格都用 `_site-kit.css`，词条只写自己的配色和差异）。网站风格要分批加，每批先过审美规则、逐张截图检查再上线
 - **版式骨架**：网站风格不该都长一个样，所以除了换配色，还能换排法。`prompts/_layout-<名字>.css` 是 7 种版式（居中 centered、竖排 vertical、杂志 magazine、分屏 split、海报 poster、便当格 bento、侧栏 sidebar），用同一个书房页面的同一份 HTML、只用 CSS 重新排。词条元信息写 `"layout": "<名字>"` 就套上，构建时会把 `data/prompt-layouts.json` 里这种版式的中英文说明自动拼到提示词末尾，卡片左下角也会标出版式名。新风格挑一个最贴合的版式；早期的风格没写 layout，用默认的「左文右图」，以后按分组逐步迁移（迁移时要重新截图，因为旧词条的 CSS 是照默认版式写的）
 - 页面带搜索框（分组名、中英文名、别名、简介都能搜）和分组跳转，词条到几百个也好找
-- 在 `data/prompt-groups.json` 登记分组，运行 `npm run build:ui` 生成 `data/prompts.js`（文字索引，一打开就加载）和 `data/prompt-code/<分组>.js`（预览代码，卡片快到屏幕时才按分组加载），做法和组件库的 `data/code/` 一样
+- 在 `data/prompt-groups.json` 登记分组，运行 `npm run build:ui` 生成 `data/prompts.js`（文字索引，一打开就加载）、`data/prompt-text/<分组>.js`（提示词全文）和 `data/prompt-code/<分组>.js`（预览代码）；后两种在卡片快到屏幕、拼提示词或第一次搜索时才按分组加载，做法和组件库的 `data/code/` 一样
 - 构建输出会打印索引大小和最大分组的代码大小；单个分组代码超过约 300KB 时，把它拆成两个分组
 - 收录规则见调研文档：不收堆砌词、不点名在世艺术家和品牌、不收 AI 味模板，每个词都要写「容易用错的地方」
 
