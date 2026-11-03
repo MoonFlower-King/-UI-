@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Snowy Cabin",
+  "zh": "雪夜小屋",
+  "alias": [
+    "雪屋",
+    "冬日小木屋",
+    "Winter Cabin"
+  ],
+  "lead": "雪夜里的一间小木屋：屋顶盖着厚雪，窗户透出暖黄的灯，雪花慢慢落下来，周围是安静的蓝。温馨、宁静、有节日感，适合冬季活动、圣诞礼盒、热饮、民宿和阅读品牌。",
+  "prompt": "雪夜小屋风格：冰蓝白底 #EEF3F8，文字深夜蓝 #1F2D45、宋体类衬线；居中构图，插图是一枚圆形冬夜徽记：深蓝 #2B3E5C 夜空、白色雪地、一间深棕 #5A3B2A 小木屋（三角屋顶盖白雪）、一扇暖黄 #FFC861 亮窗，几片雪花缓慢飘落；主色暖黄配深蓝字按钮，圆角 8px；整页零星几个极淡的雪点",
+  "promptEn": "Snowy cabin style: icy blue-white #EEF3F8 background with deep night-blue #1F2D45 Song-style serif text; centered composition with a round winter-night emblem: a deep blue #2B3E5C sky, white snowy ground, a small dark brown #5A3B2A cabin with a snow-covered triangular roof and one glowing warm-yellow #FFC861 window, with a few snowflakes slowly falling; warm yellow buttons with deep-blue text and 8px radius; a sprinkling of very faint snow dots across the page",
+  "avoid": "暖黄的窗是画面的“心”，只出现一处；雪花稀疏、慢，别做成满屏暴雪特效。",
+  "neg": [
+    "满屏雪花特效、圣诞老人卡通、红绿撞色",
+    "full-screen snow effects, Santa cartoons, red-green clash"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #FFC861; --a2: #2B3E5C; --on: #1F2D45; color: #1F2D45; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; background: radial-gradient(rgba(43,62,92,.12) 1px, transparent 1.6px) 0 0 / 41px 33px, #EEF3F8; }
+.hero h1 { font-weight: 600; } .b1, .cta { border-radius: 8px; } .kicker { color: #5D7186; } .logo i { background: #FFC861; clip-path: polygon(50% 0, 100% 50%, 100% 100%, 0 100%, 0 50%); }
+.art .m { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 30% 30%, #fff 0 1.5px, transparent 2px) 0 0 / 17px 19px, linear-gradient(#2B3E5C 64%, #fff 64%); box-shadow: 0 0 0 4px #fff, 0 6px 16px rgba(31,45,69,.2); }
+.art .h { position: absolute; left: 50%; bottom: 28px; width: 34px; height: 22px; margin-left: -17px; background: radial-gradient(circle, #FFC861 0 4px, transparent 5px) 50% 60% / 12px 10px no-repeat, #5A3B2A; box-shadow: 0 0 14px rgba(255,200,97,.5); }
+.art::after { content: ""; position: absolute; left: 50%; bottom: 48px; width: 44px; height: 16px; margin-left: -22px; background: #fff; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.feats b { color: #5D7186; } .stats b { font-weight: 500; }
+</style>

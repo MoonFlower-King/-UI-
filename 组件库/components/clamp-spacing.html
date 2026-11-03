@@ -1,0 +1,24 @@
+<!--
+{
+  "en": "Fluid Spacing", "zh": "流式间距",
+  "lead": "间距不是写死的几个像素，而是跟着屏幕宽度在一个范围里平滑变化：手机上紧凑、桌面上宽松，中间不会突然跳一下。和流式字号是一对。",
+  "vague": ["手机上留白太大", "大屏上又挤在一起"],
+  "terms": ["Fluid Spacing", "clamp()", "Space Scale 间距梯度"],
+  "prompt": "整站间距用流式间距：定义 --space-s: clamp(8px, 2vw, 16px)、--space-m: clamp(12px, 4vw, 32px)、--space-l: clamp(20px, 7vw, 64px)，区块上下用 --space-l、卡片内边距用 --space-m；视口从 360 拉到 1280 时间距平滑变大，没有断点跳变；演示里拖动宽度时实时显示当前间距数值。"
+}
+-->
+<div class="frame">
+  <section><div class="card">卡片</div><div class="card">卡片</div></section>
+  <p class="read">内边距 <b>—</b></p>
+</div>
+<style>
+.frame { width: 300px; min-width: 160px; max-width: 340px; padding: 8px; border: 1px dashed #D4D4D8; border-radius: 12px; resize: horizontal; overflow: hidden; container-type: inline-size; font: 12px -apple-system, "PingFang SC", sans-serif; }
+section { --m: clamp(6px, 7cqi, 26px); display: flex; gap: var(--m); padding: var(--m); border-radius: 12px; background: repeating-linear-gradient(-45deg, #FFF4E6 0 5px, #FFE7CC 5px 10px); transition: none; }
+.card { flex: 1; display: grid; place-items: center; height: 60px; border-radius: 10px; background: #fff; color: #AD4E00; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.read { margin: 8px 0 0; color: #71717A; } .read b { color: #FA8C16; font-variant-numeric: tabular-nums; }
+</style>
+<script>
+const frame = document.querySelector(".frame"), sec = document.querySelector("section"), out = document.querySelector(".read b");
+new ResizeObserver(() => { out.textContent = Math.round(parseFloat(getComputedStyle(sec).paddingLeft)) + "px（容器 " + Math.round(frame.clientWidth) + "px）"; }).observe(frame);
+let w = true; setInterval(() => { w = !w; frame.style.transition = "width 1.2s ease-in-out"; frame.style.width = (w ? 300 : 170) + "px"; }, 2600);
+</script>

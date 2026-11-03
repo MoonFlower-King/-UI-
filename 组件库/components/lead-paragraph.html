@@ -1,0 +1,21 @@
+<!--
+{
+  "en": "Lead Paragraph", "zh": "导语段",
+  "lead": "文章标题下面的第一段，字号比正文大一号、颜色稍深，用一两句话说清这篇讲什么。读者看完导语就决定读不读下去。",
+  "vague": ["文章开头没有吸引力", "正文一上来就很密"],
+  "terms": ["Lead / Lede", "Standfirst", "Intro Paragraph"],
+  "prompt": "文章页标题下加导语段：字号 18px（正文 15px）、行高 1.7、颜色 #3F3F46，最多两三句，宽度和正文一致（约 34em）；导语和正文之间空 20px，正文首段不缩进；导语前可以加一条 32px 宽的江月橘短线。"
+}
+-->
+<article>
+  <h1>夜色里的江面怎么配色</h1>
+  <p class="lead">深蓝不是一种颜色，而是一组颜色。这篇用三步拆开它：底色、光、点缀。</p>
+  <p>先定底色。夜色江面最常见的错误是直接用纯黑，画面会像关了灯的房间……</p>
+</article>
+<style>
+article { width: 300px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-family: -apple-system, "PingFang SC", sans-serif; }
+h1 { margin: 0 0 10px; font: 700 20px/1.35 "Songti SC", "Noto Serif SC", serif; color: #18181B; }
+.lead { position: relative; margin: 0 0 14px; padding-top: 12px; font-size: 15px; line-height: 1.7; color: #3F3F46; }
+.lead::before { content: ""; position: absolute; top: 0; left: 0; width: 28px; height: 3px; border-radius: 2px; background: #FA8C16; }
+p { margin: 0; font-size: 12.5px; line-height: 1.8; color: #71717A; }
+</style>

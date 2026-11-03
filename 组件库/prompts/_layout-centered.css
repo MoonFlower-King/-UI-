@@ -1,0 +1,8 @@
+/* 版式骨架「居中对称」：品牌在上、导航在下居中，插图缩成一枚徽记放在标题上方，所有区块居中对齐。适合典雅、仪式感、品牌感强的风格。 */
+.nav { flex-direction: column; gap: 8px; padding: 18px 26px 6px; } .nav .cta { display: none; }
+.hero { grid-template-columns: 1fr; justify-items: center; gap: 12px; padding: 16px 70px 26px; text-align: center; }
+.art { order: -1; width: 92px; height: 92px; min-height: 0; }
+.acts { justify-content: center; }
+.feats { text-align: center; }
+.stats { justify-content: center; gap: 56px; text-align: center; }
+.ft { text-align: center; }

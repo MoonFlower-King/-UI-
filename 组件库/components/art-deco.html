@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Art Deco", "zh": "装饰艺术",
+  "lead": "上世纪二三十年代的摩登奢华：深色底、金色细线、对称的扇形和阶梯纹样、高瘦的大写字。隆重、有仪式感，适合酒店、酒吧、晚宴邀请。",
+  "vague": ["想要复古又高级", "像老上海或盖茨比那种感觉"],
+  "terms": ["Art Deco", "Symmetry 对称", "Geometric Ornament 几何装饰"],
+  "prompt": "装饰艺术风格卡片：墨绿底 #10261F，香槟金 #C9A961 细线双层描边（外框 1px + 内缩 5px 再一圈 1px），顶部居中一个用 repeating-conic-gradient 画的放射扇形；标题用高瘦衬线大写、字距 0.3em，严格居中对称；金色只用细线和小装饰，不要大面积金色块。"
+}
+-->
+<div class="deco">
+  <div class="fan"></div>
+  <small>THE MOON HOTEL</small>
+  <h2>GRAND OPENING</h2>
+  <p>十一月十二日 · 晚八时</p>
+</div>
+<style>
+.deco { width: 280px; padding: 22px 20px 20px; background: #10261F; color: #EDE3CC; text-align: center; border: 1px solid #C9A961; box-shadow: inset 0 0 0 5px #10261F, inset 0 0 0 6px #C9A961; font-family: Didot, "Bodoni 72", Georgia, "Songti SC", serif; }
+.fan { width: 90px; height: 45px; margin: 0 auto 12px; background: repeating-conic-gradient(from -90deg at 50% 100%, #C9A961 0 3deg, transparent 3deg 15deg); clip-path: polygon(0 100%, 0 70%, 50% 0, 100% 70%, 100% 100%); -webkit-mask: radial-gradient(circle at 50% 100%, transparent 10px, #000 11px); mask: radial-gradient(circle at 50% 100%, transparent 10px, #000 11px); }
+small { display: block; font-size: 10px; letter-spacing: .4em; color: #C9A961; }
+h2 { margin: 8px 0; font-size: 24px; font-weight: 400; letter-spacing: .3em; }
+p { margin: 0; padding-top: 10px; border-top: 1px solid rgba(201,169,97,.5); font-size: 12px; letter-spacing: .2em; color: #C9A961; }
+</style>

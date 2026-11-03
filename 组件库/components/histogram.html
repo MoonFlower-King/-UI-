@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Histogram", "zh": "直方图",
+  "lead": "把一堆数字按区间分组，看每个区间有多少个。和柱状图长得像，但柱子之间不留缝，横轴是连续的数值。用来看分布：大多数人集中在哪、有没有长尾。",
+  "vague": ["想知道大部分用户在哪个区间", "数据分布看不出来"],
+  "terms": ["Histogram", "Distribution 分布", "Bin 分组区间"],
+  "prompt": "用直方图展示用户每日阅读时长分布：横轴 0–60 分钟，每 5 分钟一组，柱子之间无间隙（gap: 1px），浅橘 #FFD8A8，中位数所在的那根用江月橘 #FA8C16 并在上方标「中位数 18 分钟」虚线；悬停柱子显示「15–20 分钟：312 人」；柱子从底部依次升起。"
+}
+-->
+<div class="hg">
+  <div class="bars"></div>
+  <div class="x"><span>0</span><span>15</span><span>30</span><span>45</span><span>60 分钟</span></div>
+  <div class="tip">悬停查看每组人数</div>
+</div>
+<style>
+.hg { width: 300px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 11px -apple-system, "PingFang SC", sans-serif; }
+.tip { height: 16px; margin-top: 6px; color: #71717A; text-align: center; }
+.bars { position: relative; display: flex; align-items: flex-end; gap: 1px; height: 120px; margin-top: 24px; border-bottom: 1px solid #D4D4D8; }
+.bars i { flex: 1; height: var(--h); background: #FFD8A8; transform-origin: bottom; animation: up .5s cubic-bezier(.3,.7,.3,1) both; animation-delay: calc(var(--i) * 40ms); cursor: pointer; transition: background .15s; }
+.bars i:hover { background: #FDBA74; } .bars i.med { background: #FA8C16; }
+.bars i.med::before { content: "中位数 18 分钟"; position: absolute; left: 50%; bottom: calc(100% + 18px); transform: translateX(-50%); white-space: nowrap; color: #AD4E00; }
+.bars i.med { position: relative; } .bars i.med::after { content: ""; position: absolute; left: 50%; bottom: 100%; height: 16px; border-left: 1px dashed #FA8C16; }
+@keyframes up { from { transform: scaleY(0); } }
+.x { display: flex; justify-content: space-between; padding-top: 4px; color: #A1A1AA; }
+</style>
+<script>
+const N = [48, 160, 254, 312, 290, 210, 150, 96, 64, 40, 22, 12], max = Math.max(...N), bars = document.querySelector(".bars"), tip = document.querySelector(".tip");
+bars.innerHTML = N.map((n, i) => `<i style="--h:${(n / max) * 100}%;--i:${i}" class="${i === 3 ? "med" : ""}" data-t="${i * 5}–${i * 5 + 5} 分钟：${n} 人"></i>`).join("");
+bars.querySelectorAll("i").forEach((b) => { b.addEventListener("mouseenter", () => { tip.textContent = b.dataset.t; }); });
+bars.addEventListener("mouseleave", () => { tip.textContent = "悬停查看每组人数"; });
+</script>

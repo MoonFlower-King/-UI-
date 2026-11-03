@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Pulp Magazine",
+  "zh": "低俗杂志",
+  "alias": [
+    "廉价小说杂志",
+    "Pulp Fiction Cover",
+    "老侦探杂志"
+  ],
+  "lead": "三四十年代廉价侦探、科幻杂志的封面和内页：粗糙泛黄的纸、夸张的粗体标题、斜放的副标题、印刷套色有点错位的红黄色块。戏剧化、复古、很有噱头，适合悬疑小说、桌游、独立出版、复古活动。",
+  "prompt": "低俗杂志风格：泛黄新闻纸底 #F1E2BE，文字近黑 #1C1410；版面像旧杂志：超大粗体衬线标题（可略微倾斜）、正文两栏、栏间细线；主色警示红 #C8281E、辅色铬黄 #F2B705，色块边缘用 2px 错位投影模拟套印不准；插图是一个戏剧化的封面角：黄色底上一道红色斜条和一个黑色剪影问号；价签式小圆章写「10¢」",
+  "promptEn": "Pulp magazine style: yellowed newsprint #F1E2BE with near-black #1C1410 text; the layout reads like an old magazine: an oversized bold serif headline (slightly slanted), body in two columns with a thin rule; warning red #C8281E as the primary color and chrome yellow #F2B705 as the secondary, with 2px offset shadows on color blocks imitating misregistered printing; the illustration is a dramatic cover corner: a red diagonal band on yellow with a black silhouette question mark; a small price-tag roundel reading \"10¢\"",
+  "avoid": "套印错位只做 1–2px，别做成故障风；标题夸张但正文要正常可读。避免暴力和性暗示的封面图像。",
+  "neg": [
+    "故障风错位、暴力血腥图像、性暗示插画",
+    "glitch effects, violent gory imagery, suggestive illustrations"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #C8281E; --a2: #F2B705; --on: #fff; background: #F1E2BE; color: #1C1410; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 3px solid #1C1410; } .logo { font-style: italic; font-weight: 900; } .logo i { background: #C8281E; box-shadow: 2px 2px 0 #F2B705; }
+.hero h1 { font-weight: 900; transform: skewX(-6deg); color: #1C1410; text-shadow: 2px 2px 0 #F2B705; } .kicker { color: #C8281E; font-weight: 700; border-color: #1C1410 !important; }
+.b1, .cta { box-shadow: 2px 2px 0 #F2B705; } .b2 { color: #C8281E; }
+.art { background: linear-gradient(115deg, transparent 0 40%, #C8281E 40% 62%, transparent 62%), #F2B705; box-shadow: 2px 2px 0 #C8281E; overflow: hidden; }
+.art::after { content: "?"; position: absolute; left: 22%; top: 2px; font: 900 96px/1 Georgia, serif; color: #1C1410; }
+.art .m { position: absolute; right: 8px; bottom: 8px; width: 38px; height: 38px; border-radius: 50%; background: #1C1410; box-shadow: inset 0 0 0 2px #F1E2BE; }
+.art .m::after { content: "10¢"; position: absolute; inset: 0; display: grid; place-items: center; font: 700 11px Georgia, serif; color: #F2B705; }
+.feats b { color: #C8281E; } .feats h3 { font-weight: 900; } .stats { border-color: #1C1410 !important; border-top-width: 3px !important; } .stats b { font-weight: 900; color: #C8281E; }
+</style>

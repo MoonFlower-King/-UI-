@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Dala Folk",
+  "zh": "达拉民艺",
+  "alias": [
+    "达拉木马",
+    "瑞典民艺",
+    "Swedish Folk Art"
+  ],
+  "lead": "瑞典达拉纳地区的民间彩绘：番茄红底上画白边的蓝、黄、绿花朵和卷叶，像木马玩具上的图案。明快、亲切、有童趣，适合北欧家居、儿童用品、节日礼品、面包坊。",
+  "prompt": "达拉民艺风格：奶油底 #FBF3E4，导航是番茄红 #B3261E 色带；主色番茄红、辅色深蓝 #2B4C7E，花朵点缀用芥黄 #F2C14E 和草绿 #3D7A4A；圆润的无衬线粗体标题；插图是一枚居中的民艺花朵徽记（红底圆形 + 白描边花瓣 + 黄色花心）；按钮全圆角，三个特点各配一个彩色圆点",
+  "promptEn": "Dala folk style: #FBF3E4 cream background with a tomato-red #B3261E navigation band; tomato red as the primary color and deep blue #2B4C7E as the secondary, with mustard #F2C14E and grass green #3D7A4A as flower accents; rounded bold sans-serif headlines; the illustration is a centered folk-flower emblem (red disc, white-outlined petals, yellow center); fully rounded buttons and a colored dot for each feature",
+  "avoid": "颜色饱和但要“土”一点（番茄红而不是正红、芥黄而不是柠檬黄）；花纹只做点缀，大面积还是奶油底。",
+  "neg": [
+    "荧光色、满屏碎花、卡通吉祥物",
+    "neon colors, ditsy florals everywhere, cartoon mascots"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #B3261E; --a2: #2B4C7E; --on: #FBF3E4; background: #FBF3E4; color: #2A2320; font-family: "Avenir Next", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { background: #B3261E; color: #FBF3E4; padding-bottom: 12px; } .logo i { border-radius: 50%; background: #F2C14E; }
+.hero h1 { font-weight: 800; color: #B3261E; } .b1 { border-radius: 99px; } .kicker { color: #2B4C7E; font-weight: 600; }
+.art .m { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, #F2C14E 0 12px, #B3261E 13px 15px, transparent 16px), conic-gradient(from 0deg, #FBF3E4 0 8deg, #B3261E 0 45deg, #FBF3E4 0 53deg, #B3261E 0 90deg, #FBF3E4 0 98deg, #B3261E 0 135deg, #FBF3E4 0 143deg, #B3261E 0 180deg, #FBF3E4 0 188deg, #B3261E 0 225deg, #FBF3E4 0 233deg, #B3261E 0 270deg, #FBF3E4 0 278deg, #B3261E 0 315deg, #FBF3E4 0 323deg, #B3261E 0); box-shadow: 0 0 0 4px #FBF3E4, 0 0 0 7px #2B4C7E; }
+.art .h { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px; border-radius: 50%; border: 3px dotted #FBF3E4; }
+.feats h3::before { content: ""; display: block; width: 12px; height: 12px; margin: 0 auto 6px; border-radius: 50%; background: #2B4C7E; }
+.feats article:nth-child(2) h3::before { background: #F2C14E; } .feats article:nth-child(3) h3::before { background: #3D7A4A; }
+.feats b { display: none; } .stats b { color: #2B4C7E; font-weight: 800; }
+</style>

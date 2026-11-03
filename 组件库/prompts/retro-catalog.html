@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Mail-order Catalog",
+  "zh": "邮购目录",
+  "alias": [
+    "邮购目录",
+    "七十年代目录",
+    "Catalog"
+  ],
+  "lead": "七十年代邮购目录的版面：芥黄、焦糖棕、橘色、奶油色，圆润的粗体字，每样东西放在圆角色块里，标着大大的编号和价钱。温暖、怀旧、很“家”，适合古着、家居杂货、咖啡、复古电器。",
+  "prompt": "邮购目录风格：奶油底 #F5E9CF，内容拆成便当格，每格是圆角 14px 的纯色块：芥黄 #D9A23B、焦糖棕 #6B3E26、橘 #D9622B、奶油 #FBF3E2；圆润粗体无衬线（字重 800），每格左上角一个圆形编号章，数字格像价签；插图是一个七十年代风的同心圆弧（三色条纹半圆）；按钮棕底奶油字、胶囊形",
+  "promptEn": "Mail-order catalog style: #F5E9CF cream background with content in bento tiles, each a 14px-radius solid block of mustard #D9A23B, caramel brown #6B3E26, orange #D9622B or cream #FBF3E2; rounded bold sans-serif at weight 800, a round number badge in each tile corner, number tiles styled like price tags; the illustration is a seventies concentric arc (a three-color striped half circle); brown pill buttons with cream text",
+  "avoid": "只用这几种暖土色，加入冷色或纯黑会破坏年代感。条纹圆弧是标志，但一页用一次就够。",
+  "neg": [
+    "冷色、纯黑、霓虹",
+    "cool colors, pure black, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #6B3E26; --a2: #D9622B; --on: #FBF3E2; background: #F5E9CF; color: #3A2417; font-family: "Avenir Next", "Futura", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 14px !important; }
+.nav { background: #6B3E26 !important; color: #FBF3E2; } .cta { background: #D9A23B; color: #3A2417; border-radius: 99px; } .logo i { border-radius: 50%; background: #D9A23B; }
+.copy { background: #FBF3E2 !important; } .hero h1 { font-weight: 800; color: #6B3E26; } .b1 { border-radius: 99px; } .kicker { color: #D9622B; font-weight: 700; }
+.art { background: #D9A23B !important; overflow: hidden; }
+.art .m { position: absolute; left: 50%; bottom: -60px; width: 150px; height: 150px; margin-left: -75px; border-radius: 50%; background: radial-gradient(circle, #FBF3E2 0 26px, #6B3E26 27px 42px, #D9622B 43px 58px, #FBF3E2 59px 74px, transparent 75px); }
+.feats article:nth-child(1) { background: #D9622B !important; color: #FBF3E2; } .feats article:nth-child(2) { background: #FBF3E2 !important; } .feats article:nth-child(3) { background: #6B3E26 !important; color: #FBF3E2; }
+.feats b { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #F5E9CF; color: #6B3E26; font-weight: 800; }
+.stats div { background: #FBF3E2 !important; border: 2px dashed #D9A23B; } .stats b { font-weight: 800; color: #D9622B; }
+.ft { background: none !important; }
+</style>

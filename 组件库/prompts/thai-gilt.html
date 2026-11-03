@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Thai Gilt",
+  "zh": "泰式金漆",
+  "alias": [
+    "泰式",
+    "金漆画",
+    "Thai Lacquer",
+    "Lai Rod Nam"
+  ],
+  "lead": "泰国寺庙里的黑漆描金：深红黑的漆面上，金色的火焰纹、尖顶和卷草纹层层叠叠。华丽、神圣、有热带的浓烈，适合泰式餐厅、SPA、香氛、旅行品牌。",
+  "prompt": "泰式金漆风格：首屏是深红黑漆面 #2A0F12 到 #4A1418 的竖向渐变，上面用金色 #D6A74A 画层叠的尖顶拱门和火焰形卷纹，超大衬线标题压在下方；正文区回到暖米色 #F6EBDD、文字深红棕 #3A1A16；主色金色只给按钮和细线，按钮直角",
+  "promptEn": "Thai gilt lacquer style: the hero is a deep red-black lacquer gradient from #2A0F12 to #4A1418 with gold #D6A74A tiered pointed arches and flame-like scroll motifs, and an oversized serif headline set low over it; the body returns to warm cream #F6EBDD with dark red-brown #3A1A16 text; gold is reserved for square buttons and hairlines",
+  "avoid": "金色要哑光、偏土黄，亮黄色或金属渐变会显得廉价。纹样集中在首屏插图，下面的内容区保持素净。",
+  "neg": [
+    "亮黄色、金属反光渐变、满版纹样",
+    "bright yellow, shiny metallic gradients, patterns across the whole page"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #D6A74A; --a2: #A33A2E; --on: #2A0F12; background: #F6EBDD; color: #3A1A16; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { color: #F3DDB0; } .logo i { background: #D6A74A; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.hero { color: #F6EBDD; } .kicker { color: #D6A74A; letter-spacing: 3px; } .hero h1 { color: #F3DDB0; } .b2 { color: #F3DDB0; }
+.art { background: repeating-linear-gradient(90deg, rgba(214,167,74,.12) 0 1px, transparent 1px 26px), linear-gradient(#2A0F12, #4A1418); }
+.art .m { position: absolute; right: 40px; top: 30px; width: 130px; height: 190px; background: linear-gradient(#D6A74A, #B5873A); clip-path: polygon(50% 0, 62% 22%, 74% 30%, 84% 48%, 100% 58%, 100% 100%, 0 100%, 0 58%, 16% 48%, 26% 30%, 38% 22%); opacity: .9; }
+.art .h { position: absolute; right: 58px; top: 96px; width: 94px; height: 124px; background: #2A0F12; border-radius: 47px 47px 0 0; box-shadow: inset 0 0 0 3px #D6A74A, inset 0 0 0 7px #2A0F12, inset 0 0 0 8px #D6A74A; }
+.feats b { color: #A33A2E; } .feats article { border-color: rgba(163,58,46,.3) !important; }
+.stats { background: #2A0F12; color: #F3DDB0; } .stats b { color: #D6A74A; font-weight: 500; }
+</style>

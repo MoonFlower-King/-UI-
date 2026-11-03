@@ -1,0 +1,9 @@
+{
+  "centered": { "name": "居中对称", "zh": "版式居中对称：品牌和导航居中排在顶部，插图缩成标题上方的一枚徽记，标题、正文、特点、数字全部居中", "en": "centered symmetrical layout: brand and menu centered at the top, the illustration shrunk into an emblem above the headline, and headline, copy, features and numbers all center-aligned" },
+  "vertical": { "name": "竖排", "zh": "版式竖排：首屏左边是大幅插图，右边标题和正文从右往左竖排，三个特点也竖排", "en": "vertical layout: a large illustration on the left of the hero, the headline and copy set vertically right-to-left on the right, and the three features set vertically too" },
+  "magazine": { "name": "杂志多栏", "zh": "版式像杂志：栏目名下压细线，大标题横跨整版，正文分两栏加栏线，插图放在右下，特点之间用竖线分栏，数字区上下各一条线", "en": "magazine layout: a ruled section label, a headline spanning the full width, body copy in two columns with a column rule, the illustration at the lower right, features divided by vertical rules and the numbers framed by rules above and below" },
+  "split": { "name": "左右分屏", "zh": "版式左右分屏：插图占满左边一整条（从页头到页脚），右边单列排导航、标题、特点、数字和页脚", "en": "split layout: the illustration fills a full-height strip on the left, and the right column stacks navigation, headline, features, numbers and footer" },
+  "poster": { "name": "海报大字", "zh": "版式像海报：插图铺满首屏当背景，超大标题压在上面靠下对齐，三个特点改成一条条横排清单", "en": "poster layout: the illustration fills the hero as a background, an oversized headline sits on top aligned to the bottom, and the three features become a horizontal list of rows" },
+  "bento": { "name": "便当格", "zh": "版式是便当格：整页拆成大小不一的圆角格子拼在一起，标题一大格、插图一格，三个特点和三个数字各占一格", "en": "bento layout: the page is a grid of tiles of different sizes, with a large tile for the headline, one for the illustration, and one each for the three features and three numbers" },
+  "sidebar": { "name": "侧栏导航", "zh": "版式带侧栏：导航竖着放在左边一整条（品牌在上、菜单往下排），右边是内容", "en": "sidebar layout: navigation runs down a full-height strip on the left (brand at the top, menu below), with the content on the right" }
+}

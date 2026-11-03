@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Magnifier Lens", "zh": "放大镜",
+  "lead": "鼠标移到图片上，跟着出现一个圆形放大镜，看清局部细节。电商看商品材质、地图和图纸看细节时很常用。",
+  "vague": ["商品图看不清细节", "想放大局部又不想打开大图"],
+  "terms": ["Magnifier Lens", "Loupe 放大镜", "Hover Zoom 悬停放大"],
+  "prompt": "商品图上做放大镜：鼠标悬停时出现 90px 圆形镜片（白色 3px 边框 + 投影），镜片里显示鼠标位置 2.5 倍放大的同一张图（用 background-size 和 background-position 计算），跟随鼠标移动；移出图片时镜片缩小淡出（150ms）；触屏设备改为长按显示。"
+}
+-->
+<div class="pic"><div class="lens"></div></div>
+<style>
+/* 图片用渐变画成（月亮、远山、江面波纹），镜片里用同一张图放大 2.5 倍 */
+.pic { --img: radial-gradient(circle at 70% 28%, #FFE8B8 0 16px, rgba(255,232,184,.25) 17px 26px, transparent 27px),
+    radial-gradient(70% 40% at 25% 78%, #24344F 0 60%, transparent 61%), radial-gradient(60% 34% at 80% 82%, #1C2B44 0 60%, transparent 61%),
+    repeating-linear-gradient(0deg, rgba(255,232,184,.12) 0 1px, transparent 1px 7px), linear-gradient(170deg, #2A4A72, #0F1726 70%);
+  position: relative; width: 280px; height: 190px; border-radius: 14px; background: var(--img); cursor: none; overflow: hidden; }
+.lens { position: absolute; z-index: 1; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,.35); pointer-events: none;
+  background: var(--img); background-size: 700px 475px; opacity: 0; transform: scale(.6); transition: opacity .15s, transform .15s; }
+.pic.on .lens { opacity: 1; transform: none; }
+</style>
+<script>
+const pic = document.querySelector(".pic"), lens = document.querySelector(".lens"), Z = 2.5;
+pic.addEventListener("mouseenter", () => pic.classList.add("on"));
+pic.addEventListener("mouseleave", () => pic.classList.remove("on"));
+pic.addEventListener("mousemove", (e) => {
+  const r = pic.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  lens.style.left = x + "px"; lens.style.top = y + "px";
+  lens.style.backgroundPosition = `${-(x * Z - 45)}px ${-(y * Z - 45)}px`;
+});
+</script>

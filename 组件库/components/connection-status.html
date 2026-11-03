@@ -1,0 +1,38 @@
+<!--
+{
+  "en": "Connection Status", "zh": "连接状态指示",
+  "lead": "协作工具、聊天软件角落里的小圆点和文字：已连接（绿）、正在重连（黄色闪动 + 倒计时）、已断开（红 + 重试按钮）。让用户知道“现在发的东西能不能送到”。",
+  "vague": ["断网了用户不知道", "消息发没发出去不清楚"],
+  "terms": ["Connection Status", "Reconnecting 重连中", "System Status Visibility 系统状态可见"],
+  "prompt": "编辑器右上角放连接状态指示：胶囊形小标签，三种状态——已连接：绿色 #16A34A 实心圆点 +「已同步」；重连中：琥珀色 #F59E0B 圆点呼吸闪烁 +「正在重连… 3 秒后重试」倒计时；已断开：红色 #DC2626 圆点 +「已离线，修改保存在本地」+「重试」文字按钮；状态切换时标签宽度平滑过渡。"
+}
+-->
+<div class="ed">
+  <header><b>未命名文档</b><span class="st ok"><i></i><span class="tx">已同步</span><button hidden>重试</button></span></header>
+  <p>江面很静，月亮刚刚升起……</p>
+  <nav><button data-s="ok">在线</button><button data-s="wait">信号差</button><button data-s="off">断网</button></nav>
+</div>
+<style>
+.ed { width: 290px; padding: 14px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 12px -apple-system, "PingFang SC", sans-serif; }
+header { display: flex; justify-content: space-between; align-items: center; gap: 8px; } header b { font-size: 13px; color: #18181B; }
+.st { --c: #16A34A; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px; background: color-mix(in srgb, var(--c) 10%, #fff); color: color-mix(in srgb, var(--c) 80%, #000); white-space: nowrap; transition: background .25s, color .25s; }
+.st i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.st.wait { --c: #F59E0B; } .st.wait i { animation: br 1s ease-in-out infinite; } @keyframes br { 50% { opacity: .25; transform: scale(.7); } }
+.st.off { --c: #DC2626; }
+.st button { border: 0; padding: 0; background: none; color: inherit; font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
+p { margin: 14px 0; color: #71717A; font: 13px/1.8 "Songti SC", serif; }
+nav { display: flex; gap: 6px; padding-top: 10px; border-top: 1px dashed #E4E4E7; } nav::before { content: "模拟网络："; color: #A1A1AA; align-self: center; }
+nav button { padding: 3px 8px; border: 1px solid #E4E4E7; border-radius: 6px; background: #fff; font: inherit; cursor: pointer; }
+</style>
+<script>
+const st = document.querySelector(".st"), tx = st.querySelector(".tx"), retry = st.querySelector("button");
+let timer;
+function set(s) {
+  clearInterval(timer); st.className = "st " + s; retry.hidden = s !== "off";
+  if (s === "ok") tx.textContent = "已同步";
+  if (s === "off") tx.textContent = "已离线，修改保存在本地";
+  if (s === "wait") { let n = 3; tx.textContent = `正在重连… ${n} 秒后重试`; timer = setInterval(() => { n = n > 1 ? n - 1 : 3; tx.textContent = `正在重连… ${n} 秒后重试`; }, 1000); }
+}
+document.querySelectorAll("nav button").forEach((b) => b.addEventListener("click", () => set(b.dataset.s)));
+retry.addEventListener("click", () => { set("wait"); setTimeout(() => set("ok"), 1600); });
+</script>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Crochet Granny Square",
+  "zh": "钩针方块",
+  "alias": [
+    "钩针",
+    "祖母方块",
+    "Granny Square"
+  ],
+  "lead": "奶奶钩的毛线方块毯：一块块彩色方块，中心一朵小花，一圈圈不同颜色的针脚往外绕，拼成一整块毯子。温暖、手作、怀旧又可爱，适合手作市集、母婴、毛线店、复古家居。",
+  "prompt": "钩针方块风格：奶油底 #FFF6E8，内容拆成便当格，格子之间用米白粗缝线分隔（gap 6px）；插图格和数字格是祖母方块图案：中心小花 + 三四圈不同颜色的方形环（芥黄 #E8B04A、玫红 #D9576B、湖绿 #4FA39A、奶白），每圈用细虚线表示针脚；文字深棕 #3B2A20，圆润粗体标题；按钮玫红底白字、圆角 10px",
+  "promptEn": "Crochet granny-square style: cream #FFF6E8 background with content in bento tiles separated by off-white seams (6px gap); the illustration and number tiles carry granny-square motifs: a small flower in the center ringed by three or four square bands in different colors (mustard #E8B04A, rose #D9576B, lake green #4FA39A, off-white), each band edged with a fine dashed line for stitches; dark brown #3B2A20 text with rounded bold headlines; rose buttons with white text and 10px radius",
+  "avoid": "针脚只用细虚线暗示，不要真实的毛线照片纹理；颜色四五种轮换，文字格保持素底。",
+  "neg": [
+    "毛线照片纹理、文字压在花纹上、霓虹色",
+    "photographic yarn textures, text over patterns, neon colors"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #D9576B; --a2: #4FA39A; --on: #fff; background: #FFF6E8; color: #3B2A20; font-family: "Avenir Next", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { gap: 6px; } .nav, .copy, .art, .feats article, .stats div { border-radius: 10px !important; }
+.nav { background: #4FA39A !important; color: #fff; } .cta, .b1 { border-radius: 10px; } .logo i { border-radius: 50%; background: #E8B04A; }
+.copy { background: #fff !important; } .hero h1 { font-weight: 800; }
+.art { background: radial-gradient(circle, #E8B04A 0 6px, #fff 7px 10px, transparent 11px), conic-gradient(#D9576B 0 0) center / 46% 46% no-repeat, conic-gradient(#fff 0 0) center / 66% 66% no-repeat, conic-gradient(#4FA39A 0 0) center / 84% 84% no-repeat, #E8B04A !important; box-shadow: inset 0 0 0 3px #FFF6E8; outline: 1.5px dashed rgba(255,255,255,.8); outline-offset: -10px; }
+.feats article:nth-child(1) { background: #FBE3E6 !important; } .feats article:nth-child(2) { background: #FCEFD3 !important; } .feats article:nth-child(3) { background: #DCEFEC !important; }
+.feats article { outline: 1.5px dashed rgba(59,42,32,.25); outline-offset: -6px; }
+.stats div { background: #fff !important; } .stats div:nth-child(1) { background: #D9576B !important; color: #fff; } .ft { background: none !important; }
+.feats b, .kicker { color: #D9576B; font-weight: 700; } .stats b { font-weight: 800; }
+</style>

@@ -1,4 +1,4 @@
-// 管理后台的 11 种风格。每种风格 = 一组 CSS 变量（颜色、圆角、阴影、字体、行高）+ 导航形态 + 少量专属细节（extra）。
+// 管理后台的各种风格。每种风格 = 一组 CSS 变量（颜色、圆角、阴影、字体、行高）+ 导航形态 + 少量专属细节（extra）。
 // 页面模板（pages.mjs）只认这些变量，所以加一种风格只要在这里加一项，5 种页面会自动各多一个案例。
 // vague 里的 {页} 会换成页面名（如「用户列表」）。desc / descEn 会原样拼进提示词，写具体数值（色值、圆角、阴影），不要写“高级”“大气”这种空话。
 export const SANS = '-apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif';
@@ -194,5 +194,69 @@ input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(34,211,23
 .card { background: linear-gradient(180deg, #16233A, #131D30); }
 .btn.pri { background: linear-gradient(180deg, #FFA53D, #FA8C16); }
 .tbl th { color: #C9B48A; }`,
+  },
+  {
+    id: 'swiss', zh: '瑞士国际', en: 'Swiss Style', nav: 'top', term: 'Swiss Style 瑞士国际主义',
+    use: '理性、清楚、信息层级一目了然，适合设计团队、咨询公司和重视排版的产品后台。', vague: ['{页}要有设计感但别花哨', '后台像海报一样有秩序'],
+    desc: '瑞士国际主义：纯白底 #FFFFFF，顶部纯黑 #111111 横向导航，选中项是实心信号红 #E3000F 色块；完全直角（圆角 0）、不用阴影，卡片用 1px #111111 黑线框；标题 32px、字重 800、字距 -0.02em 紧排，标题下压一条 6px 宽的红色短横；表头小号大写、黑字、底部 2px 黑线；数字用等宽对齐，全站只有黑、白、红三种颜色，状态用小方块区分。',
+    descEn: 'Swiss International style: pure white #FFFFFF with a solid black #111111 top navigation where the active item is a solid signal-red #E3000F block; square corners (0 radius) and no shadows, cards framed by 1px #111111 black lines; headings at 32px, weight 800, tight -0.02em tracking, with a short 6px-wide red bar under the title; table headers in small uppercase black with a 2px black rule below; tabular numbers; the whole site uses only black, white and red, with small squares for status.',
+    v: { bg: '#FFFFFF', panel: '#FFFFFF', nav: '#111111', 'nav-text': '#FFFFFF', 'nav-dim': '#BDBDBD', 'nav-hover': 'rgba(255,255,255,.1)', 'nav-active': '#E3000F', 'nav-active-text': '#FFFFFF', 'nav-line': '#111111',
+      text: '#111111', dim: '#5E5E5E', line: '#111111', 'line-soft': '#E2E2E2', hover: '#F4F4F4', accent: '#E3000F', 'on-accent': '#FFFFFF', ok: '#111111', warn: '#8A8A8A', danger: '#E3000F',
+      radius: '0px', 'radius-sm': '0px', shadow: 'none', 'head-weight': '800', th: '#FFFFFF' },
+    av: ['#111111', '#E3000F', '#5E5E5E', '#111111'],
+    extra: `.ph { position: relative; padding-bottom: 16px; }
+.ph::after { content: ""; position: absolute; left: 0; bottom: 0; width: 48px; height: 6px; background: #E3000F; }
+.ph h1 { font-size: 32px; letter-spacing: -.02em; }
+.brand i, .nav .av { background: #E3000F; }
+.tbl th { color: #111; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-bottom: 2px solid #111; }
+.badge { height: auto; padding: 0; background: none; color: #111; }
+.badge::before { width: 8px; height: 8px; border-radius: 0; background: var(--c); }
+.btn.pri { background: #111; border-color: #111; color: #fff; }
+.btn.pri:hover { background: #E3000F; border-color: #E3000F; filter: none; }
+.av { border-radius: 0; }
+.seg { border: 1px solid #111; padding: 0; gap: 0; background: #fff; }
+.seg button { height: 30px; }
+.seg button[aria-pressed="true"] { background: #111; color: #fff; box-shadow: none; }
+.fchips button { border-color: #111; }
+.fchips button[aria-pressed="true"] { background: #111; color: #fff; }
+.sw i, .sw i::after { border-radius: 0; }`,
+  },
+  {
+    id: 'clay', zh: '黏土拟态', en: 'Claymorphism', nav: 'rail', term: 'Claymorphism 黏土拟态',
+    use: '圆润、胖乎乎、像捏出来的软陶，适合面向年轻用户、教育和创意工具的轻量后台。', vague: ['{页}要可爱一点', '像橡皮泥捏的按钮'],
+    desc: '黏土拟态：薄荷灰底 #E7F2EE，卡片奶白 #FDFCF8、超大圆角 24px，没有描边，靠“外面一层柔和投影 + 里面左上亮、右下暗的两道内阴影”做出鼓起来的软陶感（14px 16px 32px rgba(62,96,84,.16), inset -6px -6px 14px rgba(62,96,84,.08), inset 6px 6px 14px #FFFFFF）；按钮胶囊形同样鼓起，按下时变凹；主色蜜桃橘 #FF8A5B 配深棕字 #3A1606；左侧 64px 图标窄栏，选中项是一颗鼓起的白色圆角块；头像和徽标用糖果色。',
+    descEn: 'Claymorphism: #E7F2EE mint-gray background, #FDFCF8 cream cards with an extra-large 24px radius and no borders; the puffy, hand-molded look comes from a soft outer shadow plus two inner shadows, light at top-left and dark at bottom-right (14px 16px 32px rgba(62,96,84,.16), inset -6px -6px 14px rgba(62,96,84,.08), inset 6px 6px 14px #FFFFFF); pill buttons puff up the same way and press in on click; #FF8A5B peach as the primary color with dark-brown #3A1606 text on it; a 64px icon rail on the left where the active item is a puffy white rounded block; candy-colored avatars and badges.',
+    v: { bg: '#E7F2EE', panel: '#FDFCF8', nav: '#E7F2EE', 'nav-text': '#28332F', 'nav-dim': '#6B7C76', 'nav-hover': 'rgba(255,255,255,.55)', 'nav-active': '#FDFCF8', 'nav-active-text': '#E8683A', 'nav-line': 'transparent',
+      text: '#28332F', dim: '#6B7C76', line: '#E3E9E5', hover: '#F3F7F4', accent: '#FF8A5B', 'on-accent': '#3A1606', ok: '#2E9E78', warn: '#D88A1E', danger: '#E5566B',
+      radius: '24px', 'radius-sm': '14px', 'radius-btn': '999px', shadow: '14px 16px 32px rgba(62,96,84,.16), inset -6px -6px 14px rgba(62,96,84,.08), inset 6px 6px 14px #FFFFFF', bar: 'transparent', field: '#F1F5F2', row: '52px', 'head-weight': '700' },
+    av: ['#FF9F7A', '#7FC8F8', '#9BE0B8', '#C9A7F5'], avText: '#28332F',
+    extra: `.card, .btn, input, select, textarea, .seg, .fchips button { border-color: transparent; }
+.bar { border-bottom-color: transparent; }
+.btn { box-shadow: 4px 6px 12px rgba(62,96,84,.14), inset -3px -3px 6px rgba(62,96,84,.08), inset 3px 3px 6px #FFFFFF; }
+.btn.pri { box-shadow: 4px 6px 14px rgba(232,104,58,.32), inset -3px -3px 6px rgba(150,50,10,.18), inset 3px 3px 6px rgba(255,255,255,.45); }
+.btn:active { box-shadow: inset 3px 3px 7px rgba(62,96,84,.18), inset -3px -3px 7px #FFFFFF; }
+input, select, textarea { box-shadow: inset 3px 3px 7px rgba(62,96,84,.12), inset -3px -3px 7px #FFFFFF; }
+input:focus, select:focus, textarea:focus { box-shadow: inset 3px 3px 7px rgba(62,96,84,.12), inset -3px -3px 7px #FFFFFF, 0 0 0 3px rgba(255,138,91,.35); }
+.nav a.on { box-shadow: 4px 6px 12px rgba(62,96,84,.14), inset -3px -3px 6px rgba(62,96,84,.06), inset 3px 3px 6px #FFFFFF; }
+.seg { background: #F1F5F2; box-shadow: inset 2px 2px 5px rgba(62,96,84,.12), inset -2px -2px 5px #FFFFFF; border-radius: 999px; }
+.seg button { border-radius: 999px; }
+.seg button[aria-pressed="true"] { box-shadow: 2px 3px 6px rgba(62,96,84,.16), inset 2px 2px 4px #FFFFFF; }
+.fchips button { box-shadow: 2px 3px 7px rgba(62,96,84,.12), inset 2px 2px 4px #FFFFFF; }
+.fchips button[aria-pressed="true"] { background: #FF8A5B; color: #3A1606; }
+.av { box-shadow: inset -2px -2px 4px rgba(0,0,0,.1), inset 2px 2px 4px rgba(255,255,255,.5); }`,
+  },
+  {
+    id: 'nordic', zh: '北欧原木', en: 'Nordic', nav: 'side', term: 'Scandinavian 北欧风',
+    use: '温暖、安静、不累眼，适合长时间使用的内容、家居、生活方式类后台。', vague: ['{页}看着要舒服', '后台想要温暖一点的白'],
+    desc: '北欧原木风：暖米白底 #F4F1EC，侧栏是浅橡木色 #E8E1D5，卡片 #FCFBF8、圆角 10px、1px #E4DDD1 描边和很淡的暖色投影（0 1px 3px rgba(80,62,40,.06)）；主色鼠尾草绿 #5C7F67，辅色陶土 #C98B6B 只用在提醒上；文字是带一点绿的炭灰 #2F3833，字重偏轻（标题 600、正文 400），行高宽松 52px；选中导航项是白色块 + 左侧 3px 绿色竖条，整体低饱和、不用纯黑纯白。',
+    descEn: 'Nordic oak style: #F4F1EC warm off-white background, a light-oak #E8E1D5 sidebar, #FCFBF8 cards with a 10px radius, a 1px #E4DDD1 border and a very soft warm shadow (0 1px 3px rgba(80,62,40,.06)); #5C7F67 sage green as the primary color, terracotta #C98B6B only for warnings; slightly green charcoal #2F3833 text with light weights (headings 600, body 400) and airy 52px rows; the active nav item is a white block with a 3px green bar on its left; low saturation overall, no pure black or pure white.',
+    v: { bg: '#F4F1EC', panel: '#FCFBF8', nav: '#E8E1D5', 'nav-text': '#2F3833', 'nav-dim': '#6E716A', 'nav-hover': 'rgba(252,251,248,.55)', 'nav-active': '#FCFBF8', 'nav-active-text': '#2F3833', 'nav-line': '#DDD4C6',
+      text: '#2F3833', dim: '#727770', line: '#E4DDD1', hover: '#F6F3EE', accent: '#5C7F67', 'on-accent': '#FCFBF8', ok: '#5C7F67', warn: '#C98B6B', danger: '#B85C50',
+      radius: '10px', 'radius-sm': '8px', shadow: '0 1px 3px rgba(80,62,40,.06)', row: '52px', th: '#F6F3EE' },
+    av: ['#8FA897', '#C98B6B', '#A7A08F', '#7D8FA0'],
+    extra: `.nav a.on { box-shadow: inset 3px 0 0 #5C7F67, 0 1px 2px rgba(80,62,40,.08); font-weight: 500; }
+.brand i { background: #5C7F67; color: #FCFBF8; }
+.tbl th { color: #6E716A; font-weight: 500; }
+.ph h1 { font-weight: 600; letter-spacing: .01em; }`,
   },
 ];

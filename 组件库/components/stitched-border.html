@@ -1,0 +1,22 @@
+<!--
+{
+  "en": "Stitched Border", "zh": "缝线描边",
+  "lead": "在卡片边缘内侧画一圈虚线，像皮革或布料上的缝线。立刻有手工、有温度的感觉，适合手作、皮具、户外和儿童产品。",
+  "vague": ["想要手工感", "卡片太冷冰冰"],
+  "terms": ["Stitched Border", "Dashed Outline 虚线描边", "Skeuomorphic Detail 拟物细节"],
+  "prompt": "卡片加缝线描边：卡片底色皮革棕 #8B5A3C、圆角 16px，内侧 6px 处一圈 2px 浅米色 #F3E3C7 虚线（outline: 2px dashed; outline-offset: -8px），虚线带一点 1px 深色投影模拟针脚凹陷；卡片上的文字用米色，标签像缝上去的布标。"
+}
+-->
+<div class="leather">
+  <span class="tag">HANDMADE</span>
+  <h3>山月 · 手缝笔记本</h3>
+  <p>植鞣牛皮封面，每一针都是手工。</p>
+</div>
+<style>
+.leather { position: relative; width: 260px; padding: 26px 24px 22px; border-radius: 16px; color: #F3E3C7; font-family: -apple-system, "PingFang SC", sans-serif;
+  background: radial-gradient(120% 90% at 20% 0%, #A5704E, #7A4B30); outline: 2px dashed #F3E3C7; outline-offset: -9px; box-shadow: 0 10px 24px rgba(90,50,20,.35), inset 0 0 0 1px rgba(0,0,0,.15); filter: drop-shadow(0 0 0 transparent); }
+.leather::after { content: ""; position: absolute; inset: 8px; border-radius: 10px; border: 2px dashed rgba(0,0,0,.18); transform: translate(1px, 1px); pointer-events: none; }
+.tag { position: absolute; top: -8px; right: 22px; padding: 4px 10px 6px; background: #F3E3C7; color: #7A4B30; font-size: 10px; font-weight: 700; letter-spacing: .15em; border-radius: 0 0 4px 4px; outline: 1px dashed #A5704E; outline-offset: -4px; }
+h3 { margin: 0 0 6px; font: 600 18px "Songti SC", "Noto Serif SC", serif; }
+p { margin: 0; font-size: 12px; opacity: .85; }
+</style>

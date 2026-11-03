@@ -1,0 +1,23 @@
+<!--
+{
+  "en": "Focus Dim", "zh": "悬停聚焦",
+  "lead": "鼠标停在一张卡片上时，其他卡片一起变暗、变淡，只有这张保持清楚。注意力被自然地“推”到当前项，适合作品集、商品墙和菜单。",
+  "vague": ["卡片太多不知道看哪个", "想让悬停的那个更突出"],
+  "terms": ["Focus Dim", "Spotlight Hover", "Sibling Fade 兄弟元素淡出"],
+  "prompt": "卡片网格做悬停聚焦：鼠标停在某张卡片上时，其他卡片透明度降到 35%、轻微模糊 1px、缩小到 0.97，当前卡片放大到 1.03 并加深投影，过渡 250ms；用 .grid:has(.card:hover) .card:not(:hover) 实现，不需要 JS；鼠标离开网格时全部恢复。"
+}
+-->
+<div class="grid">
+  <div class="card" style="--c:#FDBA74">晨</div><div class="card" style="--c:#93C5FD">江</div><div class="card" style="--c:#86EFAC">山</div>
+  <div class="card" style="--c:#C4B5FD">月</div><div class="card" style="--c:#FCA5A5">灯</div><div class="card" style="--c:#FDE68A">茶</div>
+</div>
+<style>
+.grid { display: grid; grid-template-columns: repeat(3, 80px); gap: 10px; padding: 14px; border-radius: 16px; background: #fff; border: 1px solid #E4E4E7; }
+.card { display: grid; place-items: center; height: 70px; border-radius: 12px; background: var(--c); color: rgba(0,0,0,.6); font: 600 22px "Songti SC", serif; cursor: pointer; transition: opacity .25s, filter .25s, transform .25s, box-shadow .25s; }
+.grid:has(.card:hover) .card:not(:hover) { opacity: .35; filter: blur(1px); transform: scale(.97); }
+.card:hover { transform: scale(1.03); box-shadow: 0 10px 24px rgba(0,0,0,.15); }
+</style>
+<script>
+// 让自动演示能找到可悬停的卡片（效果本身是纯 CSS）
+document.querySelectorAll(".card").forEach((c) => c.addEventListener("mouseenter", () => {}));
+</script>

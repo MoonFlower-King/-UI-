@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Inkstone",
+  "zh": "砚台墨韵",
+  "alias": [
+    "砚台",
+    "松烟墨",
+    "Ink Stone",
+    "墨黑"
+  ],
+  "lead": "像一方磨好墨的砚台：深灰黑的石头质感，墨池里泛着一点湿润的光，文字是宣纸般的米白，点缀极少的古铜金。沉、静、贵，适合高端茶、香、文房、书法品牌。",
+  "prompt": "砚台墨韵风格：整页深墨灰底 #1B1C1E，叠一层极淡的石纹（大面积径向渐变噪点），文字米白 #E8E4DA、宋体类衬线，标题竖排；唯一的强调色是古铜金 #C2A46B，只用在细线、编号和按钮描边；插图是一方椭圆砚台，墨池里有一圈湿润的反光",
+  "promptEn": "Inkstone style: deep ink-gray #1B1C1E page with a very faint stone texture (large soft radial gradients), rice-paper white #E8E4DA Song-style serif text with vertical headlines; the only accent is antique bronze-gold #C2A46B, used just for hairlines, numbers and outlined buttons; the illustration is an oval inkstone whose ink well catches a wet ring of reflected light",
+  "avoid": "黑底要带一点暖灰和石头纹理，纯黑 #000 会像关机屏幕。金色只做细线，不要做金色大字或渐变金属字。",
+  "neg": [
+    "纯黑底、金属渐变大字、霓虹光",
+    "pure black background, metallic gradient lettering, neon glow"
+  ],
+  "kit": "site-kit",
+  "layout": "vertical"
+}
+-->
+<style>
+.site { --a: #C2A46B; --a2: #C2A46B; --on: #1B1C1E; color: #E8E4DA; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
+  background: radial-gradient(60% 40% at 20% 10%, rgba(255,255,255,.035), transparent), radial-gradient(50% 50% at 90% 70%, rgba(255,255,255,.03), transparent), #1B1C1E; }
+.nav { border-bottom: 1px solid rgba(194,164,107,.3); } .logo i { border-radius: 50%; background: none; border: 1px solid #C2A46B; }
+.cta, .b1 { background: none; color: #C2A46B; border: 1px solid #C2A46B; } .sub { opacity: .7; }
+.art { border-radius: 4px; background: linear-gradient(160deg, #26282B, #141517); }
+.art .m { position: absolute; left: 14%; right: 14%; top: 18%; bottom: 18%; border-radius: 50%; background: radial-gradient(closest-side, #0B0C0D 78%, #2C2E31 80%, #1A1B1D 100%); box-shadow: 0 10px 30px rgba(0,0,0,.5), inset 0 2px 0 rgba(255,255,255,.05); }
+.art .h { position: absolute; left: 30%; right: 30%; top: 34%; bottom: 34%; border-radius: 50%; background: radial-gradient(closest-side, transparent 70%, rgba(232,228,218,.35) 72%, transparent 76%); }
+.feats b { color: #C2A46B; } .feats article { border-right: 1px solid rgba(194,164,107,.25); padding-right: 12px; }
+.stats { margin: 0 26px; border-top: 1px solid rgba(194,164,107,.3); } .stats b { font-weight: 400; color: #C2A46B; }
+</style>

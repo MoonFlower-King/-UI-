@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Tiki Bar",
+  "zh": "提基酒吧",
+  "alias": [
+    "提基",
+    "Tiki",
+    "热带酒吧"
+  ],
+  "lead": "五六十年代美国流行的提基酒吧：深木色、竹子和茅草、火把的暖光、热带鸡尾酒和雕刻木面具般的粗犷图形。热闹、复古、带点度假的野趣，适合酒吧、热带饮品、夏日派对、复古活动。",
+  "prompt": "提基酒吧风格：首屏是深夜青绿 #10322F 到暖橙 #E07B39 的落日渐变，前景是一排深褐 #3B2416 竹竿剪影（竖条 + 横向竹节）和一丛棕榈叶剪影，两支火把发出暖黄光；超大标题奶白粗体，带深褐描影；正文区深木色 #2A1A10、文字奶白 #F5E6CC；主色火焰橙 #F28C28、辅色热带青 #2BA59A；按钮橙底深字、圆角 6px",
+  "promptEn": "Tiki bar style: the hero is a sunset gradient from deep night teal #10322F to warm orange #E07B39, with a foreground of dark brown #3B2416 bamboo silhouettes (vertical poles with horizontal nodes) and palm-frond silhouettes, plus two torches giving off warm yellow light; an oversized cream bold headline with a dark brown offset shadow; dark wood #2A1A10 body sections with cream #F5E6CC text; flame orange #F28C28 as the primary color and tropical teal #2BA59A as the secondary; orange buttons with dark text and 6px radius",
+  "avoid": "提基的图形要“剪影化”，别用写实照片；避免把具体民族的神像、宗教面具当装饰，用竹子、棕榈和火把表达就够。",
+  "neg": [
+    "宗教神像面具、写实照片、霓虹灯牌",
+    "religious idols and masks, realistic photos, neon signs"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #F28C28; --a2: #2BA59A; --on: #2A1A10; background: #2A1A10; color: #F5E6CC; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { color: #FFF1D6; font-weight: 900; text-shadow: 3px 3px 0 #3B2416; } .kicker { color: #FFD08A; } .b2 { color: #FFD08A; } .b1, .cta { border-radius: 6px; } .logo i { background: #2BA59A; border-radius: 50% 50% 4px 4px; }
+.art { overflow: hidden; background: linear-gradient(#10322F, #5A4A3A 55%, #E07B39); }
+.art::before { content: ""; position: absolute; right: 30px; bottom: 0; width: 120px; height: 230px; background: linear-gradient(transparent 0 46px, #2A1A10 46px 50px, transparent 50px 112px, #2A1A10 112px 116px, transparent 116px) , repeating-linear-gradient(90deg, #3B2416 0 16px, transparent 16px 26px); }
+.art .m { position: absolute; right: 170px; bottom: 90px; width: 26px; height: 34px; border-radius: 50% 50% 40% 40%; background: radial-gradient(circle at 50% 70%, #FFE08A, #F28C28 60%, transparent 70%); box-shadow: 0 0 40px 14px rgba(242,140,40,.45), 190px -20px 0 -2px #F28C28; }
+.art .h { position: absolute; right: 0; top: 30px; width: 160px; height: 90px; background: radial-gradient(80px 22px at 100% 50%, #0B231F 60%, transparent 62%), radial-gradient(70px 18px at 100% 90%, #0B231F 60%, transparent 62%), radial-gradient(70px 18px at 100% 10%, #0B231F 60%, transparent 62%); }
+.feats b { color: #F28C28; } .feats article { border-top-color: rgba(245,230,204,.15) !important; } .stats b { color: #F28C28; }
+</style>

@@ -9,7 +9,8 @@
     "build:site": "node \"图鉴网站（开源）/scripts/build.mjs\"",
     "setup": "npm install && npx playwright install chromium",
     "build:ui": "node 组件库/scripts/build.mjs && node 组件库/scripts/build-prompts.mjs",
-    "build": "npm run build:ui && npm run build:site"
+    "build": "npm run build:ui && npm run build:site",
+    "shots": "node 组件库/scripts/shots.mjs"
   },
   "devDependencies": {
     "playwright": "^1.48.0"

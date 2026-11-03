@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Holographic",
+  "zh": "镭射全息",
+  "alias": [
+    "镭射",
+    "全息",
+    "幻彩",
+    "Iridescent"
+  ],
+  "lead": "像镭射贴纸和全息卡片：银色底上流动着粉、青、紫、黄的幻彩光泽，角度一变颜色就变。闪亮、未来、有潮流感，适合美妆、潮牌、数码配件、音乐活动。",
+  "prompt": "镭射全息风格：浅银底 #ECEAF2，首屏插图铺满一层幻彩渐变（粉 #FFB3E6、青 #9FF3F0、紫 #C8B6FF、柠黄 #FFF3A6 的锥形渐变 + 斜向高光条），背景位置缓慢流动；超大黑色粗体标题压在上面；正文区银白、文字深紫黑 #1A1033；按钮黑底白字胶囊形",
+  "promptEn": "Holographic style: light silver #ECEAF2 base; the hero illustration is covered by an iridescent gradient (a conic gradient of pink #FFB3E6, cyan #9FF3F0, violet #C8B6FF and lemon #FFF3A6 plus diagonal sheen stripes) whose background position slowly drifts; an oversized black bold headline sits on top; the body is silvery white with deep purple-black #1A1033 text; black pill-shaped buttons with white text",
+  "avoid": "幻彩只用在一块主视觉或小面积点缀上，整页铺满会刺眼、文字也读不清。文字保持深色实色，不要把字也做成幻彩。",
+  "neg": [
+    "整页幻彩、幻彩文字、高饱和霓虹",
+    "iridescent everything, iridescent text, saturated neon"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #1A1033; --a2: #6B4FD6; --on: #fff; background: #F4F3F8; color: #1A1033; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 900; } .b1, .cta { border-radius: 99px; } .logo i { border-radius: 50%; background: conic-gradient(#FFB3E6, #9FF3F0, #C8B6FF, #FFF3A6, #FFB3E6); }
+.art { background: repeating-linear-gradient(115deg, rgba(255,255,255,0) 0 40px, rgba(255,255,255,.55) 60px, rgba(255,255,255,0) 80px 120px), conic-gradient(from 30deg at 60% 40%, #FFB3E6, #9FF3F0, #C8B6FF, #FFF3A6, #FFB3E6), #ECEAF2;
+  background-size: 300% 100%, 100% 100%; animation: holo 8s linear infinite; }
+@keyframes holo { to { background-position: 300% 0, 0 0; } }
+.art .m { position: absolute; right: 50px; top: 70px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, rgba(255,255,255,.2) 60%); mix-blend-mode: soft-light; }
+.feats b, .kicker { color: #6B4FD6; font-weight: 700; } .stats b { font-weight: 900; }
+</style>

@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Aquarium",
+  "zh": "水族馆",
+  "alias": [
+    "水族馆",
+    "海洋馆",
+    "Underwater"
+  ],
+  "lead": "站在水族馆的大玻璃前：深青蓝的水，从上面洒下来的一道道光，慢慢升起的小气泡，偶尔一抹珊瑚橘。安静、治愈、有一点梦幻，适合海洋馆、潜水、SPA、助眠和冥想产品。",
+  "prompt": "水族馆风格：整页深青蓝渐变 #0B3C49 → #0A2230，顶部有几道斜射下来的半透明光束（锥形渐变）；文字浅青白 #E3F6F5；主色珊瑚橘 #FF7F66（只给按钮和编号）、辅色浅青 #7FD8D2；插图是一片水，几颗大小不一的气泡（细白描边圆）缓慢上升；左侧竖向导航；圆角 12px",
+  "promptEn": "Aquarium style: the whole page is a deep teal gradient from #0B3C49 to #0A2230 with a few translucent light rays slanting down from the top (conic gradients); pale aqua-white #E3F6F5 text; coral #FF7F66 as the primary color (buttons and numbers only) with light aqua #7FD8D2 as the secondary; the illustration is a body of water with a few bubbles of different sizes (thin white-outlined circles) slowly rising; a vertical navigation on the left; 12px radius",
+  "avoid": "光束和气泡都要非常淡、动得很慢，快了会让人晕。珊瑚橘只点一两处，大面积暖色会破坏“水下”的冷静。",
+  "neg": [
+    "快速动画、卡通鱼、高饱和蓝",
+    "fast animation, cartoon fish, saturated blue"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #FF7F66; --a2: #7FD8D2; --on: #0A2230; color: #E3F6F5; font-family: -apple-system, "Inter", "PingFang SC", sans-serif;
+  background: conic-gradient(from 160deg at 40% -10%, transparent 0 10deg, rgba(160,240,235,.08) 14deg, transparent 20deg 28deg, rgba(160,240,235,.06) 32deg, transparent 38deg), linear-gradient(#0B3C49, #0A2230); }
+.pg > .nav { border-right-color: rgba(127,216,210,.2); } .logo i { border-radius: 50%; background: #7FD8D2; }
+.b1, .cta { border-radius: 12px; } .kicker, .b2 { color: #7FD8D2; } .hero h1 { font-weight: 600; }
+.art { border-radius: 12px; background: linear-gradient(rgba(127,216,210,.12), rgba(10,34,48,.2)); overflow: hidden; }
+.art .m, .art .h, .art::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(227,246,245,.7); animation: rise 9s linear infinite; }
+.art .m { left: 30%; bottom: -20px; width: 16px; height: 16px; } .art .h { left: 60%; bottom: -20px; width: 10px; height: 10px; animation-delay: -4s; } .art::after { left: 45%; bottom: -20px; width: 22px; height: 22px; animation-delay: -7s; }
+@keyframes rise { to { transform: translateY(-200px); opacity: 0; } }
+.feats b { color: #FF7F66; } .feats article { padding: 12px; border-radius: 12px; background: rgba(227,246,245,.06); } .stats b { color: #7FD8D2; font-weight: 600; }
+</style>

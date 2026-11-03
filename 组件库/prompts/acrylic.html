@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Frosted Acrylic",
+  "zh": "磨砂亚克力",
+  "alias": [
+    "亚克力",
+    "Acrylic",
+    "透明板材"
+  ],
+  "lead": "像一块块彩色的磨砂亚克力板：半透明、带颜色、边缘有一道亮亮的切边光，叠在柔和的彩色背景上。现代、轻盈、有实物感，适合潮流零售、设计工具、展会和快闪店。",
+  "prompt": "磨砂亚克力风格：背景是淡紫 #E9E6FF、薄荷 #DDF5EC 和桃色 #FFE3D8 三团大径向渐变；内容拆成便当格，每格是带颜色的半透明板（例如 rgba(255,255,255,.45) 叠一层浅色）、backdrop-filter: blur(10px)，边缘 1px 白色高光 + 内侧一道 2px 亮切边，圆角 16px、轻投影；主色深靛 #2C2A6B；无衬线粗体标题",
+  "promptEn": "Frosted acrylic style: a background of three large radial gradients in lavender #E9E6FF, mint #DDF5EC and peach #FFE3D8; content in bento tiles, each a tinted translucent panel (e.g. rgba(255,255,255,.45) plus a light color) with backdrop-filter: blur(10px), a 1px white edge highlight and a 2px bright inner bevel, 16px radius and a soft shadow; deep indigo #2C2A6B as the primary color; bold sans-serif headlines",
+  "avoid": "和玻璃拟态的区别在于“有颜色的厚板 + 亮切边”；每块板颜色要淡，否则字读不清。磨砂模糊只给大板，小按钮别用。",
+  "neg": [
+    "深色背景、强烈霓虹、每个小元素都磨砂",
+    "dark background, strong neon, frosting every small element"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #2C2A6B; --a2: #5B4FD6; --on: #fff; color: #1F1D45; font-family: -apple-system, "Inter", "PingFang SC", sans-serif;
+  background: radial-gradient(45% 40% at 15% 20%, #D9D3FF, transparent 70%), radial-gradient(45% 45% at 85% 35%, #CFF2E3, transparent 70%), radial-gradient(50% 45% at 50% 95%, #FFD9CB, transparent 70%), #F4F2FB; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 16px !important; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), inset 0 2px 0 rgba(255,255,255,.9), 0 6px 20px rgba(44,42,107,.08); }
+.nav { background: rgba(255,255,255,.55) !important; } .copy { background: rgba(255,255,255,.5) !important; }
+.art { background: rgba(217,211,255,.55) !important; } .feats article:nth-child(1) { background: rgba(207,242,227,.6) !important; } .feats article:nth-child(2) { background: rgba(255,217,203,.6) !important; } .feats article:nth-child(3) { background: rgba(255,255,255,.5) !important; }
+.stats div { background: rgba(255,255,255,.45) !important; } .stats div:nth-child(1) { background: rgba(44,42,107,.85) !important; color: #fff; }
+.ft { background: none !important; box-shadow: none; } .hero h1 { font-weight: 800; } .b1, .cta { border-radius: 10px; } .logo i { border-radius: 4px; }
+.art .m { position: absolute; left: 22%; top: 18%; width: 48%; height: 46%; border-radius: 10px; background: rgba(255,217,203,.7); box-shadow: inset 0 0 0 1px #fff, inset 0 2px 0 #fff; transform: rotate(-8deg); }
+.art .h { position: absolute; right: 16%; bottom: 16%; width: 44%; height: 40%; border-radius: 10px; background: rgba(207,242,227,.75); box-shadow: inset 0 0 0 1px #fff, inset 0 2px 0 #fff; transform: rotate(6deg); }
+.feats b, .kicker { color: #5B4FD6; } .stats b { font-weight: 800; }
+</style>

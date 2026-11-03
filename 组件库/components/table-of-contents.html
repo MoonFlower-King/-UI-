@@ -1,0 +1,35 @@
+<!--
+{
+  "en": "Table of Contents", "zh": "文章目录",
+  "lead": "长文章旁边的小目录：列出各节标题，点一下跳过去；滚动正文时，当前读到的那一节自动高亮，读者随时知道自己在哪儿。",
+  "vague": ["文章太长找不到位置", "想让读者知道读到哪了"],
+  "terms": ["Table of Contents", "Scrollspy 滚动监听", "On This Page"],
+  "prompt": "长文页面右侧放文章目录：吸顶，列出 h2 标题，左侧 2px 竖线，当前小节的条目文字变江月橘 #FA8C16、左侧竖线对应位置出现一段橘色高亮并平滑移动；用 IntersectionObserver 判断当前小节；点击条目平滑滚动到该节。"
+}
+-->
+<div class="doc">
+  <div class="body">
+    <h4 id="a">一、底色</h4><p>夜色江面不用纯黑，用带一点蓝的深色。</p><p>整页的明度都要跟着降一档。</p>
+    <h4 id="b">二、月光</h4><p>暖金色只给标题和少量强调。</p><p>光晕用径向渐变，越淡越好。</p>
+    <h4 id="c">三、点缀</h4><p>江月橘只出现在最重要的按钮上。</p><p>一屏最多出现一次。</p>
+    <h4 id="d">四、字体</h4><p>标题宋体，正文无衬线。</p><p style="height:80px"></p>
+  </div>
+  <nav class="toc"><i></i><a data-t="a">底色</a><a data-t="b">月光</a><a data-t="c">点缀</a><a data-t="d">字体</a></nav>
+</div>
+<style>
+.doc { display: flex; gap: 12px; width: 320px; height: 200px; padding: 12px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font-size: 12px; }
+.body { flex: 1; overflow: auto; scroll-behavior: smooth; padding-right: 6px; scrollbar-width: thin; }
+h4 { margin: 0 0 6px; font: 600 14px "Songti SC", serif; color: #18181B; } p { margin: 0 0 8px; line-height: 1.7; color: #71717A; } p + h4 { margin-top: 14px; }
+.toc { position: relative; flex: none; width: 70px; padding-left: 10px; border-left: 2px solid #F4F4F5; }
+.toc i { position: absolute; left: -2px; top: 0; width: 2px; height: 26px; background: #FA8C16; transition: transform .3s cubic-bezier(.3,.7,.3,1); }
+.toc a { display: block; height: 26px; line-height: 26px; color: #A1A1AA; cursor: pointer; transition: color .2s; }
+.toc a.on { color: #FA8C16; font-weight: 600; }
+</style>
+<script>
+const body = document.querySelector(".body"), links = [...document.querySelectorAll(".toc a")], bar = document.querySelector(".toc i");
+const set = (id) => links.forEach((a, i) => { if (a.dataset.t === id) { a.classList.add("on"); bar.style.transform = `translateY(${i * 26}px)`; } else a.classList.remove("on"); });
+const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) set(e.target.id); }); }, { root: body, rootMargin: "0px 0px -70% 0px" });
+document.querySelectorAll("h4").forEach((h) => io.observe(h));
+links.forEach((a) => a.addEventListener("click", () => { body.scrollTop = document.getElementById(a.dataset.t).offsetTop - body.offsetTop; }));
+set("a");
+</script>

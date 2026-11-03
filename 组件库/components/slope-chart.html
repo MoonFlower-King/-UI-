@@ -1,0 +1,37 @@
+<!--
+{
+  "en": "Slope Chart", "zh": "斜率图",
+  "lead": "左右两根竖轴代表“之前”和“之后”，每一项连一条线，越陡变化越大。比两组柱子更一眼看出谁变好了、谁变差了。",
+  "vague": ["想对比前后变化", "两组柱子看不出谁涨谁跌"],
+  "terms": ["Slope Chart", "Before / After 前后对比", "Dumbbell Chart 哑铃图"],
+  "prompt": "用斜率图对比改版前后的 5 个指标（同一个百分比刻度）：左轴「改版前」、右轴「改版后」，每个指标一条线连接两端圆点，左端标「指标名 数值」、右端标数值；变好的线用江月橘 #FA8C16、变差的用灰色 #A1A1AA，线宽 2px；悬停某条线时其他线降到 20% 透明度；线条从左往右依次画出（stroke-dashoffset，600ms，每条延迟 80ms）。"
+}
+-->
+<div class="sc">
+  <svg viewBox="0 0 300 180">
+    <text x="110" y="14" class="ax">改版前</text><text x="230" y="14" class="ax">改版后</text>
+    <line x1="110" y1="24" x2="110" y2="170" class="axis"/><line x1="230" y1="24" x2="230" y2="170" class="axis"/>
+  </svg>
+  <p><i class="up"></i>变好 <i></i>变差</p>
+</div>
+<style>
+.sc { width: 300px; padding: 10px 10px 8px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 11px -apple-system, "PingFang SC", sans-serif; }
+svg { display: block; width: 100%; font: inherit; }
+.ax { fill: #71717A; text-anchor: middle; } .axis { stroke: #E4E4E7; }
+g { cursor: pointer; transition: opacity .2s; } svg:has(g:hover) g:not(:hover) { opacity: .2; }
+g line { stroke-width: 2; stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw .6s ease-out forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+g line, g circle { stroke: #A1A1AA; fill: #A1A1AA; } g.up line, g.up circle { stroke: #FA8C16; fill: #FA8C16; }
+g text { fill: #3F3F46; } g text.l { text-anchor: end; }
+p { display: flex; gap: 6px; align-items: center; justify-content: center; margin: 0; color: #71717A; }
+p i { width: 14px; height: 2px; background: #A1A1AA; } p i.up { background: #FA8C16; } p i + i { margin-left: 8px; }
+</style>
+<script>
+// [指标, 改版前 %, 改版后 %, 越低越好?]
+const D = [["满意度", 62, 78], ["跳出率", 52, 40, 1], ["留存", 38, 49], ["复购", 24, 19], ["退款率", 9, 6, 1]];
+const svg = document.querySelector("svg"), y = (v) => 165 - (v / 85) * 140;
+D.forEach(([n, a, b, low], i) => {
+  const good = low ? b < a : b > a;
+  svg.insertAdjacentHTML("beforeend", `<g class="${good ? "up" : ""}"><line x1="110" y1="${y(a)}" x2="230" y2="${y(b)}" style="animation-delay:${i * 80}ms"/><circle cx="110" cy="${y(a)}" r="3.5"/><circle cx="230" cy="${y(b)}" r="3.5"/><text class="l" x="102" y="${y(a) + 4}">${n} ${a}%</text><text x="238" y="${y(b) + 4}">${b}%</text></g>`);
+});
+</script>

@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Small Caps", "zh": "小型大写字母",
+  "lead": "英文全大写会显得在“喊”，小型大写字母是缩小版的大写，高度和小写字母差不多。用在缩写、标签、页眉上，精致又不吵。",
+  "vague": ["英文全大写太吵", "缩写放在句子里很突兀"],
+  "terms": ["Small Caps", "font-variant-caps", "All Caps 全大写"],
+  "prompt": "英文标签和缩写用小型大写字母：font-variant-caps: all-small-caps，字距 0.06em；对比展示：上一行是全大写（显得突兀），下一行是小型大写（和正文融合）；点击可在两种写法间切换。"
+}
+-->
+<div class="card">
+  <p>Built with <span class="c">HTML</span> and <span class="c">CSS</span>, shipped in <span class="c">2026</span>.</p>
+  <p class="label">Chapter one · <span class="c">The River at Night</span></p>
+  <button>切换：<b>小型大写</b></button>
+</div>
+<style>
+.card { width: 300px; padding: 18px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 15px/1.7 Georgia, "Times New Roman", serif; color: #27272A; }
+p { margin: 0 0 8px; }
+.c { font-variant-caps: all-small-caps; letter-spacing: .06em; color: #AD4E00; transition: color .2s; }
+.card.loud .c { font-variant-caps: normal; text-transform: uppercase; letter-spacing: 0; color: #DC2626; }
+.label { font-size: 13px; color: #71717A; }
+button { margin-top: 6px; padding: 5px 10px; border: 1px solid #E4E4E7; border-radius: 8px; background: #fff; font: 12px -apple-system, sans-serif; cursor: pointer; }
+button b { color: #FA8C16; }
+</style>
+<script>
+const card = document.querySelector(".card"), b = document.querySelector("button b");
+document.querySelector("button").addEventListener("click", () => {
+  card.classList.toggle("loud"); b.textContent = card.classList.contains("loud") ? "全大写" : "小型大写";
+});
+</script>

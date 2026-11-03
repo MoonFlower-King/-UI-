@@ -29,7 +29,9 @@
       "section-rhythm",
       "master-detail",
       "overlap-layout",
-      "sticky-footer"
+      "sticky-footer",
+      "auto-fit-grid",
+      "pancake-stack"
     ]
   },
   {
@@ -54,7 +56,9 @@
       "text-scrim",
       "number-format",
       "caps-tracking",
-      "link-style"
+      "link-style",
+      "lead-paragraph",
+      "small-caps"
     ]
   },
   {
@@ -83,7 +87,9 @@
       "squiggle-underline",
       "flip-counter",
       "text-fill-hover",
-      "glitch-text"
+      "glitch-text",
+      "letter-drop",
+      "layered-text-shadow"
     ]
   },
   {
@@ -109,7 +115,9 @@
       "color-blind-safe",
       "design-tokens",
       "state-layer",
-      "high-contrast"
+      "high-contrast",
+      "split-complementary",
+      "triadic-color"
     ]
   },
   {
@@ -140,7 +148,9 @@
       "line-art",
       "dreamy-gradient",
       "newspaper",
-      "blueprint"
+      "blueprint",
+      "art-deco",
+      "vaporwave"
     ]
   },
   {
@@ -165,7 +175,9 @@
       "glossy",
       "double-border",
       "halftone",
-      "grain-gradient"
+      "grain-gradient",
+      "stitched-border",
+      "bevel"
     ]
   },
   {
@@ -213,7 +225,9 @@
       "peek-carousel",
       "stepper-vertical",
       "action-bar",
-      "load-more"
+      "load-more",
+      "table-of-contents",
+      "pricing-toggle"
     ]
   },
   {
@@ -254,7 +268,9 @@
       "search-scope",
       "credit-card-form",
       "error-summary",
-      "checkbox-tree"
+      "checkbox-tree",
+      "password-rules",
+      "form-wizard"
     ]
   },
   {
@@ -289,7 +305,9 @@
       "bullet-chart",
       "waffle-chart",
       "activity-feed",
-      "tag-cloud"
+      "tag-cloud",
+      "slope-chart",
+      "histogram"
     ]
   },
   {
@@ -316,7 +334,9 @@
       "onboarding-modal",
       "emoji-picker",
       "quick-view",
-      "snackbar-action"
+      "snackbar-action",
+      "share-sheet",
+      "type-to-confirm"
     ]
   },
   {
@@ -343,7 +363,9 @@
       "glare-card",
       "text-swap",
       "gradient-follow",
-      "cursor-trail"
+      "cursor-trail",
+      "magnifier-lens",
+      "focus-dim"
     ]
   },
   {
@@ -365,7 +387,8 @@
       "pan-canvas",
       "knob-dial",
       "swipe-actions",
-      "drag-select"
+      "drag-select",
+      "elastic-overscroll"
     ]
   },
   {
@@ -400,7 +423,8 @@
       "autosave-indicator",
       "download-button",
       "field-success",
-      "retry-state"
+      "retry-state",
+      "connection-status"
     ]
   },
   {
@@ -435,7 +459,9 @@
       "grid-wave",
       "flip-layout",
       "breathing",
-      "orbit-loader"
+      "orbit-loader",
+      "follow-through",
+      "crossfade"
     ]
   },
   {
@@ -456,7 +482,9 @@
       "responsive-table",
       "column-drop",
       "art-direction",
-      "dvh-units"
+      "dvh-units",
+      "off-canvas-nav",
+      "clamp-spacing"
     ]
   },
   {
@@ -483,7 +511,9 @@
       "zeigarnik",
       "peak-end-rule",
       "von-restorff",
-      "serial-position"
+      "serial-position",
+      "smart-defaults",
+      "forgiving-input"
     ]
   },
   {
@@ -514,20 +544,28 @@
       "email-inbox",
       "booking-page",
       "admin-table",
-      "weather-card"
+      "weather-card",
+      "order-tracking"
     ]
+  },
+  {
+    "id": "admin-overview",
+    "name": "管理后台 · 概览",
+    "intro": "登录后台看到的第一页：指标卡、趋势图、待办审批和最近动态放在一屏，同样 14 种风格可比较。和「账号」「系统」里同名的风格是一套，拼起来就是一整个后台。",
+    "generated": "admin",
+    "items": []
   },
   {
     "id": "admin-account",
     "name": "管理后台 · 账号",
-    "intro": "系统管理、账号管理的整页参考：用户列表、账号详情、角色权限，每种页面都有 11 种风格。挑一个顺眼的，复制中文或英文提示词给 AI，整页一次到位。",
+    "intro": "系统管理、账号管理的整页参考：用户列表、账号详情、角色权限，每种页面都有 14 种风格。挑一个顺眼的，复制中文或英文提示词给 AI，整页一次到位。",
     "generated": "admin",
     "items": []
   },
   {
     "id": "admin-system",
     "name": "管理后台 · 系统",
-    "intro": "操作日志、系统设置的整页参考，同样 11 种风格可比较。同一种风格在「账号」「系统」里是一套，拼起来就是一整个后台。",
+    "intro": "操作日志、系统设置的整页参考，同样 14 种风格可比较。同一种风格在「账号」「系统」里是一套，拼起来就是一整个后台。",
     "generated": "admin",
     "items": []
   }

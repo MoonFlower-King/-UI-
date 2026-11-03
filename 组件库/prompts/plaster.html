@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Lime Plaster",
+  "zh": "灰泥墙",
+  "alias": [
+    "灰泥",
+    "石灰墙",
+    "微水泥",
+    "Tadelakt"
+  ],
+  "lead": "手抹的石灰墙面：暖米灰色、有一点点斑驳的明暗，墙上挖出一个拱形壁龛。温暖、朴素、有地中海和侘寂的气质，适合民宿、陶艺、香薰、家居品牌。",
+  "prompt": "灰泥墙风格：暖米灰底 #E9E1D3，叠几层很淡的大块明暗斑（径向渐变）模拟手抹石灰；左侧整条是墙面插图，中间一个拱形壁龛（上圆下方，内侧暗一点，带柔和内阴影），龛里放一个陶罐剪影；主色陶土 #B5653F、辅色橄榄 #6E6A4E，文字暖褐 #3B3128，宋体类衬线标题，按钮圆角 4px",
+  "promptEn": "Lime plaster style: warm greige #E9E1D3 background with a few very faint large light-and-shadow patches (radial gradients) imitating hand-troweled lime; a full-height wall illustration on the left with an arched niche (round top, square bottom, slightly darker inside with a soft inner shadow) holding a clay-pot silhouette; terracotta #B5653F as the primary color and olive #6E6A4E as the secondary, warm brown #3B3128 text, Song-style serif headlines and 4px button radius",
+  "avoid": "斑驳感要非常淡，像光线落在墙上，而不是脏污或水渍。颜色都是土色系，不要加冷色。",
+  "neg": [
+    "水渍污迹、冷灰色、强烈纹理",
+    "water stains and dirt, cold grays, strong textures"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #B5653F; --a2: #6E6A4E; --on: #FBF6EE; color: #3B3128; font-family: -apple-system, "Inter", "PingFang SC", sans-serif;
+  background: radial-gradient(40% 30% at 70% 20%, rgba(255,255,255,.35), transparent), radial-gradient(35% 30% at 30% 80%, rgba(150,120,90,.08), transparent), #E9E1D3; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; } .b1, .cta { border-radius: 4px; } .logo i { border-radius: 50% 50% 0 0; }
+.art { background: radial-gradient(60% 30% at 40% 20%, rgba(255,255,255,.4), transparent), radial-gradient(50% 40% at 60% 85%, rgba(140,110,80,.12), transparent), #E2D8C6; box-shadow: inset -1px 0 0 rgba(59,49,40,.12); }
+.art .m { position: absolute; left: 50%; top: 22%; width: 110px; height: 170px; margin-left: -55px; border-radius: 55px 55px 4px 4px; background: linear-gradient(#CDBFA8, #D8CCB6); box-shadow: inset 6px 10px 18px rgba(90,70,50,.28); }
+.art .h { position: absolute; left: 50%; top: calc(22% + 92px); width: 52px; height: 66px; margin-left: -26px; border-radius: 40% 40% 18px 18px / 50% 50% 18px 18px; background: #B5653F; box-shadow: inset -6px 0 10px rgba(0,0,0,.15); }
+.feats b { color: #B5653F; } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; color: #6E6A4E; }
+</style>

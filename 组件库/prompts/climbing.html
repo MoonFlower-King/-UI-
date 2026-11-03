@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Climbing Gym",
+  "zh": "攀岩馆",
+  "alias": [
+    "攀岩",
+    "抱石",
+    "Bouldering"
+  ],
+  "lead": "室内攀岩馆的墙面：灰色的岩板上散落着一颗颗彩色岩点，每种颜色是一条线路，配上粉笔的白和运动胶带。有活力、年轻、目标感强，适合攀岩馆、健身房、户外装备、运动社群。",
+  "prompt": "攀岩馆风格：亮白底 #F7F7F5，文字炭黑 #1D1D1F、粗体无衬线；左侧整条插图是一面浅灰 #CFCFCB 岩壁，散落十几颗圆润不规则的彩色岩点（橙 #FF6B35、青 #00A8A8、紫 #7B4FD6、黄 #FFC93C），同色岩点连成一条斜向线路，墙上有几处白色粉笔痕；主色岩点橙、辅色青；特点编号写成「V1 / V2 / V3」难度标签；按钮直角",
+  "promptEn": "Climbing gym style: bright white #F7F7F5 background with charcoal #1D1D1F bold sans-serif text; a full-height illustration strip on the left is a light gray #CFCFCB climbing wall scattered with a dozen rounded irregular colored holds (orange #FF6B35, teal #00A8A8, violet #7B4FD6, yellow #FFC93C), holds of the same color forming a diagonal route, with a few white chalk smudges; hold orange as the primary color and teal as the secondary; feature numbers written as difficulty labels \"V1 / V2 / V3\"; square buttons",
+  "avoid": "岩点颜色要有规律（同色成一条线），乱撒会像彩色纸屑；整体保持白和灰，彩色只在岩点上。",
+  "neg": [
+    "彩色纸屑感、写实岩壁照片、霓虹渐变",
+    "confetti chaos, realistic rock-wall photos, neon gradients"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #FF6B35; --a2: #00A8A8; --on: #fff; background: #F7F7F5; color: #1D1D1F; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 900; } .b1, .cta { border-radius: 0; } .kicker { color: #00A8A8; font-weight: 700; } .logo i { border-radius: 40% 60% 50% 50%; background: #FF6B35; }
+.art { background: radial-gradient(14px 10px at 30% 82%, #FF6B35 90%, transparent), radial-gradient(12px 9px at 46% 66%, #FF6B35 90%, transparent), radial-gradient(13px 10px at 38% 50%, #FF6B35 90%, transparent), radial-gradient(12px 10px at 58% 34%, #FF6B35 90%, transparent), radial-gradient(14px 11px at 52% 16%, #FF6B35 90%, transparent),
+  radial-gradient(10px 9px at 72% 76%, #00A8A8 90%, transparent), radial-gradient(11px 9px at 80% 56%, #00A8A8 90%, transparent), radial-gradient(10px 8px at 70% 40%, #00A8A8 90%, transparent),
+  radial-gradient(9px 8px at 18% 60%, #7B4FD6 90%, transparent), radial-gradient(10px 8px at 22% 30%, #7B4FD6 90%, transparent), radial-gradient(9px 7px at 84% 22%, #FFC93C 90%, transparent), radial-gradient(10px 8px at 14% 88%, #FFC93C 90%, transparent),
+  radial-gradient(20px 8px at 40% 54%, rgba(255,255,255,.7), transparent), radial-gradient(18px 7px at 62% 38%, rgba(255,255,255,.6), transparent), #CFCFCB; }
+.feats b { color: #FF6B35; font-weight: 800; } .feats b::before { content: "V"; } .stats b { font-weight: 900; }
+</style>

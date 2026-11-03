@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Japonisme",
+  "zh": "日本主义",
+  "alias": [
+    "和风热",
+    "Japonisme",
+    "十九世纪东方热"
+  ],
+  "lead": "十九世纪欧洲人迷上日本浮世绘后做出来的设计：平面的色块、不对称的构图、竹子和鸢尾花的图案，配上西式的衬线字和杂志排版。东西混血、雅致又新鲜，适合画廊、精品杂货、香水、生活方式杂志。",
+  "prompt": "日本主义风格：象牙底 #F6EFE1，文字墨黑 #1F1B18，标题用西式衬线；版面像十九世纪杂志：大标题横跨、正文两栏；插图是一块不对称的平面色块构图（一角浅鸭蛋青 #A9C7BD、一角土金 #C9A35B），上面斜伸一枝细竹或鸢尾的平涂剪影；主色靛青 #2E4B6D、辅色朱红 #C1442E；边框用细双线",
+  "promptEn": "Japonisme style: ivory #F6EFE1 background with ink-black #1F1B18 text and Western serif headlines; the layout reads like a 19th-century magazine with a full-width headline and two-column body; the illustration is an asymmetric flat color-block composition (a corner of pale duck-egg #A9C7BD and a corner of earthy gold #C9A35B) crossed by a flat silhouette of a slender bamboo or iris stem; indigo #2E4B6D as the primary color and vermilion #C1442E as the secondary; fine double-rule borders",
+  "avoid": "关键是“东方图案 + 西方版式”的混搭，二者都要克制；不要直接用浮世绘人物或日文假名装饰。",
+  "neg": [
+    "浮世绘人物、日文假名装饰、樱花富士山套图",
+    "ukiyo-e figures, kana as decoration, cherry-blossom-and-Fuji clichés"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #2E4B6D; --a2: #C1442E; --on: #F6EFE1; background: #F6EFE1; color: #1F1B18; font-family: Didot, Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 3px double #1F1B18; } .logo i { border-radius: 50%; background: #C1442E; }
+.kicker { color: #C1442E; border-bottom: 3px double #1F1B18 !important; } .hero h1 { font-weight: 400; }
+.art { background: linear-gradient(135deg, #A9C7BD 0 46%, #F6EFE1 46% 54%, #C9A35B 54%); box-shadow: inset 0 0 0 1px #1F1B18, inset 0 0 0 4px #F6EFE1, inset 0 0 0 5px #1F1B18; overflow: hidden; }
+.art .m { position: absolute; left: 30%; top: -10px; width: 4px; height: 160px; background: #2E4B6D; transform: rotate(18deg); box-shadow: 26px 10px 0 -1px #2E4B6D; }
+.art .h { position: absolute; left: 38%; top: 30px; width: 40px; height: 10px; border-radius: 0 100%; background: #2E4B6D; transform: rotate(-30deg); box-shadow: 14px 34px 0 #2E4B6D, -18px 60px 0 #2E4B6D; }
+.feats b { color: #C1442E; } .stats b { font-weight: 400; color: #2E4B6D; }
+</style>

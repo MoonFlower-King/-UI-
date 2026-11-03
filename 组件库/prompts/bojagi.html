@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Bojagi Patchwork",
+  "zh": "韩国拼布",
+  "alias": [
+    "褓子",
+    "包袱布",
+    "Bojagi",
+    "拼布"
+  ],
+  "lead": "韩国传统的褓子包袱布：碎布拼成大小不一的方块，半透明的苎麻叠出深浅，接缝是细细的线。雅致、透气、有拼接的节奏，适合韩式生活方式、手作、茶点、家居。",
+  "prompt": "韩国拼布风格：苎麻米白底 #F4EFE6，内容拆成便当格，每格是一块半透明拼布：淡玉绿 #CFE0D2、淡桃 #F2D7CB、淡灰蓝 #D5DEE6、浅姜黄 #EEDFB8，透明度 70% 左右，格子之间是 1px 深灰细接缝线（不要圆角，直角）；文字墨灰 #333230，细衬线标题；插图格里再叠几块小拼布；按钮直角、深灰底",
+  "promptEn": "Bojagi patchwork style: ramie off-white #F4EFE6 background with content in bento tiles, each a translucent patch in pale jade #CFE0D2, pale peach #F2D7CB, pale gray-blue #D5DEE6 or light ginger #EEDFB8 at about 70% opacity, joined by 1px dark-gray seam lines (square corners, no radius); ink-gray #333230 text with light serif headlines; the illustration tile layers a few smaller patches; square dark-gray buttons",
+  "avoid": "颜色要淡、要“透”，像布透着光；格子必须直角、接缝要细，圆角卡片就变成普通便当格了。",
+  "neg": [
+    "圆角卡片、饱和色块、粗边框",
+    "rounded cards, saturated blocks, thick borders"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #333230; --a2: #8A6A52; --on: #F4EFE6; background: #F4EFE6; color: #333230; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { gap: 0; padding: 12px; } .nav, .copy, .art, .feats article, .stats div, .ft { border-radius: 0 !important; box-shadow: inset 0 0 0 .5px #333230; }
+.nav { background: rgba(213,222,230,.7) !important; } .copy { background: rgba(244,239,230,.9) !important; } .art { background: rgba(207,224,210,.7) !important; }
+.feats article:nth-child(1) { background: rgba(242,215,203,.75) !important; } .feats article:nth-child(2) { background: rgba(238,223,184,.75) !important; } .feats article:nth-child(3) { background: rgba(213,222,230,.75) !important; }
+.stats div { background: rgba(244,239,230,.9) !important; } .stats div:nth-child(2) { background: rgba(207,224,210,.7) !important; } .ft { background: none !important; box-shadow: none; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; } .logo i { background: #8A6A52; }
+.art .m { position: absolute; left: 18%; top: 16%; width: 46%; height: 34%; background: rgba(242,215,203,.8); box-shadow: inset 0 0 0 .5px #333230; }
+.art .h { position: absolute; right: 14%; bottom: 18%; width: 52%; height: 40%; background: rgba(213,222,230,.75); box-shadow: inset 0 0 0 .5px #333230; }
+.feats b { color: #8A6A52; } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 500; }
+</style>

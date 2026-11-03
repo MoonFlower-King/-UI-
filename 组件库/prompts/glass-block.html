@@ -1,0 +1,27 @@
+<!--
+{
+  "en": "Glass Block",
+  "zh": "玻璃砖",
+  "alias": [
+    "玻璃砖墙",
+    "Glass Block Wall"
+  ],
+  "lead": "老楼道和浴室里那种玻璃砖墙：一块块方形砖，中间鼓起、边缘有凹槽，光透过来变得模糊又带点青绿。复古、透亮、有城市感，适合咖啡馆、酒吧、复古家居、城市更新项目。",
+  "prompt": "玻璃砖风格：冷白底 #F3F6F5，文字深青灰 #22302E；左侧整条插图是玻璃砖墙：方形砖格（约 46px）重复排列，每块砖中心亮、四周带青绿 #9CC9C0 的柔和径向渐变和一道浅色凹槽边，砖缝 3px 浅灰；墙后透出一团模糊的暖色灯光；主色深青 #2F6F66；按钮圆角 4px",
+  "promptEn": "Glass block style: cool white #F3F6F5 background with dark teal-gray #22302E text; a full-height illustration strip on the left is a glass-block wall: square blocks (about 46px) repeating, each bright in the center with a soft teal #9CC9C0 radial gradient toward the edges and a light grooved rim, with 3px light-gray joints; a blurred warm light glows behind the wall; deep teal #2F6F66 as the primary color; 4px button radius",
+  "avoid": "玻璃砖的通透来自“中间亮、四周青”的渐变，做成纯色方格就只剩瓷砖感；墙只放在插图里。",
+  "neg": [
+    "纯色方格、满页砖墙、强反光",
+    "flat colored squares, bricks across the page, strong glare"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #2F6F66; --a2: #2F6F66; --on: #fff; background: #F3F6F5; color: #22302E; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.b1, .cta { border-radius: 4px; } .logo i { border-radius: 3px; background: radial-gradient(circle, #fff, #9CC9C0); box-shadow: inset 0 0 0 1px #2F6F66; } .hero h1 { font-weight: 700; }
+.art { background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.95) 0 8px, rgba(156,201,192,.55) 20px, rgba(110,165,155,.7) 24px) 0 0 / 49px 49px, radial-gradient(60% 40% at 50% 45%, rgba(255,190,120,.7), transparent 70%), #D9E6E2;
+  -webkit-mask: linear-gradient(90deg, #000 0 46px, transparent 46px 49px) 0 0 / 49px 100%, linear-gradient(#000 0 46px, transparent 46px 49px) 0 0 / 100% 49px; -webkit-mask-composite: source-in; mask: linear-gradient(90deg, #000 0 46px, transparent 46px 49px) 0 0 / 49px 100%, linear-gradient(#000 0 46px, transparent 46px 49px) 0 0 / 100% 49px; mask-composite: intersect; }
+.feats b { color: #2F6F66; } .stats b { color: #2F6F66; }
+</style>

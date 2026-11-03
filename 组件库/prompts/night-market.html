@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Night Market",
+  "zh": "夜市灯火",
+  "alias": [
+    "夜市",
+    "小吃街",
+    "Night Bazaar"
+  ],
+  "lead": "热闹的夜市：深夜蓝的天空下挂着一串串暖黄的小灯泡，红色灯笼和霓虹招牌发着光，标题像招牌字一样亮。烟火气、热闹、亲切，适合小吃、市集、夜生活、城市活动。",
+  "prompt": "夜市灯火风格：深夜蓝紫底 #14121F，首屏插图上方挂一条弧形灯串（一串等距的暖黄 #FFC857 小圆点，带柔光），下面两三盏红灯笼 #E2463C 剪影和一块霓虹招牌；超大粗体标题奶白，加暖黄外发光 text-shadow；正文区深色，主色暖黄、辅色灯笼红；按钮暖黄底深字、圆角 8px",
+  "promptEn": "Night market style: deep blue-violet night #14121F; across the top of the hero illustration hangs an arched string of evenly spaced warm-yellow #FFC857 bulbs with a soft glow, with two or three red #E2463C lantern silhouettes and a neon sign below; an oversized bold headline in cream with a warm-yellow text-shadow glow; dark body sections with warm yellow as the primary color and lantern red as the secondary; warm-yellow buttons with dark text and 8px radius",
+  "avoid": "发光只给灯和标题，正文不要发光；颜色保持“暖”，冷色霓虹（青、紫）一多就变成赛博朋克。",
+  "neg": [
+    "青紫冷霓虹、正文发光、雨夜赛博",
+    "cold cyan/violet neon, glowing body text, rainy cyberpunk"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #FFC857; --a2: #E2463C; --on: #1A1408; background: #14121F; color: #E9E2D6; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.logo i { border-radius: 50%; background: #E2463C; box-shadow: 0 0 10px #E2463C; } .b1, .cta { border-radius: 8px; }
+.hero h1 { color: #FFF4DE; font-weight: 900; text-shadow: 0 0 18px rgba(255,200,87,.55); } .kicker { color: #FFC857; } .b2 { color: #FFC857; }
+.art { overflow: hidden; background: radial-gradient(60% 50% at 70% 80%, rgba(226,70,60,.25), transparent), #14121F; }
+.art::before { content: ""; position: absolute; left: 0; right: 0; top: 64px; height: 30px; background: radial-gradient(circle, #FFE3A3 0 3px, rgba(255,200,87,.45) 4px, transparent 9px) 6px 6px / 30px 18px repeat-x, linear-gradient(rgba(255,200,87,.45), rgba(255,200,87,.45)) 0 14px / 100% 1px no-repeat; }
+.art .m, .art .h { position: absolute; top: 104px; width: 44px; height: 54px; border-radius: 45%; background: radial-gradient(circle at 50% 40%, #FF7A5C, #E2463C 60%, #9E2A23); box-shadow: 0 0 26px rgba(226,70,60,.6); }
+.art .m { right: 80px; } .art .h { right: 150px; top: 116px; transform: scale(.8); }
+.feats b { color: #FFC857; } .feats article { border-top-color: rgba(255,200,87,.2) !important; } .stats b { color: #FFC857; }
+</style>

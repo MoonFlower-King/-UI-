@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Dark Editorial",
+  "zh": "暗色编辑",
+  "alias": [
+    "夜间杂志",
+    "暗黑排版",
+    "Dark Magazine"
+  ],
+  "lead": "把杂志排版搬到深色背景上：炭黑底、奶白的大号衬线标题、两栏正文、细细的分栏线，一点暖橙做强调。沉稳、有品位、适合夜读，适合深度内容、播客文稿、电影评论、文化媒体。",
+  "prompt": "暗色编辑风格：炭黑底 #141414，正文奶白 #ECE6DA、次要文字 #9C968C；大号衬线标题（字重 400、字距 -0.01em）横跨整版，正文两栏、栏间 1px #333 分栏线；唯一强调色暖橙 #E8823A 用于栏目名、编号和链接；插图是一张低饱和的暗调照片位（深褐到黑的渐变 + 一轮淡月）；按钮细描边",
+  "promptEn": "Dark editorial style: charcoal #141414 background with cream #ECE6DA body text and #9C968C secondary text; a large serif headline (weight 400, -0.01em tracking) spanning the page, body in two columns with a 1px #333 column rule; a single warm orange accent #E8823A for section labels, numbers and links; the illustration is a muted dark photo slot (a dark-brown-to-black gradient with a faint moon); thin outlined buttons",
+  "avoid": "深色底上的正文要够亮、字号够大（至少 13px），否则很累眼；强调色只有一个。",
+  "neg": [
+    "纯黑底配灰色小字、多种强调色、霓虹",
+    "pure black with small gray text, multiple accents, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #E8823A; --a2: #E8823A; --on: #141414; background: #141414; color: #ECE6DA; font-family: Didot, Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid #333; } .logo i { display: none; } .cta, .b1 { background: none; color: #ECE6DA; border: 1px solid #ECE6DA; }
+.kicker { color: #E8823A; border-color: #333 !important; letter-spacing: 3px; } .hero h1 { font-weight: 400; letter-spacing: -.01em; } .sub { color: #C9C3B8; column-rule-color: #333 !important; }
+.art { background: radial-gradient(circle at 70% 30%, rgba(236,230,218,.75) 0 12px, transparent 13px), linear-gradient(160deg, #3A2E26, #141414); }
+.feats article { border-color: #333 !important; } .feats b { color: #E8823A; } .feats p { color: #9C968C; } .stats { border-color: #333 !important; } .stats b { font-weight: 400; }
+</style>

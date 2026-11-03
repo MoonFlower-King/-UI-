@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Soft 3D",
+  "zh": "柔和 3D",
+  "alias": [
+    "3D 渲染",
+    "黏土 3D",
+    "Soft 3D Render"
+  ],
+  "lead": "像柔和的 3D 渲染图：哑光的圆润几何体（球、圆环、胶囊）漂浮在粉彩背景上，有柔和的阴影和高光。可爱、现代、有质感，适合 App 官网、科技消费品、儿童教育、活动页。",
+  "prompt": "柔和 3D 风格：首屏插图是淡紫 #E9E4FF 到淡桃 #FFE8E0 的柔和背景上漂浮几个哑光几何体（一个球、一个圆环、一个胶囊），用径向渐变做出左上高光和右下暗部，下面各有一团模糊投影，缓慢上下浮动；超大圆润粗体标题深紫 #2B2250；正文区白底；主色紫 #6C5CE7，按钮胶囊形带柔和投影",
+  "promptEn": "Soft 3D style: the hero illustration has a soft lavender #E9E4FF to peach #FFE8E0 background with a few floating matte shapes (a sphere, a torus, a capsule) shaded with radial gradients for a top-left highlight and bottom-right shade, each with a blurred shadow below, gently bobbing up and down; an oversized rounded bold headline in deep purple #2B2250; white body sections; violet #6C5CE7 as the primary color with soft-shadowed pill buttons",
+  "avoid": "形体要“哑光、圆润、少”，三个就够；加金属反光或太多物体就变成廉价的 3D 素材堆砌。",
+  "neg": [
+    "金属反光、物体堆满、写实材质",
+    "metallic reflections, piles of objects, realistic materials"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #6C5CE7; --a2: #6C5CE7; --on: #fff; background: #fff; color: #2B2250; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-weight: 800; color: #2B2250; } .b1, .cta { border-radius: 99px; box-shadow: 0 8px 20px rgba(108,92,231,.3); } .logo i { border-radius: 50%; background: radial-gradient(circle at 30% 30%, #B8AEFF, #6C5CE7); }
+.art { overflow: hidden; background: linear-gradient(135deg, #E9E4FF, #FFE8E0); }
+.art .m { position: absolute; right: 70px; top: 50px; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #FFD9CC, #FF9F86 55%, #E56F55); animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 26px 14px rgba(43,34,80,.18)); }
+.art .h { position: absolute; right: 190px; top: 90px; width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle, transparent 14px, #9F93FF 15px, #6C5CE7 30px, transparent 31px); animation: bob 6s ease-in-out -2s infinite; filter: drop-shadow(0 20px 10px rgba(43,34,80,.15)); }
+.art::after { content: ""; position: absolute; right: 40px; top: 160px; width: 70px; height: 30px; border-radius: 99px; background: linear-gradient(#C8F2E3, #7ED6B9); transform: rotate(-24deg); animation: bob 7s ease-in-out -4s infinite; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+.feats b, .kicker { color: #6C5CE7; font-weight: 700; } .stats b { font-weight: 800; }
+</style>

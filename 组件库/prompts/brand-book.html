@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Brand Guidelines",
+  "zh": "品牌手册",
+  "alias": [
+    "品牌规范",
+    "VI 手册",
+    "Brand Book"
+  ],
+  "lead": "像一本品牌规范手册：左边是章节目录，右边一页页讲清楚 logo、色卡、字体、间距，每样东西都有编号、色值和标注线。专业、清楚、可信，适合设计公司、品牌介绍、设计系统官网。",
+  "prompt": "品牌手册风格：白底 #FFFFFF，近黑 #111 文字、几何无衬线；左侧竖向章节导航（像目录：01 品牌、02 色彩、03 字体）；插图是一组色卡：三块等宽色条（主色深蓝 #1B3A6B、辅色珊瑚 #F06A4A、浅灰 #E9E9EC），每块下方标色值文字；正文旁有细灰标注线和小号等宽编号；按钮直角深蓝",
+  "promptEn": "Brand-guidelines style: white #FFFFFF with near-black #111 text in a geometric sans-serif; a vertical chapter navigation on the left like a table of contents (01 Brand, 02 Color, 03 Type); the illustration is a set of color swatches: three equal-width strips (primary deep blue #1B3A6B, secondary coral #F06A4A, light gray #E9E9EC), each labeled with its value below; thin gray annotation lines and small monospace numbers beside the text; square deep-blue buttons",
+  "avoid": "它的气质来自“标注”和“规范感”：色值、编号、对齐线要真实、整齐；别加花哨的插画和渐变。",
+  "neg": [
+    "花哨插画、渐变背景、随意排版",
+    "fancy illustrations, gradient backgrounds, loose layout"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #1B3A6B; --a2: #F06A4A; --on: #fff; background: #fff; color: #111; font-family: "Avenir Next", "Futura", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg > .nav { background: #F6F6F8; } .nav nav a::before { font: 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #999; margin-right: 6px; } .nav nav a:nth-child(1)::before { content: "01"; } .nav nav a:nth-child(2)::before { content: "02"; } .nav nav a:nth-child(3)::before { content: "03"; }
+.logo i { background: #1B3A6B; } .hero h1 { font-weight: 700; } .kicker { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #F06A4A; }
+.art { background: linear-gradient(90deg, #1B3A6B 0 33.3%, #F06A4A 0 66.6%, #E9E9EC 0) 0 0 / 100% 70% no-repeat; }
+.art::after { content: "主色　　 辅色　　 中性"; position: absolute; left: 0; right: 0; bottom: 10px; font-size: 10px; color: #666; white-space: pre; }
+.feats article { border-left: 1px solid #DDD; padding-left: 10px; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #999; } .stats b { color: #1B3A6B; }
+</style>

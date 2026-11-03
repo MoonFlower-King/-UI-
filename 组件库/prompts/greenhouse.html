@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Greenhouse",
+  "zh": "玻璃温室",
+  "alias": [
+    "温室",
+    "植物园",
+    "Conservatory"
+  ],
+  "lead": "老式玻璃温室：白色细铁框把天光切成一格格，后面是层层叠叠的绿叶，空气湿润明亮。清新、生机、有一点维多利亚的优雅，适合植物店、花园咖啡、有机食品、环保品牌。",
+  "prompt": "玻璃温室风格：浅青白底 #F2F5EE，左侧整条插图是温室玻璃窗：层叠的深浅绿叶团（#3F7D4E、#6FA36B、#A9CF9A 的径向渐变）上压一层白色 3px 细框网格（像玻璃格窗，顶部是拱形）；文字深绿 #1F3A2B，宋体类衬线标题；主色森林绿 #3F7D4E、辅色赤陶 #C46A4A；按钮圆角 6px",
+  "promptEn": "Greenhouse style: pale green-white #F2F5EE background; a full-height illustration strip on the left shows the glass wall: layered leaf clusters in deep to light greens (#3F7D4E, #6FA36B, #A9CF9A radial gradients) behind a grid of 3px white mullions like glass panes, arched at the top; dark green #1F3A2B text with Song-style serif headlines; forest green #3F7D4E as the primary color and terracotta #C46A4A as the secondary; 6px button radius",
+  "avoid": "白框要细且规整，太粗像监狱栏杆；绿色要有深浅层次，一种绿铺满会很平。",
+  "neg": [
+    "单一平涂绿色、粗黑框、卡通植物",
+    "flat single green, thick black frames, cartoon plants"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #3F7D4E; --a2: #C46A4A; --on: #fff; background: #F2F5EE; color: #1F3A2B; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 600; } .b1, .cta { border-radius: 6px; } .logo i { border-radius: 50% 0; }
+.art { border-radius: 105px 105px 0 0; margin: 10px 0 0 10px;
+  background: linear-gradient(90deg, transparent calc(50% - 1.5px), #fff calc(50% - 1.5px) calc(50% + 1.5px), transparent 0) , repeating-linear-gradient(transparent 0 58px, #fff 58px 61px),
+  radial-gradient(40% 25% at 30% 30%, #A9CF9A, transparent 70%), radial-gradient(45% 30% at 70% 55%, #6FA36B, transparent 70%), radial-gradient(50% 30% at 35% 80%, #3F7D4E, transparent 70%), radial-gradient(40% 20% at 75% 20%, #8DBE7F, transparent 70%), #DDE9D4;
+  box-shadow: inset 0 0 0 3px #fff; }
+.feats b { color: #C46A4A; } .stats b { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; color: #3F7D4E; font-weight: 600; }
+</style>

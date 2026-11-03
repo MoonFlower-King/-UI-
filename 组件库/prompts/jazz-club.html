@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Jazz Club",
+  "zh": "爵士俱乐部",
+  "alias": [
+    "爵士乐",
+    "Jazz",
+    "蓝调酒吧"
+  ],
+  "lead": "老派爵士俱乐部的海报和节目单：深蓝和黑、一束暖黄的聚光、萨克斯和低音提琴的剪影，标题是瘦高的衬线大字，演出时间排成两栏。慵懒、高级、有夜晚的律动，适合酒吧、音乐节、唱片店、深夜电台。",
+  "prompt": "爵士俱乐部风格：深夜蓝底 #0D1530，文字暖白 #F0E6D2；版面像节目单：栏目名下压细线、瘦高衬线大标题横跨、正文两栏；插图是一块深蓝方框里一束从上往下的暖黄 #F5C451 锥形聚光，光里一个立式麦克风的细线剪影；主色暖黄、辅色酒红 #8E2C3A；特点区写成「演出曲目」样式，编号用罗马数字；按钮暖黄描边",
+  "promptEn": "Jazz club style: deep night-blue #0D1530 with warm white #F0E6D2 text; the layout reads like a concert program: ruled section labels, a tall narrow serif headline spanning the page and two-column body copy; the illustration is a dark blue frame with a warm yellow #F5C451 cone of spotlight from above and a thin-line silhouette of a stand microphone in the light; warm yellow as the primary color and wine red #8E2C3A as the secondary; the features read like a setlist with Roman numerals; warm-yellow outlined buttons",
+  "avoid": "只要一束光就够有氛围，别再加霓虹灯牌和音符图标；深色底上正文要够大够亮。不要点名或模仿某位音乐人。",
+  "neg": [
+    "霓虹灯牌、满屏音符图标、点名真实乐手",
+    "neon signs, music-note icons everywhere, naming real musicians"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #F5C451; --a2: #8E2C3A; --on: #0D1530; background: #0D1530; color: #F0E6D2; font-family: Didot, "Bodoni 72", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid rgba(245,196,81,.4); } .logo i { border-radius: 50%; background: #8E2C3A; box-shadow: 0 0 0 2px #F5C451; }
+.cta, .b1 { background: none; color: #F5C451; border: 1px solid #F5C451; } .b2 { color: #F0E6D2; }
+.kicker { color: #F5C451; letter-spacing: 3px; border-color: rgba(245,196,81,.5) !important; } .hero h1 { font-weight: 400; letter-spacing: .02em; transform: scaleY(1.1); transform-origin: left top; } .sub { column-rule-color: rgba(245,196,81,.3) !important; }
+.art { overflow: hidden; background: conic-gradient(from 160deg at 50% 0, transparent 0 0, rgba(245,196,81,.55) 6deg 34deg, transparent 40deg), #0A1026; box-shadow: inset 0 0 0 1px rgba(245,196,81,.5); }
+.art .m { position: absolute; left: 50%; bottom: 12px; width: 1.5px; height: 64px; background: #F0E6D2; }
+.art .m::before { content: ""; position: absolute; left: -5px; top: -14px; width: 11px; height: 16px; border-radius: 6px; background: #F0E6D2; } .art .m::after { content: ""; position: absolute; left: -12px; bottom: 0; width: 25px; height: 1.5px; background: #F0E6D2; }
+.feats article { border-color: rgba(245,196,81,.25) !important; } .feats b { color: #F5C451; font-size: 0; } .feats b::before { font-size: 12px; } .feats article:nth-child(1) b::before { content: "I"; } .feats article:nth-child(2) b::before { content: "II"; } .feats article:nth-child(3) b::before { content: "III"; }
+.stats { border-color: rgba(245,196,81,.5) !important; } .stats b { font-weight: 400; color: #F5C451; }
+</style>

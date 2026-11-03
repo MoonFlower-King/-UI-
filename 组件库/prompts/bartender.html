@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Cocktail Bar",
+  "zh": "鸡尾酒吧",
+  "alias": [
+    "鸡尾酒单",
+    "酒吧",
+    "Speakeasy"
+  ],
+  "lead": "一家安静的鸡尾酒吧酒单：墨绿近黑的底，黄铜色细线和小装饰，奶白的衬线字，酒名和说明之间拉一条点线。微醺、讲究、有夜晚的仪式感，适合酒吧、餐厅、威士忌、夜间活动。",
+  "prompt": "鸡尾酒吧风格：墨绿近黑底 #0F1F1A，文字奶白 #EEE6D2、优雅衬线；主色黄铜 #C59B5F 只用在细线、编号、小星形装饰和按钮描边；版面像一页酒单：标题横跨、正文分两栏、特点区每项“名称……说明”之间用点状引导线；插图是一只碟形鸡尾酒杯的线描剪影；按钮黄铜描边直角",
+  "promptEn": "Cocktail bar style: green-black #0F1F1A background with cream #EEE6D2 elegant serif text; brass #C59B5F only for hairlines, numbers, small star ornaments and outlined buttons; the page reads like a drinks menu: a full-width headline, body in two columns, and each feature written as \"name …… description\" joined by dotted leaders; the illustration is a line-drawn coupe glass silhouette; square brass-outlined buttons",
+  "avoid": "黄铜色要哑、只做细线，金色大字会很俗；暗底上的小字要够大够亮，至少 12px、颜色别太灰。",
+  "neg": [
+    "金色大字、霓虹灯、暗底上的灰色小字",
+    "large gold lettering, neon signs, small gray text on dark"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #C59B5F; --a2: #C59B5F; --on: #0F1F1A; background: #0F1F1A; color: #EEE6D2; font-family: Didot, Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid rgba(197,155,95,.5); } .logo i { background: #C59B5F; clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+.cta, .b1 { background: none; color: #C59B5F; border: 1px solid #C59B5F; } .b2 { color: #EEE6D2; }
+.kicker { color: #C59B5F; border-color: rgba(197,155,95,.6) !important; letter-spacing: 3px; } .hero h1 { font-weight: 400; }
+.sub { column-rule-color: rgba(197,155,95,.4) !important; }
+.art .m { position: absolute; left: 50%; top: 18px; width: 90px; height: 40px; margin-left: -45px; border: 1.5px solid #C59B5F; border-top: 0; border-radius: 0 0 45px 45px / 0 0 40px 40px; }
+.art .h { position: absolute; left: 50%; top: 58px; width: 1.5px; height: 46px; background: #C59B5F; box-shadow: 0 46px 0 0 #C59B5F; }
+.art .h::after { content: ""; position: absolute; left: -18px; bottom: 0; width: 38px; height: 1.5px; background: #C59B5F; }
+.feats article { border-color: rgba(197,155,95,.35) !important; } .feats b { color: #C59B5F; }
+.feats h3 { display: flex; gap: 6px; } .feats h3::after { content: ""; flex: 1; border-bottom: 1.5px dotted rgba(197,155,95,.6); margin-bottom: 5px; }
+.stats { border-color: rgba(197,155,95,.5) !important; } .stats b { font-weight: 400; color: #C59B5F; }
+</style>

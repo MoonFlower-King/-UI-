@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Soft Brutalism",
+  "zh": "柔和粗野",
+  "alias": [
+    "柔和粗野主义",
+    "Soft Brutalism",
+    "粉彩粗野"
+  ],
+  "lead": "新粗野主义的“温柔版”：保留粗黑描边和硬投影的直爽，但换成大圆角和奶油粉彩色，像积木和贴纸。有个性又不扎眼，适合年轻人的工具、笔记、学习类产品。",
+  "prompt": "柔和粗野风格：奶白底 #FFF9F0，内容拆成便当格，每格 2px 纯黑描边、圆角 18px、4px 4px 0 纯黑硬投影（无模糊）；格子分别填桃粉 #FFD9C7、薄荷 #CFF0DC、雾蓝 #DCE3FF、奶黄 #FFF0A8；粗体无衬线标题、字重 800；按钮胶囊形黑底白字，悬停时向左上抬起",
+  "promptEn": "Soft brutalism style: #FFF9F0 cream background with content in bento tiles, each with a 2px solid black border, 18px radius and a hard 4px 4px 0 black shadow (no blur); tiles filled with peach #FFD9C7, mint #CFF0DC, misty blue #DCE3FF and butter #FFF0A8; bold sans-serif headlines at weight 800; pill-shaped black buttons with white text that lift up-left on hover",
+  "avoid": "描边和硬投影要统一（全站同一粗细、同一偏移），否则会乱。粉彩色要偏淡，饱和色会把它变回原版新粗野。",
+  "neg": [
+    "高饱和撞色、模糊柔和阴影、细描边",
+    "saturated clashing colors, soft blurry shadows, thin borders"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #111; --a2: #111; --on: #fff; background: #FFF9F0; color: #111; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg { gap: 12px; padding: 12px; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 18px !important; box-shadow: 0 0 0 2px #111, 4px 4px 0 2px #111; }
+.nav { background: #fff !important; } .copy { background: #FFD9C7 !important; } .art { background: #DCE3FF !important; }
+.feats article:nth-child(1) { background: #CFF0DC !important; } .feats article:nth-child(2) { background: #FFF0A8 !important; } .feats article:nth-child(3) { background: #fff !important; }
+.stats div { background: #fff !important; } .stats div:nth-child(1) { background: #111 !important; color: #FFF9F0; }
+.ft { background: none !important; }
+.hero h1 { font-weight: 800; } .b1, .cta { border-radius: 99px; } .logo i { border-radius: 50%; background: #FF8A65; box-shadow: 0 0 0 2px #111; }
+.art .m { position: absolute; left: 50%; top: 40%; width: 56px; height: 56px; margin: -28px; border-radius: 50%; background: #FFF0A8; box-shadow: 0 0 0 2px #111, 3px 3px 0 2px #111; }
+.art .h { position: absolute; left: 14%; right: 14%; bottom: 20px; height: 34px; border-radius: 99px; background: #CFF0DC; box-shadow: 0 0 0 2px #111; }
+.feats b, .kicker { color: #111; font-weight: 700; } .stats b { font-weight: 800; }
+</style>

@@ -81,8 +81,13 @@ for (const cat of categories) {
   if (cat.generated) {
     // 生成的案例有大段相同代码：每段只存一份，代码里换成 \u0001编号\u0001，app.js 加载时还原
     const chunks = sharedChunks();
-    for (const id in code) chunks.forEach((c, i) => { code[id] = code[id].split(c).join(`\u0001${i}\u0001`); });
-    args.push(Object.fromEntries(list.map((c) => [c.id, c.promptEn])), chunks);
+    const used = new Set();
+    for (const id in code) chunks.forEach((c, i) => {
+      const parts = code[id].split(c);
+      if (parts.length > 1) { used.add(i); code[id] = parts.join(`\u0001${i}\u0001`); }
+    });
+    // 这个主题用不到的共用代码（别的页面、别的风格）写成 null，编号不变，文件更小
+    args.push(Object.fromEntries(list.map((c) => [c.id, c.promptEn])), chunks.map((c, i) => (used.has(i) ? c : null)));
   }
   writeFileSync(join(CODE, `${cat.id}.js`), `${HEAD}window.JY_CODE(${args.map((a) => JSON.stringify(a)).join(', ')});\n`);
 }

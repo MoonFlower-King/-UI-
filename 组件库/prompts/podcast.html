@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Podcast",
+  "zh": "播客",
+  "alias": [
+    "播客",
+    "电台",
+    "Audio Show"
+  ],
+  "lead": "播客节目页的样子：一张大胆的方形封面（渐变底 + 声波条），旁边是干净的节目信息、单集列表和收听按钮。年轻、亲切、有声音的感觉，适合播客、电台、有声书、音乐和读书会。",
+  "prompt": "播客风格：右侧内容区纯白底 #FFFFFF、近黑 #15131A 无衬线文字；左侧整条是节目封面插图：深紫 #2A1E5C 到橘红 #E4572E 的竖向渐变，中间一排粗细一致、高低不同的圆头声波条（白色），上下轻轻起伏；主色橘红 #E4572E，按钮圆形播放键 + 胶囊形主按钮；三个特点做成单集列表，每行前面一个小播放圆钮",
+  "promptEn": "Podcast style: the right content area is pure white #FFFFFF with near-black #15131A sans-serif text; a full-height strip on the left is the show cover art: a vertical gradient from deep purple #2A1E5C to orange-red #E4572E with a row of round-capped white sound-wave bars of equal width and varying heights that gently rise and fall; orange-red #E4572E as the primary color, a round play button plus a pill-shaped primary button; the three features become an episode list, each row starting with a small round play button",
+  "avoid": "封面是唯一的“重色”，内容区保持干净；声波条动画要慢、幅度小，像呼吸，不要做成跳动的音乐可视化。",
+  "neg": [
+    "花哨的音乐可视化、整页渐变、霓虹",
+    "flashy music visualizers, full-page gradients, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #E4572E; --a2: #2A1E5C; --on: #fff; background: #fff; color: #15131A; font-family: -apple-system, "Inter", "PingFang SC", sans-serif; }
+.b1, .cta { border-radius: 99px; } .logo i { border-radius: 50%; background: #E4572E; }
+.b1::before { content: "▶"; display: inline-grid; place-items: center; width: 18px; height: 18px; margin-right: 6px; border-radius: 50%; background: #fff; color: #E4572E; font-size: 8px; }
+.hero h1 { font-weight: 800; } .kicker { color: #E4572E; font-weight: 600; } .b2 { color: #2A1E5C; }
+.art { background: linear-gradient(#2A1E5C, #8A2D5C 55%, #E4572E); }
+.art .m { position: absolute; left: 50%; top: 50%; width: 160px; height: 80px; margin: -40px 0 0 -80px; background: linear-gradient(#fff, #fff) 0px 50% / 6px 24px no-repeat, linear-gradient(#fff, #fff) 14px 50% / 6px 44px no-repeat, linear-gradient(#fff, #fff) 28px 50% / 6px 30px no-repeat, linear-gradient(#fff, #fff) 42px 50% / 6px 62px no-repeat, linear-gradient(#fff, #fff) 56px 50% / 6px 40px no-repeat, linear-gradient(#fff, #fff) 70px 50% / 6px 74px no-repeat, linear-gradient(#fff, #fff) 84px 50% / 6px 52px no-repeat, linear-gradient(#fff, #fff) 98px 50% / 6px 34px no-repeat, linear-gradient(#fff, #fff) 112px 50% / 6px 58px no-repeat, linear-gradient(#fff, #fff) 126px 50% / 6px 28px no-repeat, linear-gradient(#fff, #fff) 140px 50% / 6px 42px no-repeat, linear-gradient(#fff, #fff) 154px 50% / 6px 20px no-repeat; animation: wave 3s ease-in-out infinite; }
+@keyframes wave { 50% { transform: scaleY(1.25); } }
+.feats b { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #F3E8E4; color: #E4572E; font-size: 10px; } .feats b::before { content: "▶"; font-size: 8px; } .feats b { font-size: 0; }
+.stats b { font-weight: 800; color: #2A1E5C; }
+</style>

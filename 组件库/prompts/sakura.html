@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Sakura Season",
+  "zh": "樱花季",
+  "alias": [
+    "樱花",
+    "花见",
+    "Cherry Blossom"
+  ],
+  "lead": "春天的樱花季：大片淡粉的花云铺满首屏，花瓣慢慢飘下来，标题像被花托着。轻盈、温柔、季节感强，适合春季活动、甜品、旅行、日式和风品牌。",
+  "prompt": "樱花季风格：首屏插图铺满淡粉花云（#F9D5DE、#F3B6C6、#FBE7EC 的大小径向渐变团簇）和几片缓慢飘落旋转的花瓣（小椭圆，8 秒一轮），超大标题深梅色 #6E2C43 压在下方；正文区回到樱白 #FFF8F8，文字深灰紫 #3C2F36；主色樱粉 #E07A95、辅色嫩叶绿 #7FA36B；按钮胶囊形",
+  "promptEn": "Sakura season style: the hero illustration is covered by pale pink blossom clouds (clustered radial gradients of #F9D5DE, #F3B6C6 and #FBE7EC) with a few petals slowly drifting and turning down (small ellipses, 8-second loop); an oversized deep plum #6E2C43 headline sits low over it; the body returns to blossom white #FFF8F8 with dark gray-violet #3C2F36 text; sakura pink #E07A95 as the primary color and new-leaf green #7FA36B as the secondary; pill buttons",
+  "avoid": "粉色要淡、要有层次，整块亮粉会像儿童玩具；飘落的花瓣三五片就够，太多会让人分心、像屏保。",
+  "neg": [
+    "亮粉色块、满屏飘花、卡通花朵",
+    "bright pink blocks, petals everywhere, cartoon flowers"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #E07A95; --a2: #7FA36B; --on: #fff; background: #FFF8F8; color: #3C2F36; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.hero h1 { color: #6E2C43; font-weight: 600; } .kicker { color: #B04F6B; } .b1, .cta { border-radius: 99px; } .logo i { border-radius: 50% 0; background: #E07A95; }
+.art { overflow: hidden; background: radial-gradient(60px 46px at 82% 18%, #F3B6C6, transparent 70%), radial-gradient(90px 60px at 66% 26%, #F9D5DE, transparent 72%), radial-gradient(70px 50px at 92% 44%, #FBE7EC, transparent 72%), radial-gradient(80px 56px at 50% 10%, #FBE7EC, transparent 72%), radial-gradient(120px 70px at 20% 0, #F9D5DE, transparent 72%), linear-gradient(#FFF0F3, #FFF8F8 80%); }
+.art .m, .art .h, .art::after { content: ""; position: absolute; width: 9px; height: 13px; border-radius: 50% 50% 50% 0; background: #F3B6C6; animation: fall 8s linear infinite; }
+.art .m { left: 60%; top: -10px; } .art .h { left: 78%; top: -10px; animation-delay: -3s; } .art::after { left: 42%; top: -10px; animation-delay: -5.5s; }
+@keyframes fall { to { transform: translate(-60px, 260px) rotate(320deg); } }
+.feats b { color: #E07A95; } .stats b { color: #6E2C43; font-weight: 500; }
+</style>

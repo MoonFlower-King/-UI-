@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Celtic Knot",
+  "zh": "凯尔特绳结",
+  "alias": [
+    "凯尔特",
+    "绳结纹",
+    "Celtic Interlace"
+  ],
+  "lead": "爱尔兰、苏格兰古抄本里的风格：羊皮纸色底，绿和金的绳结纹在边框里交缠，大写首字母像被装饰过。古老、神秘、有手工感，适合威士忌、民谣、桌游、奇幻类品牌。",
+  "prompt": "凯尔特绳结风格：羊皮纸底 #F1E9D2，墨色 #2A2A22 衬线字；主色苔绿 #2F5D46、辅色旧金 #B48A3C；栏目名上下用双细线，区块之间用一条由小圆环连成的链状分隔线；插图是两三个互相套住的圆环绳结（绿、金描边交替）；按钮直角描边",
+  "promptEn": "Celtic knot style: #F1E9D2 parchment with ink #2A2A22 serif type; moss green #2F5D46 as the primary color and old gold #B48A3C as the secondary; double hairlines above and below section labels, a chain-like divider made of small linked rings between sections; the illustration is two or three interlocked rings outlined alternately in green and gold; square outlined buttons",
+  "avoid": "绳结纹只放在边框、分隔线和插图里，正文区保持干净。不要用奇幻游戏那种金属浮雕字和做旧裂纹。",
+  "neg": [
+    "金属浮雕字、做旧裂纹、满屏花纹",
+    "metallic embossed text, fake cracks, patterns everywhere"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #2F5D46; --a2: #B48A3C; --on: #F1E9D2; background: #F1E9D2; color: #2A2A22; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 3px double #2F5D46; } .logo i { border-radius: 50%; background: none; border: 2px solid #2F5D46; box-shadow: 4px 0 0 -1px #F1E9D2, 4px 0 0 1px #B48A3C; }
+.kicker { border-bottom: 3px double #B48A3C !important; } .hero h1 { color: #2F5D46; }
+.b1, .cta { background: none; color: #2F5D46; border: 1.5px solid #2F5D46; }
+.art { background: #E9DEC0; border: 1px solid #B48A3C; }
+.art .m, .art .h { position: absolute; top: 50%; width: 60px; height: 60px; margin-top: -30px; border-radius: 50%; border: 5px solid #2F5D46; }
+.art .m { left: calc(50% - 50px); } .art .h { left: calc(50% - 10px); border-color: #B48A3C; -webkit-mask: conic-gradient(from 200deg, #000 0 300deg, transparent 0); mask: conic-gradient(from 200deg, #000 0 300deg, transparent 0); }
+.feats { padding-top: 18px; background: radial-gradient(circle, transparent 3px, #B48A3C 3.5px 4.5px, transparent 5px) 26px 0 / 12px 10px repeat-x; }
+.feats b { color: #B48A3C; } .feats h3 { color: #2F5D46; } .stats { border-color: #2F5D46 !important; } .stats b { color: #2F5D46; font-weight: 400; }
+</style>

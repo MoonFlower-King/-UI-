@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Fluxus",
+  "zh": "激浪派",
+  "alias": [
+    "激浪派",
+    "Fluxus",
+    "事件乐谱",
+    "Event Score"
+  ],
+  "lead": "六十年代激浪派的印刷品：打字机字、方框、编号、指令一样的短句，黑白为主突然冒出一个红圆点。像一叠行为艺术的说明卡，幽默又反常规，适合实验艺术空间、独立出版、音乐现场。",
+  "prompt": "激浪派风格：白底 #FAFAF7，内容拆成便当格，每格是 2px 纯黑描边的直角方框（不要圆角），有的格子反白成黑底白字；全站等宽打字机字体，标题全大写加编号像“事件乐谱”；唯一的颜色是信号红 #E3301B，只出现在一个大圆点和按钮上",
+  "promptEn": "Fluxus style: #FAFAF7 white background with content split into bento tiles, each a square-cornered box with a 2px solid black border (no radius), some tiles inverted to black with white text; monospace typewriter type throughout, headlines numbered like event scores; the only color is signal red #E3301B, used for one large dot and the buttons",
+  "avoid": "它是“像说明书一样的艺术”，靠排版和留白取胜，不要加涂鸦、拼贴照片或很多颜色。方框线要统一粗细。",
+  "neg": [
+    "涂鸦、拼贴照片、彩色渐变、圆角卡片",
+    "graffiti, photo collage, color gradients, rounded cards"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #E3301B; --a2: #111; --on: #fff; background: #FAFAF7; color: #111; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.nav, .copy, .art, .feats article, .stats div { border-radius: 0 !important; background: #FAFAF7 !important; box-shadow: inset 0 0 0 2px #111; }
+.ft { background: none !important; } .logo i { border-radius: 50%; }
+.hero h1 { font-size: 24px !important; text-transform: uppercase; } .kicker { color: #111; } .kicker::before { content: "No. 12 — "; }
+.b1, .cta { border-radius: 0; } .b2 { color: #111; text-decoration: underline; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 70%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: #E3301B; }
+.feats article:nth-child(2) { background: #111 !important; color: #FAFAF7; } .feats b { color: inherit; }
+.feats h3 { text-transform: uppercase; } .feats h3::before { content: "▸ "; }
+.stats div:nth-child(1) { background: #111 !important; color: #FAFAF7; }
+</style>

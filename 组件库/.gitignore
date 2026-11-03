@@ -3,3 +3,6 @@
 /data/prompts.js
 /data/prompt-code/
 /data/code/
+
+# npm run shots 的截图输出，不入库
+/.shots/

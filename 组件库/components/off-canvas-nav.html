@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Off-canvas Nav", "zh": "画布外导航",
+  "lead": "手机上把导航菜单藏在屏幕左边外面，点汉堡按钮时整个页面往右推开，露出菜单。和抽屉盖在上面不同，它是把内容“挤走”，空间关系更清楚。",
+  "vague": ["手机上菜单放不下", "菜单滑出来想有推开的感觉"],
+  "terms": ["Off-canvas Navigation", "Push Menu 推开式菜单", "Hamburger Menu"],
+  "prompt": "移动端做画布外导航：菜单宽 160px 放在视口左侧外面，点击汉堡按钮时菜单和整个页面内容一起向右平移 160px（transform，300ms cubic-bezier(.3,.7,.3,1)），页面内容同时缩小到 0.94 并加圆角和阴影，像被推到后面；点页面空白处或再点按钮收回；宽屏下菜单常驻左侧、不需要按钮。"
+}
+-->
+<div class="vp">
+  <nav class="menu"><b>山月书房</b><a class="on">首页</a><a>书目</a><a>夜读</a><a>关于</a></nav>
+  <div class="page">
+    <header><button class="burger" aria-label="菜单"><i></i><i></i><i></i></button><span>首页</span></header>
+    <div class="ph"></div><div class="ph s"></div><div class="ph"></div>
+  </div>
+</div>
+<style>
+.vp { position: relative; width: 220px; height: 260px; overflow: hidden; border-radius: 22px; background: #1F2937; border: 1px solid #E4E4E7; font: 13px -apple-system, "PingFang SC", sans-serif; }
+.menu { position: absolute; inset: 0 auto 0 0; width: 140px; padding: 20px 14px; display: grid; align-content: start; gap: 6px; color: #D1D5DB; transform: translateX(-60px); opacity: 0; transition: transform .3s cubic-bezier(.3,.7,.3,1), opacity .3s; }
+.menu b { margin-bottom: 10px; color: #fff; font: 600 15px "Songti SC", serif; } .menu a { padding: 6px 8px; border-radius: 8px; cursor: pointer; } .menu a.on { background: rgba(250,140,22,.18); color: #FDBA74; }
+.page { position: absolute; inset: 0; padding: 12px; background: #FFFBF5; transition: transform .3s cubic-bezier(.3,.7,.3,1), border-radius .3s, box-shadow .3s; }
+.vp.open .menu { transform: none; opacity: 1; }
+.vp.open .page { transform: translateX(140px) scale(.94); border-radius: 18px; box-shadow: -10px 0 30px rgba(0,0,0,.35); cursor: pointer; }
+header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color: #18181B; font-weight: 600; }
+.burger { display: grid; gap: 4px; padding: 6px; border: 0; background: none; cursor: pointer; } .burger i { width: 16px; height: 2px; border-radius: 2px; background: #18181B; }
+.ph { height: 44px; margin-bottom: 10px; border-radius: 10px; background: #FFE7CC; } .ph.s { width: 70%; background: #F4F4F5; }
+</style>
+<script>
+const vp = document.querySelector(".vp");
+document.querySelector(".burger").addEventListener("click", (e) => { e.stopPropagation(); vp.classList.toggle("open"); });
+document.querySelector(".page").addEventListener("click", () => vp.classList.remove("open"));
+document.querySelectorAll(".menu a").forEach((a) => a.addEventListener("click", () => { document.querySelectorAll(".menu a").forEach((x) => x.classList.toggle("on", x === a)); document.querySelector("header span").textContent = a.textContent; vp.classList.remove("open"); }));
+</script>

@@ -1,0 +1,39 @@
+<!--
+{
+  "en": "Forgiving Format", "zh": "宽容的输入格式",
+  "lead": "手机号写成“138 0000 2417”“138-0000-2417”还是带 +86，系统都应该认，而不是报错让用户重填。由系统去整理格式，别让人去迁就机器。",
+  "vague": ["用户总是格式填错", "报错太多用户烦"],
+  "terms": ["Forgiving Format", "Postel's Law 宽进严出", "Input Normalization 输入规整"],
+  "prompt": "手机号输入框做宽容格式：允许空格、短横线、括号、全角数字和 +86 前缀，输入时不报错；失焦时自动规整成「138 0000 2417」显示，并在下方用灰色小字显示「已识别为 13800002417」；只有去掉这些符号后仍不是 11 位数字时才提示错误。"
+}
+-->
+<div class="fi">
+  <label>手机号</label>
+  <input value="+86 (138)-0000 2417" inputmode="tel">
+  <p class="msg">失焦后自动整理格式</p>
+  <div class="eg">试试：<button>１３８ ００００ ２４１７</button><button>138-0000-2417</button><button>12345</button></div>
+</div>
+<style>
+.fi { width: 270px; padding: 16px; background: #fff; border: 1px solid #E4E4E7; border-radius: 14px; font: 13px -apple-system, "PingFang SC", sans-serif; }
+label { display: block; margin-bottom: 6px; color: #3F3F46; font-weight: 500; }
+input { box-sizing: border-box; width: 100%; height: 38px; padding: 0 12px; border: 1px solid #E4E4E7; border-radius: 10px; font: 15px -apple-system, sans-serif; letter-spacing: .02em; outline: none; }
+input:focus { border-color: #FA8C16; box-shadow: 0 0 0 3px rgba(250,140,22,.18); }
+input.bad { border-color: #DC2626; }
+.msg { min-height: 18px; margin: 6px 0 10px; font-size: 12px; color: #71717A; } .msg.ok { color: #15803D; } .msg.err { color: #DC2626; }
+.eg { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 11px; color: #A1A1AA; }
+.eg button { padding: 2px 6px; border: 1px solid #E4E4E7; border-radius: 6px; background: #fff; font: inherit; color: #52525B; cursor: pointer; }
+</style>
+<script>
+const input = document.querySelector("input"), msg = document.querySelector(".msg");
+function tidy() {
+  const raw = input.value.replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+  const digits = raw.replace(/\D/g, "").replace(/^86(?=\d{11}$)/, "");
+  if (/^1\d{10}$/.test(digits)) {
+    input.value = digits.replace(/(\d{3})(\d{4})(\d{4})/, "$1 $2 $3"); input.classList.remove("bad");
+    msg.className = "msg ok"; msg.textContent = "✓ 已识别为 " + digits;
+  } else { input.classList.add("bad"); msg.className = "msg err"; msg.textContent = "去掉符号后应该是 11 位数字，现在是 " + digits.length + " 位"; }
+}
+input.addEventListener("blur", tidy);
+input.addEventListener("input", () => { input.classList.remove("bad"); msg.className = "msg"; msg.textContent = "失焦后自动整理格式"; });
+document.querySelectorAll(".eg button").forEach((b) => b.addEventListener("click", () => { input.value = b.textContent; tidy(); }));
+</script>

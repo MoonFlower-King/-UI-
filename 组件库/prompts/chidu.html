@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Letter Scroll",
+  "zh": "尺牍竖排",
+  "alias": [
+    "尺牍",
+    "信札",
+    "朱丝栏",
+    "Chinese Letter Paper"
+  ],
+  "lead": "古人写信的信笺：米黄纸上一条条朱红竖线（朱丝栏），墨字从右往左竖着写，落款处压一方小印。安静、有书卷气，适合书店、出版、文人雅集、手写信类品牌。",
+  "prompt": "尺牍竖排风格：米黄信笺底 #F3ECDD，正文区画朱红细竖线栏格（间隔约 28px、透明度 30%），墨色 #2B2621 宋体类衬线字，标题竖排；主色朱砂红 #A8321E 只用在印章、编号和按钮上，按钮直角；插图是一页素笺，右下角压一方朱红印章",
+  "promptEn": "Chinese letter-paper style: #F3ECDD cream letter paper with thin vermilion vertical ruling (about every 28px at 30% opacity) behind the text, ink #2B2621 Song-style serif type with vertical headlines; cinnabar #A8321E only for the seal, numbers and square-cornered buttons; the illustration is a blank sheet with a small red seal stamped in the lower right corner",
+  "avoid": "竖线栏格要淡，像衬在纸里的格子，太红太粗会和字抢。竖排只用在标题和短句，大段正文竖排很难读；数字和英文保持横排。",
+  "neg": [
+    "大段竖排正文、浓重红格子、仿古做旧污渍",
+    "long vertical body text, heavy red grid, fake aged stains"
+  ],
+  "kit": "site-kit",
+  "layout": "vertical"
+}
+-->
+<style>
+.site { --a: #A8321E; --a2: #A8321E; --on: #F7F1E3; background: #F3ECDD; color: #2B2621; font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.nav { border-bottom: 1px solid rgba(168,50,30,.35); } .logo i { width: 12px; height: 12px; box-shadow: inset 0 0 0 2px #A8321E, inset 0 0 0 3px #F3ECDD; }
+.copy { padding: 0 4px; background: repeating-linear-gradient(90deg, transparent 0 27px, rgba(168,50,30,.3) 27px 28px); }
+.hero h1 { font-weight: 600; } .kicker { letter-spacing: 3px; }
+.art { background: #EFE4CC; border: 1px solid rgba(168,50,30,.35); box-shadow: inset 0 0 0 6px #F3ECDD, inset 0 0 0 7px rgba(168,50,30,.3); }
+.art .h { position: absolute; top: 34px; right: 30px; width: 58%; height: 52%; background: repeating-linear-gradient(270deg, rgba(43,38,33,.55) 0 3px, transparent 3px 24px); -webkit-mask: linear-gradient(#000 0 60%, transparent); mask: linear-gradient(#000 0 60%, transparent); }
+.art .m { position: absolute; left: 22px; bottom: 22px; width: 38px; height: 38px; background: #A8321E; box-shadow: inset 0 0 0 3px #A8321E, inset 0 0 0 5px #EFE4CC; }
+.feats b, .feats h3 { color: #A8321E; } .feats article { padding-right: 12px; border-right: 1px solid rgba(168,50,30,.3); }
+.stats { border-top: 1px solid rgba(168,50,30,.35); margin: 0 26px; } .stats b { font-weight: 500; color: #A8321E; }
+</style>

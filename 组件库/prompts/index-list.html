@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Index List",
+  "zh": "索引目录",
+  "alias": [
+    "索引风",
+    "目录式排版",
+    "Index Layout"
+  ],
+  "lead": "整个网站像一本书的索引或展览目录：每样东西都有编号，等宽数字，小号字整齐排成多栏，靠对齐和线条分层。克制、聪明、信息清楚，适合建筑事务所、作品集、档案、独立杂志。",
+  "prompt": "索引目录风格：米白底 #F5F5F0，黑字 #111；全站小字号（正文 12px），标题也不大但很粗，所有编号用等宽数字并用亮橙 #FF4F00 标出（如 001、002）；栏目名、正文、特点按多栏网格严格对齐，用 1px 黑线分栏；插图是一张“目录列表”：几行等距细线，其中一行被橙色高亮",
+  "promptEn": "Index-list style: #F5F5F0 off-white with #111 black text; small type throughout (12px body), headlines not large but heavy; every number is monospaced and marked in bright orange #FF4F00 (001, 002…); section labels, body and features align strictly on a multi-column grid with 1px black column rules; the illustration is a \"contents list\": evenly spaced thin rows with one row highlighted in orange",
+  "avoid": "它的美感来自“对齐”，所有元素要贴着同一套栏线；标题别放太大，一放大就成了普通杂志风。",
+  "neg": [
+    "大号标题、居中排版、装饰图形",
+    "oversized headlines, centered layout, decorative graphics"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #111; --a2: #FF4F00; --on: #F5F5F0; background: #F5F5F0; color: #111; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.nav { border-bottom: 1px solid #111; font-size: 11px; } .logo i { display: none; } .logo::before { content: "000"; margin-right: 6px; font: 600 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF4F00; }
+.kicker { font: 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF4F00; border-color: #111 !important; }
+.hero h1 { font-size: 30px !important; font-weight: 800; letter-spacing: -.01em; } .sub { font-size: 11px; }
+.b1, .cta { background: #111; color: #F5F5F0; } .b2 { color: #FF4F00; }
+.art { border-top: 1px solid #111; background: repeating-linear-gradient(transparent 0 15px, #111 15px 16px); }
+.art .m { position: absolute; left: 0; right: 0; top: 32px; height: 15px; background: #FF4F00; }
+.feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #FF4F00; } .feats b::before { content: "0"; } .feats h3 { font-size: 13px; } .feats article { border-color: #111 !important; }
+.stats b { font: 600 22px ui-monospace, "SF Mono", Menlo, Consolas, monospace; } .stats { border-color: #111 !important; }
+</style>
