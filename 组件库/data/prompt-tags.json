@@ -1,0 +1,18 @@
+{
+  "_说明": "调配台顶部的「感觉」筛选标签。构建时用 words 去匹配每个词条的名字、别名、简介和提示词（中英文都算，不分大小写），命中任一个词就打上这个标签；词条元信息里也可以写 \"tags\": [\"标签 id\"] 手动补。命中太少（不到 5 个）的标签不显示。",
+  "tags": [
+    { "id": "minimal", "name": "极简", "words": ["极简", "简约", "留白", "克制", "minimal", "whitespace", "restrained"] },
+    { "id": "retro", "name": "复古", "words": ["复古", "怀旧", "年代", "老式", "旧报", "古董", "retro", "vintage", "nostalg", "old-school", "70s", "80s", "90s"] },
+    { "id": "east", "name": "东方", "words": ["东方", "中式", "国风", "水墨", "宋式", "宋代", "盛唐", "日式", "和风", "禅", "书法", "印章", "青花", "敦煌", "chinese", "japanese", "zen", "ink wash", "calligraph"] },
+    { "id": "tech", "name": "科技", "words": ["科技", "未来", "赛博", "代码", "终端", "数据", "程序员", "开发者", "tech", "futur", "cyber", "code", "terminal", "data", "developer", "sci-fi"] },
+    { "id": "cute", "name": "可爱", "words": ["可爱", "萌", "童趣", "俏皮", "糖果", "卡通", "cute", "kawaii", "playful", "candy", "cartoon"] },
+    { "id": "warm", "name": "温暖", "words": ["温暖", "温馨", "暖色", "亲切", "治愈", "温柔", "warm", "cozy", "cosy", "friendly", "gentle"] },
+    { "id": "cool", "name": "清冷", "words": ["清冷", "冷色", "冷静", "冰", "雪", "cool tone", "cold", "icy", "calm"] },
+    { "id": "luxe", "name": "高级", "words": ["高级", "奢华", "精致", "典雅", "优雅", "贵气", "烫金", "luxur", "elegan", "premium", "refined", "gold foil"] },
+    { "id": "nature", "name": "自然", "words": ["自然", "植物", "森林", "花草", "花卉", "海边", "海洋", "山野", "户外", "原木", "叶子", "四季", "nature", "botanic", "forest", "flower", "ocean", "outdoor"] },
+    { "id": "craft", "name": "手作", "words": ["手作", "手工", "手绘", "手写", "纸艺", "版画", "印刷", "拼贴", "刺绣", "木刻", "handmade", "hand-drawn", "handwrit", "printmak", "collage", "craft"] },
+    { "id": "dark", "name": "暗色", "words": ["深色", "暗色", "黑底", "夜色", "深夜", "夜间", "dark", "black background", "night"] },
+    { "id": "bold", "name": "鲜艳", "words": ["鲜艳", "撞色", "高饱和", "荧光", "霓虹", "大胆", "vivid", "bold color", "saturated", "neon", "fluorescent", "clash"] },
+    { "id": "pro", "name": "专业", "words": ["专业", "商务", "企业", "可信", "严谨", "professional", "corporate", "business", "trustworthy"] }
+  ]
+}

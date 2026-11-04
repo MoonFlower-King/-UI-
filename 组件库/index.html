@@ -7,16 +7,17 @@
 <meta name="description" content="说不清界面哪里不对？说出你的感觉，翻译成 AI 听得懂的专业词。几百个界面术语，每个都有实时效果、一句能直接发给 AI 的话和可复制的代码。">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1218" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23121722'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23FFD58A'/%3E%3Cpath d='M7 23h18M10 27h12' stroke='%23FA8C16' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <script>try { const t = JSON.parse(localStorage.getItem('jy-theme')); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#home" aria-label="江月 UI 首页"><span class="mark" aria-hidden="true"></span><span class="brand-name">江月<b>UI</b></span></a>
+  <a class="brand" href="#home" aria-label="江月 UI 首页"><img class="mark" src="assets/logo.svg" alt="" width="30" height="30"><span class="brand-name">江月<b>UI</b></span></a>
   <nav class="top-nav" aria-label="主导航">
     <a href="#home" data-tab="home">感觉翻译</a>
     <a href="#all" data-tab="all">词典</a>
+    <a href="#sites" data-tab="sites">个人网站</a>
     <a href="prompts.html">提示词调配台</a>
   </nav>
   <button class="search-btn" id="search-btn" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>搜词，或说出你的感觉…</span><kbd>/</kbd></button>
@@ -36,6 +37,7 @@
 <nav class="tabbar" aria-label="底部导航">
   <a href="#home" data-tab="home"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h8M4 15h5"/><path d="m13 13 2 2 3-4"/></svg>翻译</a>
   <a href="#all" data-tab="all"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="11" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="11" width="6" height="6" rx="1.5"/><rect x="11" y="11" width="6" height="6" rx="1.5"/></svg>词典</a>
+  <a href="#sites" data-tab="sites"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M6 6h.01"/></svg>个人站</a>
   <button type="button" data-open-search><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>搜索</button>
   <button type="button" data-open-basket><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14l-1.6 9.2a1 1 0 0 1-1 .8H5.6a1 1 0 0 1-1-.8z"/><path d="M7 7l3-4 3 4"/></svg>篮子<b class="count" data-basket-count>0</b></button>
 </nav>

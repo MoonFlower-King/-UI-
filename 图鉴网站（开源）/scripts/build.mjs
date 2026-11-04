@@ -91,6 +91,8 @@ for (const d of ['demos', 'episodes', 'data']) {
   rmSync(join(ROOT, d), { recursive: true, force: true });
   mkdirSync(join(ROOT, d), { recursive: true });
 }
+// 标志只在组件库存一份，图鉴构建时拷过来用
+copyFileSync(join(ROOT, '..', '组件库', 'assets', 'logo.svg'), join(ROOT, 'data', 'logo.svg'));
 
 // 每个术语对应「江月 UI」（../组件库）里一个真正能用的组件，卡片上的「看代码」显示它的代码。
 // 组件 id 默认由英文名转成小写连字符，个别名字不一致的写在这里。

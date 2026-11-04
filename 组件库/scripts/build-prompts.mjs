@@ -75,6 +75,16 @@ for (const g of groups) {
     items.push({ id, ...it });
   }
 }
+// 「感觉」筛选标签：data/prompt-tags.json 里每个标签一组关键词，命中名字、别名、一句话简介的就打上；
+// 元信息里写 "tags": ["标签 id"] 可以手动补。命中太少的标签不显示，免得点进去只有一两个
+const TAGS = JSON.parse(readFileSync(join(ROOT, 'data/prompt-tags.json'), 'utf8')).tags;
+const tagIds = new Set(TAGS.map((t) => t.id));
+for (const it of items) {
+  if (it.tags && !(Array.isArray(it.tags) && it.tags.every((t) => tagIds.has(t)))) fail(`${it.id}.html：tags 里只能写 data/prompt-tags.json 里有的标签 id`);
+  const text = [it.zh, it.en, ...(it.alias || []), it.lead].join(' ').toLowerCase();
+  it.tags = TAGS.filter((t) => it.tags?.includes(t.id) || t.words.some((w) => text.includes(w.toLowerCase()))).map((t) => t.id);
+}
+const tags = TAGS.map(({ id, name }) => ({ id, name, count: items.filter((it) => it.tags.includes(id)).length })).filter((t) => t.count >= 5);
 const orphan = [...byId].filter(([, it]) => !it.group).map(([id]) => id);
 if (orphan.length) fail(`这些词条没有在 data/prompt-groups.json 里登记：${orphan.join('、')}`);
 
@@ -95,7 +105,7 @@ for (const [kind, global, take] of [['code', 'JY_PROMPT_CODE', (it) => it.code],
     writeFileSync(join(dir, `${g.id}.js`), js);
   }
 }
-const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items: items.map((it) => omit(it, ['code', ...TEXT])), stages, kits,
+const out = { kinds, groups: groups.map(({ items: list, ...g }) => ({ ...g, count: list.length })), items: items.map((it) => omit(it, ['code', ...TEXT])), stages, kits, tags,
   layouts: Object.fromEntries(Object.entries(LAYOUTS).map(([k, v]) => [k, v.name])) };
 const index = `${HEAD}window.JY_PROMPTS = ${JSON.stringify(out)};\n`;
 writeFileSync(join(ROOT, 'data/prompts.js'), index);

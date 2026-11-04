@@ -13,7 +13,8 @@
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { adminCases, sharedChunks } from '../admin/pages.mjs';
+import * as admin from '../admin/pages.mjs';
+import * as sites from '../sites/pages.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
@@ -35,17 +36,23 @@ for (const file of readdirSync(join(ROOT, 'components')).filter((f) => f.endsWit
   byId.set(basename(file, '.html'), { ...meta, code: raw.slice(m[0].length).trimEnd() + '\n' });
 }
 
-// 「管理后台」整页案例由 admin/ 里的模板 × 风格生成（不落成文件），在 categories.json 里写 "generated": "admin" 的主题自动收进来
-const generated = adminCases();
-for (const g of generated) {
-  if (byId.has(g.id)) fail(`生成的案例 ${g.id} 和 components/${g.id}.html 重名`);
-  const { id, cat, ...rest } = g;
+// 整页案例由「页面模板 × 风格」生成（不落成文件）：categories.json 里写 "generated": "admin" / "site" 的主题自动收进来
+// - admin：管理后台（admin/）；site：个人网站（sites/），在网站上是单独的「个人网站」栏目（主题上写 "section": "site"）
+const GEN = {
+  admin: { cases: admin.adminCases(), chunks: admin.sharedChunks, dir: 'admin/pages.mjs' },
+  site: { cases: sites.siteCases(), chunks: sites.sharedChunks, dir: 'sites/pages.mjs' },
+};
+for (const g of Object.values(GEN)) for (const c of g.cases) {
+  if (byId.has(c.id)) fail(`生成的案例 ${c.id} 和其他组件重名`);
+  const { id, cat, ...rest } = c;
   byId.set(id, rest);
 }
 for (const cat of categories) {
-  if (cat.generated !== 'admin') continue;
-  cat.items = generated.filter((g) => g.cat === cat.id).map((g) => g.id);
-  if (!cat.items.length) fail(`categories.json：${cat.name} 没有生成任何案例（检查 admin/pages.mjs 里页面的 cat）`);
+  if (!cat.generated) continue;
+  const g = GEN[cat.generated];
+  if (!g) fail(`categories.json：${cat.name} 的 generated 只能是 ${Object.keys(GEN).join(' / ')}`);
+  cat.items = g.cases.filter((c) => c.cat === cat.id).map((c) => c.id);
+  if (!cat.items.length) fail(`categories.json：${cat.name} 没有生成任何案例（检查 ${g.dir} 里页面的 cat）`);
 }
 
 const components = [];
@@ -70,9 +77,10 @@ for (const v of vague) for (const [, , id] of v.terms) if (id && !byId.has(id)) 
 // 用 .js 而不是 .json：双击 index.html（file://）时浏览器不允许 fetch 本地文件
 const HEAD = '// 由 scripts/build.mjs 生成，不要手改。改组件请改 components/ 下的文件后重新运行 npm run build:ui。\n';
 const cats = categories.map(({ items, generated: _, ...c }) => ({ ...c, count: items.length }));
+const siteStyles = sites.siteStyles();
 // 英文提示词只有详情页用得到，跟代码一起放进主题文件，首页索引不变大
 const meta = components.map(({ code, promptEn, prompt, ...c }) => c);
-writeFileSync(join(ROOT, 'data/components.js'), `${HEAD}window.UI_KIT = ${JSON.stringify({ categories: cats, components: meta, vague })};\n`);
+writeFileSync(join(ROOT, 'data/components.js'), `${HEAD}window.UI_KIT = ${JSON.stringify({ categories: cats, components: meta, vague, siteStyles })};\n`);
 writeFileSync(join(ROOT, 'data/stats.js'), `${HEAD}window.UI_KIT_STATS = ${JSON.stringify({ components: components.length })};\n`);
 const TEXT = join(ROOT, 'data/text');
 rmSync(TEXT, { recursive: true, force: true });
@@ -90,7 +98,7 @@ for (const cat of categories) {
   const args = [cat.id, code];
   if (cat.generated) {
     // 生成的案例有大段相同代码：每段只存一份，代码里换成 \u0001编号\u0001，app.js 加载时还原
-    const chunks = sharedChunks();
+    const chunks = GEN[cat.generated].chunks();
     const used = new Set();
     for (const id in code) chunks.forEach((c, i) => {
       const parts = code[id].split(c);
