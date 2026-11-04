@@ -1,39 +1,26 @@
-// 提示词调配台（prompts.html）。数据来自 data/prompts.js 和 data/prompt-code/（npm run build:ui 生成）。
+// 提示词调配台（prompts.html）。数据来自 data/prompts.js（首屏索引）、data/prompt-text/（提示词全文）和 data/prompt-code/（预览代码），
+// 都由 npm run build:ui 生成；后两种按分组拆开，用到才下载。$、esc、store、toast、copy、明暗切换在 assets/common.js。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
 const { kinds, groups, items, stages, kits = {}, layouts = {}, tags = [] } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
 const groupById = Object.fromEntries(groups.map((g) => [g.id, g]));
 const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const store = {
-  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
-};
 
-/* ---------------- 小工具（和词典页同款） ---------------- */
-let toastTimer;
-function toast(msg) {
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
-}
-function copy(text, done = '已复制，粘贴给 AI 就行') {
-  const fallback = () => {
-    const ta = Object.assign(document.createElement('textarea'), { value: text });
-    document.body.append(ta); ta.select();
-    try { document.execCommand('copy'); toast(done); } catch { toast('复制失败，请手动选中复制'); }
-    ta.remove();
-  };
-  navigator.clipboard ? navigator.clipboard.writeText(text).then(() => toast(done), fallback) : fallback();
-}
-const SUN = '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>';
-const MOON = '<svg viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9z"/></svg>';
-const isDark = () => (document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
-function syncTheme() { const b = $('#theme-btn'), d = isDark(); b.innerHTML = d ? SUN : MOON; b.title = b.ariaLabel = d ? '切换到白天' : '切换到夜晚'; }
-$('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('jy-theme', t); syncTheme(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
-syncTheme();
+/* ---------------- 按分组下载全文和预览代码 ---------------- */
+// 用 <script> 而不是 fetch，直接双击打开 html 也能用；同一个文件只下载一次
+const loads = {};
+const load = (dir, global, g) => (loads[`${dir}/${g}`] ||= new Promise((ok, no) => {
+  const s = document.createElement('script');
+  s.src = `data/${dir}/${g}.js${V}`; s.onload = () => ok(window[global][g]); s.onerror = () => { delete loads[`${dir}/${g}`]; s.remove(); no(); };
+  document.head.append(s);
+}));
+const loadCode = (g) => load('prompt-code', 'JY_PROMPT_CODE', g);
+// 全文下载后直接并进词条对象，之后 it.prompt 等字段就能用了
+const hasText = (id) => 'prompt' in byId[id];
+const loadText = (g) => load('prompt-text', 'JY_PROMPT_TEXT', g).then((t) => {
+  for (const [id, x] of Object.entries(t)) if (!hasText(id)) { Object.assign(byId[id], x); fillText(id); }
+});
+const needText = (ids) => Promise.all([...new Set(ids.map((id) => byId[id].group))].map(loadText));
 
 /* ---------------- 状态：勾了哪些词、用哪种语言、每类填的主体 ---------------- */
 let picked = store.get('jy-mix', []).filter((id) => byId[id]);
@@ -88,16 +75,19 @@ function renderComposer() {
       <div class="presets"><span>或者先试一个组合：</span>${PRESETS.map((p, i) => `<button class="preset" data-preset="${i}"><b>${esc(p.name)}</b><small>${esc(p.note)}</small></button>`).join('')}</div>`;
     return;
   }
-  const { text, neg } = compile();
+  // 选中的词里有分组的全文还没下载（比如上次选的词在页面下方）：先下载，下载完再画一遍
+  const ready = picked.every(hasText);
+  if (!ready) needText(picked).then(renderComposer, () => toast('提示词没下载下来，检查网络后刷新试试'));
+  const { text, neg } = ready ? compile() : { text: '正在载入提示词…', neg: '' };
   const usedKinds = kinds.filter((k) => picked.some((id) => groupById[byId[id].group].kind === k.id));
   box.innerHTML = `<header class="comp-head"><h2>拼好的提示词</h2>
       <div class="seg" role="group" aria-label="语言"><button data-lang="zh" aria-pressed="${lang === 'zh'}">中文</button><button data-lang="en" aria-pressed="${lang === 'en'}">English</button></div>
       <button class="icon-btn comp-close" type="button" data-close-comp aria-label="收起"><svg viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button></header>
     ${usedKinds.map((k) => `<label class="comp-subject"><span>${esc(k.subject)}</span><input data-subject="${k.id}" value="${esc(subjects[k.id] || '')}" placeholder="${esc(lang === 'en' ? k.subjectEgEn : k.subjectEg)}" autocomplete="off"></label>`).join('')}
     <ul class="comp-picks">${picked.map((id) => `<li><span>${esc(byId[id].zh)}<small>${esc(groupById[byId[id].group].name)}</small></span><button data-toggle="${id}" aria-label="去掉 ${esc(byId[id].zh)}"><svg viewBox="0 0 20 20"><path d="m6 6 8 8M14 6l-8 8"/></svg></button></li>`).join('')}</ul>
-    <label class="comp-out"><span>正面提示词（可以直接改）</span><textarea id="out" rows="9">${esc(text)}</textarea></label>
+    <label class="comp-out"><span>正面提示词（可以直接改）</span><textarea id="out" rows="9"${ready ? '' : ' disabled'}>${esc(text)}</textarea></label>
     ${neg ? `<label class="comp-out neg"><span>反面提示词（贴进「不希望出现」那一栏）</span><textarea id="neg" rows="2">${esc(neg)}</textarea></label>` : ''}
-    <div class="comp-actions"><button class="btn ghost" data-clear>清空</button><button class="btn primary" data-copy-all>复制全部</button></div>
+    <div class="comp-actions"><button class="btn ghost" data-clear>清空</button><button class="btn primary" data-copy-all${ready ? '' : ' disabled'}>复制全部</button></div>
     <p class="hint">支持单独「反面提示词」输入框的工具（多数生图、生视频工具都有），把下面那段分开贴效果更好；没有的话直接复制全部即可。</p>`;
 }
 
@@ -116,7 +106,7 @@ composer.addEventListener('click', (e) => {
 composer.addEventListener('input', (e) => {
   const k = e.target.dataset.subject; if (!k) return;
   subjects[k] = e.target.value; save();
-  $('#out').value = compile().text;
+  if (picked.every(hasText)) $('#out').value = compile().text;
 });
 $('#mix-bar').onclick = () => composer.classList.add('open');
 
@@ -127,16 +117,11 @@ const SHADOW_CSS = ':host{all:initial;display:block;position:relative;width:100%
   'font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}' +
   ':host(:not(.run)) *,:host(:not(.run)) *::before,:host(:not(.run)) *::after{animation-play-state:paused!important}' +
   '@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}';
-// 预览代码按分组放在 data/prompt-code/<分组>.js，第一次画到这一组时才下载（同一组只下载一次）
-const codeLoads = {};
-const loadCode = (g) => (codeLoads[g] ||= new Promise((ok, no) => {
-  const s = document.createElement('script');
-  s.src = `data/prompt-code/${g}.js`; s.onload = () => ok(window.JY_PROMPT_CODE[g]); s.onerror = no;
-  document.head.append(s);
-}));
+// 预览代码和提示词全文按分组放在 data/prompt-code/、data/prompt-text/，第一次画到这一组时才下载
 async function paint(host) {
   if (host.shadowRoot) return;
   const it = byId[host.dataset.id], stage = groupById[it.group].stage;
+  loadText(it.group).catch(() => {});
   const code = (await loadCode(it.group))[it.id];
   if (host.shadowRoot) return;
   host.attachShadow({ mode: 'open' }).innerHTML = `<style>${SHADOW_CSS}</style>${stage ? stages[stage] : ''}\n${it.kit ? `<style>${kits[it.kit]}</style>` : ''}${it.layout ? `<style>${kits[`layout-${it.layout}`]}</style>` : ''}${code}`;
@@ -152,11 +137,16 @@ function card(it) {
     <div class="mix-body">
       <div class="mix-title"><h3>${esc(it.zh)}<small>${esc(it.en)}</small></h3><button class="pick-btn" data-toggle="${it.id}"></button></div>
       <p class="mix-lead">${esc(it.lead)}</p>
-      <details><summary>提示词 · 容易用错的地方</summary>
-        <dl><dt>中文</dt><dd>${esc(it.prompt)}</dd><dt>English</dt><dd lang="en">${esc(it.promptEn)}</dd>
-        <dt class="warn">容易用错</dt><dd>${esc(it.avoid)}</dd>${it.tip ? `<dt>小贴士</dt><dd>${esc(it.tip)}</dd>` : ''}${it.alias ? `<dt>也叫</dt><dd>${it.alias.map(esc).join('、')}</dd>` : ''}</dl>
-        <button class="btn sm" data-copy-one="${it.id}">复制这一句</button></details>
+      <details data-text="${it.id}"><summary>提示词 · 容易用错的地方</summary>${hasText(it.id) ? textBody(it) : '<p class="mix-loading">正在载入…</p>'}</details>
     </div></article>`;
+}
+// 卡片折叠区里的提示词全文：这一组的全文下载好之后填进去
+const textBody = (it) => `<dl><dt>中文</dt><dd>${esc(it.prompt)}</dd><dt>English</dt><dd lang="en">${esc(it.promptEn)}</dd>
+        <dt class="warn">容易用错</dt><dd>${esc(it.avoid)}</dd>${it.tip ? `<dt>小贴士</dt><dd>${esc(it.tip)}</dd>` : ''}${it.alias ? `<dt>也叫</dt><dd>${it.alias.map(esc).join('、')}</dd>` : ''}</dl>
+        <button class="btn sm" data-copy-one="${it.id}">复制这一句</button>`;
+function fillText(id) {
+  const d = document.querySelector(`details[data-text="${id}"]`);
+  if (d) d.innerHTML = `<summary>提示词 · 容易用错的地方</summary>${textBody(byId[id])}`;
 }
 function syncCards() {
   $$('[data-card]').forEach((c) => {
@@ -214,9 +204,17 @@ $('#main').addEventListener('click', (e) => {
   if (scrollY > y) scrollTo({ top: y });
 });
 
-// 搜索：按分组名、中英文名、别名、简介、提示词匹配，空格分开的几个词要同时命中；没命中的卡片、分组、大类都藏起来
-const haystack = (it) => (it.hay ||= [groupById[it.group].name, layouts[it.layout] || '', it.zh, it.en, ...(it.alias || []), it.lead, it.prompt, it.promptEn].join(' ').toLowerCase());
+// 搜索：按分组名、中英文名、别名、简介、提示词匹配，空格分开的几个词要同时命中；没命中的卡片、分组、大类都藏起来。
+// 提示词全文第一次搜索时才下载全部分组，下载完再搜一遍；在那之前先用名字、简介这些首屏就有的字段搜
+const haystack = (it) => {
+  if (it.hay) return it.hay;
+  const s = [groupById[it.group].name, layouts[it.layout] || '', it.zh, it.en, ...(it.alias || []), it.lead, it.prompt || '', it.promptEn || ''].join(' ').toLowerCase();
+  if (hasText(it.id)) it.hay = s;
+  return s;
+};
+let allText;
 function search(q) {
+  if (q.trim() && !allText) allText = Promise.all(groups.map((g) => loadText(g.id))).then(() => search($('.mix-search').value), () => { allText = null; });
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const ok = (it) => words.every((w) => haystack(it).includes(w)) && [...pickTags].every((t) => it.tags?.includes(t)) && (!pickLay || it.layout === pickLay);
   let n = 0;
@@ -231,7 +229,7 @@ function search(q) {
 
 document.addEventListener('click', (e) => {
   const t = e.target.closest('#main [data-toggle]'); if (t) toggle(t.dataset.toggle);
-  const c = e.target.closest('[data-copy-one]'); if (c) copy(lang === 'en' ? byId[c.dataset.copyOne].promptEn : byId[c.dataset.copyOne].prompt);
+  const c = e.target.closest('[data-copy-one]'); if (c) copy(lang === 'en' ? byId[c.dataset.copyOne].promptEn : byId[c.dataset.copyOne].prompt); // 按钮只在全文到了之后才出现
 });
 addEventListener('keydown', (e) => { if (e.key === 'Escape') composer.classList.remove('open'); });
 

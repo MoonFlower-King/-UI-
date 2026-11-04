@@ -15,6 +15,6 @@
 - 「个人网站」栏目（`/ui/#sites`，目前 9 种页面 × 39 种风格 = 117 版）同样是生成的：`组件库/sites/` 的 `pages.mjs`（页面）× `styles.mjs`（风格，每种风格用 `pages` 挑 3 种最合适的页面）；栏目主题在 `categories.json` 写 `"section": "site"`，不进词典列表、但能搜到
 - 品牌：江月 UI 设计，视觉主题「江上明月」（夜色江面 + 月光暖金 + 江月橘 #FA8C16，标题用宋体类衬线字）。网站本身就是审美示范，改界面时保持这个水准
 - `.claude/skills/jiangyue-ui-video/`：做视频的 skill
-- `npm run build` 生成两个站点的数据。生成物（`组件库/data/components.js`、图鉴的 `data/` `demos/` `episodes/`）已 gitignore，不要提交；PR 时 Actions 会自动跑构建检查
+- `npm run build` 生成两个站点的数据，最后检查各页面脚本有没有语法错误（`组件库/scripts/check-scripts.mjs`）。生成物（`组件库/data/` 下的 .js 和 code/、text/、prompt-code/、prompt-text/，图鉴的 `data/` `demos/` `episodes/`）已 gitignore，不要提交；PR 时 Actions 会自动跑构建检查
 - 工作方式：一件事一个线程、一个 PR，别在一个线程里连续追加不相关的需求
 - 合并到 `main` 后 `.github/workflows/pages.yml` 自动发布：图鉴在根目录，组件库在 `/ui/`

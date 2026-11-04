@@ -75,6 +75,7 @@
 .mix-card summary::-webkit-details-marker { display: none; }
 .mix-card summary::after { content: " ▾"; }
 .mix-card details[open] summary::after { content: " ▴"; }
+.mix-card .mix-loading { margin: 8px 0 4px; color: var(--ink-3); font-size: 12.5px; }
 .mix-card dl { margin: 8px 0 10px; display: grid; gap: 2px; }
 .mix-card dt { margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--ink-3); letter-spacing: .5px; }
 .mix-card dt.warn { color: #C2410C; }

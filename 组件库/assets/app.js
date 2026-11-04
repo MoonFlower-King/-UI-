@@ -1,4 +1,4 @@
-// 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）。
+// 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）；$、esc、store、toast、copy、明暗切换在 assets/common.js。
 // 路由：#home 首页（感觉翻译器）· #all 词典全部 · #cat-<主题> 单个主题 · #<组件 id> 词条详情
 //       #sites 「个人网站」栏目 · #sites-<风格 id> 只看一种风格（栏目里的主题在 categories.json 写了 "section": "site"）
 // 搜索不占路由：按 / 或 Ctrl/⌘+K 打开搜索面板，手机上点底部「搜索」。
@@ -14,9 +14,9 @@ const isSite = (catId) => catById[catId]?.section === 'site';
 // 首页「个人网站」区块挑 6 个风格差异大的做展示
 const SITE_PICKS = ['site-home-jiangyue', 'site-portfolio-brutal', 'site-links-glass', 'site-blog-neon', 'site-photo-film', 'site-weekly-memphis'];
 const shortName = (c) => (c.section ? c.name.split(' · ').pop() : c.name);
-// 组件代码按主题分文件（data/code/<主题>.js），用到哪个主题才加载哪个，组件再多首页也不变慢。
-// 用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
-const codeLoads = {};
+// 组件代码和「发给 AI 的一句话」按主题分文件（data/code/<主题>.js、data/text/<主题>.js），
+// 用到哪个主题才加载哪个，组件再多首页也不变慢。用 <script> 而不是 fetch：双击 index.html（file://）时也能用。
+const loads = {};
 // 生成的「管理后台」案例：en 是英文提示词；chunks 是共用代码，数据里用 \u0001编号\u0001 代替，这里还原成完整代码
 window.JY_CODE = (cat, map, en, chunks) => {
   for (const id in map) if (byId[id]) {
@@ -24,23 +24,21 @@ window.JY_CODE = (cat, map, en, chunks) => {
     if (en && en[id]) byId[id].promptEn = en[id];
   }
 };
-function loadCode(cat) {
-  return codeLoads[cat] ||= new Promise((ok, no) => {
+window.JY_TEXT = (cat, map) => { for (const id in map) if (byId[id]) byId[id].prompt = map[id]; };
+function loadData(dir, cat) {
+  const key = `${dir}/${cat}`;
+  return loads[key] ||= new Promise((ok, no) => {
     const s = document.createElement('script');
-    s.src = `data/code/${cat}.js`;
+    s.src = `data/${key}.js${V}`;
     s.onload = ok;
-    s.onerror = () => { delete codeLoads[cat]; s.remove(); no(new Error(cat)); }; // 网络抖一下的话，下次用到再试
+    s.onerror = () => { delete loads[key]; s.remove(); no(new Error(key)); }; // 网络抖一下的话，下次用到再试
     document.head.append(s);
   });
 }
-const withCode = (c) => (c.code != null ? Promise.resolve(c) : loadCode(c.cat).then(() => c));
-const $ = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
-const store = {
-  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
-};
+// 要代码的地方（卡片首帧、词条页）也一定要那句话，两个文件一起加载
+const withCode = (c) => (c.code != null && c.prompt != null ? Promise.resolve(c) : Promise.all([loadData('code', c.cat), loadData('text', c.cat)]).then(() => c));
+// 只要那句话（篮子、卡片上的「复制提示词」）：只加载很小的 text 文件
+const withText = (ids) => Promise.all([...new Set(ids.map((id) => byId[id]).filter((c) => c.prompt == null).map((c) => c.cat))].map((cat) => loadData('text', cat)));
 const feels = vague.map((v) => v.vague.split(/\s*\/\s*/)[0]);
 
 // 组件预览底座：浅色画布、内容居中（组件代码都按浅色背景写）
@@ -79,22 +77,6 @@ const BASE = '<!DOCTYPE html><meta charset="utf-8"><meta name="viewport" content
   '<style>html,body{height:100%}body{margin:0;min-height:100%;display:grid;place-items:center;background:#FAFAFA;color:#18181B;' +
   `font-family:-apple-system,BlinkMacSystemFont,"Inter","PingFang SC","Microsoft YaHei",sans-serif}</style><script>(${guard})()<\/script>\n`;
 
-/* ---------------- 小工具 ---------------- */
-let toastTimer;
-function toast(msg) {
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
-}
-function copy(text, done = '已复制，粘贴给 AI 就行') {
-  const fallback = () => {
-    const ta = Object.assign(document.createElement('textarea'), { value: text });
-    document.body.append(ta); ta.select();
-    try { document.execCommand('copy'); toast(done); } catch { toast('复制失败，请手动选中复制'); }
-    ta.remove();
-  };
-  navigator.clipboard ? navigator.clipboard.writeText(text).then(() => toast(done), fallback) : fallback();
-}
-
 // 浮层（搜索面板、篮子）：打开时锁住页面滚动，点遮罩或按 Esc 关闭
 function openLayer(el) { el.hidden = false; document.body.style.overflow = 'hidden'; }
 function closeLayers() { $$('.overlay').forEach((o) => { o.hidden = true; }); document.body.style.overflow = ''; }
@@ -125,29 +107,20 @@ function syncAddBtn(b) {
 const basketPrompt = () => basket.length
   ? '请按下面的要求修改界面：\n\n' + basket.map((id, i) => `${i + 1}. 【${byId[id].en} · ${byId[id].zh}】${byId[id].prompt}`).join('\n\n') : '';
 function renderBasket() {
+  // 篮子里有词的那句话还没下载（比如上次放进去的）：先显示「载入中」，下载完再画一遍
+  const ready = basket.every((id) => byId[id].prompt != null);
+  if (!ready) withText(basket).then(renderBasket, () => toast('网络不太好，提示词没加载出来，刷新试试'));
   $('#basket-list').innerHTML = basket.length
     ? basket.map((id) => `<li><span>${esc(byId[id].zh)}<small>${esc(byId[id].en)}</small></span><button class="icon-btn" data-remove="${id}" aria-label="移出 ${esc(byId[id].zh)}"><svg viewBox="0 0 20 20"><path d="m6 6 8 8M14 6l-8 8"/></svg></button></li>`).join('')
     : '<li class="basket-empty">篮子还是空的。在任意词条上点「+ 篮子」，挑好几个后回到这里一次复制。</li>';
-  $('#basket-text').value = basketPrompt();
-  $('#basket-copy').disabled = !basket.length;
+  $('#basket-text').value = ready ? basketPrompt() : '正在载入提示词…';
+  $('#basket-copy').disabled = !basket.length || !ready;
 }
 const openBasket = () => openLayer($('#basket'));
 $('#basket-btn').onclick = openBasket;
 $('#basket-list').onclick = (e) => { const b = e.target.closest('[data-remove]'); if (b) toggleBasket(b.dataset.remove); };
 $('#basket-clear').onclick = () => { setBasket([]); toast('篮子已清空'); };
 $('#basket-copy').onclick = () => copy($('#basket-text').value, '整段提示词已复制');
-
-/* ---------------- 明暗：默认跟随系统，手动选过就记住 ---------------- */
-const SUN = '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.3 4.3l1.4 1.4M14.3 14.3l1.4 1.4M4.3 15.7l1.4-1.4M14.3 5.7l1.4-1.4"/></svg>';
-const MOON = '<svg viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9z"/></svg>';
-const isDark = () => (document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
-function syncTheme() {
-  const b = $('#theme-btn'), dark = isDark();
-  b.innerHTML = dark ? SUN : MOON; b.title = b.ariaLabel = dark ? '切换到白天' : '切换到夜晚';
-}
-$('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('jy-theme', t); syncTheme(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
-syncTheme();
 
 /* ---------------- 词卡与自动演示预览 ---------------- */
 // 每张卡片的预览分两层：
@@ -315,7 +288,8 @@ function hydrate(root) {
   $$('[data-add]', root).forEach(syncAddBtn);
 }
 document.addEventListener('click', (e) => {
-  const c = e.target.closest('[data-copy]'); if (c) copy(byId[c.dataset.copy].prompt);
+  const c = e.target.closest('[data-copy]');
+  if (c) { const it = byId[c.dataset.copy]; it.prompt != null ? copy(it.prompt) : withText([it.id]).then(() => copy(it.prompt), () => toast('网络不太好，提示词没加载出来，刷新试试')); }
   const a = e.target.closest('[data-add]'); if (a) toggleBasket(a.dataset.add);
   if (e.target.closest('[data-open-basket]')) openBasket();
   if (e.target.closest('[data-open-search]')) openSearch();
@@ -592,7 +566,7 @@ function renderDetail(c) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1)) || 'home', keepScroll = h === 'translator' || pendingFeel;
   let tab = 'home', curCat = '';
-  if (byId[h] && byId[h].code == null) { // 词条页要用代码：先加载它所在主题的代码文件，再画页面
+  if (byId[h] && (byId[h].code == null || byId[h].prompt == null)) { // 词条页要用代码和那句话：先加载它所在主题的文件，再画页面
     withCode(byId[h]).then(() => byId[h].code != null && route(), () => toast('网络不太好，代码没加载出来，刷新试试'));
     return;
   }

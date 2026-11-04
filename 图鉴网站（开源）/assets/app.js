@@ -9,8 +9,8 @@
   $('#stats').innerHTML = `<span><b>${episodes.length}</b> 期</span><span><b>${terms.length}</b> 个术语</span><span>每个都有<b>实时动画</b></span><span>附<b>可直接用的代码</b></span>`;
   // 江月 UI 的组件数（同站点 /ui/ 下），读不到就保留默认文案
   const s = document.createElement('script');
-  s.src = 'ui/data/components.js';
-  s.onload = () => { const n = window.UI_KIT?.components.length; if (n) $('#kit-count').textContent = `${n} 个界面术语，每个都有实时效果和代码`; };
+  s.src = 'ui/data/stats.js'; // 只有一个数字，几十字节；不要读整份 components.js（几百 KB）
+  s.onload = () => { const n = window.UI_KIT_STATS?.components; if (n) $('#kit-count').textContent = `${n} 个界面术语，每个都有实时效果和代码`; };
   document.head.append(s);
 
   // 分类：全部 + 每一期

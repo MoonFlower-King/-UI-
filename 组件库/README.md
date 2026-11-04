@@ -60,7 +60,7 @@
   components/*.html       每个组件一个文件（元信息 + 代码）
   data/categories.json    各主题及每个主题包含哪些组件
   data/vague-words.json   感觉翻译器的数据
-  data/components.js      由 scripts/build.mjs 生成，不入库、不要手改
+  data/components.js      由 scripts/build.mjs 生成（还有 data/text/、data/code/、data/stats.js），不入库、不要手改
   scripts/build.mjs       收录脚本
   admin/                  管理后台整页案例的模板（pages.mjs）和风格（styles.mjs）
   sites/                  「个人网站」栏目的页面模板（pages.mjs）和风格（styles.mjs）
@@ -101,7 +101,7 @@
 - **版式骨架**：网站风格不该都长一个样，所以除了换配色，还能换排法。`prompts/_layout-<名字>.css` 是 7 种版式（居中 centered、竖排 vertical、杂志 magazine、分屏 split、海报 poster、便当格 bento、侧栏 sidebar），用同一个书房页面的同一份 HTML、只用 CSS 重新排。词条元信息写 `"layout": "<名字>"` 就套上，构建时会把 `data/prompt-layouts.json` 里这种版式的中英文说明自动拼到提示词末尾，卡片左下角也会标出版式名。新风格挑一个最贴合的版式；早期的风格没写 layout，用默认的「左文右图」，以后按分组逐步迁移（迁移时要重新截图，因为旧词条的 CSS 是照默认版式写的）
 - **筛选标签**：顶部栏第二行是「感觉」标签（复古、东方、温暖……可多选，要同时符合）和「版式」标签（单选），和搜索框一起生效。感觉标签在 `data/prompt-tags.json` 里定义：每个标签一组关键词，构建时匹配词条的名字、别名和一句话简介自动打上；匹配不到但确实属于的，在词条元信息里写 `"tags": ["retro"]` 手动补。少于 5 个词条的标签不显示
 - 页面带搜索框（分组名、中英文名、别名、简介都能搜）和分组跳转，词条到几百个也好找
-- 在 `data/prompt-groups.json` 登记分组，运行 `npm run build:ui` 生成 `data/prompts.js`（文字索引，一打开就加载）和 `data/prompt-code/<分组>.js`（预览代码，卡片快到屏幕时才按分组加载），做法和组件库的 `data/code/` 一样
+- 在 `data/prompt-groups.json` 登记分组，运行 `npm run build:ui` 生成 `data/prompts.js`（文字索引，一打开就加载）、`data/prompt-text/<分组>.js`（提示词全文）和 `data/prompt-code/<分组>.js`（预览代码）；后两种在卡片快到屏幕、拼提示词或第一次搜索时才按分组加载，做法和组件库的 `data/code/` 一样
 - 构建输出会打印索引大小和最大分组的代码大小；单个分组代码超过约 300KB 时，把它拆成两个分组
 - 收录规则见调研文档：不收堆砌词、不点名在世艺术家和品牌、不收 AI 味模板，每个词都要写「容易用错的地方」
 
@@ -132,7 +132,7 @@
 
 组件到几百、上千个也不会卡，靠的是三件事：
 
-- **数据拆开**：`data/components.js` 只放名字、说明和提示词（搜索、感觉翻译、篮子只用这些），一打开就加载；组件代码按主题分成 `data/code/<主题>.js`，滚到这个主题、或打开它的词条时才加载
+- **数据拆开**：`data/components.js` 只放名字、一句话说明、模糊说法和相关词（卡片、搜索、感觉翻译只用这些），一打开就加载；「发给 AI 的一句话」按主题放在 `data/text/<主题>.js`（很小），组件代码按主题放在 `data/code/<主题>.js`，滚到这个主题、打开它的词条或放进篮子时才加载。图鉴首页要显示的组件总数单独放在 `data/stats.js`，不用为了一个数字下载整份索引
 - **卡片按需生成**：「词典 · 全部」先给每个主题留出等高的空位，快滚到时才生成卡片
 - **预览不常驻**：卡片平时只显示静态首帧；屏幕里看得见的全部一起播放、一直循环；滑出屏幕就把 iframe 整个删掉，所以同时在跑的只有一屏的量
 
