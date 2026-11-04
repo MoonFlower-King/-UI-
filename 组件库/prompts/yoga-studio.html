@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Yoga Studio",
+  "zh": "瑜伽馆",
+  "alias": [
+    "瑜伽",
+    "冥想",
+    "身心疗愈"
+  ],
+  "lead": "安静的瑜伽馆：燕麦米色和陶土粉、柔软的圆弧形状像日出和身体的弧线、大量留白和缓慢的呼吸动画。平和、松弛，适合瑜伽馆、普拉提、冥想 App 和身心疗愈品牌。",
+  "prompt": "瑜伽馆风格：燕麦米色底 #F3ECE2、暖灰褐字 #5A4D44；左侧插图是几个叠在一起的柔和半圆和拱形（陶土粉 #E3B4A0、鼠尾草绿 #A9B79B、沙色 #E8D3B5），像日出和山丘，中间一个缓慢呼吸缩放的圆；标题细体衬线、字距宽；按钮陶土粉胶囊；特点卡片大圆角、浅底；整体留白多、无直角",
+  "promptEn": "yoga studio style: oat beige #F3ECE2 background with warm taupe #5A4D44 text; the left illustration is a few soft stacked semicircles and arches (clay pink #E3B4A0, sage #A9B79B, sand #E8D3B5) like a sunrise over hills, with a circle in the middle slowly breathing in scale; light, widely tracked serif headings; clay-pink pill buttons; feature cards with large radii on light fills; generous whitespace and no sharp corners",
+  "avoid": "呼吸动画一个就够，周期 6 秒以上；颜色全部低饱和、偏暖，别出现纯白和纯黑。",
+  "neg": [
+    "高饱和色、尖角、粗黑字、快速动效",
+    "saturated colors, sharp corners, heavy black type, fast animation"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #D99A84; --a2: #8A9A7B; --on: #fff; background: #F3ECE2; color: #5A4D44; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.art { background: radial-gradient(circle at 50% 100%, #E3B4A0 0 70px, transparent 71px) 0 260px / 100% 120px no-repeat, radial-gradient(circle at 20% 100%, #A9B79B 0 80px, transparent 81px) 0 270px / 100% 110px no-repeat, radial-gradient(circle at 85% 100%, #E8D3B5 0 70px, transparent 71px) 0 280px / 100% 100px no-repeat, #EFE5D8; border-radius: 0 120px 0 0; }
+.art .m { position: absolute; left: 50%; top: 150px; width: 70px; height: 70px; margin-left: -35px; border-radius: 50%; background: #F7E3D4; box-shadow: 0 0 30px rgba(227,180,160,.6); animation: breathe 6s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(.85); } 50% { transform: scale(1.05); } }
+.hero h1 { font-family: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; font-weight: 300; letter-spacing: 4px; } .kicker { color: #8A9A7B; letter-spacing: 3px; }
+.cta, .b1 { border-radius: 99px; } .feats article { padding: 10px 14px; border-radius: 22px; background: #EBE1D3; } .feats b, .stats b { color: #D99A84; font-weight: 400; }
+</style>

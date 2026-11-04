@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Low Poly",
+  "zh": "低多边形",
+  "alias": [
+    "Low poly",
+    "三角面",
+    "多边形插画"
+  ],
+  "lead": "用一个个平涂的三角面拼出山、天空和月亮，每块颜色只差一点，像折出来的立体纸模。现代、干净、有一点科技感，适合游戏、户外、科技产品和数据可视化主题。",
+  "prompt": "低多边形风格：深夜蓝紫底；插图是由大小不一的平涂三角形拼成的远山和月亮（相邻三角形明度只差 5%～10%，从靛蓝 #2B2D6E、紫 #5A3E8C 到暮橙 #E98A5B），没有描边和渐变；文字米白 #F4EFE6、几何无衬线；按钮暮橙底；特点卡片是深色底，左上角一个小三角色块",
+  "promptEn": "low poly style: a deep night blue-violet background; the illustration is distant mountains and a moon built from flat triangles of different sizes (neighboring facets differ by only 5–10% in lightness, ranging from indigo #2B2D6E and violet #5A3E8C to dusk orange #E98A5B), with no outlines or gradients; cream #F4EFE6 text in geometric sans-serif; dusk-orange buttons; dark feature cards each with a small triangle block at the top left",
+  "avoid": "三角面之间靠明度差出立体，差太大像碎玻璃、太小看不出面；不要给三角形加描边。",
+  "neg": [
+    "描边线框、平滑渐变、写实贴图、卡通人物",
+    "outlined wireframes, smooth gradients, realistic textures, cartoon characters"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #E98A5B; --a2: #F2B88F; --on: #1E1F4A; background: #1E1F4A; color: #F4EFE6; font-family: "Futura", "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art { background: linear-gradient(#2B2D6E, #4A3480 60%, #E98A5B); }
+.art::before { content: ""; position: absolute; left: 0; right: 0; top: 150px; height: 120px; clip-path: polygon(0 100%, 0 55%, 22% 20%, 40% 50%, 62% 0, 82% 38%, 100% 22%, 100% 100%); background: conic-gradient(from 0deg at 62% 0, #8A63A8 0 140deg, #6A4C96 140deg 200deg, #5A3E8C 200deg 360deg), #5A3E8C; }
+.art::after { content: ""; position: absolute; left: 0; right: 0; top: 200px; height: 140px; clip-path: polygon(0 100%, 0 40%, 30% 10%, 55% 45%, 80% 15%, 100% 50%, 100% 100%); background: conic-gradient(from 90deg at 30% 10%, #3A2E78 0 90deg, #2B2D6E 90deg 180deg, #4A3480 180deg); }
+.art .m { position: absolute; left: 50%; top: 60px; width: 44px; height: 44px; margin-left: -22px; background: conic-gradient(#F6E7C8 0 25%, #EAD6AE 0 50%, #F2DFBA 0 75%, #E3CC9F 0); clip-path: polygon(50% 0, 100% 35%, 85% 100%, 15% 100%, 0 35%); }
+.cta, .b1 { border-radius: 2px; } .hero h1 { font-weight: 600; } .kicker, .b2 { color: #F2B88F; }
+.feats article { position: relative; padding: 10px 10px 10px 22px; background: #26275A; } .feats article::before { content: ""; position: absolute; left: 0; top: 0; border: 9px solid transparent; border-left-color: #E98A5B; border-top-color: #E98A5B; } .feats b { color: #F2B88F; }
+</style>

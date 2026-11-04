@@ -1,0 +1,34 @@
+<!--
+{
+  "en": "Theatre Program",
+  "zh": "剧场节目单",
+  "alias": [
+    "戏剧节目单",
+    "演出场刊",
+    "剧院海报"
+  ],
+  "lead": "像一份剧院的演出节目单：深酒红天鹅绒色的封面、金色细框、居中对称的衬线大字，下面列着「第一幕 / 第二幕」和演员名单。隆重、有仪式感，适合剧场、音乐会、读书会和发布会。",
+  "prompt": "剧场节目单风格：深酒红天鹅绒底 #5A1622（带极淡的布纹光泽）、象牙白字 #F4E9D8、金色 #C8A15A 细框和装饰；首屏顶部两侧有垂下的大幕褶皱（深浅红竖条渐变）；标题居中、高对比衬线、字距宽；三个特点改成「第一幕 · 夜读」这样的幕次标题；数字区像演出信息（时长、座位、开演时间）；按钮金框透明底",
+  "promptEn": "theatre program style: deep claret velvet #5A1622 with a very faint fabric sheen, ivory #F4E9D8 text and gold #C8A15A hairline frames and ornaments; heavy stage curtains draping down both sides of the hero (vertical stripes of darker and lighter red); centered, widely tracked high-contrast serif headlines; the three features restyled as act titles like “Act I · Night Reading”; the numbers styled as show information (running time, seats, curtain time); gold-outlined transparent buttons",
+  "avoid": "红、金、象牙白三色就够；幕布只在首屏两侧窄窄一条，别挡住标题。",
+  "neg": [
+    "亮色扁平、霓虹、无衬线科技字、卡通",
+    "bright flat colors, neon, techy sans-serif, cartoons"
+  ],
+  "kit": "site-kit",
+  "layout": "centered",
+  "tags": [
+    "luxe",
+    "dark"
+  ]
+}
+-->
+<style>
+.site { --a: #C8A15A; --a2: #C8A15A; --on: #5A1622; background: radial-gradient(ellipse at 50% 0, rgba(255,255,255,.08), transparent 60%), #5A1622; color: #F4E9D8; font-family: "Didot", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg { box-shadow: inset 0 0 0 10px #5A1622, inset 0 0 0 11px #C8A15A; }
+.pg::before, .pg::after { content: ""; position: absolute; top: 0; width: 50px; height: 340px; background: repeating-linear-gradient(90deg, #7A1E2C 0 8px, #4A101B 8px 14px, #8C2533 14px 18px); z-index: 1; } .pg { position: relative; } .pg::before { left: 0; border-radius: 0 0 60% 0; } .pg::after { right: 0; border-radius: 0 0 0 60%; }
+.hero h1 { font-weight: 400; letter-spacing: 6px; } .kicker { color: #C8A15A; letter-spacing: 4px; }
+.cta, .b1 { background: none; border: 1px solid #C8A15A; color: #C8A15A; border-radius: 0; } .b2 { color: #F4E9D8; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 40px; height: 1px; margin-left: -20px; background: #C8A15A; } .art .m::before { content: "◆"; position: absolute; left: 50%; top: -7px; margin-left: -5px; font-size: 10px; color: #C8A15A; }
+.feats b { color: #C8A15A; } .feats b::before { content: "第"; } .feats b::after { content: "幕"; } .stats { border-top: 1px solid rgba(200,161,90,.5); border-bottom: 1px solid rgba(200,161,90,.5); margin: 0 40px; } .stats b { color: #C8A15A; font-weight: 400; }
+</style>

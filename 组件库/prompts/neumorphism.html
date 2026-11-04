@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Neumorphism",
+  "zh": "新拟态",
+  "alias": [
+    "新拟物",
+    "Soft UI",
+    "凸起按钮"
+  ],
+  "lead": "界面元素像从同色底板里轻轻压出来或鼓起来：同一种浅灰底，靠一亮一暗两道柔和阴影做出凸起和凹陷。柔和、安静、有触感，适合智能家居、音乐播放器和工具类产品。",
+  "prompt": "新拟态风格：整页同一种浅灰蓝 #E3E8EF（卡片、按钮、背景同色）；凸起元素用左上白色阴影 + 右下 #B8C1CF 灰阴影（各 6px 偏移、12px 模糊），凹陷元素反过来用内阴影；圆角 18px；只有一个强调色柔和蓝 #5B7CFA 用在主按钮文字和小图标；文字深灰蓝 #4A5568、无衬线；插图是一个凹陷的圆盘加凸起的旋钮",
+  "promptEn": "neumorphism style: the whole page in one pale blue-gray #E3E8EF (cards, buttons and background share it); raised elements use a white shadow at the top-left plus a gray #B8C1CF shadow at the bottom-right (6px offset, 12px blur each), while pressed elements use the inverse as inset shadows; 18px radii; a single soft blue accent #5B7CFA for the primary button text and small icons; dark blue-gray #4A5568 sans-serif text; the illustration is a sunken dial with a raised knob",
+  "avoid": "新拟态对比度天生低：文字一定要用够深的颜色，重要按钮再加强调色，不然不可读、也不像能点。",
+  "neg": [
+    "多种背景色、描边、硬投影、高饱和色块",
+    "multiple background colors, outlines, hard shadows, saturated blocks"
+  ],
+  "kit": "site-kit",
+  "layout": "centered",
+  "tags": [
+    "minimal",
+    "tech"
+  ]
+}
+-->
+<style>
+.site { --a: #E3E8EF; --a2: #5B7CFA; --on: #5B7CFA; background: #E3E8EF; color: #4A5568; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.cta, .b1, .feats article, .stats div, .logo i { border-radius: 18px; background: #E3E8EF; box-shadow: 6px 6px 12px #B8C1CF, -6px -6px 12px #fff; }
+.b1, .cta { color: #5B7CFA; font-weight: 700; } .logo i { border-radius: 50%; width: 16px; height: 16px; }
+.art { min-height: 96px; } .art .m { position: absolute; left: 50%; top: 50%; width: 80px; height: 80px; margin: -40px; border-radius: 50%; box-shadow: inset 6px 6px 12px #B8C1CF, inset -6px -6px 12px #fff; }
+.art .h { position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px; border-radius: 50%; background: #E3E8EF; box-shadow: 4px 4px 8px #B8C1CF, -4px -4px 8px #fff; }
+.feats article { padding: 12px; } .stats { gap: 10px; padding: 18px 26px; } .stats div { padding: 10px 14px; } .feats b, .kicker, .b2 { color: #5B7CFA; }
+</style>

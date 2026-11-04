@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Papyrus Scroll",
+  "zh": "纸莎草卷",
+  "alias": [
+    "古埃及",
+    "纸莎草",
+    "象形文字"
+  ],
+  "lead": "古埃及的纸莎草纸：粗糙的草茎横竖交织纹理、赭石和青金石蓝的颜料、一列列象形符号做装饰。古老、神秘，适合历史科普、博物馆展览和解谜游戏。",
+  "prompt": "纸莎草卷风格：纸莎草米黄底 #E7D3A6（细密的横竖纤维纹理）、深棕墨字 #3B2A17；侧栏是一条竖向的象形符号柱（几何化的眼睛、羽毛、水波、圆日符号，青金石蓝 #23497A 与赭红 #A6452B 描线）；标题用古典衬线、全大写感、字距宽；按钮青金石蓝底米黄字；分隔是一排三角与圆点的饰带",
+  "promptEn": "papyrus scroll style: papyrus beige #E7D3A6 with a fine woven horizontal and vertical fiber texture and dark brown ink #3B2A17 text; the sidebar is a vertical column of hieroglyph-like symbols (geometric eyes, feathers, water ripples and sun discs outlined in lapis blue #23497A and ochre red #A6452B); classic serif headings with wide tracking; lapis buttons with beige text; dividers as a band of triangles and dots",
+  "avoid": "符号做成抽象几何装饰，别照抄真实象形文字当正文；纤维纹理要淡，正文底色要平。",
+  "neg": [
+    "霓虹、现代无衬线科技感、写实金字塔照片、卡通法老",
+    "neon, modern techy sans-serif, realistic pyramid photos, cartoon pharaohs"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar",
+  "tags": [
+    "retro",
+    "craft"
+  ]
+}
+-->
+<style>
+.site { --a: #23497A; --a2: #A6452B; --on: #E7D3A6; background: repeating-linear-gradient(0deg, rgba(120,90,40,.08) 0 1px, transparent 1px 4px), repeating-linear-gradient(90deg, rgba(120,90,40,.06) 0 1px, transparent 1px 6px), #E7D3A6; color: #3B2A17; font-family: "Trajan Pro", "Optima", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.pg > .nav { background: radial-gradient(circle at 50% 50%, transparent 0 6px, #A6452B 6.5px 8px, transparent 8.5px) 50% 140px / 40px 40px no-repeat, radial-gradient(ellipse 14px 7px at 50% 50%, transparent 60%, #23497A 64% 80%, transparent 84%) 50% 200px / 40px 30px no-repeat, linear-gradient(transparent 46%, #23497A 46% 54%, transparent 54%) 50% 250px / 30px 30px no-repeat, repeating-linear-gradient(170deg, transparent 0 4px, #23497A 4px 6px) 50% 300px / 12px 40px no-repeat, rgba(166,69,43,.08); }
+.hero h1 { letter-spacing: 3px; font-weight: 600; } .kicker { color: #A6452B; letter-spacing: 3px; } .cta, .b1 { border-radius: 2px; }
+.art { background: linear-gradient(135deg, transparent 50%, #A6452B 50%) 0 100% / 14px 10px repeat-x; } .art .m { position: absolute; left: 50%; top: 40%; width: 50px; height: 50px; margin: -25px; border-radius: 50%; background: #A6452B; box-shadow: 0 0 0 4px #E7D3A6, 0 0 0 6px #23497A; }
+.feats b, .stats b { color: #23497A; } .stats { border-top: 2px solid #3B2A17; }
+</style>

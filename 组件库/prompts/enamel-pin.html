@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Enamel Pins",
+  "zh": "珐琅徽章",
+  "alias": [
+    "珐琅别针",
+    "徽章",
+    "胸针"
+  ],
+  "lead": "一块块金属描边的珐琅小徽章：鲜艳的平涂色块被细细的金色金属线隔开，表面有一点光泽，像别在帆布包上的胸针。可爱、收藏感强，适合文创周边、品牌小物和社区活动。",
+  "prompt": "珐琅徽章风格：帆布米色底 #EFE8DA（带细细的织物纹理）；每个格子像一枚珐琅徽章——鲜艳平涂色（番茄红 #E4533C、薄荷 #6CC8A8、柠檬 #F4C542、海军蓝 #2C3E6B）外加 3px 金色金属描边 #C9A245 和一道左上的白色高光弧；插图是一枚月亮形状的徽章；文字深海军蓝、圆润粗体；按钮也是徽章式金边胶囊",
+  "promptEn": "enamel pin style: a canvas beige background #EFE8DA with a fine fabric texture; every tile looks like an enamel pin—bright flat fills (tomato #E4533C, mint #6CC8A8, lemon #F4C542, navy #2C3E6B) with a 3px gold metal outline #C9A245 and a white highlight arc at the top-left; the illustration is a moon-shaped pin; deep navy text in heavy rounded type; buttons are gold-rimmed pin-style pills too",
+  "avoid": "金属边是灵魂，粗细统一；色块内部不要渐变，只用一道高光表现光泽。",
+  "neg": [
+    "渐变色块、细线无边、照片、暗色背景",
+    "gradient fills, borderless thin lines, photos, dark backgrounds"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #E4533C; --a2: #2C3E6B; --on: #fff; background: repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 1px, transparent 1px 3px), #EFE8DA; color: #2C3E6B; font-family: "Nunito", "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; }
+.copy, .art, .feats article, .stats div, .nav { border-radius: 18px !important; box-shadow: 0 0 0 3px #C9A245, 0 3px 6px rgba(0,0,0,.18), inset 6px 6px 0 -3px rgba(255,255,255,.5); }
+.copy { background: #FFF9EE !important; } .nav { background: #FFF9EE !important; } .art { background: #2C3E6B !important; }
+.art .m { position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; margin: -35px; border-radius: 50%; background: #F4C542; box-shadow: 0 0 0 3px #C9A245, inset 8px 8px 0 -4px rgba(255,255,255,.6); -webkit-mask: radial-gradient(circle at 72% 30%, transparent 26px, #000 27px); }
+.feats article:nth-child(1) { background: #E4533C !important; color: #fff; } .feats article:nth-child(2) { background: #6CC8A8 !important; } .feats article:nth-child(3) { background: #F4C542 !important; }
+.stats div { background: #FFF9EE !important; } .cta, .b1 { border-radius: 99px; box-shadow: 0 0 0 2px #C9A245; } .feats b { color: inherit; opacity: .8; } .kicker { color: #E4533C; }
+</style>

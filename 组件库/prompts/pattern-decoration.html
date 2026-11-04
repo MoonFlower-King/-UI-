@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Pattern & Decoration",
+  "zh": "图案与装饰运动",
+  "alias": [
+    "P&D 运动",
+    "装饰图案",
+    "满版花纹"
+  ],
+  "lead": "七十年代美国「图案与装饰运动」：把墙纸、地毯、被面上的花纹当成艺术，大胆地把几种图案拼在一起——格子、花卉、波浪、几何同屏出现。热闹、温暖、越满越好，适合家居软装、布艺品牌和艺术空间。",
+  "prompt": "图案与装饰风格：每个格子铺一种不同的图案——格纹、碎花、波浪条、菱格、圆点——颜色统一在一组暖色里（玫瑰红 #C8506A、橙黄 #E9A13B、橄榄绿 #7D8A3A、靛蓝 #34508C、奶油 #F6EAD3）；文字所在的格子用奶油素底；格子圆角 6px，之间留 8px 奶油色缝；标题粗衬线",
+  "promptEn": "pattern & decoration style: each tile carries a different pattern—check, small florals, wavy stripes, diamond lattice, polka dots—all within one warm palette (rose #C8506A, amber #E9A13B, olive #7D8A3A, indigo #34508C, cream #F6EAD3); tiles holding text stay plain cream; 6px tile radii with 8px cream gaps; heavy serif headings",
+  "avoid": "图案多但颜色要少：五种颜色在所有格子里反复用，才乱中有序；文字必须在素底格子里。",
+  "neg": [
+    "单一极简、冷灰科技、照片拼贴、霓虹",
+    "single-style minimalism, cold techy grays, photo collages, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #C8506A; --a2: #34508C; --on: #F6EAD3; background: #F6EAD3; color: #3A2A22; font-family: Georgia, "Songti SC", "STSong", "Noto Serif SC", Georgia, serif; }
+.copy, .art, .feats article, .stats div, .nav { border-radius: 6px !important; }
+.nav { background: repeating-linear-gradient(90deg, #34508C 0 10px, #F6EAD3 10px 20px) bottom / 100% 4px no-repeat, #fff !important; } .copy { background: #FFF8EA !important; }
+.art { background: radial-gradient(circle at 50% 40%, #C8506A 0 5px, transparent 6px) 0 0 / 22px 22px, radial-gradient(circle, #E9A13B 0 2px, transparent 2.5px) 11px 11px / 22px 22px, #7D8A3A !important; }
+.feats article:nth-child(1) { background: linear-gradient(45deg, rgba(52,80,140,.25) 25%, transparent 25% 75%, rgba(52,80,140,.25) 75%) 0 0 / 14px 14px, linear-gradient(45deg, rgba(52,80,140,.25) 25%, transparent 25% 75%, rgba(52,80,140,.25) 75%) 7px 7px / 14px 14px, #FFF8EA !important; }
+.feats article:nth-child(2) { background: radial-gradient(ellipse 10px 5px at 50% 50%, transparent 70%, #C8506A 75% 100%) 0 0 / 20px 12px, #FCE7DE !important; } .feats article:nth-child(3) { background: radial-gradient(circle, #E9A13B 0 3px, transparent 3.5px) 0 0 / 14px 14px, #FFF8EA !important; }
+.stats div:nth-child(2) { background: #34508C !important; color: #F6EAD3; } .hero h1 { font-weight: 800; } .feats b, .kicker { color: #C8506A; }
+</style>

@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Carbon Fiber",
+  "zh": "碳纤维",
+  "alias": [
+    "碳纤维纹",
+    "赛车内饰",
+    "高性能"
+  ],
+  "lead": "赛车和高端运动装备上的碳纤维：深黑底上细密的编织斜纹，在光下有一点点光泽，配荧光红黄的警示色和拉丝金属。硬核、轻量、有速度感，适合汽车、运动装备、电竞和硬件产品。",
+  "prompt": "碳纤维风格：深炭黑底，铺细密的 2×2 斜纹编织纹（两种接近的深灰 #1A1B1E / #26282C 交错的小方格，加一道很淡的斜向高光）；侧栏是拉丝金属灰 #8E949C 竖条；强调色赛车红 #E10600 和一点荧光黄 #E6FF00；标题斜体粗无衬线、全大写感；按钮红底白字切角；数字用等宽、像仪表读数",
+  "promptEn": "carbon fiber style: deep charcoal with a fine 2×2 twill weave (tiny alternating squares of two close dark grays #1A1B1E / #26282C plus a faint diagonal sheen); a brushed-metal gray #8E949C vertical sidebar; accents of racing red #E10600 and a touch of fluorescent yellow #E6FF00; heavy italic uppercase-feeling sans-serif headings; red buttons with white text and clipped corners; monospace numbers like gauge readouts",
+  "avoid": "编织纹要很细很暗，只当质感；红黄是警示色，一页只出现几次，别铺大面积。",
+  "neg": [
+    "暖色木纹、柔和粉彩、手写字、圆胖可爱",
+    "warm wood grain, soft pastels, handwriting, chubby cute shapes"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #E10600; --a2: #E6FF00; --on: #fff; background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.04) 50%, transparent 60%), conic-gradient(#1A1B1E 25%, #26282C 0 50%, #1A1B1E 0 75%, #26282C 0) 0 0 / 6px 6px; color: #E8EAED; font-family: "Avenir Next Condensed", "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.pg > .nav { background: repeating-linear-gradient(90deg, #8E949C 0 1px, #A3A9B1 1px 2px, #868C94 2px 3px); color: #111; border-right: 0; }
+.hero h1 { font-style: italic; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; } .kicker { color: #E6FF00; letter-spacing: 3px; }
+.cta, .b1 { border-radius: 0; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); } .b2 { color: #E6FF00; }
+.art .m { position: absolute; inset: 20px; border: 2px solid #E10600; border-radius: 50%; border-bottom-color: transparent; transform: rotate(-30deg); } .art .h { position: absolute; left: 50%; top: 50%; width: 3px; height: 48px; margin-left: -1px; background: #E6FF00; transform-origin: bottom; transform: translateY(-48px) rotate(40deg); }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E10600; } .feats b { color: #E6FF00; }
+</style>

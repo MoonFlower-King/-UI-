@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Retro Screensaver",
+  "zh": "老式屏保",
+  "alias": [
+    "屏幕保护",
+    "星空屏保",
+    "弹跳图标"
+  ],
+  "lead": "老电脑的屏幕保护程序：纯黑屏幕上飞过的星点、四处弹跳的彩色图标和一圈圈变色的几何线条。怀旧、有点催眠，适合复古数码收藏、夜间电台和极客主题页。",
+  "prompt": "老式屏保风格：纯黑底 #000；背景有从中心向外飞散的白色星点（缓慢放大）；插图位置是一个缓慢沿对角线来回弹跳的彩色徽标（青 #00E5FF → 品红 #FF3DCB → 黄 #FFE14D 循环变色）；文字白色等宽字；标题像屏保文字一样居中、带一点彩虹色描边；按钮黑底白框方角",
+  "promptEn": "retro screensaver style: pure black #000 with white star dots flying outward from the center (slowly growing); in place of the illustration, a colorful logo bouncing slowly along the diagonals and cycling through cyan #00E5FF → magenta #FF3DCB → yellow #FFE14D; white monospace text; a centered headline like screensaver text with a faint rainbow outline; black square buttons with white borders",
+  "avoid": "动效要慢、要少：星点和一个弹跳徽标就够；正文不能动，读的时候要稳。",
+  "neg": [
+    "白底、复杂插画、扁平粉彩、多个同时乱动的元素",
+    "white backgrounds, complex illustrations, flat pastels, many elements moving at once"
+  ],
+  "kit": "site-kit",
+  "layout": "centered",
+  "tags": [
+    "tech"
+  ]
+}
+-->
+<style>
+.site { --a: #fff; --a2: #00E5FF; --on: #000; background: radial-gradient(circle, #fff 0 1px, transparent 1.5px) 0 0 / 37px 31px, radial-gradient(circle, rgba(255,255,255,.6) 0 .8px, transparent 1.2px) 12px 19px / 53px 47px, #000; color: #EDEDED; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; animation: star-zoom 12s linear infinite; }
+@keyframes star-zoom { to { background-size: 74px 62px, 106px 94px; } }
+.art { min-height: 90px; } .art .m { position: absolute; left: 0; top: 0; width: 60px; height: 26px; border-radius: 50%; background: #00E5FF; animation: bounce-x 5s linear infinite alternate, bounce-y 3.4s linear infinite alternate, hue 6s linear infinite; }
+.art .m::after { content: "山月"; position: absolute; inset: 0; display: grid; place-items: center; font: 900 12px -apple-system, "Inter", "PingFang SC", sans-serif; color: #000; }
+@keyframes bounce-x { to { left: calc(100% - 60px); } } @keyframes bounce-y { to { top: calc(100% - 26px); } } @keyframes hue { 33% { background: #FF3DCB; } 66% { background: #FFE14D; } }
+.hero h1 { text-shadow: 1px 1px 0 #FF3DCB, -1px -1px 0 #00E5FF; } .kicker { color: #00E5FF; }
+.cta, .b1 { background: #000; color: #fff; border: 1px solid #fff; border-radius: 0; } .b2 { color: #FFE14D; } .feats b, .stats b { color: #FFE14D; }
+</style>
