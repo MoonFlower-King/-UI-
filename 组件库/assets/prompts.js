@@ -1,6 +1,6 @@
 // 提示词调配台（prompts.html）。数据来自 data/prompts.js 和 data/prompt-code/（npm run build:ui 生成）。
 // 页面分两块：左边按「视频 / 图片 / 网站风格」排的词卡，右边（手机上是底部抽屉）把勾选的词拼成一段提示词。
-const { kinds, groups, items, stages, kits = {}, layouts = {} } = window.JY_PROMPTS;
+const { kinds, groups, items, stages, kits = {}, layouts = {}, tags = [] } = window.JY_PROMPTS;
 const byId = Object.fromEntries(items.map((x) => [x.id, x]));
 const groupById = Object.fromEntries(groups.map((g) => [g.id, g]));
 const kindById = Object.fromEntries(kinds.map((k) => [k.id, k]));
@@ -173,7 +173,8 @@ function renderMain() {
       <p class="lead">做视频、出图、做网站，最难的是跟 AI 说清楚「要什么样」。这里每个词都配一段会动的预览，看准了就勾上，右边自动拼成一段中英文提示词。每个词还写了<em>容易用错的地方</em>，别人的合集里几乎没有。</p>
     </header>
     <nav class="filter mix-filter" aria-label="跳到分类">${kinds.map((k) => `<a href="#k-${k.id}">${esc(k.name)}<small>${items.filter((it) => groupById[it.group].kind === k.id).length}</small></a>`).join('')}
-      <input class="mix-search" type="search" placeholder="搜名字、别名或感觉，比如 复古" aria-label="搜索词条"></nav>
+      <input class="mix-search" type="search" placeholder="搜名字、别名或感觉，比如 复古" aria-label="搜索词条">
+      <div class="mix-tags" role="group" aria-label="按标签筛选">${tagBar()}</div></nav>
     <p class="mix-none" hidden>没找到，换个词试试，比如中文名、英文名或「温暖」「科技」这类感觉。</p>
     ${kinds.map((k) => { const gs = groups.filter((g) => g.kind === k.id); return `<section class="kind" id="k-${k.id}"><header class="kind-head"><h2 class="h2">${esc(k.name)}<small>${esc(k.en)}</small></h2><p>${esc(k.intro)}</p>
       ${gs.length > 2 ? `<nav class="group-jump" aria-label="跳到分组">${gs.map((g) => `<a href="#g-${g.id}">${esc(g.name)}<small>${g.count}</small></a>`).join('')}</nav>` : ''}</header>
@@ -186,11 +187,43 @@ function renderMain() {
   $('.mix-search').addEventListener('input', (e) => search(e.target.value));
 }
 
+// 顶部第二行的筛选标签：「感觉」可以多选（要同时符合），「版式」只能选一个；和搜索框的词一起生效。
+// 感觉标签由构建脚本按 data/prompt-tags.json 打好，版式标签直接看词条的 layout
+const layCount = items.reduce((m, it) => (it.layout && (m[it.layout] = (m[it.layout] || 0) + 1), m), {});
+const pickTags = new Set();
+let pickLay = '';
+function tagBar() {
+  const chip = (attr, id, name, n) => `<button type="button" class="chip" ${attr}="${id}" aria-pressed="false">${esc(name)}<small>${n}</small></button>`;
+  // 「找到 N 个 / 清除」放在最前面：标签多、一行滑不完时也一眼看得到
+  return `<span class="mix-count" hidden></span><button type="button" class="mix-clear" hidden>清除筛选</button><span class="lab">感觉</span>${tags.map((t) => chip('data-tag', t.id, t.name, t.count)).join('')}
+    ${Object.keys(layCount).length ? `<span class="lab">版式</span>${Object.keys(layouts).filter((k) => layCount[k]).map((k) => chip('data-lay', k, layouts[k], layCount[k])).join('')}` : ''}
+`;
+}
+$('#main').addEventListener('click', (e) => {
+  const b = e.target.closest('.mix-tags button'); if (!b) return;
+  if (b.dataset.tag) pickTags.has(b.dataset.tag) ? pickTags.delete(b.dataset.tag) : pickTags.add(b.dataset.tag);
+  else if (b.dataset.lay) pickLay = pickLay === b.dataset.lay ? '' : b.dataset.lay;
+  else { pickTags.clear(); pickLay = ''; $('.mix-search').value = ''; }
+  $$('.mix-tags [data-tag]').forEach((x) => x.setAttribute('aria-pressed', pickTags.has(x.dataset.tag)));
+  $$('.mix-tags [data-lay]').forEach((x) => x.setAttribute('aria-pressed', x.dataset.lay === pickLay));
+  search($('.mix-search').value);
+  b.isConnected && !b.hidden && b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  // 筛完内容变短了：如果已经滚到下面，回到结果的开头
+  const topH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--top-h')) || 0;
+  const y = $('.mix-none').getBoundingClientRect().top + scrollY - $('.mix-filter').offsetHeight - topH;
+  if (scrollY > y) scrollTo({ top: y });
+});
+
 // 搜索：按分组名、中英文名、别名、简介、提示词匹配，空格分开的几个词要同时命中；没命中的卡片、分组、大类都藏起来
 const haystack = (it) => (it.hay ||= [groupById[it.group].name, layouts[it.layout] || '', it.zh, it.en, ...(it.alias || []), it.lead, it.prompt, it.promptEn].join(' ').toLowerCase());
 function search(q) {
   const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  $$('[data-card]').forEach((c) => { c.hidden = !words.every((w) => haystack(byId[c.dataset.card]).includes(w)); });
+  const ok = (it) => words.every((w) => haystack(it).includes(w)) && [...pickTags].every((t) => it.tags?.includes(t)) && (!pickLay || it.layout === pickLay);
+  let n = 0;
+  $$('[data-card]').forEach((c) => { c.hidden = !ok(byId[c.dataset.card]); n += !c.hidden; });
+  const on = words.length || pickTags.size || pickLay;
+  $('.mix-count').hidden = $('.mix-clear').hidden = !on;
+  $('.mix-count').textContent = `找到 ${n} 个`;
   $$('#main .group').forEach((g) => { g.hidden = !$('[data-card]:not([hidden])', g); });
   $$('#main .kind').forEach((k) => { k.hidden = !$('.group:not([hidden])', k); });
   $('.mix-none').hidden = !!$('#main .kind:not([hidden])');
