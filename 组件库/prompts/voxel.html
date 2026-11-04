@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Voxel",
+  "zh": "体素",
+  "alias": [
+    "体素",
+    "方块世界",
+    "立体像素"
+  ],
+  "lead": "用一个个小立方体堆出来的世界：每块方块有亮、中、暗三个面，像积木一样搭出小岛、树和房子。好玩、有游戏感，适合独立游戏、编程教育和儿童产品。",
+  "prompt": "体素风格：天空浅蓝底 #CDE8F6；插图是一座等距视角的方块小岛——草地方块（顶面草绿 #7BC67B、侧面泥土 #A8794F / 更暗 #8A603C）、一棵方块树和一块水面方块 #5DA9E9，每个立方体有亮顶面、中左面、暗右面三档明度；文字深灰蓝 #23324A、粗圆体；格子是白底加 3D 方块边（右下两条深色侧边）；按钮草绿底白字、方角带立体底边",
+  "promptEn": "voxel style: a pale sky-blue #CDE8F6 background; the illustration is an isometric island built from cubes—grass blocks (grass-green top #7BC67B, dirt sides #A8794F and darker #8A603C), a blocky tree and a water block #5DA9E9, each cube showing a light top, medium left and dark right face; deep slate #23324A text in heavy rounded type; tiles are white with 3D block edges (two darker sides at the bottom right); grass-green square buttons with white text and a raised bottom edge",
+  "avoid": "立体感靠「三个面三档明度」，光源方向全站统一；方块尺寸统一，别大小乱堆。",
+  "neg": [
+    "平滑曲线、写实质感、细线插画、模糊阴影",
+    "smooth curves, realistic materials, thin-line illustration, blurry shadows"
+  ],
+  "kit": "site-kit",
+  "layout": "bento",
+  "tags": [
+    "cute",
+    "tech"
+  ]
+}
+-->
+<style>
+.site { --a: #4FA65A; --a2: #E58E3B; --on: #fff; background: #CDE8F6; color: #23324A; font-family: "Nunito", "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; }
+.copy, .art, .feats article, .stats div, .nav { background-color: #fff !important; border-radius: 4px !important; box-shadow: 4px 4px 0 #9FB6C8, 4px 4px 0 1px #7E97AB; }
+.art { background: #EAF6FC !important; }
+.art .m { position: absolute; left: 50%; top: 44%; width: 46px; height: 46px; margin: -23px; background: #7BC67B; transform: rotate(45deg) skew(-10deg, -10deg) scale(1, .7); box-shadow: 46px 0 0 #7BC67B, 0 46px 0 #5DA9E9, 46px 46px 0 #7BC67B; }
+.art .h { position: absolute; left: 50%; top: 58%; width: 130px; height: 40px; margin-left: -65px; background: linear-gradient(90deg, #A8794F 50%, #8A603C 50%); clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 55%, 50% 100%, 0 55%); }
+.cta, .b1 { border-radius: 2px; box-shadow: 0 3px 0 #2F7A3B; } .kicker, .feats b { color: #E58E3B; } .hero h1 { font-weight: 900; }
+</style>

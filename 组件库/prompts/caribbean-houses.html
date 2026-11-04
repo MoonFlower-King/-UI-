@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Caribbean Houses",
+  "zh": "加勒比彩屋",
+  "alias": [
+    "彩色房子",
+    "海岛小镇",
+    "糖果色街屋"
+  ],
+  "lead": "加勒比海岛小镇的彩色木屋：薄荷绿、珊瑚粉、阳光黄、天蓝的房子挨着排开，白色百叶窗和屋檐，背后是一片碧海。明快、度假感十足，适合旅行、民宿、饮品店。",
+  "prompt": "加勒比彩屋风格：沙白底 #FBF7EE、深海蓝字 #173B57；左侧插图是一排高矮不一的彩色木屋立面（薄荷 #7FD1B9、珊瑚 #F38B7A、阳光黄 #F6C951、天蓝 #6BB6E8），每栋有白色三角屋檐和两扇白色百叶窗，下面是一条碧蓝海 #2BA3B8；标题圆润粗体；按钮珊瑚色胶囊；特点卡片分别用四种房子颜色的浅色版做底",
+  "promptEn": "Caribbean houses style: sand white #FBF7EE background with deep sea-blue #173B57 text; the left illustration is a row of colorful wooden house facades of varying heights (mint #7FD1B9, coral #F38B7A, sunshine yellow #F6C951, sky blue #6BB6E8), each with a white triangular eave and two white louvered shutters, above a strip of turquoise sea #2BA3B8; rounded bold headings; coral pill buttons; feature cards tinted with light versions of the house colors",
+  "avoid": "四种房子颜色明度要接近，都偏「糖果」；文字永远放在浅底上，别直接压在彩色房子上。",
+  "neg": [
+    "暗色背景、冷灰、细线极简、写实照片",
+    "dark backgrounds, cold grays, thin-line minimalism, realistic photos"
+  ],
+  "kit": "site-kit",
+  "layout": "split",
+  "tags": [
+    "bold",
+    "warm"
+  ]
+}
+-->
+<style>
+.site { --a: #F38B7A; --a2: #2BA3B8; --on: #fff; background: #FBF7EE; color: #173B57; font-family: "Avenir Next Rounded", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art { background: linear-gradient(#2BA3B8, #1E8CA0) 0 290px / 100% 50px no-repeat, linear-gradient(90deg, #7FD1B9 0 25%, #F38B7A 0 50%, #F6C951 0 75%, #6BB6E8 0) 0 150px / 100% 140px no-repeat, linear-gradient(#CFEAF6, #EAF6FB) 0 0 / 100% 150px no-repeat, #F4E6CC; }
+.art::before { content: ""; position: absolute; left: 0; right: 0; top: 124px; height: 26px; background: conic-gradient(from 135deg at 50% 0, #fff 0 90deg, transparent 90deg) 0 0 / 25% 26px repeat-x; }
+.art::after { content: ""; position: absolute; left: 0; right: 0; top: 190px; height: 30px; background: linear-gradient(90deg, transparent 18%, #fff 18% 34%, transparent 34% 66%, #fff 66% 82%, transparent 82%) 0 0 / 25% 100% repeat-x; opacity: .9; }
+.cta, .b1 { border-radius: 99px; } .hero h1 { font-weight: 800; } .feats article { padding: 10px; border-radius: 12px; background: #E3F5EF; } .feats article:nth-child(2) { background: #FDE5E0; } .feats article:nth-child(3) { background: #FDF2D3; } .feats b { color: #F38B7A; }
+</style>

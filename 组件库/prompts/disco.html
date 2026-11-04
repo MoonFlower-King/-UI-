@@ -1,0 +1,29 @@
+<!--
+{
+  "en": "Disco Night",
+  "zh": "迪斯科",
+  "alias": [
+    "迪斯科球",
+    "舞厅",
+    "七十年代夜店"
+  ],
+  "lead": "七十年代舞厅：天花板上一颗闪亮的镜面球，四射出彩色光斑，紫红夜色里有金色的亮片和弯弯的花体字。热闹、闪耀、让人想跳舞，适合派对、酒吧、音乐节和年会活动。",
+  "prompt": "迪斯科风格：深紫红夜色底 #2A0F3A；首屏右上一颗镜面迪斯科球（银灰小方格拼成的圆球，有几块白色高光），向外射出几道彩色光束（粉 #FF4FB3、金 #FFC94A、青 #42E6F5）；背景散落金色亮片小点；超大标题用粗斜体或花体复古字，金色渐变带描边；按钮粉色胶囊带光泽；特点改成横排清单",
+  "promptEn": "disco style: a deep purple-magenta night #2A0F3A; a mirror ball at the top right of the hero (a sphere of small silver-gray tiles with a few white highlights) casting colored light beams (pink #FF4FB3, gold #FFC94A, cyan #42E6F5); gold sequin dots scattered across the background; an oversized bold italic or swashy retro headline in a gold gradient with an outline; glossy pink pill buttons; features as horizontal list rows",
+  "avoid": "光束三四道、亮片要稀，满屏闪会让人头晕；金色字一定加深色描边，压在光束上才看得清。",
+  "neg": [
+    "冷灰极简、白底、细线、商务感",
+    "cool gray minimalism, white backgrounds, thin lines, corporate feel"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #FF4FB3; --a2: #FFC94A; --on: #fff; background: radial-gradient(circle, #FFC94A 0 1px, transparent 1.6px) 0 0 / 29px 23px, #2A0F3A; color: #FBE9F6; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art { background: linear-gradient(200deg, transparent 40%, rgba(255,79,179,.35) 41% 44%, transparent 45%), linear-gradient(230deg, transparent 50%, rgba(255,201,74,.3) 51% 53%, transparent 54%), linear-gradient(170deg, transparent 55%, rgba(66,230,245,.3) 56% 58%, transparent 59%); }
+.art .m { position: absolute; right: 50px; top: 50px; width: 74px; height: 74px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.9) 0 6px, transparent 10px), repeating-linear-gradient(0deg, #8C8F99 0 1px, transparent 1px 8px), repeating-linear-gradient(90deg, #8C8F99 0 1px, transparent 1px 8px), radial-gradient(circle at 40% 35%, #F2F3F7, #A7AAB5 60%, #5E6170); box-shadow: 0 0 30px rgba(255,79,179,.5); }
+.art .h { position: absolute; right: 86px; top: 0; width: 2px; height: 50px; background: #A7AAB5; }
+.hero h1 { font-style: italic; font-weight: 900; color: #FFD65C; text-shadow: 3px 3px 0 #7A2A5A, 0 0 18px rgba(255,201,74,.45); }
+.kicker { color: #42E6F5; letter-spacing: 3px; } .cta, .b1 { border-radius: 99px; background: linear-gradient(#FF7CC7, #FF4FB3); box-shadow: inset 0 2px 0 rgba(255,255,255,.4); } .b2 { color: #FFC94A; } .feats b, .stats b { color: #FFC94A; }
+</style>

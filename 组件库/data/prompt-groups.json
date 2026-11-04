@@ -95,7 +95,11 @@
         "sakura",
         "bojagi",
         "persimmon",
-        "ikebana"
+        "ikebana",
+        "window-cutout",
+        "bronze-taotie",
+        "indigo-print",
+        "glazed-tile"
       ]
     },
     {
@@ -147,7 +151,11 @@
         "dala",
         "amalfi-lemon",
         "greek-meander",
-        "aloha"
+        "aloha",
+        "flamenco",
+        "papyrus",
+        "khokhloma",
+        "caribbean-houses"
       ]
     },
     {
@@ -212,7 +220,9 @@
         "fluxus",
         "minimal-art",
         "surrealism",
-        "japonisme"
+        "japonisme",
+        "pattern-decoration",
+        "neo-expressionism"
       ]
     },
     {
@@ -283,7 +293,10 @@
         "index-list",
         "brand-book",
         "dark-editorial",
-        "soft-3d"
+        "soft-3d",
+        "low-poly",
+        "voxel",
+        "neumorphism"
       ]
     },
     {
@@ -343,7 +356,11 @@
         "plaster",
         "glass-block",
         "corrugated",
-        "liquid-metal"
+        "liquid-metal",
+        "neon-tube",
+        "carbon-fiber",
+        "enamel-pin",
+        "toy-bricks"
       ]
     },
     {
@@ -397,7 +414,10 @@
         "bookplate",
         "chalk-pastel",
         "crochet",
-        "tufting"
+        "tufting",
+        "plant-print",
+        "silhouette",
+        "washi-collage"
       ]
     },
     {
@@ -463,7 +483,11 @@
         "pulp-magazine",
         "tiki-bar",
         "fifties-kitchen",
-        "racing"
+        "racing",
+        "game-cartridge",
+        "screensaver",
+        "disco",
+        "cd-booklet"
       ]
     },
     {
@@ -530,7 +554,10 @@
         "aquarium",
         "rain-window",
         "campfire",
-        "snow-cabin"
+        "snow-cabin",
+        "theatre-program",
+        "vending-machine",
+        "flea-market"
       ]
     },
     {
@@ -598,7 +625,10 @@
         "pottery-studio",
         "climbing",
         "illustrator",
-        "jazz-club"
+        "jazz-club",
+        "yoga-studio",
+        "bubble-tea",
+        "vintage-clothing"
       ]
     },
     {

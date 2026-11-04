@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Neo-Expressionism",
+  "zh": "新表现主义",
+  "alias": [
+    "新表现主义",
+    "粗犷笔触",
+    "街头涂抹"
+  ],
+  "lead": "八十年代的新表现主义绘画：粗暴的大笔刷、溅出来的颜料、歪斜的手写字和原始的符号（王冠、骷髅、箭头），颜色浓烈不调和。生猛、有态度，适合艺术家、乐队、街头品牌和展览海报。",
+  "prompt": "新表现主义风格：脏白画布底 #EFE9DD；插图铺满几道粗暴的宽笔刷色块（猩红 #D7262E、钴蓝 #1F4BB8、明黄 #F2C230、黑 #141414），边缘毛糙、互相压盖，点缀几个手绘符号（简笔王冠、叉号、箭头）；超大标题用粗黑手写体、略歪；正文等宽打字机字；按钮黑底白字、手绘描边感",
+  "promptEn": "neo-expressionism style: a dirty white canvas #EFE9DD; the illustration is covered in a few violent wide brush swaths (crimson #D7262E, cobalt #1F4BB8, bright yellow #F2C230, black #141414) with rough edges overlapping each other, plus a few hand-drawn symbols (a crude crown, crosses, arrows); an oversized heavy black hand-lettered headline set slightly crooked; typewriter monospace body; black buttons with white text and a hand-drawn outline feel",
+  "avoid": "笔刷要「宽而少」，三四笔就够；字可以歪但要读得出来，副标题和正文必须横平竖直。",
+  "neg": [
+    "精致渐变、细线极简、柔和粉彩、规整网格",
+    "refined gradients, thin-line minimalism, soft pastels, tidy grids"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #141414; --a2: #D7262E; --on: #EFE9DD; background: #EFE9DD; color: #141414; font-family: ui-monospace, "Courier New", monospace; }
+.art { background: linear-gradient(170deg, transparent 20%, #D7262E 21% 34%, transparent 35%), linear-gradient(-8deg, transparent 50%, #1F4BB8 51% 62%, transparent 63%), linear-gradient(80deg, transparent 70%, #F2C230 71% 82%, transparent 83%), linear-gradient(15deg, transparent 30%, rgba(20,20,20,.85) 31% 36%, transparent 37%), #EFE9DD; }
+.art .m { position: absolute; right: 40px; top: 60px; width: 54px; height: 30px; border: 4px solid #141414; border-top: 0; clip-path: polygon(0 0, 20% 50%, 50% 0, 80% 50%, 100% 0, 100% 100%, 0 100%); transform: rotate(-8deg); }
+.hero h1 { font-family: "Marker Felt", "Chalkboard SE", "Kaiti SC", cursive; font-weight: 900; transform: rotate(-2deg); text-shadow: 2px 2px 0 #EFE9DD; } .kicker { color: #D7262E; font-weight: 700; background: #EFE9DD; display: inline-block; padding: 0 4px; }
+.cta, .b1 { border-radius: 2px; box-shadow: 2px 3px 0 #D7262E; } .feats b, .stats b { color: #D7262E; }
+</style>

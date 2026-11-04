@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Game Cartridge",
+  "zh": "游戏卡带",
+  "alias": [
+    "游戏卡带盒",
+    "老游戏机卡",
+    "卡带标签"
+  ],
+  "lead": "像一盒老游戏卡带：灰色塑料外壳带一排防滑竖纹，正面贴一张彩色标签，标签上是大大的像素标题和星空插画，角上印着「1 PLAYER」。怀旧、好玩，适合独立游戏、复古玩具店和怀旧主题活动。",
+  "prompt": "游戏卡带风格：左侧插图是一盒卡带的正面——深灰塑料外壳 #5E6066（顶部一排横向防滑凸棱、两侧圆角）、中间贴一张彩色标签（深蓝夜空 #1C2A5A 带像素星星和一颗黄色像素月亮 #F7D24A），标签底部一条红 #E23B3B 条带写「1 PLAYER」；右侧浅灰塑料色底 #CFD1D4、深灰字；标题用像素字体或粗等宽；按钮红色凸起方键",
+  "promptEn": "game cartridge style: the left illustration is the front of a cartridge—a dark gray plastic shell #5E6066 with a row of horizontal grip ridges on top and rounded sides, and a colorful label in the middle (a deep blue night sky #1C2A5A with pixel stars and a yellow pixel moon #F7D24A) with a red #E23B3B band at the bottom reading “1 PLAYER”; the right side on light gray plastic #CFD1D4 with dark gray text; pixel or heavy monospace headings; raised red square buttons",
+  "avoid": "外壳一定是哑光灰塑料，彩色只在标签里；别照搬任何游戏机或游戏的商标和角色。",
+  "neg": [
+    "具体游戏机商标、真实游戏角色、高清 3D、霓虹",
+    "specific console trademarks, real game characters, high-res 3D, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "split",
+  "tags": [
+    "tech"
+  ]
+}
+-->
+<style>
+.site { --a: #E23B3B; --a2: #1C2A5A; --on: #fff; background: #CFD1D4; color: #2A2C31; font-family: "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; }
+.art { background: repeating-linear-gradient(#55575C 0 3px, #6A6C72 3px 6px) 0 10px / 100% 36px no-repeat, #5E6066; border-radius: 0 16px 16px 0; box-shadow: inset -6px 0 0 #4E5055; }
+.art::before { content: ""; position: absolute; left: 18px; right: 22px; top: 70px; height: 190px; border-radius: 6px; background: linear-gradient(#E23B3B, #E23B3B) bottom / 100% 34px no-repeat, radial-gradient(circle, #fff 0 1.5px, transparent 2px) 0 0 / 23px 19px, #1C2A5A; box-shadow: 0 0 0 3px #3E4045; }
+.art::after { content: "1 PLAYER"; position: absolute; left: 30px; top: 237px; color: #fff; font: 9px "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 1px; }
+.art .m { position: absolute; left: 50%; top: 110px; width: 28px; height: 28px; margin-left: -14px; background: #F7D24A; box-shadow: 4px 4px 0 #C9A21E; clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%); }
+.hero h1 { font-weight: 900; letter-spacing: 1px; } .kicker { color: #E23B3B; }
+.cta, .b1 { border-radius: 2px; box-shadow: inset -2px -3px 0 rgba(0,0,0,.25); } .b2 { color: #1C2A5A; } .feats b, .stats b { color: #E23B3B; }
+</style>

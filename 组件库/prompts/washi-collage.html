@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Washi Tape Collage",
+  "zh": "纸胶带拼贴",
+  "alias": [
+    "纸胶带",
+    "手帐拼贴",
+    "和纸胶带"
+  ],
+  "lead": "手帐里的纸胶带拼贴：半透明的彩色胶带斜斜地贴住一张张卡片，胶带上有条纹、波点和小格子，边缘是撕开的锯齿。轻松、可爱、有生活感，适合手帐、文具店、生活方式博主。",
+  "prompt": "纸胶带拼贴风格：奶白方格本底 #FBF8F2（浅灰细方格 #E8E2D6）；每个格子是一张略微倾斜的卡片（白底、轻投影），角上斜贴一段半透明纸胶带——条纹（粉 #F4A6B8）、波点（薄荷 #9FD8C7）、小格子（黄 #F6D776），胶带两端是锯齿撕口；标题圆润粗体；按钮像一段贴上去的胶带",
+  "promptEn": "washi tape collage style: an off-white grid notebook #FBF8F2 with fine light gray squares #E8E2D6; each tile is a slightly tilted card (white with a soft shadow) with a strip of translucent washi tape stuck diagonally on a corner—stripes (pink #F4A6B8), dots (mint #9FD8C7) or tiny checks (yellow #F6D776)—with zigzag torn ends; rounded bold headings; buttons styled like a strip of tape",
+  "avoid": "胶带要半透明（能看到下面的卡片边），每张卡片一段就够；倾斜角度控制在 ±2° 以内。",
+  "neg": [
+    "深色背景、硬朗几何、金属质感、霓虹",
+    "dark backgrounds, hard geometry, metallic textures, neon"
+  ],
+  "kit": "site-kit",
+  "layout": "bento"
+}
+-->
+<style>
+.site { --a: #F4A6B8; --a2: #E07A92; --on: #3A2E2A; background: linear-gradient(#E8E2D6 1px, transparent 1px) 0 0 / 14px 14px, linear-gradient(90deg, #E8E2D6 1px, transparent 1px) 0 0 / 14px 14px, #FBF8F2; color: #3A2E2A; font-family: "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 600; }
+.copy, .art, .feats article, .stats div { position: relative; background: #fff !important; border-radius: 3px !important; box-shadow: 0 2px 6px rgba(58,46,42,.12); }
+.copy { transform: rotate(-.6deg); } .art { transform: rotate(1.2deg); } .feats article:nth-child(2) { transform: rotate(-1.5deg); } .stats div:nth-child(2) { transform: rotate(1deg); }
+.copy::before, .art::before, .feats article::before { content: ""; position: absolute; top: -8px; left: 30%; width: 70px; height: 18px; transform: rotate(-6deg); background: repeating-linear-gradient(90deg, rgba(244,166,184,.75) 0 6px, rgba(255,255,255,.6) 6px 10px); -webkit-mask: linear-gradient(135deg, transparent 4px, #000 4px) left / 51% 100% no-repeat, linear-gradient(-135deg, transparent 4px, #000 4px) right / 51% 100% no-repeat; }
+.art::before { background: radial-gradient(circle, rgba(255,255,255,.8) 2px, transparent 2.5px) 0 0 / 8px 8px, rgba(159,216,199,.8); left: 10%; transform: rotate(8deg); }
+.feats article::before { width: 50px; background: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px) 0 0 / 5px 5px, linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px) 0 0 / 5px 5px, rgba(246,215,118,.85); }
+.art .m { position: absolute; left: 50%; top: 52%; width: 56px; height: 56px; margin: -28px; border-radius: 50%; background: #F6D776; box-shadow: 0 0 0 6px #fff, 0 0 0 7px #E8E2D6; }
+.cta, .b1 { border-radius: 2px; background: repeating-linear-gradient(90deg, #F4A6B8 0 6px, #F7BCCB 6px 10px); color: #3A2E2A; } .kicker, .feats b { color: #E07A92; }
+</style>

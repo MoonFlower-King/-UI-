@@ -1,0 +1,32 @@
+<!--
+{
+  "en": "Vending Machine",
+  "zh": "自动售货机",
+  "alias": [
+    "贩卖机",
+    "自贩机",
+    "自助售卖机"
+  ],
+  "lead": "街角的自动售货机：一格格亮着灯的商品窗口、每格下面一个小价签和圆按钮、侧面是投币口和出货口。明亮、有城市夜晚的亲切感，适合饮品、便利店、潮玩和潮流活动页。",
+  "prompt": "自动售货机风格：机身红 #D63A2F 外框、内部亮白展示窗 #F7F9FB；每个格子是一个带灯光的商品窗口（顶部一条暖白光带、下方一个小价签牌和一个绿色 #3BBF6A 圆按钮），格子之间是深灰金属隔条 #3A3D42；插图格里画一排彩色饮料罐（简单圆角矩形 + 标签色带）；文字深灰、圆润粗体；数字用 LED 风格的等宽红字",
+  "promptEn": "vending machine style: a red machine body #D63A2F framing bright white display windows #F7F9FB; every tile is a lit product window (a warm white light strip on top, a small price tag and a green #3BBF6A round button below), separated by dark gray metal bars #3A3D42; the illustration tile shows a row of colorful drink cans (simple rounded rectangles with label bands); dark gray text in heavy rounded type; numbers in LED-style red monospace",
+  "avoid": "机身颜色只用一种主色，格子内部保持白亮；价签和按钮每格一套，尺寸统一才像真机器。",
+  "neg": [
+    "复杂写实照片、暗沉低饱和、细线极简、具体饮料品牌商标",
+    "complex realistic photos, dull muted colors, thin-line minimalism, specific drink brand trademarks"
+  ],
+  "kit": "site-kit",
+  "layout": "bento",
+  "tags": [
+    "bold"
+  ]
+}
+-->
+<style>
+.site { --a: #3BBF6A; --a2: #D63A2F; --on: #fff; background: #D63A2F; color: #2B2D31; font-family: "Nunito", "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; }
+.pg { padding-bottom: 12px; } .nav { color: #fff; background: #B82F26 !important; } .nav .logo i { background: #fff; }
+.copy, .art, .feats article, .stats div { background: linear-gradient(#FFF6DC, #FFF6DC) top / 100% 6px no-repeat, #F7F9FB !important; border-radius: 4px !important; box-shadow: 0 0 0 4px #3A3D42; position: relative; }
+.feats article { padding-bottom: 30px !important; } .feats article::after { content: "¥ 3"; position: absolute; left: 10px; bottom: 8px; padding: 0 6px; font: 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: #fff; border: 1px solid #ccc; } .feats article::before { content: ""; position: absolute; right: 10px; bottom: 8px; width: 12px; height: 12px; border-radius: 50%; background: #3BBF6A; box-shadow: 0 0 6px #3BBF6A; }
+.art { background: linear-gradient(90deg, transparent 6%, #3E7BD6 6% 22%, transparent 22% 30%, #F2B33D 30% 46%, transparent 46% 54%, #E2543E 54% 70%, transparent 70% 78%, #4BB58A 78% 94%, transparent 94%) 0 50% / 100% 70px no-repeat, linear-gradient(#FFF6DC, #FFF6DC) top / 100% 6px no-repeat, #F7F9FB !important; }
+.stats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #E2241B; text-shadow: 0 0 6px rgba(226,36,27,.5); } .stats div { background: #1E1F22 !important; color: #ccc; } .kicker { color: #D63A2F; } .cta { background: #fff; color: #D63A2F; }
+</style>

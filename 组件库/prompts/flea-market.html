@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Flea Market",
+  "zh": "跳蚤市场",
+  "alias": [
+    "旧货市集",
+    "二手摊",
+    "周末市集"
+  ],
+  "lead": "周末的跳蚤市场：一张张手写纸板价牌、牛皮纸标签挂着麻绳、旧物随意摆在格子布上，一切都有点歪、有点旧。随性、有淘宝的乐趣，适合二手店、旧书摊、市集活动和古着。",
+  "prompt": "跳蚤市场风格：红白格子桌布底（大格 #E9E2D2 与淡红 #D9A69A 交错，透明度低）；侧栏像一块立着的纸板招牌——瓦楞纸色 #C9A574、马克笔手写黑字「本周市集」；特点卡片做成牛皮纸吊牌（圆孔 + 一小段麻绳、轻微倾斜），价钱用红色马克笔圈出来；标题手写马克笔字、正文打字机等宽；按钮像贴在纸板上的白色手写标签",
+  "promptEn": "flea market style: a red-and-white gingham tablecloth background (large checks of #E9E2D2 and a faded red #D9A69A at low opacity); the sidebar is a standing cardboard sign—corrugated cardboard #C9A574 with black marker lettering; feature cards as kraft-paper hang tags (a punched hole with a short piece of twine, slightly tilted) with prices circled in red marker; hand-lettered marker headlines with typewriter body; buttons like white handwritten labels stuck on cardboard",
+  "avoid": "「旧」要靠材质（纸板、牛皮纸、麻绳），不要把文字也弄脏；手写字只给标题和价钱。",
+  "neg": [
+    "光滑塑料、霓虹、整齐网格商城风、冷灰科技",
+    "glossy plastic, neon, tidy e-commerce grids, cold techy grays"
+  ],
+  "kit": "site-kit",
+  "layout": "sidebar"
+}
+-->
+<style>
+.site { --a: #3A2E25; --a2: #C8352B; --on: #FFFBF2; background: linear-gradient(90deg, rgba(217,166,154,.35) 50%, transparent 50%) 0 0 / 28px 28px, linear-gradient(rgba(217,166,154,.35) 50%, transparent 50%) 0 0 / 28px 28px, #F3EEE2; color: #3A2E25; font-family: "Courier New", ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.pg > .nav { background: repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 2px, transparent 2px 6px), #C9A574; font-family: "Marker Felt", "Kaiti SC", cursive; }
+.cta { background: #FFFBF2; color: #3A2E25; border-radius: 2px; transform: rotate(-3deg); box-shadow: 1px 2px 0 rgba(0,0,0,.2); }
+.hero h1 { font-family: "Marker Felt", "Kaiti SC", cursive; font-weight: 700; } .kicker { color: #C8352B; } .b1 { border-radius: 2px; background: #3A2E25; color: #FFFBF2; }
+.feats article { position: relative; padding: 18px 10px 10px; background: #D9B98A; border-radius: 4px 14px 4px 4px; transform: rotate(-1.5deg); box-shadow: 1px 2px 4px rgba(0,0,0,.18); } .feats article:nth-child(2) { transform: rotate(1.8deg); }
+.feats article::before { content: ""; position: absolute; top: 6px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: #F3EEE2; box-shadow: 0 0 0 1px #8A6A44; } .feats article::after { content: ""; position: absolute; top: -10px; right: 13px; width: 1.5px; height: 18px; background: #8A6A44; transform: rotate(20deg); }
+.feats b { display: inline-block; padding: 0 5px; color: #C8352B; border: 1.5px solid #C8352B; border-radius: 50%; } .art .m { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px; border-radius: 50%; background: #E8C35A; box-shadow: 0 0 0 6px #fff, 2px 4px 6px 6px rgba(0,0,0,.15); }
+</style>

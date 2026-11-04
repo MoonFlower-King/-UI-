@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "Neon Tube Sign",
+  "zh": "霓虹灯管",
+  "alias": [
+    "霓虹招牌",
+    "灯管字",
+    "夜店灯牌"
+  ],
+  "lead": "夜里亮着的霓虹灯管招牌：砖墙上弯成字形的玻璃灯管，发出粉、青、橙的光，周围有一圈晕染的光晕，灯管之间还有细细的金属支架。复古又酷，适合酒吧、夜市、音乐现场和潮牌。",
+  "prompt": "霓虹灯管风格：暗红砖墙底 #2A1A1E（细细的砖缝纹）；标题做成灯管字——细线描边空心字（2px 粉 #FF4FA3）外加多层同色发光，副标题用青色 #3FF0FF 灯管；插图是一个灯管画出的月亮和书本轮廓（橙 #FF9E3D），线条两端有灰色小支架；正文米白小字不发光；按钮粉色灯管描边的胶囊",
+  "promptEn": "neon tube sign style: a dark red brick wall #2A1A1E with fine mortar lines; the headline as tube lettering—thin hollow outlined text (2px pink #FF4FA3) with layered same-color glow, a cyan #3FF0FF tube for the subhead; the illustration is a moon and book outline drawn in an orange #FF9E3D tube with small gray mounting brackets at the ends; small cream body text without glow; pill buttons outlined with pink tubes",
+  "avoid": "灯管字要「细线 + 光晕」，实心字发光就成了霓虹灯效滤镜；正文绝对不发光，否则糊成一片。",
+  "neg": [
+    "白底、实心发光大字、扁平无光、柔和粉彩",
+    "white backgrounds, solid glowing type, flat unlit look, soft pastels"
+  ],
+  "kit": "site-kit",
+  "layout": "poster"
+}
+-->
+<style>
+.site { --a: #FF4FA3; --a2: #3FF0FF; --on: #fff; background: linear-gradient(rgba(0,0,0,.35) 1px, transparent 1px) 0 0 / 40px 16px, linear-gradient(90deg, rgba(0,0,0,.35) 1px, transparent 1px) 0 0 / 40px 16px, #2A1A1E; color: #F3E9E4; font-family: "Avenir Next Condensed", "Arial Narrow", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.hero h1 { color: transparent; -webkit-text-stroke: 1.5px #FF4FA3; text-shadow: 0 0 6px #FF4FA3, 0 0 16px rgba(255,79,163,.8), 0 0 32px rgba(255,79,163,.5); font-weight: 400; }
+.kicker { color: #3FF0FF; text-shadow: 0 0 8px #3FF0FF; letter-spacing: 3px; }
+.art .m { position: absolute; right: 60px; top: 74px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #FF9E3D; box-shadow: 0 0 10px #FF9E3D, inset 0 0 10px #FF9E3D; -webkit-mask: radial-gradient(circle at 70% 30%, transparent 22px, #000 23px); }
+.art .h { position: absolute; right: 50px; top: 150px; width: 80px; height: 2px; background: #FF9E3D; box-shadow: 0 0 10px #FF9E3D; } .art .h::before, .art .h::after { content: ""; position: absolute; top: -5px; width: 2px; height: 12px; background: #777; } .art .h::after { right: 0; }
+.cta, .b1 { background: none; border: 1.5px solid #FF4FA3; border-radius: 99px; color: #FFD1E7; box-shadow: 0 0 10px rgba(255,79,163,.6); } .b2 { color: #3FF0FF; }
+.feats b, .stats b { color: #3FF0FF; text-shadow: 0 0 6px rgba(63,240,255,.6); } .feats article { border-top-color: rgba(255,79,163,.4) !important; }
+</style>

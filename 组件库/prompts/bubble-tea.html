@@ -1,0 +1,28 @@
+<!--
+{
+  "en": "Bubble Tea Shop",
+  "zh": "奶茶店",
+  "alias": [
+    "奶茶",
+    "手摇饮",
+    "珍珠奶茶"
+  ],
+  "lead": "一家甜甜的奶茶店：奶茶色和焦糖色的渐变、杯底一层黑糖珍珠、粗吸管和圆滚滚的字，配一点草莓粉和抹茶绿。软萌、好喝的感觉，适合饮品店、甜品店和年轻化的生活品牌。",
+  "prompt": "奶茶店风格：奶油底 #FFF5E9、焦糖棕字 #6B3F23；插图是一杯透明塑料杯奶茶——从上到下奶盖白 #FFFDF7 → 奶茶色 #D9A878 → 焦糖 #B8743E，杯底一层黑糖珍珠（深褐圆点 #3A2318 带高光），一根斜插的粗吸管（草莓粉 #F49AB0）；标题圆滚滚的粗圆体；按钮抹茶绿 #8DBF7A 胶囊；特点卡片像菜单小卡，带「少糖 · 去冰」小标签",
+  "promptEn": "bubble tea shop style: cream #FFF5E9 background with caramel brown #6B3F23 text; the illustration is a clear plastic cup of milk tea—from top to bottom milk foam #FFFDF7 → milk tea #D9A878 → caramel #B8743E—with a layer of brown-sugar pearls at the bottom (dark brown dots #3A2318 with highlights) and a thick straw stuck in at an angle (strawberry pink #F49AB0); chubby heavy rounded headings; matcha-green #8DBF7A pill buttons; feature cards like small menu cards with “less sugar · no ice” tags",
+  "avoid": "奶茶颜色是一组暖棕渐变，粉和绿只做点缀；珍珠要有高光才像珍珠，黑点会像芝麻。",
+  "neg": [
+    "冷色、暗黑、尖锐几何、写实饮料品牌照片",
+    "cool tones, dark looks, sharp geometry, realistic branded drink photos"
+  ],
+  "kit": "site-kit",
+  "layout": "centered"
+}
+-->
+<style>
+.site { --a: #8DBF7A; --a2: #E27B95; --on: #fff; background: #FFF5E9; color: #6B3F23; font-family: "Hiragino Maru Gothic ProN", "Nunito", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 700; }
+.art { min-height: 110px; } .art .m { position: absolute; left: 50%; top: 8px; width: 60px; height: 92px; margin-left: -30px; border-radius: 6px 6px 14px 14px; background: radial-gradient(circle at 30% 30%, #6B4A36 0 1px, #3A2318 2px 5px, transparent 5.5px) 0 100% / 12px 16px repeat-x, linear-gradient(#FFFDF7 0 20%, #E6C29C 20% 40%, #D9A878 40% 70%, #B8743E 70%); box-shadow: inset 0 0 0 2px rgba(255,255,255,.7), 0 4px 10px rgba(107,63,35,.15); clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+.art .h { position: absolute; left: 52%; top: -6px; width: 8px; height: 60px; border-radius: 4px; background: #F49AB0; transform: rotate(14deg); }
+.hero h1 { font-weight: 900; } .kicker { color: #E27B95; } .cta, .b1 { border-radius: 99px; } .b2 { color: #E27B95; }
+.feats article { padding: 12px; border-radius: 18px; background: #fff; box-shadow: 0 2px 8px rgba(107,63,35,.08); } .feats p::after { content: " · 少糖 · 去冰"; color: #8DBF7A; } .feats b, .stats b { color: #E27B95; }
+</style>

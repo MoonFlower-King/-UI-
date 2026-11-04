@@ -1,0 +1,31 @@
+<!--
+{
+  "en": "Toy Bricks",
+  "zh": "塑料积木",
+  "alias": [
+    "拼插积木",
+    "玩具砖块",
+    "凸点"
+  ],
+  "lead": "小时候玩的塑料拼插积木：饱和的红黄蓝绿、表面一排排圆凸点、硬朗的塑料光泽。童趣、有建造感，适合儿童教育、编程启蒙、玩具店和创意工作坊。",
+  "prompt": "塑料积木风格：浅灰底板 #E6E9EC（带浅浅的圆凸点阵）；插图是几块叠起来的积木——饱和红 #D62D20、黄 #FFC20E、蓝 #0057A8、绿 #00852B，每块顶面有一排带高光的圆凸点、侧面略暗；文字深灰 #222、粗圆体；按钮做成一块红色积木（顶部两颗凸点）；特点卡片顶部各有一排同色凸点",
+  "promptEn": "toy brick style: a light gray baseplate #E6E9EC with a faint grid of round studs; the illustration is a stack of bricks—saturated red #D62D20, yellow #FFC20E, blue #0057A8 and green #00852B—each with a row of highlighted round studs on top and slightly darker sides; dark gray #222 text in heavy rounded type; buttons shaped like a red brick (two studs on top); a row of matching studs across the top of each feature card",
+  "avoid": "颜色就是积木原色四种，别再加粉彩；凸点要有高光才像塑料，平涂圆点像波点。别照搬任何积木品牌的标志和名字。",
+  "neg": [
+    "粉彩、细线、写实木纹、具体玩具品牌商标",
+    "pastels, thin lines, realistic wood grain, specific toy brand trademarks"
+  ],
+  "kit": "site-kit",
+  "layout": "split"
+}
+-->
+<style>
+.site { --a: #D62D20; --a2: #0057A8; --on: #fff; background: radial-gradient(circle at 50% 45%, #F3F5F7 0 4px, #CDD2D7 4.5px 5px, transparent 5.5px) 0 0 / 16px 16px, #E6E9EC; color: #222; font-family: "Nunito", "Arial Rounded MT Bold", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 800; }
+.art { background: radial-gradient(circle at 50% 40%, #FF6B5E 0 6px, #D62D20 6.5px 8px, transparent 8.5px) 10px 96px / 26px 14px repeat-x, linear-gradient(#D62D20, #B3241A) 0 106px / 100% 50px no-repeat,
+ radial-gradient(circle at 50% 40%, #FFE07A 0 6px, #FFC20E 6.5px 8px, transparent 8.5px) 10px 156px / 26px 14px repeat-x, linear-gradient(#FFC20E, #E0A800) 0 166px / 100% 50px no-repeat,
+ radial-gradient(circle at 50% 40%, #4D8FD6 0 6px, #0057A8 6.5px 8px, transparent 8.5px) 10px 216px / 26px 14px repeat-x, linear-gradient(#0057A8, #00468A) 0 226px / 100% 50px no-repeat,
+ linear-gradient(#00852B, #006B22) 0 276px / 100% 60px no-repeat, #DDE2E6; }
+.cta, .b1 { border-radius: 4px; position: relative; box-shadow: inset 0 -3px 0 rgba(0,0,0,.2); } .b1::before { content: ""; position: absolute; top: -5px; left: 10px; width: 10px; height: 5px; border-radius: 3px 3px 0 0; background: #D62D20; box-shadow: 18px 0 #D62D20; }
+.feats article { padding: 14px 10px 10px; border-radius: 4px; background: radial-gradient(circle at 50% 50%, #FFE07A 0 4px, transparent 4.5px) 4px 2px / 16px 10px repeat-x, #fff; } .feats article:nth-child(2) { background: radial-gradient(circle at 50% 50%, #4D8FD6 0 4px, transparent 4.5px) 4px 2px / 16px 10px repeat-x, #fff; } .feats article:nth-child(3) { background: radial-gradient(circle at 50% 50%, #FF6B5E 0 4px, transparent 4.5px) 4px 2px / 16px 10px repeat-x, #fff; }
+.feats b, .kicker { color: #0057A8; } .stats b { color: #D62D20; }
+</style>

@@ -1,0 +1,30 @@
+<!--
+{
+  "en": "CD Booklet",
+  "zh": "CD 内页",
+  "alias": [
+    "唱片内页",
+    "专辑歌词本",
+    "光盘"
+  ],
+  "lead": "像拆开一张 CD 专辑的歌词内页：方形版面、一张半露出来的银色光盘带彩虹反光、细小的曲目列表和制作名单。安静、精致、有收藏感，适合音乐人、独立厂牌、播客和书房夜读歌单。",
+  "prompt": "CD 内页风格：米白纸底 #F4F1EA、深灰字 #222；插图是一张从纸套里滑出半边的光盘（银灰底、中心透明圆孔、表面一道彩虹色的锥形反光 conic）；标题全大写细体无衬线、字距很宽；特点改成像曲目单那样带编号的细行，后面跟一个时长（如 03:42）；数字区像制作名单的小字；分隔是 0.5px 细线",
+  "promptEn": "CD booklet style: off-white paper #F4F1EA with dark gray #222 text; the illustration is a disc half slid out of its sleeve (silver-gray with a transparent center hole and a rainbow conic reflection across its surface); headlines in thin, widely tracked uppercase sans-serif; features restyled as numbered thin track-list rows each followed by a duration (like 03:42); the numbers area in small credit-list type; 0.5px hairline dividers",
+  "avoid": "光盘的彩虹反光要淡、像真实反光；整体版面要「小字 + 大留白」，字一大就不像内页了。",
+  "neg": [
+    "粗黑大字、厚重阴影、霓虹、花哨插画",
+    "heavy bold type, deep shadows, neon, busy illustrations"
+  ],
+  "kit": "site-kit",
+  "layout": "magazine"
+}
+-->
+<style>
+.site { --a: #222; --a2: #8A8580; --on: #F4F1EA; background: #F4F1EA; color: #222; font-family: "Helvetica Neue", -apple-system, "Inter", "PingFang SC", sans-serif; font-weight: 300; }
+.hero h1 { font-weight: 200; letter-spacing: 6px; } .kicker { letter-spacing: 6px; color: #8A8580; }
+.art .m { position: absolute; right: 10px; top: 50%; width: 120px; height: 120px; margin-top: -60px; border-radius: 50%; background: radial-gradient(circle, transparent 0 9px, #C9CCD2 10px 18px, transparent 19px), conic-gradient(from 20deg, #D9DCE2, #F2C6D9, #C8E6F2, #E8F2C6, #D9DCE2 40%, #E7E9EE, #D9DCE2); box-shadow: inset 0 0 0 1px #B8BCC4; }
+.art .h { position: absolute; right: 70px; top: 50%; width: 110px; height: 130px; margin-top: -65px; background: #2B2B2B; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.cta, .b1 { border-radius: 0; font-weight: 400; letter-spacing: 2px; } .b2 { color: #8A8580; }
+.feats article::after { content: "03:42"; float: right; font: 10px ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8A8580; } .feats b { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8A8580; }
+.stats { border-top: .5px solid #222; margin: 0 26px; } .stats b { font-weight: 300; } .stats span { text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
+</style>

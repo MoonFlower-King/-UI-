@@ -1,0 +1,33 @@
+<!--
+{
+  "en": "Paper Silhouette",
+  "zh": "剪影",
+  "alias": [
+    "黑色剪影",
+    "皮影剪纸",
+    "逆光轮廓"
+  ],
+  "lead": "用纯黑剪影讲故事：黄昏渐变的天空下，远山、树、屋顶和一个看书的人都只剩黑色轮廓，像剪纸剧场。安静、有叙事感，适合绘本、故事品牌、舞台剧和电影节。",
+  "prompt": "剪影风格：首屏背景是黄昏渐变（暖橙 #F29E4C → 粉 #E86A6A → 紫 #5B3A7A）；插图前景全是纯黑 #141018 剪影——起伏的山脊线、一棵树、屋顶和窗边看书的人，边缘干净锋利；超大标题米白 #FFF3E2 压在天空上，下方内容区转为深紫黑底；按钮米白底黑字；特点改成一条条横排清单",
+  "promptEn": "silhouette style: the hero background is a dusk gradient (warm orange #F29E4C → pink #E86A6A → purple #5B3A7A); everything in the foreground is a pure black #141018 silhouette—a rolling ridge line, a tree, rooftops and a person reading by a window—with clean sharp edges; an oversized cream #FFF3E2 headline over the sky, and the content below turning to a deep purple-black; cream buttons with black text; features restyled as horizontal list rows",
+  "avoid": "剪影只能是纯黑一种颜色，不要加细节和高光；天空渐变不超过三色，剪影才压得住。",
+  "neg": [
+    "剪影里画细节、灰色剪影、多彩前景、白天天空",
+    "detailed silhouettes, gray silhouettes, colorful foregrounds, daytime sky"
+  ],
+  "kit": "site-kit",
+  "layout": "poster",
+  "tags": [
+    "dark"
+  ]
+}
+-->
+<style>
+.site { --a: #FFF3E2; --a2: #F29E4C; --on: #141018; background: #1C1424; color: #FFF3E2; font-family: "Avenir Next", -apple-system, "Inter", "PingFang SC", sans-serif; }
+.art { background: radial-gradient(ellipse 120px 50px at 20% 100%, #141018 98%, transparent) 0 0, radial-gradient(ellipse 160px 60px at 70% 100%, #141018 98%, transparent) 0 0, linear-gradient(#F29E4C, #E86A6A 50%, #5B3A7A 85%, #141018); }
+.art .m { position: absolute; right: 60px; bottom: 40px; width: 70px; height: 60px; background: #141018; clip-path: polygon(0 40%, 50% 0, 100% 40%, 100% 100%, 0 100%); box-shadow: inset 0 0 0 0 #000; }
+.art .m::after { content: ""; position: absolute; left: 24px; top: 30px; width: 18px; height: 16px; background: #F7C66B; box-shadow: 0 0 10px #F7C66B; }
+.art .h { position: absolute; left: 70px; bottom: 30px; width: 8px; height: 60px; background: #141018; } .art .h::before { content: ""; position: absolute; left: -22px; top: -36px; width: 52px; height: 52px; border-radius: 50%; background: #141018; }
+.hero h1 { font-weight: 800; text-shadow: 0 2px 12px rgba(20,16,24,.35); } .kicker { color: #FFF3E2; letter-spacing: 3px; } .b2 { color: #FFF3E2; }
+.feats b, .stats b { color: #F29E4C; }
+</style>
