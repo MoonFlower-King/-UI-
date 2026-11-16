@@ -13,6 +13,7 @@
 - `组件库/`：「江月 UI」词典 + 组件库（发布在 `/ui/`）；`组件库/prompts.html` 是提示词调配台（视频 / 图片 / 网站风格，词条在 `组件库/prompts/`，登记在 `data/prompt-groups.json`）。每个术语一个文件 `组件库/components/*.html`，在 `data/categories.json` 登记主题，`npm run build:ui` 生成 `data/components.js`
 - 管理后台整页案例（页面 × 风格，目前 6 × 14 = 84 个）由 `组件库/admin/` 的「页面模板 × 风格」在构建时生成，不是 `components/` 里的文件；加风格改 `styles.mjs`，加页面改 `pages.mjs`
 - 「个人网站」栏目（`/ui/#sites`，目前 9 种页面 × 39 种风格 = 117 版）同样是生成的：`组件库/sites/` 的 `pages.mjs`（页面）× `styles.mjs`（风格，每种风格用 `pages` 挑 3 种最合适的页面）；栏目主题在 `categories.json` 写 `"section": "site"`，不进词典列表、但能搜到
+- 「简历模板」栏目（`/ui/#resumes`，10 套程序员简历）+ 在线填写页 `组件库/resume.html`：核心是 `组件库/assets/resume-core.js`（Markdown → A4 简历），填写页直接用、构建时 `组件库/resume/cases.mjs` 也用它生成案例；加风格只改 `assets/resume-styles.js`
 - 品牌：江月 UI 设计，视觉主题「江上明月」（夜色江面 + 月光暖金 + 江月橘 #FA8C16，标题用宋体类衬线字）。网站本身就是审美示范，改界面时保持这个水准
 - `.claude/skills/jiangyue-ui-video/`：做视频的 skill
 - `npm run build` 生成两个站点的数据，最后检查各页面脚本有没有语法错误（`组件库/scripts/check-scripts.mjs`）。生成物（`组件库/data/` 下的 .js 和 code/、text/、prompt-code/、prompt-text/，图鉴的 `data/` `demos/` `episodes/`）已 gitignore，不要提交；PR 时 Actions 会自动跑构建检查

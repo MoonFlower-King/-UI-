@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { Script } from 'node:vm';
 
 const REPO = join(dirname(fileURLToPath(import.meta.url)), '../..');
-const PAGES = ['组件库/index.html', '组件库/prompts.html', '图鉴网站（开源）/index.html'];
+const PAGES = ['组件库/index.html', '组件库/prompts.html', '组件库/resume.html', '图鉴网站（开源）/index.html'];
 let bad = 0;
 for (const page of PAGES) {
   const html = readFileSync(join(REPO, page), 'utf8');

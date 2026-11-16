@@ -15,6 +15,7 @@ import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as admin from '../admin/pages.mjs';
 import * as sites from '../sites/pages.mjs';
+import * as resume from '../resume/cases.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
@@ -38,9 +39,11 @@ for (const file of readdirSync(join(ROOT, 'components')).filter((f) => f.endsWit
 
 // 整页案例由「页面模板 × 风格」生成（不落成文件）：categories.json 里写 "generated": "admin" / "site" 的主题自动收进来
 // - admin：管理后台（admin/）；site：个人网站（sites/），在网站上是单独的「个人网站」栏目（主题上写 "section": "site"）
+// - resume：简历模板（resume/cases.mjs，风格在 assets/resume-styles.js），单独的「简历模板」栏目（"section": "resume"）
 const GEN = {
   admin: { cases: admin.adminCases(), chunks: admin.sharedChunks, dir: 'admin/pages.mjs' },
   site: { cases: sites.siteCases(), chunks: sites.sharedChunks, dir: 'sites/pages.mjs' },
+  resume: { cases: resume.resumeCases(), chunks: resume.sharedChunks, dir: 'resume/cases.mjs' },
 };
 for (const g of Object.values(GEN)) for (const c of g.cases) {
   if (byId.has(c.id)) fail(`生成的案例 ${c.id} 和其他组件重名`);

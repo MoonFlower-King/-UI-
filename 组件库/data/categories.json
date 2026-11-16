@@ -640,5 +640,21 @@
     "section": "site",
     "generated": "site",
     "items": []
+  },
+  {
+    "id": "resume-one",
+    "name": "简历模板 · 单栏",
+    "intro": "从上到下一条线读完：极简、时间轴、终端、经典衬线、README 文档风和江上明月。最稳妥，也最好被招聘系统识别。",
+    "section": "resume",
+    "generated": "resume",
+    "items": []
+  },
+  {
+    "id": "resume-two",
+    "name": "简历模板 · 双栏与卡片",
+    "intro": "技术栈、语言这类短清单放进侧栏，经历占主栏，一页能装下更多：深色侧栏、暗色、紧凑一页和卡片网格。",
+    "section": "resume",
+    "generated": "resume",
+    "items": []
   }
 ]
