@@ -1,17 +1,23 @@
 // 江月 UI 文档站。数据来自 data/components.js（npm run build:ui 生成）；$、esc、store、toast、copy、明暗切换在 assets/common.js。
 // 路由：#home 首页（感觉翻译器）· #all 词典全部 · #cat-<主题> 单个主题 · #<组件 id> 词条详情
-//       #sites 「个人网站」栏目 · #sites-<风格 id> 只看一种风格（栏目里的主题在 categories.json 写了 "section": "site"）
+//       #sites 「个人网站」栏目 · #sites-<风格 id> 只看一种风格 · #resumes 「简历模板」栏目
+//       （栏目里的主题在 categories.json 写了 "section"，栏目本身登记在下面的 SECTIONS）
 // 搜索不占路由：按 / 或 Ctrl/⌘+K 打开搜索面板，手机上点底部「搜索」。
 const { categories, components, vague, siteStyles = [] } = window.UI_KIT;
 const byId = Object.fromEntries(components.map((c) => [c.id, c]));
 const catById = Object.fromEntries(categories.map((c) => [c.id, c]));
 const inCat = (id) => components.filter((x) => x.cat === id);
 // 词典和「个人网站」栏目分开展示：词典只列没写 section 的主题，栏目只列自己的主题；搜索两边都能搜到
-const dictCats = categories.filter((c) => !c.section), siteCats = categories.filter((c) => c.section === 'site');
+// 加一个栏目：categories.json 的主题写上 "section": "<key>"，再在这里登记它的路由名（hash）、名字和量词
+const SECTIONS = { site: { hash: 'sites', name: '个人网站', all: '全部页面' }, resume: { hash: 'resumes', name: '简历模板', all: '全部模板' } };
+const dictCats = categories.filter((c) => !c.section);
 const countOf = (cats) => cats.reduce((n, c) => n + c.count, 0);
-const DICT_N = countOf(dictCats), SITE_N = countOf(siteCats);
-const isSite = (catId) => catById[catId]?.section === 'site';
+for (const [k, s] of Object.entries(SECTIONS)) { s.key = k; s.cats = categories.filter((c) => c.section === k); s.n = countOf(s.cats); }
+const siteCats = SECTIONS.site.cats, SITE_N = SECTIONS.site.n, resumeCats = SECTIONS.resume.cats;
+const DICT_N = countOf(dictCats);
+const secOf = (catId) => SECTIONS[catById[catId]?.section];
 // 首页「个人网站」区块挑 6 个风格差异大的做展示
+const RESUME_PICKS = ['resume-sidebar', 'resume-terminal', 'resume-jiangyue', 'resume-bento'];
 const SITE_PICKS = ['site-home-jiangyue', 'site-portfolio-brutal', 'site-links-glass', 'site-blog-neon', 'site-photo-film', 'site-weekly-memphis'];
 const shortName = (c) => (c.section ? c.name.split(' · ').pop() : c.name);
 // 组件代码和「发给 AI 的一句话」按主题分文件（data/code/<主题>.js、data/text/<主题>.js），
@@ -361,13 +367,13 @@ $('#search-btn-m').onclick = openSearch;
 /* ---------------- 侧边目录（桌面） ---------------- */
 function renderSide(here, curCat) {
   const cur = (h) => (h === here ? ' aria-current="page"' : '');
-  const site = here.startsWith('sites') || isSite(curCat), cats = site ? siteCats : dictCats;
-  $('#side').innerHTML = (site
-    ? `<div class="side-label">个人网站 · ${SITE_N} 版</div><a href="#sites"${cur('sites')}>全部页面<span class="n">${SITE_N}</span></a>`
+  const sec = secOf(curCat) || Object.values(SECTIONS).find((s) => here === s.hash || here.startsWith(s.hash + '-')), cats = sec ? sec.cats : dictCats;
+  $('#side').innerHTML = (sec
+    ? `<div class="side-label">${sec.name} · ${sec.n} 版</div><a href="#${sec.hash}"${cur(sec.hash)}>${sec.all}<span class="n">${sec.n}</span></a>`
     : `<div class="side-label">词典 · ${DICT_N} 个词</div><a href="#all"${cur('all')}>全部主题<span class="n">${DICT_N}</span></a>`) +
     cats.map((c) => `<a href="#cat-${c.id}"${cur('cat-' + c.id)}>${esc(shortName(c))}<span class="n">${c.count}</span></a>` +
       (c.id === curCat ? `<div class="sub">${inCat(c.id).map((x) => `<a href="#${x.id}"${cur(x.id)}>${esc(x.zh)}</a>`).join('')}</div>` : '')).join('') +
-    `<div class="side-foot">${site ? '<a href="#all">← 回到词典</a>' : `<a href="#sites">个人网站风格 ${SITE_N} 版 →</a>`}<a href="../">UI 提示词图鉴 →</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub 开源 · MIT</a></div>`;
+    `<div class="side-foot">${sec ? '<a href="#all">← 回到词典</a>' : `<a href="#sites">个人网站风格 ${SITE_N} 版 →</a><a href="#resumes">程序员简历模板 ${SECTIONS.resume.n} 套 →</a>`}<a href="../">UI 提示词图鉴 →</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub 开源 · MIT</a></div>`;
   $('#side [aria-current]')?.scrollIntoView({ block: 'nearest' });
 }
 
@@ -428,6 +434,11 @@ function renderHome() {
     <div class="grid compact">${SITE_PICKS.filter((id) => byId[id]).map((id) => card(byId[id])).join('')}</div>
   </section>` : ''}
 
+  ${resumeCats.length ? `<section class="section">
+    <div class="section-head"><div><h2 class="h2">程序员简历模板 · ${SECTIONS.resume.n} 套</h2><p>极简、双栏、时间轴、暗色、终端……中英文两版，能直接打印成 PDF，也能在线填上自己的内容。</p></div><a class="more" href="#resumes">进入栏目 →</a></div>
+    <div class="grid compact">${RESUME_PICKS.filter((id) => byId[id]).map((id) => card(byId[id])).join('')}</div>
+  </section>` : ''}
+
   <section class="section">
     <div class="section-head"><div><h2 class="h2">三步用法</h2></div></div>
     <div class="steps"><div><b>找到那个词</b><span>在上面说出感觉，或者按主题翻、按 / 搜索</span></div>
@@ -448,9 +459,9 @@ function renderHome() {
 const foot = () => `<footer class="site-foot"><span>江月 UI 设计 · MIT 开源</span><a href="../">UI 提示词图鉴</a><a href="https://github.com/MoonFlower-King/-UI-">GitHub</a><span>内容来自短视频系列「给AI描述UI的6个词」</span></footer>`;
 
 /* ---------------- 页面：词典（全部 / 单个主题） ---------------- */
-function filterBar(curId, site) {
-  const cats = site ? siteCats : dictCats, all = site ? 'sites' : 'all';
-  return `<nav class="filter" aria-label="按主题筛选"><a href="#${all}"${curId ? '' : ' aria-current="page"'}>全部<small>${site ? SITE_N : DICT_N}</small></a>` +
+function filterBar(curId, sec) {
+  const cats = sec ? sec.cats : dictCats, all = sec ? sec.hash : 'all';
+  return `<nav class="filter" aria-label="按主题筛选"><a href="#${all}"${curId ? '' : ' aria-current="page"'}>全部<small>${sec ? sec.n : DICT_N}</small></a>` +
     cats.map((c) => `<a href="#cat-${c.id}"${c.id === curId ? ' aria-current="page"' : ''}>${esc(shortName(c))}<small>${c.count}</small></a>`).join('') + '</nav>';
 }
 const lazyGrids = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && lazyGrids.fill(e.target)), { rootMargin: '1600px 0px' });
@@ -485,17 +496,30 @@ function renderSites(styleId) {
       <h1 class="h1">${st ? esc(st.zh) : '个人网站风格'}</h1>
       <p class="lead">${st ? `「${esc(st.zh)}」风格的 ${list.length} 种页面，拼起来就是一整套个人网站。每个都能直接玩，复制中文或英文提示词给 AI 就能做出同款。`
         : `博客、作品集、在线简历、链接主页……${siteCats.length} 种个人网站页面 × ${siteStyles.length} 种风格，一共 ${SITE_N} 版整页参考。每版都能直接玩，附中英文提示词。先按页面挑，或者在下面按风格看。`}</p></header>
-    ${filterBar('', true)}
+    ${filterBar('', SECTIONS.site)}
     <nav class="style-bar" aria-label="按风格看"><span>按风格看</span>${siteStyles.map((x) => `<a href="#sites-${x.id}"${x.id === styleId ? ' aria-current="page"' : ''}>${esc(x.zh)}</a>`).join('')}</nav>
     ${st ? `<div class="grid">${list.map(card).join('')}</div>` : groupedList(siteCats)}${foot()}`;
   if (st) hydrate($('#main')); else fillLazy();
   document.title = `${st ? st.zh + ' · ' : ''}个人网站风格 · 江月 UI`;
 }
+const crumbRoot = (sec) => (sec ? `<a href="#${sec.hash}">${sec.name}</a>` : '<a href="#all">词典</a>');
+// 「简历模板」栏目：两组模板，顶部一个大按钮去在线填写页（resume.html）
+function renderResumes() {
+  const sec = SECTIONS.resume;
+  $('#main').innerHTML = `<header class="page-head"><div class="crumb"><a href="#resumes">简历模板</a></div>
+      <h1 class="h1">程序员简历模板</h1>
+      <p class="lead">${sec.n} 套为程序员准备的 A4 简历：技术栈分类写、经历用数字说成果、单列项目和开源贡献。每套都有中英文两版，能直接打印 / 存成 PDF，附中英文提示词。想换成自己的内容，用 Markdown 在线填写，边写边看。</p>
+      <div class="row" style="margin-top:20px"><a class="btn primary lg" href="resume.html">在线填写我的简历 →</a></div></header>
+    ${filterBar('', sec)}
+    ${groupedList(sec.cats)}${foot()}`;
+  fillLazy();
+  document.title = '程序员简历模板 · 江月 UI';
+}
 function renderCategory(cat) {
   const list = inCat(cat.id);
-  const site = cat.section === 'site';
-  $('#main').innerHTML = `<header class="page-head"><div class="crumb">${site ? '<a href="#sites">个人网站</a>' : '<a href="#all">词典</a>'} / ${esc(shortName(cat))}</div><h1 class="h1">${esc(cat.name)}</h1><p class="lead">${esc(cat.intro)}</p></header>
-    ${filterBar(cat.id, site)}<div class="grid">${list.map(card).join('')}</div>${foot()}`;
+  const sec = SECTIONS[cat.section];
+  $('#main').innerHTML = `<header class="page-head"><div class="crumb">${crumbRoot(sec)} / ${esc(shortName(cat))}</div><h1 class="h1">${esc(cat.name)}</h1><p class="lead">${esc(cat.intro)}</p></header>
+    ${filterBar(cat.id, sec)}<div class="grid">${list.map(card).join('')}</div>${foot()}`;
   hydrate($('#main'));
   $('.filter [aria-current]')?.scrollIntoView({ block: 'nearest', inline: 'center' });
   document.title = `${cat.name} · 江月 UI`;
@@ -504,12 +528,12 @@ function renderCategory(cat) {
 /* ---------------- 页面：词条详情 ---------------- */
 function renderDetail(c) {
   const cat = catById[c.cat], sibs = inCat(c.cat), i = sibs.indexOf(c);
-  const peers = cat.section ? siteCats : dictCats, nextCat = peers[(peers.indexOf(cat) + 1) % peers.length];
+  const sec = SECTIONS[cat.section], peers = sec ? sec.cats : dictCats, nextCat = peers[(peers.indexOf(cat) + 1) % peers.length];
   const prev = sibs[i - 1], next = sibs[i + 1];
   $('#main').innerHTML = `<div class="detail">
   <div>
     <header class="detail-head">
-      <div class="crumb">${cat.section ? '<a href="#sites">个人网站</a>' : '<a href="#all">词典</a>'} / <a href="#cat-${cat.id}">${esc(shortName(cat))}</a>${c.style ? ` / <a href="#sites-${c.style}">同风格整套</a>` : ''}${c.episode ? `<span class="episode">视频 ${esc(c.episode)}</span>` : ''}</div>
+      <div class="crumb">${crumbRoot(sec)} / <a href="#cat-${cat.id}">${esc(shortName(cat))}</a>${c.style ? ` / <a href="#sites-${c.style}">同风格整套</a>` : ''}${c.episode ? `<span class="episode">视频 ${esc(c.episode)}</span>` : ''}</div>
       <h1>${esc(c.zh)}<span>${esc(c.en)}</span></h1>
       <p class="lead">${esc(c.lead)}</p>
       ${c.vague ? `<div class="swap">别再说 ${c.vague.map((v) => `<s>${esc(v)}</s>`).join('')}<i>→</i>换成 ${(c.terms || [c.en]).map((t) => `<b>${esc(t)}</b>`).join('')}</div>` : ''}
@@ -528,6 +552,7 @@ function renderDetail(c) {
     <section class="ask${c.promptEn ? ' long' : ''}"><h2>发给 AI 的一句话</h2><p>${esc(c.prompt)}</p>
       <button class="btn primary lg block" data-copy="${c.id}">复制这句话</button>
       <div class="row"><button class="btn add-btn" data-add="${c.id}"></button><button class="btn" id="copy-code">复制代码</button></div>
+      ${c.editor ? `<a class="btn block" href="${esc(c.editor)}">用这套模板在线填写 →</a>` : ''}
       ${c.promptEn ? `<h2 class="en-h">English prompt</h2><p class="en">${esc(c.promptEn)}</p><button class="btn block" id="copy-en">复制英文提示词</button>` : ''}
       <p class="hint">不会写代码也没关系：把这句话贴给你常用的 AI，它就会照着改。要改好几处，先都放进篮子再一起复制。</p></section>
     <nav class="pager">${prev ? `<a href="#${prev.id}"><small>← 上一个</small><b>${esc(prev.zh)}</b></a>` : ''}${next ? `<a href="#${next.id}"><small>下一个 →</small><b>${esc(next.zh)}</b></a>` : `<a href="#cat-${nextCat.id}"><small>下一个主题 →</small><b>${esc(nextCat.name)}</b></a>`}</nav>
@@ -570,9 +595,10 @@ function route() {
     withCode(byId[h]).then(() => byId[h].code != null && route(), () => toast('网络不太好，代码没加载出来，刷新试试'));
     return;
   }
-  if (byId[h]) { renderDetail(byId[h]); curCat = byId[h].cat; tab = isSite(curCat) ? 'sites' : 'all'; }
-  else if (h.startsWith('cat-') && catById[h.slice(4)]) { renderCategory(catById[h.slice(4)]); curCat = h.slice(4); tab = isSite(curCat) ? 'sites' : 'all'; }
+  if (byId[h]) { renderDetail(byId[h]); curCat = byId[h].cat; tab = secOf(curCat)?.hash || 'all'; }
+  else if (h.startsWith('cat-') && catById[h.slice(4)]) { renderCategory(catById[h.slice(4)]); curCat = h.slice(4); tab = secOf(curCat)?.hash || 'all'; }
   else if (h === 'sites' || h.startsWith('sites-')) { renderSites(h.slice(6)); tab = 'sites'; }
+  else if (h === 'resumes') { renderResumes(); tab = 'resumes'; }
   else if (h === 'all') { renderAll(); tab = 'all'; }
   else renderHome();
   $$('[data-tab]').forEach((a) => (a.dataset.tab === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));

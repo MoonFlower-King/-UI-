@@ -1,0 +1,66 @@
+/* 在线填写简历（resume.html）专用样式，配色、按钮、顶栏沿用 style.css。
+   桌面：上面一条工具栏（风格 + 语言 + 导出），下面左编辑、右预览，各自滚动；手机：编辑 / 预览两个标签页。 */
+.rz-page { display: flex; flex-direction: column; height: 100vh; height: 100dvh; overflow: hidden; }
+.rz-page > .top, .rz-bar { flex-shrink: 0; }
+.top-end { margin-left: auto; }
+
+.rz-bar { position: sticky; top: var(--top-h); z-index: 30; display: flex; align-items: center; gap: 16px; padding: 8px 24px;
+  background: var(--bg); border-bottom: 1px solid var(--line); }
+.rz-styles { display: flex; gap: 4px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.rz-styles::-webkit-scrollbar { display: none; }
+.rz-styles button { display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; height: 32px; padding: 0 12px 0 9px; border: 1px solid transparent; border-radius: 99px;
+  background: none; color: var(--ink-2); font-size: 13px; transition: background .15s, border-color .15s, color .15s; }
+.rz-styles button:hover { background: var(--surface-2); color: var(--ink); }
+.rz-styles button[aria-checked="true"] { border-color: var(--line-2); background: var(--surface); color: var(--ink); font-weight: 650; box-shadow: var(--shadow-sm); }
+/* 小色块：外圈是纸色、里面一点强调色，一眼看出是浅色还是深色模板 */
+.rz-styles i { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle, var(--a) 0 4px, var(--p) 4.5px); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14); }
+.rz-tools { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.rz-tools label.btn { cursor: pointer; }
+.rz-pages { margin: 0 4px; color: var(--ink-3); font: 12px var(--mono); white-space: nowrap; }
+.rz-pages.warn { color: var(--accent-ink); font-weight: 600; }
+
+.rz { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(340px, 5fr) 7fr; }
+.rz-edit { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--line); background: var(--surface); }
+.rz-edit-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 10px 20px; border-bottom: 1px solid var(--line); color: var(--ink-3); font-size: 13px; font-weight: 600; }
+#src { flex: 1; min-height: 0; width: 100%; padding: 18px 20px 40px; border: 0; outline: 0; resize: none; background: var(--surface); color: var(--ink);
+  font: 13.5px/1.75 var(--mono); tab-size: 2; }
+#src::selection { background: var(--accent-soft); }
+.rz-help { flex-shrink: 0; max-height: 46%; overflow-y: auto; padding: 0 20px; border-top: 1px solid var(--line); background: var(--surface-2); font-size: 13px; color: var(--ink-2); }
+.rz-help summary { padding: 11px 0; color: var(--ink); font-weight: 600; cursor: pointer; }
+.rz-help dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin: 4px 0 12px; }
+.rz-help dt { white-space: nowrap; }
+.rz-help dd { margin: 0; }
+.rz-help code { padding: 1px 5px; border-radius: 5px; background: var(--surface); font: 12px var(--mono); color: var(--accent-ink); }
+.rz-help p { margin: 0 0 14px; color: var(--ink-3); }
+
+.rz-view { min-width: 0; overflow-y: auto; padding: 0; background: #DCDCE0; scrollbar-width: thin; }
+:root[data-theme="dark"] .rz-view { background: #0A0D12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rz-view { background: #0A0D12; } }
+.rz-paper { position: relative; overflow: hidden; }
+/* iframe 按 860px 宽排版（比 A4 略宽），再整体缩放到预览栏宽度：看到的就是打印出来的样子 */
+#frame { position: absolute; top: 0; left: 0; width: 860px; border: 0; transform-origin: 0 0; background: transparent; }
+.rz-view :is(iframe) { color-scheme: light; }
+
+.rz-tabs { display: none; }
+
+@media (max-width: 1100px) {
+  .rz-bar { flex-wrap: wrap; row-gap: 6px; }
+  .rz-styles { flex: 1 0 100%; order: 2; }
+}
+@media (max-width: 760px) {
+  .rz-page { display: block; height: auto; overflow: visible; }
+  .rz-bar { position: static; padding: 8px 12px; }
+  .rz-tools { flex-wrap: wrap; width: 100%; }
+  .rz-tools .primary { margin-left: auto; }
+  .rz-tabs { position: sticky; top: var(--top-h); z-index: 30; display: flex; padding: 6px 12px; gap: 6px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .rz-tabs button { flex: 1; height: 34px; border: 0; border-radius: 8px; background: none; color: var(--ink-3); font-size: 14px; font-weight: 600; }
+  .rz-tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--line); }
+  .rz { display: block; height: auto; }
+  .rz[data-pane="edit"] .rz-view, .rz[data-pane="view"] .rz-edit { display: none; }
+  .rz-edit { border: 0; }
+  #src { min-height: 70vh; flex: none; }
+  .rz-help { max-height: none; }
+  .rz-help dl { grid-template-columns: 1fr; gap: 2px; }
+  .rz-help dd { margin-bottom: 8px; }
+  .rz-view { overflow: visible; }
+}

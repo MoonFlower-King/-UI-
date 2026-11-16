@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>在线填写简历 · 江月 UI</title>
+<meta name="description" content="给程序员的简历模板：10 种风格，左边用 Markdown 写、右边实时预览，中英文两版一键切换，直接打印或存成 PDF。内容只存在你自己的浏览器里。">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1218" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<script>try { const t = JSON.parse(localStorage.getItem('jy-theme')); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/resume.css">
+</head>
+<body class="rz-page">
+<header class="top">
+  <a class="brand" href="index.html" aria-label="江月 UI 首页"><img class="mark" src="assets/logo.svg" alt="" width="30" height="30"><span class="brand-name">江月<b>UI</b></span></a>
+  <nav class="top-nav" aria-label="主导航">
+    <a href="index.html#all">词典</a>
+    <a href="index.html#sites">个人网站</a>
+    <a href="index.html#resumes">简历模板</a>
+    <a href="resume.html" aria-current="page">在线填写</a>
+  </nav>
+  <div class="top-end">
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="切换明暗"></button>
+    <a class="icon-btn desktop-only" href="https://github.com/MoonFlower-King/-UI-" aria-label="GitHub 仓库"><svg viewBox="0 0 16 16" aria-hidden="true" class="fill"><path d="M8 0C3.6 0 0 3.6 0 8c0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.6 3.9.3.3.6.8.6 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 16 8c0-4.4-3.6-8-8-8z"/></svg></a>
+  </div>
+</header>
+
+<div class="rz-bar">
+  <div class="rz-styles" id="styles" role="radiogroup" aria-label="模板风格"></div>
+  <div class="rz-tools">
+    <div class="seg" role="group" aria-label="简历语言" id="langs"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en">English</button></div>
+    <span class="rz-pages" id="pages" aria-live="polite"></span>
+    <button class="btn sm" type="button" id="dl-md" title="把左边的文字存成 .md 文件，下次可以导入接着改">存 .md</button>
+    <label class="btn sm" title="导入之前存的 .md 文件">导入<input type="file" id="import" accept=".md,.txt,text/markdown,text/plain" hidden></label>
+    <button class="btn sm" type="button" id="dl-html" title="下载成一个独立的网页文件，可以放到自己的网站上">存网页</button>
+    <button class="btn sm primary" type="button" id="print">打印 / 存为 PDF</button>
+  </div>
+</div>
+
+<div class="rz-tabs" role="tablist" aria-label="编辑或预览"><button type="button" data-pane="edit" aria-selected="true">编辑</button><button type="button" data-pane="view" aria-selected="false">预览</button></div>
+
+<main class="rz" id="rz" data-pane="edit">
+  <section class="rz-edit" aria-label="编辑简历">
+    <div class="rz-edit-head">
+      <span id="edit-label">中文版简历</span>
+      <button class="btn sm ghost" type="button" id="reset">恢复示例</button>
+    </div>
+    <textarea id="src" spellcheck="false" autocomplete="off" aria-label="简历内容（Markdown）"></textarea>
+    <details class="rz-help">
+      <summary>怎么写？（30 秒看懂）</summary>
+      <dl>
+        <dt><code># 名字</code></dt><dd>第一行写名字，下一行用 <code>&gt; </code> 写一句话定位</dd>
+        <dt><code>- 邮箱: xxx</code></dt><dd>名字下面的 <code>-</code> 行是联系方式，会按名字自动配图标（邮箱、电话、城市、GitHub、博客）</dd>
+        <dt><code>## 板块</code></dt><dd>个人简介、技术栈、工作经历……想加什么板块就写什么标题</dd>
+        <dt><code>- 语言: Go, Rust</code></dt><dd>在板块里写「类别: A, B」就是分类清单，技术栈用它；双栏模板会把这种短清单放进侧栏</dd>
+        <dt><code>### 公司 | 职位 | 2022.03 - 至今</code></dt><dd>一段经历或一个项目，用 <code>|</code> 分开；带年份的会认成时间，像网址的认成链接，<code>★ 1.2k</code> 认成星标数</dd>
+        <dt><code>技术栈: Go, Kafka</code></dt><dd>写在经历下面，变成一排小标签</dd>
+        <dt><code>**加粗**</code> <code>`代码`</code></dt><dd>行内也能加粗、标代码</dd>
+      </dl>
+      <p>内容只存在你自己的浏览器里，不会上传。中文、英文两版分开保存，切换语言就是切换另一份。</p>
+    </details>
+  </section>
+  <section class="rz-view" aria-label="简历预览">
+    <div class="rz-paper" id="paper"><iframe id="frame" title="简历预览" tabindex="-1"></iframe></div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/common.js"></script>
+<script src="assets/resume-core.js"></script>
+<script src="assets/resume-styles.js"></script>
+<script src="assets/resume-sample.js"></script>
+<script src="assets/resume-editor.js"></script>
+</body>
+</html>
