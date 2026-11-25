@@ -121,8 +121,6 @@
 @media (max-width: 900px) {
   .mix { grid-template-columns: minmax(0, 1fr); padding: 24px 16px calc(100px + env(safe-area-inset-bottom)); }
   .mix-filter { margin: 0 -16px 8px; padding: 10px 16px; }
-  .top-nav { display: flex !important; }
-  .top-nav a { padding: 6px 8px; font-size: 13px; }
   .mix-search { flex: 1 1 96px; min-width: 0; }
   .mix-filter > a { height: 30px; padding: 0 10px; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
@@ -134,9 +132,9 @@
     border: 0; border-radius: 16px; background: var(--night); color: #F4EFE6; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-lg); }
   .mix-bar b { display: inline-grid; place-items: center; min-width: 22px; height: 22px; border-radius: 99px; background: var(--accent); color: var(--on-accent); font-size: 12px; }
   .toast { bottom: calc(80px + env(safe-area-inset-bottom)); }
+  .to-top { bottom: calc(76px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 720px) {
   .grid { grid-template-columns: minmax(0, 1fr); }
-  .brand-name b { display: none; }
 }
 @media (max-width: 900px) { body:has(.composer.open) .toast { top: calc(var(--top-h) + 12px); bottom: auto; } }
