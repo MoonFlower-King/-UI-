@@ -298,7 +298,6 @@ document.addEventListener('click', (e) => {
   if (c) { const it = byId[c.dataset.copy]; it.prompt != null ? copy(it.prompt) : withText([it.id]).then(() => copy(it.prompt), () => toast('网络不太好，提示词没加载出来，刷新试试')); }
   const a = e.target.closest('[data-add]'); if (a) toggleBasket(a.dataset.add);
   if (e.target.closest('[data-open-basket]')) openBasket();
-  if (e.target.closest('[data-open-search]')) openSearch();
 });
 
 /* ---------------- 搜索 ---------------- */

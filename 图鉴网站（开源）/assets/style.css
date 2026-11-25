@@ -1,18 +1,20 @@
 :root {
-  --bg: #FAFAFA;
+  --bg: #F7F4EE;
   --surface: #FFFFFF;
-  --line: #E4E4E7;
-  --line-soft: #F4F4F5;
-  --ink: #18181B;
-  --ink-2: #3F3F46;
-  --ink-3: #71717A;
-  --ink-4: #A1A1AA;
+  --line: #E7E1D6;
+  --line-soft: #F0ECE4;
+  --ink: #1D1B18;
+  --ink-2: #4B463F;
+  --ink-3: #716A60;
+  --ink-4: #A69E92;
   --brand: #FA8C16;
   --brand-soft: #FFF3E3;
   /* 江月橘直接当文字在白底上太浅（对比度 2.4），文字用加深的两档：小字 --brand-ink（≥4.5），大标题 --brand-ink-lg（≥3） */
   --brand-ink: #B45309;
   --brand-ink-lg: #D97706;
   --radius: 16px;
+  /* 和江月 UI 词典同一套「月白」暖色与宋体标题，两个站看起来是一家人 */
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
   --font: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,9 +24,9 @@ a { color: inherit; }
 .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
 /* 顶部导航：江月夜色 */
-.topnav { position: sticky; top: 0; z-index: 20; background: #0B0F1A; color: #EEF0F6; border-bottom: 1px solid rgba(255,255,255,.08); }
+.topnav { position: sticky; top: 0; z-index: 20; background: #121722; color: #EEF0F6; border-bottom: 1px solid rgba(255,255,255,.08); }
 .topnav-inner { display: flex; align-items: center; gap: 28px; height: 64px; }
-.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 18px "Songti SC", "STSong", "Noto Serif SC", serif; letter-spacing: 1px; white-space: nowrap; }
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 18px var(--serif); letter-spacing: 1px; white-space: nowrap; }
 .nav-brand b { font: 700 14px var(--font); color: #FFB45C; letter-spacing: 0; }
 .nav-mark { width: 30px; height: 30px; flex-shrink: 0; }
 .nav-links { display: flex; gap: 4px; }
@@ -42,7 +44,7 @@ a { color: inherit; }
 .hero { padding: 48px 0 40px; background: var(--surface); border-bottom: 1px solid var(--line-soft); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: center; }
 .eyebrow { font-size: 13px; font-weight: 600; color: var(--brand-ink); letter-spacing: .5px; }
-.hero h1 { margin-top: 10px; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.15; letter-spacing: -1px; font-weight: 800; text-wrap: balance; }
+.hero h1 { margin-top: 10px; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.2; letter-spacing: .5px; font-weight: 700; font-family: var(--serif); text-wrap: balance; }
 .hero h1 em { font-style: normal; color: var(--brand-ink-lg); }
 .lead { margin-top: 14px; max-width: 640px; font-size: 16px; color: var(--ink-3); }
 .stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
@@ -51,7 +53,7 @@ a { color: inherit; }
 .kit-card { position: relative; display: grid; gap: 6px; padding: 24px; border-radius: 22px; text-decoration: none; overflow: hidden; color: #EEF0F6;
   background: radial-gradient(ellipse at 80% 0%, rgba(255,213,138,.18), transparent 60%), linear-gradient(170deg, #16203D, #0B0F1A); box-shadow: 0 18px 40px rgba(11,15,26,.22); transition: transform .25s; }
 .kit-card:hover { transform: translateY(-3px); }
-.kit-card b { font: 700 22px "Songti SC", "STSong", "Noto Serif SC", serif; color: #FFD58A; letter-spacing: 1px; margin-top: 6px; }
+.kit-card b { font: 700 22px var(--serif); color: #FFD58A; letter-spacing: 1px; margin-top: 6px; }
 .kit-card > span:not(.kit-moon):not(.kit-feats) { font-size: 14px; color: #B8BFD3; }
 .kit-feats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .kit-feats i { font-style: normal; font-size: 12px; padding: 2px 10px; border-radius: 99px; background: rgba(255,255,255,.08); color: #D6DBEA; }
@@ -74,7 +76,7 @@ main { padding-top: 12px; padding-bottom: 40px; }
 .section { padding-top: 36px; }
 .section-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px 14px; margin-bottom: 18px; }
 .section-head .no { font-size: 13px; font-weight: 700; color: var(--brand-ink); background: var(--brand-soft); padding: 3px 10px; border-radius: 999px; }
-.section-head h2 { font-size: 24px; letter-spacing: -0.4px; }
+.section-head h2 { font: 700 24px/1.3 var(--serif); }
 .section-head .type { font-size: 13px; color: var(--ink-3); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
 .section-head .all { margin-left: auto; font-size: 14px; color: var(--ink-3); text-decoration: none; }
 .section-head .all:hover { color: var(--ink); }
@@ -82,12 +84,12 @@ main { padding-top: 12px; padding-bottom: 40px; }
 
 /* 词条卡片 */
 .card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-.card:hover { box-shadow: 0 10px 30px rgba(24,24,27,0.08); transform: translateY(-2px); }
+.card:hover { box-shadow: 0 12px 32px -12px rgba(40,30,15,.2); transform: translateY(-2px); }
 .demo { position: relative; aspect-ratio: 456 / 250; background: var(--line-soft); border-bottom: 1px solid var(--line-soft); }
 .demo iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .body { display: flex; flex-direction: column; flex: 1; padding: 16px 18px 18px; }
 .en { font-size: 13px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.2px; }
-.zh { margin-top: 2px; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+.zh { margin-top: 2px; font: 700 20px/1.4 var(--serif); }
 .say { margin-top: 8px; font-size: 15px; color: var(--ink-2); }
 .eg { margin-top: 2px; font-size: 13px; color: var(--ink-3); }
 .prompt { margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--line-soft); font-size: 13px; line-height: 1.7; color: var(--ink-2); }
@@ -114,7 +116,7 @@ mark { background: #FFE7BA; color: inherit; border-radius: 3px; }
 .sheet { width: min(860px, 100%); max-height: calc(100vh - 40px); display: flex; flex-direction: column; background: var(--surface); border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.3); overflow: hidden; animation: sheet-in .25s cubic-bezier(.2,.8,.2,1); }
 @keyframes sheet-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
 .sheet-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 22px 8px; }
-.sheet-head h2 { font-size: 22px; letter-spacing: -.3px; }
+.sheet-head h2 { font: 700 22px/1.3 var(--serif); }
 .x { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--line-soft); cursor: pointer; font-size: 14px; }
 .tabs { display: flex; gap: 4px; padding: 0 22px; border-bottom: 1px solid var(--line-soft); }
 .tabs button { border: 0; background: none; padding: 10px 12px; font: 600 14px var(--font); color: var(--ink-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }

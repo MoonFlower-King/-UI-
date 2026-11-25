@@ -40,3 +40,22 @@ function syncTheme() {
 $('#theme-btn').onclick = () => { const t = isDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = t; store.set('jy-theme', t); syncTheme(); };
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
 syncTheme();
+
+/* ---------------- 回到顶部：词典 500 多张卡、调配台几百种风格，滚远了一键回来 ---------------- */
+{
+  const b = Object.assign(document.createElement('button'), { type: 'button', className: 'to-top', ariaLabel: '回到顶部', title: '回到顶部',
+    innerHTML: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4M5 9l5-5 5 5"/></svg>' });
+  b.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  document.body.append(b);
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { b.classList.toggle('show', scrollY > innerHeight * 2); ticking = false; });
+  }, { passive: true });
+}
+
+// 手机上顶栏导航可横滑：把当前栏目滑进视野
+{
+  const n = $('.top-nav'), c = n && $('[aria-current]', n);
+  if (c && n.scrollWidth > n.clientWidth) n.scrollLeft += c.getBoundingClientRect().right - n.getBoundingClientRect().right + 24;
+}
